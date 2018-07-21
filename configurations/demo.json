@@ -1,0 +1,187 @@
+{
+  "id": "basic_configuration",
+  "clock_mode": 2,
+  "lane_number": 0,
+  "position": 22000,
+  "spawning_rotation": {
+        "pitch":0.0,
+        "yaw":-90.0,
+        "roll":0.0
+  },
+  "mesh_path": "/Game/Vehicles_Vol1/Models/SUV/SUV_rigged.SUV_rigged",
+  "anim_path": "/Game/Vehicles_Vol1/Blueprints/SUV_AnimBP.SUV_AnimBP_C",
+  "wheels":[
+    {
+      "id": "FL_Wheel",
+      "wheel_number": 0,
+      "offset": {
+        "x":0.0,
+        "y":-12.0,
+        "z":0.0
+      },
+      "front": true
+    },
+    {
+      "id": "FR_Wheel",
+      "wheel_number": 1,
+      "offset": {
+        "x":0.0,
+        "y":12.0,
+        "z":0.0
+      },
+      "front": true
+    },
+    {
+      "id": "BL_Wheel",
+      "wheel_number": 2,
+      "offset": {
+        "x":0.0,
+        "y":-12.0,
+        "z":0.0
+      },
+      "front": false
+    },
+    {
+      "id": "BR_Wheel",
+      "wheel_number": 3,
+      "offset": {
+        "x":0.0,
+        "y":12.0,
+        "z":0.0
+      },
+      "front": false
+    }
+  ],
+  "sensors": [
+        {
+      "type": "Lidar",
+      "id": "0",
+      "packet_size": 1472,
+      "listen_port": 8080,
+      "display_process": true,
+      "sensor_process": true,
+      "location": {
+        "x":-75.0,
+        "y":-25.0,
+        "z":350.0
+      },
+      "rotation": {
+        "pitch":0.0,
+        "yaw":0.0,
+        "roll":0.0
+      },
+      "max_distance": 8000.0,
+      "vertical_fov_angle": 30.0,
+      "horizontal_resolution": 0.4,
+      "fps": 10.0,
+      "n_lasers": 32,
+      "reset_angle": 0.0
+    },
+     {
+      "type":"Camera",
+      "id": "1",
+      "packet_size": 23552,
+      "listen_port": 7083,
+      "display_process": true,
+      "sensor_process": true,
+      "location": {
+        "x":-238.0,
+        "y":25.0,
+        "z":147.0
+      },
+      "rotation": {
+        "pitch":0.0,
+        "yaw":170.0,
+        "roll":0.0
+      },
+      "max_distance": 50000.0,
+      "horizontal_fov_angle": 50.0,
+      "fps": 10,
+      "stream_dimensions": {
+        "x":512.0,
+        "y":512.0
+      },
+      "semantic_processing": false,
+      "hdmi_streaming": false
+    },
+    {
+      "type": "GPS",
+      "id": "0",
+      "packet_size": 1472,
+      "listen_port": 8083,
+      "display_process": true,
+      "sensor_process": true,
+      "location": {
+        "x": -75.0,
+        "y": -25.0,
+        "z": 245.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "fps": 10.0
+    },
+    {
+      "type": "IMU",
+      "id": "0",
+      "packet_size": 1472,
+      "listen_port": 8084,
+      "display_process": true,
+      "sensor_process": true,
+      "location": {
+        "x":-75.0,
+        "y":-25.0,
+        "z":245.0
+      },
+      "rotation": {
+        "pitch":0.0,
+        "yaw":0.0,
+        "roll":0.0
+      },
+
+      "fps": 5.0
+    },
+    {
+      "type": "BoundingBox",
+      "id": "1",
+      "packet_size": 1472,
+      "listen_port": 8085,
+      "display_process": false,
+      "sensor_process": true,
+      "location": {
+        "x":-75.0,
+        "y":-25.0,
+        "z":245.0
+      },
+      "rotation": {
+        "pitch":0.0,
+        "yaw":0.0,
+        "roll":0.0
+      },
+      "fps": 10.0
+    },
+    {
+      "type": "Waypoint",
+      "id": "4",
+      "packet_size": 5664,
+      "listen_port": 8086,
+      "display_process": true,
+      "sensor_process": true,
+      "location": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "fps": 10.0,
+      "point_delta": 100.0,
+      "total_points": 100
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Catalog>
+   <Vehicle id="suv" anim_path="/Game/Vehicles_Vol1/Blueprints/SUV_AnimBP.SUV_AnimBP_C" lane_number="1" position="0.0" mesh_path="/Game/Vehicles_Vol1/Models/SUV/SUV_rigged.SUV_rigged" clock_mode="2" bounding_data_on_radar_graph="True">
+      <spawning_rotation pitch="0.0" roll="0.0" yaw="-90.0" />
+      <multicamera_sensors>
+         <multicamera id="camera_sensor_main_forward" fps="10.0" horizontal_fov_angle="50.0" max_distance="10000.0" hdmi_streaming="0" semantic_processing="0" packet_size="1472" listen_port="8081" display_process="true" sensor_process="false">
+            <location x="38.0" y="0.0" z="147.0" />
+            <rotation pitch="0.0" roll="0.0" yaw="0.0" />
+            <stream_dimensions x="1024.0" y="256.0" />
+            <camera_ids id="0"></camera_ids>
+            <camera_ids id="1"></camera_ids>
+            <camera_ids id="2"></camera_ids>
+            <camera_ids id="3"></camera_ids>
+         </multicamera>
+      </multicamera_sensors>
+      <camera_sensors>
+         <camera id="0" fps="10.0" horizontal_fov_angle="50.0" max_distance="10000.0" semantic_processing="0" hdmi_streaming="0" packet_size="1472" listen_port="8080" display_process="0" sensor_process="0">
+            <location x="38.0" y="-25.0" z="147.0" />
+            <rotation pitch="0.0" roll="0.0" yaw="-10.0" />
+            <stream_dimensions x="256.0" y="256.0" />
+         </camera>
+         <camera id="1" fps="10.0" horizontal_fov_angle="150.0" max_distance="6000.0" semantic_processing="0" hdmi_streaming="0" packet_size="1472" listen_port="8080" display_process="0" sensor_process="0">
+            <location x="38.0" y="25.0" z="147.0" />
+            <rotation pitch="0.0" roll="0.0" yaw="10.0" />
+            <stream_dimensions x="256.0" y="256.0" />
+         </camera>
+         <camera id="2" fps="10.0" horizontal_fov_angle="35.0" max_distance="10000.0" semantic_processing="0" hdmi_streaming="0" packet_size="1472" listen_port="8080" display_process="0" sensor_process="0">
+            <location x="-238.0" y="-25.0" z="147.0" />
+            <rotation pitch="0.0" roll="0.0" yaw="-170.0" />
+            <stream_dimensions x="256.0" y="256.0" />
+         </camera>
+         <camera id="3" fps="10.0" horizontal_fov_angle="90.0" max_distance="8000.0" semantic_processing="0" hdmi_streaming="0" packet_size="1472" listen_port="8080" display_process="0" sensor_process="0">
+            <location x="-238.0" y="25.0" z="147.0" />
+            <rotation pitch="0.0" roll="0.0" yaw="170.0" />
+            <stream_dimensions x="256.0" y="256.0" />
+         </camera>
+      </camera_sensors>
+      <imu_sensors>
+         <imu_sensor id="0" fps="10.0" packet_size="1472" listen_port="8083" display_process="1" sensor_process="1">
+            <location x="-75.0" y="-25.0" z="245.0" />
+            <rotation pitch="0.0" roll="0.0" yaw="0.0" />
+         </imu_sensor>
+      </imu_sensors>
+      <lidar_sensors>
+         <lidar id="0" horizontal_resolution="0.4" max_distance="8000.0" n_lasers="32" reset_angle="0.0" fps="10.0" vertical_fov_angle="30.0"  packet_size="1472" listen_port="8080" display_process="1" sensor_process="false">
+            <location x="-75.0" y="-25.0" z="350.0" />
+            <rotation pitch="0.0" roll="0.0" yaw="0.0" />
+         </lidar>
+      </lidar_sensors>
+      <radar_sensors>
+         <radar id="0" fc="7.6999999E10" fs="150000000" max_velocity="55.555557" num_samples_per_sweep="1100" num_sweeps="128" range_max="200.0" range_resolution="1.0" sweep_num_for_range_max="5.5" packet_size="64000" listen_port="8091" display_process="false" sensor_process="false" fps="10.0">
+            <location x="250.0" y="0.0" z="50.0" />
+            <receiver aperture="6.03E-4" gain="20.0" kb="5.9641065E-4" nb="1.5E8" nf="4.5" noise_temp="290.0" />
+            <rotation pitch="0.0" roll="0.0" yaw="0.0" />
+            <transmitter aperture="6.03E-4" gain="10.0" />
+         </radar>
+      </radar_sensors>
+      <gps_sensors>
+         <gps id="0" fps="10.0" packet_size="1472" listen_port="8082" display_process="1" sensor_process="1">
+            <location x="-75.0" y="-25.0" z="245.0" />
+            <rotation pitch="0.0" roll="0.0" yaw="0.0" />
+         </gps>
+      </gps_sensors>
+      <rpm_sensors>
+         <rpm id="0" fps="10.0" wheel_number="0" packet_size="1472" listen_port="8085" display_process="false" sensor_process="false">
+            <location x="0.0" y="0.0" z="0.0" />
+            <rotation pitch="0.0" roll="0.0" yaw="0.0" />
+         </rpm>
+      </rpm_sensors>
+      <waypoint_sensors>
+         <waypoint id="0" fps="10.0" packet_size="1472" listen_port="8086" display_process="1" sensor_process="1" point_delta="100.0" total_points="100">
+            <location x="0.0" y="0.0" z="0.0" />
+            <rotation pitch="0.0" roll="0.0" yaw="0.0" />
+         </waypoint>
+      </waypoint_sensors>
+      <bounding_box_sensors>
+         <bounding_box id="0" fps="10.0" packet_size="1472" listen_port="8084" display_process="1" sensor_process="1">
+            <location x="-75.0" y="-25.0" z="245.0" />
+            <rotation pitch="0.0" roll="0.0" yaw="0.0" />
+         </bounding_box>
+      </bounding_box_sensors>
+      <wheels>
+         <wheel id="FL_Wheel" front="1" wheel_number="0">
+            <offset x="0.0" y="-12.0" z="0.0" />
+         </wheel>
+         <wheel id="FR_Wheel" front="1" wheel_number="1">
+            <offset x="0.0" y="12.0" z="0.0" />
+         </wheel>
+         <wheel id="BL_Wheel" front="0" wheel_number="2">
+            <offset x="0.0" y="-12.0" z="0.0" />
+         </wheel>
+         <wheel id="BR_Wheel" front="0" wheel_number="3">
+            <offset x="0.0" y="12.0" z="0.0" />
+         </wheel>
+      </wheels>
+   </Vehicle>
+   <Vehicle id="traffic_no_sensors" anim_path="/Game/Vehicles_Vol1/Blueprints/SUV_AnimBP.SUV_AnimBP_C" lane_number="1" position="0.0" mesh_path="/Game/Vehicles_Vol1/Models/SUV/SUV_rigged.SUV_rigged" clock_mode="0" bounding_data_on_radar_graph="0">
+      <spawning_rotation pitch="0.0" roll="0.0" yaw="-90.0" />
+      <multicamera_sensors>
+      </multicamera_sensors>
+      <camera_sensors>
+      </camera_sensors>
+      <imu_sensors>
+      </imu_sensors>
+      <lidar_sensors>
+      </lidar_sensors>
+      <radar_sensors>
+      </radar_sensors>
+      <gps_sensors>
+      </gps_sensors>
+      <rpm_sensors>
+      </rpm_sensors>
+      <waypoint_sensors>
+      </waypoint_sensors>
+      <bounding_box_sensors>
+      </bounding_box_sensors>
+      <wheels>
+         <wheel id="FL_Wheel" front="True" wheel_number="0">
+            <offset x="0.0" y="-12.0" z="0.0" />
+         </wheel>
+         <wheel id="FR_Wheel" front="True" wheel_number="1">
+            <offset x="0.0" y="12.0" z="0.0" />
+         </wheel>
+         <wheel id="BL_Wheel" front="False" wheel_number="2">
+            <offset x="0.0" y="-12.0" z="0.0" />
+         </wheel>
+         <wheel id="BR_Wheel" front="False" wheel_number="3">
+            <offset x="0.0" y="12.0" z="0.0" />
+         </wheel>
+      </wheels>
+   </Vehicle>
+</Catalog>

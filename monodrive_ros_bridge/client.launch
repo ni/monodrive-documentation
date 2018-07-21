@@ -1,0 +1,10 @@
+<launch>
+  <arg name='rosbag_fname' default=''/>
+  <param name="rosbag_fname" value="$(arg rosbag_fname)"/>
+  <rosparam file="$(find monodrive_ros_bridge)/config/settings.yaml" command="load" />
+  <param name="curr_episode" type="string" value="" />
+  <node pkg="monodrive_ros_bridge" name="monodrive_ros_bridge" type="client.py" output="screen"/>
+
+  <include file="$(find velodyne_pointcloud)/launch/VLP-32C_points.launch">
+  </include>
+</launch>

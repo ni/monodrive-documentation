@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+	<Driver name="HastyDriver"
+		obeyTrafficLights="True"
+		obeyTrafficSigns="True"
+		steeringDistance="1.0"
+		foresightDistance="1.0"
+		respondToTailgating="1.0"
+		urgeToOvertake="1.0"
+		useOfIndicator="1.0"
+		keepRightRule="1.0"
+		laneChangeDynamic="1.0"
+		speedKeeping="1.0"
+		laneKeeping="1.0"
+		distanceKeeping="1.0"
+		observeSpeedLimits="1.0"
+		curveSpeed="1.0"
+		desiredDeceleration="1.0"
+		desiredAcceleration="1.0"
+		desiredVelocity="1.0"
+		politeness="1.0"
+		alertness="1.0"
+		adaptToVehicleType="1.0"
+		adaptToTimeOfDay="1.0"
+		adaptToRoadConditions="1.0"
+		adaptToWeatherConditions="1.0">
+		<Body weight="150.0" height="68.5" eyeDistance="25.0" sex="male"/>
+	</Driver>
+</Catalog>

@@ -26,7 +26,7 @@ import sys
 class SingleQueue(sq):
 
     def __init__(self):
-        if sys.platform == "Windows":
+        if sys.platform.__contains__("win"):
             ctx = mp.get_context()
             super(SingleQueue, self).__init__(maxsize=1, ctx=ctx)
         else:

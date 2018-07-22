@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 
+__author__ = "monoDrive"
+__copyright__ = "Copyright (C) 2018 monoDrive"
+__license__ = "MIT"
+__version__ = "1.0"
+
 from monodrive import SimulatorConfiguration, VehicleConfiguration
 from monodrive.vehicles import SimpleVehicle
 from monodrive import Simulator

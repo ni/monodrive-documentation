@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+
+__author__ = "monoDrive"
+__copyright__ = "Copyright (C) 2018 monoDrive"
+__license__ = "MIT"
+__version__ = "1.0"
+
 # Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma de
 # Barcelona (UAB), and the INTEL Visual Computing Lab.
 #

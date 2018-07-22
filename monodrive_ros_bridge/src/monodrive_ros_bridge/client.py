@@ -1,10 +1,12 @@
+#!/usr/bin/env python
+
 # Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma de
 # Barcelona (UAB), and the INTEL Visual Computing Lab.
 #
 # This work is licensed under the terms of the MIT license.
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
-#!/usr/bin/env python
+
 """
 Ros Bridge node for mono simulator
 """
@@ -32,7 +34,7 @@ def main():
         rospy.set_param('/monodrive/' + param, sim_config_yaml[param])
 
     # Vehicle configuration defines ego vehicle configuration and the individual sensors configurations
-    vehicle_config = VehicleConfiguration('single_camera.json')
+    vehicle_config = VehicleConfiguration('demo.json')
     vehicle_config_yaml = yaml.load(json.dumps(vehicle_config.configuration))
 
     for param in vehicle_config_yaml:

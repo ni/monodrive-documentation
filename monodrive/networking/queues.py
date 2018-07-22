@@ -7,6 +7,9 @@ except:
 import time
 import multiprocessing as mp
 from multiprocessing.queues import Queue as sq
+import os
+import sys
+
 
 # We could probably implement a LifoQueue but it would be a little more difficult with the multiprocessing Queue
 
@@ -18,10 +21,11 @@ from multiprocessing.queues import Queue as sq
 class SingleQueue(sq):
 
     def __init__(self):
-        ctx = mp.get_context()
-        #ctx = mp.get_context('spawn')
-        #super(SingleQueue, self).__init__(maxsize=1, ctx=ctx)
-        super(SingleQueue, self).__init__(maxsize=1, ctx=ctx)
+        if sys.platform == "Windows":
+            ctx = mp.get_context()
+            super(SingleQueue, self).__init__(maxsize=1, ctx=ctx)
+        else:
+            super(SingleQueue, self).__init__(maxsize=1)         
         self._qlock = mp.RLock()
 
     def __getstate__(self):

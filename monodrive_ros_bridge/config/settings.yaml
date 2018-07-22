@@ -10,5 +10,5 @@ monodrive:
   Framesperepisode: -1 # -1: run episode indefinitely until interrupted
   Episodes: 2
   SimulatorConfig: simulator.json
-  VehicleConfig: single_camera.json
+  VehicleConfig: demo.json
 

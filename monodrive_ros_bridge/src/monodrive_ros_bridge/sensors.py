@@ -33,6 +33,8 @@ from monodrive.sensors.lidar import Lidar
 from monodrive.sensors import BaseSensor as Sensor
 
 from monodrive_ros_bridge.transforms import mono_transform_to_ros_transform
+from monodrive_ros_bridge.msg import BoundingBox, Rpm, Waypoint
+
 
 cv_bridge = CvBridge(
 )  # global cv bridge to convert image between opencv and monodrive_ros_bridge
@@ -339,3 +341,51 @@ class GpsHandler(SensorHandler):
         t.transform.rotation.w = quat[3]
 
         self.process_msg_fun('tf', t)
+
+
+class RpmHandler(SensorHandler):
+    def __init__(self, name, sensor, **kwargs):
+        super(RpmHandler, self).__init__(
+            name, sensor=sensor, **kwargs)
+
+    def _compute_sensor_msg(self, sensor_data, cur_time):
+        header = Header()
+        header.stamp = cur_time
+        header.frame_id = self.name
+
+        msg = Rpm()
+        msg.header = header
+        msg.wheel_number = sensor_data['wheel_number']
+        msg.wheel_rpm = sensor_data['wheel_rpm']
+
+        self.process_msg_fun('rpm', msg)
+
+
+    def _compute_transform(self, sensor_data, cur_time):
+        parent_frame_id = "base_link"
+        child_frame_id = self.name
+
+        t = TransformStamped()
+        t.header.stamp = cur_time
+        t.header.frame_id = parent_frame_id
+        t.child_frame_id = child_frame_id
+
+        t.transform = mono_transform_to_ros_transform(
+            self.sensor.get_transform())
+
+        rotation = t.transform.rotation
+        quat = [rotation.x, rotation.y, rotation.z, rotation.w]
+        quat_swap = tf.transformations.quaternion_from_matrix(
+            [[0, 0, 1, 0],
+             [-1, 0, 0, 0],
+             [0, -1, 0, 0],
+             [0, 0, 0, 1]])
+        quat = tf.transformations.quaternion_multiply(quat, quat_swap)
+
+        t.transform.rotation.x = quat[0]
+        t.transform.rotation.y = quat[1]
+        t.transform.rotation.z = quat[2]
+        t.transform.rotation.w = quat[3]
+
+        self.process_msg_fun('tf', t)
+

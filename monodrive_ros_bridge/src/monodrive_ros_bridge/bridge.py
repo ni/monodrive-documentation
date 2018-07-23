@@ -26,7 +26,7 @@ from monodrive import Simulator, SimulatorConfiguration, VehicleConfiguration
 #from mono.settings import monoSettings
 #from monodrive_ros_bridge.control import InputController
 from monodrive_ros_bridge.markers import PlayerAgentHandler, NonPlayerAgentsHandler
-from monodrive_ros_bridge.sensors import CameraHandler, GpsHandler, LidarHandler, ImuHandler
+from monodrive_ros_bridge.sensors import CameraHandler, GpsHandler, LidarHandler, ImuHandler, RpmHandler
 
 from monodrive.vehicles import SimpleVehicle
 
@@ -121,6 +121,8 @@ class MonoRosBridge(object):
             sensor_handler = ImuHandler
         elif sensor_type == 'GPS':
             sensor_handler = GpsHandler
+        elif sensor_type=='RPM':
+            sensor_handler = RpmHandler
 
         if sensor_handler:
             if self.sensors.get(sensor_type, None) is None:

@@ -123,7 +123,7 @@ class Waypoint(MatplotlibSensorUI, BaseSensorPacketized):
 
     def get_message(self):
         data = super(Waypoint, self).get_message()
-        if self.update_command_sent:
+        if self.update_command_sent is True:
             n1 = self.get_waypoints_for_current_lane()[0]
             try:
                 p1 = self.previous_points[0]

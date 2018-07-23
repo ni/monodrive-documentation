@@ -6,6 +6,7 @@ __version__ = "1.0"
 
 import math
 from multiprocessing import Process
+import time
 
 from monodrive import SensorManager, Simulator
 from monodrive.networking import messaging
@@ -13,6 +14,7 @@ from monodrive.networking import messaging
 from monodrive.sensors import GPS, Waypoint
 
 SCENARIO_LOGGING = True
+LOG_SIMULATOR_TIMING = True
 
 
 class BaseVehicle(Process):
@@ -27,8 +29,10 @@ class BaseVehicle(Process):
         self.update_sent = False
         self.scenario = None
         self.vehicle_state = None
+        self.previous_control_sent_time = None
 
     def start(self):
+        self.previous_control_sent_time = time.time()
         super(BaseVehicle, self).start()
         self.sensor_data_ready = self.sensor_manager.sensor_data_ready
         self.sensor_manager.start(self.simulator)
@@ -41,8 +45,11 @@ class BaseVehicle(Process):
 
     def run(self):
         while True:
-            print("Waiting on Sensor Data")
+            # print("Waiting on Sensor Data")
             self.sensor_data_ready.wait()
+
+            if LOG_SIMULATOR_TIMING is True:
+                self.log_control_time(self.previous_control_sent_time)
 
             if self.vehicle_state is not None:
                 self.vehicle_state.update_state(self.sensors)
@@ -50,14 +57,14 @@ class BaseVehicle(Process):
             control_data = self.drive(self.sensors, self.vehicle_state)
             self.sensor_data_ready.clear()
             self.send_control_data(control_data)
-            print("Finished run loop")
 
     def send_control_data(self, control_data):
         forward = control_data['forward']
         right = control_data['right']
         msg = messaging.EgoControlCommand(forward, right)
         resp = self.simulator.request(msg)
-        print("--->  {0}\n<---  {1}".format(msg, resp))
+        self.previous_control_sent_time = time.time()
+        # print("--->  {0}\n<---  {1}".format(msg, resp))
 
     def stop(self):
         # Stops all sensor streams and terminates up processes
@@ -66,6 +73,11 @@ class BaseVehicle(Process):
 
     def drive(self, sensors, vehicle_state):
         raise NotImplementedError("To be implemented")
+
+    @staticmethod
+    def log_control_time(previous_control_time):
+        dif = time.time() - previous_control_time
+        print 'Time between Last Control Values Sent and New Sensor Values Received:', dif
 
     @staticmethod
     def plan_target_lane(waypoint_sensor, vehicle_state=None):

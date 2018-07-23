@@ -159,7 +159,8 @@ class SensorManager:
     def monitor_sensors(sensor_data_ready, sensors):
         last_game_time = None
         while True:
-            print('monitoring sensors')
+            if SENSOR_WAITING_LOGGING:
+                print('monitoring sensors')
             if last_game_time is None:
                 for s in sensors:
                     if SENSOR_WAITING_LOGGING:
@@ -290,7 +291,7 @@ class BaseSensor(multiprocessing.Process):
         return data
 
     def dropped_frame(self):
-        print('Dropped Frame', self.name)
+        print 'Dropped Frame', self.name
 
     def stop(self, simulator):
         self.running = False  # Will stop UDP and Logging thread

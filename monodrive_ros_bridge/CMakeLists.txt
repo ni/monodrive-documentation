@@ -51,7 +51,9 @@ add_message_files(
    DIRECTORY msg
    FILES
    BoundingBox.msg
+   LaneInfo.msg
    Rpm.msg
+   Target.msg
    Waypoint.msg
  )
 

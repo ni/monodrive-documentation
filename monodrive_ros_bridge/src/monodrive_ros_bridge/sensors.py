@@ -21,7 +21,7 @@ import numpy as np
 import tf
 
 from cv_bridge import CvBridge
-from geometry_msgs.msg import TransformStamped
+from geometry_msgs.msg import Point, TransformStamped
 from sensor_msgs.msg import CameraInfo, Imu, NavSatFix
 from sensor_msgs.point_cloud2 import create_cloud_xyz32
 from std_msgs.msg import Header
@@ -33,7 +33,7 @@ from monodrive.sensors.lidar import Lidar
 from monodrive.sensors import BaseSensor as Sensor
 
 from monodrive_ros_bridge.transforms import mono_transform_to_ros_transform
-from monodrive_ros_bridge.msg import BoundingBox, Rpm, Waypoint
+from monodrive_ros_bridge.msg import BoundingBox, LaneInfo, Rpm, Target, Waypoint
 
 
 cv_bridge = CvBridge(
@@ -389,3 +389,102 @@ class RpmHandler(SensorHandler):
 
         self.process_msg_fun('tf', t)
 
+
+class BoundingBoxHandler(SensorHandler):
+    def __init__(self, name, sensor, **kwargs):
+        super(BoundingBoxHandler, self).__init__(
+            name, sensor=sensor, **kwargs)
+
+    def _compute_sensor_msg(self, sensor_data, cur_time):
+        header = Header()
+        header.stamp = cur_time
+        header.frame_id = self.name
+
+        msg = BoundingBox(header=header, targets=[])
+        for i in range(0, len(sensor_data['distances'])):
+            msg.targets.append(Target(id=i, distance=sensor_data['distances'][i], angle=sensor_data['angles'][i],
+                                      relative_rotation=sensor_data['box_rotations'][i],
+                                      velocity=sensor_data['velocities'][i],
+                                      #in_radar_fov=sensor_data['radar_distances'][i],
+                                      center=Point(x=sensor_data['x_points'][i], y=sensor_data['y_points'][i]),
+                                      extent=Point(x=sensor_data['x_bounds'][i], y=sensor_data['y_bounds'][i],
+                                                   z=sensor_data['z_bounds'][i])))
+
+        self.process_msg_fun('boundingbox', msg)
+
+    def _compute_transform(self, sensor_data, cur_time):
+        parent_frame_id = "base_link"
+        child_frame_id = self.name
+
+        t = TransformStamped()
+        t.header.stamp = cur_time
+        t.header.frame_id = parent_frame_id
+        t.child_frame_id = child_frame_id
+
+        t.transform = mono_transform_to_ros_transform(
+            self.sensor.get_transform())
+
+        rotation = t.transform.rotation
+        quat = [rotation.x, rotation.y, rotation.z, rotation.w]
+        quat_swap = tf.transformations.quaternion_from_matrix(
+            [[0, 0, 1, 0],
+             [-1, 0, 0, 0],
+             [0, -1, 0, 0],
+             [0, 0, 0, 1]])
+        quat = tf.transformations.quaternion_multiply(quat, quat_swap)
+
+        t.transform.rotation.x = quat[0]
+        t.transform.rotation.y = quat[1]
+        t.transform.rotation.z = quat[2]
+        t.transform.rotation.w = quat[3]
+
+        self.process_msg_fun('tf', t)
+
+
+class WaypointHandler(SensorHandler):
+    def __init__(self, name, sensor, **kwargs):
+        super(WaypointHandler, self).__init__(
+            name, sensor=sensor, **kwargs)
+
+    def _compute_sensor_msg(self, sensor_data, cur_time):
+        header = Header()
+        header.stamp = cur_time
+        header.frame_id = self.name
+
+        msg = Waypoint(current_lane=sensor_data['lane_number'], lanes=[])
+        for i in range(0, len(sensor_data['points_by_lane'])):
+            lane = LaneInfo(lane_id=i, speed_limit=sensor_data['speed_limit_by_lane'][i], points=[])
+            for x, y in sensor_data['points_by_lane'][i]:
+                lane.points.append(Point(x=x, y=y))
+
+            msg.lanes.append(lane)
+
+        self.process_msg_fun('waypoint', msg)
+
+    def _compute_transform(self, sensor_data, cur_time):
+        parent_frame_id = "base_link"
+        child_frame_id = self.name
+
+        t = TransformStamped()
+        t.header.stamp = cur_time
+        t.header.frame_id = parent_frame_id
+        t.child_frame_id = child_frame_id
+
+        t.transform = mono_transform_to_ros_transform(
+            self.sensor.get_transform())
+
+        rotation = t.transform.rotation
+        quat = [rotation.x, rotation.y, rotation.z, rotation.w]
+        quat_swap = tf.transformations.quaternion_from_matrix(
+            [[0, 0, 1, 0],
+             [-1, 0, 0, 0],
+             [0, -1, 0, 0],
+             [0, 0, 0, 1]])
+        quat = tf.transformations.quaternion_multiply(quat, quat_swap)
+
+        t.transform.rotation.x = quat[0]
+        t.transform.rotation.y = quat[1]
+        t.transform.rotation.z = quat[2]
+        t.transform.rotation.w = quat[3]
+
+        self.process_msg_fun('tf', t)

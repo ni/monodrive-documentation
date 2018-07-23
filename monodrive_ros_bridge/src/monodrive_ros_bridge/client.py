@@ -35,6 +35,9 @@ def main():
     simulator_config = SimulatorConfiguration('simulator.json')
     sim_config_yaml = yaml.load(json.dumps(simulator_config.configuration))
 
+    if rospy.has_param('monodrive/sensors'):
+        rospy.delete_param('monodrive/sensors')
+
     for param in sim_config_yaml:
         print param, ":", sim_config_yaml[param]
         rospy.set_param('/monodrive/' + param, sim_config_yaml[param])

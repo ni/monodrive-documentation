@@ -43,7 +43,7 @@ class BaseVehicle(Process):
 
     def run(self):
         while True:
-            logging.getLogger("sensor").info("Waiting on Sensor Data")
+            logging.getLogger("sensors").warning("Waiting on Sensor Data")
             self.sensor_data_ready.wait()
 
             self.log_control_time(self.previous_control_sent_time)
@@ -75,7 +75,7 @@ class BaseVehicle(Process):
     @staticmethod
     def log_control_time(previous_control_time):
         dif = time.time() - previous_control_time
-        logging.getLogger("sensor").info('Time between Last Control Values Sent and New Sensor Values Received:', dif)
+        logging.getLogger("sensors").warning('Time between Last Control Values Sent and New Sensor Values Received: %f' % dif)
 
     @staticmethod
     def plan_target_lane(waypoint_sensor, vehicle_state=None):

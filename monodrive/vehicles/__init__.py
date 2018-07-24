@@ -4,6 +4,7 @@ __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
+import logging
 import math
 from multiprocessing import Process
 import time
@@ -12,9 +13,6 @@ from monodrive import SensorManager, Simulator
 from monodrive.networking import messaging
 
 from monodrive.sensors import GPS, Waypoint
-
-SCENARIO_LOGGING = True
-LOG_SIMULATOR_TIMING = True
 
 
 class BaseVehicle(Process):
@@ -45,11 +43,10 @@ class BaseVehicle(Process):
 
     def run(self):
         while True:
-            # print("Waiting on Sensor Data")
+            logging.getLogger("sensor").info("Waiting on Sensor Data")
             self.sensor_data_ready.wait()
 
-            if LOG_SIMULATOR_TIMING is True:
-                self.log_control_time(self.previous_control_sent_time)
+            self.log_control_time(self.previous_control_sent_time)
 
             if self.vehicle_state is not None:
                 self.vehicle_state.update_state(self.sensors)
@@ -59,6 +56,7 @@ class BaseVehicle(Process):
             self.send_control_data(control_data)
 
     def send_control_data(self, control_data):
+        logging.getLogger("control").info("Waiting on Sensor Data")
         forward = control_data['forward']
         right = control_data['right']
         msg = messaging.EgoControlCommand(forward, right)
@@ -77,7 +75,7 @@ class BaseVehicle(Process):
     @staticmethod
     def log_control_time(previous_control_time):
         dif = time.time() - previous_control_time
-        print 'Time between Last Control Values Sent and New Sensor Values Received:', dif
+        logging.getLogger("sensor").info('Time between Last Control Values Sent and New Sensor Values Received:', dif)
 
     @staticmethod
     def plan_target_lane(waypoint_sensor, vehicle_state=None):
@@ -174,23 +172,20 @@ class VehicleState:
             # Sequence devices number of executions, actors involved and the Maneuver
             next_possible_event = self.sequence.maneuver.events[self.maneuver_current_event_index]
             if self.check_conditions(next_possible_event.start_conditions, self):
-                if SCENARIO_LOGGING:
-                    print('Setting Event', next_possible_event.name)
+                logging.getLogger("scenario").info('Setting Event', next_possible_event.name)
                 self.event = next_possible_event
                 self.event.start(self)
         elif self.sequence is None:
             # Get next act based on current vehicle state
             if self.check_conditions(self.story.act.start_conditions, self) is not None:
-                if SCENARIO_LOGGING:
-                    print('Setting Act', self.story.act.name)
+                logging.getLogger("scenario").info('Setting Act', self.story.act.name)
                 self.setup_act(self.story.act)
 
         if self.event:
             self.event.is_event_complete(self)
 
     def event_complete(self):
-        if SCENARIO_LOGGING:
-            print('Completed Event', self.event.name)
+        logging.getLogger("scenario").info('Completed Event', self.event.name)
 
         self.event.finish(self)
 

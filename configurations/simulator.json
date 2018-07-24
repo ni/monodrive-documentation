@@ -85,5 +85,12 @@
   "traffic_configuration": {
     "max_vehicles": 60,
     "spawn_rate": 0.25
+  },
+  "logger_settings": {
+    "sensors": "INFO",
+    "network": "WARNING",
+    "control": "ERROR",
+    "scenario": "INFO"
+
   }
 }

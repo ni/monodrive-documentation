@@ -39,7 +39,7 @@ def main():
         rospy.delete_param('monodrive/sensors')
 
     for param in sim_config_yaml:
-        print param, ":", sim_config_yaml[param]
+        #print param, ":", sim_config_yaml[param]
         rospy.set_param('/monodrive/' + param, sim_config_yaml[param])
 
     # Vehicle configuration defines ego vehicle configuration and the individual sensors configurations
@@ -78,7 +78,7 @@ def main():
         rospy.set_param(param_name='SimulatorConfig',
                         param_value='simulator.json')
         rospy.set_param(param_name='VehicleConfig',
-                        param_value='single_camera.json')
+                        param_value='demo.json')
 
         bridge_cls = MonoRosBridgeWithBag if rospy.get_param(
             'rosbag_fname', '') else MonoRosBridge

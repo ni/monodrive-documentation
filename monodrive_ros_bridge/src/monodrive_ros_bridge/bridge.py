@@ -26,7 +26,8 @@ from monodrive import Simulator, SimulatorConfiguration, VehicleConfiguration
 #from mono.settings import monoSettings
 #from monodrive_ros_bridge.control import InputController
 from monodrive_ros_bridge.markers import PlayerAgentHandler, NonPlayerAgentsHandler
-from monodrive_ros_bridge.sensors import CameraHandler, GpsHandler, LidarHandler, ImuHandler
+from monodrive_ros_bridge.sensors import BoundingBoxHandler, CameraHandler, \
+    GpsHandler, LidarHandler, ImuHandler, RpmHandler, WaypointHandler
 
 from monodrive.vehicles import SimpleVehicle
 
@@ -67,7 +68,6 @@ class MonoRosBridge(object):
         :param params: dict of parameters, see settings.yaml
         :param rate: rate to query data from mono in Hz
         """
-
         self.frames_per_episode = params['Framesperepisode']
 
         # Simulator configuration defines network addresses for connecting to the simulator and material properties
@@ -78,7 +78,6 @@ class MonoRosBridge(object):
 
         self.simulator = Simulator(simulator_config)
         self.vehicle = self.simulator.start_vehicle(self.vehicle_config, RosVehicle)
-#        self.vehicle = RosVehicle(simulator_config, vehicle_config)
 
         self.param_sensors = params.get('sensors', {})
 
@@ -121,6 +120,12 @@ class MonoRosBridge(object):
             sensor_handler = ImuHandler
         elif sensor_type == 'GPS':
             sensor_handler = GpsHandler
+        elif sensor_type=='RPM':
+            sensor_handler = RpmHandler
+        elif sensor_type == 'BoundingBox':
+            sensor_handler = BoundingBoxHandler
+        elif sensor_type == 'Waypoint':
+            sensor_handler = WaypointHandler
 
         if sensor_handler:
             if self.sensors.get(sensor_type, None) is None:

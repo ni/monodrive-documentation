@@ -17,7 +17,6 @@ except ImportError:
     import Queue as queue
 
 import logging
-import random
 import socket
 import struct
 import threading
@@ -96,7 +95,6 @@ class SensorManager:
             res = s.send_start_stream_command(simulator)
             if not res.is_success:
                 logging.getLogger("sensors").error("Failed start stream command for sensor %s %s" % (s.name, res.error_message))
-                print('Failed stream command for sensor', s.name, res.error_message)
 
         self.start_all_render_processes(self.sensor_list)
 
@@ -107,50 +105,12 @@ class SensorManager:
                                                       args=(self.sensor_data_ready, self.sensor_list))
         self.sensor_monitor_thread.start()
 
-        self.sensor_gametime_graph_thread = threading.Thread(target=SensorManager.graph_sensors_gametimes,
-                                                              args=(self.sensor_data_ready, self.sensor_list))
-        # self.sensor_gametime_graph_thread.start()
-
         # Kicks off simulator for stepping from client
         simulator.request(messaging.EgoControlCommand(0.0, 0.0))
 
     def stop(self, simulator):
         [s.stop(simulator) for s in self.sensor_list]
         [p.terminate() for p in self.render_processes]
-
-    @staticmethod
-    def graph_sensors_gametimes(sensor_data_ready, sensors):
-        plot = plt.figure(10)
-        game_time_subplot = plot.add_subplot(111)
-        game_time_subplot.set_title("Sensor Samples by Game Time")
-        game_time_subplot.set_xlabel('Frame Number')
-        game_time_subplot.set_ylabel('Game Time(milliseconds)')
-        game_time_subplot.grid(visible=True)
-        # map_subplot.set_title("Ground Truth Waypoint Map")
-        while True:
-            sensor_data_ready.wait()
-            legend = []
-            for s in sensors:
-                if len(s.game_times) == 0:
-                    continue
-
-                y = np.array(s.game_times)
-                x = np.arange(len(y))
-                # print('plotting', s.name, len(x), len(y))
-                if not hasattr(s, 'game_time_plot_handle'):
-                    c = (random.uniform(0, 1), random.uniform(0, 1), random.uniform(0, 1))
-                    s.game_time_plot_handle, = game_time_subplot.plot(x, y, marker='o', linestyle='None', color=c)
-                    patch = mpatches.Patch(color=c, label=s.name)
-                    legend.append(patch)
-
-                else:
-                    s.game_time_plot_handle.set_xdata(x)
-                    s.game_time_plot_handle.set_ydata(y)
-                    plt.pause(.001)
-                    margin = 10
-                    plt.axis((min(x), max(x) + margin, min(y) - margin, max(y) + margin))
-            if len(legend) > 0:
-                plt.legend(handles=legend, bbox_to_anchor=(1.0, 1.0))
 
     @staticmethod
     def monitor_sensors(sensor_data_ready, sensors):
@@ -236,7 +196,6 @@ class BaseSensor(multiprocessing.Process):
         self.time_stamp = None
         self.window_x_position = 0
         self.window_y_position = 0
-        self.log_level = config.get('logging', None)
         self.socket_udp = config.get('connection_type', None) == "udp"
 
         self.listen_port = int(config['listen_port'])
@@ -255,6 +214,7 @@ class BaseSensor(multiprocessing.Process):
         self.variances = manager.list()
         self.game_times = manager.list()
         self.last_game_time = manager.Value('f', 0.0)
+        self.last_control_real_time = manager.Value('f', 0.0)
 
         self.ready_event_lock = manager.Lock()
         self.sensors_got_data_count = manager.Value('i', 0)
@@ -339,9 +299,6 @@ class BaseSensor(multiprocessing.Process):
         return packet, time_stamp, game_time
 
     def run(self):
-        if LOGGING:
-            self.start_logging()
-
         tries = 0
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
@@ -403,6 +360,7 @@ class BaseSensor(multiprocessing.Process):
     def digest_frame(self, frame, time_stamp, game_time):
         self.frame_count += 1
         self.last_game_time.value = game_time
+        self.log_control_time(self.name, self.last_control_real_time.value)
         if hasattr(self, 'parse_frame'):
             frame = self.parse_frame(frame, time_stamp, game_time)
         self.q_display.put(frame)
@@ -412,7 +370,7 @@ class BaseSensor(multiprocessing.Process):
 
     def start_logging(self):
         self.logging_thread = threading.Thread(target=self._display_logging)
-        self.logging_thread.start()
+        # self.logging_thread.start()
 
     def send_start_stream_command(self, simulator):
         res = simulator.start_sensor_command(self.type, self.listen_port, self.sensor_id,
@@ -424,13 +382,25 @@ class BaseSensor(multiprocessing.Process):
                                             self.packet_size, self.drop_frames)
         return res
 
+    def get_transform(self):
+        position = self.config.get("location", None)
+        rotation = self.config.get("rotation", None)
+        if position and rotation:
+            return Transform(Translation(position['x'], position['y'], position['z']),
+                             Rotation(rotation['pitch'], rotation['yaw'], rotation['roll']))
+        elif position:
+            return Transform(Translation(position['x'], position['y'], position['z']))
+        elif rotation:
+            return Transform(Rotation(rotation['pitch'], rotation['yaw'], rotation['roll']))
+
+        return None
+
     def _display_logging(self):
         self.start_time = time.clock()
         while self.running:
             if not self.receiving_data:
                 self.update_timer = 2
                 logging.getLogger("network").info("Listening for {0}:{1}".format(self.name, self.listen_port))
-                print("Listening for {0}:{1}".format(self.__class__.__name__, self.listen_port))
             else:
                 self.update_timer = 10
                 pps, mBps, fps = self.speed()
@@ -455,9 +425,13 @@ class BaseSensor(multiprocessing.Process):
         self.game_times.append(game_time)
 
     def is_expecting_frame_at_game_time(self, game_time, tolerance):
-        #dif = int(abs(self.last_game_time.value - game_time)) % int(1 / self.fps * 1000)
-        #return dif < tolerance
-        return True
+        dif = int(abs(self.last_game_time.value - game_time)) % int(1 / self.fps * 1000)
+        return dif < tolerance
+
+    @staticmethod
+    def log_control_time(name, previous_control_time):
+        dif = time.time() - previous_control_time
+        logging.getLogger("sensors").info('Received Data for %s Sensor Delay %f' % (name, dif))
 
     @property
     def next_expected_sample_time(self):
@@ -487,19 +461,6 @@ class BaseSensor(multiprocessing.Process):
             self.data_ready_event.set()
 
         self.ready_event_lock.release()
-
-    def get_transform(self):
-        position = self.config.get("location", None)
-        rotation = self.config.get("rotation", None)
-        if position and rotation:
-            return Transform(Translation(position['x'], position['y'], position['z']),
-                             Rotation(rotation['pitch'], rotation['yaw'], rotation['roll']))
-        elif position:
-            return Transform(Translation(position['x'], position['y'], position['z']))
-        elif rotation:
-            return Transform(Rotation(rotation['pitch'], rotation['yaw'], rotation['roll']))
-
-        return None
 
 
 class BaseSensorPacketized(BaseSensor):

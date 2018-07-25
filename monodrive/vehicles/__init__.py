@@ -43,7 +43,7 @@ class BaseVehicle(Process):
 
     def run(self):
         while True:
-            logging.getLogger("sensors").warning("Vehicle waiting on Sensor Data")
+            logging.getLogger("control").info("Vehicle waiting on Sensor Data")
             self.sensor_data_ready.wait()
 
             self.log_control_time(self.previous_control_sent_time)
@@ -56,16 +56,19 @@ class BaseVehicle(Process):
             self.send_control_data(control_data)
 
     def send_control_data(self, control_data):
-        logging.getLogger("control").info("Waiting on Sensor Data")
         forward = control_data['forward']
         right = control_data['right']
+        logging.getLogger("control").info("Sending control data forward: %s, right: %s" % (forward, right))
         msg = messaging.EgoControlCommand(forward, right)
         resp = self.simulator.request(msg)
+        if resp is None:
+            logging.getLogger("control").error("Failed response from sending control data forward: %s, right: %s" % (forward, right))
         self.previous_control_sent_time = time.time()
-        # print("--->  {0}\n<---  {1}".format(msg, resp))
+        for s in self.sensors:
+            s.last_control_real_time.value = self.previous_control_sent_time
 
     def stop(self):
-        # Stops all sensor streams and terminates up processes
+        # Stops all sensor streams and terminates processes
         self.sensor_manager.stop(self.simulator)
         self.terminate()
 
@@ -75,7 +78,7 @@ class BaseVehicle(Process):
     @staticmethod
     def log_control_time(previous_control_time):
         dif = time.time() - previous_control_time
-        logging.getLogger("sensors").warning('Time between Last Control Values Sent and New Sensor Values Received: %f' % dif)
+        logging.getLogger("sensors").info('Time between Last Control Values Sent and New Sensor Values Received: %f' % dif)
 
     @staticmethod
     def plan_target_lane(waypoint_sensor, vehicle_state=None):

@@ -7,7 +7,7 @@ __license__ = "MIT"
 __version__ = "1.0"
 
 
-
+import logging
 import socket
 import threading
 import time
@@ -45,11 +45,10 @@ class BaseClient(object):
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 s.connect(self.endpoint)
                 self.socket = s
-                print("connected to ", self.endpoint)
+                logging.getLogger("network").info("connected to %s" % self.endpoint)
             except Exception as e:
-                print('Can not connect to {0}'.format(str(self.endpoint)))
-                print('Is your game running?')
-                print("Error {0}".format(e))
+                logging.getLogger("network").error(
+                    'Can not connect to {0} \n Is your game running? \n Error {1}'.format(str(self.endpoint), e))
                 self.socket = None
 
     def isconnected(self):
@@ -59,7 +58,7 @@ class BaseClient(object):
     def disconnect(self):
         """ Remove the connection with the client properly. """
         if self.isconnected():
-            print("BaseClient, request disconnect from server in {0}".format(
+            logging.getLogger("network").info("BaseClient, request disconnect from server in {0}".format(
                 threading.current_thread().name))
 
             self.socket.shutdown(socket.SHUT_RD)
@@ -72,7 +71,7 @@ class BaseClient(object):
 
     def __receiving(self):
         """ Method used within thread to retrieve information from the socket. """
-        print("TCPClient start receiver on {0}".format(threading.current_thread().name))
+        logging.getLogger("network").info("TCPClient start receiver on {0}".format(threading.current_thread().name))
         while 1:
             if self.isconnected():
                 try:
@@ -84,7 +83,7 @@ class BaseClient(object):
                     message = None
 
                 if message is None:
-                    print('TCPClient: remote disconnected, no more message')
+                    logging.getLogger("network").info('TCPClient: remote disconnected, no more message')
                     self.socket = None
                     continue
 
@@ -102,7 +101,7 @@ class BaseClient(object):
             # print("--> ", message)
             return message.write(self.socket)
         else:
-            print('Fail to send message, client is not connected')
+            logging.getLogger("network").error('Fail to send message, client is not connected')
             return False
 
 
@@ -169,7 +168,7 @@ class Client(object):
             self.response = None
             return r
         else:
-            print('Can not receive a response from server. \
+            logging.getLogger("network").error('Can not receive a response from server. \
                    timeout after {:0.2f} seconds'.format(timeout))
             return None
 
@@ -199,6 +198,6 @@ class Client(object):
             self.response = None
             return r
         else:
-            print('Can not receive a response from server. \
+            logging.getLogger("network").error('Can not receive a response from server. \
                            timeout after {:0.2f} seconds'.format(timeout))
             return None

@@ -425,8 +425,9 @@ class BaseSensor(multiprocessing.Process):
         self.game_times.append(game_time)
 
     def is_expecting_frame_at_game_time(self, game_time, tolerance):
-        dif = int(abs(self.last_game_time.value - game_time)) % int(1 / self.fps * 1000)
-        return dif < tolerance
+        # dif = int(abs(self.last_game_time.value - game_time)) % int(1 / self.fps * 1000)
+        # return dif < tolerance
+        return True
 
     @staticmethod
     def log_control_time(name, previous_control_time):

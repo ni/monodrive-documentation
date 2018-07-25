@@ -45,7 +45,7 @@ class BaseClient(object):
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 s.connect(self.endpoint)
                 self.socket = s
-                logging.getLogger("network").info("connected to %s" % self.endpoint)
+                # logging.getLogger("network").info("connected to %s" % self.endpoint)
             except Exception as e:
                 # logging.getLogger("network").error(
                 #     'Can not connect to {0} \n Is your game running? \n Error {1}'.format(str(self.endpoint), e))
@@ -89,7 +89,6 @@ class BaseClient(object):
 
                 if self.raw_message_handler:
                     self.raw_message_handler(message) # will block this thread
-                    # self.raw_message_handler(message2)
                 else:
                     # print('No message handler for raw message {0}'.format(
                     #     message))
@@ -101,7 +100,7 @@ class BaseClient(object):
             # print("--> ", message)
             return message.write(self.socket)
         else:
-            # logging.getLogger("network").error('Fail to send message, client is not connected')
+            logging.getLogger("network").error('Fail to send message, client is not connected')
             return False
 
 
@@ -136,7 +135,7 @@ class Client(object):
             self.queue.put(do_callback)
         else:
             # Instead of just dropping this message, give a verbose notice
-            # print('No message handler to handle message {0}'.format(raw_message))
+            logging.getLogger("network").info('No message handler to handle message {0}'.format(raw_message))
             pass
 
     def worker(self):
@@ -167,9 +166,9 @@ class Client(object):
             r = self.response
             self.response = None
             return r
-        # else:
-        #     logging.getLogger("network").error('Can not receive a response from server. \
-        #            timeout after {:0.2f} seconds'.format(timeout))
+        else:
+            logging.getLogger("network").error('Can not receive a response from server. \
+                   timeout after {:0.2f} seconds'.format(timeout))
             return None
 
     def request_sensor_stream(self, message, timeout=3):
@@ -198,6 +197,6 @@ class Client(object):
             self.response = None
             return r
         else:
-            # logging.getLogger("network").error('Can not receive a response from server. \
-            #                timeout after {:0.2f} seconds'.format(timeout))
+            logging.getLogger("network").error('Can not receive a response from server. \
+                           timeout after {:0.2f} seconds'.format(timeout))
             return None

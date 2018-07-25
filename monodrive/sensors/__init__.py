@@ -16,6 +16,7 @@ try:
 except ImportError:
     import Queue as queue
 
+import logging
 import random
 import socket
 import struct
@@ -25,9 +26,6 @@ import time
 from monodrive.networking import messaging
 from monodrive.networking.packetizer import Packetizer
 from monodrive.transform import Rotation, Transform, Translation
-
-LOGGING = False
-SENSOR_WAITING_LOGGING = False
 
 
 class SensorManager:
@@ -97,9 +95,8 @@ class SensorManager:
         for s in self.sensor_list:
             res = s.send_start_stream_command(simulator)
             if not res.is_success:
+                logging.getLogger("sensors").error("Failed start stream command for sensor %s %s" % (s.name, res.error_message))
                 print('Failed stream command for sensor', s.name, res.error_message)
-            else:
-                pass
 
         self.start_all_render_processes(self.sensor_list)
 
@@ -159,12 +156,9 @@ class SensorManager:
     def monitor_sensors(sensor_data_ready, sensors):
         last_game_time = None
         while True:
-            if SENSOR_WAITING_LOGGING:
-                print('monitoring sensors')
             if last_game_time is None:
                 for s in sensors:
-                    if SENSOR_WAITING_LOGGING:
-                        print('waiting on first frame for ', s.name)
+                    logging.getLogger("sensors").info('Waiting on first frame for %s' % s.name)
                     s.data_ready_event.wait()
                     s.data_ready_event.clear()
                     last_game_time = s.last_game_time.value
@@ -174,16 +168,15 @@ class SensorManager:
                 sensors_waiting = [s for s in sensors if
                                    s.is_expecting_frame_at_game_time(next_expected_sample_time, tolerance)]
                 for s in sensors_waiting:
-                    if SENSOR_WAITING_LOGGING:
-                        print('waiting on data for:', s.name)
+                    logging.getLogger("sensors").info('Waiting on frame for %s' % s.name)
                     received_data = s.data_ready_event.wait(5.0)
 
                     if not received_data:
                         s.dropped_frame()
+                    else:
+                        logging.getLogger("sensors").info('Received frame for %s' % s.name)
 
                     s.data_ready_event.clear()
-                    if SENSOR_WAITING_LOGGING:
-                        print('received:', s.name)
 
             sensor_data_ready.set()
 
@@ -291,7 +284,7 @@ class BaseSensor(multiprocessing.Process):
         return data
 
     def dropped_frame(self):
-        print 'Dropped Frame', self.name
+        logging.getLogger("sensor").warning("Dropped Frame for: %s" % self.name)
 
     def stop(self, simulator):
         self.running = False  # Will stop UDP and Logging thread
@@ -303,7 +296,7 @@ class BaseSensor(multiprocessing.Process):
 
     def terminate(self):
         super(BaseSensor, self).terminate()
-        print('terminate $$$$$$$$$$$$$$$$$$')
+        logging.getLogger("sensors").info('Terminate sensor %s' % self.name)
 
     def read(self, length):
         received = 0
@@ -355,15 +348,17 @@ class BaseSensor(multiprocessing.Process):
         while self.running:
             if self.start_time is None:
                 if self.socket_udp:
-                    print("setting udp listening port on ", self.listen_port)
+                    logging.getLogger("network").info('Setting udp listening port on %s for %s' % (self.listen_port, self.name))
                     self.sock.bind(('', self.listen_port))
                 else:
-                    print("connecting tcp sensor on {0}:{1}...".format(self.server_ip, self.listen_port))
+                    logging.getLogger("network").info(
+                        'connecting tcp sensor on %s %s for %s' % (self.server_ip, self.listen_port, self.name))
                     try:
                         self.sock.connect((self.server_ip, self.listen_port))
                     except:
                         if tries > 5:
-                            print("cound not connect to ", self.listen_port)
+                            logging.getLogger("network").error(
+                                'Cound not connect to %s for %s' % (self.listen_port, self.name))
                             break
 
                         tries = tries + 1
@@ -373,7 +368,8 @@ class BaseSensor(multiprocessing.Process):
                 self.sock.settimeout(None)
                 self.start_time = time.clock()
                 self.socket_ready_event.set()
-                print("connected tcp sensor on {0}:{1}".format(self.server_ip, self.listen_port))
+                logging.getLogger("network").info(
+                    'connected tcp sensor on %s %s for %s' % (self.server_ip, self.listen_port, self.name))
             else:
                 time_stamp = None
                 game_time = None
@@ -381,6 +377,8 @@ class BaseSensor(multiprocessing.Process):
                 try:
                     packet, time_stamp, game_time = self.get_packet()
                 except Exception as e:
+                    logging.getLogger("network").warning(
+                        'Packet exception: %s for %s' % (str(e), self.name))
                     print("packet exception: {0}".format(e))
                     pass
 
@@ -431,11 +429,13 @@ class BaseSensor(multiprocessing.Process):
         while self.running:
             if not self.receiving_data:
                 self.update_timer = 2
+                logging.getLogger("network").info("Listening for {0}:{1}".format(self.name, self.listen_port))
                 print("Listening for {0}:{1}".format(self.__class__.__name__, self.listen_port))
             else:
                 self.update_timer = 10
                 pps, mBps, fps = self.speed()
-                print("{0}:\t {1} MBps | {2} pps | {3} fps".format(self.__class__.__name__, mBps, pps, fps))
+
+                logging.getLogger("network").info("{0}:\t {1} MBps | {2} pps | {3} fps".format(self.name, mBps, pps, fps))
             time.sleep(self.update_timer)
 
     def speed(self):

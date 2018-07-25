@@ -43,7 +43,7 @@ class BaseVehicle(Process):
 
     def run(self):
         while True:
-            logging.getLogger("sensors").warning("Waiting on Sensor Data")
+            logging.getLogger("sensors").warning("Vehicle waiting on Sensor Data")
             self.sensor_data_ready.wait()
 
             self.log_control_time(self.previous_control_sent_time)

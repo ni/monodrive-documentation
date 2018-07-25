@@ -126,14 +126,14 @@ class Simulator:
         for category, level in self.simulator_configuration.logger_settings.iteritems():
             level = logging.getLevelName(level)
             logger = logging.getLogger(category)
-            logger.setLevel(0)
+            logger.setLevel(level)
 
             console_handler = logging.StreamHandler(sys.stdout)
             console_handler.setLevel(level)
             console_handler.setFormatter(simple_formatter)
 
             file_handler = logging.handlers.RotatingFileHandler('client_logs.log', maxBytes=100000, backupCount=5)
-            file_handler.setLevel(0)
+            file_handler.setLevel(level)
             file_handler.setFormatter(detailed_formatter)
 
             logger.addHandler(file_handler)

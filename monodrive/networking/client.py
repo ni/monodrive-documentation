@@ -47,8 +47,8 @@ class BaseClient(object):
                 self.socket = s
                 logging.getLogger("network").info("connected to %s" % self.endpoint)
             except Exception as e:
-                logging.getLogger("network").error(
-                    'Can not connect to {0} \n Is your game running? \n Error {1}'.format(str(self.endpoint), e))
+                # logging.getLogger("network").error(
+                #     'Can not connect to {0} \n Is your game running? \n Error {1}'.format(str(self.endpoint), e))
                 self.socket = None
 
     def isconnected(self):
@@ -58,8 +58,8 @@ class BaseClient(object):
     def disconnect(self):
         """ Remove the connection with the client properly. """
         if self.isconnected():
-            logging.getLogger("network").info("BaseClient, request disconnect from server in {0}".format(
-                threading.current_thread().name))
+            # logging.getLogger("network").info("BaseClient, request disconnect from server in {0}".format(
+            #     threading.current_thread().name))
 
             self.socket.shutdown(socket.SHUT_RD)
             # Because socket is on read in __receiving thread,
@@ -71,7 +71,7 @@ class BaseClient(object):
 
     def __receiving(self):
         """ Method used within thread to retrieve information from the socket. """
-        logging.getLogger("network").info("TCPClient start receiver on {0}".format(threading.current_thread().name))
+        # logging.getLogger("network").info("TCPClient start receiver on {0}".format(threading.current_thread().name))
         while 1:
             if self.isconnected():
                 try:
@@ -83,7 +83,7 @@ class BaseClient(object):
                     message = None
 
                 if message is None:
-                    logging.getLogger("network").info('TCPClient: remote disconnected, no more message')
+                    # logging.getLogger("network").info('TCPClient: remote disconnected, no more message')
                     self.socket = None
                     continue
 
@@ -101,7 +101,7 @@ class BaseClient(object):
             # print("--> ", message)
             return message.write(self.socket)
         else:
-            logging.getLogger("network").error('Fail to send message, client is not connected')
+            # logging.getLogger("network").error('Fail to send message, client is not connected')
             return False
 
 
@@ -167,9 +167,9 @@ class Client(object):
             r = self.response
             self.response = None
             return r
-        else:
-            logging.getLogger("network").error('Can not receive a response from server. \
-                   timeout after {:0.2f} seconds'.format(timeout))
+        # else:
+        #     logging.getLogger("network").error('Can not receive a response from server. \
+        #            timeout after {:0.2f} seconds'.format(timeout))
             return None
 
     def request_sensor_stream(self, message, timeout=3):
@@ -198,6 +198,6 @@ class Client(object):
             self.response = None
             return r
         else:
-            logging.getLogger("network").error('Can not receive a response from server. \
-                           timeout after {:0.2f} seconds'.format(timeout))
+            # logging.getLogger("network").error('Can not receive a response from server. \
+            #                timeout after {:0.2f} seconds'.format(timeout))
             return None

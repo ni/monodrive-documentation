@@ -94,7 +94,7 @@ class SensorManager:
         for s in self.sensor_list:
             res = s.send_start_stream_command(simulator)
             if not res.is_success:
-                logging.getLogger("sensors").error("Failed start stream command for sensor %s %s" % (s.name, res.error_message))
+                logging.getLogger("sensor").error("Failed start stream command for sensor %s %s" % (s.name, res.error_message))
 
         self.start_all_render_processes(self.sensor_list)
 
@@ -118,7 +118,7 @@ class SensorManager:
         while True:
             if last_game_time is None:
                 for s in sensors:
-                    logging.getLogger("sensors").info('Waiting on first frame for %s' % s.name)
+                    logging.getLogger("sensor").info('Waiting on first frame for %s' % s.name)
                     s.data_ready_event.wait()
                     s.data_ready_event.clear()
                     last_game_time = s.last_game_time.value
@@ -128,13 +128,13 @@ class SensorManager:
                 sensors_waiting = [s for s in sensors if
                                    s.is_expecting_frame_at_game_time(next_expected_sample_time, tolerance)]
                 for s in sensors_waiting:
-                    logging.getLogger("sensors").info('Waiting on frame for %s' % s.name)
+                    logging.getLogger("sensor").info('Waiting on frame for %s' % s.name)
                     received_data = s.data_ready_event.wait(5.0)
 
                     if not received_data:
                         s.dropped_frame()
                     else:
-                        logging.getLogger("sensors").info('Received frame for %s' % s.name)
+                        logging.getLogger("sensor").info('Received frame for %s' % s.name)
 
                     s.data_ready_event.clear()
 
@@ -256,7 +256,7 @@ class BaseSensor(multiprocessing.Process):
 
     def terminate(self):
         super(BaseSensor, self).terminate()
-        logging.getLogger("sensors").info('Terminate sensor %s' % self.name)
+        logging.getLogger("sensor").info('Terminate sensor %s' % self.name)
 
     def read(self, length):
         received = 0
@@ -431,7 +431,7 @@ class BaseSensor(multiprocessing.Process):
     @staticmethod
     def log_control_time(name, previous_control_time):
         dif = time.time() - previous_control_time
-        logging.getLogger("sensors").info('Received Data for %s Sensor Delay %f' % (name, dif))
+        logging.getLogger("sensor").info('Received Data for %s Sensor Delay %f' % (name, dif))
 
     @property
     def next_expected_sample_time(self):

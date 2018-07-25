@@ -78,7 +78,7 @@ class BaseVehicle(Process):
     @staticmethod
     def log_control_time(previous_control_time):
         dif = time.time() - previous_control_time
-        logging.getLogger("sensors").info('Time between Last Control Values Sent and New Sensor Values Received: %f' % dif)
+        logging.getLogger("sensor").info('Time between Last Control Values Sent and New Sensor Values Received: %f' % dif)
 
     @staticmethod
     def plan_target_lane(waypoint_sensor, vehicle_state=None):
@@ -205,8 +205,7 @@ class VehicleState:
         self.event = None
 
         if self.maneuver_execution_count == 0:
-            if SCENARIO_LOGGING:
-                print('Scenario Complete!')
+            logging.getLogger("scenario").info('Scenario Complete!')
 
     @property
     def simulation_elapsed_time(self):

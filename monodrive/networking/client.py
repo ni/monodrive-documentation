@@ -134,8 +134,7 @@ class Client(object):
 
             self.queue.put(do_callback)
         else:
-            # Instead of just dropping this message, give a verbose notice
-            logging.getLogger("network").info('No message handler to handle message {0}'.format(raw_message))
+            logging.getLogger("network").info('No message handler')
             pass
 
     def worker(self):

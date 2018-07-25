@@ -101,9 +101,6 @@ class Simulator:
     def start_sensor_command(self, sensor_type, display_port, sensor_id, packet_size, drop_frames):
         """ Return server response from Sensor request. """
         u_sensor_type = u"{}".format(sensor_type)
-        #response = self.request_sensor_stream(
-        #    messaging.StreamDataCommand(u_sensor_type, sensor_id, self.simulator_configuration_manager.client_ip,
-        #                                display_port, u'udp', 0, packet_size=packet_size, dropFrames=drop_frames))
         response = self.request_sensor_stream(
             messaging.StreamDataCommand(u_sensor_type, sensor_id, self.simulator_configuration.client_ip,
                                         display_port, u'tcp', 0, packet_size=packet_size, dropFrames=drop_frames))

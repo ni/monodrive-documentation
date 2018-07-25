@@ -58,7 +58,7 @@ class BaseVehicle(Process):
     def send_control_data(self, control_data):
         forward = control_data['forward']
         right = control_data['right']
-        logging.getLogger("control").info("Sending control data forward: %s, right: %s" % (forward, right))
+        logging.getLogger("control").info("Sending control data forward: %.4s, right: %.4s" % (forward, right))
         msg = messaging.EgoControlCommand(forward, right)
         resp = self.simulator.request(msg)
         if resp is None:
@@ -78,7 +78,7 @@ class BaseVehicle(Process):
     @staticmethod
     def log_control_time(previous_control_time):
         dif = time.time() - previous_control_time
-        logging.getLogger("sensor").info('Time between Last Control Values Sent and New Sensor Values Received: %f' % dif)
+        logging.getLogger("sensor").info('Total Sensor Delay %.4f' % dif)
 
     @staticmethod
     def plan_target_lane(waypoint_sensor, vehicle_state=None):

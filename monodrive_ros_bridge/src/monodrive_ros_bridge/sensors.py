@@ -110,7 +110,7 @@ class LidarHandler(SensorHandler):
             self.process_msg_fun(topic, VelodynePacket(stamp=cur_time, data=new_sensor_data))
 
     def _compute_transform(self, sensor_data, cur_time):
-        parent_frame_id = "base_link"
+        parent_frame_id = "monodrive"
         child_frame_id = self.name
 
         t = TransformStamped()
@@ -194,7 +194,7 @@ class CameraHandler(SensorHandler):
         self.process_msg_fun(self.topic_image, img_msg)
 
     def _compute_transform(self, sensor_data, cur_time):
-        parent_frame_id = "base_link"
+        parent_frame_id = "monodrive"
         child_frame_id = self.name
 
         t = TransformStamped()
@@ -240,10 +240,10 @@ class ImuHandler(SensorHandler):
 
         msg = Imu()
         msg.header = header
-        msg.orientation.x = -1
-        msg.orientation.y = -1
-        msg.orientation.z = -1
-        msg.orientation.w = -1
+        msg.orientation.x = 0
+        msg.orientation.y = 0
+        msg.orientation.z = 0
+        msg.orientation.w = 0
         msg.orientation_covariance = [-1, -1, -1, -1, -1, -1, -1, -1, -1]
 
         msg.angular_velocity.x = sensor_data['angular_velocity_vector'][0]
@@ -260,7 +260,7 @@ class ImuHandler(SensorHandler):
 
 
     def _compute_transform(self, sensor_data, cur_time):
-        parent_frame_id = "base_link"
+        parent_frame_id = "monodrive"
         child_frame_id = self.name
 
         t = TransformStamped()
@@ -315,7 +315,7 @@ class GpsHandler(SensorHandler):
 
 
     def _compute_transform(self, sensor_data, cur_time):
-        parent_frame_id = "base_link"
+        parent_frame_id = "monodrive"
         child_frame_id = self.name
 
         t = TransformStamped()
@@ -362,7 +362,7 @@ class RpmHandler(SensorHandler):
 
 
     def _compute_transform(self, sensor_data, cur_time):
-        parent_frame_id = "base_link"
+        parent_frame_id = "monodrive"
         child_frame_id = self.name
 
         t = TransformStamped()
@@ -413,7 +413,7 @@ class BoundingBoxHandler(SensorHandler):
         self.process_msg_fun('boundingbox', msg)
 
     def _compute_transform(self, sensor_data, cur_time):
-        parent_frame_id = "base_link"
+        parent_frame_id = "monodrive"
         child_frame_id = self.name
 
         t = TransformStamped()
@@ -462,7 +462,7 @@ class WaypointHandler(SensorHandler):
         self.process_msg_fun('waypoint', msg)
 
     def _compute_transform(self, sensor_data, cur_time):
-        parent_frame_id = "base_link"
+        parent_frame_id = "monodrive"
         child_frame_id = self.name
 
         t = TransformStamped()

@@ -87,9 +87,9 @@
     "spawn_rate": 0.25
   },
   "logger_settings": {
-    "sensor": "INFO",
-    "network": "INFO",
-    "control": "INFO",
-    "scenario": "INFO"
+    "sensor": "error",
+    "network": "error",
+    "control": "debug",
+    "scenario": "error"
   }
 }

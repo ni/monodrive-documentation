@@ -4,7 +4,8 @@ __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
-from multiprocessing import Event
+from multiprocessing import Event, Process, Queue
+import threading
 import logging
 from logging.handlers import RotatingFileHandler
 import sys
@@ -15,12 +16,15 @@ from monodrive.constants import *
 
 from monodrive import VehicleConfiguration
 
+from vehicles import BaseVehicle
 
-class Simulator:
+
+class Simulator(Process):
 
     def __init__(self, simulator_configuration):
         self.simulator_configuration = simulator_configuration
         self.restart_event = Event()
+        self.request_queue = Queue()
         self.vehicle_process = None
         self.scenario = None
         self._client = None
@@ -38,21 +42,17 @@ class Simulator:
         # Get Ego vehicle configuration from scenario, use that to create vehicle process
         vehicle_configuration = scenario.ego_vehicle_config
         vehicle_configuration = VehicleConfiguration.init_from_json(vehicle_configuration.to_json)
-        self.vehicle_process = vehicle_class(self.simulator_configuration, vehicle_configuration, self.restart_event)
+        self.vehicle_process = vehicle_class(self, vehicle_configuration, self.restart_event)
 
         # Start the Vehicle process
         self.vehicle_process.start_scenario(scenario)
 
     def start_vehicle(self, vehicle_configuration, vehicle_class):
-
-        self.send_simulator_configuration(self.simulator_configuration)
-        self.send_vehicle_configuration(vehicle_configuration)
-
         # Create vehicle process form received class
-        self.vehicle_process = vehicle_class(self.simulator_configuration, vehicle_configuration, self.restart_event)
-
-        # Start the Vehicle process
-        self.vehicle_process.start()
+        self.vehicle_process = vehicle_class(self, vehicle_configuration, self.restart_event)
+        self.control_thread = threading.Thread(target=BaseVehicle.control_monitor,
+                                               args=(self.vehicle_process,))
+        self.control_thread.start()
         return self.vehicle_process
 
     def stop(self):
@@ -81,9 +81,9 @@ class Simulator:
             logging.getLogger("network").error('Failed to send the vehicle configuration')
             raise ConnectionError('Failed to connect to the monodrive vehicle.')
 
-    def send_simulator_configuration(self, simulator_configuration):
+    def send_simulator_configuration(self):
         simulator_response = self.request(messaging.JSONConfigurationCommand(
-            simulator_configuration.configuration, SIMULATOR_CONFIG_COMMAND_UUID))
+            self.simulator_configuration.configuration, SIMULATOR_CONFIG_COMMAND_UUID))
         if simulator_response is None:
             logging.getLogger("network").error('Failed to send the simulator configuration')
             raise ConnectionError('Failed to connect to the monodrive simulator.')
@@ -118,10 +118,10 @@ class Simulator:
     def setup_logger(self):
         # Get the formatter to capitalize the logger name
         simple_formatter = MyFormatter("%(name)s-%(levelname)s: %(message)s")
-        detailed_formatter = MyFormatter("%(asctime)s %(name)s-%(levelname)s:[%(process)d]:  - %(message)s")
+        # detailed_formatter = MyFormatter("%(asctime)s %(name)s-%(levelname)s:[%(process)d]:  - %(message)s")
 
         for category, level in self.simulator_configuration.logger_settings.iteritems():
-            level = logging.getLevelName(level)
+            level = logging.getLevelName(level.upper())
             logger = logging.getLogger(category)
             logger.setLevel(level)
 
@@ -131,7 +131,7 @@ class Simulator:
 
             file_handler = logging.handlers.RotatingFileHandler('client_logs.log', maxBytes=100000, backupCount=5)
             file_handler.setLevel(level)
-            file_handler.setFormatter(detailed_formatter)
+            file_handler.setFormatter(simple_formatter)
 
             logger.addHandler(file_handler)
             logger.addHandler(console_handler)

@@ -15,14 +15,19 @@ if __name__ == "__main__":
     simulator_config = SimulatorConfiguration('simulator.json')
 
     # Vehicle configuration defines ego vehicle configuration and the individual sensors configurations
-    vehicle_config = VehicleConfiguration('demo.json')
+    vehicle_configuration = VehicleConfiguration('demo.json')
     #vehicle_config = VehicleConfiguration('light.json')
 
     simulator = Simulator(simulator_config)
+    simulator.send_simulator_configuration()
 
     while True:
+        simulator.send_vehicle_configuration(vehicle_configuration)
+
         # Start Vehicle
-        simulator.start_vehicle(vehicle_config, SimpleVehicle)
+        vehicle_process = simulator.start_vehicle(vehicle_configuration, SimpleVehicle)
+
+        vehicle_process.start()
 
         # Waits for the restart event to be set in the control process
         simulator.restart_event.wait()

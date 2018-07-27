@@ -11,8 +11,8 @@ from monodrive.sensors import Waypoint, GPS
 
 
 k = 1.6  # look forward gain, dependent on vehicle speed
-Lfc = 20.0  # look-ahead distance
-max_vel = .6  # Max velocity
+Lfc = 5.0  # look-ahead distance
+max_vel = .3  # Max velocity
 max_turn_change = .1
 drive_vehicle = True
 

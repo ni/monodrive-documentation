@@ -91,6 +91,13 @@ ENV/
 # Pycharm
 .idea/
 
+# VSCode
+.vscode/
+
+# Logs
+client_log*
+
+
 
 # MonoDrive
 .monodrive_client_settings

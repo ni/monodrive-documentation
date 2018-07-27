@@ -222,3 +222,4 @@ class VehicleState:
 
 from .md_vehicle import MDVehicle
 from .simple_vehicle import SimpleVehicle
+from .teleport_vehicle import TeleportVehicle

@@ -34,7 +34,6 @@ class VehicleConfiguration(Configuration):
 
     def __init__(self, file_name):
         super(VehicleConfiguration, self).__init__(file_name)
-
         self.set_allowable_sensor_names()
         self.lane_number = self.configuration['lane_number']
         self.position = self.configuration['position']

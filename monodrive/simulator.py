@@ -16,7 +16,7 @@ from monodrive.constants import *
 
 from monodrive import VehicleConfiguration
 
-from vehicles import BaseVehicle
+from vehicles import BaseVehicle, VehicleManager
 
 
 class Simulator(Process):
@@ -24,8 +24,8 @@ class Simulator(Process):
     def __init__(self, simulator_configuration):
         self.simulator_configuration = simulator_configuration
         self.restart_event = Event()
-        self.request_queue = Queue()
-        self.vehicle_process = None
+        self.vehicle_manager = VehicleManager(self)
+        self.ego_vehicle = None
         self.scenario = None
         self._client = None
         self.setup_logger()
@@ -49,11 +49,9 @@ class Simulator(Process):
 
     def start_vehicle(self, vehicle_configuration, vehicle_class):
         # Create vehicle process form received class
-        self.vehicle_process = vehicle_class(self, vehicle_configuration, self.restart_event)
-        self.control_thread = threading.Thread(target=BaseVehicle.control_monitor,
-                                               args=(self.vehicle_process,))
-        self.control_thread.start()
-        return self.vehicle_process
+        self.ego_vehicle = vehicle_class(self, vehicle_configuration, self.restart_event)
+        self.vehicle_manager.manage_vehicle(self.ego_vehicle)
+        return self.ego_vehicle
 
     def stop(self):
         self.vehicle_process.stop()

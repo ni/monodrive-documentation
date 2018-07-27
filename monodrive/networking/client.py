@@ -98,7 +98,7 @@ class BaseClient(object):
     def send(self, message):
         """ Return response from Unreal """
         if self.isconnected():
-            print("--> ", message)
+            # print("--> ", message)
             return message.write(self.socket)
         else:
             logging.getLogger("network").error('Fail to send message, client is not connected')
@@ -140,25 +140,20 @@ class Client(object):
 
     def worker(self):
         while True:
-            print("before get")
             task = self.queue.get()
-            print('got from queue')
             task()
-            print('sending')
             self.queue.task_done()
 
     def request(self, message, timeout=90):
         """ Return a response from Unreal """
         def do_request():
-            print('do_reguest')
             if not self.message_client.send(message):
                 return None
 
-        # request can only be sent in the main thread, do not support multi-thread submitting request together
+        # request can only be sent in the main thread, do not support multi-thread submitting request togethergetting here 2
         if threading.current_thread().name == self.main_thread.name:
             do_request()
         else:
-            print('putting in queue')
             self.queue.put(do_request)
         # Timeout is required
         # see: https://bugs.python.org/issue8844

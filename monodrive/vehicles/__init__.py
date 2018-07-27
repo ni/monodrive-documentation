@@ -1,4 +1,3 @@
-
 __author__ = "monoDrive"
 __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
@@ -15,12 +14,43 @@ from monodrive.networking import messaging
 from monodrive.sensors import GPS, Waypoint
 
 
+class VehicleManager(object):
+    def __init__(self, simulator):
+        self.simulator = simulator
+        self.vehicles = {}
+        self.vehicle_control_threads = {}
+
+    def manage_vehicle(self, vehicle):
+        name = vehicle.name + "_Control"
+        control_thread = threading.Thread(target=VehicleManager.control_monitor, name=name,
+                                          args=(vehicle,))
+        control_thread.start()
+        self.vehicles[vehicle.name] = vehicle
+        self.vehicle_control_threads[vehicle.name] = control_thread
+
+    @staticmethod
+    def control_monitor(vehicle_instance):
+        while True:
+            logging.getLogger("control").debug("Vehicle waiting on Sensor Data")
+            vehicle_instance.sensor_data_ready.wait()
+
+            vehicle_instance.log_control_time(vehicle_instance.previous_control_sent_time)
+
+            if vehicle_instance.vehicle_state is not None:
+                vehicle_instance.vehicle_state.update_state(vehicle_instance.sensors)
+
+            control_data = vehicle_instance.drive(vehicle_instance.sensors, vehicle_instance.vehicle_state)
+            vehicle_instance.sensor_data_ready.clear()
+            vehicle_instance.send_control_data(control_data)
+
+
 class BaseVehicle(object):
     def __init__(self, simulator, vehicle_config, restart_event=None, **kwargs):
         super(BaseVehicle, self).__init__()
         self.simulator = simulator
         self.simulator_configuration = simulator.simulator_configuration
         self.sensor_manager = SensorManager(vehicle_config, simulator)
+        self.name = vehicle_config.id
         self.sensor_data_ready = self.sensor_manager.sensor_data_ready
         self.sensors = self.sensor_manager.sensor_list
         self.restart_event = restart_event
@@ -41,31 +71,15 @@ class BaseVehicle(object):
         self.vehicle_state.start_scenario(scenario)
         self.start()
 
-    @staticmethod
-    def control_monitor(vehicle_instance):
-        while True:
-            logging.getLogger("control").debug("Vehicle waiting on Sensor Data")
-            vehicle_instance.sensor_data_ready.wait()
-
-            vehicle_instance.log_control_time(vehicle_instance.previous_control_sent_time)
-
-            if vehicle_instance.vehicle_state is not None:
-                vehicle_instance.vehicle_state.update_state(vehicle_instance.sensors)
-
-            control_data = vehicle_instance.drive(vehicle_instance.sensors, vehicle_instance.vehicle_state)
-            vehicle_instance.sensor_data_ready.clear()
-            vehicle_instance.send_control_data(control_data)
-
     def send_control_data(self, control_data):
         forward = control_data['forward']
         right = control_data['right']
         logging.getLogger("control").debug("Sending control data forward: %.4s, right: %.4s" % (forward, right))
         msg = messaging.EgoControlCommand(forward, right)
-        print('getting here 1')
         resp = self.simulator.request(msg)
-        print('getting here 2')
         if resp is None:
-            logging.getLogger("control").error("Failed response from sending control data forward: %s, right: %s" % (forward, right))
+            logging.getLogger("control").error(
+                "Failed response from sending control data forward: %s, right: %s" % (forward, right))
         self.previous_control_sent_time = time.time()
         for s in self.sensors:
             s.last_control_real_time.value = self.previous_control_sent_time

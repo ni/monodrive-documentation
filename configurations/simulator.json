@@ -82,14 +82,16 @@
       "roughness": 0.15
     }
   },
-  "traffic_configuration": {
+  "traffic_configuration": {    }
+
     "max_vehicles": 60,
     "spawn_rate": 0.25
   },
   "logger_settings": {
-    "sensor": "debug",
-    "network": "debug",
-    "control": "debug",
-    "scenario": "error"
+    "sensor": "info",
+    "network": "info",
+    "control": "info",
+    "scenario": "error",
+    "simulator": "info"
   }
 }

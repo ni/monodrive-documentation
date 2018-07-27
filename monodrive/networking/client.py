@@ -110,9 +110,8 @@ class Client(object):
     Client is the public interface for the Unreal communcation.
 
     """
-    def __init__(self, endpoint, message_handler=None):
+    def __init__(self, endpoint):
         self.message_client = BaseClient(endpoint, self.__raw_message_handler)
-        self.message_handler = message_handler
         self.message_id = 0
         self.wait_response = threading.Event()
         self.response = ''
@@ -129,14 +128,6 @@ class Client(object):
     def __raw_message_handler(self, raw_message):
         self.response = raw_message
         self.wait_response.set()
-        if self.message_handler:
-            def do_callback():
-                self.message_handler(raw_message)
-
-            self.queue.put(do_callback)
-        else:
-            logging.getLogger("network").info('No message handler')
-            pass
 
     def worker(self):
         while True:

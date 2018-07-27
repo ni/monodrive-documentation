@@ -38,7 +38,7 @@ class SensorManager:
         self.sensor_monitor_thread = None
         self.sensor_gametime_graph_thread = None
         self.process_manager_list = multiprocessing.Manager().list()
-        self.sensor_data_ready = multiprocessing.Event()
+        self.all_sensors_ready = multiprocessing.Event()
         self.configure()
 
     def configure(self):
@@ -96,16 +96,18 @@ class SensorManager:
             if not res.is_success:
                 logging.getLogger("sensor").error(
                     "Failed start stream command for sensor %s %s" % (s.name, res.error_message))
+            else:
+                logging.getLogger("sensor").info("Sensor ready %s" % s.name)
 
         self.start_all_render_processes(self.sensor_list)
 
         for s in self.sensor_list:
             s.socket_ready_event.wait()
 
-        self.sensor_monitor_thread = threading.Thread(target=SensorManager.monitor_sensors,
-                                                      args=(self.sensor_data_ready, self.sensor_list))
+        self.sensor_monitor_thread = threading.Thread(target=self.monitor_sensors)
         self.sensor_monitor_thread.start()
 
+        logging.getLogger("simulator").info("Sending intial control command")
         # Kicks off simulator for stepping from client
         self.simulator.request(messaging.EgoControlCommand(0.0, 0.0))
 
@@ -113,22 +115,24 @@ class SensorManager:
         [s.stop(simulator) for s in self.sensor_list]
         [p.terminate() for p in self.render_processes]
 
-    @staticmethod
-    def monitor_sensors(sensor_data_ready, sensors):
+    def monitor_sensors(self):
         last_game_time = None
         while True:
             if last_game_time is None:
-                for s in sensors:
+                for s in self.sensor_list:
                     logging.getLogger("sensor").debug('Waiting on first frame for %s' % s.name)
                     s.data_ready_event.wait()
                     s.data_ready_event.clear()
                     last_game_time = s.last_game_time.value
             else:
-                next_expected_sample_time = min(s.next_expected_sample_time for s in sensors)
+                next_expected_sample_time = min(s.next_expected_sample_time for s in self.sensor_list)
                 tolerance = 10
-                sensors_waiting = [s for s in sensors if
-                                   s.is_expecting_frame_at_game_time(next_expected_sample_time, tolerance)]
-                for s in sensors_waiting:
+                sensors_expecting_sample = []
+                for sensor in self.sensor_list:
+                    if sensor.is_expecting_frame_at_game_time(next_expected_sample_time, tolerance):
+                        sensors_expecting_sample.append(sensor)
+
+                for s in sensors_expecting_sample:
                     logging.getLogger("sensor").debug('Waiting on frame for %s' % s.name)
                     received_data = s.data_ready_event.wait(5.0)
 
@@ -137,7 +141,7 @@ class SensorManager:
 
                     s.data_ready_event.clear()
 
-            sensor_data_ready.set()
+            self.all_sensors_ready.set()
 
     def attach_bounding_radar(self):
         bounding = None
@@ -182,6 +186,7 @@ class BaseSensor(multiprocessing.Process):
         self.type = self.config['type']
         self.sensor_id = self.config['id']
         self.display_process = self.config['display_process']
+        self.synchronized_display = self.config['synchronized_display']
         self.fps = self.config['fps']
         self.drop_frames = True
         self.running = True
@@ -352,7 +357,7 @@ class BaseSensor(multiprocessing.Process):
                     # print("waiting for data...", self.name)
 
     # Hook method for digest each packet, when not packetized forward on to digest_frame
-    # since each packet is an entire frame. BaseSensorPacketized overrides this
+    # since each packet is an entire frame. BaseSensorPacketized overrides thisdata_ready_event
     def digest_packet(self, packet, time_stamp, game_time):
         self.digest_frame(packet, time_stamp, game_time)
 
@@ -366,7 +371,7 @@ class BaseSensor(multiprocessing.Process):
             frame = self.parse_frame(frame, time_stamp, game_time)
         self.q_display.put(frame)
         self.q_vehicle.put(frame)
-        if not self.display_process:
+        if not self.display_process or not self.synchronized_display:
             self.data_ready_event.set()
 
     def start_logging(self):

@@ -23,16 +23,14 @@ if __name__ == "__main__":
     vehicle_configuration = VehicleConfiguration('demo.json')
 
     simulator = Simulator(simulator_config)
-
-    logging.getLogger("simulator").info('Sending simulator configuration')
+    
     simulator.send_simulator_configuration()
+    b_running = True
+    while b_running:
 
-    while True:
-        logging.getLogger("simulator").info('Sending vehicle configuration')
         simulator.send_vehicle_configuration(vehicle_configuration)
 
         # Start Vehicle
-
         if ManualDriveMode == True:
             ego_vehicle = simulator.start_vehicle(vehicle_configuration, TeleportVehicle)
         else:
@@ -46,3 +44,4 @@ if __name__ == "__main__":
 
         # Terminates vehicle and sensor processes
         simulator.stop()
+        b_running = False

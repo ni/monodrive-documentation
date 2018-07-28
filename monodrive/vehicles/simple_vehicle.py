@@ -84,7 +84,7 @@ class SimpleVehicle(BaseVehicle):
     def control(self, move_velocity):
         # Calculate forward and right control values based on velocity and forward vectors
         """
-        Vector math to convert move_velocity and forward_vector into forward and right intentions
+        Vector math to cFonvert move_velocity and forward_vector into forward and right intentions
         """
 
         mag = math.sqrt(move_velocity[0] ** 2 + move_velocity[1] ** 2 + move_velocity[2] ** 2)

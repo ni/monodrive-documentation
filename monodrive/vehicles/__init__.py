@@ -73,7 +73,6 @@ class BaseVehicle(object):
     def stop(self):
         # Stops all sensor streams and terminates processes
         self.sensor_manager.stop(self.simulator)
-        self.terminate()
 
     def drive(self, sensors, vehicle_state):
         raise NotImplementedError("To be implemented")

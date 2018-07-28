@@ -219,9 +219,9 @@ class Camera(TkinterSensorUI, BaseSensorPacketized):
     def stop_sub_processes(self, simulator):
         self.update_sensors_got_data_count()
 
-    def stop(self, simulator):
+    def stop(self):
         if not self.hdmi_streaming:
-            super(Camera, self).stop(simulator)
+            super(Camera, self).stop()
 
 
 class MultiCamera(Camera):

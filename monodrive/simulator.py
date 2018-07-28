@@ -38,10 +38,10 @@ class Simulator(object):
         # Get Ego vehicle configuration from scenario, use that to create vehicle process
         vehicle_configuration = scenario.ego_vehicle_config
         vehicle_configuration = VehicleConfiguration.init_from_json(vehicle_configuration.to_json)
-        self.vehicle_process = vehicle_class(self, vehicle_configuration, self.restart_event)
+        self.ego_vehicle = vehicle_class(self, vehicle_configuration, self.restart_event)
 
         # Start the Vehicle process
-        self.vehicle_process.start_scenario(scenario)
+        self.ego_vehicle.start_scenario(scenario)
 
     def start_vehicle(self, vehicle_configuration, vehicle_class):
         # Create vehicle process form received class
@@ -49,7 +49,9 @@ class Simulator(object):
         return self.ego_vehicle
 
     def stop(self):
-        self.vehicle_process.stop()
+        # Stop all processes
+        logging.getLogger("simulator").info("start shutting down simulator client")
+        self.ego_vehicle.stop()
 
     @property
     def client(self):
@@ -68,18 +70,25 @@ class Simulator(object):
         return self.client.request_sensor_stream(message_cls)
 
     def send_vehicle_configuration(self, vehicle_configuration):
+        logging.getLogger("simulator").info('Sending vehicle configuration {0}'.format(vehicle_configuration.name))
         vehicle_response = self.request(messaging.JSONConfigurationCommand(
             vehicle_configuration.configuration, VEHICLE_CONFIG_COMMAND_UUID))
+        
         if vehicle_response is None:
             logging.getLogger("network").error('Failed to send the vehicle configuration')
             raise ConnectionError('Failed to connect to the monodrive vehicle.')
+        else:
+            logging.getLogger("simulator").info('{0}'.format(vehicle_response))
 
     def send_simulator_configuration(self):
+        logging.getLogger("simulator").info('Sending simulator configuration ip:{0}:{1}'.format(self.simulator_configuration.server_ip,self.simulator_configuration.server_port))
         simulator_response = self.request(messaging.JSONConfigurationCommand(
             self.simulator_configuration.configuration, SIMULATOR_CONFIG_COMMAND_UUID))
         if simulator_response is None:
             logging.getLogger("network").error('Failed to send the simulator configuration')
             raise ConnectionError('Failed to connect to the monodrive simulator.')
+        else:
+            logging.getLogger("simulator").info('{0}'.format(simulator_response))
 
     def send_scenario_init(self, scen):
         init = scen.init_scene_json

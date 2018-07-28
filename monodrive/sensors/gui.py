@@ -17,6 +17,7 @@ import matplotlib
 import multiprocessing
 import os
 import threading
+import logging
 
 matplotlib.use('TkAgg')
 
@@ -52,6 +53,14 @@ class BaseSensorUI(object):
         self.process_data_thread = threading.Thread(target=self.process_data_loop, args=(self,), name=thread_name)
         self.process_data_thread.start()
         self.render_views()
+    
+    @staticmethod
+    def stop(self):
+        logging.getLogger("sensor").info("shutting down rendering thread: {0}".format(self.name))
+        if self.process_data_thread != None:
+            self.process_data_thread.stop()
+        else:
+            logging.getLogger("sensor").info("no thread: {0}".format(self.name))
 
     def set_window_coordinates(self, window_settings):
         if self.name in window_settings:

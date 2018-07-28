@@ -59,17 +59,22 @@ class TeleportVehicle(BaseVehicle):
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
-                    self._get_keyboard_control(event.key)
-                    name = "throttle = {0} steering = {1}".format(self.throttle, self.steer) 
-                    screen.fill ((0, 0, 0))
-                    block = font.render(name, True, (255, 255, 255))
-                    rect = block.get_rect()
-                    rect.center = screen.get_rect().center
-                    screen.blit(block, rect)
-                    pygame.display.flip()
+                    if(self._get_keyboard_control(event.key)):
+                        name = "throttle = {0} steering = {1}".format(self.throttle, self.steer) 
+                        screen.fill ((0, 0, 0))
+                        block = font.render(name, True, (255, 255, 255))
+                        rect = block.get_rect()
+                        rect.center = screen.get_rect().center
+                        screen.blit(block, rect)
+                        pygame.display.flip()
+                    else:
+                        pygame.display.quit()
+                        pygame.quit()
+                        self.restart_event.set()
+                        return
 
     def _get_keyboard_control(self, key):
-
+        status = True
         if key == K_LEFT or key == K_a:
             self.steer += -.05
         if key == K_RIGHT or key == K_d:
@@ -78,3 +83,9 @@ class TeleportVehicle(BaseVehicle):
             self.throttle += .05
         if key == K_DOWN or key == K_s:
             self.throttle += -.05
+        if key == K_r:
+            self.simulator.restart_event.set()
+        if key == K_q:
+            status = False
+        
+        return status

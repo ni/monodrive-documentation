@@ -112,8 +112,21 @@ class SensorManager:
         self.simulator.request(messaging.EgoControlCommand(0.0, 0.0))
 
     def stop(self, simulator):
-        [s.stop(simulator) for s in self.sensor_list]
+        #stopping simulator from sending data
+        logging.getLogger("sensor").info("sensor manager stopping sensor streaming")
+        [s.send_stop_stream_command(simulator) for s in self.sensor_list]
+
+        #stop rendering
+        logging.getLogger("sensor").info("sensor manager stopping sensor rendering")
+        for p in self.render_processes:
+            print p.name
+        #[p.stop() for p in self.render_processes]
         [p.terminate() for p in self.render_processes]
+        #[p.terminate() for p in self.render_processes]
+
+        #finally stop sensors
+        logging.getLogger("sensor").info("sensor manager stopping sensor processes")
+        [s.terminate() for s in self.sensor_list]
 
     def monitor_sensors(self):
         last_game_time = None
@@ -251,9 +264,9 @@ class BaseSensor(multiprocessing.Process):
     def dropped_frame(self):
         logging.getLogger("sensor").warning("Dropped Frame for: %s" % self.name)
 
-    def stop(self, simulator):
+    def stop(self):
         self.running = False  # Will stop UDP and Logging thread
-        self.send_stop_stream_command(simulator)
+        #self.send_stop_stream_command(simulator)
         self.sock.shutdown(1)
         self.sock.close()
         self.sock = None
@@ -384,8 +397,10 @@ class BaseSensor(multiprocessing.Process):
         return res
 
     def send_stop_stream_command(self, simulator):
+        
         res = simulator.stop_sensor_command(self.type, self.listen_port, self.sensor_id,
                                             self.packet_size, self.drop_frames)
+        logging.getLogger("sensor").info("***{0}".format(self.name))                                    
         return res
 
     def get_transform(self):
@@ -479,9 +494,10 @@ class BaseSensorPacketized(BaseSensor):
                                                            self.q_network, self.packet_size)
             self.packetizer_process.name = self.name + '_Packetizer'
 
-    def stop(self, simulator):
-        super(BaseSensorPacketized, self).stop(simulator)
+    def stop(self):
+        super(BaseSensorPacketized, self).stop()
         if self.packetizer_process:
+            logging.getLogger("sensor").info("{0}\tpacketizer stopped".format(self.name))
             self.packetizer_process.stop()
 
     def digest_packet(self, packet, time_stamp, game_time):

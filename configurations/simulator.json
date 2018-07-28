@@ -1,8 +1,8 @@
 {
   "id": "simulator_test",
-  "server_ip": "192.168.1.4",
+  "server_ip": "127.0.0.1",
   "server_port": 8998,
-  "client_ip": "192.168.1.8",
+  "client_ip": "127.0.0.1",
   "phys_materials": {
     "Aluminum": {
       "specular_exponent": 15.0,
@@ -82,8 +82,7 @@
       "roughness": 0.15
     }
   },
-  "traffic_configuration": {    }
-
+  "traffic_configuration": {    
     "max_vehicles": 60,
     "spawn_rate": 0.25
   },

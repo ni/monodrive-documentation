@@ -8,8 +8,11 @@ import numpy as np
 
 from . import BaseVehicle
 from monodrive.sensors import Waypoint, GPS
+import logging
 
 #for keyboard control
+import threading
+import time
 try:
     import pygame
     from pygame.locals import K_DOWN
@@ -33,40 +36,45 @@ class TeleportVehicle(BaseVehicle):
         super(TeleportVehicle, self).__init__(simulator_config, vehicle_config, restart_event)
         self.waypoint_sensor = Waypoint.get_sensor(self.sensors)
         self.gps_sensor = GPS.get_sensor(self.sensors)
-        pygame.init()
+        self.throttle = 0.0
+        self.steer = 0.0
+        self.start_keyboard_listener()
+        self.keyboard_thread = None
 
     def drive(self, sensors, vehicle_state):
-        
-        forward = 0.0
-        right = 0.0
-        control = self._get_keyboard_control(pygame.key.get_pressed())
-
-        return {
-                'forward': control.throttle,
-                'right': control.steer,
-            }
-
-    def _get_keyboard_control(self, keys):
-        """
-        Return a VehicleControl message based on the pressed keys. Return None
-        if a new episode was requested.
-        """
-        if keys[K_r]:
-            return None
-        control = None
-        if keys[K_LEFT] or keys[K_a]:
-            control.steer = -1.0
-        if keys[K_RIGHT] or keys[K_d]:
-            control.steer = 1.0
-        if keys[K_UP] or keys[K_w]:
-            control.throttle = 1.0
-        if keys[K_DOWN] or keys[K_s]:
-            control.brake = 1.0
-        if keys[K_SPACE]:
-            control.hand_brake = True
-        if keys[K_q]:
-            self._is_on_reverse = not self._is_on_reverse
-        if keys[K_p]:
-            self._enable_autopilot = not self._enable_autopilot
-        control.reverse = self._is_on_reverse
+        logging.getLogger("control").debug("Control Forward,Steer = {0},{1}".format(self.throttle,self.steer))
+        control = {'forward': self.throttle,'right': self.steer}
         return control
+    
+    def start_keyboard_listener(self):
+        self.keyboard_thread = threading.Thread(target=self._keyboard_listener)
+        self.keyboard_thread.start()
+
+    def _keyboard_listener(self):
+        pygame.init()
+        screen = pygame.display.set_mode((480, 360))
+        name = "monoDrive tele control"
+        font = pygame.font.Font(None, 50)
+        block = font.render(name, True, (255, 255, 255))
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    self._get_keyboard_control(event.key)
+                    name = "throttle = {0} steering = {1}".format(self.throttle, self.steer) 
+                    screen.fill ((0, 0, 0))
+                    block = font.render(name, True, (255, 255, 255))
+                    rect = block.get_rect()
+                    rect.center = screen.get_rect().center
+                    screen.blit(block, rect)
+                    pygame.display.flip()
+
+    def _get_keyboard_control(self, key):
+
+        if key == K_LEFT or key == K_a:
+            self.steer += -.05
+        if key == K_RIGHT or key == K_d:
+            self.steer += .05
+        if key == K_UP or key == K_w:
+            self.throttle += .05
+        if key == K_DOWN or key == K_s:
+            self.throttle += -.05

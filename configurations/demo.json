@@ -76,7 +76,7 @@
       "max_distance": 8000.0,
       "vertical_fov_angle": 30.0,
       "horizontal_resolution": 0.4,
-      "fps": 10.0,
+      "fps": 5.0,
       "n_lasers": 32,
       "reset_angle": 0.0
     },
@@ -126,7 +126,7 @@
         "yaw":0.0,
         "roll":0.0
       },
-      "fps": 10.0
+      "fps": 5.0
     },
     {
       "type": "Waypoint",
@@ -146,9 +146,9 @@
         "yaw": 0.0,
         "roll": 0.0
       },
-      "fps": 10.0,
+      "fps": 5.0,
       "point_delta": 100.0,
-      "total_points": 5000
+      "total_points": 500
     },
     {
       "type": "GPS",
@@ -168,7 +168,7 @@
         "yaw": 0.0,
         "roll": 0.0
       },
-      "fps": 10.0
+      "fps": 5.0
     },
     {
       "type": "IMU",
@@ -188,7 +188,7 @@
         "yaw":0.0,
         "roll":0.0
       },
-      "fps": 10.0
+      "fps": 5.0
     }
   ]
 }

@@ -26,6 +26,7 @@ class SimulatorConfiguration(Configuration):
         self.server_ip = self.configuration['server_ip']
         self.server_port = int(self.configuration['server_port'])
         self.client_ip = self.configuration['client_ip']
+        self.logger_settings = self.configuration['logger_settings']
 
 
 class VehicleConfiguration(Configuration):
@@ -33,7 +34,6 @@ class VehicleConfiguration(Configuration):
 
     def __init__(self, file_name):
         super(VehicleConfiguration, self).__init__(file_name)
-
         self.set_allowable_sensor_names()
         self.lane_number = self.configuration['lane_number']
         self.position = self.configuration['position']

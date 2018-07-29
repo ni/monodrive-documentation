@@ -59,16 +59,19 @@ class BaseSensorUI(object):
         self.render_views()
     
     def stop_rendering(self):
-        # override in subclass
-        return
-        
-    @staticmethod
-    def stop(self):
         logging.getLogger("sensor").info("shutting down rendering thread: {0}".format(self.name))
-        if self.process_data_thread != None:
+        if self.process_data_thread is not None:
             self.process_data_thread.stop()
         else:
             logging.getLogger("sensor").info("no thread: {0}".format(self.name))
+        
+    #@staticmethod
+    #def stop(self):
+    #    logging.getLogger("sensor").info("shutting down rendering thread: {0}".format(self.name))
+    #    if self.process_data_thread != None:
+    #        self.process_data_thread.stop()
+    #    else:
+    #        logging.getLogger("sensor").info("no thread: {0}".format(self.name))
 
     def set_window_coordinates(self, window_settings):
         if self.name in window_settings:
@@ -131,7 +134,7 @@ class BaseSensorUI(object):
     # Render thread entry point
     @staticmethod
     def process_data_loop(sensor):
-        while True:
+        while sensor.running:
             sensor.process_display_data()
 
 

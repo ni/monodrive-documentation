@@ -122,17 +122,20 @@ class SensorManager:
         #stopping simulator from sending data
         logging.getLogger("sensor").info("sensor manager stopping sensor streaming")
         [s.send_stop_stream_command(simulator) for s in self.sensor_list]
+        [s.stop() for s in self.sensor_list]
 
         #stop rendering
         logging.getLogger("sensor").info("sensor manager stopping sensor rendering")
 
         #[p.stop() for p in self.render_processes]
+        [s.stop_rendering() for s in self.sensor_list]
         [p.terminate() for p in self.render_processes]
 
-        #[s.stop_rendering() for s in self.sensor_list]  
         #finally stop sensors
         logging.getLogger("sensor").info("sensor manager stopping sensor processes")
-        [s.terminate() for s in self.sensor_list]
+        # [s.terminate() for s in self.sensor_list]
+
+        [p.terminate() for p in self.get_process_list()]
 
         logging.getLogger("sensor").info("sensor termitation complete")
 
@@ -281,6 +284,7 @@ class BaseSensor(multiprocessing.Process):
         self.update_sensors_got_data_count()
 
     def stop(self):
+        print("stopping ", self.name)
         self.running = False  # Will stop UDP and Logging thread
         #self.send_stop_stream_command(simulator)
         self.sock.shutdown(socket.SHUT_RDWR)

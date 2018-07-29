@@ -7,6 +7,8 @@ __version__ = "1.0"
 
 import logging
 
+import time
+
 from monodrive import SimulatorConfiguration, VehicleConfiguration
 from monodrive.vehicles import SimpleVehicle
 from monodrive.vehicles import TeleportVehicle
@@ -15,7 +17,8 @@ from monodrive import Simulator
 ManualDriveMode = True
 
 if __name__ == "__main__":
-    
+    print"starting"
+        
     # Simulator configuration defines network addresses for connecting to the simulator and material properties
     simulator_config = SimulatorConfiguration('simulator.json')
     
@@ -23,10 +26,11 @@ if __name__ == "__main__":
     vehicle_configuration = VehicleConfiguration('demo.json')
 
     simulator = Simulator(simulator_config)
-    
-    simulator.send_simulator_configuration()
+
     b_running = True
     while b_running:
+
+        simulator.send_simulator_configuration()
 
         simulator.send_vehicle_configuration(vehicle_configuration)
 
@@ -44,4 +48,10 @@ if __name__ == "__main__":
 
         # Terminates vehicle and sensor processes
         simulator.stop()
-        b_running = False
+        b_running = True
+        logging.getLogger("simulator").info("episode complete")
+        time.sleep(5)
+
+
+
+

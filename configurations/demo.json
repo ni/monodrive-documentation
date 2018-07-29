@@ -148,7 +148,7 @@
       },
       "fps": 5.0,
       "point_delta": 100.0,
-      "total_points": 2000
+      "total_points": 500
     },
     {
       "type": "GPS",

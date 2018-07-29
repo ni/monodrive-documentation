@@ -10,6 +10,7 @@ import matplotlib.patches as mpatches
 import multiprocessing
 import numpy as np
 import os.path
+import psutil , os
 
 try:
     import queue
@@ -39,6 +40,7 @@ class SensorManager:
         self.sensor_gametime_graph_thread = None
         self.process_manager_list = multiprocessing.Manager().list()
         self.all_sensors_ready = multiprocessing.Event()
+        self.b_sensor_monitor_thread_running = True
         self.configure()
 
     def configure(self):
@@ -74,6 +76,7 @@ class SensorManager:
         _processes = []
         for sensor in self.sensor_process_dict.values():
             _processes.append(sensor)
+            
             if getattr(sensor, 'packetizer_process', None) is not None:
                 _processes.append(sensor.packetizer_process)
         return _processes
@@ -85,6 +88,7 @@ class SensorManager:
             render_process_name = sensor.name + '_Render'
             render_process = Process(target=sensor.rendering_main,
                                      name=render_process_name)
+            #render_process.daemon=True
             render_process.start()
             self.render_processes.append(render_process)
 
@@ -112,25 +116,30 @@ class SensorManager:
         self.simulator.request(messaging.EgoControlCommand(0.0, 0.0))
 
     def stop(self, simulator):
+        #stop monitoring sensors
+        self.b_sensor_monitor_thread_running = False 
+
         #stopping simulator from sending data
         logging.getLogger("sensor").info("sensor manager stopping sensor streaming")
         [s.send_stop_stream_command(simulator) for s in self.sensor_list]
 
         #stop rendering
         logging.getLogger("sensor").info("sensor manager stopping sensor rendering")
-        for p in self.render_processes:
-            print p.name
+
         #[p.stop() for p in self.render_processes]
         [p.terminate() for p in self.render_processes]
-        #[p.terminate() for p in self.render_processes]
 
+        [s.stop_rendering() for s in self.sensor_list]  
         #finally stop sensors
         logging.getLogger("sensor").info("sensor manager stopping sensor processes")
         [s.terminate() for s in self.sensor_list]
 
+        logging.getLogger("sensor").info("sensor termitation complete")
+
     def monitor_sensors(self):
         last_game_time = None
-        while True:
+        counter = 0
+        while self.b_sensor_monitor_thread_running:
             if last_game_time is None:
                 for s in self.sensor_list:
                     logging.getLogger("sensor").debug('Waiting on first frame for %s' % s.name)
@@ -147,10 +156,14 @@ class SensorManager:
 
                 for s in sensors_expecting_sample:
                     logging.getLogger("sensor").debug('Waiting on frame for %s' % s.name)
-                    received_data = s.data_ready_event.wait(5.0)
+                    received_data = s.data_ready_event.wait(.5)
 
                     if not received_data:
-                        s.dropped_frame()
+                        logging.getLogger("sensor").info('%s no data' % s.name) 
+                        counter += 1
+                        if counter > 20:
+                            logging.getLogger("sensor").info('%s no data' % s.name) 
+                            counter = 0
 
                     s.data_ready_event.clear()
 
@@ -189,6 +202,7 @@ class BaseSensor(multiprocessing.Process):
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(BaseSensor, self).__init__(**kwargs)
         self.idx = idx
+        self.daemon = True
         self.q_display = self.init_display_queue()
         self.q_vehicle = self.init_vehicle_queue()
         self.socket_ready_event = multiprocessing.Event()
@@ -510,6 +524,7 @@ class BaseSensorPacketized(BaseSensor):
 class PacketizerSubProcess(multiprocessing.Process):
     def __init__(self, digest_frame_callback, log_timestamp_callback, q_network, packet_size):
         super(PacketizerSubProcess, self).__init__()
+        self.daemon = True
         self.q_network = q_network
         self.digest_frame_callback = digest_frame_callback
         self.log_timestamp_callback = log_timestamp_callback
@@ -529,6 +544,7 @@ class PacketizerSubProcess(multiprocessing.Process):
                 self.packetizer.on_udp_received(data)
 
     def stop(self):
+        logging.getLogger("sensor").info("Packetizer stopped for {0}".format(self.name))
         self.terminate()
 
     def digest_frame_delegate(self, data, time_stamp, game_time):

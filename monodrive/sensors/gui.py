@@ -4,6 +4,8 @@ __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
+import logging
+
 from matplotlib import pyplot as plt
 from matplotlib.animation import FuncAnimation
 try:
@@ -17,7 +19,7 @@ import matplotlib
 import multiprocessing
 import os
 import threading
-import logging
+
 
 matplotlib.use('TkAgg')
 
@@ -33,6 +35,8 @@ class BaseSensorUI(object):
         self.window_y_position = 0
         self.view_changing_timer = None
         self.previous_event = None
+        self.b_stop_thread = False
+        
 
     def initialize_views(self):
         # override for UI creation
@@ -54,6 +58,10 @@ class BaseSensorUI(object):
         self.process_data_thread.start()
         self.render_views()
     
+    def stop_rendering(self):
+        # override in subclass
+        return
+        
     @staticmethod
     def stop(self):
         logging.getLogger("sensor").info("shutting down rendering thread: {0}".format(self.name))
@@ -162,6 +170,13 @@ class TkinterSensorUI(BaseSensorUI):
 
     def render_views(self):
         mainloop()
+
+    def stop_rendering(self):
+        # override in subclass
+        logging.getLogger("sensor").info("***{0}".format(self.name))
+        if self.master_tk != None:
+            self.master_tk.destroy()
+
 
     def window_configure_event(self, event):
         """ Event that fires when the window changes position. """

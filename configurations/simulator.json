@@ -91,6 +91,7 @@
     "network": "info",
     "control": "info",
     "scenario": "error",
-    "simulator": "info"
+    "simulator": "info",
+    "vehicle" : "info"
   }
 }

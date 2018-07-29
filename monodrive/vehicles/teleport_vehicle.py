@@ -2,13 +2,14 @@ __author__ = "monoDrive"
 __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
+import logging
 
 import math
 import numpy as np
 
 from . import BaseVehicle
 from monodrive.sensors import Waypoint, GPS
-import logging
+
 
 #for keyboard control
 import threading
@@ -40,6 +41,7 @@ class TeleportVehicle(BaseVehicle):
         self.steer = 0.0
         self.start_keyboard_listener()
         self.keyboard_thread = None
+        self.keyboard_thread_running = True
 
     def drive(self, sensors, vehicle_state):
         logging.getLogger("control").debug("Control Forward,Steer = {0},{1}".format(self.throttle,self.steer))
@@ -56,7 +58,7 @@ class TeleportVehicle(BaseVehicle):
         name = "monoDrive tele control"
         font = pygame.font.Font(None, 50)
         block = font.render(name, True, (255, 255, 255))
-        while True:
+        while self.keyboard_thread_running:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if(self._get_keyboard_control(event.key)):
@@ -68,10 +70,11 @@ class TeleportVehicle(BaseVehicle):
                         screen.blit(block, rect)
                         pygame.display.flip()
                     else:
+                        self.keyboard_thread_running = False
                         pygame.display.quit()
                         pygame.quit()
                         self.restart_event.set()
-                        return
+                        break
 
     def _get_keyboard_control(self, key):
         status = True

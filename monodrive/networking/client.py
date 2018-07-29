@@ -32,17 +32,20 @@ class BaseClient(object):
         self.raw_message_handler = raw_message_handler
         self.socket = None # if socket == None, means client is not connected
         self.wait_connected = threading.Event()
+        self.b_running = True
 
         # Start a thread to get data from the socket
         receiving_thread = threading.Thread(target=self.__receiving)
         receiving_thread.setDaemon(1)
         receiving_thread.start()
 
-    def connect(self, timeout = 90):
+    def connect(self, timeout = 1):
         """ Setup connection to the socket listening in Unreal. """
         if not self.isconnected():
             try:
-                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM, )
+                #adding this option so all ports are closed
+                #s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
                 s.connect(self.endpoint)
                 self.socket = s
                 # logging.getLogger("network").info("connected to %s" % self.endpoint)
@@ -57,9 +60,10 @@ class BaseClient(object):
 
     def disconnect(self):
         """ Remove the connection with the client properly. """
+        self.b_running = False
         if self.isconnected():
-            # logging.getLogger("network").info("BaseClient, request disconnect from server in {0}".format(
-            #     threading.current_thread().name))
+            logging.getLogger("network").info("BaseClient, request disconnect from server in {0}".format(
+                 threading.current_thread().name))
 
             self.socket.shutdown(socket.SHUT_RD)
             # Because socket is on read in __receiving thread,
@@ -72,7 +76,7 @@ class BaseClient(object):
     def __receiving(self):
         """ Method used within thread to retrieve information from the socket. """
         # logging.getLogger("network").info("TCPClient start receiver on {0}".format(threading.current_thread().name))
-        while 1:
+        while self.b_running:
             if self.isconnected():
                 try:
                     message = Message()
@@ -119,23 +123,28 @@ class Client(object):
         self.isconnected = self.message_client.isconnected
         self.connect = self.message_client.connect
         self.disconnect = self.message_client.disconnect
-
+        self.b_running = True
         self.queue = Queue()
-        self.main_thread = threading.Thread(target=self.worker)
+        self.main_thread = threading.Thread(target=self.worker, args=(self,))
         self.main_thread.setDaemon(1)
         self.main_thread.start()
+        
 
     def __raw_message_handler(self, raw_message):
         self.response = raw_message
         self.wait_response.set()
 
-    def worker(self):
-        while True:
-            task = self.queue.get()
-            task()
-            self.queue.task_done()
+    def stop(self):
+        self.b_running = False
 
-    def request(self, message, timeout=90):
+    def worker(self, _client):
+        while _client.b_running:
+            if not self.queue.empty():
+                task = self.queue.get()
+                task()
+                self.queue.task_done()
+
+    def request(self, message, timeout=1):
         """ Return a response from Unreal """
         def do_request():
             if not self.message_client.send(message):
@@ -162,7 +171,7 @@ class Client(object):
                    timeout after {:0.2f} seconds'.format(timeout))
             return None
 
-    def request_sensor_stream(self, message, timeout=3):
+    def request_sensor_stream(self, message, timeout=1):
         def do_request():
             if not self.message_client.send(message):
                 return None

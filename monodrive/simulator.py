@@ -4,10 +4,13 @@ __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
-from multiprocessing import Event, Process, Queue
-import threading
 import logging
 from logging.handlers import RotatingFileHandler
+
+from multiprocessing import Event, Process, Queue
+import threading
+import os, psutil  # for removing processing after episode
+
 import sys
 
 from monodrive.networking import messaging
@@ -49,9 +52,31 @@ class Simulator(object):
         return self.ego_vehicle
 
     def stop(self):
+
         # Stop all processes
         logging.getLogger("simulator").info("start shutting down simulator client")
         self.ego_vehicle.stop()
+        logging.getLogger("simulator").info("simulator client shutdown complete")
+        
+        # Disconnect from server
+        self.client.disconnect()
+        self.client.stop()
+
+        ## get the pid of this program
+        pid=os.getpid()
+
+        ## when you want to kill everything, including this program
+        self.kill_process_tree(pid, False)
+
+    def kill_process_tree(self, pid, including_parent=True):
+        parent = psutil.Process(pid)
+        for child in parent.children(recursive=True):
+            print "kill monodrive child", child
+            child.kill()
+
+        if including_parent:
+            parent.kill()
+
 
     @property
     def client(self):
@@ -63,7 +88,7 @@ class Simulator(object):
             self._client.connect()
         return self._client
 
-    def request(self, message_cls, timeout=90):
+    def request(self, message_cls, timeout=5):
         return self.client.request(message_cls, timeout)
 
     def request_sensor_stream(self, message_cls):

@@ -26,11 +26,11 @@ if __name__ == "__main__":
     vehicle_configuration = VehicleConfiguration('demo.json')
 
     simulator = Simulator(simulator_config)
-
+    simulator.send_simulator_configuration()
     b_running = True
     while b_running:
-
-        simulator.send_simulator_configuration()
+        simulator.restart_event.clear()
+        
 
         simulator.send_vehicle_configuration(vehicle_configuration)
 

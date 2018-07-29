@@ -19,6 +19,7 @@ import matplotlib
 import multiprocessing
 import os
 import threading
+import prctl
 
 
 matplotlib.use('TkAgg')
@@ -131,6 +132,7 @@ class BaseSensorUI(object):
     # Render thread entry point
     @staticmethod
     def process_data_loop(sensor):
+        prctl.set_proctitle("monodrive rending {0}".format(sensor))
         while True:
             sensor.process_display_data()
 
@@ -153,6 +155,13 @@ class MatplotlibSensorUI(BaseSensorUI):
 
     def update_views(self, frame):
         return
+    
+    def stop_rendering(self):
+        # override in subclass
+        logging.getLogger("sensor").info("***{0}".format(self.name))
+        if plt != None:
+            plt.close()
+            self.main_plot = None
 
 
 class TkinterSensorUI(BaseSensorUI):

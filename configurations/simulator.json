@@ -2,7 +2,7 @@
   "id": "simulator_test",
   "server_ip": "192.168.1.4",
   "server_port": 8998,
-  "client_ip": "192.168.1.8",
+  "client_ip": "192.168.1.14",
   "phys_materials": {
     "Aluminum": {
       "specular_exponent": 15.0,

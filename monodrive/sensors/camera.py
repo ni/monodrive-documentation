@@ -216,7 +216,7 @@ class Camera(TkinterSensorUI, BaseSensorPacketized):
 
         return output
 
-    def stop_sub_processes(self, simulator):
+    def stop_sub_processes(self):
         self.update_sensors_got_data_count()
 
     def stop(self):

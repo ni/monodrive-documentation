@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
         # Terminates vehicle and sensor processes
         simulator.stop()
-        b_running = True
+        b_running = False
         logging.getLogger("simulator").info("episode complete")
         time.sleep(5)
 

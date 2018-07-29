@@ -129,7 +129,7 @@ class SensorManager:
         #[p.stop() for p in self.render_processes]
         [p.terminate() for p in self.render_processes]
 
-        [s.stop_rendering() for s in self.sensor_list]  
+        #[s.stop_rendering() for s in self.sensor_list]  
         #finally stop sensors
         logging.getLogger("sensor").info("sensor manager stopping sensor processes")
         [s.terminate() for s in self.sensor_list]
@@ -238,6 +238,7 @@ class BaseSensor(multiprocessing.Process):
             self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_RCVBUF, self.packet_size * 500)
         else:
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            #self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
         self.sensors_depending_on_data = 1  # the sensor itself depends on the data.
 
@@ -282,7 +283,7 @@ class BaseSensor(multiprocessing.Process):
     def stop(self):
         self.running = False  # Will stop UDP and Logging thread
         #self.send_stop_stream_command(simulator)
-        self.sock.shutdown(1)
+        self.sock.shutdown(socket.SHUT_RDWR)
         self.sock.close()
         self.sock = None
         self.terminate()
@@ -333,7 +334,7 @@ class BaseSensor(multiprocessing.Process):
 
     def run(self):
         tries = 0
-        self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        #self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 0)
 
         while self.running:
             if self.start_time is None:

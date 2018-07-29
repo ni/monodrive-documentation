@@ -123,23 +123,25 @@ class SensorManager:
         #stopping simulator from sending data
         logging.getLogger("sensor").info("sensor manager stopping sensor streaming")
         [s.send_stop_stream_command(simulator) for s in self.sensor_list]
+        
 
         logging.getLogger("sensor").info("sensor manager stopping sensor listening")
-        [s.stop_listening() for s in self.sensor_list]
+        [s.stop() for s in self.sensor_list]
+
         #stop rendering
         logging.getLogger("sensor").info("sensor manager stopping sensor rendering windows")
 
-        #[p.stop() for p in self.render_processes]
-        #[p.terminate() for p in self.render_processes]
-        
-
         [s.stop_rendering() for s in self.sensor_list]
+
         logging.getLogger("sensor").info("sensor manager stopping sensor rendering processes")
 
         [p.terminate() for p in self.render_processes]  
+
         #finally stop sensors
         logging.getLogger("sensor").info("sensor manager stopping sensor processes")
-        [s.terminate() for s in self.sensor_list]
+        # [s.terminate() for s in self.sensor_list]
+
+        [p.terminate() for p in self.get_process_list()]
 
         logging.getLogger("sensor").info("sensor termitation complete")
 
@@ -287,9 +289,9 @@ class BaseSensor(multiprocessing.Process):
         logging.getLogger("sensor").warning("Dropped Frame for: %s" % self.name)
         self.update_sensors_got_data_count()
 
-
-    def stop_listening(self):
+    def stop(self):
         logging.getLogger("sensor").info('*** %s' % self.name)
+
         self.running = False  # Will stop UDP and Logging thread
         #self.send_stop_stream_command(simulator)
         self.sock.shutdown(socket.SHUT_RDWR)

@@ -113,7 +113,7 @@ class Simulator(object):
         simple_formatter = MyFormatter("%(name)s-%(levelname)s: %(message)s")
         # detailed_formatter = MyFormatter("%(asctime)s %(name)s-%(levelname)s:[%(process)d]:  - %(message)s")
 
-        for category, level in self.simulator_configuration.logger_settings.iteritems():
+        for category, level in self.simulator_configuration.logger_settings.items():
             level = logging.getLevelName(level.upper())
             logger = logging.getLogger(category)
             logger.setLevel(level)

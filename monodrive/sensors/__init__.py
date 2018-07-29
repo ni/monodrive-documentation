@@ -277,6 +277,7 @@ class BaseSensor(multiprocessing.Process):
 
     def dropped_frame(self):
         logging.getLogger("sensor").warning("Dropped Frame for: %s" % self.name)
+        self.update_sensors_got_data_count()
 
     def stop(self):
         self.running = False  # Will stop UDP and Logging thread

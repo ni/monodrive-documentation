@@ -4,6 +4,7 @@ __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
+import logging
 import cv2
 import numpy as np
 import time
@@ -61,7 +62,11 @@ class Camera(TkinterSensorUI, BaseSensorPacketized):
     def get_q_image(self):
         image_frame = self.q_display.get()
         image_buffer = image_frame['image']
-        image = np.array(bytearray(image_buffer), dtype=np.uint8).reshape(self.height, self.width, 4)
+        if len(image_buffer) == self.height * self.width * 4:
+            image = np.array(bytearray(image_buffer), dtype=np.uint8).reshape(self.height, self.width, 4)
+        else:
+            image = None
+            logging.getLogger("sensor").error("wrong image size received {0}".format(self.name))
         return image
 
     def process_bound_data(self, data):
@@ -230,9 +235,9 @@ class MultiCamera(Camera):
         self.camera_ids = self.config["camera_ids"]
 
     def process_bound_data(self, data):
+        
         self.bounding_box_positions = []
         self.bounding_box_is_in_camera_fov = []
-
         i = 0
         for camera_id in self.camera_ids:
             single_camera_width = self.width / len(self.camera_ids)

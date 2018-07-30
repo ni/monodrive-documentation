@@ -5,15 +5,14 @@ __version__ = "1.0"
 
 import datetime
 import json
-from matplotlib import pyplot as plt
-import matplotlib.patches as mpatches
 import multiprocessing
-import numpy as np
 import os.path
-
 import os
-#import psutil , os
-#import prctl
+
+try:
+    import prctl
+except ImportError:
+    pass
 
 try:
     import queue
@@ -349,7 +348,10 @@ class BaseSensor(multiprocessing.Process):
     def run(self):
         tries = 0
         #self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 0)
-        #prctl.set_proctitle("monodrive sensor {0}".format(self.name))
+        try:
+            prctl.set_proctitle("monodrive sensor {0}".format(self.name))
+        except:
+            pass
         while self.running:
             
             if self.start_time is None:

@@ -7,10 +7,13 @@ __version__ = "1.0"
 import logging
 from logging.handlers import RotatingFileHandler
 
-from multiprocessing import Event, Process, Queue
-import threading
-#import os, psutil  # for removing processing after episode
-#try:
+from multiprocessing import Event
+
+try:
+    import psutil
+    import prctl
+except ImportError:
+    pass
 
 import sys
 
@@ -72,14 +75,16 @@ class Simulator(object):
         #self.client.stop()
 
     def kill_process_tree(self, pid, including_parent=True):
-        parent = psutil.Process(pid)
-        for child in parent.children(recursive=True):
-            print("kill monodrive child {0}".format(child))
-            child.kill()
+        try:
+            parent = psutil.Process(pid)
+            for child in parent.children(recursive=True):
+                print "kill monodrive child", child
+                child.kill()
 
-        if including_parent:
-            parent.kill()
-
+            if including_parent:
+                parent.kill()
+        except Exception as e:
+            pass
 
     @property
     def client(self):

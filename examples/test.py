@@ -22,7 +22,7 @@ if __name__ == "__main__":
     simulator_config = SimulatorConfiguration('simulator.json')
     
     # Vehicle configuration defines ego vehicle configuration and the individual sensors configurations
-    vehicle_configuration = VehicleConfiguration('.json')
+    vehicle_configuration = VehicleConfiguration('test.json')
 
     simulator = Simulator(simulator_config)
     simulator.send_simulator_configuration()

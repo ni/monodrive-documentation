@@ -170,7 +170,7 @@ class SensorManager:
                     received_data = s.data_ready_event.wait(.5)
 
                     if not received_data:
-                        logging.getLogger("sensor").info('%s no data' % s.name) 
+                        #logging.getLogger("sensor").debug('%s no data' % s.name)
                         counter += 1
                         if counter > 20:
                             logging.getLogger("sensor").info('%s no data' % s.name) 

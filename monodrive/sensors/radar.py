@@ -5,7 +5,7 @@ __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
-
+import logging
 
 import matplotlib
 matplotlib.use('TkAgg')
@@ -33,9 +33,9 @@ class Radar(MatplotlibSensorUI, BaseSensorPacketized):
         #self.N = config['num_samples_per_sweep']
         C = 3e8
         Tm = config['sweep_num_for_range_max']* 2 * config['range_max']/ C
-        self.N = round(config['fs']* Tm)
-        self.N_Clean = self.N
-        self.nSweep = config['num_sweeps']
+        self.N = int(round(config['fs']* Tm))
+        self.N_Clean = int(self.N)
+        self.nSweep = int(config['num_sweeps'])
         self.n_rx_elements = 8
         self.v_max = 30
         self.bounding_box = None
@@ -84,8 +84,9 @@ class Radar(MatplotlibSensorUI, BaseSensorPacketized):
     def process_radar_data_cube(self, data):
         numberOfItems = self.N * self.n_rx_elements * self.nSweep * 2
         try:
-            s_data = struct.unpack('f' * numberOfItems, data)
+            s_data = struct.unpack('f' * int(numberOfItems), data)
         except:
+            logging.getLogger("sensor").error("Could not unpack radar data")
             s_data = []
 
         if len(s_data) == numberOfItems:
@@ -109,7 +110,7 @@ class Radar(MatplotlibSensorUI, BaseSensorPacketized):
             self.last_data_frame_processed = True
 
         else:
-            print("len(s_data) != numberOfItems")
+            #print("len(s_data) != numberOfItems")
             pass
 
     def update_views(self, frame):

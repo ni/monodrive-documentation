@@ -17,13 +17,12 @@ from monodrive import Simulator
 ManualDriveMode = True
 
 if __name__ == "__main__":
-    print"starting"
         
     # Simulator configuration defines network addresses for connecting to the simulator and material properties
     simulator_config = SimulatorConfiguration('simulator.json')
     
     # Vehicle configuration defines ego vehicle configuration and the individual sensors configurations
-    vehicle_configuration = VehicleConfiguration('test.json')
+    vehicle_configuration = VehicleConfiguration('.json')
 
     simulator = Simulator(simulator_config)
     simulator.send_simulator_configuration()

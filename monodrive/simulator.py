@@ -9,7 +9,8 @@ from logging.handlers import RotatingFileHandler
 
 from multiprocessing import Event, Process, Queue
 import threading
-import os, psutil  # for removing processing after episode
+#import os, psutil  # for removing processing after episode
+#try:
 
 import sys
 
@@ -73,7 +74,7 @@ class Simulator(object):
     def kill_process_tree(self, pid, including_parent=True):
         parent = psutil.Process(pid)
         for child in parent.children(recursive=True):
-            print "kill monodrive child", child
+            print("kill monodrive child {0}".format(child))
             child.kill()
 
         if including_parent:
@@ -149,7 +150,7 @@ class Simulator(object):
         simple_formatter = MyFormatter("%(name)s-%(levelname)s: %(message)s")
         # detailed_formatter = MyFormatter("%(asctime)s %(name)s-%(levelname)s:[%(process)d]:  - %(message)s")
 
-        for category, level in self.simulator_configuration.logger_settings.iteritems():
+        for category, level in self.simulator_configuration.logger_settings.items():
             level = logging.getLevelName(level.upper())
             logger = logging.getLogger(category)
             logger.setLevel(level)

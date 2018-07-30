@@ -19,7 +19,7 @@ import matplotlib
 import multiprocessing
 import os
 import threading
-import prctl
+#import prctl
 
 
 matplotlib.use('TkAgg')
@@ -135,7 +135,7 @@ class BaseSensorUI(object):
     # Render thread entry point
     @staticmethod
     def process_data_loop(sensor):
-        prctl.set_proctitle("monodrive rending {0}".format(sensor))
+        #prctl.set_proctitle("monodrive rending {0}".format(sensor))
         while sensor.running:
             sensor.process_display_data()
 

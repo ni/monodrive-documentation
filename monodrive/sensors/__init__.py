@@ -10,8 +10,10 @@ import matplotlib.patches as mpatches
 import multiprocessing
 import numpy as np
 import os.path
-import psutil , os
-import prctl
+
+import os
+#import psutil , os
+#import prctl
 
 try:
     import queue
@@ -135,13 +137,13 @@ class SensorManager:
 
         logging.getLogger("sensor").info("sensor manager stopping sensor rendering processes")
 
-        [p.join() for p in self.render_processes]  
+        [p.terminate() for p in self.render_processes]
 
         #finally stop sensors
         logging.getLogger("sensor").info("sensor manager stopping sensor processes")
         # [s.terminate() for s in self.sensor_list]
 
-        [p.join() for p in self.get_process_list()]
+        [p.terminate() for p in self.get_process_list()]
 
         logging.getLogger("sensor").info("sensor termitation complete")
 
@@ -347,7 +349,7 @@ class BaseSensor(multiprocessing.Process):
     def run(self):
         tries = 0
         #self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 0)
-        prctl.set_proctitle("monodrive sensor {0}".format(self.name))
+        #prctl.set_proctitle("monodrive sensor {0}".format(self.name))
         while self.running:
             
             if self.start_time is None:

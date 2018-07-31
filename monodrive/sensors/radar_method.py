@@ -1,5 +1,6 @@
 from __future__ import print_function
 from matplotlib import pyplot as plt
+
 import matplotlib
 matplotlib.use('TkAgg')
 from copy import deepcopy
@@ -180,7 +181,7 @@ class RadarMethodDetectionRootMusicAndESPRIT(BaseRadarMethod):
     def setup_radar_plots(self, subplot1, subplot2):
         self.collabel = ("Obstacle", "Range", "Speed", "AoA", "RCS", "Power\n level")
         subplot1.grid(visible=True)
-        AOA_handle, = subplot1.plot(self.obstaclesA, self.obstaclesR, linestyle='None', marker='o', markerfacecolor = 'r', markeredgecolor = 'r')
+        AOA_handle, = subplot1.plot(self.obstaclesA, self.obstaclesR, linestyle='None', marker='s', markerfacecolor = 'r', markeredgecolor = 'r')
         if len(self.obstaclesR)> 20:  #to adjust table vertical position in the figure
             self.SizeMaxOfTable = 27
         else:
@@ -398,7 +399,7 @@ class RadarMethodRootMusicAndESPRIT:
         #             fx4 = shr.ML_AoA_Estimation(Xproj)
         #         fx3[k] = fx4  # return the first (most reliable component) of the AoA vector
         #         angle = fx3
-            print("targets: ", len(fxR))
+            #logging.getLogger("sensor").debug("radar targets:{0}".format(len(fxR)))
             #if (len(fxR) > 20):
             #    fxR = fxR[0:20]
             #    fxV = fxV[0:20]

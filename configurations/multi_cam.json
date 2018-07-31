@@ -1,6 +1,6 @@
 {
     "id": "basic_configuration",
-    "clock_mode": 2,
+    "clock_mode": 1,
     "lane_number": 0,
     "position": 22000,
     "bounding_data_on_radar_graph": true,
@@ -76,7 +76,7 @@
         "max_distance": 8000.0,
         "vertical_fov_angle": 30.0,
         "horizontal_resolution": 0.4,
-        "fps": 2.0,
+        "fps": 4.0,
         "n_lasers": 32,
         "reset_angle": 0.0
       },
@@ -101,8 +101,8 @@
           "roll":0.0
         },
         "stream_dimensions": {
-          "x":512.0,
-          "y":256.0
+          "x":2048.0,
+          "y":512.0
         },
         "camera_ids": [
             "0",
@@ -130,10 +130,10 @@
         },
         "max_distance": 50000.0,
         "horizontal_fov_angle": 50.0,
-        "fps": 5,
+        "fps": 4,
         "stream_dimensions": {
-          "x":256.0,
-          "y":256.0
+          "x":512.0,
+          "y":512.0
         },
         "semantic_processing": false,
         "hdmi_streaming": false
@@ -157,14 +157,68 @@
         },
         "max_distance": 50000.0,
         "horizontal_fov_angle": 50.0,
-        "fps": 5,
+        "fps": 4,
         "stream_dimensions": {
-          "x":256.0,
-          "y":256.0
+          "x":512.0,
+          "y":512.0
         },
         "semantic_processing": false,
         "hdmi_streaming": false
       },
+    {
+      "type":"Camera",
+      "id": "2",
+      "packet_size": 23552,
+      "listen_port": 7082,
+      "display_process": false,
+      "sensor_process": false,
+      "location": {
+        "x":-238.0,
+        "y":-25.0,
+        "z":147.0
+      },
+      "rotation": {
+        "pitch":0.0,
+        "yaw":-170.0,
+        "roll":0.0
+      },
+      "max_distance": 50000.0,
+      "horizontal_fov_angle": 50.0,
+      "fps": 4,
+      "stream_dimensions": {
+        "x":512.0,
+        "y":512.0
+      },
+      "semantic_processing": false,
+      "hdmi_streaming": false
+    },
+    {
+      "type":"Camera",
+      "id": "3",
+      "packet_size": 23552,
+      "listen_port": 7083,
+      "display_process": false,
+      "sensor_process": false,
+      "location": {
+        "x":-238.0,
+        "y":25.0,
+        "z":147.0
+      },
+      "rotation": {
+        "pitch":0.0,
+        "yaw":170.0,
+        "roll":0.0
+      },
+      "max_distance": 50000.0,
+      "horizontal_fov_angle": 50.0,
+      "fps": 4,
+      "stream_dimensions": {
+        "x":512.0,
+        "y":512.0
+      },
+      "semantic_processing": false,
+      "hdmi_streaming": false
+    },
       {
         "type": "BoundingBox",
         "id": "1",

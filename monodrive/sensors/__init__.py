@@ -7,8 +7,12 @@ import datetime
 import json
 import multiprocessing
 import os.path
-import psutil , os
-import prctl
+import os
+
+try:
+    import prctl
+except ImportError:
+    pass
 
 try:
     import queue
@@ -132,13 +136,13 @@ class SensorManager:
 
         logging.getLogger("sensor").info("sensor manager stopping sensor rendering processes")
 
-        [p.join() for p in self.render_processes]  
+        [p.terminate() for p in self.render_processes]
 
         #finally stop sensors
         logging.getLogger("sensor").info("sensor manager stopping sensor processes")
         # [s.terminate() for s in self.sensor_list]
 
-        [p.join() for p in self.get_process_list()]
+        [p.terminate() for p in self.get_process_list()]
 
         logging.getLogger("sensor").info("sensor termitation complete")
 
@@ -165,7 +169,7 @@ class SensorManager:
                     received_data = s.data_ready_event.wait(.5)
 
                     if not received_data:
-                        logging.getLogger("sensor").info('%s no data' % s.name) 
+                        #logging.getLogger("sensor").debug('%s no data' % s.name)
                         counter += 1
                         if counter > 20:
                             logging.getLogger("sensor").info('%s no data' % s.name) 
@@ -344,7 +348,10 @@ class BaseSensor(multiprocessing.Process):
     def run(self):
         tries = 0
         #self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 0)
-        prctl.set_proctitle("monodrive sensor {0}".format(self.name))
+        try:
+            prctl.set_proctitle("monodrive sensor {0}".format(self.name))
+        except:
+            pass
         while self.running:
             
             if self.start_time is None:

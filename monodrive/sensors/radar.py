@@ -139,14 +139,14 @@ class Radar(MatplotlibSensorUI, BaseSensorPacketized):
 
         if self.bounding_box is not None:
             self.AOA_bounding_handle, = self.AOA_subplot.plot([], [],  # (self.bounding_angles, self.bounding_distances,
-                                                              marker='o', linestyle='None', markerfacecolor='none',
+                                                              marker='s', linestyle='None', markerfacecolor='none',
                                                               markeredgecolor='b')
 
         self.AOA_subplot.set_title('AOA Range')
         self.AOA_subplot.set_ylabel('Range (m)')
         self.AOA_subplot.set_xlabel('Angle (degrees) ')
         self.AOA_subplot.set_xlim(-20, 20)
-        self.AOA_subplot.set_ylim(0, 250)
+        self.AOA_subplot.set_ylim(0, 150)
 
         # self.radar_plot.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
         self.view_lock.release()

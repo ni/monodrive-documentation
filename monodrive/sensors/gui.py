@@ -13,13 +13,15 @@ try:
 except ImportError:
     from Tkinter import *
 
-import cv2
 import json
 import matplotlib
 import multiprocessing
 import os
 import threading
-import prctl
+try:
+    import prctl
+except:
+    pass
 
 
 matplotlib.use('TkAgg')
@@ -37,7 +39,6 @@ class BaseSensorUI(object):
         self.view_changing_timer = None
         self.previous_event = None
         self.b_stop_thread = False
-        
 
     def initialize_views(self):
         # override for UI creation
@@ -135,7 +136,11 @@ class BaseSensorUI(object):
     # Render thread entry point
     @staticmethod
     def process_data_loop(sensor):
-        prctl.set_proctitle("monodrive rending {0}".format(sensor))
+        try:
+            prctl.set_proctitle("monodrive rending {0}".format(sensor))
+        except:
+            pass
+
         while sensor.running:
             sensor.process_display_data()
 

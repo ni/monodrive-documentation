@@ -53,7 +53,7 @@ You should see the Success message without any errors.
     
 Run the following command after replacing [PATH_TO_MONODRIVE_CLIENT] with the actual path to monodrive directory on your machine:
 
-    ln -s [PATH_TO_MONODRIVE_CLIENT]/ros_bridge/ ~/ros/catkin_ws_for_monodrive/src/
+    ln -s [PATH_TO_MONODRIVE_CLIENT]/monodrive_ros_bridge/ ~/ros/catkin_ws_for_monodrive/src/
     source ~/ros/catkin_ws_for_monodrive/devel/setup.bash
     rosdep update
     rosdep install --from-paths ~/ros/catkin_ws_for_monodrive

@@ -7,7 +7,7 @@ __license__ = "MIT"
 __version__ = "1.0"
 
 
-
+import logging
 import socket
 import threading
 import time
@@ -45,11 +45,10 @@ class BaseClient(object):
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 s.connect(self.endpoint)
                 self.socket = s
-                print("connected to ", self.endpoint)
+                # logging.getLogger("network").info("connected to %s" % self.endpoint)
             except Exception as e:
-                print('Can not connect to {0}'.format(str(self.endpoint)))
-                print('Is your game running?')
-                print("Error {0}".format(e))
+                # logging.getLogger("network").error(
+                #     'Can not connect to {0} \n Is your game running? \n Error {1}'.format(str(self.endpoint), e))
                 self.socket = None
 
     def isconnected(self):
@@ -59,8 +58,8 @@ class BaseClient(object):
     def disconnect(self):
         """ Remove the connection with the client properly. """
         if self.isconnected():
-            print("BaseClient, request disconnect from server in {0}".format(
-                threading.current_thread().name))
+            # logging.getLogger("network").info("BaseClient, request disconnect from server in {0}".format(
+            #     threading.current_thread().name))
 
             self.socket.shutdown(socket.SHUT_RD)
             # Because socket is on read in __receiving thread,
@@ -72,7 +71,7 @@ class BaseClient(object):
 
     def __receiving(self):
         """ Method used within thread to retrieve information from the socket. """
-        print("TCPClient start receiver on {0}".format(threading.current_thread().name))
+        # logging.getLogger("network").info("TCPClient start receiver on {0}".format(threading.current_thread().name))
         while 1:
             if self.isconnected():
                 try:
@@ -81,16 +80,16 @@ class BaseClient(object):
                     # print("<-- ", message)
                 except Exception as e:
                     print(str(e))
+                    logging.getLogger("network").error('Failed to receive message: %s' % str(e))
                     message = None
 
                 if message is None:
-                    print('TCPClient: remote disconnected, no more message')
+                    # logging.getLogger("network").info('TCPClient: remote disconnected, no more message')
                     self.socket = None
                     continue
 
                 if self.raw_message_handler:
                     self.raw_message_handler(message) # will block this thread
-                    # self.raw_message_handler(message2)
                 else:
                     # print('No message handler for raw message {0}'.format(
                     #     message))
@@ -102,7 +101,7 @@ class BaseClient(object):
             # print("--> ", message)
             return message.write(self.socket)
         else:
-            print('Fail to send message, client is not connected')
+            logging.getLogger("network").error('Fail to send message, client is not connected')
             return False
 
 
@@ -111,9 +110,8 @@ class Client(object):
     Client is the public interface for the Unreal communcation.
 
     """
-    def __init__(self, endpoint, message_handler=None):
+    def __init__(self, endpoint):
         self.message_client = BaseClient(endpoint, self.__raw_message_handler)
-        self.message_handler = message_handler
         self.message_id = 0
         self.wait_response = threading.Event()
         self.response = ''
@@ -130,15 +128,6 @@ class Client(object):
     def __raw_message_handler(self, raw_message):
         self.response = raw_message
         self.wait_response.set()
-        if self.message_handler:
-            def do_callback():
-                self.message_handler(raw_message)
-
-            self.queue.put(do_callback)
-        else:
-            # Instead of just dropping this message, give a verbose notice
-            # print('No message handler to handle message {0}'.format(raw_message))
-            pass
 
     def worker(self):
         while True:
@@ -152,7 +141,7 @@ class Client(object):
             if not self.message_client.send(message):
                 return None
 
-        # request can only be sent in the main thread, do not support multi-thread submitting request together
+        # request can only be sent in the main thread, do not support multi-thread submitting request togethergetting here 2
         if threading.current_thread().name == self.main_thread.name:
             do_request()
         else:
@@ -169,7 +158,7 @@ class Client(object):
             self.response = None
             return r
         else:
-            print('Can not receive a response from server. \
+            logging.getLogger("network").error('Can not receive a response from server. \
                    timeout after {:0.2f} seconds'.format(timeout))
             return None
 
@@ -199,6 +188,6 @@ class Client(object):
             self.response = None
             return r
         else:
-            print('Can not receive a response from server. \
+            logging.getLogger("network").error('Can not receive a response from server. \
                            timeout after {:0.2f} seconds'.format(timeout))
             return None

@@ -91,9 +91,17 @@ ENV/
 # Pycharm
 .idea/
 
+# VSCode
+.vscode/
+
+# Logs
+client_log*
+
+
 
 # MonoDrive
 .monodrive_client_settings
 examples/window_settings.json
 examples/variances.xlsx
+examples/client_logs.log.*
 monodrive/sensors/RadarMethod.py

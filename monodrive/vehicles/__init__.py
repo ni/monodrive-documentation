@@ -1,37 +1,41 @@
-
 __author__ = "monoDrive"
 __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
+import logging
 import math
-from multiprocessing import Process
+import time
+import threading
 
-from monodrive import SensorManager, Simulator
+from monodrive import SensorManager
 from monodrive.networking import messaging
 
 from monodrive.sensors import GPS, Waypoint
 
-SCENARIO_LOGGING = True
 
-
-class BaseVehicle(Process):
-    def __init__(self, simulator_config, vehicle_config, restart_event=None, **kwargs):
+class BaseVehicle(object):
+    def __init__(self, simulator, vehicle_config, restart_event=None, **kwargs):
         super(BaseVehicle, self).__init__()
-        self.simulator = Simulator(simulator_config)
-        self.sensor_manager = SensorManager(vehicle_config, simulator_config)
-        self.sensor_data_ready = self.sensor_manager.sensor_data_ready
+        self.simulator = simulator
+        self.simulator_configuration = simulator.simulator_configuration
+        self.sensor_manager = SensorManager(vehicle_config, simulator)
+        self.name = vehicle_config.id
+        self.all_sensors_ready = self.sensor_manager.all_sensors_ready
         self.sensors = self.sensor_manager.sensor_list
         self.restart_event = restart_event
         self.last_time = 0.0
         self.update_sent = False
         self.scenario = None
         self.vehicle_state = None
+        self.previous_control_sent_time = None
+        self.control_thread = None
 
     def start(self):
-        super(BaseVehicle, self).start()
-        self.sensor_data_ready = self.sensor_manager.sensor_data_ready
-        self.sensor_manager.start(self.simulator)
+        self.sensor_manager.start()
+        self.previous_control_sent_time = time.time()
+        self.control_thread = threading.Thread(target=self.control_monitor)
+        self.control_thread.start()
 
     def start_scenario(self, scenario):
         self.scenario = scenario
@@ -39,33 +43,45 @@ class BaseVehicle(Process):
         self.vehicle_state.start_scenario(scenario)
         self.start()
 
-    def run(self):
+    def control_monitor(self):
         while True:
-            print("Waiting on Sensor Data")
-            self.sensor_data_ready.wait()
+            logging.getLogger("control").debug("Vehicle waiting on Sensor Data")
+            self.all_sensors_ready.wait()
+
+            self.log_control_time(self.previous_control_sent_time)
 
             if self.vehicle_state is not None:
                 self.vehicle_state.update_state(self.sensors)
 
             control_data = self.drive(self.sensors, self.vehicle_state)
-            self.sensor_data_ready.clear()
+            self.all_sensors_ready.clear()
             self.send_control_data(control_data)
-            print("Finished run loop")
 
     def send_control_data(self, control_data):
         forward = control_data['forward']
         right = control_data['right']
+        logging.getLogger("control").debug("Sending control data forward: %.4s, right: %.4s" % (forward, right))
         msg = messaging.EgoControlCommand(forward, right)
         resp = self.simulator.request(msg)
-        print("--->  {0}\n<---  {1}".format(msg, resp))
+        if resp is None:
+            logging.getLogger("control").error(
+                "Failed response from sending control data forward: %s, right: %s" % (forward, right))
+        self.previous_control_sent_time = time.time()
+        for s in self.sensors:
+            s.last_control_real_time.value = self.previous_control_sent_time
 
     def stop(self):
-        # Stops all sensor streams and terminates up processes
+        # Stops all sensor streams and terminates processes
         self.sensor_manager.stop(self.simulator)
         self.terminate()
 
     def drive(self, sensors, vehicle_state):
         raise NotImplementedError("To be implemented")
+
+    @staticmethod
+    def log_control_time(previous_control_time):
+        dif = time.time() - previous_control_time
+        logging.getLogger("sensor").debug('Total Sensor Delay %.4f' % dif)
 
     @staticmethod
     def plan_target_lane(waypoint_sensor, vehicle_state=None):
@@ -162,23 +178,20 @@ class VehicleState:
             # Sequence devices number of executions, actors involved and the Maneuver
             next_possible_event = self.sequence.maneuver.events[self.maneuver_current_event_index]
             if self.check_conditions(next_possible_event.start_conditions, self):
-                if SCENARIO_LOGGING:
-                    print('Setting Event', next_possible_event.name)
+                logging.getLogger("scenario").info('Setting Event', next_possible_event.name)
                 self.event = next_possible_event
                 self.event.start(self)
         elif self.sequence is None:
             # Get next act based on current vehicle state
             if self.check_conditions(self.story.act.start_conditions, self) is not None:
-                if SCENARIO_LOGGING:
-                    print('Setting Act', self.story.act.name)
+                logging.getLogger("scenario").info('Setting Act', self.story.act.name)
                 self.setup_act(self.story.act)
 
         if self.event:
             self.event.is_event_complete(self)
 
     def event_complete(self):
-        if SCENARIO_LOGGING:
-            print('Completed Event', self.event.name)
+        logging.getLogger("scenario").info('Completed Event', self.event.name)
 
         self.event.finish(self)
 
@@ -195,8 +208,7 @@ class VehicleState:
         self.event = None
 
         if self.maneuver_execution_count == 0:
-            if SCENARIO_LOGGING:
-                print('Scenario Complete!')
+            logging.getLogger("scenario").info('Scenario Complete!')
 
     @property
     def simulation_elapsed_time(self):
@@ -210,3 +222,4 @@ class VehicleState:
 
 from .md_vehicle import MDVehicle
 from .simple_vehicle import SimpleVehicle
+from .teleport_vehicle import TeleportVehicle

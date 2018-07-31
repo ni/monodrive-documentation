@@ -62,6 +62,7 @@
       "listen_port": 8079,
       "display_process": true,
       "sensor_process": true,
+      "synchronized_display": true,
       "location": {
         "x":-75.0,
         "y":-25.0,
@@ -75,7 +76,7 @@
       "max_distance": 8000.0,
       "vertical_fov_angle": 30.0,
       "horizontal_resolution": 0.4,
-      "fps": 10.0,
+      "fps": 5.0,
       "n_lasers": 32,
       "reset_angle": 0.0
     },
@@ -86,6 +87,7 @@
       "listen_port": 8080,
       "display_process": true,
       "sensor_process": true,
+      "synchronized_display": true,
       "location": {
         "x":0.0,
         "y":0.0,
@@ -113,6 +115,7 @@
       "listen_port": 8081,
       "display_process": true,
       "sensor_process": true,
+      "synchronized_display": true,
       "location": {
         "x":-75.0,
         "y":-25.0,
@@ -123,7 +126,7 @@
         "yaw":0.0,
         "roll":0.0
       },
-      "fps": 10.0
+      "fps": 5.0
     },
     {
       "type": "Waypoint",
@@ -132,6 +135,7 @@
       "listen_port": 8082,
       "display_process": true,
       "sensor_process": true,
+      "synchronized_display": true,
       "location": {
         "x": 0.0,
         "y": 0.0,
@@ -142,9 +146,9 @@
         "yaw": 0.0,
         "roll": 0.0
       },
-      "fps": 10.0,
+      "fps": 5.0,
       "point_delta": 100.0,
-      "total_points": 100
+      "total_points": 500
     },
     {
       "type": "GPS",
@@ -153,6 +157,7 @@
       "listen_port": 8083,
       "display_process": true,
       "sensor_process": true,
+      "synchronized_display": true,
       "location": {
         "x": -75.0,
         "y": -25.0,
@@ -163,7 +168,7 @@
         "yaw": 0.0,
         "roll": 0.0
       },
-      "fps": 10.0
+      "fps": 5.0
     },
     {
       "type": "IMU",
@@ -172,6 +177,7 @@
       "listen_port": 8084,
       "display_process": true,
       "sensor_process": true,
+      "synchronized_display": true,
       "location": {
         "x":-75.0,
         "y":-25.0,
@@ -201,7 +207,7 @@
         "yaw": 0,
         "roll": 0
       },
-      "fps": 10,
+      "fps": 1,
       "wheel_number": 0
     }
   ]

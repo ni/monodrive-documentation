@@ -307,9 +307,9 @@ class TrainingVehicle(MDVehicle):
     def step(self, accel, steer):
         self.vehicle_controller.send_control_data({'forward': accel, 'right': steer})
 
-        self.sensor_data_ready.wait()
+        self.all_sensors_ready.wait()
         control_data = super(TrainingVehicle, self).drive(self.sensors)
-        self.sensor_data_ready.clear()
+        self.all_sensors_ready.clear()
 
         observation = None
         for sensor in self.sensors:

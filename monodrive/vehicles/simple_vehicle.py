@@ -10,11 +10,9 @@ from . import BaseVehicle
 from monodrive.sensors import Waypoint, GPS
 
 
-
-
 k = 1.6  # look forward gain, dependent on vehicle speed
-Lfc = 20.0  # look-ahead distance
-max_vel = .6 # Max velocity
+Lfc = 5.0  # look-ahead distance
+max_vel = .3  # Max velocity
 max_turn_change = .1
 drive_vehicle = True
 
@@ -26,17 +24,10 @@ class SimpleVehicle(BaseVehicle):
         self.gps_sensor = GPS.get_sensor(self.sensors)
 
     def drive(self, sensors, vehicle_state):
-        # try:
         self.mapping()
         self.perception()
         move_velocity = self.planning(self.gps_sensor.world_location, self.gps_sensor.speed)
         return self.control(move_velocity)
-        # except Exception as e:
-        #     print('shooooooot')
-        #     return {
-        #         'forward': 0.5,
-        #         'right': 0.0,
-        #     }
 
     def mapping(self):
         if self.waypoint_sensor:
@@ -80,8 +71,8 @@ class SimpleVehicle(BaseVehicle):
         target_point = np.append(target_point, [0.0])
         # make 2d ad 3d vector
 
-        dt = self.waypoint_sensor.game_time / 1000 - self.last_time
-        self.last_time = self.waypoint_sensor.game_time / 1000
+        dt = self.waypoint_sensor.game_time / 1000.0 - self.last_time
+        self.last_time = self.waypoint_sensor.game_time / 1000.0
 
         # Find the difference from the current gps location and the target point
         dif = np.subtract(target_point, self.gps_sensor.world_location)

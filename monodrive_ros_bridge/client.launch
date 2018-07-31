@@ -6,5 +6,6 @@
   <node pkg="monodrive_ros_bridge" name="monodrive_ros_bridge" type="client.py" output="screen"/>
 
   <include file="$(find velodyne_pointcloud)/launch/VLP-32C_points.launch">
+    <arg name="frame_id" default="monodrive" />
   </include>
 </launch>

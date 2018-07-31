@@ -51,13 +51,13 @@ You should see the Success message without any errors.
 
 ### Add the monodrive_ros_bridge in the catkin workspace
     
-Run the following command after replacing [PATH_TO_MONODRIVE] with the actual path to monodrive directory on your machine:
+Run the following command after replacing [PATH_TO_MONODRIVE_CLIENT] with the actual path to monodrive directory on your machine:
 
-    ln -s [PATH_TO_monodrive]/ros_bridge/ ~/catkin_ws_for_monodrive/src/
-    source ~/catkin_ws_for_monodrive/devel/setup.bash
+    ln -s [PATH_TO_MONODRIVE_CLIENT]/ros_bridge/ ~/ros/catkin_ws_for_monodrive/src/
+    source ~/ros/catkin_ws_for_monodrive/devel/setup.bash
     rosdep update
-    rosdep install --from-paths ~/catkin_ws_for_monodrive
-    cd ~/catkin_ws_for_monodrive
+    rosdep install --from-paths ~/ros/catkin_ws_for_monodrive
+    cd ~/ros/catkin_ws_for_monodrive
     catkin_make
     
 

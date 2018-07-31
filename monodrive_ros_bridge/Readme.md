@@ -32,7 +32,6 @@ This ros package aims at providing a simple ros bridge for monodrive simulator.
     mkdir -p ~/ros/catkin_ws_for_monodrive/src
     cd ~/ros/catkin_ws_for_monodrive
     source /opt/ros/kinetic/setup.bash
-    mkdir src
     catkin_make
     source ~/ros/catkin_ws_for_monodrive/devel/setup.bash
     
@@ -41,7 +40,7 @@ http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment
 
 ## Install monodrive python client in your workspace
 
-    cd monodrive/PythonClient
+    cd monodrive/client
     pip2 install -e .  --user --upgrade   
     
 Check the installation is successfull by trying to import monodrive from python:

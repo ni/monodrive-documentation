@@ -5,10 +5,7 @@ __version__ = "1.0"
 
 import datetime
 import json
-from matplotlib import pyplot as plt
-import matplotlib.patches as mpatches
 import multiprocessing
-import numpy as np
 import os.path
 import psutil , os
 import prctl

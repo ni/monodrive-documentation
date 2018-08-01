@@ -83,7 +83,7 @@
     }
   },
   "traffic_configuration": {    
-    "max_vehicles": 20,
+    "max_vehicles": 30,
     "spawn_rate": 0.25
   },
   "logger_settings": {

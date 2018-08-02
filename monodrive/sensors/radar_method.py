@@ -27,7 +27,7 @@ class BaseRadarMethod:
         #self.N = config['num_samples_per_sweep']
         C = 3e8
         Tm = config['sweep_num_for_range_max']* 2 * config['range_max']/ C
-        self.N = round(config['fs']* Tm)
+        self.N = int(round(config['fs'] * Tm))
 
         self.nSweep = config['num_sweeps']
         self.range_max = config['range_max']

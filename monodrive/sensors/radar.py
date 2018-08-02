@@ -128,9 +128,11 @@ class Radar(MatplotlibSensorUI, BaseSensorPacketized):
     def initialize_views(self):
         self.view_lock.acquire()
         super(Radar, self).initialize_views()
-
+        self.main_plot.suptitle('FMCW 77Ghz Radar')
+        self.main_plot.set_size_inches(12.75,8.25)
         self.AOA_subplot = self.main_plot.add_subplot(121)
         self.obstacles_table_subplot = self.main_plot.add_subplot(122)
+        self.obstacles_table_subplot.set_title('Target Table')
         self.obstacles_table_subplot.axis('tight')
         self.obstacles_table_subplot.axis('off')
         # self.doppler_handle = self.radar_plot.setup_subplots(self.doppler_subplot)

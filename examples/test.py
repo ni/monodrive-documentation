@@ -29,8 +29,6 @@ if __name__ == "__main__":
     b_running = True
     while b_running:
         simulator.restart_event.clear()
-        
-
         simulator.send_vehicle_configuration(vehicle_configuration)
 
         # Start Vehicle

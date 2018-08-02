@@ -39,6 +39,7 @@ class Camera(TkinterSensorUI, BaseSensorPacketized):
         self.frame_start_num = 0
 
         self.bounding_box = None
+        self.b_draw_bounding_boxes = False
 
         self.video_capture = None
         self.current_image = None
@@ -125,7 +126,7 @@ class Camera(TkinterSensorUI, BaseSensorPacketized):
                 self.current_image = self.get_q_image()
 
                 image = self.current_image
-                if self.bounding_box is not None:
+                if self.bounding_box is not None and self.b_draw_bounding_boxes:
                     image = self.draw_bounding_boxes(self.current_image)
 
                 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)

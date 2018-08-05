@@ -237,8 +237,6 @@ class BaseSensor(multiprocessing.Process):
         self.packetizer_process = None
         self.game_time = None
         self.time_stamp = None
-        self.window_x_position = 0
-        self.window_y_position = 0
         self.socket_udp = config.get('connection_type', None) == "udp"
 
         self.listen_port = int(config['listen_port'])
@@ -582,3 +580,4 @@ from .rpm import RPM
 from .waypoint import Waypoint
 from .bounding_box import BoundingBox
 from .rpm import RPM
+from .gui import MatplotlibSensorUI, TkinterSensorUI

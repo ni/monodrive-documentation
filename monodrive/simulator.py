@@ -17,6 +17,7 @@ import sys
 from monodrive.networking import messaging
 from monodrive.networking.client import Client
 from monodrive.constants import *
+from monodrive.scene import Map
 
 from monodrive import VehicleConfiguration
 
@@ -28,6 +29,7 @@ class Simulator(object):
         self.restart_event = Event()
         self.ego_vehicle = None
         self.scenario = None
+        self.map = None
         self._client = None
         self.setup_logger()
 
@@ -58,8 +60,6 @@ class Simulator(object):
         logging.getLogger("simulator").info("start shutting down simulator client")
         self.ego_vehicle.stop()
         logging.getLogger("simulator").info("simulator client shutdown complete")
-        
-
 
         ## get the pid of this program
         #pid=os.getpid()
@@ -70,6 +70,8 @@ class Simulator(object):
                 # Disconnect from server
         #self.client.disconnect()
         #self.client.stop()
+
+        self.map.stop()
 
     def kill_process_tree(self, pid, including_parent=True):
         parent = psutil.Process(pid)
@@ -96,6 +98,10 @@ class Simulator(object):
 
     def request_sensor_stream(self, message_cls):
         return self.client.request_sensor_stream(message_cls)
+
+    def init_episode(self, vehicle_configuration):
+        self.send_vehicle_configuration(vehicle_configuration)
+        self.request_map()
 
     def send_vehicle_configuration(self, vehicle_configuration):
         logging.getLogger("simulator").info('Sending vehicle configuration {0}'.format(vehicle_configuration.name))
@@ -165,6 +171,12 @@ class Simulator(object):
 
             logger.addHandler(file_handler)
             logger.addHandler(console_handler)
+
+    def request_map(self):
+        command = messaging.MapCommand(self.simulator_configuration.map_settings)
+        result = self.request(command, 60)
+        self.map = Map(result)
+        self.map.start()
 
 
 class MyFormatter(logging.Formatter):

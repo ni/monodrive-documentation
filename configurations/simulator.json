@@ -82,16 +82,22 @@
       "roughness": 0.15
     }
   },
-  "traffic_configuration": {    
+  "traffic_configuration": {
     "max_vehicles": 40,
     "spawn_rate": 0.25
   },
-  "logger_settings": {
-    "sensor": "info",
-    "network": "info",
-    "control": "info",
-    "scenario": "error",
-    "simulator": "info",
-    "vehicle" : "info"
+  "client_settings": {
+    "map": {
+      "gis_anchor": { "x": 0, "y": 0, "z": 0},
+      "point_delta": 100.0
+    },
+    "logger": {
+      "sensor": "info",
+      "network": "info",
+      "control": "info",
+      "scenario": "error",
+      "simulator": "info",
+      "vehicle": "info"
+    }
   }
 }

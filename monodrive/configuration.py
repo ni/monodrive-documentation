@@ -27,7 +27,16 @@ class SimulatorConfiguration(Configuration):
         self.server_ip = self.configuration['server_ip']
         self.server_port = int(self.configuration['server_port'])
         self.client_ip = self.configuration['client_ip']
-        self.logger_settings = self.configuration['logger_settings']
+        self.client_settings = self.configuration['client_settings']
+        del self.configuration['client_settings']
+
+    @property
+    def logger_settings(self):
+        return self.client_settings['logger']
+
+    @property
+    def map_settings(self):
+        return self.client_settings['map']
 
 
 class VehicleConfiguration(Configuration):

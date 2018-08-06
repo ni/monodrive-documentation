@@ -10,13 +10,13 @@ from multiprocessing import Process, Manager
 import time
 
 from monodrive.networking import messaging, queues
-from monodrive.sensors import MatplotlibSensorUI
+from monodrive.gui.widgets import MatplotlibSensorUI
 
 
 class Map(MatplotlibSensorUI):
 
     def __init__(self, map_result, **kwargs):
-        super(Map, self).__init__(**kwargs)
+        super(Map, self).__init__(None)
 
         self.name = 'Map'
         self.thread_state = Manager().Value('i', 0)

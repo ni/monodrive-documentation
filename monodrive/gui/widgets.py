@@ -16,8 +16,6 @@ from monodrive.constants import VELOVIEW_PORT, VELOVIEW_IP
 import multiprocessing
 import numpy as np
 import os
-from PIL import Image
-from PIL import ImageTk
 import threading
 try:
     from tkinter import *
@@ -25,6 +23,9 @@ except ImportError:
     from Tkinter import *
 import socket
 import time
+
+from PIL import Image
+from PIL import ImageTk
 
 
 matplotlib.use('TkAgg')
@@ -35,10 +36,19 @@ SHOW_MAP = True
 class SensorWidget(object):
     def __init__(self, sensor):
         self.sensor = sensor
+        self.name = sensor.name if sensor else ''
+        self.last_frame = None
 
     def render(self):
-        data = self.sensor.get_data()
+        data = self.sensor.get_message()
+        if data is self.last_frame:
+            time.sleep(.1)
+            return
+
+ #       print("updating {0}".format(self.name))
         self.update_widget(data)
+        self.last_frame = data
+#        self.sensor.update_sensors_got_data_count()
 
     def update_widget(self, data):
         raise NotImplemented
@@ -66,6 +76,7 @@ class BaseSensorUI(SensorWidget):
         return
 
     def rendering_main(self):
+        print("starting render process for {0}".format(self))
         self.view_lock = threading.Lock()
         self.initialize_views()
         thread_name = self.name + 'Process_Data_Thread'
@@ -148,10 +159,10 @@ class BaseSensorUI(SensorWidget):
 
     # Render thread entry point
     @staticmethod
-    def process_data_loop(sensor):
+    def process_data_loop(widget):
         # prctl.set_proctitle("monodrive rending {0}".format(sensor))
-        while sensor.running:
-            sensor.render()
+        while widget.sensor.running:
+            widget.render()
 
 
 class MatplotlibSensorUI(BaseSensorUI):
@@ -520,9 +531,9 @@ class IMUWidget(TkinterSensorUI):
         self.string_timer.set('TIMESTAMP: {0}'.format(data['time_stamp']))
 
 
-class Lidar(BaseSensorUI):
+class LidarWidget(BaseSensorUI):
     def __init__(self, sensor):
-        super(Lidar, self).__init__(sensor)
+        super(LidarWidget, self).__init__(sensor)
 
         self.veloview_socket = self.connect()
 

@@ -9,12 +9,13 @@ import logging
 
 import time
 
-from monodrive import SimulatorConfiguration, VehicleConfiguration
+from monodrive import SimulatorConfiguration, VehicleConfiguration, Simulator
+from monodrive.gui import Gui
 from monodrive.vehicles import SimpleVehicle
 from monodrive.vehicles import TeleportVehicle
-from monodrive import Simulator
 
 ManualDriveMode = True
+
 
 if __name__ == "__main__":
         
@@ -26,8 +27,10 @@ if __name__ == "__main__":
 
     simulator = Simulator(simulator_config)
     simulator.send_simulator_configuration()
-    b_running = True
-    while b_running:
+
+    episodes = 1  # TODO... this should come from the scenario config
+
+    while episodes > 0:
         simulator.restart_event.clear()
         simulator.init_episode(vehicle_configuration)
 
@@ -40,14 +43,21 @@ if __name__ == "__main__":
         logging.getLogger("simulator").info('Starting vehicle')
         ego_vehicle.start()
 
+        gui = Gui(ego_vehicle)
+        gui.start()
+
         # Waits for the restart event to be set in the control process
         simulator.restart_event.wait()
 
+        gui.stop()
+
         # Terminates vehicle and sensor processes
         simulator.stop()
-        b_running = False
+
         logging.getLogger("simulator").info("episode complete")
         time.sleep(5)
+
+        episodes = episodes - 1
 
 
 

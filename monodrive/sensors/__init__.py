@@ -63,7 +63,7 @@ class SensorManager:
         sensor_type = sensor_config['type']
         _Sensor_Class = self.vehicle_config.get_class(sensor_type)
         sensor_instance = _Sensor_Class(sensor_type, sensor_config, self.simulator_config)
-        sensor_instance.set_window_coordinates(window_settings)
+#        sensor_instance.set_window_coordinates(window_settings)
 
         self.sensor_process_dict[sensor_instance.name] = sensor_instance
         self.sensor_list.append(sensor_instance)
@@ -253,7 +253,11 @@ class BaseSensor(multiprocessing.Process):
         return self.packet_size
 
     def get_message(self):
-        data = self.q_data.peek()
+        try:
+            data = self.q_data.peek()
+        except AttributeError:
+            data = self.q_data.get()
+
 #        for key in data:
 #            setattr(self, key, data[key])
         return data
@@ -319,35 +323,38 @@ class BaseSensor(multiprocessing.Process):
 
     def connect(self):
         tries = 0
+        connected = False
 
-        while self.running:
+        while self.running and not connected:
             if self.socket_udp:
                 logging.getLogger("network").debug(
                     'Setting udp listening port on %s for %s' % (self.listen_port, self.name))
                 self.sock.bind(('', self.listen_port))
+                connected = True
             else:
                 logging.getLogger("network").debug(
                     'connecting tcp sensor on %s %s for %s' % (self.server_ip, self.listen_port, self.name))
                 try:
                     self.sock.connect((self.server_ip, self.listen_port))
-                except:
+                    connected = True
+                except Exception as e:
                     if tries > 5:
                         logging.getLogger("network").error(
-                            'Cound not connect to %s for %s' % (self.listen_port, self.name))
+                            'Could not connect to %s for %s (%s)' % (self.listen_port, self.name, str(e)))
                         break
 
                     tries = tries + 1
-                    time.sleep(0.1)
+                    time.sleep(0.25)
                     continue
 
-        if self.sock is not None:
+        if connected:
             self.sock.settimeout(None)
             self.start_time = time.clock()
             self.socket_ready_event.set()
             logging.getLogger("network").debug(
                 'connected tcp sensor on %s %s for %s' % (self.server_ip, self.listen_port, self.name))
 
-        return self.sock is not None
+        return connected
 
     def run(self):
         if not self.connect():

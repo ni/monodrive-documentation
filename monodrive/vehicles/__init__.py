@@ -105,6 +105,9 @@ class BaseVehicle(object):
                 return sensor
         return None
 
+    def get_sensors(self):
+        return self.sensors
+
 
 class VehicleState:
     def __init__(self):

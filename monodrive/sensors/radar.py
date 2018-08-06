@@ -15,7 +15,7 @@ import numpy as np
 import multiprocessing
 
 from . import BaseSensorPacketized, radar_method
-from monodrive.gui.widgets import MatplotlibSensorUI
+#from monodrive.gui.widgets import MatplotlibSensorUI
 
 try:
     import matlab.engine
@@ -25,7 +25,7 @@ except ImportError:
     eng = None
 
 
-class Radar(MatplotlibSensorUI, BaseSensorPacketized):
+class Radar(BaseSensorPacketized):
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(Radar, self).__init__(idx=idx, config=config, simulator_config=simulator_config, **kwargs)
         self.framing = None

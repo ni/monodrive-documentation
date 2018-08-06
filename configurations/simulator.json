@@ -94,7 +94,7 @@
     "logger": {
       "sensor": "info",
       "network": "info",
-      "control": "info",
+      "control": "debug",
       "scenario": "error",
       "simulator": "info",
       "vehicle": "info"

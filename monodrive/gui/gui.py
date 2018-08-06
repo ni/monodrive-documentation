@@ -7,7 +7,7 @@ Widgets = {
     Camera: CameraWidget,
     GPS: GPSWidget,
     IMU: IMUWidget,
-#    Lidar: LidarWidget,
+    Lidar: LidarWidget,
     MultiCamera: MultiCameraWidget,
 #    Radar: RadarWidget,
     RPM: RPMWidget,
@@ -15,9 +15,10 @@ Widgets = {
 }
 
 class Gui:
-    def __init__(self):
+    def __init__(self, vehicle):
         self.widgets = []
         self.render_processes = []
+        self.create_widgets(vehicle)
 
     def create_widget(self, sensor):
         if Widgets.get(sensor.__class__):

@@ -63,7 +63,9 @@ class Message(object):
         length = data[1]
 
         if magic == RESPONSE_HEADER and length > 8:
-            data = umsgpack.unpack(rfile)
+            packed = rfile.read(length - 8)
+            data = umsgpack.unpackb(packed)
+
             self.message_class = data['class']
             self.status = data['status']
             self.messages = data['messages']
@@ -160,3 +162,11 @@ class ScenarioInitCommand(Message):
     def __init__(self, init):
         super(ScenarioInitCommand, self).__init__(
             SCENARIO_INIT_COMMAND_UID, init)
+
+
+class MapCommand(Message):
+    """ Send a command to request the Map. """
+
+    def __init__(self, config):
+        super(MapCommand, self).__init__(
+            MAP_COMMAND_UID, config)

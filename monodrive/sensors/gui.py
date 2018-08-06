@@ -130,7 +130,7 @@ class BaseSensorUI(object):
 
     @property
     def window_configuration_coordinates(self):
-        return str(self.window_x_position) + '+' + str(self.window_y_position)
+        return "+" + str(self.window_x_position) + '+' + str(self.window_y_position)
 
     # Render thread entry point
     @staticmethod
@@ -149,7 +149,7 @@ class MatplotlibSensorUI(BaseSensorUI):
     def initialize_views(self):
         self.main_plot = plt.figure(10)
         plt.get_current_fig_manager().window.bind('<Configure>', self.window_configure_event)
-        geometry = "+" + self.window_configuration_coordinates
+        geometry = self.window_configuration_coordinates
         plt.get_current_fig_manager().window.wm_geometry(geometry)
 
     def render_views(self):
@@ -163,6 +163,7 @@ class MatplotlibSensorUI(BaseSensorUI):
         # override in subclass
         logging.getLogger("sensor").info("***{0}".format(self.name))
         if plt != None:
+            self.animation.event_source.stop()
             plt.close()
             self.main_plot = None
 
@@ -174,7 +175,7 @@ class TkinterSensorUI(BaseSensorUI):
 
     def initialize_views(self):
         self.master_tk = Tk()
-        geometry = "300x200+" + self.window_configuration_coordinates
+        geometry = "300x200" + self.window_configuration_coordinates
         self.master_tk.geometry(geometry)
         if hasattr(self, 'name'):
             self.master_tk.title(self.name)

@@ -117,11 +117,12 @@ class BoundingBox(MatplotlibSensorUI, BaseSensorPacketized):
     def initialize_views(self):
         self.view_lock.acquire()
         super(BoundingBox, self).initialize_views()
+        self.main_plot.set_size_inches(3.0,2.0)
         self.map_subplot = self.main_plot.add_subplot(111)
 #        self.display(x_points, y_points, x_bounds, y_bounds, box_rotations)
-        self.map_subplot.set_xlim(-250, 250)
-        self.map_subplot.set_ylim(-250, 250)
-        self.map_subplot.set_title("Bounding Box")
+        self.map_subplot.set_xlim(-80, 80)
+        self.map_subplot.set_ylim(-80, 80)
+        self.map_subplot.set_title("Vehicle Targets (birds eye)")
         self.map_subplot.set_xlabel('Range X (m)')
         self.map_subplot.set_ylabel('Range Y (m)')
         self.map_subplot.add_patch(patches.Rectangle((-1.0, -2.0), 2.0, 4.0, color='r'))
@@ -137,7 +138,8 @@ class BoundingBox(MatplotlibSensorUI, BaseSensorPacketized):
             return
 
         for i in range(0, len(x_points)):
-            p = self.map_subplot.add_patch(patches.Rectangle((x_points[i], y_points[i]), x_bounds[i], y_bounds[i], fill=False, angle=box_rotations[i]))     # remove background
+            p = self.map_subplot.add_patch(patches.Rectangle((x_points[i], y_points[i]), x_bounds[i], y_bounds[i],
+                                                             angle=box_rotations[i], color='b',fill=False))
             self.patches.append(p)
         #plt.pause(.001)
 

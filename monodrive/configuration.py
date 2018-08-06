@@ -17,6 +17,7 @@ class Configuration(object):
             self.configuration = json.loads(resource_string(__name__, file_path).decode('utf8'))
 
         self.id = self.configuration.get('id', None)
+        self.name = file_name
 
 
 class SimulatorConfiguration(Configuration):

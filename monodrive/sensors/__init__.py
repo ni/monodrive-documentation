@@ -11,6 +11,10 @@ import multiprocessing
 import numpy as np
 import os.path
 
+import os
+#import psutil , os
+#import prctl
+
 try:
     import queue
 except ImportError:
@@ -37,8 +41,9 @@ class SensorManager:
         self.render_processes = []
         self.sensor_monitor_thread = None
         self.sensor_gametime_graph_thread = None
-        self.process_manager_list = multiprocessing.Manager().list()
+        #self.process_manager_list = multiprocessing.Manager().list()
         self.all_sensors_ready = multiprocessing.Event()
+        self.b_sensor_monitor_thread_running = True
         self.configure()
 
     def configure(self):
@@ -74,6 +79,7 @@ class SensorManager:
         _processes = []
         for sensor in self.sensor_process_dict.values():
             _processes.append(sensor)
+            
             if getattr(sensor, 'packetizer_process', None) is not None:
                 _processes.append(sensor.packetizer_process)
         return _processes
@@ -85,6 +91,7 @@ class SensorManager:
             render_process_name = sensor.name + '_Render'
             render_process = Process(target=sensor.rendering_main,
                                      name=render_process_name)
+            render_process.daemon=True
             render_process.start()
             self.render_processes.append(render_process)
 
@@ -112,12 +119,38 @@ class SensorManager:
         self.simulator.request(messaging.EgoControlCommand(0.0, 0.0))
 
     def stop(self, simulator):
-        [s.stop(simulator) for s in self.sensor_list]
+        #stop monitoring sensors
+        self.b_sensor_monitor_thread_running = False 
+
+        #stopping simulator from sending data
+        logging.getLogger("sensor").info("sensor manager stopping sensor streaming")
+        [s.send_stop_stream_command(simulator) for s in self.sensor_list]
+        
+
+        logging.getLogger("sensor").info("sensor manager stopping sensor listening")
+        [s.stop() for s in self.sensor_list]
+
+        #stop rendering
+        logging.getLogger("sensor").info("sensor manager stopping sensor rendering windows")
+
+        [s.stop_rendering() for s in self.sensor_list]
+
+        logging.getLogger("sensor").info("sensor manager stopping sensor rendering processes")
+
         [p.terminate() for p in self.render_processes]
+
+        #finally stop sensors
+        logging.getLogger("sensor").info("sensor manager stopping sensor processes")
+        # [s.terminate() for s in self.sensor_list]
+
+        [p.terminate() for p in self.get_process_list()]
+
+        logging.getLogger("sensor").info("sensor termitation complete")
 
     def monitor_sensors(self):
         last_game_time = None
-        while True:
+        counter = 0
+        while self.b_sensor_monitor_thread_running:
             if last_game_time is None:
                 for s in self.sensor_list:
                     logging.getLogger("sensor").debug('Waiting on first frame for %s' % s.name)
@@ -134,10 +167,14 @@ class SensorManager:
 
                 for s in sensors_expecting_sample:
                     logging.getLogger("sensor").debug('Waiting on frame for %s' % s.name)
-                    received_data = s.data_ready_event.wait(5.0)
+                    received_data = s.data_ready_event.wait(.5)
 
                     if not received_data:
-                        s.dropped_frame()
+                        #logging.getLogger("sensor").debug('%s no data' % s.name)
+                        counter += 1
+                        if counter > 20:
+                            logging.getLogger("sensor").info('%s no data' % s.name) 
+                            counter = 0
 
                     s.data_ready_event.clear()
 
@@ -176,6 +213,7 @@ class BaseSensor(multiprocessing.Process):
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(BaseSensor, self).__init__(**kwargs)
         self.idx = idx
+        self.daemon = True
         self.q_display = self.init_display_queue()
         self.q_vehicle = self.init_vehicle_queue()
         self.socket_ready_event = multiprocessing.Event()
@@ -211,6 +249,7 @@ class BaseSensor(multiprocessing.Process):
             self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_RCVBUF, self.packet_size * 500)
         else:
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            #self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
         self.sensors_depending_on_data = 1  # the sensor itself depends on the data.
 
@@ -250,18 +289,22 @@ class BaseSensor(multiprocessing.Process):
 
     def dropped_frame(self):
         logging.getLogger("sensor").warning("Dropped Frame for: %s" % self.name)
+        self.update_sensors_got_data_count()
 
-    def stop(self, simulator):
+    def stop(self):
+        logging.getLogger("sensor").info('*** %s' % self.name)
+
         self.running = False  # Will stop UDP and Logging thread
-        self.send_stop_stream_command(simulator)
-        self.sock.shutdown(1)
+        #self.send_stop_stream_command(simulator)
+        self.sock.shutdown(socket.SHUT_RDWR)
         self.sock.close()
         self.sock = None
-        self.terminate()
+        #s.terminate()
+        return
 
     def terminate(self):
         super(BaseSensor, self).terminate()
-        logging.getLogger("sensor").info('Terminate sensor %s' % self.name)
+        logging.getLogger("sensor").info('*** %s' % self.name)
 
     def read(self, length):
         received = 0
@@ -305,9 +348,10 @@ class BaseSensor(multiprocessing.Process):
 
     def run(self):
         tries = 0
-        self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-
+        #self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 0)
+        #prctl.set_proctitle("monodrive sensor {0}".format(self.name))
         while self.running:
+            
             if self.start_time is None:
                 if self.socket_udp:
                     logging.getLogger("network").debug(
@@ -384,8 +428,10 @@ class BaseSensor(multiprocessing.Process):
         return res
 
     def send_stop_stream_command(self, simulator):
+        
         res = simulator.stop_sensor_command(self.type, self.listen_port, self.sensor_id,
                                             self.packet_size, self.drop_frames)
+        logging.getLogger("sensor").info("***{0}".format(self.name))                                    
         return res
 
     def get_transform(self):
@@ -479,10 +525,11 @@ class BaseSensorPacketized(BaseSensor):
                                                            self.q_network, self.packet_size)
             self.packetizer_process.name = self.name + '_Packetizer'
 
-    def stop(self, simulator):
-        super(BaseSensorPacketized, self).stop(simulator)
+    def stop(self):
+        super(BaseSensorPacketized, self).stop()
         if self.packetizer_process:
-            self.packetizer_process.stop()
+            logging.getLogger("sensor").info("{0}\tpacketizer stopped".format(self.name))
+            self.packetizer_process.terminate()
 
     def digest_packet(self, packet, time_stamp, game_time):
         if self.socket_udp:
@@ -494,6 +541,7 @@ class BaseSensorPacketized(BaseSensor):
 class PacketizerSubProcess(multiprocessing.Process):
     def __init__(self, digest_frame_callback, log_timestamp_callback, q_network, packet_size):
         super(PacketizerSubProcess, self).__init__()
+        self.daemon = True
         self.q_network = q_network
         self.digest_frame_callback = digest_frame_callback
         self.log_timestamp_callback = log_timestamp_callback
@@ -512,8 +560,9 @@ class PacketizerSubProcess(multiprocessing.Process):
             else:
                 self.packetizer.on_udp_received(data)
 
-    def stop(self):
-        self.terminate()
+    '''def stop(self):
+        logging.getLogger("sensor").info("Packetizer stopped for {0}".format(self.name))
+        self.terminate()'''
 
     def digest_frame_delegate(self, data, time_stamp, game_time):
         self.digest_frame_callback(data, time_stamp, game_time)

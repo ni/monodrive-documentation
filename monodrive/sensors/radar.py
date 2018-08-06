@@ -5,7 +5,7 @@ __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
-
+import logging
 
 import matplotlib
 matplotlib.use('TkAgg')
@@ -33,9 +33,9 @@ class Radar(MatplotlibSensorUI, BaseSensorPacketized):
         #self.N = config['num_samples_per_sweep']
         C = 3e8
         Tm = config['sweep_num_for_range_max']* 2 * config['range_max']/ C
-        self.N = round(config['fs']* Tm)
-        self.N_Clean = self.N
-        self.nSweep = config['num_sweeps']
+        self.N = int(round(config['fs']* Tm))
+        self.N_Clean = int(self.N)
+        self.nSweep = int(config['num_sweeps'])
         self.n_rx_elements = 8
         self.v_max = 30
         self.bounding_box = None
@@ -84,8 +84,9 @@ class Radar(MatplotlibSensorUI, BaseSensorPacketized):
     def process_radar_data_cube(self, data):
         numberOfItems = self.N * self.n_rx_elements * self.nSweep * 2
         try:
-            s_data = struct.unpack('f' * numberOfItems, data)
+            s_data = struct.unpack('f' * int(numberOfItems), data)
         except:
+            logging.getLogger("sensor").error("Could not unpack radar data")
             s_data = []
 
         if len(s_data) == numberOfItems:
@@ -109,7 +110,7 @@ class Radar(MatplotlibSensorUI, BaseSensorPacketized):
             self.last_data_frame_processed = True
 
         else:
-            print("len(s_data) != numberOfItems")
+            #print("len(s_data) != numberOfItems")
             pass
 
     def update_views(self, frame):
@@ -127,9 +128,11 @@ class Radar(MatplotlibSensorUI, BaseSensorPacketized):
     def initialize_views(self):
         self.view_lock.acquire()
         super(Radar, self).initialize_views()
-
+        self.main_plot.suptitle('FMCW 77Ghz Radar')
+        self.main_plot.set_size_inches(12.75,8.25)
         self.AOA_subplot = self.main_plot.add_subplot(121)
         self.obstacles_table_subplot = self.main_plot.add_subplot(122)
+        self.obstacles_table_subplot.set_title('Target Table')
         self.obstacles_table_subplot.axis('tight')
         self.obstacles_table_subplot.axis('off')
         # self.doppler_handle = self.radar_plot.setup_subplots(self.doppler_subplot)
@@ -138,14 +141,14 @@ class Radar(MatplotlibSensorUI, BaseSensorPacketized):
 
         if self.bounding_box is not None:
             self.AOA_bounding_handle, = self.AOA_subplot.plot([], [],  # (self.bounding_angles, self.bounding_distances,
-                                                              marker='o', linestyle='None', markerfacecolor='none',
+                                                              marker='s', linestyle='None', markerfacecolor='none',
                                                               markeredgecolor='b')
 
         self.AOA_subplot.set_title('AOA Range')
         self.AOA_subplot.set_ylabel('Range (m)')
         self.AOA_subplot.set_xlabel('Angle (degrees) ')
         self.AOA_subplot.set_xlim(-20, 20)
-        self.AOA_subplot.set_ylim(0, 250)
+        self.AOA_subplot.set_ylim(0, 150)
 
         # self.radar_plot.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
         self.view_lock.release()

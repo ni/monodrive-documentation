@@ -20,16 +20,16 @@
     },
     "Road": {
       "specular_exponent": 1.0,
-      "specular_coefficient": 0.03,
+      "specular_coefficient": 0.1,
       "diffuse_coefficient": 0.65,
       "dielectric_constant": 7.0,
       "roughness": 0.65
     },
     "Concrete": {
       "specular_exponent": 0.0,
-      "specular_coefficient": 0.02,
-      "diffuse_coefficient": 0.03,
-      "dielectric_constant": 99999997952.0,
+      "specular_coefficient": 0.1,
+      "diffuse_coefficient": 0.65,
+      "dielectric_constant": 7.0,
       "roughness": 0.0
     },
     "Glass": {
@@ -83,7 +83,7 @@
     }
   },
   "traffic_configuration": {    
-    "max_vehicles": 60,
+    "max_vehicles": 40,
     "spawn_rate": 0.25
   },
   "logger_settings": {
@@ -91,6 +91,7 @@
     "network": "info",
     "control": "info",
     "scenario": "error",
-    "simulator": "info"
+    "simulator": "info",
+    "vehicle" : "info"
   }
 }

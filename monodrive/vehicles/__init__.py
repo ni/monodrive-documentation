@@ -30,6 +30,7 @@ class BaseVehicle(object):
         self.vehicle_state = None
         self.previous_control_sent_time = None
         self.control_thread = None
+        self.b_control_thread_running = True
 
     def start(self):
         self.sensor_manager.start()
@@ -44,7 +45,7 @@ class BaseVehicle(object):
         self.start()
 
     def control_monitor(self):
-        while True:
+        while self.b_control_thread_running:
             logging.getLogger("control").debug("Vehicle waiting on Sensor Data")
             self.all_sensors_ready.wait()
 
@@ -72,8 +73,9 @@ class BaseVehicle(object):
 
     def stop(self):
         # Stops all sensor streams and terminates processes
+        self.b_control_thread_running = False
         self.sensor_manager.stop(self.simulator)
-        self.terminate()
+        logging.getLogger("vehicle").info("vehicle termitation complete")
 
     def drive(self, sensors, vehicle_state):
         raise NotImplementedError("To be implemented")

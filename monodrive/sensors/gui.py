@@ -4,6 +4,8 @@ __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
+import logging
+
 from matplotlib import pyplot as plt
 from matplotlib.animation import FuncAnimation
 try:
@@ -17,6 +19,8 @@ import matplotlib
 import multiprocessing
 import os
 import threading
+#import prctl
+
 
 matplotlib.use('TkAgg')
 
@@ -32,6 +36,8 @@ class BaseSensorUI(object):
         self.window_y_position = 0
         self.view_changing_timer = None
         self.previous_event = None
+        self.b_stop_thread = False
+        
 
     def initialize_views(self):
         # override for UI creation
@@ -52,6 +58,21 @@ class BaseSensorUI(object):
         self.process_data_thread = threading.Thread(target=self.process_data_loop, args=(self,), name=thread_name)
         self.process_data_thread.start()
         self.render_views()
+    
+    def stop_rendering(self):
+        logging.getLogger("sensor").info("shutting down rendering thread: {0}".format(self.name))
+        if self.process_data_thread is not None:
+            self.process_data_thread.stop()
+        else:
+            logging.getLogger("sensor").info("no thread: {0}".format(self.name))
+        
+    #@staticmethod
+    #def stop(self):
+    #    logging.getLogger("sensor").info("shutting down rendering thread: {0}".format(self.name))
+    #    if self.process_data_thread != None:
+    #        self.process_data_thread.stop()
+    #    else:
+    #        logging.getLogger("sensor").info("no thread: {0}".format(self.name))
 
     def set_window_coordinates(self, window_settings):
         if self.name in window_settings:
@@ -114,7 +135,8 @@ class BaseSensorUI(object):
     # Render thread entry point
     @staticmethod
     def process_data_loop(sensor):
-        while True:
+        #prctl.set_proctitle("monodrive rending {0}".format(sensor))
+        while sensor.running:
             sensor.process_display_data()
 
 
@@ -136,6 +158,13 @@ class MatplotlibSensorUI(BaseSensorUI):
 
     def update_views(self, frame):
         return
+    
+    def stop_rendering(self):
+        # override in subclass
+        logging.getLogger("sensor").info("***{0}".format(self.name))
+        if plt != None:
+            plt.close()
+            self.main_plot = None
 
 
 class TkinterSensorUI(BaseSensorUI):
@@ -153,6 +182,13 @@ class TkinterSensorUI(BaseSensorUI):
 
     def render_views(self):
         mainloop()
+
+    def stop_rendering(self):
+        # override in subclass
+        logging.getLogger("sensor").info("***{0}".format(self.name))
+        if self.master_tk != None:
+            self.master_tk.destroy()
+
 
     def window_configure_event(self, event):
         """ Event that fires when the window changes position. """

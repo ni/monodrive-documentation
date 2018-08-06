@@ -1,4 +1,3 @@
-
 __author__ = "monoDrive"
 __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
@@ -7,7 +6,7 @@ __version__ = "1.0"
 import numpy as np
 from numpy import linalg as lg
 import pyfftw
-
+from scipy import linalg
 import time
 import numpy.fft as fftpack
 
@@ -36,16 +35,17 @@ def compute_autocovariance(x, M):
 
 def modified_correlation(x, M):
     N = x.shape[0]
+    x2=np.conj(x[N-1::-1])
 
     x_vect = np.transpose(np.matrix(x))
-
+    x_vect2 =np.transpose(np.matrix(x2))
     yn = x_vect[M - 1::-1]
-    zn = np.conj(x_vect[0:M])
+    zn = x_vect2[M - 1::-1]
     R = yn * yn.H
     R2 = zn*zn.H
     for indice in range(1, N - M):
         yn = x_vect[M - 1 + indice:indice - 1:-1]
-        zn = np.conj(x_vect[indice: M + indice])
+        zn = x_vect2[M - 1 + indice:indice - 1:-1]
         R = R + yn * yn.H
         R2 = R2 +zn*zn.H
 
@@ -54,12 +54,10 @@ def modified_correlation(x, M):
 
 def root_MUSIC_One(x, L, M, Fe):
     N = x.shape[0]
-    if M == None:
-        M = 16
 
-    R = compute_autocovariance(x, M)
+    R = modified_correlation(x, M)
     U, S, V = lg.svd(R)
-    G = U[:, 3:]
+    G = U[:, 2:]
 
     P = G * G.H
 
@@ -72,7 +70,7 @@ def root_MUSIC_One(x, L, M, Fe):
     roots = np.roots(Q)
 
     roots = np.extract(np.abs(roots) < 1, roots)
-    roots = np.extract(np.imag(roots) != 0, roots)
+    # roots = np.extract(np.imag(roots) != 0, roots)
 
     distance_from_circle = np.abs(np.abs(roots) - 1)
     index_sort = np.argsort(distance_from_circle)
@@ -91,9 +89,11 @@ def Esprit(x, L, M, Fe):
     if M == None:
         M = N // 2
 
-    R = compute_autocovariance(x, M)
+    R = modified_correlation(x, M)
+
     U, S, V = lg.svd(R)
-    S = U[:, :3]
+
+    S = U[:, :L]
 
     S1 = S[:-1, :]
 
@@ -114,13 +114,13 @@ def range_by_fft(z1, Wx, NN):
     Hz = z1 * Wx  # 1375x64 2D-array Hann windowed dechirped samples (fast/slow plan)
     Z = pyfftw.interfaces.numpy_fft.fft(Hz, NN, 0)  # 1024 points FFT performed on the 64 1D-arrays
     ZA = abs(Z)  # 1024x64 2D-array with amplitudes
-    x = ZA.sum(axis=1)/64  # 1024 points 1D-Array, summing up over sweeps in order to reduce noise effect and clean up the spectrum
+    x = ZA[:,0] #ZA.sum(axis=1)/64  # 1024 points 1D-Array, summing up over sweeps in order to reduce noise effect and clean up the spectrum
     Lgx = x.size
     # Following is CFAR algorithm
     # we used CFAR order statistics : OSCFAR (refer to the report by Celite on Radar design, CFAR section)
     G = 2  # Guard interval
     Ncfar = 10  # averaging window size
-    Thr = 3  # threshold depending on false alarm detection probability
+    Thr = 20  # threshold depending on false alarm detection probability
     y = x * x  # compute energy x[k]^2
     p = []  # initialization of peaks array
     p = np.array(p)
@@ -128,29 +128,29 @@ def range_by_fft(z1, Wx, NN):
 
     # compute CFAR for the first samples of the block (right neighbours)
     for k in range(0, 2 * (G + Ncfar) - 1):
-        z = y[k + 1:k + 1 + Ncfar - 1]
+        z = y[k + G:k + G +int(Ncfar/2)]
         T = np.median(z)
-        if (y[k] >  T):
+        if (y[k] > Thr* T):
             p = np.hstack((p, [k]))
-            qy[k] = y[k]
+            qy[k] = x[k]
 
     # compute CFAR for the following block (right and left neighbours)
-    for k in range(2 * (G + Ncfar) - 1, (Lgx - G - Ncfar - 1)):
-        z = np.concatenate((y[k + G:k + G + Ncfar - 1], y[k - G:-1:k - G - Ncfar + 1]), axis=0)
+    for k in range(2 * (G + Ncfar) - 1, 200): #(Lgx - G - Ncfar - 1)):
+        z = np.concatenate((y[k + G:k + G + Ncfar], y[k - G:k - G - Ncfar:-1]), axis=0)
         T = np.median(z)
         if (y[k] > Thr * T):
             p = np.hstack((p, [k]))
-            qy[k] = y[k]
+            qy[k] = x[k]
 
     # compute CFAR for the last samples of the block (left neighbours)
-    for k in range(2 * (G + Ncfar) - 1, Lgx - 1):
-        z = y[k - G:-1:k - G + Ncfar + 1]
-        T = np.median(z)
-        if (y[k] > Thr * T):
-            p = np.hstack((p, [k]))
-            qy[k] = y[k]
+    # for k in range(2 * (G + Ncfar) - 1, Lgx - 1):
+    #     z = y[k - G:k - G + Ncfar + 1:-1]
+    #     T = np.median(z)
+    #     if (y[k] > Thr * T):
+    #         p = np.hstack((p, [k]))
+    #         qy[k] = x[k]
     # peaks localization
-    DenoisingThreshold = 1 / 5000
+    DenoisingThreshold = 1/500
     Lgy = qy.size
     k = 1
     p = []
@@ -200,34 +200,39 @@ def ML_AoA_Estimation(project):
 def NumberOfTargetsAIC(x, M):
     N = x.shape[0]
     R = modified_correlation(x,M)
+    S_vec= abs(linalg.eigvals(R))
     U, S, V = lg.svd(R)
-    S_vec = S.reshape(M, 1)
+    # S_vec = S.reshape(M, 1)
     S_vec = np.sqrt(S_vec)
     S_vec = S_vec / S_vec.max()
     J = np.zeros(M - 2)
     for d in range(0, M - 2):
         cte1 = 1
         cte0 = 0
-        for i in range(d + 1, M):
+        for i in range(d, M):
             cte1 = cte1 * S_vec[i]
             cte0 = cte0 + S_vec[i]
         cte1 = cte1 ** (1 / (M - d))
         cte0 = cte0 / (M - d)
         J[d] = abs((M/2* np.log((cte1 / cte0) ** (M - d))) + d * (2 * M - d) / 2)   #-(1.0 * np.log((cte1 / cte0) ** (M - d))) + d * (2 * M - d) / 2  #
+
     mn = np.argmin(J)
     toto = S_vec[0:mn + 1]
     # toto = S_vec[np.nonzero(S_vec > Thrshld)[0]]
     L1 = mn+1 #toto.size
+
     k = 0
     mn2 = 0
     p = 1
     while (k < M) & (p == 1):
-        if S_vec[k] > 1e-5:
+        if S_vec[k] > 0.5e-1:
             k = k + 1
             mn2 = mn2 + 1
         else:
             p = 0
 
-    # L = min(L1, mn2)
-    L = min(L1,2)
+    L = min(L1, mn2)
+    # L = min(L1,2)
+
+    # L = 2
     return L

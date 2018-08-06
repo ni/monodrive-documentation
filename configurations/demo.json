@@ -55,7 +55,7 @@
     }
   ],
   "sensors": [
-            {
+      {
       "type": "Lidar",
       "id": "0",
       "packet_size": 1472,
@@ -89,20 +89,20 @@
       "sensor_process": true,
       "synchronized_display": true,
       "location": {
-        "x":0.0,
+        "x":-600.0,
         "y":0.0,
-        "z":175.0
+        "z":400.0
       },
       "rotation": {
-        "pitch":0.0,
+        "pitch":-20.0,
         "yaw":0.0,
         "roll":0.0
       },
       "max_distance": 50000.0,
-      "horizontal_fov_angle": 50.0,
-      "fps": 10,
+      "horizontal_fov_angle": 70.0,
+      "fps": 5,
       "stream_dimensions": {
-        "x":512.0,
+        "x":768.0,
         "y":512.0
       },
       "semantic_processing": false,
@@ -148,7 +148,7 @@
       },
       "fps": 5.0,
       "point_delta": 100.0,
-      "total_points": 500
+      "total_points": 100.0
     },
     {
       "type": "GPS",

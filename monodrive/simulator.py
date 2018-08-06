@@ -4,10 +4,14 @@ __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
-from multiprocessing import Event, Process, Queue
-import threading
 import logging
 from logging.handlers import RotatingFileHandler
+
+from multiprocessing import Event, Process, Queue
+import threading
+#import os, psutil  # for removing processing after episode
+#try:
+
 import sys
 
 from monodrive.networking import messaging
@@ -38,10 +42,10 @@ class Simulator(object):
         # Get Ego vehicle configuration from scenario, use that to create vehicle process
         vehicle_configuration = scenario.ego_vehicle_config
         vehicle_configuration = VehicleConfiguration.init_from_json(vehicle_configuration.to_json)
-        self.vehicle_process = vehicle_class(self, vehicle_configuration, self.restart_event)
+        self.ego_vehicle = vehicle_class(self, vehicle_configuration, self.restart_event)
 
         # Start the Vehicle process
-        self.vehicle_process.start_scenario(scenario)
+        self.ego_vehicle.start_scenario(scenario)
 
     def start_vehicle(self, vehicle_configuration, vehicle_class):
         # Create vehicle process form received class
@@ -49,7 +53,33 @@ class Simulator(object):
         return self.ego_vehicle
 
     def stop(self):
-        self.vehicle_process.stop()
+
+        # Stop all processes
+        logging.getLogger("simulator").info("start shutting down simulator client")
+        self.ego_vehicle.stop()
+        logging.getLogger("simulator").info("simulator client shutdown complete")
+        
+
+
+        ## get the pid of this program
+        #pid=os.getpid()
+
+        ## when you want to kill everything, including this program
+        #self.kill_process_tree(pid, False)
+
+                # Disconnect from server
+        #self.client.disconnect()
+        #self.client.stop()
+
+    def kill_process_tree(self, pid, including_parent=True):
+        parent = psutil.Process(pid)
+        for child in parent.children(recursive=True):
+            print("kill monodrive child {0}".format(child))
+            child.kill()
+
+        if including_parent:
+            parent.kill()
+
 
     @property
     def client(self):
@@ -61,25 +91,32 @@ class Simulator(object):
             self._client.connect()
         return self._client
 
-    def request(self, message_cls, timeout=90):
+    def request(self, message_cls, timeout=5):
         return self.client.request(message_cls, timeout)
 
     def request_sensor_stream(self, message_cls):
         return self.client.request_sensor_stream(message_cls)
 
     def send_vehicle_configuration(self, vehicle_configuration):
+        logging.getLogger("simulator").info('Sending vehicle configuration {0}'.format(vehicle_configuration.name))
         vehicle_response = self.request(messaging.JSONConfigurationCommand(
             vehicle_configuration.configuration, VEHICLE_CONFIG_COMMAND_UUID))
+        
         if vehicle_response is None:
             logging.getLogger("network").error('Failed to send the vehicle configuration')
             raise ConnectionError('Failed to connect to the monodrive vehicle.')
+        else:
+            logging.getLogger("simulator").info('{0}'.format(vehicle_response))
 
     def send_simulator_configuration(self):
+        logging.getLogger("simulator").info('Sending simulator configuration ip:{0}:{1}'.format(self.simulator_configuration.server_ip,self.simulator_configuration.server_port))
         simulator_response = self.request(messaging.JSONConfigurationCommand(
             self.simulator_configuration.configuration, SIMULATOR_CONFIG_COMMAND_UUID))
         if simulator_response is None:
             logging.getLogger("network").error('Failed to send the simulator configuration')
             raise ConnectionError('Failed to connect to the monodrive simulator.')
+        else:
+            logging.getLogger("simulator").info('{0}'.format(simulator_response))
 
     def send_scenario_init(self, scen):
         init = scen.init_scene_json

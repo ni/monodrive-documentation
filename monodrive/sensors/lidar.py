@@ -52,6 +52,7 @@ class Lidar(BaseSensorUI, BaseSensor):
         """ Setup connection to the socket listening in Unreal. """
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            #self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             self.veloview_socket = s
             return s
 
@@ -60,3 +61,5 @@ class Lidar(BaseSensorUI, BaseSensor):
             print("Error {0}".format(e))
             self.veloview_socket = None
             return None
+        
+            

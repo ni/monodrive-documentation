@@ -4,6 +4,7 @@ __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
+import logging
 import cv2
 import numpy as np
 import time
@@ -38,6 +39,7 @@ class Camera(TkinterSensorUI, BaseSensorPacketized):
         self.frame_start_num = 0
 
         self.bounding_box = None
+        self.b_draw_bounding_boxes = False
 
         self.video_capture = None
         self.current_image = None
@@ -61,7 +63,11 @@ class Camera(TkinterSensorUI, BaseSensorPacketized):
     def get_q_image(self):
         image_frame = self.q_display.get()
         image_buffer = image_frame['image']
-        image = np.array(bytearray(image_buffer), dtype=np.uint8).reshape(self.height, self.width, 4)
+        if len(image_buffer) == self.height * self.width * 4:
+            image = np.array(bytearray(image_buffer), dtype=np.uint8).reshape(self.height, self.width, 4)
+        else:
+            image = None
+            logging.getLogger("sensor").error("wrong image size received {0}".format(self.name))
         return image
 
     def process_bound_data(self, data):
@@ -120,7 +126,7 @@ class Camera(TkinterSensorUI, BaseSensorPacketized):
                 self.current_image = self.get_q_image()
 
                 image = self.current_image
-                if self.bounding_box is not None:
+                if self.bounding_box is not None and self.b_draw_bounding_boxes:
                     image = self.draw_bounding_boxes(self.current_image)
 
                 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -216,12 +222,12 @@ class Camera(TkinterSensorUI, BaseSensorPacketized):
 
         return output
 
-    def stop_sub_processes(self, simulator):
+    def stop_sub_processes(self):
         self.update_sensors_got_data_count()
 
-    def stop(self, simulator):
+    def stop(self):
         if not self.hdmi_streaming:
-            super(Camera, self).stop(simulator)
+            super(Camera, self).stop()
 
 
 class MultiCamera(Camera):
@@ -230,9 +236,9 @@ class MultiCamera(Camera):
         self.camera_ids = self.config["camera_ids"]
 
     def process_bound_data(self, data):
+        
         self.bounding_box_positions = []
         self.bounding_box_is_in_camera_fov = []
-
         i = 0
         for camera_id in self.camera_ids:
             single_camera_width = self.width / len(self.camera_ids)

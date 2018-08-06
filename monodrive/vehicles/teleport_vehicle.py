@@ -2,13 +2,14 @@ __author__ = "monoDrive"
 __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
+import logging
 
 import math
 import numpy as np
 
 from . import BaseVehicle
 from monodrive.sensors import Waypoint, GPS
-import logging
+
 
 #for keyboard control
 import threading
@@ -40,6 +41,7 @@ class TeleportVehicle(BaseVehicle):
         self.steer = 0.0
         self.start_keyboard_listener()
         self.keyboard_thread = None
+        self.keyboard_thread_running = True
 
     def drive(self, sensors, vehicle_state):
         logging.getLogger("control").debug("Control Forward,Steer = {0},{1}".format(self.throttle,self.steer))
@@ -56,25 +58,39 @@ class TeleportVehicle(BaseVehicle):
         name = "monoDrive tele control"
         font = pygame.font.Font(None, 50)
         block = font.render(name, True, (255, 255, 255))
-        while True:
+        while self.keyboard_thread_running:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
-                    self._get_keyboard_control(event.key)
-                    name = "throttle = {0} steering = {1}".format(self.throttle, self.steer) 
-                    screen.fill ((0, 0, 0))
-                    block = font.render(name, True, (255, 255, 255))
-                    rect = block.get_rect()
-                    rect.center = screen.get_rect().center
-                    screen.blit(block, rect)
-                    pygame.display.flip()
+                    if(self._get_keyboard_control(event.key)):
+                        self.throttle = round(self.throttle, 2)
+                        self.steer = round(self.steer, 2)
+                        name = "throttle = {0} steering = {1}".format(self.throttle, self.steer)
+                        screen.fill ((0, 0, 0))
+                        block = font.render(name, True, (255, 255, 255))
+                        rect = block.get_rect()
+                        rect.center = screen.get_rect().center
+                        screen.blit(block, rect)
+                        pygame.display.flip()
+                    else:
+                        self.keyboard_thread_running = False
+                        pygame.display.quit()
+                        pygame.quit()
+                        self.restart_event.set()
+                        break
 
     def _get_keyboard_control(self, key):
-
+        status = True
         if key == K_LEFT or key == K_a:
-            self.steer += -.05
+            self.steer += -.02
         if key == K_RIGHT or key == K_d:
-            self.steer += .05
+            self.steer += .02
         if key == K_UP or key == K_w:
             self.throttle += .05
         if key == K_DOWN or key == K_s:
             self.throttle += -.05
+        if key == K_r:
+            self.simulator.restart_event.set()
+        if key == K_q:
+            status = False
+        
+        return status

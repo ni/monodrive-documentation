@@ -5,15 +5,10 @@ __version__ = "1.0"
 
 import datetime
 import json
-from matplotlib import pyplot as plt
-import matplotlib.patches as mpatches
 import multiprocessing
-import numpy as np
 import os.path
 
 import os
-#import psutil , os
-#import prctl
 
 try:
     import queue
@@ -38,10 +33,8 @@ class SensorManager:
         self.simulator_config = simulator.simulator_configuration
         self.sensor_process_dict = {}
         self.sensor_list = []
-        self.render_processes = []
         self.sensor_monitor_thread = None
         self.sensor_gametime_graph_thread = None
-        #self.process_manager_list = multiprocessing.Manager().list()
         self.all_sensors_ready = multiprocessing.Event()
         self.b_sensor_monitor_thread_running = True
         self.configure()
@@ -84,17 +77,6 @@ class SensorManager:
                 _processes.append(sensor.packetizer_process)
         return _processes
 
-    def start_all_render_processes(self, sensor_list):
-        for sensor in sensor_list:
-            if not sensor.display_process:
-                continue
-            render_process_name = sensor.name + '_Render'
-            render_process = Process(target=sensor.rendering_main,
-                                     name=render_process_name)
-            render_process.daemon=True
-            render_process.start()
-            self.render_processes.append(render_process)
-
     def start(self):
         [p.start() for p in self.get_process_list()]
 
@@ -105,8 +87,6 @@ class SensorManager:
                     "Failed start stream command for sensor %s %s" % (s.name, res.error_message))
             else:
                 logging.getLogger("sensor").info("Sensor ready %s" % s.name)
-
-        self.start_all_render_processes(self.sensor_list)
 
         for s in self.sensor_list:
             s.socket_ready_event.wait()
@@ -136,8 +116,6 @@ class SensorManager:
         [s.stop_rendering() for s in self.sensor_list]
 
         logging.getLogger("sensor").info("sensor manager stopping sensor rendering processes")
-
-        [p.terminate() for p in self.render_processes]
 
         #finally stop sensors
         logging.getLogger("sensor").info("sensor manager stopping sensor processes")
@@ -214,8 +192,7 @@ class BaseSensor(multiprocessing.Process):
         super(BaseSensor, self).__init__(**kwargs)
         self.idx = idx
         self.daemon = True
-        self.q_display = self.init_display_queue()
-        self.q_vehicle = self.init_vehicle_queue()
+        self.q_data = self.init_data_queue()
         self.socket_ready_event = multiprocessing.Event()
         self.data_ready_event = multiprocessing.Event()
         self.config = config
@@ -262,11 +239,7 @@ class BaseSensor(multiprocessing.Process):
         self.sensors_got_data_count = manager.Value('i', 0)
 
     @classmethod
-    def init_display_queue(cls):
-        return SingleQueue()
-
-    @classmethod
-    def init_vehicle_queue(cls):
+    def init_data_queue(cls):
         return SingleQueue()
 
     @classmethod
@@ -280,9 +253,9 @@ class BaseSensor(multiprocessing.Process):
         return self.packet_size
 
     def get_message(self):
-        data = self.q_vehicle.peek()
-        for key in data:
-            setattr(self, key, data[key])
+        data = self.q_data.peek()
+#        for key in data:
+#            setattr(self, key, data[key])
         return data
 
     def dropped_frame(self):
@@ -344,59 +317,64 @@ class BaseSensor(multiprocessing.Process):
 
         return packet, time_stamp, game_time
 
-    def run(self):
+    def connect(self):
         tries = 0
-        #self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 0)
-        #prctl.set_proctitle("monodrive sensor {0}".format(self.name))
+
         while self.running:
-            
-            if self.start_time is None:
-                if self.socket_udp:
-                    logging.getLogger("network").debug(
-                        'Setting udp listening port on %s for %s' % (self.listen_port, self.name))
-                    self.sock.bind(('', self.listen_port))
-                else:
-                    logging.getLogger("network").debug(
-                        'connecting tcp sensor on %s %s for %s' % (self.server_ip, self.listen_port, self.name))
-                    try:
-                        self.sock.connect((self.server_ip, self.listen_port))
-                    except:
-                        if tries > 5:
-                            logging.getLogger("network").error(
-                                'Cound not connect to %s for %s' % (self.listen_port, self.name))
-                            break
-
-                        tries = tries + 1
-                        time.sleep(0.1)
-                        continue
-
-                self.sock.settimeout(None)
-                self.start_time = time.clock()
-                self.socket_ready_event.set()
+            if self.socket_udp:
                 logging.getLogger("network").debug(
-                    'connected tcp sensor on %s %s for %s' % (self.server_ip, self.listen_port, self.name))
+                    'Setting udp listening port on %s for %s' % (self.listen_port, self.name))
+                self.sock.bind(('', self.listen_port))
             else:
-                time_stamp = None
-                game_time = None
-                packet = None
+                logging.getLogger("network").debug(
+                    'connecting tcp sensor on %s %s for %s' % (self.server_ip, self.listen_port, self.name))
                 try:
-                    packet, time_stamp, game_time = self.get_packet()
-                except Exception as e:
-                    logging.getLogger("network").warning(
-                        'Packet exception: %s for %s' % (str(e), self.name))
-                    print("packet exception: {0}".format(e))
-                    pass
+                    self.sock.connect((self.server_ip, self.listen_port))
+                except:
+                    if tries > 5:
+                        logging.getLogger("network").error(
+                            'Cound not connect to %s for %s' % (self.listen_port, self.name))
+                        break
 
-                # print(self.name, ':', len(packet))
-                if packet is not None:
-                    self.number_of_packets += 1
-                    self.receiving_data = True
-                    self.digest_packet(packet, time_stamp, game_time)
-                    if time_stamp is not None:
-                        self.log_timestamp(time_stamp, game_time)
-                else:
-                    self.receiving_data = False
-                    # print("waiting for data...", self.name)
+                    tries = tries + 1
+                    time.sleep(0.1)
+                    continue
+
+        if self.sock is not None:
+            self.sock.settimeout(None)
+            self.start_time = time.clock()
+            self.socket_ready_event.set()
+            logging.getLogger("network").debug(
+                'connected tcp sensor on %s %s for %s' % (self.server_ip, self.listen_port, self.name))
+
+        return self.sock is not None
+
+    def run(self):
+        if not self.connect():
+            return
+
+        while self.running:
+            time_stamp = None
+            game_time = None
+            packet = None
+            try:
+                packet, time_stamp, game_time = self.get_packet()
+            except Exception as e:
+                logging.getLogger("network").warning(
+                    'Packet exception: %s for %s' % (str(e), self.name))
+                print("packet exception: {0}".format(e))
+                pass
+
+            # print(self.name, ':', len(packet))
+            if packet is not None:
+                self.number_of_packets += 1
+                self.receiving_data = True
+                self.digest_packet(packet, time_stamp, game_time)
+                if time_stamp is not None:
+                    self.log_timestamp(time_stamp, game_time)
+            else:
+                self.receiving_data = False
+                # print("waiting for data...", self.name)
 
     # Hook method for digest each packet, when not packetized forward on to digest_frame
     # since each packet is an entire frame. BaseSensorPacketized overrides thisdata_ready_event
@@ -411,8 +389,7 @@ class BaseSensor(multiprocessing.Process):
         self.log_control_time(self.name, self.last_control_real_time.value)
         if hasattr(self, 'parse_frame'):
             frame = self.parse_frame(frame, time_stamp, game_time)
-        self.q_display.put(frame)
-        self.q_vehicle.put(frame)
+        self.q_data.put(frame)
         if not self.display_process or not self.synchronized_display:
             self.data_ready_event.set()
 
@@ -580,4 +557,3 @@ from .rpm import RPM
 from .waypoint import Waypoint
 from .bounding_box import BoundingBox
 from .rpm import RPM
-from .gui import MatplotlibSensorUI, TkinterSensorUI

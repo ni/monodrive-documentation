@@ -9,14 +9,11 @@ import struct
 import math
 from multiprocessing import Value
 
-from matplotlib import pyplot as plt
-
 from . import BaseSensorPacketized
-from .gui import MatplotlibSensorUI
 from monodrive.networking import messaging
 
 
-class Waypoint(MatplotlibSensorUI, BaseSensorPacketized):
+class Waypoint(BaseSensorPacketized):
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(Waypoint, self).__init__(idx=idx, config=config, simulator_config=simulator_config, **kwargs)
         self.total_points = self.config['total_points']
@@ -57,20 +54,6 @@ class Waypoint(MatplotlibSensorUI, BaseSensorPacketized):
         }
         return data_dict
 
-    def initialize_views(self):
-        self.view_lock.acquire()
-        super(Waypoint, self).initialize_views()
-        self.map_subplot = self.main_plot.add_subplot(111)
-        self.map_plot_handle, = self.map_subplot.plot(0, 0, marker='o', linestyle='None')
-        self.map_subplot.set_title("Ground Truth Waypoint Map")
-        self.view_lock.release()
-
-    def display(self, x, y):
-        self.map_plot_handle.set_xdata(x)
-        self.map_plot_handle.set_ydata(y)
-        margin = 10
-        plt.axis((min(x) - margin, max(x) + margin, min(y) - margin, max(y) + margin))
-
     def process_display_data(self):
         from_queue = self.q_display.get()
 
@@ -87,11 +70,6 @@ class Waypoint(MatplotlibSensorUI, BaseSensorPacketized):
         self.view_lock.release()
         self.update_sensors_got_data_count()
 
-    def update_views(self, frame):
-        self.view_lock.acquire()
-        self.display(self.xy_combined[:, 0], self.xy_combined[:, 1])
-        self.view_lock.release()
-        return self.map_subplot
 
     def update_tracking_index(self, tracking_point_index, ego_lane, simulator):
         update = 0

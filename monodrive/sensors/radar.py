@@ -15,7 +15,7 @@ import numpy as np
 import multiprocessing
 
 from . import BaseSensorPacketized, radar_method
-from .gui import MatplotlibSensorUI
+from monodrive.gui.widgets import MatplotlibSensorUI
 
 try:
     import matlab.engine
@@ -170,11 +170,11 @@ class Radar(MatplotlibSensorUI, BaseSensorPacketized):
 
         self.AOA_subplot.figure.canvas.flush_events()
 
-    def process_display_data(self):
+    def update_widget(self, data):
         if self.bounding_box is not None:
             bounding_data = self.bounding_box.q_vehicle.peek()
             self.process_bound_data(bounding_data)
-        packetized_data = self.q_display.get()
+        packetized_data = data  #self.q_display.get()
         self.game_time = packetized_data['game_time']
         packetized_data = packetized_data['data']
 

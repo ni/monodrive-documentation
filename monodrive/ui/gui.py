@@ -1,8 +1,13 @@
 #!/usr/bin/env python
+
+__author__ = "monoDrive"
+__copyright__ = "Copyright (C) 2018 monoDrive"
+__license__ = "MIT"
+__version__ = "1.0"
+
 import wx
 from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
 from matplotlib.figure import Figure
-from mpl_toolkits.mplot3d import Axes3D
 
 #For image getting
 from os import path
@@ -16,7 +21,7 @@ from threading import Thread
 from wx.lib.pubsub import pub
 import time
 
-from message import IMU_Message
+from monodrive.ui.message import IMU_Message
 
 BACKGROUND_COLOR = '#eaf7ff'
 INNER_PANEL_COLOR = '#f0f0f0'
@@ -92,7 +97,7 @@ class Camera_View(wx.Image):
     def __init__(self, parent):
         wx.Image.__init__(self,filepath, wx.BITMAP_TYPE_ANY)
         self.png = wx.Image(filepath, wx.BITMAP_TYPE_ANY)
-        self.bmp = wx.StaticBitmap(parent, wx.ID_ANY, wx.BitmapFromImage(self.png),(0, 0), (self.png.GetWidth()/2, self.png.GetHeight()/2))
+        self.bmp = wx.StaticBitmap(parent, wx.ID_ANY, wx.Bitmap(self.png),(0, 0), (self.png.GetWidth()/2, self.png.GetHeight()/2))
     
     def get_bmp(self):
         return self.bmp
@@ -118,7 +123,7 @@ class Camera_View(wx.Image):
         #self.Layout()
 
     #Not currently used
-    def UpdateImage2D(self):
+    '''def UpdateImage2D(self):
 		image_array = self.object
 		imagedata = numpy.array(image_array, dtype=numpy.double)
 		imagedata[imagedata < 1e-6] = 1.0
@@ -136,12 +141,12 @@ class Camera_View(wx.Image):
 		self.bmp = bitmap
 		self.image.SetBitmap(bitmap)
 		self.Refresh()
-		self.Layout() 
+		self.Layout()'''
 
 class MainWindow(wx.Frame):
     def __init__(self, parent, id, title = "monoDrive Visualizer"):
         wx.Frame.__init__(self, parent, wx.ID_ANY, title = title, size=(1200,1000))
-        self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
+        self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         #set up frame panels
         self.top_row_panel = TopRow(self,wx.ID_ANY,style=wx.CLIP_CHILDREN)
         self.center_row_panel = CenterRow(self)

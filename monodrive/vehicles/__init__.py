@@ -7,6 +7,7 @@ import logging
 import math
 import time
 import threading
+import cPickle as pickle
 
 from monodrive import SensorManager
 from monodrive.networking import messaging

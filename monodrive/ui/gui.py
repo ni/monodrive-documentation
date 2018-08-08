@@ -11,7 +11,9 @@ from wx.lib.pubsub import pub
 
 from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
 from matplotlib.figure import Figure
+from matplotlib.backends.backend_wxagg import NavigationToolbar2WxAgg as NavigationToolbar
 
+import cPickle as pickle
 #import matplotlib
 #from matplotlib import pyplot as plt
 
@@ -66,20 +68,21 @@ class RoadMap_View(wx.Panel):
         self.figure = Figure()
         self.canvas = FigureCanvas(self, 1, self.figure)
         self.map_subplot = self.figure.add_subplot(111)
-        self.map_subplot_handle = self.map_subplot.plot(0, 0, marker='.', linestyle='None')
+        self.toolbar = NavigationToolbar(self.canvas)
+        self.toolbar.Realize()
+        
+        #self.map_subplot.autoscale_view(True)
+    
+        self.map_subplot_handle = self.map_subplot.plot(0, 0, marker='.', linestyle='None')[0]
         self.map_subplot.set_title("Ground Truth Map View")
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.sizer.Add(self.canvas, 1,  wx.LEFT | wx.TOP | wx.GROW)
+        self.sizer.Add(self.canvas, 1,  wx.EXPAND)
+        self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
         self.SetSizer(self.sizer)
-        #pub.subscribe(self.update_view, "update_roadmap")
-        #handles to manipulate figure data
-        #self.axeshandleMap = self.top_row_panel.figure.add_subplot(131,facecolor=INNER_PANEL_COLOR)
-        #self.axeshandleAOA = self.top_row_panel.figure.add_subplot(132,facecolor=INNER_PANEL_COLOR)
-        #self.axeshandleTargets = self.top_row_panel.figure.add_subplot(133,facecolor=INNER_PANEL_COLOR)
+        pub.subscribe(self.update_view, "update_roadmap")
 
-
-       #self.road_map = None
+        self.road_map = None
    
     @property
     def map_data(self):
@@ -99,7 +102,7 @@ class RoadMap_View(wx.Panel):
 
     def update_view(self, msg):
         print("Roadmap update view")
-        self.road_map = MapData(msg)
+        self.road_map = MapData(msg.data)
         if self.road_map:
             print("map: r:{0} l0:{1}".format(self.num_roads(), self.num_lanes(0)))
 
@@ -127,10 +130,14 @@ class RoadMap_View(wx.Panel):
     def update_plot(self, x, y):
         self.map_subplot_handle.set_xdata(x)
         self.map_subplot_handle.set_ydata(y)
+        #self.map_subplot.autoscale_view(True)
+        #self.map_subplot.autoscale_view(True,True,True)
+        #self.map_subplot.draw()
+        #margin = 10
+        #self.map_subplot_handle.axis((min(x) - margin, max(x) + margin, min(y) - margin, max(y) + margin))
         self.Layout()
         self.Refresh()
-        #margin = 10
-        #plt.axis((min(x) - margin, max(x) + margin, min(y) - margin, max(y) + margin))
+
 
 class GPS_View(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
@@ -358,10 +365,8 @@ class SensorPoll(Thread):
         
         if "IMU" in sensor.name:
             wx.CallAfter(pub.sendMessage, "update_imu", msg=sensor.get_message())
-            pass
         if "GPS" in sensor.name:
             wx.CallAfter(pub.sendMessage, "update_gps", msg=sensor.get_message())
-            pass
         if "Camera" in sensor.name:
             wx.CallAfter(pub.sendMessage, "update_camera", msg=sensor.get_message())
 

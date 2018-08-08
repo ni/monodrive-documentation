@@ -1,8 +1,13 @@
 #!/usr/bin/env python
+
+__author__ = "monoDrive"
+__copyright__ = "Copyright (C) 2018 monoDrive"
+__license__ = "MIT"
+__version__ = "1.0"
+
 import wx
 from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
 from matplotlib.figure import Figure
-from mpl_toolkits.mplot3d import Axes3D
 
 #For image getting
 from os import path
@@ -18,9 +23,13 @@ from threading import Thread
 from wx.lib.pubsub import pub
 import time
 
+<<<<<<< HEAD
 from message import IMU_Message
 from message import GPS_Message
 from message import Camera_Message
+=======
+from monodrive.ui.message import IMU_Message
+>>>>>>> e476197c19b820126072e2895ca38eac68ff0085
 
 BACKGROUND_COLOR = '#eaf7ff'
 INNER_PANEL_COLOR = '#f0f0f0'
@@ -165,11 +174,10 @@ class Camera_View(wx.Panel):
         bmp = self.png.Scale(frame_h,frame_w)
         self.bmp.SetBitmap(wx.BitmapFromImage(bmp))
 
-
 class MainWindow(wx.Frame):
     def __init__(self, parent, id, title = "monoDrive Visualizer"):
         wx.Frame.__init__(self, parent, wx.ID_ANY, title = title, size=(1200,1000))
-        self.SetSizeHintsSz( wx.DefaultSize, wx.DefaultSize )
+        self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         #set up frame panels
         self.top_row_panel = TopRow(self,wx.ID_ANY,style=wx.CLIP_CHILDREN)
         self.center_row_panel = CenterRow(self)

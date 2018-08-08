@@ -23,13 +23,9 @@ from threading import Thread
 from wx.lib.pubsub import pub
 import time
 
-<<<<<<< HEAD
 from message import IMU_Message
 from message import GPS_Message
 from message import Camera_Message
-=======
-from monodrive.ui.message import IMU_Message
->>>>>>> e476197c19b820126072e2895ca38eac68ff0085
 
 BACKGROUND_COLOR = '#eaf7ff'
 INNER_PANEL_COLOR = '#f0f0f0'
@@ -263,6 +259,7 @@ class SensorPoll(Thread):
             pass
         if "Camera" in sensor.name:
             wx.CallAfter(pub.sendMessage, "update_camera", msg=sensor.get_message())
+    
     #this thread will run while application is running
     def run(self):
         

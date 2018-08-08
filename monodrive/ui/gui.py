@@ -8,7 +8,9 @@ from mpl_toolkits.mplot3d import Axes3D
 from os import path
 basepath = path.dirname(__file__)
 filepath = path.abspath(path.join(basepath, "Capture.png"))
-import numpy
+import numpy as np
+from PIL import Image
+import cv2
 #f = open(filepath, "r")
 
 import multiprocessing
@@ -17,6 +19,8 @@ from wx.lib.pubsub import pub
 import time
 
 from message import IMU_Message
+from message import GPS_Message
+from message import Camera_Message
 
 BACKGROUND_COLOR = '#eaf7ff'
 INNER_PANEL_COLOR = '#f0f0f0'
@@ -44,6 +48,22 @@ class GPS_View(wx.Panel):
         wx.Panel.__init__(self, parent=parent)
         self.SetBackgroundColour(INNER_PANEL_COLOR)
 
+        self.string_lat = wx.StaticText(self, label="")
+        self.string_lng = wx.StaticText(self, label="")
+        self.string_time = wx.StaticText(self, label="")
+
+        self.sizer = wx.GridBagSizer(3,1)
+        self.sizer.Add(self.string_lat, (0,0))
+        self.sizer.Add(self.string_lng, (1,0))
+        self.sizer.Add(self.string_time, (2,0))
+        self.SetSizerAndFit(self.sizer)
+
+        pub.subscribe(self.update_view, "update_gps")
+
+    def update_view(self, msg):    
+        self.string_lat.SetLabelText('LAT: {0}'.format(msg['lat']))
+        self.string_lng.SetLabelText('LNG: {0}'.format(msg['lng']))
+        self.string_time.SetLabelText('TIMESTAMP: {0}'.format(msg['time_stamp']))
 
 
 class IMU_View(wx.Panel):
@@ -69,7 +89,7 @@ class IMU_View(wx.Panel):
         self.sizer.Add(self.string_timer, (6, 0))
         self.SetSizerAndFit(self.sizer)
 
-        pub.subscribe(self.update_view, "update")
+        pub.subscribe(self.update_view, "update_imu")
 
     def update_view(self, msg):
         imu_msg = IMU_Message(msg)
@@ -88,14 +108,45 @@ class Wheel_RPM_View(wx.Panel):
     def __del__( self ):
         pass
 
-class Camera_View(wx.Image):
+class Camera_View(wx.Panel):
     def __init__(self, parent):
-        wx.Image.__init__(self,filepath, wx.BITMAP_TYPE_ANY)
+        wx.Panel.__init__(self, parent=parent)
         self.png = wx.Image(filepath, wx.BITMAP_TYPE_ANY)
-        self.bmp = wx.StaticBitmap(parent, wx.ID_ANY, wx.BitmapFromImage(self.png),(0, 0), (self.png.GetWidth()/2, self.png.GetHeight()/2))
-    
+        self.imwx = wx.StaticBitmap(parent, wx.ID_ANY, wx.BitmapFromImage(self.png),(0, 0), (self.png.GetWidth()/2, self.png.GetHeight()/2))
+        self.sizer = wx.GridBagSizer(5, 1)
+        self.sizer.Add(self.imwx,(1,1))
+        self.SetSizer(self.sizer)
+
+        pub.subscribe(self.update_view, "update_camera")
+
+    def update_view(self, msg):
+        camera_msg = Camera_Message(msg)
+        bitmap = self.to_bmp(camera_msg.np_image)
+        self.imwx.SetBitmap(bitmap)
+
+    def convert(self, image_data):
+        image = cv2.cvtColor(image_data, cv2.COLOR_BGR2RGB)
+        image = Image.fromarray(image)
+
+    def to_bmp(self, np_image):
+        imcv = cv2.cvtColor(np_image, cv2.COLOR_BGR2RGB)
+        impil = Image.fromarray(imcv)
+        imwx = wx.EmptyImage(impil.size[0], impil.size[1])
+        imwx.SetData(impil.convert('RGB').tobytes()) 
+        bitmap = wx.BitmapFromImage(imwx)
+        return bitmap
+
+    def get_bitmap( self, np_image, width=32, height=32, colour = (0,0,0) ):
+        image = cv2.cvtColor(np_image, cv2.COLOR_BGR2RGB)
+        array = np.zeros( (height, width, 3),'uint8')
+        array[:,:,] = colour
+        image = wx.EmptyImage(width,height)
+        image.SetData( array.tostring())
+        wxBitmap = image.ConvertToBitmap()       # OR:  wx.BitmapFromImage(image)
+        return wxBitmap
+
     def get_bmp(self):
-        return self.bmp
+        return self.imwx
 
     def scale_bitmap(self, bitmap, width, height):
         image = wx.ImageFromBitmap(bitmap)
@@ -113,30 +164,7 @@ class Camera_View(wx.Image):
         frame_w = (frame_size[1]-10) / 2
         bmp = self.png.Scale(frame_h,frame_w)
         self.bmp.SetBitmap(wx.BitmapFromImage(bmp))
-        #TODO update this in the main loop
-        #self.Refresh()
-        #self.Layout()
 
-    #Not currently used
-    def UpdateImage2D(self):
-		image_array = self.object
-		imagedata = numpy.array(image_array, dtype=numpy.double)
-		imagedata[imagedata < 1e-6] = 1.0
-		imagedata = numpy.log(imagedata)
-		imagedata = imagedata - imagedata.min()
-		if imagedata.max() > 0:
-			imagedata = (255.0/imagedata.max())*imagedata
-		else:
-			imagedata = 255.0*imagedata
-		imagedatalow = numpy.uint8(imagedata)
-		self.impil = wx.Image.fromarray(imagedatalow, 'L').resize((self.sx,self.sy))
-		self.imwx = wx.EmptyImage( self.impil.size[0], self.impil.size[1] )
-		self.imwx.SetData( self.impil.convert( 'RGB' ).tobytes() )
-		bitmap = wx.BitmapFromImage(self.imwx)
-		self.bmp = bitmap
-		self.image.SetBitmap(bitmap)
-		self.Refresh()
-		self.Layout() 
 
 class MainWindow(wx.Frame):
     def __init__(self, parent, id, title = "monoDrive Visualizer"):
@@ -204,21 +232,39 @@ class GUI(multiprocessing.Process):
             MainWindow(None, id = wx.ID_ANY).Show()
             app.MainLoop()
         sensor_poll.stop()
+    
+    def stop(self):
+        self.running = False
 
 class SensorPoll(Thread):
     """Thread to pull data from sensor q's and publish to views"""
     def __init__(self, vehicle):
         Thread.__init__(self)
         self.vehicle = vehicle
+        self.sensors = vehicle.get_sensors()
+        self.running = True
         self.start()
 
+    def update_gui(self, sensor):
+        
+        if "IMU" in sensor.name:
+            wx.CallAfter(pub.sendMessage, "update_imu", msg=sensor.get_message())
+            pass
+        if "GPS" in sensor.name:
+            wx.CallAfter(pub.sendMessage, "update_gps", msg=sensor.get_message())
+            pass
+        if "Camera" in sensor.name:
+            wx.CallAfter(pub.sendMessage, "update_camera", msg=sensor.get_message())
     #this thread will run while application is running
     def run(self):
-        for sample in range(100):
+        
+        while self.running:
+            for sensor in self.sensors:
+                self.update_gui(sensor)
             time.sleep(1)
-            wx.CallAfter(pub.sendMessage, "update", msg=self.get_message())
+            
     
-    def get_message(self):
+    def get_test_message(self):
         imu_msg = IMU_Message.test_message()
         return imu_msg
 

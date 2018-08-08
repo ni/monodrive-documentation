@@ -10,7 +10,8 @@ import logging
 import time
 
 from monodrive import SimulatorConfiguration, VehicleConfiguration, Simulator
-from monodrive.gui import Gui
+from monodrive.gui import GuiMultiProcess
+from monodrive.ui import GUI
 from monodrive.vehicles import SimpleVehicle
 from monodrive.vehicles import TeleportVehicle
 
@@ -43,12 +44,15 @@ if __name__ == "__main__":
         logging.getLogger("simulator").info('Starting vehicle')
         ego_vehicle.start()
 
-        gui = Gui(ego_vehicle)
-        gui.start()
+        gui_multi_proc = GuiMultiProcess(ego_vehicle)
+        gui_multi_proc.start()
+
+        gui = GUI(ego_vehicle)
 
         # Waits for the restart event to be set in the control process
         simulator.restart_event.wait()
 
+        gui_multi_proc.stop()
         gui.stop()
 
         # Terminates vehicle and sensor processes

@@ -14,7 +14,7 @@ Widgets = {
     Waypoint: WaypointWidget
 }
 
-class Gui:
+class GuiMultiProcess:
     def __init__(self, vehicle):
         self.widgets = []
         self.render_processes = []
@@ -28,6 +28,12 @@ class Gui:
     def create_widgets(self, vehicle):
         sensors = vehicle.get_sensors()
         for sensor in sensors:
+            if "IMU" in sensor.name:
+                continue
+            if "GPS" in sensor.name:
+                continue
+            if "Camera" in sensor.name:
+                continue
             if sensor.display_process:
                 widget = self.create_widget(sensor)
                 if widget is not None:

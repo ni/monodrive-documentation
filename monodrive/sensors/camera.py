@@ -7,6 +7,7 @@ __version__ = "1.0"
 import logging
 import numpy as np
 import time
+import cPickle as pickle
 
 from . import BaseSensorPacketized
 
@@ -50,7 +51,7 @@ class Camera(BaseSensorPacketized):
         return data_dict
 
     def get_q_image(self):
-        image_frame = self.get_message()
+        image_frame = self.q_data.peek()
         image_buffer = image_frame['image']
         if len(image_buffer) == self.height * self.width * 4:
             image = np.array(bytearray(image_buffer), dtype=np.uint8).reshape(self.height, self.width, 4)
@@ -58,6 +59,17 @@ class Camera(BaseSensorPacketized):
             image = None
             logging.getLogger("sensor").error("wrong image size received {0}".format(self.name))
         return image
+
+    def get_message(self):
+        image_frame = self.q_data.get()
+        image_buffer = image_frame['image']
+        if len(image_buffer) == self.height * self.width * 4:
+            image = np.array(bytearray(image_buffer), dtype=np.uint8).reshape(self.height, self.width, 4)
+        else:
+            image = None
+            logging.getLogger("sensor").error("wrong image size received {0}".format(self.name))
+        return pickle.dumps(image, protocol=-1)
+
 
     def process_bound_data(self, data):
         sensor_id_str = str(self.sensor_id)

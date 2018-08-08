@@ -1,1 +1,1 @@
-from .gui import Gui
+from .gui import GuiMultiProcess

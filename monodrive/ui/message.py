@@ -3,6 +3,9 @@
 import random
 import time
 
+import numpy as np
+import cPickle as pickle
+
 class IMU_Message(object):
     def __init__(self, msg):
         self.string_accel_x = msg['acceleration_vector'][0]
@@ -29,3 +32,37 @@ class IMU_Message(object):
             'timer': time.time()
         }
         return msg_dict
+
+class GPS_Message(object):
+    def __init__(self, msg):
+        self.lat = msg['lat']
+        self.lng = msg['lng']
+        self.time_stamp = msg['time_stamp']
+
+    @classmethod
+    def test_message(self):
+        msg_list = []
+        for x in range(12):
+            msg_list.append(random.random(1,1000))
+        forward_vector = np.array([msg_list[0], msg_list[1], msg_list[2]])
+        world_location = np.array([msg_list[3] / 100.0, msg_list[4] / 100.0, 0.0])
+        msg_dict = {
+            'time_stamp': msg_list[5],
+            'game_time': msg_list[6],
+            'lat': msg_list[7],
+            'lng': msg_list[8],
+            'elevation': msg_list[9],
+            'forward_vector': forward_vector,
+            'world_location': world_location,
+            'ego_yaw': msg_list[10],
+            'speed': msg_list[11]
+        }
+        return msg_dict
+
+class Camera_Message(object):
+    
+    def __init__(self, msg):
+        self.np_image = np.array(pickle.loads(msg))
+    
+    def test_message(self):
+        self.np_image = None

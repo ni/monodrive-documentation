@@ -53,7 +53,7 @@ if __name__ == "__main__":
         simulator.restart_event.wait()
 
         gui_multi_proc.stop()
-        gui.stop()
+        #gui.stop()
 
         # Terminates vehicle and sensor processes
         simulator.stop()

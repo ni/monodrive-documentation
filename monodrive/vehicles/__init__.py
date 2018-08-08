@@ -15,7 +15,7 @@ from monodrive.sensors import GPS, Waypoint
 
 
 class BaseVehicle(object):
-    def __init__(self, simulator, vehicle_config, restart_event=None, **kwargs):
+    def __init__(self, simulator, vehicle_config, restart_event=None, road_map = None, **kwargs):
         super(BaseVehicle, self).__init__()
         self.simulator = simulator
         self.simulator_configuration = simulator.simulator_configuration
@@ -31,6 +31,7 @@ class BaseVehicle(object):
         self.previous_control_sent_time = None
         self.control_thread = None
         self.b_control_thread_running = True
+        self.road_map = road_map
 
     def start(self):
         self.sensor_manager.start()
@@ -47,7 +48,7 @@ class BaseVehicle(object):
     def control_monitor(self):
         while self.b_control_thread_running:
             logging.getLogger("control").debug("Vehicle waiting on Sensor Data")
-            self.all_sensors_ready.wait()
+            #self.all_sensors_ready.wait()
 
             self.log_control_time(self.previous_control_sent_time)
 
@@ -55,7 +56,7 @@ class BaseVehicle(object):
                 self.vehicle_state.update_state(self.sensors)
 
             control_data = self.drive(self.sensors, self.vehicle_state)
-            self.all_sensors_ready.clear()
+            #self.all_sensors_ready.clear()
             self.send_control_data(control_data)
 
     def send_control_data(self, control_data):
@@ -80,6 +81,9 @@ class BaseVehicle(object):
     def drive(self, sensors, vehicle_state):
         raise NotImplementedError("To be implemented")
 
+    def get_road_map(self):
+        return self.road_map
+        
     @staticmethod
     def log_control_time(previous_control_time):
         dif = time.time() - previous_control_time

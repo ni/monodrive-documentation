@@ -51,7 +51,7 @@ class Simulator(object):
 
     def start_vehicle(self, vehicle_configuration, vehicle_class):
         # Create vehicle process form received class
-        self.ego_vehicle = vehicle_class(self, vehicle_configuration, self.restart_event)
+        self.ego_vehicle = vehicle_class(self, vehicle_configuration, self.restart_event, self.map_data)
         return self.ego_vehicle
 
     def stop(self):
@@ -175,6 +175,7 @@ class Simulator(object):
     def request_map(self):
         command = messaging.MapCommand(self.simulator_configuration.map_settings)
         result = self.request(command, 60)
+        self.map_data = result
         self.map = Map(result)
         self.map.start()
 

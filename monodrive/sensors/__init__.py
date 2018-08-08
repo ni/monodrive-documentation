@@ -91,8 +91,8 @@ class SensorManager:
         for s in self.sensor_list:
             s.socket_ready_event.wait()
 
-        self.sensor_monitor_thread = threading.Thread(target=self.monitor_sensors)
-        self.sensor_monitor_thread.start()
+        #self.sensor_monitor_thread = threading.Thread(target=self.monitor_sensors)
+        #self.sensor_monitor_thread.start()
 
         logging.getLogger("simulator").info("Sending intial control command")
         # Kicks off simulator for stepping from client

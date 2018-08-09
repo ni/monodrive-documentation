@@ -30,29 +30,28 @@ if __name__ == "__main__":
     simulator.send_simulator_configuration()
 
     episodes = 1  # TODO... this should come from the scenario config
+    # Setup Ego Vehicle
+    if ManualDriveMode == True:
+        ego_vehicle = simulator.get_ego_vehicle(vehicle_configuration, TeleportVehicle)
+    else:
+        ego_vehicle = simulator.get_ego_vehicle(vehicle_configuration, SimpleVehicle)
+
+    gui = GUI(ego_vehicle)
 
     while episodes > 0:
         simulator.restart_event.clear()
         simulator.init_episode(vehicle_configuration)
-
-        # Start Vehicle
-        if ManualDriveMode == True:
-            ego_vehicle = simulator.start_vehicle(vehicle_configuration, TeleportVehicle)
-        else:
-            ego_vehicle = simulator.start_vehicle(vehicle_configuration, SimpleVehicle)
-
         logging.getLogger("simulator").info('Starting vehicle')
         ego_vehicle.start()
 
-        gui_multi_proc = GuiMultiProcess(ego_vehicle)
-        gui_multi_proc.start()
-
-        gui = GUI(ego_vehicle)
-
+        #gui_multi_proc = GuiMultiProcess(ego_vehicle)
+        #gui_multi_proc.start()
+        time.sleep(20)
+        simulator.restart_event.set()
         # Waits for the restart event to be set in the control process
         simulator.restart_event.wait()
 
-        gui_multi_proc.stop()
+        #gui_multi_proc.stop()
         #gui.stop()
 
         # Terminates vehicle and sensor processes
@@ -63,6 +62,8 @@ if __name__ == "__main__":
 
         episodes = episodes - 1
 
+gui.stop()
+logging.getLogger("simulator").info("Good Bye!")
 
 
 

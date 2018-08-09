@@ -70,6 +70,15 @@ class Camera(BaseSensorPacketized):
             logging.getLogger("sensor").error("wrong image size received {0}".format(self.name))
         return pickle.dumps(image, protocol=-1)
 
+    def get_display_message(self):
+        image_frame = self.q_display.get()
+        image_buffer = image_frame['image']
+        if len(image_buffer) == self.height * self.width * 4:
+            image = np.array(bytearray(image_buffer), dtype=np.uint8).reshape(self.height, self.width, 4)
+        else:
+            image = None
+            logging.getLogger("sensor").error("wrong image size received {0}".format(self.name))
+        return pickle.dumps(image, protocol=-1)
 
     def process_bound_data(self, data):
         sensor_id_str = str(self.sensor_id)

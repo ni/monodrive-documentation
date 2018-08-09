@@ -113,7 +113,7 @@ class SensorManager:
         #stop rendering
         logging.getLogger("sensor").info("sensor manager stopping sensor rendering windows")
 
-        [s.stop_rendering() for s in self.sensor_list]
+        #[s.stop_rendering() for s in self.sensor_list]
 
         logging.getLogger("sensor").info("sensor manager stopping sensor rendering processes")
 
@@ -193,6 +193,7 @@ class BaseSensor(multiprocessing.Process):
         self.idx = idx
         self.daemon = True
         self.q_data = self.init_data_queue()
+        self.q_display = SingleQueue()
         self.socket_ready_event = multiprocessing.Event()
         self.data_ready_event = multiprocessing.Event()
         self.config = config
@@ -269,7 +270,7 @@ class BaseSensor(multiprocessing.Process):
     def stop(self):
         logging.getLogger("sensor").info('*** %s' % self.name)
 
-        self.running = False  # Will stop UDP and Logging thread
+        self.running = False  # Will stop UDP, Logging thread, and GUI
         #self.send_stop_stream_command(simulator)
         self.sock.shutdown(socket.SHUT_RDWR)
         self.sock.close()
@@ -397,6 +398,7 @@ class BaseSensor(multiprocessing.Process):
         if hasattr(self, 'parse_frame'):
             frame = self.parse_frame(frame, time_stamp, game_time)
         self.q_data.put(frame)
+        self.q_display.put(frame)
         if not self.display_process or not self.synchronized_display:
             self.data_ready_event.set()
 

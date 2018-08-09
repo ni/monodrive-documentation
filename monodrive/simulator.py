@@ -32,6 +32,7 @@ class Simulator(object):
         self.map = None
         self._client = None
         self.setup_logger()
+        self.map_data = None
 
     def start_scenario(self, scenario, vehicle_class):
         self.scenario = scenario
@@ -49,8 +50,9 @@ class Simulator(object):
         # Start the Vehicle process
         self.ego_vehicle.start_scenario(scenario)
 
-    def start_vehicle(self, vehicle_configuration, vehicle_class):
+    def get_ego_vehicle(self, vehicle_configuration, vehicle_class):
         # Create vehicle process form received class
+        self.map_data = self.request_map()
         self.ego_vehicle = vehicle_class(self, vehicle_configuration, self.restart_event, self.map_data)
         return self.ego_vehicle
 
@@ -71,7 +73,7 @@ class Simulator(object):
         #self.client.disconnect()
         #self.client.stop()
 
-        self.map.stop()
+        #self.map.stop()
 
     def kill_process_tree(self, pid, including_parent=True):
         parent = psutil.Process(pid)
@@ -101,7 +103,7 @@ class Simulator(object):
 
     def init_episode(self, vehicle_configuration):
         self.send_vehicle_configuration(vehicle_configuration)
-        self.request_map()
+        #self.request_map()
 
     def send_vehicle_configuration(self, vehicle_configuration):
         logging.getLogger("simulator").info('Sending vehicle configuration {0}'.format(vehicle_configuration.name))
@@ -175,9 +177,14 @@ class Simulator(object):
     def request_map(self):
         command = messaging.MapCommand(self.simulator_configuration.map_settings)
         result = self.request(command, 60)
-        self.map_data = result
-        self.map = Map(result)
-        self.map.start()
+        if (len(result.data) > 0):
+            return result.data
+        else:
+            return None
+        #self.map_data = result
+        #self.map = Map(result)
+        #self.map.start()
+        
 
 
 class MyFormatter(logging.Formatter):

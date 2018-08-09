@@ -106,7 +106,7 @@ class RoadMap_View(wx.Panel):
 
     def update_view(self, msg):
         print("Roadmap update view")
-        self.road_map = MapData(msg.data)
+        self.road_map = MapData(msg)
         if self.road_map:
             print("map: r:{0} l0:{1}".format(self.num_roads(), self.num_lanes(0)))
 
@@ -292,7 +292,8 @@ class MainWindow(wx.Frame):
     def __init__(self, parent, title = "monoDrive Visualizer", *args, **kwargs):
         wx.Frame.__init__(self, parent, size=(1200,1000), title = title,*args, **kwargs)
         #set up frame panels
-        #self.top_row_panel = TopRow(self,wx.ID_ANY,style=wx.CLIP_CHILDREN)
+        pub.subscribe(self.on_close, "KILL")
+
         self.graph_row_panel = GraphRow(self)
         self.text_row_panel = TextRow(self)
         self.camera_row_panel = CameraRow(self)
@@ -329,6 +330,12 @@ class MainWindow(wx.Frame):
 
         self.Layout()
         self.Refresh()
+        
+    
+    def on_close(self, event):
+        print("on_close gui")
+        self.Close()
+        self.Destroy()
 
 class MyFrame(wx.Frame):
     pass
@@ -342,30 +349,11 @@ class MonoDriveGUIApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
         self.SetTopWindow(frame)
         return True
 
-class GUI(multiprocessing.Process):
-    def __init__(self, vehicle, **kwargs):
-        super(GUI, self).__init__(**kwargs)
-        self.name = "GUI"
-        self.vehicle = vehicle
-        self.running = True
-        self.start()
-        #prctl.set_proctitle("mono{0}".format(self.name))
-
-    def run(self):
-        
-        sensor_poll = SensorPoll(self.vehicle)
-        while self.running:
-            app = MonoDriveGUIApp()
-            app.MainLoop()
-        sensor_poll.stop()
-    
-    def stop(self):
-        self.running = False
-
 class SensorPoll(Thread):
     """Thread to pull data from sensor q's and publish to views"""
     def __init__(self, vehicle):
         Thread.__init__(self)
+        self.daemon = True
         self.vehicle = vehicle
         self.map = vehicle.get_road_map()
         self.sensors = vehicle.get_sensors()
@@ -374,31 +362,60 @@ class SensorPoll(Thread):
 
     def update_gui(self, sensor):
         
+        if not sensor.running:
+            wx.CallAfter(pub.sendMessage, "KILL", msg=None)
+            return False  #shuts down thread
         if "IMU" in sensor.name:
             wx.CallAfter(pub.sendMessage, "update_imu", msg=sensor.get_message())
         if "GPS" in sensor.name:
             wx.CallAfter(pub.sendMessage, "update_gps", msg=sensor.get_message())
         if "Camera" in sensor.name:
-            wx.CallAfter(pub.sendMessage, "update_camera", msg=sensor.get_message())
-
+            wx.CallAfter(pub.sendMessage, "update_camera", msg=sensor.get_display_message())
         
-    
+        return True
+
     #this thread will run while application is running
     def run(self):
-        #map is not a sensor but so we call this every loop
-        
         while self.running:
-            time.sleep(2)
-            for sensor in self.sensors:
-                self.update_gui(sensor)
+            print("GUI THREAD RUNNING")
             wx.CallAfter(pub.sendMessage, "update_roadmap", msg=self.map)
+            for sensor in self.sensors:
+                self.running = self.update_gui(sensor)
+            time.sleep(.1)    
+            
+        print("GUI THREAD NOT RUNNING")
 
-            
-            
+    def stop(self):
+        self.running = False   
+
+class GUI(multiprocessing.Process):
+    def __init__(self, vehicle, **kwargs):
+        super(GUI, self).__init__(**kwargs)
+        self.daemon = True
+        self.name = "GUI"
+        self.vehicle = vehicle
+        self.running = True
+        self.app = None
+        self.sensor_polling = None
+        
+        self.start()
+        
+        #prctl.set_proctitle("mono{0}".format(self.name))
+
+    def run(self):
+        #start sensor polling
+        self.sensor_polling = SensorPoll(self.vehicle)
+        #while self.sensor_polling:
+        self.app = MonoDriveGUIApp()
+        self.app.MainLoop()
     
-    def get_test_message(self):
-        imu_msg = IMU_Message.test_message()
-        return imu_msg
+    def stop(self):
+        self.running = False
+        self.terminate()
+
+
+     
+            
 
 if __name__ == '__main__':
     #vehicle = "vehicle"

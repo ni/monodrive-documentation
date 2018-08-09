@@ -9,6 +9,7 @@ import time
 import threading
 import cPickle as pickle
 
+
 from monodrive import SensorManager
 from monodrive.networking import messaging
 
@@ -57,6 +58,7 @@ class BaseVehicle(object):
                 self.vehicle_state.update_state(self.sensors)
 
             control_data = self.drive(self.sensors, self.vehicle_state)
+            time.sleep(1)
             #self.all_sensors_ready.clear()
             self.send_control_data(control_data)
 

@@ -52,6 +52,11 @@ class Camera(BaseSensorPacketized):
 
     def get_q_image(self):
         image_frame = self.q_data.peek()
+        
+        if "SHUTDOWN" in image_frame:
+            #self.running = False
+            return "SHUTDOWN"
+
         image_buffer = image_frame['image']
         if len(image_buffer) == self.height * self.width * 4:
             image = np.array(bytearray(image_buffer), dtype=np.uint8).reshape(self.height, self.width, 4)
@@ -62,6 +67,10 @@ class Camera(BaseSensorPacketized):
 
     def get_message(self):
         image_frame = self.q_data.get()
+        if "SHUTDOWN" in image_frame:
+            #self.running = False
+            return "SHUTDOWN"
+
         image_buffer = image_frame['image']
         if len(image_buffer) == self.height * self.width * 4:
             image = np.array(bytearray(image_buffer), dtype=np.uint8).reshape(self.height, self.width, 4)
@@ -72,6 +81,11 @@ class Camera(BaseSensorPacketized):
 
     def get_display_message(self):
         image_frame = self.q_display.get()
+        
+        if "SHUTDOWN" in image_frame:
+            #self.running = False
+            return "SHUTDOWN"
+        
         image_buffer = image_frame['image']
         if len(image_buffer) == self.height * self.width * 4:
             image = np.array(bytearray(image_buffer), dtype=np.uint8).reshape(self.height, self.width, 4)
@@ -87,12 +101,13 @@ class Camera(BaseSensorPacketized):
 
 
     def process_display_data(self):
-
+        return
         if self.bounding_box:
             self.bounding_box.update_sensors_got_data_count()
         self.update_sensors_got_data_count()
 
     def stop_sub_processes(self):
+        return
         self.update_sensors_got_data_count()
 
     def stop(self):

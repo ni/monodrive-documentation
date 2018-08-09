@@ -292,7 +292,7 @@ class MainWindow(wx.Frame):
     def __init__(self, parent, title = "monoDrive Visualizer", *args, **kwargs):
         wx.Frame.__init__(self, parent, size=(1200,1000), title = title,*args, **kwargs)
         #set up frame panels
-        pub.subscribe(self.on_close, "KILL")
+        pub.subscribe(self.shutdown, "SHUTDOWN")
 
         self.graph_row_panel = GraphRow(self)
         self.text_row_panel = TextRow(self)
@@ -332,10 +332,10 @@ class MainWindow(wx.Frame):
         self.Refresh()
         
     
-    def on_close(self, event):
-        print("on_close gui")
+    def shutdown(self, msg):
+        print("Frame shutting down {0}".format(msg))
         self.Close()
-        self.Destroy()
+        #self.Destroy()
 
 class MyFrame(wx.Frame):
     pass
@@ -355,38 +355,41 @@ class SensorPoll(Thread):
         Thread.__init__(self)
         self.daemon = True
         self.vehicle = vehicle
-        self.map = vehicle.get_road_map()
+        self.road_map = vehicle.get_road_map()
         self.sensors = vehicle.get_sensors()
         self.running = True
         self.start()
 
     def update_gui(self, sensor):
         
-        if not sensor.running:
-            wx.CallAfter(pub.sendMessage, "KILL", msg=None)
+        message = sensor.get_message()
+        if "SHUTDOWN" in message: #not sensor.running:
+            wx.CallAfter(pub.sendMessage, "SHUTDOWN", msg=message)
             return False  #shuts down thread
         if "IMU" in sensor.name:
-            wx.CallAfter(pub.sendMessage, "update_imu", msg=sensor.get_message())
+            wx.CallAfter(pub.sendMessage, "update_imu", msg=message)
         if "GPS" in sensor.name:
-            wx.CallAfter(pub.sendMessage, "update_gps", msg=sensor.get_message())
+            wx.CallAfter(pub.sendMessage, "update_gps", msg=message)
         if "Camera" in sensor.name:
-            wx.CallAfter(pub.sendMessage, "update_camera", msg=sensor.get_display_message())
+            wx.CallAfter(pub.sendMessage, "update_camera", msg=message)
         
         return True
 
     #this thread will run while application is running
     def run(self):
+
         while self.running:
             print("GUI THREAD RUNNING")
-            wx.CallAfter(pub.sendMessage, "update_roadmap", msg=self.map)
+            
             for sensor in self.sensors:
                 self.running = self.update_gui(sensor)
-            time.sleep(.1)    
-            
-        print("GUI THREAD NOT RUNNING")
-
-    def stop(self):
-        self.running = False   
+            if self.running == False:
+                print("GUI THREAD STOPPED")
+            if self.road_map:
+                wx.CallAfter(pub.sendMessage, "update_roadmap", msg=self.road_map)
+               
+        self.running = False     
+        print("GUI THREAD NOT RUNNING") 
 
 class GUI(multiprocessing.Process):
     def __init__(self, vehicle, **kwargs):
@@ -396,22 +399,20 @@ class GUI(multiprocessing.Process):
         self.vehicle = vehicle
         self.running = True
         self.app = None
-        self.sensor_polling = None
-        
         self.start()
         
-        #prctl.set_proctitle("mono{0}".format(self.name))
-
     def run(self):
+        prctl.set_proctitle("mono{0}".format(self.name))
         #start sensor polling
         self.sensor_polling = SensorPoll(self.vehicle)
         #while self.sensor_polling:
         self.app = MonoDriveGUIApp()
         self.app.MainLoop()
-    
+
     def stop(self):
         self.running = False
-        self.terminate()
+        #self.sensor_polling.join()
+        self.join()
 
 
      

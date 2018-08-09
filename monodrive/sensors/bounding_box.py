@@ -120,7 +120,7 @@ class BoundingBox(BaseSensorPacketized):
         }
         return data_dict
 
-    def initialize_views(self):
+    '''def initialize_views(self):
         self.view_lock.acquire()
         super(BoundingBox, self).initialize_views()
         self.main_plot.set_size_inches(3.0,2.0)
@@ -159,6 +159,12 @@ class BoundingBox(BaseSensorPacketized):
 
     def process_display_data(self):
         data = self.q_display.get()
+        if "SHUTDOWN" in data:
+            self.q_data.put("SHUTDOWN")
+            self.q_display.put("SHUTDOWN")
+        return
+
+        
         self.view_lock.acquire()
         self.x_points = data['x_points']
         self.y_points = data['y_points']
@@ -166,6 +172,6 @@ class BoundingBox(BaseSensorPacketized):
         self.y_bounds = data['y_bounds']
         self.box_rotations = data['box_rotations']
         self.view_lock.release()
-        self.update_sensors_got_data_count()
+        self.update_sensors_got_data_count()'''
 
 

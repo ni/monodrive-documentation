@@ -177,7 +177,7 @@ class Simulator(object):
     def request_map(self):
         command = messaging.MapCommand(self.simulator_configuration.map_settings)
         result = self.request(command, 60)
-        if (len(result.data) > 0):
+        if result.data:
             return result.data
         else:
             return None

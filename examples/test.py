@@ -46,7 +46,7 @@ if __name__ == "__main__":
 
         #gui_multi_proc = GuiMultiProcess(ego_vehicle)
         #gui_multi_proc.start()
-        time.sleep(20)
+        time.sleep(10)
         simulator.restart_event.set()
         # Waits for the restart event to be set in the control process
         simulator.restart_event.wait()

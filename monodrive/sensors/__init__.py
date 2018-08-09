@@ -20,6 +20,7 @@ import socket
 import struct
 import threading
 import time
+import sys,traceback
 
 from monodrive.networking import messaging
 from monodrive.networking.packetizer import Packetizer
@@ -53,11 +54,11 @@ class SensorManager:
                 continue
             self.add(sensor_config, window_settings)
 
-        if self.vehicle_config.bounding_data_on_radar_graph:
+        '''if self.vehicle_config.bounding_data_on_radar_graph:
             self.attach_bounding_radar()
 
         if self.vehicle_config.bounding_data_on_camera:
-            self.attach_bounding_camera()
+            self.attach_bounding_camera()'''
 
     def add(self, sensor_config, window_settings):
         sensor_type = sensor_config['type']
@@ -100,6 +101,8 @@ class SensorManager:
 
     def stop(self, simulator):
         #stop monitoring sensors
+        
+
         self.b_sensor_monitor_thread_running = False 
 
         #stopping simulator from sending data
@@ -109,21 +112,46 @@ class SensorManager:
 
         logging.getLogger("sensor").info("sensor manager stopping sensor listening")
         [s.stop() for s in self.sensor_list]
+        logging.getLogger("sensor").info("sensor process TERMINATING")
+        [s.terminate() for s in self.sensor_list]
+        logging.getLogger("sensor").info("joining sensor processes STARTED")
+        self.print_all_stacktraces()
+        [s.join() for s in self.sensor_list]
+        logging.getLogger("sensor").info("joining sensor processes COMPLETE")
 
         #stop rendering
-        logging.getLogger("sensor").info("sensor manager stopping sensor rendering windows")
+        #logging.getLogger("sensor").info("sensor manager stopping sensor rendering windows")
 
         #[s.stop_rendering() for s in self.sensor_list]
 
-        logging.getLogger("sensor").info("sensor manager stopping sensor rendering processes")
+        #logging.getLogger("sensor").info("sensor manager stopping sensor rendering processes")
 
         #finally stop sensors
-        logging.getLogger("sensor").info("sensor manager stopping sensor processes")
+        #logging.getLogger("sensor").info("sensor manager stopping sensor processes")
         # [s.terminate() for s in self.sensor_list]
 
-        [p.terminate() for p in self.get_process_list()]
+        #[p.terminate() for p in self.get_process_list()]
 
         logging.getLogger("sensor").info("sensor termitation complete")
+
+    def print_all_stacktraces(self):
+        print("\n*** STACKTRACE - START ***\n")
+        code = []
+        for threadId, stack in sys._current_frames().items():
+            threadName = ''
+            for t in threading.enumerate():
+                if t.ident == threadId:
+                    threadName = t.name
+            code.append("\n# ThreadID: %s %s" % (threadId, threadName))
+            for filename, lineno, name, line in traceback.extract_stack(stack):
+                code.append('File: "%s", line %d, in %s' % (filename,
+                                                            lineno, name))
+                if line:
+                    code.append("  %s" % (line.strip()))
+
+        for line in code:
+            print(line)
+        print("\n*** STACKTRACE - END ***\n")
 
     def monitor_sensors(self):
         last_game_time = None
@@ -216,6 +244,7 @@ class BaseSensor(multiprocessing.Process):
         self.game_time = None
         self.time_stamp = None
         self.socket_udp = config.get('connection_type', None) == "udp"
+        self.running_socket = True
 
         self.listen_port = int(config['listen_port'])
         self.packet_size = int(config["packet_size"])
@@ -253,12 +282,15 @@ class BaseSensor(multiprocessing.Process):
     def get_frame_size(self):
         return self.packet_size
 
-    def get_message(self):
+    def get_message(self, block=True):
         try:
-            data = self.q_data.peek()
+            data = self.q_data.peek(block)
         except AttributeError:
-            data = self.q_data.get()
-
+            data = self.q_data.get(block)
+        
+        if "SHUTDOWN" in data:
+            #self.running = False
+            return "SHUTDOWN"
 #        for key in data:
 #            setattr(self, key, data[key])
         return data
@@ -268,18 +300,29 @@ class BaseSensor(multiprocessing.Process):
         self.update_sensors_got_data_count()
 
     def stop(self):
+        
         logging.getLogger("sensor").info('*** %s' % self.name)
-
+        #self.sock.stop()
+        print("{0} socket is closing".format(self.name))
+        try:
+            self.running_socket = False
+            self.sock.shutdown(socket.SHUT_RDWR)
+            self.sock.close()
+            self.sock = None
+        except Exception as e:
+            print("{0} could not close socket error:{1}".format(self.name, e))
+        print("{0} socket is closed".format(self.name))
+        #self.q_data.put("SHUTDOWN")
+        #self.q_display.put("SHUTDOWN")
+        time.sleep(1)
         self.running = False  # Will stop UDP, Logging thread, and GUI
-        #self.send_stop_stream_command(simulator)
-        self.sock.shutdown(socket.SHUT_RDWR)
-        self.sock.close()
-        self.sock = None
-        #s.terminate()
-        return
+        print("{0} self.running is set to false".format(self.name))
+        return 
 
+ 
     def terminate(self):
-        super(BaseSensor, self).terminate()
+        #self.running = False
+        #super(BaseSensor, self).stop()
         logging.getLogger("sensor").info('*** %s' % self.name)
 
     def read(self, length):
@@ -293,6 +336,10 @@ class BaseSensor(multiprocessing.Process):
         return received, data
 
     def get_packet(self):
+
+        if not self.running_socket:
+            return "SHUTDOWN", None, None
+
         time_stamp = None
         game_time = None
         packet = None
@@ -383,6 +430,7 @@ class BaseSensor(multiprocessing.Process):
             else:
                 self.receiving_data = False
                 # print("waiting for data...", self.name)
+            
 
     # Hook method for digest each packet, when not packetized forward on to digest_frame
     # since each packet is an entire frame. BaseSensorPacketized overrides thisdata_ready_event
@@ -392,6 +440,11 @@ class BaseSensor(multiprocessing.Process):
     # Override to manipulate data, see Waypoint and BoundingBox for example
     # Radar and Camera don't need to manipulate the data
     def digest_frame(self, frame, time_stamp, game_time):
+        if "SHUTDOWN" in frame:
+            self.q_data.put("SHUTDOWN")
+            self.q_display.put("SHUTDOWN")
+            return
+
         self.frame_count += 1
         self.last_game_time.value = game_time
         self.log_control_time(self.name, self.last_control_real_time.value)
@@ -403,8 +456,9 @@ class BaseSensor(multiprocessing.Process):
             self.data_ready_event.set()
 
     def start_logging(self):
-        self.logging_thread = threading.Thread(target=self._display_logging)
+        #self.logging_thread = threading.Thread(target=self._display_logging)
         # self.logging_thread.start()
+        pass
 
     def send_start_stream_command(self, simulator):
         res = simulator.start_sensor_command(self.type, self.listen_port, self.sensor_id,
@@ -489,6 +543,7 @@ class BaseSensor(multiprocessing.Process):
         return client_time_stamp - time_stamp
 
     def update_sensors_got_data_count(self):
+        return
         self.ready_event_lock.acquire()
 
         self.sensors_got_data_count.value += 1
@@ -509,17 +564,23 @@ class BaseSensorPacketized(BaseSensor):
                                                            self.q_network, self.packet_size)
             self.packetizer_process.name = self.name + '_Packetizer'
 
-    def stop(self):
+    """"def stop(self):
         super(BaseSensorPacketized, self).stop()
         if self.packetizer_process:
             logging.getLogger("sensor").info("{0}\tpacketizer stopped".format(self.name))
-            self.packetizer_process.terminate()
+            self.packetizer_process.terminate()"""
 
     def digest_packet(self, packet, time_stamp, game_time):
         if self.socket_udp:
             self.q_network.put(packet)
         else:
             super(BaseSensorPacketized, self).digest_packet(packet, time_stamp, game_time)
+
+    '''def digest_packet(self, packet, time_stamp, game_time):
+        if self.socket_udp:
+            self.q_network.put(packet)
+        else:
+            super(BaseSensorPacketized, self).digest_packet(packet, time_stamp, game_time)'''
 
 
 class PacketizerSubProcess(multiprocessing.Process):
@@ -533,12 +594,17 @@ class PacketizerSubProcess(multiprocessing.Process):
         self.packetizer.packet_size = packet_size
         self.initial_timeout = None
         self.remaining_timeout = 3
+        self.running = True
 
     def run(self):
-        while True:
+        while self.running:
             try:
                 data = self.q_network.get(True,
                                           self.initial_timeout if self.packetizer.packet_count == 0 else self.remaining_timeout)
+                if "SHUTDOWN" in data:
+                    data = "SHUTDOWN"
+                    #self.running = False
+
             except queue.Empty:
                 self.packetizer.on_udp_frame_error()
             else:

@@ -55,6 +55,7 @@ class Waypoint(BaseSensorPacketized):
         return data_dict
 
     def process_display_data(self):
+        return
         from_queue = self.q_display.get()
 
         self.view_lock.acquire()

@@ -21,6 +21,7 @@ import cPickle as pickle
 from os import path
 basepath = path.dirname(__file__)
 filepath = path.abspath(path.join(basepath, "Capture.png"))
+
 import numpy as np
 from PIL import Image
 import cv2
@@ -28,6 +29,7 @@ import cv2
 
 import multiprocessing
 from threading import Thread
+import prctl
 
 import time
 
@@ -73,7 +75,9 @@ class RoadMap_View(wx.Panel):
         
         #self.map_subplot.autoscale_view(True)
     
-        self.map_subplot_handle = self.map_subplot.plot(0, 0, marker='.', linestyle='None')[0]
+        #self.map_subplot_handle = self.map_subplot.plot(0, 0, marker='.', linestyle='None')[0]
+        #this seems hacky but it is the only way to start the
+        self.map_subplot_handle = None
         self.map_subplot.set_title("Ground Truth Map View")
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
@@ -128,13 +132,17 @@ class RoadMap_View(wx.Panel):
         self.update_plot(x_combined, y_combined)
 
     def update_plot(self, x, y):
-        self.map_subplot_handle.set_xdata(x)
-        self.map_subplot_handle.set_ydata(y)
+        #self.map_subplot_handle.set_xdata(x)
+        #self.map_subplot_handle.set_ydata(y)
         #self.map_subplot.autoscale_view(True)
         #self.map_subplot.autoscale_view(True,True,True)
         #self.map_subplot.draw()
         #margin = 10
         #self.map_subplot_handle.axis((min(x) - margin, max(x) + margin, min(y) - margin, max(y) + margin))
+        if self.map_subplot_handle == None:
+            self.map_subplot_handle = self.map_subplot.plot(x, y, marker='.', linestyle='None')[0]
+        self.map_subplot_handle.set_xdata(x)
+        self.map_subplot_handle.set_ydata(y)
         self.Layout()
         self.Refresh()
 
@@ -291,15 +299,15 @@ class MainWindow(wx.Frame):
 
         #set up sizers for frame panels
         self.main_sizer = wx.BoxSizer(wx.VERTICAL)
-        self.main_sizer.Add(self.graph_row_panel,0, wx.ALL|wx.EXPAND, border = 10)
-        self.main_sizer.Add(self.text_row_panel, 0, wx.ALL|wx.EXPAND, border = 10)
-        self.main_sizer.Add(self.camera_row_panel, 0, wx.ALL|wx.EXPAND, border = 10)
+        self.main_sizer.Add(self.graph_row_panel,0, wx.ALL|wx.EXPAND, border = 2)
+        self.main_sizer.Add(self.text_row_panel, 0, wx.ALL|wx.EXPAND, border = 2)
+        self.main_sizer.Add(self.camera_row_panel, 0, wx.ALL|wx.EXPAND, border = 2)
         self.SetSizer(self.main_sizer)
 
         #add figures to graph row
         self.roadmap_view = RoadMap_View(self.graph_row_panel)
         self.graph_row_panel_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        self.graph_row_panel_sizer.Add(self.roadmap_view, 1, wx.EXPAND|wx.ALL, border=10)
+        self.graph_row_panel_sizer.Add(self.roadmap_view, 1, wx.EXPAND|wx.ALL, border=2)
         self.graph_row_panel.SetSizerAndFit(self.graph_row_panel_sizer)
         
  
@@ -308,15 +316,15 @@ class MainWindow(wx.Frame):
         self.imu_view = IMU_View(self.text_row_panel)
         self.wheel_rpm_view = Wheel_RPM_View(self.text_row_panel)
         self.text_row_panel_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        self.text_row_panel_sizer.Add(self.gps_view, 1, wx.EXPAND|wx.ALL, border=10)
-        self.text_row_panel_sizer.Add(self.imu_view, 1, wx.EXPAND|wx.ALL, border=10)
-        self.text_row_panel_sizer.Add(self.wheel_rpm_view, 1, wx.EXPAND|wx.ALL, border=10)
+        self.text_row_panel_sizer.Add(self.gps_view, 1, wx.EXPAND|wx.ALL, border=2)
+        self.text_row_panel_sizer.Add(self.imu_view, 1, wx.EXPAND|wx.ALL, border=2)
+        self.text_row_panel_sizer.Add(self.wheel_rpm_view, 1, wx.EXPAND|wx.ALL, border=2)
         self.text_row_panel.SetSizerAndFit(self.text_row_panel_sizer)
 
         #add camera to bottom row and size it
         self.camera_view = Camera_View(self.camera_row_panel)
         self.camera_row_panel_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        self.camera_row_panel_sizer.Add(self.camera_view, 1, wx.EXPAND|wx.ALL, border = 10)
+        self.camera_row_panel_sizer.Add(self.camera_view, 1, wx.EXPAND|wx.ALL, border = 2)
         self.camera_row_panel.SetSizerAndFit(self.camera_row_panel_sizer)
 
         self.Layout()
@@ -337,11 +345,14 @@ class MonoDriveGUIApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
 class GUI(multiprocessing.Process):
     def __init__(self, vehicle, **kwargs):
         super(GUI, self).__init__(**kwargs)
+        self.name = "GUI"
         self.vehicle = vehicle
         self.running = True
         self.start()
+        #prctl.set_proctitle("mono{0}".format(self.name))
 
     def run(self):
+        
         sensor_poll = SensorPoll(self.vehicle)
         while self.running:
             app = MonoDriveGUIApp()
@@ -374,11 +385,10 @@ class SensorPoll(Thread):
     
     #this thread will run while application is running
     def run(self):
-        time.sleep(1)
         #map is not a sensor but so we call this every loop
         
         while self.running:
-            time.sleep(1)
+            time.sleep(2)
             for sensor in self.sensors:
                 self.update_gui(sensor)
             wx.CallAfter(pub.sendMessage, "update_roadmap", msg=self.map)

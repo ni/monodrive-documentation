@@ -60,7 +60,7 @@ class GPS_Message(object):
         return msg_dict
 
 class Camera_Message(object):
-    
+      
     def __init__(self, msg):
         self.np_image = np.array(pickle.loads(msg))
     

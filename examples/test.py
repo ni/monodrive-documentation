@@ -8,9 +8,9 @@ __version__ = "1.0"
 import logging
 
 import time
+import prctl 
 
 from monodrive import SimulatorConfiguration, VehicleConfiguration, Simulator
-from monodrive.gui import GuiMultiProcess
 from monodrive.ui import GUI
 from monodrive.vehicles import SimpleVehicle
 from monodrive.vehicles import TeleportVehicle
@@ -37,17 +37,15 @@ if __name__ == "__main__":
         ego_vehicle = simulator.get_ego_vehicle(vehicle_configuration, SimpleVehicle)
 
     gui = GUI(ego_vehicle)
-
+    prctl.set_proctitle("monoDrive")
     while episodes > 0:
         simulator.restart_event.clear()
-        simulator.init_episode(vehicle_configuration)
+        simulator.send_vehicle_configuration(vehicle_configuration)
         logging.getLogger("simulator").info('Starting vehicle')
         ego_vehicle.start()
 
-        #gui_multi_proc = GuiMultiProcess(ego_vehicle)
-        #gui_multi_proc.start()
-        time.sleep(10)
-        simulator.restart_event.set()
+        #time.sleep(30)
+        #simulator.restart_event.set()
         # Waits for the restart event to be set in the control process
         simulator.restart_event.wait()
 

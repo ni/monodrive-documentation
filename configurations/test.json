@@ -318,6 +318,28 @@
         "roll":0.0
       },
       "fps": 2.0
+    },
+    {
+      "type": "Waypoint",
+      "id": "4",
+      "packet_size": 1472,
+      "listen_port": 8090,
+      "display_process": false,
+      "sensor_process": false,
+      "synchronized_display": false,
+      "location": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "fps": 5.0,
+      "point_delta": 100.0,
+      "total_points": 100.0
     }
   
     ]

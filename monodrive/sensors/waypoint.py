@@ -55,11 +55,11 @@ class Waypoint(BaseSensorPacketized):
         return data_dict
 
     def process_display_data(self):
-        return
-        from_queue = self.q_display.get()
+
+        msg = self.q_data.get()
 
         self.view_lock.acquire()
-        points_by_lane = from_queue['points_by_lane']
+        points_by_lane = msg['points_by_lane']
         x_combined = []
         y_combined = []
         for points in points_by_lane:
@@ -113,6 +113,9 @@ class Waypoint(BaseSensorPacketized):
                 self.update_command_sent.value = False
 
         return data
+
+    def get_lane(self):
+        return self.lane_number
 
     def get_waypoints_by_lane(self, lane):
         return self.points_by_lane[lane]

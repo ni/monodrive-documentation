@@ -2,7 +2,7 @@
 
 import random
 import time
-
+import math
 import numpy as np
 import cPickle as pickle
 
@@ -33,6 +33,30 @@ class IMU_Message(object):
         }
         return msg_dict
 
+class Waypoint_Message(object):
+    def __init__(self, msg):
+        self.time_stamp = msg['time_stamp']
+        self.game_time = msg['game_time']
+        self.points_by_lane = msg['points_by_lane']
+        self.speed_limit_by_lane = msg['speed_limit_by_lane']
+        self.lane_number = msg['lane_number']
+
+    @classmethod
+    def test_message(self):
+        msg_list = []
+        for x in range(12):
+            msg_list.append(random.random(1,1000))
+
+        msg_dict = {
+            'time_stamp': time.time(),
+            'game_time': time.time(),
+            'points_by_lane': msg_list[0],
+            'speed_limit_by_lane': 30,
+            'lane_number': 1
+        }    
+
+        return msg_dict
+   
 class GPS_Message(object):
     def __init__(self, msg):
         self.lat = msg['lat']

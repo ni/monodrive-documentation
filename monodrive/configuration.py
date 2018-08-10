@@ -48,20 +48,11 @@ class VehicleConfiguration(Configuration):
         self.lane_number = self.configuration['lane_number']
         self.position = self.configuration['position']
         self.spawning_rotation = self.configuration['spawning_rotation']
-        try:
-            self.bounding_data_on_radar_graph = self.configuration['bounding_data_on_radar_graph']
-        except:
-            self.bounding_data_on_radar_graph = None
-
-        try:
-            self.bounding_data_on_camera = self.configuration['bounding_data_on_camera']
-        except:
-            self.bounding_data_on_camera = None
 
         self.mesh_path = self.configuration['mesh_path']
         self.animation_path = self.configuration['anim_path']
         self.wheels = self.configuration['wheels']
-        self.sensors = self.configuration['sensors']
+        self.sensor_configuration = self.configuration['sensors']
 
         if not self.validate_sensors():
             raise AttributeError("Invalid Configuration. Validate the file is valid JSON.")
@@ -75,20 +66,10 @@ class VehicleConfiguration(Configuration):
         self.position = self.configuration['position']
         self.spawning_rotation = self.configuration['spawning_rotation']
 
-        try:
-            self.bounding_data_on_radar_graph = self.configuration['bounding_data_on_radar_graph']
-        except:
-            self.bounding_data_on_radar_graph = None
-
-        try:
-            self.bounding_data_on_camera = self.configuration['bounding_data_on_camera']
-        except:
-            self.bounding_data_on_camera = None
-
         self.mesh_path = self.configuration['mesh_path']
         self.animation_path = self.configuration['anim_path']
         self.wheels = self.configuration['wheels']
-        self.sensors = self.configuration['sensors']
+        self.sensor_configuration = self.configuration['sensors']
 
         if not self.validate_sensors():
             raise AttributeError("Invalid Configuration. Validate the file is valid JSON.")
@@ -115,7 +96,7 @@ class VehicleConfiguration(Configuration):
 
     def validate_sensors(self):
         valid = True
-        for sensor in self.sensors:
+        for sensor in self.sensor_configuration:
             if sensor['type'] not in self.available_sensor_classes:
                 _m = 'Sensor Type: {0}'.format(sensor['type'])
                 print('m', sensor, self.available_sensor_classes)

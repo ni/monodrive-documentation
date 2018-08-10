@@ -10,7 +10,7 @@ import numpy as np
 from . import BaseVehicle
 from monodrive.sensors import Waypoint, GPS
 
-
+import pygame
 #for keyboard control
 import threading
 import time
@@ -35,8 +35,6 @@ except ImportError:
 class TeleportVehicle(BaseVehicle):
     def __init__(self, simulator_config, vehicle_config, restart_event=None, road_map = None,**kwargs):
         super(TeleportVehicle, self).__init__(simulator_config, vehicle_config, restart_event)
-        self.waypoint_sensor = Waypoint.get_sensor(self.sensors)
-        self.gps_sensor = GPS.get_sensor(self.sensors)
         self.road_map = road_map
         self.throttle = 0.0
         self.steer = 0.0
@@ -44,7 +42,7 @@ class TeleportVehicle(BaseVehicle):
         self.keyboard_thread = None
         self.keyboard_thread_running = True
 
-    def drive(self, sensors, vehicle_state):
+    def drive(self, sensors):
         logging.getLogger("control").debug("Control Forward,Steer = {0},{1}".format(self.throttle,self.steer))
         control = {'forward': self.throttle,'right': self.steer}
         return control

@@ -9,7 +9,7 @@ import numpy as np
 import time
 import cPickle as pickle
 
-from . import BaseSensorPacketized
+from base_sensor import BaseSensorPacketized
 
 
 class Camera(BaseSensorPacketized):

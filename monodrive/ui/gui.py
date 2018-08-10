@@ -33,10 +33,10 @@ import prctl
 
 import time
 
-from message import IMU_Message
-from message import GPS_Message
-from message import Camera_Message
-from message import MapData
+from monodrive.models import IMU_Message
+from monodrive.models import GPS_Message
+from monodrive.models import Camera_Message
+from monodrive.models import MapData
 
 BACKGROUND_COLOR = '#eaf7ff'
 INNER_PANEL_COLOR = '#f0f0f0'
@@ -109,6 +109,7 @@ class RoadMap_View(wx.Panel):
         self.road_map = MapData(msg)
         if self.road_map:
             print("map: r:{0} l0:{1}".format(self.num_roads(), self.num_lanes(0)))
+            pass
 
         points_by_lane = []
 
@@ -353,7 +354,7 @@ class SensorPoll(Thread):
     """Thread to pull data from sensor q's and publish to views"""
     def __init__(self, vehicle):
         Thread.__init__(self)
-        self.daemon = True
+        #self.daemon = True
         self.vehicle = vehicle
         self.road_map = vehicle.get_road_map()
         self.sensors = vehicle.get_sensors()

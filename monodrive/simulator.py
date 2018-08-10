@@ -9,6 +9,7 @@ from logging.handlers import RotatingFileHandler
 
 from multiprocessing import Event, Process, Queue
 import threading
+import psutil
 #import os, psutil  # for removing processing after episode
 #try:
 
@@ -17,7 +18,7 @@ import sys
 from monodrive.networking import messaging
 from monodrive.networking.client import Client
 from monodrive.constants import *
-from monodrive.scene import Map
+#from monodrive.scene import Map
 
 from monodrive import VehicleConfiguration
 
@@ -69,11 +70,10 @@ class Simulator(object):
         ## when you want to kill everything, including this program
         #self.kill_process_tree(pid, False)
 
-                # Disconnect from server
-        #self.client.disconnect()
-        #self.client.stop()
+        # Disconnect from server
+        self.client.disconnect()
+        self.client.stop()
 
-        #self.map.stop()
 
     def kill_process_tree(self, pid, including_parent=True):
         parent = psutil.Process(pid)
@@ -101,10 +101,6 @@ class Simulator(object):
     def request_sensor_stream(self, message_cls):
         return self.client.request_sensor_stream(message_cls)
 
-    def init_episode(self, vehicle_configuration):
-        self.send_vehicle_configuration(vehicle_configuration)
-        #self.request_map()
-
     def send_vehicle_configuration(self, vehicle_configuration):
         logging.getLogger("simulator").info('Sending vehicle configuration {0}'.format(vehicle_configuration.name))
         vehicle_response = self.request(messaging.JSONConfigurationCommand(
@@ -114,7 +110,7 @@ class Simulator(object):
             logging.getLogger("network").error('Failed to send the vehicle configuration')
             raise ConnectionError('Failed to connect to the monodrive vehicle.')
         else:
-            logging.getLogger("simulator").info('{0}'.format(vehicle_response))
+            logging.getLogger("simulator").debug('{0}'.format(vehicle_response))
 
     def send_simulator_configuration(self):
         logging.getLogger("simulator").info('Sending simulator configuration ip:{0}:{1}'.format(self.simulator_configuration.server_ip,self.simulator_configuration.server_port))
@@ -124,7 +120,7 @@ class Simulator(object):
             logging.getLogger("network").error('Failed to send the simulator configuration')
             raise ConnectionError('Failed to connect to the monodrive simulator.')
         else:
-            logging.getLogger("simulator").info('{0}'.format(simulator_response))
+            logging.getLogger("simulator").debug('{0}'.format(simulator_response))
 
     def send_scenario_init(self, scen):
         init = scen.init_scene_json
@@ -181,9 +177,6 @@ class Simulator(object):
             return result.data
         else:
             return None
-        #self.map_data = result
-        #self.map = Map(result)
-        #self.map.start()
         
 
 

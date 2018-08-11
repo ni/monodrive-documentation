@@ -8,6 +8,7 @@ import sys, traceback
 
 from monodrive.networking import messaging
 from monodrive.sensors import GPS, Waypoint
+from monodrive.networking.queues import SingleQueue
 
 import multiprocessing
 
@@ -16,7 +17,7 @@ class BaseVehicle(object):
     def __init__(self, simulator, vehicle_config, restart_event=None, road_map = None, **kwargs):
         super(BaseVehicle, self).__init__()
         self.simulator = simulator
-        self.simulator_configuration = simulator.simulator_configuration
+        self.simulator_config = simulator.simulator_configuration
         self.name = vehicle_config.id
         self.sensors = []
         self.restart_event = restart_event
@@ -28,18 +29,15 @@ class BaseVehicle(object):
         self.control_thread = None
         self.b_control_thread_running = True
         self.road_map = road_map
+        self.q_road_map = SingleQueue()
+        self.q_road_map.put(self.road_map)
 
         #FROM old sensor manager
         self.vehicle_config = vehicle_config
         self.simulator = simulator
-        self.simulator_config = simulator.simulator_configuration
         self.sensor_process_dict = {}
-        self.sensor_monitor_thread = None
-        self.sensor_gametime_graph_thread = None
-        self.all_sensors_ready = multiprocessing.Event()
-        #self.b_sensor_monitor_thread_running = True
         self.initialized = self.init_sensors()
-        self.vehicle_update_rate = 1 # ticks per second
+        self.vehicle_update_rate = .5 # ticks per second
         self.vehicle_running = True
 
     def init_vehicle_loop(self):
@@ -49,11 +47,12 @@ class BaseVehicle(object):
     def vehicle_loop(self):
         #step the vehicle to start the measurements
         self.step({'forward':0.0,'right':0.0})
+        sensors = self.get_sensors()
         while self.vehicle_running:
-            sensors = self.get_sensors()
+            time.sleep(self.vehicle_update_rate)
             control = self.drive(sensors)
             self.step(control)
-            time.sleep(self.vehicle_update_rate)
+            
 
     def step(self, control_data):
         self.control_thread = threading.Thread(target=self.do_control_thread(control_data))
@@ -76,7 +75,8 @@ class BaseVehicle(object):
         raise NotImplementedError("To be implemented in base class")
 
     def get_road_map(self):
-        return self.road_map
+        msg = self.q_road_map.peek()
+        return msg
 
     def get_sensor(self, sensor_type, id):
         for sensor in self.sensors:

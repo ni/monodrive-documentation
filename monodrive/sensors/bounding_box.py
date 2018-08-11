@@ -9,8 +9,7 @@ import numpy as np
 import struct
 import matplotlib.patches as patches
 
-from . import BaseSensorPacketized
-
+from . import BaseSensor
 matplotlib.use('TkAgg')
 
 SHOW_MAP = True
@@ -23,7 +22,7 @@ def create_point(distance, degrees):
     return np.array([x, y])
 
 
-class BoundingBox(BaseSensorPacketized):
+class BoundingBox(BaseSensor):
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(BoundingBox, self).__init__(idx=idx, config=config, simulator_config=simulator_config, **kwargs)
         #self.plot = None

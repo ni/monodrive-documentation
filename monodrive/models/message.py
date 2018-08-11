@@ -56,12 +56,64 @@ class Waypoint_Message(object):
         }    
 
         return msg_dict
+
+
+    def find_closest_waypoint(self, gps_location, lane):
+        current_lane_waypoints = self.get_waypoints_by_lane(lane)
+        cx = current_lane_waypoints[:, 0]
+        cy = current_lane_waypoints[:, 1]
+
+        # Find distances between vehicle location and each pooint
+        dx = [gps_location[0] - icx for icx in cx]
+        dy = [gps_location[1] - icy for icy in cy]
+
+        # Magnitude of distances
+        d = [math.sqrt(idx ** 2 + idy ** 2) for (idx, idy) in zip(dx, dy)]
+
+        # Index of minimum distance
+        ind = d.index(min(d))
+        return ind, current_lane_waypoints[ind]
+
+    # GETTERS
+
+    def get_lane(self):
+        return self.lane_number
+
+    def get_waypoints_by_lane(self, lane):
+        return self.points_by_lane[lane]
+
+    def get_waypoints_for_current_lane(self):
+        return self.get_waypoints_by_lane(self.lane_number)
+
+    def get_waypoint_in_lane(self, lane, index):
+        lane_waypoints = self.get_waypoints_by_lane(lane)
+        return lane_waypoints[index]
+
+    def get_waypoint_in_current_lane(self, index):
+        self.get_waypoint_in_lane(self.lane_number, index)
+
+    def get_estimated_current_lane(self, gps_location):
+        dif_by_lane = []
+        for lane in range(0, len(self.points_by_lane)):
+            ind, wp = self.find_closest_waypoint(gps_location, lane)
+            dif = wp - gps_location[:2:]
+            mag = math.sqrt(dif[0] ** 2 + dif[1] ** 2)
+            dif_by_lane.append(mag)
+
+        return dif_by_lane.index(min(dif_by_lane))
+
    
 class GPS_Message(object):
     def __init__(self, msg):
+        self.time_stamp = msg['time_stamp']
+        self.game_time = msg['game_time']
         self.lat = msg['lat']
         self.lng = msg['lng']
-        self.time_stamp = msg['time_stamp']
+        self.elevation = msg['elevation']
+        self.forward_vector = msg['forward_vector']
+        self.world_location = msg['world_location']
+        self.ego_yaw = msg['ego_yaw']
+        self.speed = msg['speed']
 
     @classmethod
     def test_message(self):

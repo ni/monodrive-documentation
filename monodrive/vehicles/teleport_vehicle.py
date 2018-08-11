@@ -43,12 +43,13 @@ class TeleportVehicle(BaseVehicle):
         self.keyboard_thread_running = True
 
     def drive(self, sensors):
-        logging.getLogger("control").debug("Control Forward,Steer = {0},{1}".format(self.throttle,self.steer))
+        #logging.getLogger("control").debug("Control Forward,Steer = {0},{1}".format(self.throttle,self.steer))
         control = {'forward': self.throttle,'right': self.steer}
         return control
     
     def start_keyboard_listener(self):
         self.keyboard_thread = threading.Thread(target=self._keyboard_listener)
+        self.keyboard_thread.daemon = True
         self.keyboard_thread.start()
 
     def _keyboard_listener(self):
@@ -76,6 +77,8 @@ class TeleportVehicle(BaseVehicle):
                         pygame.quit()
                         self.restart_event.set()
                         break
+            
+            time.sleep(.1)
 
     def _get_keyboard_control(self, key):
         status = True

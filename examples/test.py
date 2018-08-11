@@ -15,7 +15,7 @@ from monodrive.ui import GUI
 from monodrive.vehicles import SimpleVehicle
 from monodrive.vehicles import TeleportVehicle
 
-ManualDriveMode = True
+ManualDriveMode = False
 
 
 if __name__ == "__main__":
@@ -38,6 +38,7 @@ if __name__ == "__main__":
 
     gui = GUI(ego_vehicle)
     prctl.set_proctitle("monoDrive")
+    
     while episodes > 0:
         simulator.restart_event.clear()
         simulator.send_vehicle_configuration(vehicle_configuration)

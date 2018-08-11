@@ -66,7 +66,7 @@ class ScenarioVehicle(object):
     def send_control_data(self, control_data):
         forward = control_data['forward']
         right = control_data['right']
-        logging.getLogger("control").debug("Sending control data forward: %.4s, right: %.4s" % (forward, right))
+        #logging.getLogger("control").debug("Sending control data forward: %.4s, right: %.4s" % (forward, right))
         msg = messaging.EgoControlCommand(forward, right)
         resp = self.simulator.request(msg)
         if resp is None:

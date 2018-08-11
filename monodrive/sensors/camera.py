@@ -9,10 +9,10 @@ import numpy as np
 import time
 import cPickle as pickle
 
-from base_sensor import BaseSensorPacketized
+from base_sensor import BaseSensor
 
 
-class Camera(BaseSensorPacketized):
+class Camera(BaseSensor):
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(Camera, self).__init__(idx=idx, config=config, simulator_config=simulator_config, **kwargs)
         if self.packetizer_process:
@@ -65,11 +65,9 @@ class Camera(BaseSensorPacketized):
             logging.getLogger("sensor").error("wrong image size received {0}".format(self.name))
         return image
 
-    def get_message(self):
-        image_frame = self.q_data.get()
-        if "SHUTDOWN" in image_frame:
-            #self.running = False
-            return "SHUTDOWN"
+    def get_message(self, timeout = None):
+        
+        image_frame = super(Camera, self).get_message()
 
         image_buffer = image_frame['image']
         if len(image_buffer) == self.height * self.width * 4:
@@ -79,12 +77,8 @@ class Camera(BaseSensorPacketized):
             logging.getLogger("sensor").error("wrong image size received {0}".format(self.name))
         return pickle.dumps(image, protocol=-1)
 
-    def get_display_message(self):
-        image_frame = self.q_display.get()
-        
-        if "SHUTDOWN" in image_frame:
-            #self.running = False
-            return "SHUTDOWN"
+    def get_display_message(self, timeout=None):
+        image_frame = super(Camera, self).get_message()
         
         image_buffer = image_frame['image']
         if len(image_buffer) == self.height * self.width * 4:
@@ -93,22 +87,6 @@ class Camera(BaseSensorPacketized):
             image = None
             logging.getLogger("sensor").error("wrong image size received {0}".format(self.name))
         return pickle.dumps(image, protocol=-1)
-
-    def process_bound_data(self, data):
-        sensor_id_str = str(self.sensor_id)
-        self.bounding_box_positions = data['bounding_box_positions'][sensor_id_str]
-        self.bounding_box_is_in_camera_fov = data['in_camera_los'][sensor_id_str]
-
-
-    def process_display_data(self):
-        return
-        if self.bounding_box:
-            self.bounding_box.update_sensors_got_data_count()
-        self.update_sensors_got_data_count()
-
-    def stop_sub_processes(self):
-        return
-        self.update_sensors_got_data_count()
 
     def stop(self):
         if not self.hdmi_streaming:
@@ -119,41 +97,3 @@ class MultiCamera(Camera):
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(MultiCamera, self).__init__(idx, config, simulator_config=simulator_config, **kwargs)
         self.camera_ids = self.config["camera_ids"]
-
-    def process_bound_data(self, data):
-        
-        self.bounding_box_positions = []
-        self.bounding_box_is_in_camera_fov = []
-        i = 0
-        for camera_id in self.camera_ids:
-            single_camera_width = self.width / len(self.camera_ids)
-            x_offset = i * single_camera_width
-
-            bounding_box_positions = data['bounding_box_positions'][camera_id]
-            in_line_of_sight_bools = data['in_camera_los'][camera_id]
-            for x in range(0, len(bounding_box_positions)):
-                positions = bounding_box_positions[x]
-                in_line_of_sight = in_line_of_sight_bools[x]
-
-                if self.check_in_bounds(positions):
-                    positions[0] += x_offset
-                    positions[2] += x_offset
-                    positions[4] += x_offset
-                    positions[6] += x_offset
-                    positions[8] += x_offset
-                    positions[10] += x_offset
-                    positions[12] += x_offset
-                    positions[14] += x_offset
-
-                    self.bounding_box_positions.append(positions)
-                    self.bounding_box_is_in_camera_fov.append(in_line_of_sight)
-
-            i = i + 1
-
-    def check_in_bounds(self, positions):
-        for i in range(0, len(positions)):
-            pos_point = positions[i]
-            if pos_point < 0 or pos_point > 512:
-                return False
-
-        return True

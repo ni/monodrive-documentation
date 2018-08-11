@@ -22,7 +22,7 @@ import threading
 import time
 import sys,traceback
 
-
+import Queue as PythonQueue
 from multiprocessing import Queue, Process
 from monodrive.networking.queues import SingleQueue
 
@@ -34,14 +34,16 @@ BITS_PER_BYTE = 8.0
 BYTE_PER_MBYTE = 1000000.0
 
 
-#class BaseSensor(multiprocessing.Process):
-class BaseSensor(threading.Thread):
+class BaseSensor(multiprocessing.Process):
+#class BaseSensor(threading.Thread):
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(BaseSensor, self).__init__(**kwargs)
         self.idx = idx
         #self.daemon = True
-        self.q_data = SingleQueue()
-        self.q_display = SingleQueue()
+        #self.q_data = SingleQueue()
+        #self.q_display = SingleQueue()
+        self.q_data = multiprocessing.Queue()
+        self.q_display = multiprocessing.Queue()
         self.socket_ready_event = multiprocessing.Event()
         self.message_event = multiprocessing.Event()
         self.sensor_initialized_event = multiprocessing.Event()
@@ -88,21 +90,25 @@ class BaseSensor(threading.Thread):
     def get_frame_size(self):
         return self.packet_size
 
-    def get_message(self, block=True):
+    def get_message(self, timeout=1, block=True):
         try:
-            data = self.q_data.peek(block)
-        except AttributeError:
-            data = self.q_data.get(block)
-        
-        if "SHUTDOWN" in data:
-            #self.running = False
-            return "SHUTDOWN"
-#        for key in data:
-#            setattr(self, key, data[key])
+            data = self.q_data.get(block, timeout=timeout)
+        except PythonQueue.Empty as e:
+            logging.getLogger("sensor").warning("{0}:get_message->{1}".format(self.name, e))
+            
+        #if "SHUTDOWN" in data:
+            #return "SHUTDOWN"
         return data
 
-    def dropped_frame(self):
-        logging.getLogger("sensor").warning("Dropped Frame for: %s" % self.name)
+    def get_display_message(self, timeout=1, block=True):
+        try:
+            data = self.q_display.get(block)
+        except PythonQueue.Empty as e:
+            logging.getLogger("sensor").warning("{0}:get_display_message->{1}".format(self.name, e))
+        
+        #if "SHUTDOWN" in data:
+            #return "SHUTDOWN"
+        return data
 
     def stop(self):
         
@@ -225,20 +231,20 @@ class BaseSensor(threading.Thread):
                 print("packet exception: {0}".format(e))
                 pass
 
-            # print(self.name, ':', len(packet))
+            #print(self.name, ':', len(packet))
             if packet is not None:
                 self.number_of_packets += 1
                 self.receiving_data = True
                 self.digest_packet(packet, time_stamp, game_time)
-                #if time_stamp is not None:
-                    #self.log_timestamp(time_stamp, game_time)
             else:
                 self.receiving_data = False
                 # print("waiting for data...", self.name)
+            #TODO make this configurable
+            time.sleep(.5)
             
 
     # Hook method for digest each packet, when not packetized forward on to digest_frame
-    # since each packet is an entire frame. BaseSensorPacketized overrides thisdata_ready_event
+    # since each packet is an entire frame. BaseSensorPacketized overrides this data_ready_event
     def digest_packet(self, packet, time_stamp, game_time):
         self.digest_frame(packet, time_stamp, game_time)
 
@@ -326,52 +332,16 @@ class BaseSensor(threading.Thread):
         return '{0}_{1}'.format(self.__class__.__name__, self.listen_port)
 
 
-class BaseSensorPacketized(BaseSensor):
+'''class BaseSensorPacketized(BaseSensor):
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(BaseSensorPacketized, self).__init__(idx=idx, config=config, simulator_config=simulator_config, **kwargs)
-        if self.socket_udp:
-            self.q_network = Queue()
-            self.packetizer_process = PacketizerThread(self.digest_frame, self.q_network, self.packet_size)
-            self.packetizer_process.name = self.name + '_Packetizer'
-
+        self.q_network = Queue()
+        
     def digest_packet(self, packet, time_stamp, game_time):
-        if self.socket_udp:
-            self.q_network.put(packet)
-        else:
-            super(BaseSensorPacketized, self).digest_packet(packet, time_stamp, game_time)
+        super(BaseSensorPacketized, self).digest_packet(packet, time_stamp, game_time)
 
+    def get_message(self, timeout=1, block=True):
+        return super(BaseSensorPacketized, self)..get_message()
 
-class PacketizerThread(threading.Thread):
-    def __init__(self, digest_frame_callback, q_network, packet_size):
-        super(PacketizerThread, self).__init__()
-        #self.daemon = True
-        self.q_network = q_network
-        self.digest_frame_callback = digest_frame_callback
-        self.packetizer = Packetizer(self)
-        self.packetizer.packet_size = packet_size
-        self.initial_timeout = None
-        self.remaining_timeout = 3
-        self.running = True
-
-    def run(self):
-        print("{0} packetizer thread running", self.name)
-        while self.running:
-            try:
-                data = self.q_network.get(True,
-                                          self.initial_timeout if self.packetizer.packet_count == 0 else self.remaining_timeout)
-                if "SHUTDOWN" in data:
-                    data = "SHUTDOWN"
-                    #self.running = False
-
-            except queue.Empty:
-                self.packetizer.on_udp_frame_error()
-            else:
-                self.packetizer.on_udp_received(data)
-
-    '''def stop(self):
-        logging.getLogger("sensor").info("Packetizer stopped for {0}".format(self.name))
-        self.terminate()'''
-
-    def digest_frame_delegate(self, data, time_stamp, game_time):
-        self.digest_frame_callback(data, time_stamp, game_time)
-
+    def get_display_message(self, timeout=1, block=True):
+        return super(BaseSensorPacketized, self)..get_message()'''

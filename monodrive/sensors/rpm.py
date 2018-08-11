@@ -26,7 +26,7 @@ class RPM(BaseSensor):
         }
         return data_dict
 
-    def process_display_data(self):
+    '''def process_display_data(self):
         return
         data = self.q_display.get()
-        self.update_sensors_got_data_count()
+        self.update_sensors_got_data_count()'''

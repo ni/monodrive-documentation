@@ -363,7 +363,7 @@ class SensorPoll(Thread):
 
     def update_gui(self, sensor):
         
-        message = sensor.get_message()
+        message = sensor.get_display_message()
         if "SHUTDOWN" in message: #not sensor.running:
             wx.CallAfter(pub.sendMessage, "SHUTDOWN", msg=message)
             return False  #shuts down thread
@@ -405,10 +405,11 @@ class GUI(multiprocessing.Process):
     def run(self):
         prctl.set_proctitle("mono{0}".format(self.name))
         #start sensor polling
-        self.sensor_polling = SensorPoll(self.vehicle)
-        #while self.sensor_polling:
-        self.app = MonoDriveGUIApp()
-        self.app.MainLoop()
+        while True:
+            self.sensor_polling = SensorPoll(self.vehicle)
+            #while self.sensor_polling:
+            self.app = MonoDriveGUIApp()
+            self.app.MainLoop()
 
     def stop(self):
         self.running = False

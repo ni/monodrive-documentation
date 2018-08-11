@@ -24,51 +24,79 @@ class SimpleVehicle(BaseVehicle):
         super(SimpleVehicle, self).__init__(simulator_config, vehicle_config, restart_event)
         self.waypoint_sensor = None
         self.gps_sensor = None
-        self.waypoint = None
+        self.gps_msg = None
+        self.waypoint_msg = None
+        self.gps_location = None
+        self.velocity = None
 
+    def zero_control(self):
+        return {
+                'forward': 0.0,
+                'right': 0.0,
+            }
     def drive(self, sensors):
-        self.waypoint_sensor = Waypoint.get_sensor(self.sensors)
-        self.gps_sensor = GPS.get_sensor(self.sensors)
-        print("mapping")
-        self.mapping()
-        print("perception")
-        #self.perception()
-        print("planning")
-        move_velocity = self.planning(self.gps_sensor.world_location, self.gps_sensor.speed)
-        print("control")
+        self.sensors = sensors
+        if not self.mapping():
+            return self.zero_control()
+        move_velocity = self.planning(self.gps_sensor.speed)
         control = self.control(move_velocity)
         return control
 
     def mapping(self):
-        if self.waypoint_sensor:
-            msg = self.waypoint_sensor.get_message()
-            self.waypoint = Waypoint_Message(msg)
+
+        for sensor in self.sensors:
+            
+            if sensor.__class__ == GPS:
+                msg = sensor.get_message(timeout = 5)
+                self.gps_msg = GPS_Message(msg)
+                self.gps_location = [self.gps_msg.lat, self.gps_msg.lng]
+                self.world_location = self.gps_msg.world_location
+                self.velocity = self.gps_msg.speed
+                self.gps_sensor = sensor 
+            elif sensor.__class__ == Waypoint:
+                msg = sensor.get_message(timeout = 5)
+                self.waypoint_msg = Waypoint_Message(msg) 
+                self.waypoint_sensor = sensor
+            #print("{0} message length {1}".format(sensor.name, len(str(msg))))
+            
+        if self.waypoint_msg and self.gps_msg:
+            return True
+        else:
+            print("missing required sensor frames")     
+            return False      
 
     def perception(self):
-        if self.gps_sensor:
-            msg = self.gps_sensor.get_message()
-            self.gps = GPS_Message(msg)
+        pass
 
-    def planning(self, gps_location, vehicle_speed):
+
+    def planning(self, vehicle_speed):
         """
         Using vehicle speed and location to find target point
         PURE_PURSUIT
         """
 
-        target_lane = self.waypoint.lane_number
-        target_waypoints = self.get_waypoints_by_lane(target_lane)
+        target_lane = self.waypoint_msg.lane_number
+        target_waypoints = self.waypoint_msg.get_waypoints_by_lane(target_lane)
 
         cx = target_waypoints[:, 0]
         cy = target_waypoints[:, 1]
 
-        estimated_ego_lane = self.get_estimated_current_lane(gps_location)
-        idx, current_waypoint = self.find_closest_waypoint(gps_location, target_lane)
-        self.update_tracking_index(idx, estimated_ego_lane, self.simulator)
+        estimated_ego_lane = self.waypoint_msg.get_estimated_current_lane(self.world_location)
+        idx, current_waypoint = self.waypoint_msg.find_closest_waypoint(self.world_location, target_lane)
+        
+        if idx > len(self.waypoint_msg.get_waypoints_for_current_lane()) / 2: #and not bool(self.update_command_sent.value):
+            #self.update_command_sent.value = True
+            self.previous_points = self.waypoint_msg.get_waypoints_for_current_lane()
+            #update = int(len(self.waypoint_msg.get_waypoints_for_current_lane()) / 2)
+            msg = messaging.WaypointUpdateCommand(idx, target_lane)
+            self.simulator.request(msg)
+
+        #self.waypoint_sensor.update_tracking_index(idx, estimated_ego_lane, self.simulator)
 
         # Calculate look ahead distance based on speed and look forward gain
-        look_ahead_distance = k * vehicle_speed + Lfc
+        look_ahead_distance = float(k) * self.velocity + Lfc
 
-        dif = current_waypoint - gps_location[:2:]
+        dif = current_waypoint - self.world_location[:2:]
 
         L = np.linalg.norm(dif)
 
@@ -83,11 +111,11 @@ class SimpleVehicle(BaseVehicle):
         target_point = np.append(target_point, [0.0])
         # make 2d ad 3d vector
 
-        dt = self.waypoint_sensor.game_time / 1000.0 - self.last_time
-        self.last_time = self.waypoint_sensor.game_time / 1000.0
+        dt = self.waypoint_msg.game_time / 1000.0 - self.last_time
+        self.last_time = self.waypoint_msg.game_time / 1000.0
 
         # Find the difference from the current gps location and the target point
-        dif = np.subtract(target_point, self.gps_sensor.world_location)
+        dif = np.subtract(target_point, self.world_location)
 
         # Compute move velocity vector based on difference in locations over change in time
         move_velocity = dif / dt
@@ -104,8 +132,8 @@ class SimpleVehicle(BaseVehicle):
             return 0.0, 0.0
         norm = [move_velocity[0] / mag, move_velocity[1] / mag, move_velocity[2] / mag]
         forward_intention = np.array(norm)
-        forward = np.dot(self.gps_sensor.forward_vector, forward_intention)
-        right = np.cross(self.gps_sensor.forward_vector, forward_intention)[2]  # get z vector for rotation
+        forward = np.dot(self.gps_msg.forward_vector, forward_intention)
+        right = np.cross(self.gps_msg.forward_vector, forward_intention)[2]  # get z vector for rotation
 
         if drive_vehicle:
             return {
@@ -113,58 +141,4 @@ class SimpleVehicle(BaseVehicle):
                 'right': right,
             }
         else:
-            return {
-                'forward': 0.0,
-                'right': 0.0,
-            }
-    
-    #TODO this is wonky, need to fix this simulator instance access
-    def update_tracking_index(self, tracking_point_index, ego_lane, simulator):
-        update = 0
-        if tracking_point_index > len(self.get_waypoints_for_current_lane()) / 2 and not bool(self.update_command_sent.value):
-            #self.update_command_sent.value = True
-            self.previous_points = self.get_waypoints_for_current_lane()
-            update = int(len(self.get_waypoints_for_current_lane()) / 2)
-            msg = messaging.WaypointUpdateCommand(tracking_point_index, ego_lane)
-            simulator.request(msg)
-        return update
-
-    def find_closest_waypoint(self, gps_location, lane):
-        current_lane_waypoints = self.get_waypoints_by_lane(lane)
-        cx = current_lane_waypoints[:, 0]
-        cy = current_lane_waypoints[:, 1]
-
-        # Find distances between vehicle location and each pooint
-        dx = [gps_location[0] - icx for icx in cx]
-        dy = [gps_location[1] - icy for icy in cy]
-
-        # Magnitude of distances
-        d = [math.sqrt(idx ** 2 + idy ** 2) for (idx, idy) in zip(dx, dy)]
-
-        # Index of minimum distance
-        ind = d.index(min(d))
-        return ind, current_lane_waypoints[ind]
-
-
-    def get_waypoints_by_lane(self, lane):
-        return self.points_by_lane[lane]
-
-    def get_waypoints_for_current_lane(self):
-        return self.get_waypoints_by_lane(lane_number)
-
-    def get_waypoint_in_lane(self, lane, index):
-        lane_waypoints = self.get_waypoints_by_lane(lane)
-        return lane_waypoints[index]
-
-    def get_waypoint_in_current_lane(self, index):
-        self.get_waypoint_in_lane(self.lane_number, index)
-
-    def get_estimated_current_lane(self, gps_location):
-        dif_by_lane = []
-        for lane in range(0, len(self.points_by_lane)):
-            ind, wp = self.find_closest_waypoint(gps_location, lane)
-            dif = wp - gps_location[:2:]
-            mag = math.sqrt(dif[0] ** 2 + dif[1] ** 2)
-            dif_by_lane.append(mag)
-
-        return dif_by_lane.index(min(dif_by_lane))
+            self.zero_control()

@@ -1,8 +1,8 @@
 {
     "id": "basic_configuration",
     "clock_mode": 2,
-    "lane_number": 0,
-    "position": 42000,
+    "lane_number": 2,
+    "position": 5000,
     "bounding_data_on_radar_graph": true,
     "bounding_data_on_camera": true,
     "spawning_rotation": {
@@ -76,7 +76,7 @@
       "max_distance": 8000.0,
       "vertical_fov_angle": 30.0,
       "horizontal_resolution": 0.4,
-      "fps": 2,
+      "fps": 1,
       "n_lasers": 32,
       "reset_angle": 0.0
     },
@@ -324,9 +324,9 @@
       "id": "4",
       "packet_size": 1472,
       "listen_port": 8090,
-      "display_process": false,
-      "sensor_process": false,
-      "synchronized_display": false,
+      "display_process": true,
+      "sensor_process": true,
+      "synchronized_display": true,
       "location": {
         "x": 0.0,
         "y": 0.0,

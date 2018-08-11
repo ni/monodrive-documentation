@@ -1,3 +1,3 @@
 from .configuration import Configuration, SimulatorConfiguration, VehicleConfiguration
-from .sensors import BaseSensorPacketized, BaseSensor, PacketizerThread
+from .sensors import BaseSensor#, PacketizerThread
 from .simulator import Simulator

@@ -14,7 +14,7 @@ import struct
 import numpy as np
 import multiprocessing
 
-from . import BaseSensorPacketized, radar_method
+from . import BaseSensor, radar_method
 #from monodrive.gui.widgets import MatplotlibSensorUI
 
 try:
@@ -25,7 +25,7 @@ except ImportError:
     eng = None
 
 
-class Radar(BaseSensorPacketized):
+class Radar(BaseSensor):
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(Radar, self).__init__(idx=idx, config=config, simulator_config=simulator_config, **kwargs)
         self.framing = None

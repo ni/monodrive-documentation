@@ -167,7 +167,7 @@ class BaseSensor(multiprocessing.Process):
 
             if packet_header is not None and received == header_size:
                 length, time_stamp, game_time = struct.unpack('=IIf', packet_header)
-                # print("{0} packet received l:{1} t:{2} g:{3}".format(self.name, length, time_stamp, game_time))
+                #print("{0} packet received l:{1} t:{2} g:{3}".format(self.name, length, time_stamp, game_time))
                 length = length - header_size
 
                 received, packet = self.read(length)
@@ -240,17 +240,18 @@ class BaseSensor(multiprocessing.Process):
                 self.receiving_data = False
                 # print("waiting for data...", self.name)
             #TODO make this configurable
-            time.sleep(.5)
             
 
     # Hook method for digest each packet, when not packetized forward on to digest_frame
-    # since each packet is an entire frame. BaseSensorPacketized overrides this data_ready_event
+    # since each packet is an entire frame. Sensors that send multiple packet for a single data frame
+    # need to override this data_ready_event
     def digest_packet(self, packet, time_stamp, game_time):
         self.digest_frame(packet, time_stamp, game_time)
 
     # Override to manipulate data, see Waypoint and BoundingBox for example
     # Radar and Camera don't need to manipulate the data
     def digest_frame(self, frame, time_stamp, game_time):
+        print("digest_frame for {:>16} ts={:>10} gt={:>10}".format(self.name, time_stamp, game_time))
         if "SHUTDOWN" in frame:
             self.q_data.put("SHUTDOWN")
             self.q_display.put("SHUTDOWN")

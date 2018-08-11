@@ -45,16 +45,16 @@ class SimpleVehicle(BaseVehicle):
     def mapping(self):
 
         for sensor in self.sensors:
-            
+            #we grab all sensors here to garantee we keep the queues clean with fresh data
+
+            msg = sensor.get_message(timeout = 2)
             if sensor.__class__ == GPS:
-                msg = sensor.get_message(timeout = 5)
                 self.gps_msg = GPS_Message(msg)
                 self.gps_location = [self.gps_msg.lat, self.gps_msg.lng]
                 self.world_location = self.gps_msg.world_location
                 self.velocity = self.gps_msg.speed
                 self.gps_sensor = sensor 
-            elif sensor.__class__ == Waypoint:
-                msg = sensor.get_message(timeout = 5)
+            elif sensor.__class__ == Waypoint:   
                 self.waypoint_msg = Waypoint_Message(msg) 
                 self.waypoint_sensor = sensor
             #print("{0} message length {1}".format(sensor.name, len(str(msg))))

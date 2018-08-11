@@ -37,7 +37,7 @@ class BaseVehicle(object):
         self.simulator = simulator
         self.sensor_process_dict = {}
         self.initialized = self.init_sensors()
-        self.vehicle_update_rate = .5 # ticks per second
+        self.vehicle_update_rate = .1 # ticks per second
         self.vehicle_running = True
 
     def init_vehicle_loop(self):

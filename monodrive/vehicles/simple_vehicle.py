@@ -36,14 +36,74 @@ class SimpleVehicle(BaseVehicle):
             }
     def drive(self, sensors):
         self.sensors = sensors
-        if not self.mapping():
+        if not self.mapping_with_multimessges():
             return self.zero_control()
         move_velocity = self.planning(self.gps_sensor.speed)
         control = self.control(move_velocity)
         return control
 
-    def mapping(self):
+    def mapping_with_multimessges(self):
+        self.gps_msg = None
+        self.waypoint_msg = None
+        for sensor in self.sensors:
+            n = sensor.get_frame_count()
+            if n > 0:
+                messages = sensor.get_messages()
+                msg = messages.pop()  #throws away older messages
+                if sensor.__class__ == GPS:
+                    self.gps_msg = GPS_Message(msg)
+                    self.gps_location = [self.gps_msg.lat, self.gps_msg.lng]
+                    self.world_location = self.gps_msg.world_location
+                    self.velocity = self.gps_msg.speed
+                    self.gps_sensor = sensor
+                    #print("vehicle{:>26} ts={:>10} gt={:>10} messages={:>3}".format(sensor.name, self.gps_msg.time_stamp, 
+                    #                                                                                self.gps_msg.game_time,n)) 
+                elif sensor.__class__ == Waypoint:   
+                    self.waypoint_msg = Waypoint_Message(msg) 
+                    self.waypoint_sensor = sensor
+                    #print("vehicle{:>26} ts={:>10} gt={:>10} messages={:>3}".format(sensor.name, self.waypoint_msg.time_stamp, 
+                    #                                                                                self.waypoint_msg.game_time, n)) 
+                sensor.message_event.clear()
 
+        if self.waypoint_msg and self.gps_msg:
+            return True
+        else:
+            print("missing required sensor frames")     
+            return False 
+
+            
+
+    def mapping_with_pipe(self):
+        #print("mapping_with_pipe")
+        for sensor in self.sensors:
+            try:
+                sensor.message_event.wait(timeout = .1)
+            except Exception as e:
+                print("{0} message event error: {1}".format(sensor.name, e))
+
+        for sensor in self.sensors:
+            msg = sensor.rx_pipe.recv()
+            #print("{0} msg length = {1}".format(sensor.name, len(str(msg))))
+            if sensor.__class__ == GPS:
+                self.gps_msg = GPS_Message(msg)
+                self.gps_location = [self.gps_msg.lat, self.gps_msg.lng]
+                self.world_location = self.gps_msg.world_location
+                self.velocity = self.gps_msg.speed
+                self.gps_sensor = sensor
+                print("vehicle{:>26} ts={:>10} gt={:>10} msg_len{:>8}".format(sensor.name, self.gps_msg.time_stamp, self.gps_msg.game_time, len(str(msg)))) 
+            elif sensor.__class__ == Waypoint:   
+                self.waypoint_msg = Waypoint_Message(msg) 
+                self.waypoint_sensor = sensor
+                print("vehicle{:>26} ts={:>10} gt={:>10} msg_len{:>8}".format(sensor.name, self.gps_msg.time_stamp, self.gps_msg.game_time,len(str(msg)))) 
+            sensor.message_event.clear()
+
+        if self.waypoint_msg and self.gps_msg:
+            return True
+        else:
+            print("missing required sensor frames")     
+            return False 
+                
+    def mapping(self):
         for sensor in self.sensors:
             #we grab all sensors here to garantee we keep the queues clean with fresh data
 

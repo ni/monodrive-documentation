@@ -21,33 +21,35 @@ class BaseVehicle(object):
         self.name = vehicle_config.id
         self.sensors = []
         self.restart_event = restart_event
-        self.last_time = 0.0
-        self.update_sent = False
-        self.scenario = None
-        self.vehicle_state = None
         self.previous_control_sent_time = None
         self.control_thread = None
         self.b_control_thread_running = True
         self.road_map = road_map
-        self.q_road_map = SingleQueue()
-        self.q_road_map.put(self.road_map)
+        #self.q_road_map = SingleQueue()
+        #self.q_road_map.put(self.road_map)
+        self.ready_event = multiprocessing.Event()
+        self.ready_event.clear()
 
         #FROM old sensor manager
         self.vehicle_config = vehicle_config
         self.simulator = simulator
         self.sensor_process_dict = {}
         self.initialized = self.init_sensors()
-        self.vehicle_update_rate = .1 # ticks per second
+        self.vehicle_update_rate = 1 # ticks per second
         self.vehicle_running = True
 
     def init_vehicle_loop(self):
         self.vehicle_thread = threading.Thread(target=self.vehicle_loop)
+        self.vehicle_thread.daemon = True
         self.vehicle_thread.start()
     
     def vehicle_loop(self):
         #step the vehicle to start the measurements
         self.step({'forward':0.0,'right':0.0})
+        
         sensors = self.get_sensors()
+        time.sleep(1)
+        self.ready_event.set()
         while self.vehicle_running:
             time.sleep(self.vehicle_update_rate)
             control = self.drive(sensors)
@@ -75,7 +77,7 @@ class BaseVehicle(object):
         raise NotImplementedError("To be implemented in base class")
 
     def get_road_map(self):
-        msg = self.q_road_map.peek()
+        msg = self.road_map
         return msg
 
     def get_sensor(self, sensor_type, id):
@@ -98,6 +100,7 @@ class BaseVehicle(object):
     def init_sensor(self, sensor_config):
         sensor_type = sensor_config['type']
         _Sensor_Class = self.vehicle_config.get_class(sensor_type)
+
         sensor_instance = _Sensor_Class(sensor_type, sensor_config, self.simulator_config)
         return sensor_instance
 

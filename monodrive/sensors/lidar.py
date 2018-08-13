@@ -24,10 +24,6 @@ class Lidar(BaseSensor):
         self.frame_buffer = []
         self.expected_frames_per_step = number_packets
 
-    @classmethod
-    def init_data_queue(cls):
-        return Queue()
-
     def digest_frame(self, frame, time_stamp, game_time):
         self.frame_buffer.append(frame)
         if len(self.frame_buffer) == self.expected_frames_per_step:

@@ -138,7 +138,7 @@ class GPS_Message(object):
 class Camera_Message(object):
       
     def __init__(self, msg):
-        self.np_image = np.array(pickle.loads(msg))
+        self.np_image = np.array(msg)
     
     def test_message(self):
         self.np_image = None

@@ -34,8 +34,8 @@ BITS_PER_BYTE = 8.0
 BYTE_PER_MBYTE = 1000000.0
 
 
-class BaseSensor(multiprocessing.Process):
-#class BaseSensor(threading.Thread):
+#class BaseSensor(multiprocessing.Process):
+class BaseSensor(threading.Thread):
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(BaseSensor, self).__init__(**kwargs)
         self.idx = idx
@@ -44,6 +44,7 @@ class BaseSensor(multiprocessing.Process):
         #self.q_display = SingleQueue()
         self.q_data = multiprocessing.Queue()
         self.q_display = multiprocessing.Queue()
+        self.rx_pipe, self.tx_pipe = multiprocessing.Pipe(duplex=False)
         self.socket_ready_event = multiprocessing.Event()
         self.message_event = multiprocessing.Event()
         self.sensor_initialized_event = multiprocessing.Event()
@@ -90,9 +91,27 @@ class BaseSensor(multiprocessing.Process):
     def get_frame_size(self):
         return self.packet_size
 
+    def get_frame_count(self):
+        return self.q_data.qsize()
+
+    def get_messages(self, block=False):
+        messages = []
+        try:
+            while self.q_data.qsize():
+                msg = self.q_data.get(block=False)
+                messages.append(msg)
+                # If `False`, the program is not blocked. `Queue.Empty` is thrown if 
+                # the queue is empty
+        except PythonQueue.Empty:
+            print("{0} Q_EMPTY".format(self.name))
+            msg = "EMPTY"
+            messages.append(msg)        
+        return messages
+
+
     def get_message(self, timeout=1, block=True):
         try:
-            data = self.q_data.get(block, timeout=timeout)
+            data = self.q_data.get(block=False, timeout=timeout)
         except PythonQueue.Empty as e:
             logging.getLogger("sensor").warning("{0}:get_message->{1}".format(self.name, e))
             
@@ -100,15 +119,21 @@ class BaseSensor(multiprocessing.Process):
             #return "SHUTDOWN"
         return data
 
-    def get_display_message(self, timeout=1, block=True):
+    def get_display_messages(self, timeout=1, block=True):
+        messages = []
+        if self.q_display.qsize() == 0:
+            messages.append("NO_DATA")
         try:
-            data = self.q_display.get(block)
-        except PythonQueue.Empty as e:
-            logging.getLogger("sensor").warning("{0}:get_display_message->{1}".format(self.name, e))
-        
-        #if "SHUTDOWN" in data:
-            #return "SHUTDOWN"
-        return data
+            while self.q_display.qsize():
+                msg = self.q_display.get(block=False)
+                messages.append(msg)
+                # If `False`, the program is not blocked. `Queue.Empty` is thrown if 
+                # the queue is empty
+        except PythonQueue.Empty:
+            print("{0} Display Q_EMPTY".format(self.name))
+            msg = "NO_DATA"
+            messages.append(msg)        
+        return messages
 
     def stop(self):
         
@@ -139,6 +164,7 @@ class BaseSensor(multiprocessing.Process):
     def read(self, length):
         received = 0
         data = b''
+        #TODO if recv_buffer = 0 break
         while received < length:
             recv_buffer = self.sock.recv(length - received)
             data += recv_buffer
@@ -250,8 +276,8 @@ class BaseSensor(multiprocessing.Process):
 
     # Override to manipulate data, see Waypoint and BoundingBox for example
     # Radar and Camera don't need to manipulate the data
-    def digest_frame(self, frame, time_stamp, game_time):
-        print("digest_frame for {:>16} ts={:>10} gt={:>10}".format(self.name, time_stamp, game_time))
+    def digest_frame_w_queue(self, frame, time_stamp, game_time):
+        #print("digest_frame for {:>16} ts={:>10} gt={:>10}".format(self.name, time_stamp, game_time))
         if "SHUTDOWN" in frame:
             self.q_data.put("SHUTDOWN")
             self.q_display.put("SHUTDOWN")
@@ -265,6 +291,15 @@ class BaseSensor(multiprocessing.Process):
         self.q_data.put(frame)
         self.q_display.put(frame)
         #if not self.display_process or not self.synchronized_display:
+        self.message_event.set()
+
+    def digest_frame_w_pipe(self, frame, time_stamp, game_time):
+        print("digest_frame for {:>16} ts={:>10} gt={:>10}".format(self.name, time_stamp, game_time))
+    
+        self.frame_count += 1
+        if hasattr(self, 'parse_frame'):
+            frame = self.parse_frame(frame, time_stamp, game_time)
+        self.tx_pipe.send(frame)
         self.message_event.set()
 
     def start_logging(self):

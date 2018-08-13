@@ -28,9 +28,6 @@ class Camera(BaseSensor):
         self.second_start_time = time.clock()
         self.frame_start_num = 0
 
-        self.bounding_box = None
-        self.b_draw_bounding_boxes = False
-
         self.video_capture = None
         self.current_image = None
 
@@ -77,16 +74,22 @@ class Camera(BaseSensor):
             logging.getLogger("sensor").error("wrong image size received {0}".format(self.name))
         return pickle.dumps(image, protocol=-1)
 
-    def get_display_message(self, timeout=None):
-        image_frame = super(Camera, self).get_message()
-        
-        image_buffer = image_frame['image']
-        if len(image_buffer) == self.height * self.width * 4:
-            image = np.array(bytearray(image_buffer), dtype=np.uint8).reshape(self.height, self.width, 4)
+    def get_display_messages(self, timeout=None):
+        image_frame_list = []
+        image_frames = super(Camera, self).get_messages()
+        if "NO_DATA" in str(image_frames):
+            image_frame_list.append("NO_DATA")
         else:
-            image = None
-            logging.getLogger("sensor").error("wrong image size received {0}".format(self.name))
-        return pickle.dumps(image, protocol=-1)
+            for image_frame in image_frames:
+                #print bytearray(image_frame['image'])
+                image_buffer = bytearray(image_frame['image'])
+                if len(image_buffer) == self.height * self.width * 4:
+                    image = np.array(image_buffer, dtype=np.uint8).reshape(self.height, self.width, 4)
+                else:
+                    image = None
+                    logging.getLogger("sensor").error("wrong image size received {0}".format(self.name))
+                image_frame_list.append(image)
+        return [image]
 
     def stop(self):
         if not self.hdmi_streaming:

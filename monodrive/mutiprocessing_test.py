@@ -24,8 +24,8 @@ import random
 import numpy as np 
 import cv2
 
-NUMBER_OF_MESSAGES = 10
-FPS = float(2)
+NUMBER_OF_MESSAGES = 1000
+FPS = float(200)
 NUMBER_OF_SENSORS = 4
 
 class Display(multiprocessing.Process):
@@ -37,6 +37,7 @@ class Display(multiprocessing.Process):
         self.stop_event = multiprocessing.Event()
         self.running = True
         self.packet_count = 0
+        self.frame_error = 0
         self.frame_error_count = 0
         self.ready_event = ready_event
         #self.start()
@@ -57,7 +58,7 @@ class Display(multiprocessing.Process):
                 if data is not None:
                     self.packet_count += 1
 
-            if self.packet_count >= (NUMBER_OF_SENSORS*NUMBER_OF_MESSAGES - self.frame_error_count):
+            if self.packet_count == (NUMBER_OF_SENSORS*NUMBER_OF_MESSAGES):
                 pps = NUMBER_OF_MESSAGES/(time.time()- start_time)
                 print("display rx received {0} pps: {1}".format(self.packet_count, pps))
                 self.signal_done_event.set()
@@ -65,13 +66,13 @@ class Display(multiprocessing.Process):
 
     def get_display_messsage(self, q):
         try:
-            data = q.get(block=True, timeout=1)
+            data = q.get(block=True, timeout=4/FPS)
             self.frame_error = 0
         except queue.Empty as e:
             self.frame_error_count += 1
             self.frame_error += 1
             print("Empty display q after timeout {0}".format(e))
-            if self.frame_error > 10:
+            if self.frame_error > NUMBER_OF_SENSORS * 4:
                 print("signaling done - too many errors")
                 self.signal_done_event.set()
             time.sleep(1/FPS/NUMBER_OF_SENSORS)
@@ -90,7 +91,7 @@ class Display(multiprocessing.Process):
                 pps = NUMBER_OF_MESSAGES/(time.time()- START_TIME)
                 print("display rx received {0} pps: {1}".format(self.packet_count, pps))
             time.sleep(1/FPS/4)
-                    
+
     def stop(self):
         self.stop_event.set()
         #self.terminate()
@@ -218,10 +219,10 @@ class Sensor(multiprocessing.Process):
             return
         threading.Thread(target=self.monitor_process_state).start()
 
-        
+
 
         self.total_delay = 0
-        ready_event.wait()
+        self.ready_event.wait()
         print("Sensor running on ", self.port_number)
         self.start_time = time.time()
         while not self.stop_event.is_set():
@@ -283,7 +284,7 @@ class Image_Message_Server(multiprocessing.Process):
 
         ## dont create socket in constructor - this will create multiple sockets in multiprocessing mode
         self.sock = None
-        
+
 
         #self.start()
 
@@ -300,8 +301,8 @@ class Image_Message_Server(multiprocessing.Process):
 
         image = cv2.imread(filepath)
         image = image.flatten()
-        image = np.append(image,image)
-        image = np.append(image,image)
+        #image = np.append(image, image)
+        #1image = np.append(image, image)
         #image = np.append(image1,image)
         #image = np.append(image,image)
         #image = np.append(image,image)
@@ -310,7 +311,7 @@ class Image_Message_Server(multiprocessing.Process):
         conn.settimeout(10)
         print('Connected on %s by %s' % (self.port_number, addr))
         self.start_time = time.time()
-        ready_event.set()
+        self.ready_event.set()
         for n in range(NUMBER_OF_MESSAGES):
             #game_time += 1 
             packet_header = struct.pack('=IIf', length, int(time.time()), float(n))

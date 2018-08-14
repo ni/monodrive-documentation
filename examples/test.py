@@ -36,14 +36,15 @@ if __name__ == "__main__":
     else:
         ego_vehicle = simulator.get_ego_vehicle(vehicle_configuration, SimpleVehicle)
 
-    gui = GUI(ego_vehicle)
-    prctl.set_proctitle("monoDrive")
+    
+    #prctl.set_proctitle("monoDrive")
     
     while episodes > 0:
         simulator.restart_event.clear()
         simulator.send_vehicle_configuration(vehicle_configuration)
         logging.getLogger("simulator").info('Starting vehicle')
         ego_vehicle.start()
+        gui = GUI(ego_vehicle)
 
         #time.sleep(30)
         #simulator.restart_event.set()

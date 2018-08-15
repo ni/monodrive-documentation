@@ -9,14 +9,11 @@ import struct
 import math
 from multiprocessing import Value
 
-from matplotlib import pyplot as plt
-
-from . import BaseSensorPacketized
-from .gui import MatplotlibSensorUI
+from . import BaseSensor
 from monodrive.networking import messaging
 
 
-class Waypoint(MatplotlibSensorUI, BaseSensorPacketized):
+class Waypoint(BaseSensor):
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(Waypoint, self).__init__(idx=idx, config=config, simulator_config=simulator_config, **kwargs)
         self.total_points = self.config['total_points']
@@ -57,25 +54,26 @@ class Waypoint(MatplotlibSensorUI, BaseSensorPacketized):
         }
         return data_dict
 
-    def initialize_views(self):
+    def get_message(self, timeout = None):
+        data = super(Waypoint, self).get_message(timeout = timeout)
+        if self.update_command_sent is True:
+            n1 = self.get_waypoints_for_current_lane()[0]
+            try:
+                p1 = self.previous_points[0]
+            except:
+                print("Waypoint Sensor is not working")
+                p1 = None
+            if not np.array_equal(n1, p1):
+                self.update_command_sent.value = False
+
+        return data
+
+    '''def process_display_data(self):
+
+        msg = self.q_data.get()
+
         self.view_lock.acquire()
-        super(Waypoint, self).initialize_views()
-        self.map_subplot = self.main_plot.add_subplot(111)
-        self.map_plot_handle, = self.map_subplot.plot(0, 0, marker='o', linestyle='None')
-        self.map_subplot.set_title("Ground Truth Waypoint Map")
-        self.view_lock.release()
-
-    def display(self, x, y):
-        self.map_plot_handle.set_xdata(x)
-        self.map_plot_handle.set_ydata(y)
-        margin = 10
-        plt.axis((min(x) - margin, max(x) + margin, min(y) - margin, max(y) + margin))
-
-    def process_display_data(self):
-        from_queue = self.q_display.get()
-
-        self.view_lock.acquire()
-        points_by_lane = from_queue['points_by_lane']
+        points_by_lane = msg['points_by_lane']
         x_combined = []
         y_combined = []
         for points in points_by_lane:
@@ -85,13 +83,12 @@ class Waypoint(MatplotlibSensorUI, BaseSensorPacketized):
         self.xy_combined = np.column_stack((x_combined, y_combined))
 
         self.view_lock.release()
-        self.update_sensors_got_data_count()
+        self.update_sensors_got_data_count()'''
 
-    def update_views(self, frame):
-        self.view_lock.acquire()
-        self.display(self.xy_combined[:, 0], self.xy_combined[:, 1])
-        self.view_lock.release()
-        return self.map_subplot
+
+    '''def update_tracking_index(self, tracking_point_index, ego_lane):
+        msg = messaging.WaypointUpdateCommand(tracking_point_index, ego_lane)
+        self.simulator.request(msg)
 
     def update_tracking_index(self, tracking_point_index, ego_lane, simulator):
         update = 0
@@ -117,23 +114,14 @@ class Waypoint(MatplotlibSensorUI, BaseSensorPacketized):
 
         # Index of minimum distance
         ind = d.index(min(d))
-        return ind, current_lane_waypoints[ind]
+        return ind, current_lane_waypoints[ind]'''
 
     # GETTERS
 
-    def get_message(self):
-        data = super(Waypoint, self).get_message()
-        if self.update_command_sent is True:
-            n1 = self.get_waypoints_for_current_lane()[0]
-            try:
-                p1 = self.previous_points[0]
-            except:
-                print("Waypoint Sensor is not working")
-                p1 = None
-            if not np.array_equal(n1, p1):
-                self.update_command_sent.value = False
 
-        return data
+
+    '''def get_lane(self):
+        return self.lane_number
 
     def get_waypoints_by_lane(self, lane):
         return self.points_by_lane[lane]
@@ -156,5 +144,5 @@ class Waypoint(MatplotlibSensorUI, BaseSensorPacketized):
             mag = math.sqrt(dif[0] ** 2 + dif[1] ** 2)
             dif_by_lane.append(mag)
 
-        return dif_by_lane.index(min(dif_by_lane))
+        return dif_by_lane.index(min(dif_by_lane))'''
 

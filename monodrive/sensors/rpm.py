@@ -5,16 +5,11 @@ __license__ = "MIT"
 __version__ = "1.0"
 
 import struct
-try:
-    from tkinter import *
-except ImportError:
-    from Tkinter import *
 
 from . import BaseSensor
-from .gui import TkinterSensorUI
 
 
-class RPM(TkinterSensorUI, BaseSensor):
+class RPM(BaseSensor):
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(RPM, self).__init__(idx=idx, config=config, simulator_config=simulator_config, **kwargs)
         self.wheel_number = None
@@ -31,28 +26,7 @@ class RPM(TkinterSensorUI, BaseSensor):
         }
         return data_dict
 
-    def initialize_views(self):
-        self.view_lock.acquire()
-
-        super(RPM, self).initialize_views()
-
-        self.string_wheel_number = StringVar()
-        self.wheel_number_text_display = Label(self.master_tk, textvariable=self.string_wheel_number)
-        self.wheel_number_text_display.pack()
-
-        self.string_wheel_rpm = StringVar()
-        self.wheel_rpm_text_display = Label(self.master_tk, textvariable=self.string_wheel_rpm)
-        self.wheel_rpm_text_display.pack()
-
-        self.string_timestamp = StringVar()
-        self.timestamp_text_display = Label(self.master_tk, textvariable=self.string_timestamp)
-        self.timestamp_text_display.pack()
-
-        self.view_lock.release()
-
-    def process_display_data(self):
+    '''def process_display_data(self):
+        return
         data = self.q_display.get()
-        self.string_wheel_number.set('Wheel Number: {0}'.format(data['wheel_number']))
-        self.string_wheel_rpm.set('RPM: {0}'.format(data['wheel_rpm']))
-        self.string_timestamp.set('Time Stamp: {0}'.format(data['time_stamp']))
-        self.update_sensors_got_data_count()
+        self.update_sensors_got_data_count()'''

@@ -9,15 +9,20 @@ import numpy as np
 import struct
 import matplotlib.patches as patches
 
-from . import BaseSensorPacketized
-from .gui import MatplotlibSensorUI
-
+from . import BaseSensor
 matplotlib.use('TkAgg')
 
 SHOW_MAP = True
 
+def create_point(distance, degrees):
+    theta = np.radians(degrees)
+    c, s = np.cos(theta), np.sin(theta)
+    x = -distance * s
+    y = distance * c
+    return np.array([x, y])
 
-class BoundingBox(MatplotlibSensorUI, BaseSensorPacketized):
+
+class BoundingBox(BaseSensor):
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(BoundingBox, self).__init__(idx=idx, config=config, simulator_config=simulator_config, **kwargs)
         #self.plot = None
@@ -114,7 +119,7 @@ class BoundingBox(MatplotlibSensorUI, BaseSensorPacketized):
         }
         return data_dict
 
-    def initialize_views(self):
+    '''def initialize_views(self):
         self.view_lock.acquire()
         super(BoundingBox, self).initialize_views()
         self.main_plot.set_size_inches(3.0,2.0)
@@ -153,6 +158,12 @@ class BoundingBox(MatplotlibSensorUI, BaseSensorPacketized):
 
     def process_display_data(self):
         data = self.q_display.get()
+        if "SHUTDOWN" in data:
+            self.q_data.put("SHUTDOWN")
+            self.q_display.put("SHUTDOWN")
+        return
+
+        
         self.view_lock.acquire()
         self.x_points = data['x_points']
         self.y_points = data['y_points']
@@ -160,12 +171,6 @@ class BoundingBox(MatplotlibSensorUI, BaseSensorPacketized):
         self.y_bounds = data['y_bounds']
         self.box_rotations = data['box_rotations']
         self.view_lock.release()
-        self.update_sensors_got_data_count()
+        self.update_sensors_got_data_count()'''
 
 
-def create_point(distance, degrees):
-    theta = np.radians(degrees)
-    c, s = np.cos(theta), np.sin(theta)
-    x = -distance * s
-    y = distance * c
-    return np.array([x, y])

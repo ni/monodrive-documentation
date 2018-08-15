@@ -149,6 +149,8 @@ class Client(object):
                 task = self.queue.get()
                 task()
                 self.queue.task_done()
+            #TODO without this processor pegs at 100%
+            time.sleep(1)
 
     def request(self, message, timeout=5):
         """ Return a response from Unreal """

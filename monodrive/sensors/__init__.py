@@ -224,7 +224,7 @@ class BaseSensor(multiprocessing.Process):
         self.type = self.config['type']
         self.sensor_id = self.config['id']
         self.display_process = self.config['display_process']
-        self.synchronized_display = self.config['synchronized_display']
+        self.synchronized_display = self.config.get('synchronized_display', False)
         self.fps = self.config['fps']
         self.drop_frames = True
         self.running = True

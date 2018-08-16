@@ -13,7 +13,10 @@ from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_wxagg import NavigationToolbar2WxAgg as NavigationToolbar
 
-import cPickle as pickle
+try:
+    import cPickle as pickle
+except:
+    import _pickle as pickle
 #import matplotlib
 #from matplotlib import pyplot as plt
 
@@ -29,7 +32,9 @@ import cv2
 
 import multiprocessing
 from threading import Thread
-import prctl
+try:
+    import prctl
+except: pass
 
 import time
 

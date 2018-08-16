@@ -7,9 +7,12 @@ __version__ = "1.0"
 import logging
 import numpy as np
 import time
-import cPickle as pickle
+try:
+    import cPickle as pickle
+except:
+    import _pickle as pickle
 
-from base_sensor import BaseSensor
+from .base_sensor import BaseSensor
 
 
 class Camera(BaseSensor):
@@ -63,7 +66,7 @@ class Camera(BaseSensor):
         return image
 
     def get_message(self, timeout = None):
-        
+
         image_frame = super(Camera, self).get_message()
 
         image_buffer = image_frame['image']

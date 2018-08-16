@@ -28,6 +28,7 @@ class SimpleVehicle(BaseVehicle):
         self.waypoint_msg = None
         self.gps_location = None
         self.velocity = None
+        self.last_time = 0
 
     def zero_control(self):
         return {
@@ -63,7 +64,7 @@ class SimpleVehicle(BaseVehicle):
                     self.waypoint_sensor = sensor
                     #print("vehicle{:>26} ts={:>10} gt={:>10} messages={:>3}".format(sensor.name, self.waypoint_msg.time_stamp, 
                     #                                                                                self.waypoint_msg.game_time, n)) 
-                sensor.message_event.clear()
+                #sensor.message_event.clear()
 
         if self.waypoint_msg and self.gps_msg:
             return True

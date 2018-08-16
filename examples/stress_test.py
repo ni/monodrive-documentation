@@ -68,7 +68,7 @@ if __name__ == "__main__":
 
     print(json.dumps(vehicle_config.configuration))
     simulator = Simulator(sim_config)
-    simulator.send_simulator_configuration()
+    simulator.send_configuration()
     simulator.send_vehicle_configuration(vehicle_config)
 
     sensors = []

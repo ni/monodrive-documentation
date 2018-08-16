@@ -250,6 +250,7 @@ class Sensor(object):
             print("{0} STARTED at {1}".format(self.name,self.start_time))
 
             while not self.stop_event.is_set():
+                time.sleep(.1)
                 time_stamp = None
                 game_time = None
                 packet = None
@@ -304,7 +305,7 @@ class Image_Message_Server(object):
         payload = image.flatten()
         if PAYLOAD_MULTIPLIER > 1:
             frame = image.flatten()
-            for i in range(PAYLOAD_MULTIPLIER - 1):
+            for _ in range(PAYLOAD_MULTIPLIER - 1):
                 payload = np.append(payload, frame)
         print("payload size: %sMB's" % (len(payload) / (1024.0*1024.0)))
         return payload

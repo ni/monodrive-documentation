@@ -358,14 +358,15 @@ class MonoDriveGUIApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
 
 class SensorPoll(Thread):
     """Thread to pull data from sensor q's and publish to views"""
-    def __init__(self, vehicle):
+    def __init__(self, vehicle, fps, map):
         super(SensorPoll,self).__init__()
         self.vehicle = vehicle
         #TODO need to fix the map getting here
         #self.road_map = vehicle.get_road_map()
-        self.road_map = None
+        self.road_map = map
         self.sensors = vehicle.get_sensors()
         self.running = True
+        self.fps = fps
         self.start()
 
     def update_gui(self, sensor):
@@ -386,40 +387,44 @@ class SensorPoll(Thread):
     def run(self):
         while self.running:
             #self.road_map = self.vehicle.get_road_map()
-            print("GUI THREAD RUNNING")
+            #print("GUI THREAD RUNNING")
             for sensor in self.sensors:
                 self.running = self.update_gui(sensor)
             if self.running == False:
                 print("GUI THREAD STOPPED")
-            if self.road_map:
-                wx.CallAfter(pub.sendMessage, "update_roadmap", msg=self.road_map)
-            time.sleep(1)
+            #if self.road_map:
+                #wx.CallAfter(pub.sendMessage, "update_roadmap", msg=self.road_map)
+            time.sleep(1/self.fps)
         self.running = False     
         print("GUI THREAD NOT RUNNING") 
 
 class GUI(multiprocessing.Process):
-    def __init__(self, vehicle, settings=None, **kwargs):
+    def __init__(self, simulator, **kwargs):
         super(GUI, self).__init__(**kwargs)
         self.daemon = True
         self.name = "GUI"
-        self.vehicle = vehicle
+        self.simulator = simulator
+        self.vehicle = simulator.ego_vehicle
         self.running = True
         self.app = None
         self.fps = None
-        self.init_settings(settings)
+        self.settings = simulator.configuration.gui_settings
+        self.init_settings(self.settings)
+        self.map = simulator.map_data
         self.start()
     
     def init_settings(self, settings):
+        default_update_rate = 1.0
         if settings:
             self.settings = settings
             self.fps = self.settings['fps']
         else:
-            self.fps = 1.0
+            self.fps = default_update_rate
 
     def run(self):
         #prctl.set_proctitle("mono{0}".format(self.name))
         #start sensor polling
-        self.sensor_polling = SensorPoll(self.vehicle)
+        self.sensor_polling = SensorPoll(self.vehicle, self.fps, self.map)
         while True:
             self.app = MonoDriveGUIApp()
             self.app.MainLoop()
@@ -429,9 +434,6 @@ class GUI(multiprocessing.Process):
         #self.sensor_polling.join()
         self.join()
 
-
-     
-            
 
 if __name__ == '__main__':
     #vehicle = "vehicle"

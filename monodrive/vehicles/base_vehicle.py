@@ -7,6 +7,11 @@ try:
 except:
     import _pickle as pickle
 
+try:
+    import queue as PythonQueue
+except ImportError:
+    import Queue as PythonQueue
+
 import sys, traceback
 
 from monodrive.networking import messaging
@@ -17,21 +22,16 @@ import multiprocessing
 
 
 class BaseVehicle(object):
-    def __init__(self, simulator, vehicle_config, restart_event=None, road_map = None, **kwargs):
+    def __init__(self, simulator, vehicle_config, restart_event=None, **kwargs):
         super(BaseVehicle, self).__init__()
         self.simulator = simulator
-        self.simulator_config = simulator.simulator_configuration
+        self.simulator_config = simulator.configuration
         self.name = vehicle_config.id
         self.sensors = []
         self.restart_event = restart_event
         self.previous_control_sent_time = None
         self.control_thread = None
         self.b_control_thread_running = True
-        self.road_map = road_map
-        # self.q_road_map = SingleQueue()
-        # self.q_road_map.put(self.road_map)
-        # self.ready_event = multiprocessing.Event()
-        # self.ready_event.clear()
 
         #FROM old sensor manager
         self.vehicle_config = vehicle_config
@@ -63,6 +63,7 @@ class BaseVehicle(object):
         while not self.vehicle_stop.wait(self.vehicle_update_rate):
             control = self.drive(sensors)
             self.step(control)
+            time.sleep(.1)
 
     def step(self, control_data):
         self.control_thread = threading.Thread(target=self.do_control_thread(control_data))
@@ -83,10 +84,6 @@ class BaseVehicle(object):
 
     def drive(self, sensors):
         raise NotImplementedError("To be implemented in base class")
-
-    def get_road_map(self):
-        msg = self.road_map
-        return msg
 
     def get_sensor(self, sensor_type, id):
         for sensor in self.sensors:

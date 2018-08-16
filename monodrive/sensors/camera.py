@@ -51,7 +51,7 @@ class Camera(BaseSensor):
         return data_dict
 
     def get_q_image(self):
-        image_frame = self.q_data.peek()
+        image_frame = self.q_data.get()
         
         if "SHUTDOWN" in image_frame:
             #self.running = False

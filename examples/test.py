@@ -28,32 +28,35 @@ if __name__ == "__main__":
     simulator_config = SimulatorConfiguration('simulator.json')
 
     # Vehicle configuration defines ego vehicle configuration and the individual sensors configurations
-    vehicle_configuration = VehicleConfiguration('test.json')
+    vehicle_config = VehicleConfiguration('test.json')
 
     simulator = Simulator(simulator_config)
-    simulator.send_simulator_configuration()
+    simulator.send_configuration()
 
+    #time.sleep(30)
+    
     episodes = 1  # TODO... this should come from the scenario config
     # Setup Ego Vehicle
     if ManualDriveMode == True:
-        ego_vehicle = simulator.get_ego_vehicle(vehicle_configuration, TeleportVehicle)
+        ego_vehicle = simulator.get_ego_vehicle(vehicle_config, TeleportVehicle)
     else:
-        ego_vehicle = simulator.get_ego_vehicle(vehicle_configuration, SimpleVehicle)
+        ego_vehicle = simulator.get_ego_vehicle(vehicle_config, SimpleVehicle)
 
     #prctl.set_proctitle("monoDrive")
-
+    #
     gui = None
     while episodes > 0:
         simulator.restart_event.clear()
-        simulator.send_vehicle_configuration(vehicle_configuration)
+        simulator.send_vehicle_configuration(vehicle_config)
         logging.getLogger("simulator").info('Starting vehicle')
         ego_vehicle.start()
 
-        gui = GUI(ego_vehicle, settings=simulator_config.gui_settings)
+        #gui = GUI(simulator)
 
-        # time.sleep(30)
+        
         # simulator.restart_event.set()
         # Waits for the restart event to be set in the control process
+        time.sleep(100)
         simulator.restart_event.wait()
 
         # gui_multi_proc.stop()

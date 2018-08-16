@@ -7,19 +7,55 @@ __version__ = "1.0"
 
 import argparse
 import json
+import threading
+import time
 
 from monodrive.configuration import SimulatorConfiguration, VehicleConfiguration
 from monodrive import Simulator
 
 
+parser = argparse.ArgumentParser(description='monoDrive simulator stress test script')
+parser.add_argument('--sim-config', default='simulator.json')
+parser.add_argument('--vehicle-config', default='test.json')
+parser.add_argument('--clock-mode', default=None, help='override clock mode',
+                    choices=['Continuous', 'AutoStep', 'ClientStep'])
+parser.add_argument('--fps', help='override sensor fps', type=int)
+parser.add_argument('--exclude',
+                    help='comma separated list of sensors to exclude (sensors not in list will be included)')
+parser.add_argument('--include',
+                    help='comma separated list of sensors to include (sensors not in list will be excluded)')
+
+
+millis = lambda :int(round(time.time() * 1000))
+
+class SensorTask:
+    def __init__(self, sensor):
+        self.sensor = sensor
+
+    def run(self):
+        self.running = True
+        packets = 0
+        start = millis()
+
+        while self.running:
+            data = self.sensor.get_display_messsage(True, .25)
+            if data:
+                packets += 1
+            else:
+                continue
+
+            if millis() - start >= 5000:
+                seconds = (millis() - start) / 1000.
+                fps = packets / seconds
+                print('{0}: {1} fps'.format(self.sensor.name, fps))
+                packets = 0
+                start = millis()
+
+    def stop(self):
+        self.running = False
+
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='monoDrive simulator stress test script')
-    parser.add_argument('--sim-config', default='simulator.json')
-    parser.add_argument('--vehicle-config', default='test.json')
-    parser.add_argument('--clock-mode', default=None, help='override clock mode', choices=['Continuous','AutoStep','ClientStep'])
-    parser.add_argument('--fps', help='override sensor fps', type=int)
-    parser.add_argument('--exclude', help='comma separated list of sensors to exclude (sensors not in list will be included)')
-    parser.add_argument('--include', help='comma separated list of sensors to include (sensors not in list will be excluded)')
     args = parser.parse_args()
 
     sim_config = SimulatorConfiguration(args.sim_config)
@@ -72,14 +108,20 @@ if __name__ == "__main__":
     simulator.send_vehicle_configuration(vehicle_config)
 
     sensors = []
-    for sensor in vehicle_config.sensor_configuration:
-        sensor_class = vehicle_config.get_class(sensor['type'])
-        sensors.append(sensor_class(sensor['type'], sensor, sim_config))
+    idx = 0
+    for sensor_config in vehicle_config.sensor_configuration:
+        sensor_class = vehicle_config.get_class(sensor_config['type'])
+        sensors.append(sensor_class(idx, sensor_config, sim_config))
+        idx = idx + 1
 
     print("starting sensors")
     for sensor in sensors:
         sensor.start()
         sensor.send_start_stream_command(simulator)
+
+        st = SensorTask(sensor)
+        t = threading.Thread(target=st.run)
+        t.start()
 
     for sensor in sensors:
         sensor.socket_ready_event.wait()

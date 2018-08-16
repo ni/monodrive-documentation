@@ -76,7 +76,7 @@
       "max_distance": 8000.0,
       "vertical_fov_angle": 30.0,
       "horizontal_resolution": 0.4,
-      "fps": 1.0,
+      "fps": 2.0,
       "n_lasers": 32,
       "reset_angle": 0.0
     },
@@ -85,7 +85,7 @@
         "id": "multi_camera",
         "packet_size": 64000,
         "listen_port": 8082,
-        "fps": 1.0,
+        "fps": 2.0,
         "display_process": true,
         "sensor_process": true,
         "synchronized_display": true,
@@ -130,7 +130,7 @@
         },
         "max_distance": 50000.0,
         "horizontal_fov_angle": 50.0,
-        "fps": 1.0,
+        "fps": 2.0,
         "stream_dimensions": {
           "x":512.0,
           "y":512.0
@@ -157,7 +157,7 @@
         },
         "max_distance": 50000.0,
         "horizontal_fov_angle": 50.0,
-        "fps": 1.0,
+        "fps": 2.0,
         "stream_dimensions": {
           "x":512.0,
           "y":512.0
@@ -184,7 +184,7 @@
       },
       "max_distance": 50000.0,
       "horizontal_fov_angle": 50.0,
-      "fps": 1.0,
+      "fps": 2.0,
       "stream_dimensions": {
         "x":512.0,
         "y":512.0
@@ -211,7 +211,7 @@
       },
       "max_distance": 50000.0,
       "horizontal_fov_angle": 50.0,
-      "fps": 1.0,
+      "fps": 2.0,
       "stream_dimensions": {
         "x":512.0,
         "y":512.0
@@ -237,7 +237,7 @@
           "yaw":0.0,
           "roll":0.0
         },
-        "fps": 1.0
+        "fps": 2.0
       },
       {
         "type": "GPS",
@@ -257,7 +257,7 @@
           "yaw": 0.0,
           "roll": 0.0
         },
-        "fps": 1.0
+        "fps": 2.0
       },
     {
       "type": "IMU",
@@ -277,7 +277,7 @@
         "yaw":0.0,
         "roll":0.0
       },
-      "fps": 1.0
+      "fps": 2.0
     },
     {
       "type": "Waypoint",
@@ -297,7 +297,7 @@
         "yaw": 0.0,
         "roll": 0.0
       },
-      "fps": 1.0,
+      "fps": 2.0,
       "point_delta": 100.0,
       "total_points": 100.0
     }

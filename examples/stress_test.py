@@ -38,7 +38,7 @@ class SensorTask:
         start = millis()
 
         while self.running:
-            data = self.sensor.get_display_messsage(True, .25)
+            data = self.sensor.get_display_message()
             if data:
                 packets += 1
             else:
@@ -74,14 +74,14 @@ if __name__ == "__main__":
 
     if args.include:
         sensor_ids = args.include.split(',')
-        sensors = vehicle_config.sensors
+        sensors = vehicle_config.sensor_configuration
 
         list = []
         for sensor in sensors:
             if sensor['type'] in sensor_ids or sensor['type']+':'+sensor['id'] in sensor_ids:
                 list.append(sensor)
 
-        vehicle_config.sensors = list
+        vehicle_config.sensor_configuration = list
         vehicle_config.configuration['sensors'] = list
 
     elif args.exclude:
@@ -110,9 +110,10 @@ if __name__ == "__main__":
     sensors = []
     idx = 0
     for sensor_config in vehicle_config.sensor_configuration:
-        sensor_class = vehicle_config.get_class(sensor_config['type'])
-        sensors.append(sensor_class(idx, sensor_config, sim_config))
-        idx = idx + 1
+        if sensor_config['sensor_process']:
+            sensor_class = vehicle_config.get_class(sensor_config['type'])
+            sensors.append(sensor_class(idx, sensor_config, sim_config))
+            idx = idx + 1
 
     print("starting sensors")
     for sensor in sensors:

@@ -9,7 +9,9 @@ from logging.handlers import RotatingFileHandler
 
 from multiprocessing import Event, Process, Queue
 import threading
-import psutil
+try:
+    import psutil
+except: pass
 #import os, psutil  # for removing processing after episode
 #try:
 

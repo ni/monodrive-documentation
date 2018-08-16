@@ -2,7 +2,10 @@ import logging
 import math
 import time
 import threading
-import cPickle as pickle
+try:
+    import cPickle as pickle
+except:
+    import _pickle as pickle
 
 import sys, traceback
 
@@ -25,36 +28,41 @@ class BaseVehicle(object):
         self.control_thread = None
         self.b_control_thread_running = True
         self.road_map = road_map
-        #self.q_road_map = SingleQueue()
-        #self.q_road_map.put(self.road_map)
-        self.ready_event = multiprocessing.Event()
-        self.ready_event.clear()
+        # self.q_road_map = SingleQueue()
+        # self.q_road_map.put(self.road_map)
+        # self.ready_event = multiprocessing.Event()
+        # self.ready_event.clear()
 
         #FROM old sensor manager
         self.vehicle_config = vehicle_config
         self.simulator = simulator
         self.sensor_process_dict = {}
-        self.initialized = self.init_sensors()
-        self.vehicle_update_rate = 1 # ticks per second
-        self.vehicle_running = True
+        self.init_sensors()
+
+        self.vehicle_update_rate = 1  # ticks per second
+        self.vehicle_stop = multiprocessing.Event()
+        self.vehicle_thread = None
 
     def init_vehicle_loop(self):
         self.vehicle_thread = threading.Thread(target=self.vehicle_loop)
         self.vehicle_thread.daemon = True
         self.vehicle_thread.start()
+
+    def stop_vehicle(self, timeout=2):
+        self.vehicle_stop.set()
+        self.vehicle_thread.join(timeout=timeout)
+        self.vehicle_thread = None
     
     def vehicle_loop(self):
-        #step the vehicle to start the measurements
-        self.step({'forward':0.0,'right':0.0})
+        # step the vehicle to start the measurements
+        self.step({'forward': 0.0, 'right': 0.0})
         
         sensors = self.get_sensors()
         time.sleep(1)
-        self.ready_event.set()
-        while self.vehicle_running:
-            time.sleep(self.vehicle_update_rate)
+        # self.ready_event.set()
+        while not self.vehicle_stop.wait(self.vehicle_update_rate):
             control = self.drive(sensors)
             self.step(control)
-            
 
     def step(self, control_data):
         self.control_thread = threading.Thread(target=self.do_control_thread(control_data))
@@ -104,8 +112,6 @@ class BaseVehicle(object):
         sensor_instance = _Sensor_Class(sensor_type, sensor_config, self.simulator_config)
         return sensor_instance
 
-
-
     def get_process_list(self):
         _processes = []
         for sensor in self.sensor_process_dict.values():
@@ -118,48 +124,36 @@ class BaseVehicle(object):
     def start(self):
         print("start processes")
         [p.start() for p in self.get_process_list()]
-        
-        for s in self.sensors:
-            s.sensor_initialized_event.wait()
-            print("{0} processes started".format(s.name))
 
-        for s in self.sensors:
-            res = s.send_start_stream_command(self.simulator)
-            if not res.is_success:
-                logging.getLogger("sensor").error(
-                    "Failed start stream command for sensor %s %s" % (s.name, res.error_message))
-            else:
-                logging.getLogger("sensor").info("Sensor ready %s" % s.name)
+        logging.getLogger("vehicle").debug("start streaming sensors")
+        [s.send_start_stream_command(self.simulator) for s in self.sensors]
 
-        for s in self.sensors:
-            s.socket_ready_event.wait()
-
+        logging.getLogger("vehicle").debug("waiting for sensors ready")
+        [s.wait_until_ready() for s in self.sensors]
 
         logging.getLogger("vehicle").info("starting vehicle loop")
         # Kicks off simulator for stepping
         self.init_vehicle_loop()
 
     def stop(self, simulator):
-        #stop monitoring sensors
-        
+        logging.getLogger("sensor").info("stopping vehicle")
+        self.stop_vehicle()
 
-        self.b_sensor_monitor_thread_running = False 
+        logging.getLogger("sensor").info("stopping all sensors")
 
-        #stopping simulator from sending data
-        logging.getLogger("sensor").info("sensor manager stopping sensor streaming")
+        # stopping simulator from sending data
+        logging.getLogger("sensor").debug("stopping sensor from streaming data")
         [s.send_stop_stream_command(simulator) for s in self.sensors]
-        
 
-        logging.getLogger("sensor").info("sensor manager stopping sensor listening")
+        logging.getLogger("sensor").info("stopping sensor processes")
         [s.stop() for s in self.sensors]
-        logging.getLogger("sensor").info("sensor process TERMINATING")
-        [s.terminate() for s in self.sensors]
-        logging.getLogger("sensor").info("joining sensor processes STARTED")
-        self.print_all_stacktraces()
-        [s.join() for s in self.sensors]
-        logging.getLogger("sensor").info("joining sensor processes COMPLETE")
 
-        logging.getLogger("sensor").info("sensor termitation complete")
+        # self.print_all_stacktraces()
+        logging.getLogger("sensor").debug("joining sensor processes STARTED")
+        [s.join() for s in self.sensors]
+        logging.getLogger("sensor").debug("joining sensor processes COMPLETE")
+
+        logging.getLogger("sensor").info("sensor termination complete")
 
     def print_all_stacktraces(self):
         print("\n*** STACKTRACE - START ***\n")

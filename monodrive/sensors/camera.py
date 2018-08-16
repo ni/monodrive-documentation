@@ -66,7 +66,7 @@ class Camera(BaseSensor):
         return image
 
     def get_message(self, timeout = None):
-        
+
         image_frame = super(Camera, self).get_message()
 
         image_buffer = image_frame['image']

@@ -8,7 +8,13 @@ __version__ = "1.0"
 import logging
 
 import time
+<<<<<<< HEAD
 import prctl
+=======
+try:
+    import prctl
+except: pass
+>>>>>>> origin/packet-size-testing
 
 from monodrive import SimulatorConfiguration, VehicleConfiguration, Simulator
 from monodrive.ui import GUI
@@ -35,8 +41,9 @@ if __name__ == "__main__":
     else:
         ego_vehicle = simulator.get_ego_vehicle(vehicle_configuration, SimpleVehicle)
 
-    # prctl.set_proctitle("monoDrive")
+    #prctl.set_proctitle("monoDrive")
 
+    gui = None
     while episodes > 0:
         simulator.restart_event.clear()
         simulator.send_vehicle_configuration(vehicle_configuration)
@@ -60,5 +67,10 @@ if __name__ == "__main__":
 
         episodes = episodes - 1
 
-    gui.stop()
+    if gui is not None:
+        gui.stop()
+
     logging.getLogger("simulator").info("Good Bye!")
+
+
+

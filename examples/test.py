@@ -5,21 +5,20 @@ __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
-import logging
 
+import logging
 import time
-<<<<<<< HEAD
-import prctl
-=======
+
 try:
     import prctl
-except: pass
->>>>>>> origin/packet-size-testing
+except:
+    pass
 
 from monodrive import SimulatorConfiguration, VehicleConfiguration, Simulator
 from monodrive.ui import GUI
 from monodrive.vehicles import SimpleVehicle
 from monodrive.vehicles import TeleportVehicle
+
 
 ManualDriveMode = False
 

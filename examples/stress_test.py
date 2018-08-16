@@ -79,6 +79,7 @@ if __name__ == "__main__":
         list = []
         for sensor in sensors:
             if sensor['type'] in sensor_ids or sensor['type']+':'+sensor['id'] in sensor_ids:
+                sensor['sensor_process'] = True
                 list.append(sensor)
 
         vehicle_config.sensor_configuration = list

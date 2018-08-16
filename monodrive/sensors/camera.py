@@ -7,9 +7,12 @@ __version__ = "1.0"
 import logging
 import numpy as np
 import time
-import cPickle as pickle
+try:
+    import cPickle as pickle
+except ImportError:
+    import _pickle as pickle
 
-from base_sensor import BaseSensor
+from .base_sensor import BaseSensor
 
 
 class Camera(BaseSensor):

@@ -11,9 +11,9 @@ import os.path
 import os
 
 try:
-    import queue
+    import queue as PythonQueue
 except ImportError:
-    import Queue as queue
+    import Queue as PythonQueue
 
 import logging
 import socket
@@ -22,7 +22,7 @@ import threading
 import time
 import sys,traceback
 
-import Queue as PythonQueue
+#import Queue as PythonQueue
 from multiprocessing import Queue, Process
 from monodrive.networking.queues import SingleQueue
 

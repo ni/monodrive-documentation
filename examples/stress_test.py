@@ -50,7 +50,7 @@ if __name__ == "__main__":
 
     elif args.exclude:
         sensor_ids = args.exclude.split(',')
-        sensors = vehicle_config.sensors
+        sensors = vehicle_config.sensor_configuration
 
         list = []
         for sensor in sensors:
@@ -59,11 +59,11 @@ if __name__ == "__main__":
 
             list.append(sensor)
 
-        vehicle_config.sensors = list
+        vehicle_config.sensor_configuration = list
         vehicle_config.configuration['sensors'] = list
 
     if args.fps:
-        for sensor in vehicle_config.sensors:
+        for sensor in vehicle_config.sensor_configuration:
             sensor['fps'] = args.fps
 
     print(json.dumps(vehicle_config.configuration))
@@ -72,10 +72,11 @@ if __name__ == "__main__":
     simulator.send_vehicle_configuration(vehicle_config)
 
     sensors = []
-    for sensor in vehicle_config.sensors:
+    for sensor in vehicle_config.sensor_configuration:
         sensor_class = vehicle_config.get_class(sensor['type'])
         sensors.append(sensor_class(sensor['type'], sensor, sim_config))
 
+    print("starting sensors")
     for sensor in sensors:
         sensor.start()
         sensor.send_start_stream_command(simulator)
@@ -83,6 +84,7 @@ if __name__ == "__main__":
     for sensor in sensors:
         sensor.socket_ready_event.wait()
 
+    print("waiting on sensors to exit")
     for sensor in sensors:
         sensor.join()
 

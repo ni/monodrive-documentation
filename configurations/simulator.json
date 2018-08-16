@@ -91,6 +91,9 @@
       "gis_anchor": { "x": 0, "y": 0, "z": 0},
       "point_delta": 100.0
     },
+    "gui":{
+      "fps": 0.25
+    },
     "logger": {
       "sensor": "info",
       "network": "info",

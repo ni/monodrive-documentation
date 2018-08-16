@@ -371,20 +371,16 @@ class SensorPoll(Thread):
     def update_gui(self, sensor):
         
         messages = sensor.get_display_messages()
-        if "NO_DATA" in str(messages):
-            return True
-        message = messages.pop() #only grab the latest
-        if "SHUTDOWN" in message: #not sensor.running:
-            wx.CallAfter(pub.sendMessage, "SHUTDOWN", msg=message)
-            return False  #shuts down thread
-        if "IMU" in sensor.name:
-            wx.CallAfter(pub.sendMessage, "update_imu", msg=message)
-        elif "GPS" in sensor.name:
-            wx.CallAfter(pub.sendMessage, "update_gps", msg=message)
-        elif "Camera" in sensor.name:
-            wx.CallAfter(pub.sendMessage, "update_camera", msg=message)
-        
-        return True
+        if messages:
+            message = messages.pop()
+            if "IMU" in sensor.name:
+                wx.CallAfter(pub.sendMessage, "update_imu", msg=message)
+            elif "GPS" in sensor.name:
+                wx.CallAfter(pub.sendMessage, "update_gps", msg=message)
+            elif "Camera" in sensor.name:
+                wx.CallAfter(pub.sendMessage, "update_camera", msg=message)
+            return True       
+        return False
 
     #this thread will run while application is running
     def run(self):
@@ -397,20 +393,29 @@ class SensorPoll(Thread):
                 print("GUI THREAD STOPPED")
             if self.road_map:
                 wx.CallAfter(pub.sendMessage, "update_roadmap", msg=self.road_map)
-            time.sleep(.5)
+            time.sleep(1)
         self.running = False     
         print("GUI THREAD NOT RUNNING") 
 
 class GUI(multiprocessing.Process):
-    def __init__(self, vehicle, **kwargs):
+    def __init__(self, vehicle, settings=None, **kwargs):
         super(GUI, self).__init__(**kwargs)
         self.daemon = True
         self.name = "GUI"
         self.vehicle = vehicle
         self.running = True
         self.app = None
+        self.fps = None
+        self.init_settings(settings)
         self.start()
-        
+    
+    def init_settings(self, settings):
+        if settings:
+            self.settings = settings
+            self.fps = self.settings['fps']
+        else:
+            self.fps = 1.0
+
     def run(self):
         #prctl.set_proctitle("mono{0}".format(self.name))
         #start sensor polling

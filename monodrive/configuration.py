@@ -37,6 +37,10 @@ class SimulatorConfiguration(Configuration):
     @property
     def map_settings(self):
         return self.client_settings['map']
+    
+    @property
+    def gui_settings(self):
+        return self.client_settings['gui']
 
 
 class VehicleConfiguration(Configuration):

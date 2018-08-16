@@ -48,7 +48,8 @@ if __name__ == "__main__":
         simulator.send_vehicle_configuration(vehicle_configuration)
         logging.getLogger("simulator").info('Starting vehicle')
         ego_vehicle.start()
-        gui = GUI(ego_vehicle)
+
+        gui = GUI(ego_vehicle, settings=simulator_config.gui_settings)
 
         # time.sleep(30)
         # simulator.restart_event.set()

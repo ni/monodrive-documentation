@@ -124,7 +124,7 @@ class BaseSensor(object):
                 # If `False`, the program is not blocked. `Queue.Empty` is thrown if 
                 # the queue is empty
         except PythonQueue.Empty:
-            print("{0} Display Q_EMPTY".format(self.name))
+            #print("{0} Display Q_EMPTY".format(self.name))
             if len(messages) == 0:
                 messages.append("NO_DATA")
         return messages

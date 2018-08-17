@@ -104,11 +104,11 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
     print("sampling sensors")
     if args.clock_mode == 'ClientStep':
         msg = messaging.EgoControlCommand(0.0, 0.0)
-        for i in range(0, 1000):
+        for _ in range(0, 1000):
             simulator.request(msg)
             #time.sleep(.1)
     else:
-        for i in range(0, 8):
+        for _ in range(0, 8):
             time.sleep(30)
             simulator.request(messaging.Message(SIMULATOR_STATUS_UUID))
 

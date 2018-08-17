@@ -55,32 +55,7 @@
       }
     ],
     "sensors": [
-            {
-      "type": "Lidar",
-      "id": "0",
-      "packet_size": 1472,
-      "listen_port": 8079,
-      "display_process": true,
-      "sensor_process": true,
-      "synchronized_display": true,
-      "location": {
-        "x":-75.0,
-        "y":-25.0,
-        "z":350.0
-      },
-      "rotation": {
-        "pitch":0.0,
-        "yaw":0.0,
-        "roll":0.0
-      },
-      "max_distance": 8000.0,
-      "vertical_fov_angle": 30.0,
-      "horizontal_resolution": 0.4,
-      "fps": 2.0,
-      "n_lasers": 32,
-      "reset_angle": 0.0
-    },
-          {
+        {
         "type":"MultiCamera",
         "id": "multi_camera",
         "packet_size": 64000,

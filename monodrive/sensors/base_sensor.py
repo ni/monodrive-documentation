@@ -152,7 +152,7 @@ class BaseSensor(object):
             self.stop()
 
         while not self.stop_event.is_set():
-            time.sleep(1/self.fps/10)  #yeild to GIL at 10x expected frame rate 
+            #time.sleep(1/self.fps/10)  #yeild to GIL at 10x expected frame rate 
             packet, time_stamp, game_time = self.get_packet()
             if packet is not None:
                 self.number_of_packets += 1

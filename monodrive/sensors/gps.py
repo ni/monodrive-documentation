@@ -39,6 +39,3 @@ class GPS(BaseSensor):
         }
         return data_dict
 
-    '''def process_display_data(self):
-        return
-        self.update_sensors_got_data_count()'''

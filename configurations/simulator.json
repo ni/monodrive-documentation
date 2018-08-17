@@ -1,6 +1,6 @@
 {
   "id": "simulator_test",
-  "server_ip": "127.0.0.1",
+  "server_ip": "192.168.1.4",
   "server_port": 8998,
   "client_ip": "127.0.0.1",
   "phys_materials": {
@@ -92,7 +92,7 @@
       "point_delta": 100.0
     },
     "gui":{
-      "fps": 0.25
+      "fps": 4.0
     },
     "logger": {
       "sensor": "info",

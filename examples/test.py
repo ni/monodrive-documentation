@@ -51,7 +51,7 @@ if __name__ == "__main__":
         logging.getLogger("simulator").info('Starting vehicle')
         ego_vehicle.start()
 
-        #gui = GUI(simulator)
+        gui = GUI(simulator)
 
         
         # simulator.restart_event.set()

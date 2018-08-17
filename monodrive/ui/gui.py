@@ -371,6 +371,7 @@ class SensorPoll(Thread):
 
     def update_gui(self, sensor):
         
+        print("{0}.get_display_messages()".format(sensor.name))
         messages = sensor.get_display_messages()
         if messages:
             message = messages.pop()
@@ -392,9 +393,9 @@ class SensorPoll(Thread):
                 self.running = self.update_gui(sensor)
             if self.running == False:
                 print("GUI THREAD STOPPED")
-            #if self.road_map:
-                #wx.CallAfter(pub.sendMessage, "update_roadmap", msg=self.road_map)
-            time.sleep(1/self.fps)
+            if self.road_map:
+                wx.CallAfter(pub.sendMessage, "update_roadmap", msg=self.road_map)
+            time.sleep(.1)
         self.running = False     
         print("GUI THREAD NOT RUNNING") 
 

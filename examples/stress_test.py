@@ -39,6 +39,7 @@ class SensorTask:
         packets = 0
         start = None
         timer = millis()
+        get_time = lambda: data.get('game_time', millis()) if isinstance(data, dict) else millis()
         while self.running:
             data = self.sensor.get_display_message()
             if data:
@@ -47,12 +48,12 @@ class SensorTask:
                 continue
 
             if start is None:
-                start = data.get('game_time', millis())
+                start = get_time()
                 print("start: %f" % start)
 
             if millis() - timer >= 5000:
-                seconds = (data.get('game_time', millis()) - start) / 1000
-                print("game time: %f, diff: %f" % (data.get('game_time', millis()), seconds))
+                seconds = (get_time() - start) / 1000
+                print("game time: %f, diff: %f" % (get_time(), seconds))
                 #if (data.get('game_time', None) is None):
                 #    seconds /= 1000
 
@@ -63,7 +64,7 @@ class SensorTask:
                 print('{0}: {1} fps'.format(self.sensor.name, fps))
                 packets = 0
                 timer = millis()
-                start = data.get('game_time', millis())
+                start = get_time()
 
     def stop(self):
         self.sensor.stop()
@@ -102,7 +103,7 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
         sensor.socket_ready_event.wait()
 
     print("sampling sensors")
-    if args.clock_mode == 'ClientStep':
+    if clock_mode == 2:
         msg = messaging.EgoControlCommand(0.0, 0.0)
         for i in range(0, 1000):
             simulator.request(msg)

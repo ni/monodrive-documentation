@@ -9,6 +9,38 @@ try:
 except:
     import _pickle as pickle
 
+class Radar_Message(object):
+    def __init__(self, msg):
+        if msg:
+            self.time_stamp = msg['time_stamp']
+            self.game_time = msg['game_time']
+            self.ranges = msg['ranges']
+            self.velocities = msg['velocities']
+            self.aoa_list = msg['aoa_list']
+            self.rcs_list = msg['rcs_list']
+            self.power_list = msg['power_list']
+        else:
+            print("Radar Message Empty")
+    
+    @classmethod
+    def test_message(self):
+        radar_data = {}
+        msg_list = []
+        for x in range(7):
+            msg_list.append(random.random())
+        ranges_vector = [msg_list[0], msg_list[1], msg_list[2]]
+        velocity_vector = [msg_list[3], msg_list[4], msg_list[5]]
+        aoa_vector = [msg_list[0], msg_list[1], msg_list[2]]
+        rcs_vector = [msg_list[3], msg_list[4], msg_list[5]]
+        radar_data['time_stamp'] = time.time(),
+        radar_data['game_time'] = time.time(),
+        radar_data['ranges'] = ranges_vector, 
+        radar_data['velocities'] = velocity_vector, 
+        radar_data['aoas'] = aoa_vector, 
+        radar_data['rcs'] = rcs_vector,
+        radar_data['powers'] = rcs_vector
+        return radar_data
+   
 class IMU_Message(object):
     def __init__(self, msg):
         self.string_accel_x = msg['acceleration_vector'][0]

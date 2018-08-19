@@ -56,6 +56,145 @@
     ],
     "sensors": [
       {
+        "type":"MultiCamera",
+        "id": "multi_camera",
+        "packet_size": 64000,
+        "listen_port": 8082,
+        "fps": 2.0,
+        "display_process": true,
+        "sensor_process": true,
+        "synchronized_display": true,
+        "hdmi_streaming": false,
+        "location": {
+          "x":38.0,
+          "y":-25.0,
+          "z":147.0
+        },
+        "rotation": {
+          "pitch":0.0,
+          "yaw":-10.0,
+          "roll":0.0
+        },
+        "stream_dimensions": {
+          "x":2048.0,
+          "y":512.0
+        },
+        "camera_ids": [
+            "0",
+            "1",
+            "2",
+            "3"
+        ]
+      },
+      {
+        "type":"Camera",
+        "id": "0",
+        "packet_size": 23552,
+        "listen_port": 7080,
+        "display_process": false,
+        "sensor_process": false,
+        "location": {
+          "x":38.0,
+          "y":-25.0,
+          "z":147.0
+        },
+        "rotation": {
+          "pitch":0.0,
+          "yaw":-10.0,
+          "roll":0.0
+        },
+        "max_distance": 50000.0,
+        "horizontal_fov_angle": 50.0,
+        "fps": 2.0,
+        "stream_dimensions": {
+          "x":512.0,
+          "y":512.0
+        },
+        "semantic_processing": false,
+        "hdmi_streaming": false
+      },
+      {
+        "type":"Camera",
+        "id": "1",
+        "packet_size": 23552,
+        "listen_port": 7081,
+        "display_process": false,
+        "sensor_process": false,
+        "location": {
+          "x":38.0,
+          "y":25.0,
+          "z":147.0
+        },
+        "rotation": {
+          "pitch":0.0,
+          "yaw":10.0,
+          "roll":0.0
+        },
+        "max_distance": 50000.0,
+        "horizontal_fov_angle": 50.0,
+        "fps": 2.0,
+        "stream_dimensions": {
+          "x":512.0,
+          "y":512.0
+        },
+        "semantic_processing": false,
+        "hdmi_streaming": false
+      },
+    {
+      "type":"Camera",
+      "id": "2",
+      "packet_size": 23552,
+      "listen_port": 7082,
+      "display_process": false,
+      "sensor_process": false,
+      "location": {
+        "x":-238.0,
+        "y":-25.0,
+        "z":147.0
+      },
+      "rotation": {
+        "pitch":0.0,
+        "yaw":-170.0,
+        "roll":0.0
+      },
+      "max_distance": 50000.0,
+      "horizontal_fov_angle": 50.0,
+      "fps": 2.0,
+      "stream_dimensions": {
+        "x":512.0,
+        "y":512.0
+      },
+      "semantic_processing": false,
+      "hdmi_streaming": false
+    },
+    {
+      "type":"Camera",
+      "id": "3",
+      "packet_size": 23552,
+      "listen_port": 7083,
+      "display_process": false,
+      "sensor_process": false,
+      "location": {
+        "x":-238.0,
+        "y":25.0,
+        "z":147.0
+      },
+      "rotation": {
+        "pitch":0.0,
+        "yaw":170.0,
+        "roll":0.0
+      },
+      "max_distance": 50000.0,
+      "horizontal_fov_angle": 50.0,
+      "fps": 2.0,
+      "stream_dimensions": {
+        "x":512.0,
+        "y":512.0
+      },
+      "semantic_processing": false,
+      "hdmi_streaming": false
+    },
+      {
         "type": "BoundingBox",
         "id": "1",
         "packet_size": 1472,
@@ -73,35 +212,7 @@
           "yaw":0.0,
           "roll":0.0
         },
-        "fps": 1.0
-      },
-      {
-        "type":"Camera",
-        "id": "0",
-        "packet_size": 1472,
-        "listen_port": 8080,
-        "display_process": true,
-        "sensor_process": true,
-        "synchronized_display": true,
-        "location": {
-          "x":-600.0,
-          "y":0.0,
-          "z":400.0
-        },
-        "rotation": {
-          "pitch":-20.0,
-          "yaw":0.0,
-          "roll":0.0
-        },
-        "max_distance": 50000.0,
-        "horizontal_fov_angle": 70.0,
-        "fps": 5,
-        "stream_dimensions": {
-          "x":768.0,
-          "y":512.0
-        },
-        "semantic_processing": false,
-        "hdmi_streaming": false
+        "fps": 2.0
       },
       {
         "type": "Radar",
@@ -129,7 +240,7 @@
         "sweep_num_for_range_max": 5.5,
         "range_resolution": 1.0,
         "max_velocity": 100.0,
-        "fps": 1,
+        "fps": 2.0,
         "transmitter": {
           "aperture": 0.000603,
           "gain": 54.0
@@ -142,6 +253,46 @@
           "gain": 60.0,
           "kb": 0.00059641065
         }
-      }
+      },
+      {
+        "type": "GPS",
+        "id": "0",
+        "packet_size": 1472,
+        "listen_port": 8083,
+        "display_process": true,
+        "sensor_process": true,
+        "synchronized_display": true,
+        "location": {
+          "x": -75.0,
+          "y": -25.0,
+          "z": 245.0
+        },
+        "rotation": {
+          "pitch": 0.0,
+          "yaw": 0.0,
+          "roll": 0.0
+        },
+        "fps": 2.0
+      },
+    {
+      "type": "IMU",
+      "id": "0",
+      "packet_size": 1472,
+      "listen_port": 8084,
+      "display_process": true,
+      "sensor_process": true,
+      "synchronized_display": true,
+      "location": {
+        "x":-75.0,
+        "y":-25.0,
+        "z":245.0
+      },
+      "rotation": {
+        "pitch":0.0,
+        "yaw":0.0,
+        "roll":0.0
+      },
+      "fps": 2.0
+    }
    ]
   }

@@ -42,6 +42,7 @@ from monodrive.models import IMU_Message
 from monodrive.models import GPS_Message
 from monodrive.models import Camera_Message
 from monodrive.models import MapData
+from monodrive.models import Radar_Message
 
 
 BACKGROUND_COLOR = '#eaf7ff'
@@ -65,24 +66,101 @@ class CameraRow(wx.Panel):
         wx.Panel.__init__(self, parent, *args, **kwargs)
         self.SetBackgroundColour(BLACK)
 
+class Radar_Target_Table(wx.Panel):
+    def __init__(self, parent, *args, **kwargs):
+        wx.Panel.__init__(self, parent, *args, **kwargs)
+        self.SetBackgroundColour(BACKGROUND_COLOR)
+        self.figure = Figure()
+        self.canvas = FigureCanvas(self, 1, self.figure)
+        self.target_table_subplot = self.figure.add_subplot(111)
+        self.target_table_subplot.set_title('Target Table')
+        self.target_table_subplot.axis('tight')
+        self.target_table_subplot.axis('off')
+        self.target_table_subplot.grid(visible=True)
+        self.toolbar = NavigationToolbar(self.canvas)
+        self.toolbar.Realize()
+        self.target_table_handle = None
+        self.old_size = 0
+        self.max_number_of_targets = 20
+
+        self.sizer = wx.BoxSizer(wx.VERTICAL)
+        self.sizer.Add(self.canvas, 1,  wx.EXPAND)
+        self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
+        self.SetSizer(self.sizer)
+
+        pub.subscribe(self.update_view, 'update_radar_table')
+    
+    def update_view(self, msg):
+        if msg:
+            self.targets = Radar_Message(msg)
+            self.update_plot(self.targets)
+        else:
+            print("empty target list")
+
+    def update_plot(self,targets):
+        if self.target_table_handle == None and len(targets.ranges) > 0:
+            self.target_table_handle = self.setup_radar_plots(targets)
+        if len(targets.ranges) > 0:
+            self.set_data(self.targets)
+        self.Layout()
+        self.Refresh()
+
+    def setup_radar_plots(self, targets={}):
+        targets_cells = np.array(self.max_number_of_targets * [6 * [0]])
+        targets_handle = self.target_table_subplot.table(cellText=targets_cells[0:self.max_number_of_targets],
+                                          colLabels=("Target", "Range", "Speed", "AoA", "RCS", "Power\n level"),
+                                          loc='center')
+        targets_handle.auto_set_font_size(False)
+        targets_handle.set_fontsize(5.5)
+        for i in range(0,6):
+            for j in range(len(targets.ranges) + 1, self.max_number_of_targets + 1):
+                    targets_handle._cells[(j,i)]._text.set_text('')
+                    targets_handle._cells[(j,i)].set_linewidth(0)
+
+        self.old_size = len(targets.ranges)
+
+        return targets_handle
+
+    def set_data(self,targets):
+        target_cells = np.array(self.max_number_of_targets * [6 * [0]])
+        if len(targets.ranges):
+            target_cells[0:len(targets.ranges),    0] = range(0, len(targets.ranges))
+            target_cells[0:len(targets.ranges),     1] = targets.ranges
+            target_cells[0:len(targets.velocities), 2] = targets.velocities
+            target_cells[0:len(targets.aoa_list),   3] = targets.aoa_list
+            target_cells[0:len(targets.rcs_list),   4] = targets.rcs_list
+            target_cells[0:len(targets.power_list), 5] = targets.power_list
+
+        for i in range(0, 6):
+            for j in range(1, self.old_size + 1): #to erase previous display
+                try:
+                    self.target_table_handle._cells[(j,i)]._text.set_text('')
+                    self.target_table_handle._cells[(j,i)].set_linewidth(0)
+                except:
+                    pass
+
+        for i in range(0,6):
+            for j in range(1, len(targets.ranges) + 1): #to refresh with new display
+                try:
+                    self.target_table_handle._cells[(j, i)]._text.set_text(target_cells[j - 1, i])
+                    self.target_table_handle._cells[(j, i)].set_linewidth(1)
+                except:
+                    pass
+
+        self.old_size = len(targets.ranges)
+
+
 class RoadMap_View(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
         wx.Panel.__init__(self, parent, *args, **kwargs)
         self.SetBackgroundColour(BACKGROUND_COLOR)
-        #self.string_map = wx.StaticText(self, label="")
-        #self.sizer = wx.BoxSizer(wx.VERTICAL)
-        #self.sizer.Add(self.string_map, 1, wx.LEFT | wx.RIGHT | wx.EXPAND)
-        #self.SetSizerAndFit(self.sizer)
         self.figure = Figure()
         self.canvas = FigureCanvas(self, 1, self.figure)
         self.map_subplot = self.figure.add_subplot(111)
         self.toolbar = NavigationToolbar(self.canvas)
         self.toolbar.Realize()
         
-        #self.map_subplot.autoscale_view(True)
-    
-        #self.map_subplot_handle = self.map_subplot.plot(0, 0, marker='.', linestyle='None')[0]
-        #this seems hacky but it is the only way to start the
+        #this seems hacky but it is the only way to start the prot
         self.map_subplot_handle = None
         self.map_subplot.set_title("Ground Truth Map View")
 
@@ -111,11 +189,9 @@ class RoadMap_View(wx.Panel):
         return MapData(self.road(road_index).lanes[lane_index])
 
     def update_view(self, msg):
-        print("Roadmap update view")
         self.road_map = MapData(msg)
-        if self.road_map:
-            print("map: r:{0} l0:{1}".format(self.num_roads(), self.num_lanes(0)))
-            pass
+        #if self.road_map:
+            #pass
 
         points_by_lane = []
 
@@ -139,13 +215,6 @@ class RoadMap_View(wx.Panel):
         self.update_plot(x_combined, y_combined)
 
     def update_plot(self, x, y):
-        #self.map_subplot_handle.set_xdata(x)
-        #self.map_subplot_handle.set_ydata(y)
-        #self.map_subplot.autoscale_view(True)
-        #self.map_subplot.autoscale_view(True,True,True)
-        #self.map_subplot.draw()
-        #margin = 10
-        #self.map_subplot_handle.axis((min(x) - margin, max(x) + margin, min(y) - margin, max(y) + margin))
         if self.map_subplot_handle == None:
             self.map_subplot_handle = self.map_subplot.plot(x, y, marker='.', linestyle='None')[0]
         self.map_subplot_handle.set_xdata(x)
@@ -242,6 +311,7 @@ class Camera_View(wx.Panel):
         pub.subscribe(self.update_view, "update_camera")
 
     def update_view(self, msg):
+        print("update camera view")
         camera_msg = Camera_Message(msg)
         bitmap = self.to_bmp(camera_msg.np_image)
         self.bmwx.SetBitmap(bitmap)
@@ -314,8 +384,11 @@ class MainWindow(wx.Frame):
 
         #add figures to graph row
         self.roadmap_view = RoadMap_View(self.graph_row_panel)
+        self.radar_target_table = Radar_Target_Table(self.graph_row_panel)
+
         self.graph_row_panel_sizer = wx.BoxSizer(wx.HORIZONTAL)
         self.graph_row_panel_sizer.Add(self.roadmap_view, 1, wx.EXPAND|wx.ALL, border=2)
+        self.graph_row_panel_sizer.Add(self.radar_target_table, 1, wx.EXPAND|wx.ALL, border=2)
         self.graph_row_panel.SetSizerAndFit(self.graph_row_panel_sizer)
         
  
@@ -346,7 +419,7 @@ class MainWindow(wx.Frame):
 
 class MyFrame(wx.Frame):
     pass
-
+#Ctrl-Alt-I, or Cmd-Alt-I on Mac for inspection app for viewing layout
 class MonoDriveGUIApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
 #class MonoDriveGUIApp(wx.App):
     def OnInit(self):
@@ -374,13 +447,15 @@ class SensorPoll(Thread):
         print("{0}.get_display_messages()".format(sensor.name))
         messages = sensor.get_display_messages()
         if messages:
-            message = messages.pop()
+            message = messages.pop() #pop last message aka. most recent 
             if "IMU" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_imu", msg=message)
             elif "GPS" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_gps", msg=message)
             elif "Camera" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_camera", msg=message)
+            elif "Radar" in sensor.name:
+                wx.CallAfter(pub.sendMessage, "update_radar_table", msg=message)
             return True       
         return False
 

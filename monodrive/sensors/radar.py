@@ -100,7 +100,7 @@ class Base_Radar(BaseSensor):
             radar_data['aoa_list'] = self.targets_aoa 
             radar_data['rcs_list'] =self.targets_rcs
             radar_data['power_list'] = self.targets_rx_power_db
-            print("parsed radar data = {0}".format(radar_data))
+            #print("parsed radar data = {0}".format(radar_data))
         else:
             print("Radar Data parse frame is empty")
         return radar_data
@@ -128,12 +128,12 @@ class Base_Radar(BaseSensor):
 
 
     def process_frame(self, frame):
-        start_time = time.time()
+        #start_time = time.time()
         if len(frame) > 0:
             done = self.process_radar(frame)
-            print('Radar Processing Time: {0}'.format(time.time() - start_time))
-            print('range:{0}\n velocity:{1}\n aoa:{2}\n rcs:{3}'.format(
-                self.targets_range, self.targets_velocity, self.targets_aoa, self.targets_rcs))
+            #print('Radar Processing Time: {0}'.format(time.time() - start_time))
+            #print('range:{0}\n velocity:{1}\n aoa:{2}\n rcs:{3}'.format(
+            #    self.targets_range, self.targets_velocity, self.targets_aoa, self.targets_rcs))
             return done
 
     def process_radar(self, data):
@@ -170,12 +170,14 @@ class Radar(Base_Radar):
 
     def process_radar_data_cube(self, xr):
     #--------- Estimate Range then velocities and AoA (AoA can be estimated either from range or from velocities)
+    # these nested ifs are not needed but left here for debug purposes
         if self.compute_range_and_indx(xr):
             if self.process_doppler(xr):
             # self.aoa_list_v = RootMusicAndEsprit.process_radar_data_cube_aoa2(xr, self.N, self.NN, hann_matrix_aoa, self.velocities, self.n_rx_elements, True)
                 if self.process_aoa(xr):
                     #self.targets_velocity_kmh = 3.6 * self.targets_velocity
-                    print("Radar Done")
+                    #print("Radar Done")
+                    pass
                 else:
                     print("AOA FAILED")
             else:

@@ -49,8 +49,8 @@ class BaseSensor(object):
         # synchronization
         #self.q_data = SingleQueue()
         #self.q_display = SingleQueue()
-        self.q_data = multiprocessing.Queue()
-        self.q_display = multiprocessing.Queue()
+        self.q_data = multiprocessing.Queue(maxsize=5)
+        self.q_display = multiprocessing.Queue(maxsize=5)
         self.socket_ready_event = multiprocessing.Event()
         self.stop_event = multiprocessing.Event()
         self.process = None

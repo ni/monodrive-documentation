@@ -54,18 +54,80 @@ WHITE = '#ffffff'
 class TextRow(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
         wx.Panel.__init__(self, parent, *args, **kwargs)
-        self.SetBackgroundColour(BLACK)
+        self.SetBackgroundColour(BACKGROUND_COLOR)
 
 class GraphRow(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
         wx.Panel.__init__(self, parent, *args, **kwargs)
-        self.SetBackgroundColour(BLACK)
+        self.SetBackgroundColour(BACKGROUND_COLOR)
 
 class CameraRow(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
         wx.Panel.__init__(self, parent, *args, **kwargs)
-        self.SetBackgroundColour(BLACK)
+        self.SetBackgroundColour(BACKGROUND_COLOR)
 
+class Radar_Polar_Plot(wx.Panel):
+    def __init__(self, parent, *args, **kwargs):
+        wx.Panel.__init__(self, parent, *args, **kwargs)
+        self.SetBackgroundColour(BACKGROUND_COLOR)
+        self.figure = Figure()
+        self.canvas = FigureCanvas(self, 1, self.figure)
+        #self.figure.set_title("Radar Target Plot")
+        self.target_polar_subplot = self.figure.add_subplot(111, polar = True)
+        self.target_polar_subplot.set_title('Radar Target Plot')
+        self.target_polar_subplot.set_thetamin(-25)
+        self.target_polar_subplot.set_thetamax(25)
+        self.target_polar_subplot.set_ylim(0, 150)
+        #self.target_polar_subplot.set_
+        self.target_polar_subplot.set_theta_zero_location('N')
+        self.toolbar = NavigationToolbar(self.canvas)
+        self.toolbar.Realize()
+        pub.subscribe(self.update_view, 'update_radar_table')
+
+        N = 20
+        r = 150 * np.random.rand(N)
+        theta = 2 * np.pi * np.random.rand(N)
+        #area = .01*r**2
+        colors = theta
+
+        #self.target_polar_handle = self.target_polar_subplot.scatter(theta, r, c=colors, s=area, cmap='hsv', alpha =0.75)
+        self.target_polar_handle = self.target_polar_subplot.scatter(theta, r, cmap='hsv', alpha =0.75)
+
+        self.sizer = wx.BoxSizer(wx.VERTICAL)
+        self.sizer.Add(self.canvas, 1,  wx.EXPAND)
+        self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
+        self.SetSizer(self.sizer)
+
+    def update_view(self, msg):
+        if msg:
+            self.targets = Radar_Message(msg)
+            self.update_plot(self.targets)
+        else:
+            print("empty target list")
+
+    def update_plot(self,targets):
+        if len(targets.ranges) > 0:
+            self.set_data(targets)
+        self.Layout()
+        self.Refresh()
+    
+    def set_data(self, targets):
+        r = targets.ranges
+        theta = np.radians(targets.aoa_list)
+        rcs = targets.rcs_list
+        #speed = targets.velocities/100
+        #there seems to be a bug in the new polar plot library, set_offsets is not working
+        #so we have to do all the following on every frame
+        self.target_polar_subplot.cla()
+        self.target_polar_subplot.set_title('Radar Target Plot')
+        self.target_polar_subplot.set_thetamin(-25)
+        self.target_polar_subplot.set_thetamax(25)
+        self.target_polar_subplot.set_ylim(0, 150)
+        self.target_polar_subplot.set_theta_zero_location('N')
+        self.target_polar_subplot.scatter(theta, r, c='r', s=rcs, cmap='hsv', alpha =0.75)
+        #self.target_polar_handle.set_offsets([theta,r])
+        self.figure.canvas.draw()
+    
 class Radar_Target_Table(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
         wx.Panel.__init__(self, parent, *args, **kwargs)
@@ -102,6 +164,7 @@ class Radar_Target_Table(wx.Panel):
             self.target_table_handle = self.setup_radar_plots(targets)
         if len(targets.ranges) > 0:
             self.set_data(self.targets)
+        self.figure.canvas.draw()
         self.Layout()
         self.Refresh()
 
@@ -367,7 +430,7 @@ class Camera_View(wx.Panel):
 
 class MainWindow(wx.Frame):
     def __init__(self, parent, title = "monoDrive Visualizer", *args, **kwargs):
-        wx.Frame.__init__(self, parent, size=(1200,1000), title = title,*args, **kwargs)
+        wx.Frame.__init__(self, parent, size=(1800,1000), title = title,*args, **kwargs)
         #set up frame panels
         pub.subscribe(self.shutdown, "SHUTDOWN")
 
@@ -385,10 +448,12 @@ class MainWindow(wx.Frame):
         #add figures to graph row
         self.roadmap_view = RoadMap_View(self.graph_row_panel)
         self.radar_target_table = Radar_Target_Table(self.graph_row_panel)
+        self.radar_polar_plot = Radar_Polar_Plot(self.graph_row_panel)
 
         self.graph_row_panel_sizer = wx.BoxSizer(wx.HORIZONTAL)
         self.graph_row_panel_sizer.Add(self.roadmap_view, 1, wx.EXPAND|wx.ALL, border=2)
         self.graph_row_panel_sizer.Add(self.radar_target_table, 1, wx.EXPAND|wx.ALL, border=2)
+        self.graph_row_panel_sizer.Add(self.radar_polar_plot, 1, wx.EXPAND|wx.ALL, border = 2)
         self.graph_row_panel.SetSizerAndFit(self.graph_row_panel_sizer)
         
  
@@ -444,7 +509,7 @@ class SensorPoll(Thread):
 
     def update_gui(self, sensor):
         
-        print("{0}.get_display_messages()".format(sensor.name))
+        #print("{0}.get_display_messages()".format(sensor.name))
         messages = sensor.get_display_messages()
         if messages:
             message = messages.pop() #pop last message aka. most recent 

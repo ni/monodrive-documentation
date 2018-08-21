@@ -75,7 +75,7 @@ class Bounding_Polar_Plot(wx.Panel):
         self.canvas = FigureCanvas(self, 1, self.figure)
         #self.figure.set_title("Radar Target Plot")
         self.target_polar_subplot = self.figure.add_subplot(111, polar = True)
-        self.target_polar_subplot.set_title('Radar Target Plot')
+        self.target_polar_subplot.set_title('Bounding Box Target Plot')
         self.target_polar_subplot.set_thetamin(-25)
         self.target_polar_subplot.set_thetamax(25)
         self.target_polar_subplot.set_ylim(0, 150)
@@ -114,7 +114,7 @@ class Bounding_Polar_Plot(wx.Panel):
 
     def set_data(self, targets):
         r = targets.radar_distances
-        theta = np.radians(targets.radar_angles)
+        theta = -np.radians(targets.radar_angles)
         print("bounding_box distance = {0}".format(r))
         print("bounding_box theta = {0}".format(theta))
         #rcs = targets.angles
@@ -122,12 +122,12 @@ class Bounding_Polar_Plot(wx.Panel):
         #there seems to be a bug in the new polar plot library, set_offsets is not working
         #so we have to do all the following on every frame
         self.target_polar_subplot.cla()
-        self.target_polar_subplot.set_title('Radar Target Plot')
+        self.target_polar_subplot.set_title('Bounding Box Target Plot')
         self.target_polar_subplot.set_thetamin(-25)
         self.target_polar_subplot.set_thetamax(25)
         self.target_polar_subplot.set_ylim(0, 150)
         self.target_polar_subplot.set_theta_zero_location('N')
-        self.target_polar_subplot.scatter(theta, r, c='r', cmap='hsv', alpha =0.75)
+        self.target_polar_subplot.scatter(theta, r, c='b', cmap='hsv', alpha =0.75)
         #self.target_polar_handle.set_offsets([theta,r])
         self.figure.canvas.draw()
 
@@ -188,11 +188,11 @@ class Radar_Polar_Plot(wx.Panel):
     
     def set_data(self, targets):
         r = targets.ranges
-        theta = np.radians(targets.aoa_list)
+        theta = -np.radians(targets.aoa_list)
         rcs = targets.rcs_list
         if self.targets_bounding_box:
             bounding_box_distances = self.targets_bounding_box.radar_distances
-            bounding_box_angles = np.radians(self.targets_bounding_box.radar_angles)
+            bounding_box_angles = -np.radians(self.targets_bounding_box.radar_angles)
         #speed = targets.velocities/100
         #there seems to be a bug in the new polar plot library, set_offsets is not working
         #so we have to do all the following on every frame

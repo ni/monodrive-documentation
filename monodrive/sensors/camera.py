@@ -79,7 +79,7 @@ class Camera(BaseSensor):
 
     def get_display_messages(self, timeout=None):
         image_frame_list = []
-        image_frames = super(Camera, self).get_messages()
+        image_frames = super(Camera, self).get_display_messages()
 
         for image_frame in image_frames:
             image_buffer = bytearray(image_frame['image'])

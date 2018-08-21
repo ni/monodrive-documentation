@@ -43,6 +43,7 @@ from monodrive.models import GPS_Message
 from monodrive.models import Camera_Message
 from monodrive.models import MapData
 from monodrive.models import Radar_Message
+from monodrive.models import Bounding_Box_Message
 
 
 BACKGROUND_COLOR = '#eaf7ff'
@@ -66,6 +67,70 @@ class CameraRow(wx.Panel):
         wx.Panel.__init__(self, parent, *args, **kwargs)
         self.SetBackgroundColour(BACKGROUND_COLOR)
 
+class Bounding_Polar_Plot(wx.Panel):
+    def __init__(self, parent, *args, **kwargs):
+        wx.Panel.__init__(self, parent, *args, **kwargs)
+        self.SetBackgroundColour(BACKGROUND_COLOR)
+        self.figure = Figure()
+        self.canvas = FigureCanvas(self, 1, self.figure)
+        #self.figure.set_title("Radar Target Plot")
+        self.target_polar_subplot = self.figure.add_subplot(111, polar = True)
+        self.target_polar_subplot.set_title('Radar Target Plot')
+        self.target_polar_subplot.set_thetamin(-25)
+        self.target_polar_subplot.set_thetamax(25)
+        self.target_polar_subplot.set_ylim(0, 150)
+        #self.target_polar_subplot.set_
+        self.target_polar_subplot.set_theta_zero_location('N')
+        self.toolbar = NavigationToolbar(self.canvas)
+        self.toolbar.Realize()
+        pub.subscribe(self.update_view, 'update_bounding_box')
+
+        N = 20
+        r = 150 * np.random.rand(N)
+        theta = 2 * np.pi * np.random.rand(N)
+        #area = .01*r**2
+        colors = theta
+
+        #self.target_polar_handle = self.target_polar_subplot.scatter(theta, r, c=colors, s=area, cmap='hsv', alpha =0.75)
+        self.target_polar_handle = self.target_polar_subplot.scatter(theta, r, cmap='hsv', alpha =0.75)
+
+        self.sizer = wx.BoxSizer(wx.VERTICAL)
+        self.sizer.Add(self.canvas, 1,  wx.EXPAND)
+        self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
+        self.SetSizer(self.sizer)
+
+    def update_view(self, msg):
+        if msg:
+            self.targets = Bounding_Box_Message(msg)
+            self.update_plot(self.targets)
+        else:
+            print("empty target list")
+
+    def update_plot(self,targets):
+        if len(targets.radar_distances) > 0:
+            self.set_data(targets)
+        self.Layout()
+        self.Refresh()
+
+    def set_data(self, targets):
+        r = targets.radar_distances
+        theta = np.radians(targets.radar_angles)
+        print("bounding_box distance = {0}".format(r))
+        print("bounding_box theta = {0}".format(theta))
+        #rcs = targets.angles
+        #speed = targets.velocities/100
+        #there seems to be a bug in the new polar plot library, set_offsets is not working
+        #so we have to do all the following on every frame
+        self.target_polar_subplot.cla()
+        self.target_polar_subplot.set_title('Radar Target Plot')
+        self.target_polar_subplot.set_thetamin(-25)
+        self.target_polar_subplot.set_thetamax(25)
+        self.target_polar_subplot.set_ylim(0, 150)
+        self.target_polar_subplot.set_theta_zero_location('N')
+        self.target_polar_subplot.scatter(theta, r, c='r', cmap='hsv', alpha =0.75)
+        #self.target_polar_handle.set_offsets([theta,r])
+        self.figure.canvas.draw()
+
 class Radar_Polar_Plot(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
         wx.Panel.__init__(self, parent, *args, **kwargs)
@@ -82,7 +147,10 @@ class Radar_Polar_Plot(wx.Panel):
         self.target_polar_subplot.set_theta_zero_location('N')
         self.toolbar = NavigationToolbar(self.canvas)
         self.toolbar.Realize()
+        self.targets_bounding_box = None
+
         pub.subscribe(self.update_view, 'update_radar_table')
+        pub.subscribe(self.update_bounding, 'update_bounding_box')
 
         N = 20
         r = 150 * np.random.rand(N)
@@ -97,6 +165,13 @@ class Radar_Polar_Plot(wx.Panel):
         self.sizer.Add(self.canvas, 1,  wx.EXPAND)
         self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
         self.SetSizer(self.sizer)
+    
+    def update_bounding(self,msg):
+        if msg:
+            self.targets_bounding_box = Bounding_Box_Message(msg)
+            #self.update_plot(self.targets)
+        else:
+            print("empty bounding target list")
 
     def update_view(self, msg):
         if msg:
@@ -115,6 +190,9 @@ class Radar_Polar_Plot(wx.Panel):
         r = targets.ranges
         theta = np.radians(targets.aoa_list)
         rcs = targets.rcs_list
+        if self.targets_bounding_box:
+            bounding_box_distances = self.targets_bounding_box.radar_distances
+            bounding_box_angles = np.radians(self.targets_bounding_box.radar_angles)
         #speed = targets.velocities/100
         #there seems to be a bug in the new polar plot library, set_offsets is not working
         #so we have to do all the following on every frame
@@ -125,6 +203,7 @@ class Radar_Polar_Plot(wx.Panel):
         self.target_polar_subplot.set_ylim(0, 150)
         self.target_polar_subplot.set_theta_zero_location('N')
         self.target_polar_subplot.scatter(theta, r, c='r', s=rcs, cmap='hsv', alpha =0.75)
+        self.target_polar_subplot.scatter(bounding_box_angles, bounding_box_distances, c='b', s=rcs, cmap='hsv', alpha =0.75)
         #self.target_polar_handle.set_offsets([theta,r])
         self.figure.canvas.draw()
     
@@ -449,11 +528,13 @@ class MainWindow(wx.Frame):
         self.roadmap_view = RoadMap_View(self.graph_row_panel)
         self.radar_target_table = Radar_Target_Table(self.graph_row_panel)
         self.radar_polar_plot = Radar_Polar_Plot(self.graph_row_panel)
+        self.bounding_box_plot = Bounding_Polar_Plot(self.graph_row_panel)
 
         self.graph_row_panel_sizer = wx.BoxSizer(wx.HORIZONTAL)
         self.graph_row_panel_sizer.Add(self.roadmap_view, 1, wx.EXPAND|wx.ALL, border=2)
         self.graph_row_panel_sizer.Add(self.radar_target_table, 1, wx.EXPAND|wx.ALL, border=2)
         self.graph_row_panel_sizer.Add(self.radar_polar_plot, 1, wx.EXPAND|wx.ALL, border = 2)
+        self.graph_row_panel_sizer.Add(self.bounding_box_plot, 1, wx.EXPAND|wx.ALL, border = 2)
         self.graph_row_panel.SetSizerAndFit(self.graph_row_panel_sizer)
         
  
@@ -521,6 +602,8 @@ class SensorPoll(Thread):
                 wx.CallAfter(pub.sendMessage, "update_camera", msg=message)
             elif "Radar" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_radar_table", msg=message)
+            elif "Bounding" in sensor.name:
+                wx.CallAfter(pub.sendMessage, "update_bounding_box", msg = message)
             return True       
         return False
 

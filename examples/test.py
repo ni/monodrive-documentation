@@ -20,7 +20,7 @@ from monodrive.vehicles import SimpleVehicle
 from monodrive.vehicles import TeleportVehicle
 
 
-ManualDriveMode = False
+ManualDriveMode = True
 
 if __name__ == "__main__":
 
@@ -56,7 +56,7 @@ if __name__ == "__main__":
         
         # simulator.restart_event.set()
         # Waits for the restart event to be set in the control process
-        time.sleep(100)
+        #time.sleep(100)
         simulator.restart_event.wait()
 
         # gui_multi_proc.stop()

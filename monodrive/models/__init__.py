@@ -4,3 +4,4 @@ from .message import Camera_Message
 from .message import Waypoint_Message
 from .message import MapData
 from .message import Radar_Message
+from .message import Bounding_Box_Message

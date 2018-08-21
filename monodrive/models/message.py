@@ -8,7 +8,48 @@ try:
     import cPickle as pickle
 except:
     import _pickle as pickle
+class Bounding_Box_Message(object):
+    def __init__(self, msg):
+        if msg:
+            self.time_stamp = msg['time_stamp']
+            self.game_time  = msg['game_time']
+            self.distances  = msg['distances']
+            self.angles     = msg['angles'] 
+            self.x_points   = msg['x_points']
+            self.y_points   = msg['y_points']
+            self.x_bounds   = msg['x_bounds']
+            self.y_bounds   = msg['y_bounds']
+            self.z_bounds   = msg['z_bounds']
+            self.box_rotations  = msg['box_rotations']
+            self.velocities     = msg['velocities']
+            self.radar_distances= msg['radar_distances']
+            self.radar_angles   = msg['radar_angles']
+            self.radar_velocities=msg['radar_velocities']
+            self.bounding_box_positions = msg['bounding_box_positions']
+            self.in_camera_los  = msg['in_camera_los']
 
+    def test_message(self):
+            pass
+            '''data_dict = {
+            'time_stamp': time_stamp,
+            'game_time': game_time,
+            'distances': distances,
+            'angles': angles,
+            'x_points': x_points,
+            'y_points': y_points,
+            'x_bounds': x_bounds,
+            'y_bounds': y_bounds,
+            'z_bounds': z_bounds,
+            'box_rotations': box_rotations,
+            'velocities': velocities,
+            'radar_distances': radar_distances,
+            'radar_angles': radar_angles,
+            'radar_velocities': radar_velocities,
+            'bounding_box_positions': bounding_box_positions,
+
+            'in_camera_los': in_line_of_sight
+            }'''
+            
 class Radar_Message(object):
     def __init__(self, msg):
         if msg:

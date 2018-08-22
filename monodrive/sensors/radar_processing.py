@@ -119,33 +119,33 @@ class RadarProcessing(object):
         Hz = z1 * Wx  # 1375x64 2D-array Hann windowed dechirped samples (fast/slow plan)
         Z = pyfftw.interfaces.numpy_fft.fft(Hz, NN, 0)  # 1024 points FFT performed on the 64 1D-arrays
         ZA = abs(Z)  # 1024x64 2D-array with amplitudes
-        x = ZA[:,0] #ZA.sum(axis=1)/64  # 1024 points 1D-Array, summing up over sweeps in order to reduce noise effect and clean up the spectrum
-        Lgx = x.size
+        x_sum = ZA[:,0] #ZA.sum(axis=1)/64  # 1024 points 1D-Array, summing up over sweeps in order to reduce noise effect and clean up the spectrum
+        Lgx = x_sum.size
         # Following is CFAR algorithm
         # we used CFAR order statistics : OSCFAR (refer to the report by Celite on Radar design, CFAR section)
-        G = 2  # Guard interval
-        Ncfar = 10  # averaging window size
-        Thr = 20  # threshold depending on false alarm detection probability
-        y = x * x  # compute energy x[k]^2
-        p = []  # initialization of peaks array
-        p = np.array(p)
+        guard = 2  # Guard interval
+        window_size = 10  # averaging window size
+        threshold = 20  # threshold depending on false alarm detection probability
+        y = x_sum * x_sum  # compute energy x[k]^2
+        #p = []  # initialization of peaks array
+        peaks = np.array([]) # initialization of peaks array
         qy = 0 * y  # initialization of the value of the peaks
 
         # compute CFAR for the first samples of the block (right neighbours)
-        for k in range(0, 2 * (G + Ncfar) - 1):
-            z = y[k + G:k + G +int(Ncfar/2)]
+        for k in range(0, 2 * (guard + window_size) - 1):
+            z = y[k + guard:k + guard +int(window_size/2)]
             T = np.median(z)
-            if (y[k] > Thr* T):
-                p = np.hstack((p, [k]))
-                qy[k] = x[k]
+            if (y[k] > threshold * T):
+                peaks = np.hstack((peaks, [k]))
+                qy[k] = x_sum[k]
 
         # compute CFAR for the following block (right and left neighbours)
-        for k in range(2 * (G + Ncfar) - 1, 200): #(Lgx - G - Ncfar - 1)):
-            z = np.concatenate((y[k + G:k + G + Ncfar], y[k - G:k - G - Ncfar:-1]), axis=0)
+        for k in range(2 * (guard + window_size) - 1, 200): #(Lgx - G - Ncfar - 1)):
+            z = np.concatenate((y[k + guard:k + guard + window_size], y[k - guard:k - guard - window_size:-1]), axis=0)
             T = np.median(z)
-            if (y[k] > Thr * T):
-                p = np.hstack((p, [k]))
-                qy[k] = x[k]
+            if (y[k] > threshold * T):
+                peaks = np.hstack((peaks, [k]))
+                qy[k] = x_sum[k]
 
         # compute CFAR for the last samples of the block (left neighbours)
         # for k in range(2 * (G + Ncfar) - 1, Lgx - 1):
@@ -158,12 +158,12 @@ class RadarProcessing(object):
         DenoisingThreshold = 1/500
         Lgy = qy.size
         k = 1
-        p = np.array([])
+        peaks = np.array([])  #TODO setting this to zero?  what does the above do?
         q = np.array([])
         mm = max(qy) * DenoisingThreshold
         RCS_Th = 2
         if (qy[0] > mm and qy[0] > qy[1]):
-            p += [0]
+            peaks += [0]
             q += [qy[0]]
         for k in range(0, Lgy - 2):
             if (qy[k] > 0):
@@ -171,9 +171,9 @@ class RadarProcessing(object):
             else:
                 RCS_k = 1
             if (qy[k] > qy[k - 1] and qy[k] > qy[k + 1] and qy[k]> mm):
-                p = np.hstack((p, [k]))
+                peaks = np.hstack((peaks, [k]))
                 q = np.hstack((q, [qy[k]]))
-        return [p, q]
+        return [peaks, q]
 
     @staticmethod
     def ML_AoA_Estimation(project):

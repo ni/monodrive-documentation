@@ -76,8 +76,8 @@ class Bounding_Polar_Plot(wx.Panel):
         #self.figure.set_title("Radar Target Plot")
         self.target_polar_subplot = self.figure.add_subplot(111, polar = True)
         self.target_polar_subplot.set_title('Bounding Box Target Plot')
-        self.target_polar_subplot.set_thetamin(-25)
-        self.target_polar_subplot.set_thetamax(25)
+        #self.target_polar_subplot.set_thetamin(-10)
+        #self.target_polar_subplot.set_thetamax(10)
         self.target_polar_subplot.set_ylim(0, 150)
         #self.target_polar_subplot.set_
         self.target_polar_subplot.set_theta_zero_location('N')
@@ -92,7 +92,7 @@ class Bounding_Polar_Plot(wx.Panel):
         colors = theta
 
         #self.target_polar_handle = self.target_polar_subplot.scatter(theta, r, c=colors, s=area, cmap='hsv', alpha =0.75)
-        self.target_polar_handle = self.target_polar_subplot.scatter(theta, r, cmap='hsv', alpha =0.75)
+        self.target_polar_handle = self.target_polar_subplot.scatter(theta, r, marker='o', cmap='hsv', alpha =0.75)
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.sizer.Add(self.canvas, 1,  wx.EXPAND)
@@ -123,9 +123,10 @@ class Bounding_Polar_Plot(wx.Panel):
         #so we have to do all the following on every frame
         self.target_polar_subplot.cla()
         self.target_polar_subplot.set_title('Bounding Box Target Plot')
-        self.target_polar_subplot.set_thetamin(-25)
-        self.target_polar_subplot.set_thetamax(25)
-        self.target_polar_subplot.set_ylim(0, 150)
+        #self.target_polar_subplot.set_thetamin(-10)
+        #self.target_polar_subplot.set_thetamax(10)
+        #self.target_polar_subplot.set_rorigin(-40)
+        #self.target_polar_subplot.set_ylim(40, 150)
         self.target_polar_subplot.set_theta_zero_location('N')
         self.target_polar_subplot.scatter(theta, r, c='b', cmap='hsv', alpha =0.75)
         #self.target_polar_handle.set_offsets([theta,r])
@@ -138,13 +139,23 @@ class Radar_Polar_Plot(wx.Panel):
         self.figure = Figure()
         self.canvas = FigureCanvas(self, 1, self.figure)
         #self.figure.set_title("Radar Target Plot")
-        self.target_polar_subplot = self.figure.add_subplot(111, polar = True)
-        self.target_polar_subplot.set_title('Radar Target Plot')
-        self.target_polar_subplot.set_thetamin(-25)
-        self.target_polar_subplot.set_thetamax(25)
-        self.target_polar_subplot.set_ylim(0, 150)
-        #self.target_polar_subplot.set_
-        self.target_polar_subplot.set_theta_zero_location('N')
+        self.target_long_range_subplot = self.figure.add_subplot(211, polar = True)
+        self.target_long_range_subplot.set_title('Radar Target Plot')
+        self.target_long_range_subplot.set_thetamin(-10)
+        self.target_long_range_subplot.set_thetamax(10)
+        self.target_long_range_subplot.set_rorigin(-40)
+        self.target_long_range_subplot.set_ylim(40, 150)
+        #self.target_long_range_subplot.set_
+        self.target_long_range_subplot.set_theta_zero_location('N')
+        
+
+        self.target_mid_range_subplot = self.figure.add_subplot(212, polar = True)
+        self.target_mid_range_subplot.set_thetamin(-45)
+        self.target_mid_range_subplot.set_thetamax(45)
+        self.target_mid_range_subplot.set_ylim(0, 40)
+        
+       
+
         self.toolbar = NavigationToolbar(self.canvas)
         self.toolbar.Realize()
         self.targets_bounding_box = None
@@ -156,10 +167,12 @@ class Radar_Polar_Plot(wx.Panel):
         r = 150 * np.random.rand(N)
         theta = 2 * np.pi * np.random.rand(N)
         #area = .01*r**2
-        colors = theta
+        #colors = theta
 
-        #self.target_polar_handle = self.target_polar_subplot.scatter(theta, r, c=colors, s=area, cmap='hsv', alpha =0.75)
-        self.target_polar_handle = self.target_polar_subplot.scatter(theta, r, cmap='hsv', alpha =0.75)
+        #self.target_polar_handle = self.target_long_range_subplot.scatter(theta, r, c=colors, s=area, cmap='hsv', alpha =0.75)
+        self.target_polar_handle = self.target_long_range_subplot.scatter(theta, r, marker='v', cmap='hsv', alpha =0.75)
+
+        self.target_mid_range_subplot.scatter(theta, r, c='r', marker='s', cmap='hsv', alpha =0.75)
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.sizer.Add(self.canvas, 1,  wx.EXPAND)
@@ -196,14 +209,22 @@ class Radar_Polar_Plot(wx.Panel):
         #speed = targets.velocities/100
         #there seems to be a bug in the new polar plot library, set_offsets is not working
         #so we have to do all the following on every frame
-        self.target_polar_subplot.cla()
-        self.target_polar_subplot.set_title('Radar Target Plot')
-        self.target_polar_subplot.set_thetamin(-25)
-        self.target_polar_subplot.set_thetamax(25)
-        self.target_polar_subplot.set_ylim(0, 150)
-        self.target_polar_subplot.set_theta_zero_location('N')
-        self.target_polar_subplot.scatter(theta, r, c='r', s=rcs, cmap='hsv', alpha =0.75)
-        self.target_polar_subplot.scatter(bounding_box_angles, bounding_box_distances, c='b', s=rcs, cmap='hsv', alpha =0.75)
+        self.target_long_range_subplot.cla()
+        self.target_long_range_subplot.set_title('Radar Target Plot')
+        self.target_long_range_subplot.set_thetamin(-10)
+        self.target_long_range_subplot.set_thetamax(10)
+        self.target_long_range_subplot.set_ylim(40, 150)
+        self.target_long_range_subplot.set_theta_zero_location('N')
+        self.target_long_range_subplot.set_rorigin(-40)
+        self.target_long_range_subplot.scatter(theta, r, c='r', marker='s', cmap='hsv', alpha =0.75)
+        self.target_long_range_subplot.scatter(bounding_box_angles, bounding_box_distances, s=100, facecolors='none', edgecolors='b', cmap='hsv', alpha =0.75)
+        
+        self.target_mid_range_subplot.set_thetamin(-45)
+        self.target_mid_range_subplot.set_thetamax(45)
+        self.target_mid_range_subplot.set_ylim(0, 40)
+        self.target_mid_range_subplot.set_theta_zero_location('N')
+        self.target_mid_range_subplot.scatter(theta, r, c='r', marker='s', cmap='hsv', alpha =0.75)
+        self.target_mid_range_subplot.scatter(bounding_box_angles, bounding_box_distances, s=100, facecolors='none', edgecolors='b', cmap='hsv', alpha =0.75)
         #self.target_polar_handle.set_offsets([theta,r])
         self.figure.canvas.draw()
     

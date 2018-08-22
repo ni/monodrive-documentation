@@ -31,17 +31,19 @@ parser.add_argument('--include',
 millis = lambda: int(round(time.time() * 1000))
 
 class SensorTask:
-    def __init__(self, sensor):
+    def __init__(self, sensor, clock_mode):
         self.sensor = sensor
+        self.clock_mode = clock_mode
 
     def run(self):
         self.running = True
         packets = 0
         start = None
         timer = millis()
-        get_time = lambda: data.get('game_time', millis()) if isinstance(data, dict) else millis()
+        get_time = lambda: data.get('game_time', millis()) if isinstance(data, dict) and self.clock_mode is not 0 else millis()
+        time_units = lambda: 'real time' if (isinstance(data, dict) and data.get('game_time', None) is None) or self.clock_mode is 0 else 'game time'
         while self.running:
-            data = self.sensor.get_display_message()
+            data = self.sensor.get_message()
             if data:
                 packets += 1
             else:
@@ -53,7 +55,7 @@ class SensorTask:
 
             if millis() - timer >= 5000:
                 seconds = (get_time() - start) / 1000
-                print("game time: %f, diff: %f" % (get_time(), seconds))
+                # print("game time: %f, diff: %f" % (get_time(), seconds))
                 #if (data.get('game_time', None) is None):
                 #    seconds /= 1000
 
@@ -61,7 +63,8 @@ class SensorTask:
                     fps = packets / seconds
                 except:
                     fps = 0
-                print('{0}: {1} fps'.format(self.sensor.name, fps))
+                print('{0}: {1:.2f} fps ({2} frames received in {3:.2f} secs ({4}))'.format(
+                    self.sensor.name, fps, packets, seconds, time_units()))
                 packets = 0
                 timer = millis()
                 start = get_time()
@@ -76,7 +79,7 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
     for sensor in vehicle_config.sensor_configuration:
         sensor['fps'] = fps
 
-    simulator.send_simulator_configuration()
+    simulator.send_configuration()
     simulator.send_vehicle_configuration(vehicle_config)
 
     sensors = []
@@ -93,7 +96,7 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
         sensor.start()
         sensor.send_start_stream_command(simulator)
 
-        st = SensorTask(sensor)
+        st = SensorTask(sensor, clock_mode)
         tasklist.append(st)
         t = threading.Thread(target=st.run)
         t.start()
@@ -109,7 +112,7 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
             simulator.request(msg)
             #time.sleep(.1)
     else:
-        for _ in range(0, 8):
+        for _ in range(0, 2):
             time.sleep(30)
             simulator.request(messaging.Message(SIMULATOR_STATUS_UUID))
 
@@ -119,6 +122,7 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
 
     print("waiting on sensors to exit")
     for sensor in sensors:
+        sensor.send_stop_stream_command(simulator)
         sensor.join()
 
 
@@ -173,7 +177,7 @@ if __name__ == "__main__":
     print(json.dumps(vehicle_config.configuration))
     simulator = Simulator(sim_config)
 
-    for fps in range(10, 110, 10):
+    for fps in range(30, 50, 10):
         for clock_mode in range(0, 3):
             print("running test. clock-mode: {0}, fps: {1}".format(clock_mode, fps))
             run_test(simulator, vehicle_config, clock_mode, fps)

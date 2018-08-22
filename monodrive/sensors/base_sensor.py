@@ -303,7 +303,7 @@ class BaseSensor(object):
             frame = self.parse_frame(frame, time_stamp, game_time)
         #TODO need a way to put these on the queue only if needed by downstream 
         #otherwise they fill up and everything breaks.
-        #self.q_data.put(frame)
+        self.q_data.put(frame)
         self.q_display.put(frame)
         
         # if not self.display_process or not self.synchronized_display:

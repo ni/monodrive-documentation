@@ -49,7 +49,7 @@ class Bounding_Box_Message(object):
 
             'in_camera_los': in_line_of_sight
             }'''
-            
+
 class Radar_Message(object):
     def __init__(self, msg):
         if msg:
@@ -60,6 +60,8 @@ class Radar_Message(object):
             self.aoa_list = msg['aoa_list']
             self.rcs_list = msg['rcs_list']
             self.power_list = msg['power_list']
+            self.range_fft = msg['range_fft']
+            self.rx_signal = msg['rx_signal']
         else:
             print("Radar Message Empty")
     

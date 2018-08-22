@@ -115,8 +115,8 @@ class Bounding_Polar_Plot(wx.Panel):
     def set_data(self, targets):
         r = targets.radar_distances
         theta = -np.radians(targets.radar_angles)
-        print("bounding_box distance = {0}".format(r))
-        print("bounding_box theta = {0}".format(theta))
+        #print("bounding_box distance = {0}".format(r))
+        #print("bounding_box theta = {0}".format(theta))
         #rcs = targets.angles
         #speed = targets.velocities/100
         #there seems to be a bug in the new polar plot library, set_offsets is not working
@@ -131,6 +131,80 @@ class Bounding_Polar_Plot(wx.Panel):
         self.target_polar_subplot.scatter(theta, r, c='b', cmap='hsv', alpha =0.75)
         #self.target_polar_handle.set_offsets([theta,r])
         self.figure.canvas.draw()
+
+class Radar_FFT_Plot(wx.Panel):
+    def __init__(self, parent, *args, **kwargs):
+        wx.Panel.__init__(self, parent, *args, **kwargs)
+        self.SetBackgroundColour(BACKGROUND_COLOR)
+        self.figure = Figure()
+        self.canvas = FigureCanvas(self, 1, self.figure)
+        self.range_fft_subplot = self.figure.add_subplot(111)
+        self.range_fft_subplot.set_title('Range_FFT')
+        self.toolbar = NavigationToolbar(self.canvas)
+        self.toolbar.Realize()
+        
+        #this seems hacky but it is the only way to start the prot
+        self.range_fft_subplot_handle = None
+
+        self.sizer = wx.BoxSizer(wx.VERTICAL)
+        self.sizer.Add(self.canvas, 1,  wx.EXPAND)
+        self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
+        self.SetSizer(self.sizer)
+        pub.subscribe(self.update_view, "update_radar_table")
+
+    def update_view(self, msg):
+        radar_msg = Radar_Message(msg)
+        if radar_msg:
+            range_fft = radar_msg.range_fft
+            self.update_range_fft_plot(range_fft)
+            
+
+    def update_range_fft_plot(self, range_fft):
+        x = range(len(range_fft))
+        if self.range_fft_subplot_handle == None:
+            self.range_fft_subplot_handle = self.range_fft_subplot.plot(x, range_fft)[0]
+        self.range_fft_subplot_handle.set_xdata(x)
+        self.range_fft_subplot_handle.set_ydata(range_fft)
+        self.figure.canvas.draw()
+
+
+
+class Radar_Rx_Signal_Plot(wx.Panel):
+    def __init__(self, parent, *args, **kwargs):
+        wx.Panel.__init__(self, parent, *args, **kwargs)
+        self.SetBackgroundColour(BACKGROUND_COLOR)
+        self.figure = Figure()
+        self.canvas = FigureCanvas(self, 1, self.figure)
+        #self.figure.set_title("Radar Target Plot")
+        self.rx_signal_subplot = self.figure.add_subplot(211)
+        self.rx_signal_subplot.set_title('Baseband Signal')
+        self.toolbar = NavigationToolbar(self.canvas)
+        self.toolbar.Realize()
+        
+        #this seems hacky but it is the only way to start the prot
+        self.rx_signal_subplot_handle = None
+
+        self.sizer = wx.BoxSizer(wx.VERTICAL)
+        self.sizer.Add(self.canvas, 1,  wx.EXPAND)
+        self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
+        self.SetSizer(self.sizer)
+        pub.subscribe(self.update_view, "update_radar_table")
+
+    def update_view(self, msg):
+        radar_msg = Radar_Message(msg)
+        if radar_msg:
+            rx_signal = radar_msg.rx_signal
+            self.update_rx_signal_plot(rx_signal)
+
+    def update_rx_signal_plot(self, rx_signal):
+        x = range(len(rx_signal))
+        if self.rx_signal_subplot_handle == None:
+            self.rx_signal_subplot_handle = self.rx_signal_subplot.plot(x,rx_signal)[0]
+        
+        self.rx_signal_subplot_handle.set_xdata(x)
+        self.rx_signal_subplot_handle.set_ydata(rx_signal)
+        self.figure.canvas.draw()
+
 
 class Radar_Polar_Plot(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
@@ -152,8 +226,8 @@ class Radar_Polar_Plot(wx.Panel):
         self.target_mid_range_subplot = self.figure.add_subplot(212, polar = True)
         self.target_mid_range_subplot.set_thetamin(-45)
         self.target_mid_range_subplot.set_thetamax(45)
-        self.target_mid_range_subplot.set_ylim(0, 40)
-        
+        self.target_mid_range_subplot.set_ylim(0, 60)
+        self.target_mid_range_subplot.set_theta_zero_location('N')
        
 
         self.toolbar = NavigationToolbar(self.canvas)
@@ -173,7 +247,7 @@ class Radar_Polar_Plot(wx.Panel):
         self.target_polar_handle = self.target_long_range_subplot.scatter(theta, r, marker='v', cmap='hsv', alpha =0.75)
 
         self.target_mid_range_subplot.scatter(theta, r, c='r', marker='s', cmap='hsv', alpha =0.75)
-
+        
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.sizer.Add(self.canvas, 1,  wx.EXPAND)
         self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
@@ -219,9 +293,10 @@ class Radar_Polar_Plot(wx.Panel):
         self.target_long_range_subplot.scatter(theta, r, c='r', marker='s', cmap='hsv', alpha =0.75)
         self.target_long_range_subplot.scatter(bounding_box_angles, bounding_box_distances, s=100, facecolors='none', edgecolors='b', cmap='hsv', alpha =0.75)
         
+        self.target_mid_range_subplot.cla()
         self.target_mid_range_subplot.set_thetamin(-45)
         self.target_mid_range_subplot.set_thetamax(45)
-        self.target_mid_range_subplot.set_ylim(0, 40)
+        self.target_mid_range_subplot.set_ylim(0, 60)
         self.target_mid_range_subplot.set_theta_zero_location('N')
         self.target_mid_range_subplot.scatter(theta, r, c='r', marker='s', cmap='hsv', alpha =0.75)
         self.target_mid_range_subplot.scatter(bounding_box_angles, bounding_box_distances, s=100, facecolors='none', edgecolors='b', cmap='hsv', alpha =0.75)
@@ -243,7 +318,7 @@ class Radar_Target_Table(wx.Panel):
         self.toolbar.Realize()
         self.target_table_handle = None
         self.old_size = 0
-        self.max_number_of_targets = 20
+        self.max_number_of_targets = 64
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.sizer.Add(self.canvas, 1,  wx.EXPAND)
@@ -276,41 +351,43 @@ class Radar_Target_Table(wx.Panel):
         targets_handle.auto_set_font_size(False)
         targets_handle.set_fontsize(5.5)
         for i in range(0,6):
-            for j in range(len(targets.ranges) + 1, self.max_number_of_targets + 1):
+            for j in range(self.max_number_of_targets + 1, self.max_number_of_targets + 1):
                     targets_handle._cells[(j,i)]._text.set_text('')
                     targets_handle._cells[(j,i)].set_linewidth(0)
 
-        self.old_size = len(targets.ranges)
+        self.old_size = self.max_number_of_targets
 
         return targets_handle
 
     def set_data(self,targets):
         target_cells = np.array(self.max_number_of_targets * [6 * [0]])
         if len(targets.ranges):
-            target_cells[0:len(targets.ranges),    0] = range(0, len(targets.ranges))
+            target_cells[0:self.max_number_of_targets,    0] = range(0, self.max_number_of_targets)
             target_cells[0:len(targets.ranges),     1] = targets.ranges
             target_cells[0:len(targets.velocities), 2] = targets.velocities
             target_cells[0:len(targets.aoa_list),   3] = targets.aoa_list
             target_cells[0:len(targets.rcs_list),   4] = targets.rcs_list
             target_cells[0:len(targets.power_list), 5] = targets.power_list
 
-        for i in range(0, 6):
+        '''for i in range(0, 6):
             for j in range(1, self.old_size + 1): #to erase previous display
                 try:
                     self.target_table_handle._cells[(j,i)]._text.set_text('')
                     self.target_table_handle._cells[(j,i)].set_linewidth(0)
                 except:
-                    pass
+                    pass'''
 
         for i in range(0,6):
-            for j in range(1, len(targets.ranges) + 1): #to refresh with new display
+            for j in range(1, self.max_number_of_targets + 1): #to refresh with new display
                 try:
                     self.target_table_handle._cells[(j, i)]._text.set_text(target_cells[j - 1, i])
                     self.target_table_handle._cells[(j, i)].set_linewidth(1)
+                    if j > len(targets.ranges + 1) and i > 0:
+                       self.target_table_handle._cells[(j, i)]._text.set_text('---') 
                 except:
                     pass
 
-        self.old_size = len(targets.ranges)
+        self.old_size = self.max_number_of_targets
 
 
 class RoadMap_View(wx.Panel):
@@ -382,6 +459,7 @@ class RoadMap_View(wx.Panel):
             self.map_subplot_handle = self.map_subplot.plot(x, y, marker='.', linestyle='None')[0]
         self.map_subplot_handle.set_xdata(x)
         self.map_subplot_handle.set_ydata(y)
+        self.figure.canvas.draw()
         self.Layout()
         self.Refresh()
 
@@ -528,11 +606,36 @@ class Camera_View(wx.Panel):
         bmp = self.png.Scale(frame_h,frame_w)
         self.bmp.SetBitmap(wx.BitmapFromImage(bmp))'''
 
-class MainWindow(wx.Frame):
-    def __init__(self, parent, title = "monoDrive Visualizer", *args, **kwargs):
-        wx.Frame.__init__(self, parent, size=(1800,1000), title = title,*args, **kwargs)
+class Radar_Panel(wx.Panel):
+    def __init__(self, parent, *args, **kwargs):
+        wx.Panel.__init__(self, parent,*args, **kwargs)
+
+        self.radar_target_table = Radar_Target_Table(self)
+        self.radar_polar_plot = Radar_Polar_Plot(self)
+        self.rx_signal_details = GraphRow(self)
+
+        self.main_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        self.main_sizer.Add(self.radar_target_table, 1, wx.EXPAND|wx.ALL, border=2)
+        self.main_sizer.Add(self.radar_polar_plot, 1, wx.EXPAND|wx.ALL, border = 2)
+        self.main_sizer.Add(self.rx_signal_details, 1, wx.EXPAND|wx.ALL, border = 2)
+        self.SetSizerAndFit(self.main_sizer)
+
+        self.rx_signal_plot = Radar_Rx_Signal_Plot(self.rx_signal_details)
+        self.range_fft_plot = Radar_FFT_Plot(self.rx_signal_details)
+
+        self.signal_details_sizer = wx.BoxSizer(wx.VERTICAL)
+        self.signal_details_sizer.Add(self.rx_signal_plot, 1, wx.EXPAND|wx.ALL, border =2)
+        self.signal_details_sizer.Add(self.range_fft_plot, 1, wx.EXPAND|wx.ALL, border = 2)
+        self.rx_signal_details.SetSizer(self.signal_details_sizer)
+
+        self.Layout()
+        self.Refresh()
+
+class Overview_Panel(wx.Panel):
+    def __init__(self, parent, *args, **kwargs):
+        wx.Panel.__init__(self, parent,*args, **kwargs)
         #set up frame panels
-        pub.subscribe(self.shutdown, "SHUTDOWN")
+        
 
         self.graph_row_panel = GraphRow(self)
         self.text_row_panel = TextRow(self)
@@ -547,13 +650,11 @@ class MainWindow(wx.Frame):
 
         #add figures to graph row
         self.roadmap_view = RoadMap_View(self.graph_row_panel)
-        self.radar_target_table = Radar_Target_Table(self.graph_row_panel)
         self.radar_polar_plot = Radar_Polar_Plot(self.graph_row_panel)
         self.bounding_box_plot = Bounding_Polar_Plot(self.graph_row_panel)
 
         self.graph_row_panel_sizer = wx.BoxSizer(wx.HORIZONTAL)
         self.graph_row_panel_sizer.Add(self.roadmap_view, 1, wx.EXPAND|wx.ALL, border=2)
-        self.graph_row_panel_sizer.Add(self.radar_target_table, 1, wx.EXPAND|wx.ALL, border=2)
         self.graph_row_panel_sizer.Add(self.radar_polar_plot, 1, wx.EXPAND|wx.ALL, border = 2)
         self.graph_row_panel_sizer.Add(self.bounding_box_plot, 1, wx.EXPAND|wx.ALL, border = 2)
         self.graph_row_panel.SetSizerAndFit(self.graph_row_panel_sizer)
@@ -579,19 +680,43 @@ class MainWindow(wx.Frame):
         self.Refresh()
         
     
+
+        #self.Destroy()
+
+class MainFrame(wx.Frame):
+    def __init__(self):
+        wx.Frame.__init__(self, None, size=(2400,1200), title = "monoDrive Visualizer")
+        pub.subscribe(self.shutdown, "SHUTDOWN")
+        # Here we create a panel and a notebook on the panel
+        p = wx.Panel(self)
+        nb = wx.Notebook(p)
+
+        # create the page windows as children of the notebook
+        overview = Overview_Panel(nb)
+        radar = Radar_Panel(nb)
+        camera = Camera_View(nb)
+
+        # add the pages to the notebook with the label to show on the tab
+        nb.AddPage(overview, "All Sensors")
+        nb.AddPage(radar, "Radar")
+        nb.AddPage(camera, "Camera")
+
+        # finally, put the notebook in a sizer for the panel to manage
+        # the layout
+        sizer = wx.BoxSizer()
+        sizer.Add(nb, 1, wx.EXPAND)
+        p.SetSizer(sizer)
+
     def shutdown(self, msg):
         print("Frame shutting down {0}".format(msg))
         self.Close()
-        #self.Destroy()
 
-class MyFrame(wx.Frame):
-    pass
 #Ctrl-Alt-I, or Cmd-Alt-I on Mac for inspection app for viewing layout
 class MonoDriveGUIApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
 #class MonoDriveGUIApp(wx.App):
     def OnInit(self):
         self.Init()  # initialize the inspection tool
-        frame = MainWindow(None)
+        frame = MainFrame()
         frame.Show(True)
         self.SetTopWindow(frame)
         return True

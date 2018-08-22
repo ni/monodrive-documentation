@@ -73,7 +73,8 @@ class Base_Radar(BaseSensor):
         #self.radar_method = radar_method.DetectionRootMusicAndESPRIT(config, self.ncores)
 
         #self.rx_power = []
-        
+        self.rx_range_fft = []
+        self.rx_signal_real = []
         self.target_range_idx = np.array([])
         self.targets_range = []
         self.targets_velocity = []
@@ -82,6 +83,7 @@ class Base_Radar(BaseSensor):
         self.targets_rx_power = []
         self.targets_rx_power_db = []
         self.targets_rcs = []
+        
 
         self.is_root_music = True
         self.hann_matrix_range, self.hann_matrix_aoa = self.build_hanning()
@@ -100,6 +102,8 @@ class Base_Radar(BaseSensor):
             radar_data['aoa_list'] = self.targets_aoa 
             radar_data['rcs_list'] =self.targets_rcs
             radar_data['power_list'] = self.targets_rx_power_db
+            radar_data['range_fft'] = abs(self.rx_range_fft[:,0]) #just use first [0] rx signal from the 64 sweeps output is 1024x1 np array for visualization
+            radar_data['rx_signal'] = self.rx_signal_real       #use real part of first sweep signal for visualization
             #print("parsed radar data = {0}".format(radar_data))
         else:
             print("Radar Data parse frame is empty")
@@ -189,16 +193,26 @@ class Radar(Base_Radar):
     def compute_range_and_indx(self,xr):
         #if scipyio:
         #    scipyio.savemat('radar_cube__04_07_2018_001.mat', {'xr': xr})
-        z = np.transpose(xr[:, 0, 0:self.N_FFT])
-        wx = self.hann_matrix_range[:, 0]
-        wx = wx.reshape(self.N_FFT, 1)
-        ranges = np.array(rp.range_by_fft(z, wx, self.N_FFT))
-        self.target_range_idx = ranges[0]
-        self.targets_rx_power = ranges[1]
+        rx_signal_element_0 = np.transpose(xr[:, 0, 0:self.N_FFT])
+        
+        hanning = self.hann_matrix_range[:, 0]
+        hanning = hanning.reshape(self.N_FFT, 1)
+        rx_signal_shaped = rx_signal_element_0 * hanning  # 1375x64 2D-array Hann windowed dechirped samples (fast/slow plan)
+        
+        rx_signal = rx_signal_shaped[:,0]
+        self.rx_signal_real = rx_signal.real
+
+        self.rx_range_fft = pyfftw.interfaces.numpy_fft.fft(rx_signal_shaped, self.N_FFT, 0)  # 1024 points FFT performed on the 64 1D-arrays
+
+        self.target_range_idx, self.targets_rx_power = np.array(rp.range_by_fft(self.rx_range_fft, hanning, self.N_FFT))
+        #self.target_range_idx = ranges[0]
+        #self.targets_rx_power = ranges[1]
         self.targets_range = self.bin_range * (self.target_range_idx+1)  # range converted in meters
         self.targets_rcs = 10*np.log10(self.targets_rx_power * (self.targets_range ** 2)*(4*np.pi)**3 / self.N_FFT **2)-34 # 25 is a Tuning constant chosen roughly
         self.targets_rx_power_db = 10*np.log10(self.targets_rx_power)
-        
+        print("# radar targets {0}".format(len(self.targets_range)))
+        print("# targets range {0}".format(self.targets_range))
+        print("# targets power {0}".format(self.targets_rx_power))
         if len(self.targets_range) > 0:
             return True
         else:

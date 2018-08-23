@@ -93,8 +93,9 @@ class Bounding_Polar_Plot(wx.Panel):
 
         #self.target_polar_handle = self.target_polar_subplot.scatter(theta, r, c=colors, s=area, cmap='hsv', alpha =0.75)
         self.target_polar_handle = self.target_polar_subplot.scatter(theta, r, marker='o', cmap='hsv', alpha =0.75)
-
+        self.string_time = wx.StaticText(self, label="")
         self.sizer = wx.BoxSizer(wx.VERTICAL)
+        self.sizer.Add(self.string_time,0)
         self.sizer.Add(self.canvas, 1,  wx.EXPAND)
         self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
         self.SetSizer(self.sizer)
@@ -103,6 +104,7 @@ class Bounding_Polar_Plot(wx.Panel):
         if msg:
             self.targets = Bounding_Box_Message(msg)
             self.update_plot(self.targets)
+            self.string_time.SetLabelText('TIMESTAMP: {0}'.format(self.targets.time_stamp))
         else:
             print("empty target list")
 
@@ -140,6 +142,7 @@ class Radar_FFT_Plot(wx.Panel):
         self.canvas = FigureCanvas(self, 1, self.figure)
         self.range_fft_subplot = self.figure.add_subplot(111)
         self.range_fft_subplot.set_title('Range_FFT')
+        self.range_fft_subplot.set_ylim([-5,3])
         self.toolbar = NavigationToolbar(self.canvas)
         self.toolbar.Realize()
         
@@ -156,15 +159,22 @@ class Radar_FFT_Plot(wx.Panel):
         radar_msg = Radar_Message(msg)
         if radar_msg:
             range_fft = radar_msg.range_fft
-            self.update_range_fft_plot(range_fft)
+            target_range_idx = radar_msg.target_range_idx
+            self.update_range_fft_plot(range_fft, target_range_idx)
             
 
-    def update_range_fft_plot(self, range_fft):
-        x = range(len(range_fft))
-        if self.range_fft_subplot_handle == None:
-            self.range_fft_subplot_handle = self.range_fft_subplot.plot(x, range_fft)[0]
-        self.range_fft_subplot_handle.set_xdata(x)
-        self.range_fft_subplot_handle.set_ydata(range_fft)
+    def update_range_fft_plot(self, range_fft, target_range_idx):
+        x = range(len(range_fft)/4)
+        print(target_range_idx)
+        #if self.range_fft_subplot_handle == None:
+        self.range_fft_subplot.cla()
+        self.range_fft_subplot_handle = self.range_fft_subplot.plot(x, np.log10(range_fft[0:len(x)]))[0]
+        self.range_fft_peaks_handle = self.range_fft_subplot.scatter(target_range_idx, np.log10(range_fft[target_range_idx]), color='red')
+        #self.range_fft_subplot_handle.set_xdata(x)
+        #self.range_fft_subplot_handle.set_ydata(np.log10(range_fft[0:len(x)]))
+        #self.range_fft_subplot.scatter(target_range_idx, np.log10(range_fft[target_range_idx]))
+        #self.range_fft_peaks_handle.set_xdata(target_range_idx)
+        #self.range_fft_peaks_handle.set_ydata(np.log10(range_fft[target_range_idx]))
         self.figure.canvas.draw()
 
 
@@ -176,8 +186,9 @@ class Radar_Rx_Signal_Plot(wx.Panel):
         self.figure = Figure()
         self.canvas = FigureCanvas(self, 1, self.figure)
         #self.figure.set_title("Radar Target Plot")
-        self.rx_signal_subplot = self.figure.add_subplot(211)
+        self.rx_signal_subplot = self.figure.add_subplot(111)
         self.rx_signal_subplot.set_title('Baseband Signal')
+        self.rx_signal_subplot.set_ylim([-1,1])
         self.toolbar = NavigationToolbar(self.canvas)
         self.toolbar.Realize()
         
@@ -247,8 +258,13 @@ class Radar_Polar_Plot(wx.Panel):
         self.target_polar_handle = self.target_long_range_subplot.scatter(theta, r, marker='v', cmap='hsv', alpha =0.75)
 
         self.target_mid_range_subplot.scatter(theta, r, c='r', marker='s', cmap='hsv', alpha =0.75)
+
+        self.string_time_radar = wx.StaticText(self, label="")
+        self.string_time_bb = wx.StaticText(self, label="")
         
         self.sizer = wx.BoxSizer(wx.VERTICAL)
+        self.sizer.Add(self.string_time_radar, 0)
+        self.sizer.Add(self.string_time_bb, 0)
         self.sizer.Add(self.canvas, 1,  wx.EXPAND)
         self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
         self.SetSizer(self.sizer)
@@ -256,6 +272,7 @@ class Radar_Polar_Plot(wx.Panel):
     def update_bounding(self,msg):
         if msg:
             self.targets_bounding_box = Bounding_Box_Message(msg)
+            self.string_time_bb.SetLabelText('BB    TIMESTAMP: {0}'.format(self.targets.game_time))
             #self.update_plot(self.targets)
         else:
             print("empty bounding target list")
@@ -264,6 +281,7 @@ class Radar_Polar_Plot(wx.Panel):
         if msg:
             self.targets = Radar_Message(msg)
             self.update_plot(self.targets)
+            self.string_time_radar.SetLabelText('Radar TIMESTAMP: {0}'.format(self.targets.game_time))
         else:
             print("empty target list")
 
@@ -318,7 +336,7 @@ class Radar_Target_Table(wx.Panel):
         self.toolbar.Realize()
         self.target_table_handle = None
         self.old_size = 0
-        self.max_number_of_targets = 64
+        self.max_number_of_targets = 24
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.sizer.Add(self.canvas, 1,  wx.EXPAND)
@@ -346,7 +364,7 @@ class Radar_Target_Table(wx.Panel):
     def setup_radar_plots(self, targets={}):
         targets_cells = np.array(self.max_number_of_targets * [6 * [0]])
         targets_handle = self.target_table_subplot.table(cellText=targets_cells[0:self.max_number_of_targets],
-                                          colLabels=("Target", "Range", "Speed", "AoA", "RCS", "Power\n level"),
+                                          colLabels=("Target", "Range", "Speed", "AoA", "RCS", "Power Level (dB)"),
                                           loc='center')
         targets_handle.auto_set_font_size(False)
         targets_handle.set_fontsize(5.5)
@@ -746,10 +764,10 @@ class SensorPoll(Thread):
                 wx.CallAfter(pub.sendMessage, "update_gps", msg=message)
             elif "Camera" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_camera", msg=message)
-            elif "Radar" in sensor.name:
-                wx.CallAfter(pub.sendMessage, "update_radar_table", msg=message)
             elif "Bounding" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_bounding_box", msg = message)
+            elif "Radar" in sensor.name:
+                wx.CallAfter(pub.sendMessage, "update_radar_table", msg=message)
             return True       
         return False
 
@@ -764,7 +782,7 @@ class SensorPoll(Thread):
                 print("GUI THREAD STOPPED")
             if self.road_map:
                 wx.CallAfter(pub.sendMessage, "update_roadmap", msg=self.road_map)
-            time.sleep(.1)
+            time.sleep(1)
         self.running = False     
         print("GUI THREAD NOT RUNNING") 
 

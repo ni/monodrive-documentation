@@ -194,26 +194,7 @@
       "semantic_processing": false,
       "hdmi_streaming": false
     },
-      {
-        "type": "BoundingBox",
-        "id": "1",
-        "packet_size": 1472,
-        "listen_port": 8081,
-        "display_process": true,
-        "sensor_process": true,
-        "synchronized_display": true,
-        "location": {
-          "x":-75.0,
-          "y":-25.0,
-          "z":245.0
-        },
-        "rotation": {
-          "pitch":0.0,
-          "yaw":0.0,
-          "roll":0.0
-        },
-        "fps": 1.0
-      },
+
       {
         "type": "Radar",
         "id": "2",
@@ -253,6 +234,26 @@
           "gain": 60.0,
           "kb": 0.00059641065
         }
+      },
+      {
+        "type": "BoundingBox",
+        "id": "1",
+        "packet_size": 1472,
+        "listen_port": 8081,
+        "display_process": true,
+        "sensor_process": true,
+        "synchronized_display": true,
+        "location": {
+          "x":-75.0,
+          "y":-25.0,
+          "z":245.0
+        },
+        "rotation": {
+          "pitch":0.0,
+          "yaw":0.0,
+          "roll":0.0
+        },
+        "fps": 1.0
       },
       {
         "type": "GPS",

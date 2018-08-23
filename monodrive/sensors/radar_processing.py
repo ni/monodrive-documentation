@@ -177,26 +177,26 @@ class RadarProcessing(object):
         return [peaks, energy]
 
     @staticmethod
-    def ML_AoA_Estimation(project):
+    def max_likelihood_aoa_estimation(project):
             N = project.shape[0]
             # M = project.shape[1]
 
-            theta = np.arange(-45,45,0.5)
+            theta = np.arange(-10,10,0.5)
             theta_rad = theta / 180. * np.pi
-            P = len(theta)
-            V = np.zeros((N, P))+np.zeros((N, P))*1j
-            for p in range(P):
+            theta_length = len(theta)
+            V = np.zeros((N, theta_length)) + np.zeros((N, theta_length)) * 1j
+            for idx in range(theta_length):
                 for n in range(N):
-                    V[n, p] = np.exp(-1j * np.pi * n  * np.sin(theta_rad[p]))
+                    V[n, idx] = np.exp(-1j * np.pi * n  * np.sin(theta_rad[idx]))
             theta_est = 0. #np.zeros(1, M)
 
-            ML = np.zeros(P)
-            for p in range(P):
-                A = V[:, p]
+            max_likelihood = np.zeros(theta_length) #initialize max likelihood to zeros
+            for idx in range(theta_length):
+                A = V[:, idx]
                 cte = np.dot(np.conj(np.transpose(A)), np.transpose(project))
-                ML[p] = np.abs(cte)
+                max_likelihood[idx] = np.abs(cte)
 
-                index = ML.argmax()
+                index = max_likelihood.argmax()
                 theta_est = theta[index]
 
             return theta_est

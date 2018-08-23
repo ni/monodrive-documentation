@@ -28,3 +28,7 @@ VELOVIEW_PORT = 2368
 VELOVIEW_IP = '127.0.0.1'
 
 BASE_PATH = os.path.dirname(os.path.dirname(__file__))
+
+ClockMode_Continuous = 0
+ClockMode_AutoStep   = 1
+ClockMode_ClientStep = 2

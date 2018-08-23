@@ -7,13 +7,16 @@ __version__ = "1.0"
 
 import argparse
 import json
+import math
+import random
 import threading
 import time
 
 from monodrive import Simulator
 from monodrive.configuration import SimulatorConfiguration, VehicleConfiguration
-from monodrive.constants import SIMULATOR_STATUS_UUID
+from monodrive.constants import SIMULATOR_STATUS_UUID, ClockMode_Continuous, ClockMode_AutoStep, ClockMode_ClientStep
 from monodrive.networking import messaging
+from monodrive.sensors import GPS
 
 
 parser = argparse.ArgumentParser(description='monoDrive simulator stress test script')
@@ -30,10 +33,37 @@ parser.add_argument('--include',
 
 millis = lambda: int(round(time.time() * 1000))
 
+class Tracker:
+    def __init__(self):
+        self.last_location = None
+        self.lock = threading.Lock()
+        self.last_distance = 0
+
+    def update(self, location):
+        self.lock.acquire()
+        if self.last_location is not None:
+            lat1 = math.radians(location['lat'])
+            lat2 = math.radians(self.last_location['lat'])
+            d = math.radians(self.last_location['lng'] - location['lng'])
+            R = 6371e3
+            self.last_distance = math.acos(math.sin(lat1) * math.sin(lat2) +
+                                           math.cos(lat1) * math.cos(lat2) * math.cos(d)) * R
+        self.last_location = location
+        self.lock.release()
+
+    def get_last_distance_travelled(self):
+        self.lock.acquire()
+        location = self.last_location if self.last_location is not None else {}
+        distance = self.last_distance
+        self.lock.release()
+        return location, distance
+
+
 class SensorTask:
-    def __init__(self, sensor, clock_mode):
+    def __init__(self, sensor, clock_mode, tracker):
         self.sensor = sensor
         self.clock_mode = clock_mode
+        self.tracker = tracker
 
     def run(self):
         self.running = True
@@ -46,6 +76,9 @@ class SensorTask:
             data = self.sensor.get_message()
             if data:
                 packets += 1
+
+                if isinstance(self.sensor, GPS):
+                    self.tracker.update(data)
             else:
                 continue
 
@@ -63,8 +96,10 @@ class SensorTask:
                     fps = packets / seconds
                 except:
                     fps = 0
-                print('{0}: {1:.2f} fps ({2} frames received in {3:.2f} secs ({4}))'.format(
-                    self.sensor.name, fps, packets, seconds, time_units()))
+
+                location, distance = self.tracker.get_last_distance_travelled()
+                print('{0}: {1:.2f} fps ({2} frames received in {3:.2f} secs ({4}))\ndistance: {5}, speed: {6}'.format(
+                    self.sensor.name, fps, packets, seconds, time_units(), distance, location.get('speed',0)))
                 packets = 0
                 timer = millis()
                 start = get_time()
@@ -92,11 +127,12 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
 
     print("starting sensors")
     tasklist = []
+    tracker = Tracker()
     for sensor in sensors:
         sensor.start()
         sensor.send_start_stream_command(simulator)
 
-        st = SensorTask(sensor, clock_mode)
+        st = SensorTask(sensor, clock_mode, tracker)
         tasklist.append(st)
         t = threading.Thread(target=st.run)
         t.start()
@@ -106,15 +142,20 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
         sensor.socket_ready_event.wait()
 
     print("sampling sensors")
-    if clock_mode == 2:
-        msg = messaging.EgoControlCommand(0.0, 0.0)
-        for _ in range(0, 1000):
-            simulator.request(msg)
-            #time.sleep(.1)
-    else:
-        for _ in range(0, 2):
-            time.sleep(30)
-            simulator.request(messaging.Message(SIMULATOR_STATUS_UUID))
+    #msg = messaging.EgoControlCommand(random.randrange(-5.0, 5.0), random.randrange(-3.0, 3.0)) # drive randomly
+    msg = messaging.EgoControlCommand(1.0, 0.0) # go straight
+    for _ in range(0, 100):
+        simulator.request(msg)
+        time.sleep(.2)
+    # if clock_mode == 2:
+    #     msg = messaging.EgoControlCommand(5.0, 0.0)
+    #     for _ in range(0, 1000):
+    #         simulator.request(msg)
+    #         #time.sleep(.1)
+    # else:
+    #     for _ in range(0, 2):
+    #         time.sleep(30)
+    #         simulator.request(messaging.Message(SIMULATOR_STATUS_UUID))
 
     print("stopping")
     for task in tasklist:
@@ -178,7 +219,9 @@ if __name__ == "__main__":
     simulator = Simulator(sim_config)
 
     for fps in range(30, 50, 10):
-        for clock_mode in range(0, 3):
+        modes = [ClockMode_Continuous, ClockMode_AutoStep, ClockMode_ClientStep]
+        random.shuffle(modes)
+        for clock_mode in modes:
             print("running test. clock-mode: {0}, fps: {1}".format(clock_mode, fps))
             run_test(simulator, vehicle_config, clock_mode, fps)
 

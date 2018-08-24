@@ -50,7 +50,7 @@ class BaseSensor(object):
         #self.q_data = SingleQueue()
         #self.q_display = SingleQueue()
         self.q_data = multiprocessing.Queue(maxsize=10)
-        self.q_display = multiprocessing.Queue()
+        self.q_display = multiprocessing.Queue(maxsize=10)
         self.socket_ready_event = multiprocessing.Event()
         self.stop_event = multiprocessing.Event()
         self.process = None
@@ -313,9 +313,15 @@ class BaseSensor(object):
         # self.log_control_time(self.name, self.last_control_real_time.value)
         if hasattr(self, 'parse_frame'):
             frame = self.parse_frame(frame, time_stamp, game_time)
-        #TODO need a way to put these on the queue only if needed by downstream 
-        #otherwise they fill up and everything breaks.
-        #self.q_data.put(frame)
+
+        # if our queue is filled up pop the top one
+        if self.q_data.full():
+            self.q_data.get()
+        self.q_data.put(frame)
+
+        # if our queue is filled up pop the top one
+        if self.q_display.full():
+            self.q_display.get()
         self.q_display.put(frame)
         
         # if not self.display_process or not self.synchronized_display:

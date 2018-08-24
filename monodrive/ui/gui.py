@@ -666,8 +666,9 @@ class GUI(object):
         self.process.name = self.name
         self.process.start()
 
-    def stop(self, timeout=10):
-        self.stop_event.set()
+    def stop(self, timeout=2):
+        if self.process.is_alive():
+            self.stop_event.set()
         self.join(timeout=timeout)
 
     def join(self, timeout=2):
@@ -692,7 +693,7 @@ class GUI(object):
 
         monitor.join(timeout=2)
 
-        #print("GUI main DONE")
+        print("GUI main DONE")
 
     #this will simply wait for sensor to stop running - and kill the app
     def monitor_process_state(self):

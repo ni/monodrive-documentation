@@ -168,8 +168,10 @@ class Radar_FFT_Plot(wx.Panel):
         print(target_range_idx)
         #if self.range_fft_subplot_handle == None:
         self.range_fft_subplot.cla()
-        self.range_fft_subplot_handle = self.range_fft_subplot.plot(x, np.log10(range_fft[0:len(x)]))[0]
-        self.range_fft_peaks_handle = self.range_fft_subplot.scatter(target_range_idx, np.log10(range_fft[target_range_idx]), color='red')
+        self.range_fft_subplot.set_title('Range by FFT')
+        self.range_fft_subplot.set_ylim([-140,1])
+        self.range_fft_subplot_handle = self.range_fft_subplot.plot(x, 20.0 * np.log10(range_fft[0:len(x)]))[0]
+        self.range_fft_peaks_handle = self.range_fft_subplot.scatter(target_range_idx, 20.0 * np.log10(range_fft[target_range_idx]), color='red')
         #self.range_fft_subplot_handle.set_xdata(x)
         #self.range_fft_subplot_handle.set_ydata(np.log10(range_fft[0:len(x)]))
         #self.range_fft_subplot.scatter(target_range_idx, np.log10(range_fft[target_range_idx]))
@@ -178,6 +180,42 @@ class Radar_FFT_Plot(wx.Panel):
         self.figure.canvas.draw()
 
 
+class Radar_Tx_Signal_Plot(wx.Panel):
+    def __init__(self, parent, *args, **kwargs):
+        wx.Panel.__init__(self, parent, *args, **kwargs)
+        self.SetBackgroundColour(BACKGROUND_COLOR)
+        self.figure = Figure()
+        self.canvas = FigureCanvas(self, 1, self.figure)
+        #self.figure.set_title("Radar Target Plot")
+        self.tx_signal_subplot = self.figure.add_subplot(111)
+        self.tx_signal_subplot.set_title('Tx Signal')
+        self.toolbar = NavigationToolbar(self.canvas)
+        self.toolbar.Realize()
+        
+        #this seems hacky but it is the only way to start the prot
+        self.tx_signal_subplot_handle = None
+
+        self.sizer = wx.BoxSizer(wx.VERTICAL)
+        self.sizer.Add(self.canvas, 1,  wx.EXPAND)
+        self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
+        self.SetSizer(self.sizer)
+        pub.subscribe(self.update_view, "update_radar_table")
+
+    def update_view(self, msg):
+        radar_msg = Radar_Message(msg)
+        if radar_msg:
+            tx_signal = radar_msg.tx_waveform
+            time_series = radar_msg.time_series
+            self.update_rx_signal_plot(time_series, tx_signal)
+
+    def update_rx_signal_plot(self, time_series, tx_signal):
+        x = range(len(tx_signal))
+        if self.tx_signal_subplot_handle == None:
+            self.tx_signal_subplot_handle = self.tx_signal_subplot.plot(x,tx_signal)[0]
+        
+        self.tx_signal_subplot_handle.set_xdata(x)
+        self.tx_signal_subplot_handle.set_ydata(tx_signal)
+        self.figure.canvas.draw()
 
 class Radar_Rx_Signal_Plot(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
@@ -188,7 +226,7 @@ class Radar_Rx_Signal_Plot(wx.Panel):
         #self.figure.set_title("Radar Target Plot")
         self.rx_signal_subplot = self.figure.add_subplot(111)
         self.rx_signal_subplot.set_title('Baseband Signal')
-        self.rx_signal_subplot.set_ylim([-1,1])
+        self.rx_signal_subplot.set_ylim([-.01,.01])
         self.toolbar = NavigationToolbar(self.canvas)
         self.toolbar.Realize()
         
@@ -627,15 +665,16 @@ class Camera_View(wx.Panel):
 class Radar_Panel(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
         wx.Panel.__init__(self, parent,*args, **kwargs)
-
+        self.radar_tx_signal = Radar_Tx_Signal_Plot(self)
         self.radar_target_table = Radar_Target_Table(self)
         self.radar_polar_plot = Radar_Polar_Plot(self)
         self.rx_signal_details = GraphRow(self)
 
         self.main_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        self.main_sizer.Add(self.radar_target_table, 1, wx.EXPAND|wx.ALL, border=2)
-        self.main_sizer.Add(self.radar_polar_plot, 1, wx.EXPAND|wx.ALL, border = 2)
+        self.main_sizer.Add(self.radar_tx_signal, 1, wx.EXPAND|wx.ALL, border =2)
         self.main_sizer.Add(self.rx_signal_details, 1, wx.EXPAND|wx.ALL, border = 2)
+        self.main_sizer.Add(self.radar_polar_plot, 1, wx.EXPAND|wx.ALL, border = 2)
+        self.main_sizer.Add(self.radar_target_table, 1, wx.EXPAND|wx.ALL, border=2)
         self.SetSizerAndFit(self.main_sizer)
 
         self.rx_signal_plot = Radar_Rx_Signal_Plot(self.rx_signal_details)

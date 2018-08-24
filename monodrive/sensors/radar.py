@@ -44,9 +44,9 @@ class Base_Radar(BaseSensor):
         self.nSweep = int(config['num_sweeps'])
         self.n_rx_elements = 8
         self.bounding_box = None
-        speed_of_light = 3e8
-        Tm = config['sweep_num_for_range_max']* 2 * config['range_max']/ speed_of_light
-        self.N = int(round(config['fs'] * Tm))
+        speed_of_light = 3.0e8
+        tm = config['sweep_num_for_range_max']* 2 * config['range_max']/ speed_of_light
+        self.N = int(round(config['fs'] * tm))
         self.samples_per_frame = self.N * self.n_rx_elements * self.nSweep * 2
         self.range_max = config['range_max']
         self.v_max = config['max_velocity']
@@ -84,9 +84,55 @@ class Base_Radar(BaseSensor):
         self.targets_rx_power_db = []
         self.targets_rcs = []
         
+        #Mock Transmitter 
+        range_resolution = config['range_resolution']
+        bandwidth = speed_of_light/(2.0 * range_resolution)
+        self.sweep_slope = bandwidth / tm
+        self.tx_aperature = config['transmitter']['aperture']
+        self.tx_peak_power = config['transmitter']['peak_power']
+        self.tx_gain = config['transmitter']['gain']
+        self.tx_power = self.get_transmit_power()
+        self.time_series = self.generate_time_series()
+        self.tx_waveform = self.generate_fmcw()
 
         self.is_root_music = True
         self.hann_matrix_range, self.hann_matrix_aoa = self.build_hanning()
+
+    def generate_fmcw(self):
+        tx_waveform = np.zeros(self.N, dtype=complex)
+        for n in range(self.N):
+            t = self.time_series[n]
+            tx_waveform[n] = np.multiply(self.tx_power,np.exp(self.sweep_slope * -1j * np.pi * t*t )) 
+        return tx_waveform
+
+    def generate_time_series(self):
+        time_series = np.zeros(self.N)
+        for n in range(self.N):
+            time_series[n] = n*self.Ts 
+        return time_series
+    
+    def get_transmit_power(self):
+        #tx_antenna_db = self.aperature2gain(self.tx_aperature)
+        tx_antenna_db = 18.0
+        print("antenna gain db = {0}".format(tx_antenna_db))
+        tx_antenna_power = self.db2power(tx_antenna_db)
+        tx_peak_power = self.db2power(self.tx_peak_power)
+        tx_power = np.sqrt(tx_peak_power * self.db2power(self.tx_gain + tx_antenna_power))
+        print("tx_power_db = {0}".format(self.power2db(tx_power)))
+        return tx_power
+
+    def mag2db(self,y):
+        return 20.0*np.log10(y)
+
+    def db2power(self, db):
+        return 10.0 ** (db/10.0)
+
+    def power2db(self, power):
+        return 10.0*np.log10(power)
+
+    def aperature2gain(self, a):
+        antenna_power = 4.0 * np.pi * self.tx_aperature / (self.lamda **2)
+        return self.mag2db(antenna_power)
 
     def get_frame_size(self):
         return self.N * 32 * 2 * self.n_rx_elements * self.nSweep / 8
@@ -105,6 +151,9 @@ class Base_Radar(BaseSensor):
             radar_data['range_fft'] = abs(self.rx_range_fft[:,0]) #just use first [0] rx signal from the 64 sweeps output is 1024x1 np array for visualization
             radar_data['rx_signal'] = self.rx_signal_real       #use real part of first sweep signal for visualization
             radar_data['target_range_idx'] = self.target_range_idx
+            radar_data['tx_waveform'] = self.tx_waveform
+            radar_data['time_series'] = self.time_series
+
             #print("parsed radar data = {0}".format(radar_data))
         else:
             print("Radar Data parse frame is empty")

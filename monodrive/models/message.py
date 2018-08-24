@@ -63,6 +63,9 @@ class Radar_Message(object):
             self.range_fft = msg['range_fft']
             self.rx_signal = msg['rx_signal']
             self.target_range_idx = msg['target_range_idx']
+            self.tx_waveform = msg['tx_waveform']
+            self.time_series = msg['time_series']
+            
         else:
             print("Radar Message Empty")
     

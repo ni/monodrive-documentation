@@ -32,7 +32,6 @@ class BaseClient(object):
         self.raw_message_handler = raw_message_handler
         self.b_socket_connnected = False # if socket == None, means client is not connected
         self.wait_connected = threading.Event()
-        self.b_running = True
         self.sock = None
 
         # Start a thread to get data from the socket
@@ -129,8 +128,10 @@ class Client(object):
         self.isconnected = self.message_client.isconnected
         self.connect = self.message_client.connect
         self.disconnect = self.message_client.disconnect
-        self.b_running = True
         self.queue = Queue()
+
+        self.data_ready = threading.Event()
+        self.stop_event = threading.Event()
         self.main_thread = threading.Thread(target=self.worker, args=(self,))
         self.main_thread.setDaemon(1)
         self.main_thread.start()
@@ -140,17 +141,20 @@ class Client(object):
         self.response = raw_message
         self.wait_response.set()
 
-    def stop(self):
-        self.b_running = False
+    def stop(self, timeout=2):
+        logging.getLogger("network").debug('stopping client')
+        self.stop_event.set()
+        self.main_thread.join(timeout=timeout)
+        logging.getLogger("network").debug('stopped client')
 
     def worker(self, _client):
-        while _client.b_running:
-            if not self.queue.empty():
-                task = self.queue.get()
-                task()
-                self.queue.task_done()
-            #TODO without this processor pegs at 100%
-            time.sleep(.1)
+        while not self.stop_event.is_set():
+            if self.data_ready.wait(.1):
+                self.data_ready.clear()
+                while not self.queue.empty():
+                    task = self.queue.get()
+                    task()
+                    self.queue.task_done()
 
     def request(self, message, timeout=5):
         """ Return a response from Unreal """
@@ -163,6 +167,7 @@ class Client(object):
             do_request()
         else:
             self.queue.put(do_request)
+            self.data_ready.set()
         # Timeout is required
         # see: https://bugs.python.org/issue8844
         self.wait_response.clear() # This is important
@@ -189,6 +194,7 @@ class Client(object):
             do_request()
         else:
             self.queue.put(do_request)
+            self.data_ready.set()
 
         sensor_ready = False
         isset = None

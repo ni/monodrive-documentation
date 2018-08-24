@@ -161,6 +161,10 @@ class BaseSensor(object):
             else:
                 self.receiving_data = False
 
+        # clear the queues so we can die
+        self.q_display.cancel_join_thread()
+        self.q_data.cancel_join_thread()
+
         # we're done just make sure monitor is done done
         if monitor is not None:
             monitor.join(timeout=1)
@@ -244,8 +248,14 @@ class BaseSensor(object):
                 time_stamp, game_time = struct.unpack('=If', packet[:offset])
                 packet = packet[offset:]
         else:
+            received = 0
+            packet_header = None
             header_size = 4 + 4 + 4  # length, time_stamp, game_time
-            received, packet_header = self.read(header_size)
+            try:
+                received, packet_header = self.read(header_size)
+            except Exception as e:
+                print("Could not read network data({0}) - {1}".format(self.name, e))
+                self.stop()  # socket is dead - must stop
 
             if packet_header is not None and received == header_size:
                 length, time_stamp, game_time = struct.unpack('=IIf', packet_header)

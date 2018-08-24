@@ -58,6 +58,14 @@ class TeleportVehicle(BaseVehicle):
         super(TeleportVehicle, self).stop()
         self.keyboard_thread.join()
 
+    def close(self):
+        if self.keyboard_thread_running:
+            self.keyboard_thread_running = False
+            try:
+                pygame.display.quit()
+                pygame.quit()
+            except: pass
+
     def _keyboard_listener(self):
         self.keyboard_thread_running = True
 
@@ -80,9 +88,7 @@ class TeleportVehicle(BaseVehicle):
                         screen.blit(block, rect)
                         pygame.display.flip()
                     else:
-                        self.keyboard_thread_running = False
-                        pygame.display.quit()
-                        pygame.quit()
+                        self.close()
                         self.restart_event.set()
                         break
             

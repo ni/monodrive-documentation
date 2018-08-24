@@ -115,8 +115,8 @@ class Bounding_Polar_Plot(wx.Panel):
     def set_data(self, targets):
         r = targets.radar_distances
         theta = -np.radians(targets.radar_angles)
-        print("bounding_box distance = {0}".format(r))
-        print("bounding_box theta = {0}".format(theta))
+        #print("bounding_box distance = {0}".format(r))
+        #print("bounding_box theta = {0}".format(theta))
         #rcs = targets.angles
         #speed = targets.velocities/100
         #there seems to be a bug in the new polar plot library, set_offsets is not working
@@ -382,7 +382,8 @@ class GPS_View(wx.Panel):
 
         pub.subscribe(self.update_view, "update_gps")
 
-    def update_view(self, msg):    
+    def update_view(self, msg):
+        #print("GPS update view:", msg)
         self.string_lat.SetLabelText('LAT: {0}'.format(msg['lat']))
         self.string_lng.SetLabelText('LNG: {0}'.format(msg['lng']))
         self.string_time.SetLabelText('TIMESTAMP: {0}'.format(msg['time_stamp']))
@@ -453,7 +454,7 @@ class Camera_View(wx.Panel):
         pub.subscribe(self.update_view, "update_camera")
 
     def update_view(self, msg):
-        print("update camera view")
+        #print("update camera view")
         camera_msg = Camera_Message(msg)
         bitmap = self.to_bmp(camera_msg.np_image)
         self.bmwx.SetBitmap(bitmap)
@@ -570,10 +571,18 @@ class MonoDriveGUIApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
 #class MonoDriveGUIApp(wx.App):
     def OnInit(self):
         self.Init()  # initialize the inspection tool
-        frame = MainWindow(None)
-        frame.Show(True)
-        self.SetTopWindow(frame)
+        self.MainWindow = MainWindow(None)
+        self.MainWindow.Show(True)
+        self.SetTopWindow(self.MainWindow)
         return True
+
+    def Close(self):
+        try:
+            wx.CallAfter(self.MainWindow.Close)
+            time.sleep(0.2)
+        except: pass
+        wx.CallAfter(self.Destroy)
+        time.sleep(0.2)
 
 class SensorPoll(Thread):
     """Thread to pull data from sensor q's and publish to views"""
@@ -584,15 +593,16 @@ class SensorPoll(Thread):
         #self.road_map = vehicle.get_road_map()
         self.road_map = map
         self.sensors = vehicle.get_sensors()
-        self.running = True
+        self.stop_event = multiprocessing.Event()
         self.fps = fps
         self.start()
 
     def update_gui(self, sensor):
-        
-        #print("{0}.get_display_messages()".format(sensor.name))
-        messages = sensor.get_display_messages()
+
+        result = False
+        messages = sensor.get_display_messages(block=True, timeout=0.0)
         if messages:
+            #print("{0} found {1} messages".format(sensor.name, len(messages)))
             message = messages.pop() #pop last message aka. most recent 
             if "IMU" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_imu", msg=message)
@@ -603,38 +613,44 @@ class SensorPoll(Thread):
             elif "Radar" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_radar_table", msg=message)
             elif "Bounding" in sensor.name:
-                wx.CallAfter(pub.sendMessage, "update_bounding_box", msg = message)
-            return True       
-        return False
+                wx.CallAfter(pub.sendMessage, "update_bounding_box", msg=message)
+            result = True
+        return result
 
     #this thread will run while application is running
     def run(self):
-        while self.running:
+        while not self.stop_event.wait(.1):
             #self.road_map = self.vehicle.get_road_map()
             #print("GUI THREAD RUNNING")
             for sensor in self.sensors:
-                self.running = self.update_gui(sensor)
-            if self.running == False:
-                print("GUI THREAD STOPPED")
+                self.update_gui(sensor)
+            # if self.running == False:
+            #     print("GUI THREAD STOPPED")
             if self.road_map:
                 wx.CallAfter(pub.sendMessage, "update_roadmap", msg=self.road_map)
-            time.sleep(.1)
-        self.running = False     
-        print("GUI THREAD NOT RUNNING") 
+        #print("GUI THREAD NOT RUNNING")
 
-class GUI(multiprocessing.Process):
+    def stop(self, timeout=2):
+        self.stop_event.set()
+        self.join(timeout=timeout)
+
+class GUI(object):
     def __init__(self, simulator, **kwargs):
         super(GUI, self).__init__(**kwargs)
         self.daemon = True
         self.name = "GUI"
         self.simulator = simulator
         self.vehicle = simulator.ego_vehicle
-        self.running = True
+
         self.app = None
         self.fps = None
         self.settings = simulator.configuration.gui_settings
         self.init_settings(self.settings)
         self.map = simulator.map_data
+
+        self.stop_event = multiprocessing.Event()
+        self.process = None
+        self.sensor_polling = None
         self.start()
     
     def init_settings(self, settings):
@@ -645,19 +661,45 @@ class GUI(multiprocessing.Process):
         else:
             self.fps = default_update_rate
 
+    def start(self):
+        self.process = multiprocessing.Process(target=self.run)
+        self.process.name = self.name
+        self.process.start()
+
+    def stop(self, timeout=10):
+        self.stop_event.set()
+        self.join(timeout=timeout)
+
+    def join(self, timeout=2):
+        try:
+            self.process.join(timeout=timeout)
+        except Exception as e:
+            print("could not join process {0} -> {1}".format(self.name, e))
+
     def run(self):
+
+        monitor = Thread(target=self.monitor_process_state)
+        monitor.start()
+
         #prctl.set_proctitle("mono{0}".format(self.name))
         #start sensor polling
         self.sensor_polling = SensorPoll(self.vehicle, self.fps, self.map)
-        while True:
-            self.app = MonoDriveGUIApp()
+        self.app = MonoDriveGUIApp()
+        while not self.stop_event.is_set():
             self.app.MainLoop()
+            self.simulator.restart_event.set()
+            time.sleep(0.5)
 
-    def stop(self):
-        self.running = False
-        #self.sensor_polling.join()
-        self.join()
+        monitor.join(timeout=2)
 
+        #print("GUI main DONE")
+
+    #this will simply wait for sensor to stop running - and kill the app
+    def monitor_process_state(self):
+        self.stop_event.wait()
+        self.sensor_polling.stop()
+        self.app.Close()
+        #print("exiting monitor process")
 
 if __name__ == '__main__':
     #vehicle = "vehicle"

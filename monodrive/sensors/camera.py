@@ -77,9 +77,9 @@ class Camera(BaseSensor):
             logging.getLogger("sensor").error("wrong image size received {0}".format(self.name))
         return pickle.dumps(image, protocol=-1)
 
-    def get_display_messages(self, timeout=None):
+    def get_display_messages(self, block=True, timeout=None):
         image_frame_list = []
-        image_frames = super(Camera, self).get_display_messages()
+        image_frames = super(Camera, self).get_display_messages(block=block, timeout=timeout)
 
         for image_frame in image_frames:
             image_buffer = bytearray(image_frame['image'])

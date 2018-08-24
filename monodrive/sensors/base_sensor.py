@@ -95,9 +95,9 @@ class BaseSensor(object):
                 # If `False`, the program is not blocked. `Queue.Empty` is thrown if 
                 # the queue is empty
         except PythonQueue.Empty:
-            print("{0} Q_EMPTY".format(self.name))
-            msg = "EMPTY"
-            messages.append(msg)        
+            logging.getLogger("sensor").debug("{0} Q_EMPTY".format(self.name))
+            #msg = "EMPTY"
+            #messages.append(msg)
         return messages
 
     def get_display_message(self, block=True, timeout=None):
@@ -107,13 +107,14 @@ class BaseSensor(object):
         except PythonQueue.Empty as e:
             data = None
             self.frame_error += 1
-            print("Empty display_q({0}) after timeout {1}".format(self.name, e))
+            logging.getLogger("sensor").debug("Empty display_q({0}) after timeout {1}".format(self.name, e))
             # if self.frame_error > self.errors_max:
             #     print("signaling done - too many errors")
 
         return data
 
     def get_display_messages(self, block=True, timeout=None):
+
         messages = []
         try:
             msg = self.q_display.get(block=block, timeout=timeout)
@@ -125,8 +126,9 @@ class BaseSensor(object):
                 # the queue is empty
         except PythonQueue.Empty:
             #print("{0} Display Q_EMPTY".format(self.name))
-            if len(messages) == 0:
-                messages.append("NO_DATA")
+            # if len(messages) == 0:
+            #     messages.append("NO_DATA")
+            pass
         return messages
 
     def start(self):
@@ -141,7 +143,7 @@ class BaseSensor(object):
         try:
             self.process.join(timeout=timeout)
         except Exception as e:
-            print("could not join process {0} -> {1}".format(self.name, e))
+            logging.getLogger("sensor").error("could not join process {0} -> {1}".format(self.name, e))
 
     def sensor_loop(self):
         monitor = None
@@ -183,7 +185,7 @@ class BaseSensor(object):
                     self.sock.bind(('', self.port_number))
                     connected = True
                 except Exception as e:
-                    print('%s Could not bind udp to %s for %s - x:%s - (%s)' % (
+                    logging.getLogger("sensor").error('%s Could not bind udp to %s for %s - x:%s - (%s)' % (
                         self.name, self.server_ip, self.port_number, tries, str(e)))
                     tries += 1
                     time.sleep(.2)
@@ -196,7 +198,7 @@ class BaseSensor(object):
                 except Exception as e:
                     tries += 1
                     if tries >= 5:
-                        print('%s Could not connect to %s for %s - x:%s - (%s)' % (
+                        logging.getLogger("sensor").error('%s Could not connect to %s for %s - x:%s - (%s)' % (
                             self.name, self.server_ip, self.port_number, tries, str(e)))
                     time.sleep(.2)
 
@@ -217,20 +219,20 @@ class BaseSensor(object):
 
     #this will simply wait for sensor to stop running - and kill the socket
     def monitor_process_state(self):
-        print("{0} thread monitor waiting for shutdown".format(self.name))
+        logging.getLogger("sensor").debug("{0} thread monitor waiting for shutdown".format(self.name))
         self.stop_event.wait()
-        print("{0} stop received - shutting down real socket".format(self.name))
+        logging.getLogger("sensor").debug("{0} stop received - shutting down real socket".format(self.name))
         self.shutdown_socket()
 
     def shutdown_socket(self):
-        print("{0} socket is closing".format(self.name))
+        logging.getLogger("sensor").debug("{0} socket is closing".format(self.name))
         try:
             self.sock.shutdown(socket.SHUT_RDWR)
             self.sock.close()
             self.sock = None
         except Exception as e:
-            print("{0} could not close socket error:{1}".format(self.name, e))
-        print("{0} socket is closed".format(self.name))
+            logging.getLogger("sensor").error("{0} could not close socket error:{1}".format(self.name, e))
+        logging.getLogger("sensor").debug("{0} socket is closed".format(self.name))
 
     def wait_until_ready(self, timeout=None):
         return self.socket_ready_event.wait(timeout)
@@ -254,7 +256,7 @@ class BaseSensor(object):
             try:
                 received, packet_header = self.read(header_size)
             except Exception as e:
-                print("Could not read network data({0}) - {1}".format(self.name, e))
+                logging.getLogger("sensor").debug("Could not read network data({0}) - {1}".format(self.name, e))
                 self.stop()  # socket is dead - must stop
 
             if packet_header is not None and received == header_size:
@@ -265,14 +267,14 @@ class BaseSensor(object):
                 try:
                     received, packet = self.read(length)
                 except Exception as e:
-                    print("Could not read network data({0}) - {1}".format(self.name, e))
+                    logging.getLogger("sensor").debug("Could not read network data({0}) - {1}".format(self.name, e))
                     self.stop()  # socket is dead - must stop
 
                 if len(packet) != length or received != length:
-                    print("{0}: incomplete frame received: {1} != {2} (rcv count: {3})".format(
+                    logging.getLogger("sensor").debug("{0}: incomplete frame received: {1} != {2} (rcv count: {3})".format(
                         self.name, len(packet), length, received))
             else:
-                print("incomplete header: {0},{1},{2}".format(header_size, received, packet_header))
+                logging.getLogger("sensor").debug("incomplete header: {0},{1},{2}".format(header_size, received, packet_header))
 
         return packet, time_stamp, game_time
 

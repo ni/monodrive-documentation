@@ -71,16 +71,16 @@ class Simulator(object):
         self.ego_vehicle.stop()
         logging.getLogger("simulator").info("simulator client shutdown complete")
 
-        ## get the pid of this program
-        #pid=os.getpid()
-
-        ## when you want to kill everything, including this program
-        #self.kill_process_tree(pid, False)
 
         # Disconnect from server
         self.client.disconnect()
         self.client.stop()
 
+        ## get the pid of this program
+        #pid=os.getpid()
+
+        ## when you want to kill everything, including this program
+        #self.kill_process_tree(pid, False)
 
     def kill_process_tree(self, pid, including_parent=True):
         parent = psutil.Process(pid)
@@ -90,7 +90,6 @@ class Simulator(object):
 
         if including_parent:
             parent.kill()
-
 
     @property
     def client(self):

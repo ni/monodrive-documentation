@@ -132,15 +132,15 @@ class BaseVehicle(object):
         # Kicks off simulator for stepping
         self.init_vehicle_loop()
 
-    def stop(self, simulator):
+
+    def stop(self):
         logging.getLogger("sensor").info("stopping vehicle")
         self.stop_vehicle()
-
         logging.getLogger("sensor").info("stopping all sensors")
 
         # stopping simulator from sending data
         logging.getLogger("sensor").debug("stopping sensor from streaming data")
-        [s.send_stop_stream_command(simulator) for s in self.sensors]
+        [s.send_stop_stream_command(self.simulator) for s in self.sensors]
 
         logging.getLogger("sensor").info("stopping sensor processes")
         [s.stop() for s in self.sensors]

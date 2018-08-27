@@ -65,10 +65,13 @@ class Camera(BaseSensor):
             logging.getLogger("sensor").error("wrong image size received {0}".format(self.name))
         return image
 
-    def get_message(self, timeout = None):
+    def get_message(self, block = True, timeout = None):
 
-        image_frame = super(Camera, self).get_message()
+        image_frame = super(Camera, self).get_message(block=block, timeout=timeout)
 
+        if image_frame is None:
+            return None
+        
         image_buffer = image_frame['image']
         if len(image_buffer) == self.height * self.width * 4:
             image = np.array(bytearray(image_buffer), dtype=np.uint8).reshape(self.height, self.width, 4)

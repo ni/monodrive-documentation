@@ -68,6 +68,8 @@ class SensorTask:
         self.sensor = sensor
         self.clock_mode = clock_mode
         self.tracker = tracker
+        self.thread = threading.Thread(target=self.run)
+        self.thread.start()
 
     def run(self):
         self.running = True
@@ -77,9 +79,10 @@ class SensorTask:
         get_time = lambda: data.get('game_time', millis()) if isinstance(data, dict) and self.clock_mode is not 0 else millis()
         time_units = lambda: 'real time' if (isinstance(data, dict) and data.get('game_time', None) is None) or self.clock_mode is 0 else 'game time'
         while self.running:
-            data = self.sensor.get_message()
-            if (self.sensor.q_display.qsize() > 0):
-                self.sensor.q_display.get()
+            data = self.sensor.get_message(timeout=.5)
+            if data is None:
+                continue
+
             if data:
                 packets += 1
 
@@ -92,7 +95,7 @@ class SensorTask:
                 start = get_time()
                 print("start: %f" % start)
 
-            if millis() - timer >= 5000:
+            if millis() - timer >= 1000:
                 seconds = (get_time() - start) / 1000
                 # print("game time: %f, diff: %f" % (get_time(), seconds))
                 #if (data.get('game_time', None) is None):
@@ -110,10 +113,16 @@ class SensorTask:
                 timer = millis()
                 start = get_time()
 
+        print("  THREAD COMPLETED %s" % self.sensor.name)
+
     def stop(self):
+        print("stopping %s" % self.sensor.name)
         self.sensor.stop()
         self.running = False
 
+    def join(self):
+        if self.thread is not None:
+            self.thread.join()
 
 def run_test(simulator, vehicle_config, clock_mode, fps):
     print("======  test start  ======")
@@ -133,46 +142,47 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
             sensors.append(sensor_class(idx, sensor_config, sim_config))
             idx = idx + 1
 
-    print("  starting sensors")
+    print("  starting %d sensors" % len(sensors))
     tasklist = []
     tracker = Tracker()
     for sensor in sensors:
+        print("--> %s" % sensor.name)
         sensor.start()
-        sensor.send_start_stream_command(simulator)
+        print(sensor.send_start_stream_command(simulator))
 
-        st = SensorTask(sensor, clock_mode, tracker)
-        tasklist.append(st)
-        t = threading.Thread(target=st.run)
-        t.start()
+    print("starting sensor tasks")
+    for sensor in sensors:
+        try:
+            st = SensorTask(sensor, clock_mode, tracker)
+            tasklist.append(st)
+        except Exception as e:
+            print(str(e))
 
     print("  waiting on sensors")
     for sensor in sensors:
+        print(" waiting on %s" % sensor.name)
         sensor.socket_ready_event.wait()
+        print(" %s ready" % sensor.name)
 
     print("  sampling sensors")
     #msg = messaging.EgoControlCommand(random.randrange(-5.0, 5.0), random.randrange(-3.0, 3.0)) # drive randomly
     msg = messaging.EgoControlCommand(2.5, 0.0) # go straight
-    for _ in range(0, 600):
+    for _ in range(0, 100):
         simulator.request(msg)
         time.sleep(.2)
-    # if clock_mode == 2:
-    #     msg = messaging.EgoControlCommand(5.0, 0.0)
-    #     for _ in range(0, 1000):
-    #         simulator.request(msg)
-    #         #time.sleep(.1)
-    # else:
-    #     for _ in range(0, 2):
-    #         time.sleep(30)
-    #         simulator.request(messaging.Message(SIMULATOR_STATUS_UUID))
+#        print(simulator.request(messaging.Message(SIMULATOR_STATUS_UUID)))
 
     print("  stopping")
     for task in tasklist:
+        print(task.sensor.send_stop_stream_command(simulator))
         task.stop()
 
     print("  waiting on sensors to exit")
     for sensor in sensors:
-        sensor.send_stop_stream_command(simulator)
         sensor.join()
+
+    for task in tasklist:
+        task.join()
 
     print("======  test end  ======\n\n")
 
@@ -185,14 +195,6 @@ if __name__ == "__main__":
 
     sim_config.client_settings['logger']['sensor']='debug'
     sim_config.client_settings['logger']['network']='debug'
-
-    # if args.clock_mode:
-    #     if args.clock_mode == 'Continuous':
-    #         vehicle_config.configuration['clock_mode'] = 0
-    #     elif args.clock_mode == 'AutoStep':
-    #         vehicle_config.configuration['clock_mode'] = 1
-    #     elif args.clock_mode == 'ClientStep':
-    #         vehicle_config.configuration['clock_mode'] = 2
 
     if args.include:
         sensor_ids = args.include.split(',')
@@ -233,6 +235,6 @@ if __name__ == "__main__":
         random.shuffle(modes)
         for clock_mode in modes:
             run_test(simulator, vehicle_config, clock_mode, fps)
-            time.sleep(.5)
+            time.sleep(1)
 
 

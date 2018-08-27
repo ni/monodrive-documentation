@@ -132,9 +132,11 @@ class BaseSensor(object):
         return messages
 
     def start(self):
+        print("%s: starting sensor" % self.name)
         self.process = multiprocessing.Process(target=self.sensor_loop)
         self.process.name = self.name
         self.process.start()
+        print("%s: started sensor" % self.name)
 
     def stop(self):
         self.stop_event.set()
@@ -147,10 +149,13 @@ class BaseSensor(object):
 
     def sensor_loop(self):
         monitor = None
+        print("%s: running sensor loop" % self.name)
         if self.connect():
+            print("%s: starting monitoring thread" % self.name)
             monitor = threading.Thread(target=self.monitor_process_state)
             monitor.start()
         else:
+            print("%s: connect failed... stopping" % self.name)
             self.stop()
 
         while not self.stop_event.is_set():
@@ -163,6 +168,7 @@ class BaseSensor(object):
             else:
                 self.receiving_data = False
 
+        print("STOPPING %s" % self.name)
         # clear the queues so we can die
         self.q_display.cancel_join_thread()
         self.q_data.cancel_join_thread()
@@ -170,8 +176,10 @@ class BaseSensor(object):
         # we're done just make sure monitor is done done
         if monitor is not None:
             monitor.join(timeout=1)
+        print("STOPPED %s" % self.name)
 
     def connect(self):
+        print('CONNECTING tcp sensor on %s %s for %s' % (self.server_ip, self.port_number, self.name))
         if self.sock is None:
             self.create_socket()
 
@@ -207,7 +215,9 @@ class BaseSensor(object):
             self.socket_ready_event.set()
             logging.getLogger("network").debug(
                 'connected tcp sensor on %s %s for %s' % (self.server_ip, self.port_number, self.name))
-
+            print('connected tcp sensor on %s %s for %s' % (self.server_ip, self.port_number, self.name))
+        else:
+            print('FAILED to connect tcp sensor on %s %s for %s' % (self.server_ip, self.port_number, self.name))
         return connected
 
     def create_socket(self):
@@ -270,9 +280,9 @@ class BaseSensor(object):
                     logging.getLogger("sensor").debug("Could not read network data({0}) - {1}".format(self.name, e))
                     self.stop()  # socket is dead - must stop
 
-                if len(packet) != length or received != length:
+                if packet is None or len(packet) != length or received != length:
                     logging.getLogger("sensor").debug("{0}: incomplete frame received: {1} != {2} (rcv count: {3})".format(
-                        self.name, len(packet), length, received))
+                        self.name, 0 if packet is None else len(packet), length, received))
             else:
                 logging.getLogger("sensor").debug("incomplete header: {0},{1},{2}".format(header_size, received, packet_header))
 

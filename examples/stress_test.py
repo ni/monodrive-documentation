@@ -42,12 +42,7 @@ class Tracker:
     def update(self, location):
         self.lock.acquire()
         if self.last_location is not None:
-            lat1 = math.radians(location['lat'])
-            lat2 = math.radians(self.last_location['lat'])
-            d = math.radians(self.last_location['lng'] - location['lng'])
-            R = 6371e3
-            self.last_distance = math.acos(math.sin(lat1) * math.sin(lat2) +
-                                           math.cos(lat1) * math.cos(lat2) * math.cos(d)) * R
+            self.last_distance = self.haversine(location, self.last_location)
         self.last_location = location
         self.lock.release()
 
@@ -57,6 +52,15 @@ class Tracker:
         distance = self.last_distance
         self.lock.release()
         return location, distance
+
+    def haversine(self, location1, location2):
+        lat1, lng1, lat2, lng2 = map(math.radians, [location1['lat'], location1['lng'], location2['lat'], location2['lng']])
+        dlat = lat2 - lat1
+        dlng = lng2 - lng1
+        a = math.sin(dlat / 2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlng / 2)**2
+        c = 2 * math.asin(math.sqrt(a))
+        R = 6371000
+        return c * R
 
 
 class SensorTask:
@@ -74,6 +78,8 @@ class SensorTask:
         time_units = lambda: 'real time' if (isinstance(data, dict) and data.get('game_time', None) is None) or self.clock_mode is 0 else 'game time'
         while self.running:
             data = self.sensor.get_message()
+            if (self.sensor.q_display.qsize() > 0):
+                self.sensor.q_display.get()
             if data:
                 packets += 1
 
@@ -98,7 +104,7 @@ class SensorTask:
                     fps = 0
 
                 location, distance = self.tracker.get_last_distance_travelled()
-                print('{0}: {1:.2f} fps ({2} frames received in {3:.2f} secs ({4}))\ndistance: {5}, speed: {6}'.format(
+                print('{0}: {1:.2f} fps ({2} frames received in {3:.2f} secs ({4})), distance: {5:.4f}, speed: {6:.4f}'.format(
                     self.sensor.name, fps, packets, seconds, time_units(), distance, location.get('speed',0)))
                 packets = 0
                 timer = millis()
@@ -110,6 +116,8 @@ class SensorTask:
 
 
 def run_test(simulator, vehicle_config, clock_mode, fps):
+    print("======  test start  ======")
+    print("  running test. clock-mode: {0}, fps: {1}".format(clock_mode, fps))
     vehicle_config.configuration['clock_mode'] = clock_mode
     for sensor in vehicle_config.sensor_configuration:
         sensor['fps'] = fps
@@ -125,7 +133,7 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
             sensors.append(sensor_class(idx, sensor_config, sim_config))
             idx = idx + 1
 
-    print("starting sensors")
+    print("  starting sensors")
     tasklist = []
     tracker = Tracker()
     for sensor in sensors:
@@ -137,14 +145,14 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
         t = threading.Thread(target=st.run)
         t.start()
 
-    print("waiting on sensors")
+    print("  waiting on sensors")
     for sensor in sensors:
         sensor.socket_ready_event.wait()
 
-    print("sampling sensors")
+    print("  sampling sensors")
     #msg = messaging.EgoControlCommand(random.randrange(-5.0, 5.0), random.randrange(-3.0, 3.0)) # drive randomly
-    msg = messaging.EgoControlCommand(1.0, 0.0) # go straight
-    for _ in range(0, 100):
+    msg = messaging.EgoControlCommand(2.5, 0.0) # go straight
+    for _ in range(0, 600):
         simulator.request(msg)
         time.sleep(.2)
     # if clock_mode == 2:
@@ -157,14 +165,16 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
     #         time.sleep(30)
     #         simulator.request(messaging.Message(SIMULATOR_STATUS_UUID))
 
-    print("stopping")
+    print("  stopping")
     for task in tasklist:
         task.stop()
 
-    print("waiting on sensors to exit")
+    print("  waiting on sensors to exit")
     for sensor in sensors:
         sensor.send_stop_stream_command(simulator)
         sensor.join()
+
+    print("======  test end  ======\n\n")
 
 
 if __name__ == "__main__":
@@ -222,7 +232,7 @@ if __name__ == "__main__":
         modes = [ClockMode_Continuous, ClockMode_AutoStep, ClockMode_ClientStep]
         random.shuffle(modes)
         for clock_mode in modes:
-            print("running test. clock-mode: {0}, fps: {1}".format(clock_mode, fps))
             run_test(simulator, vehicle_config, clock_mode, fps)
+            time.sleep(.5)
 
 

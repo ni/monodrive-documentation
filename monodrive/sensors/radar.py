@@ -88,21 +88,36 @@ class Base_Radar(BaseSensor):
         range_resolution = config['range_resolution']
         bandwidth = speed_of_light/(2.0 * range_resolution)
         self.sweep_slope = bandwidth / tm
-        self.tx_aperature = config['transmitter']['aperture']
-        self.tx_peak_power = config['transmitter']['peak_power']
-        self.tx_gain = config['transmitter']['gain']
-        self.tx_power = self.get_transmit_power()
+        self.tx_aperture = config['transmitter']['aperture']
+        self.tx_antenna_gain = self.aperature2gain(self.tx_aperture)
+        self.tx_antenna_gain_db = self.power2db(self.tx_antenna_gain)
+        self.tx_power_db = config['transmitter']['gain']
+        self.tx_power_watts = self.db2power(self.tx_power_db)
+        self.pa_voltage = self.pa_output_voltage()
+        self.tx_power_dbm = 13.5 + self.tx_antenna_gain_db
         self.time_series = self.generate_time_series()
-        self.tx_waveform = self.generate_fmcw()
+        self.tx_waveform = self.generate_fmcw(self.tx_power_dbm)
 
         self.is_root_music = True
         self.hann_matrix_range, self.hann_matrix_aoa = self.build_hanning()
 
-    def generate_fmcw(self):
+    def pa_output_voltage(self):
+        pa_max_dbm = 13.5 #dbm
+        pa_max_db = pa_max_dbm - 30
+        power_watts = 10**(pa_max_db/10)
+        z0 = 50 # ohms
+        # power = Vrms^2/z0
+        v_rms = np.sqrt(power_watts * z0)
+        # for complex signals
+        v_pk = v_rms
+        return v_pk        
+
+
+    def generate_fmcw(self, power_dbm):
         tx_waveform = np.zeros(self.N, dtype=complex)
         for n in range(self.N):
             t = self.time_series[n]
-            tx_waveform[n] = np.multiply(self.tx_power,np.exp(self.sweep_slope * -1j * np.pi * t*t )) 
+            tx_waveform[n] = np.multiply(power_dbm,np.exp(self.sweep_slope * -1j * np.pi * t*t )) 
         return tx_waveform
 
     def generate_time_series(self):
@@ -110,15 +125,21 @@ class Base_Radar(BaseSensor):
         for n in range(self.N):
             time_series[n] = n*self.Ts 
         return time_series
-    
-    def get_transmit_power(self):
-        #tx_antenna_db = self.aperature2gain(self.tx_aperature)
-        tx_antenna_db = 18.0
-        print("antenna gain db = {0}".format(tx_antenna_db))
-        tx_antenna_power = self.db2power(tx_antenna_db)
-        tx_peak_power = self.db2power(self.tx_peak_power)
-        tx_power = np.sqrt(tx_peak_power * self.db2power(self.tx_gain + tx_antenna_power))
-        print("tx_power_db = {0}".format(self.power2db(tx_power)))
+
+    def peak_power_watts(self,antenna_gain_dbi, eirp_max_dbm = 55):
+        peak_power_mw = 10 ** ((eirp_max_dbm - antenna_gain_dbi)/10)
+        peak_power_watts = peak_power_mw * 1e-3
+        return peak_power_watts 
+
+    def tx_power_at_eirp_dbm(self, eirp_max = 55, tx_antenna_gain = 20):
+        tx_power_peak =  eirp_max  - tx_antenna_gain
+        return tx_power_peak
+
+    def get_transmit_power(self, tx_peak_power_watts, tx_gain, tx_antenna_power_dbi):
+        tx_power = np.sqrt(tx_peak_power_watts * self.db2power(tx_gain + tx_antenna_power_dbi) * 1e-3)
+        print("tx peak power watts = {0}".format(tx_peak_power_watts))
+        print("tx gain + tx antenna gain watts = {0}".format(self.db2power(tx_gain + tx_antenna_power_dbi)*1e-3))
+        print("tx_power_watts = {0}".format(tx_power))
         return tx_power
 
     def mag2db(self,y):
@@ -130,9 +151,9 @@ class Base_Radar(BaseSensor):
     def power2db(self, power):
         return 10.0*np.log10(power)
 
-    def aperature2gain(self, a):
-        antenna_power = 4.0 * np.pi * self.tx_aperature / (self.lamda **2)
-        return self.mag2db(antenna_power)
+    def aperature2gain(self, aperture):
+        antenna_power = 4.0 * np.pi * aperture / (self.lamda **2)
+        return antenna_power
 
     def get_frame_size(self):
         return self.N * 32 * 2 * self.n_rx_elements * self.nSweep / 8
@@ -250,7 +271,7 @@ class Radar(Base_Radar):
         rx_signal_shaped = rx_signal_element_0 * hanning  # 1375x64 2D-array Hann windowed dechirped samples (fast/slow plan)
         
         rx_signal = rx_signal_shaped[:,0]       
-        self.rx_signal_real = rx_signal.real    #used for display only
+        self.rx_signal_real = rx_signal.imag    #used for display only
 
         self.rx_range_fft = pyfftw.interfaces.numpy_fft.fft(rx_signal_shaped, self.N_FFT, 0)  # 1024 points FFT performed on the 64 1D-arrays
 

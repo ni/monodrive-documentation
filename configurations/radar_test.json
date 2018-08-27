@@ -224,11 +224,11 @@
         "fps": 1.0,
         "transmitter": {
           "peak_power": 5.0,
-          "aperture": 0.000603,
-          "gain": 30.0
+          "aperture": 0.00015,
+          "gain": 28.5
         },
         "receiver": {
-          "aperture": 0.000603,
+          "aperture": 0.00015,
           "nf": 10.0,
           "noise_temp": 290.0,
           "nb": 150000000.0,

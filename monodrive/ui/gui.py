@@ -169,7 +169,11 @@ class Radar_FFT_Plot(wx.Panel):
         #if self.range_fft_subplot_handle == None:
         self.range_fft_subplot.cla()
         self.range_fft_subplot.set_title('Range by FFT')
-        self.range_fft_subplot.set_ylim([-140,1])
+        
+        range_fft_power = 20.0 * np.log10(range_fft[0:len(x)])
+        fft_power_max = max(range_fft_power)
+        fft_power_min = min(range_fft_power)
+        self.range_fft_subplot.set_ylim([fft_power_min, fft_power_max])
         self.range_fft_subplot_handle = self.range_fft_subplot.plot(x, 20.0 * np.log10(range_fft[0:len(x)]))[0]
         self.range_fft_peaks_handle = self.range_fft_subplot.scatter(target_range_idx, 20.0 * np.log10(range_fft[target_range_idx]), color='red')
         #self.range_fft_subplot_handle.set_xdata(x)
@@ -206,9 +210,9 @@ class Radar_Tx_Signal_Plot(wx.Panel):
         if radar_msg:
             tx_signal = radar_msg.tx_waveform
             time_series = radar_msg.time_series
-            self.update_rx_signal_plot(time_series, tx_signal)
+            self.update_tx_signal_plot(time_series, tx_signal)
 
-    def update_rx_signal_plot(self, time_series, tx_signal):
+    def update_tx_signal_plot(self, time_series, tx_signal):
         x = range(len(tx_signal))
         if self.tx_signal_subplot_handle == None:
             self.tx_signal_subplot_handle = self.tx_signal_subplot.plot(x,tx_signal)[0]
@@ -225,8 +229,9 @@ class Radar_Rx_Signal_Plot(wx.Panel):
         self.canvas = FigureCanvas(self, 1, self.figure)
         #self.figure.set_title("Radar Target Plot")
         self.rx_signal_subplot = self.figure.add_subplot(111)
-        self.rx_signal_subplot.set_title('Baseband Signal')
-        self.rx_signal_subplot.set_ylim([-.01,.01])
+        #self.rx_signal_subplot.autoscale(tight=True)
+        self.rx_signal_subplot.set_title('Rx Dechirped Signal')
+        
         self.toolbar = NavigationToolbar(self.canvas)
         self.toolbar.Realize()
         
@@ -249,7 +254,8 @@ class Radar_Rx_Signal_Plot(wx.Panel):
         x = range(len(rx_signal))
         if self.rx_signal_subplot_handle == None:
             self.rx_signal_subplot_handle = self.rx_signal_subplot.plot(x,rx_signal)[0]
-        
+        signal_max = max(rx_signal.real)    
+        self.rx_signal_subplot.set_ylim([-signal_max,signal_max])
         self.rx_signal_subplot_handle.set_xdata(x)
         self.rx_signal_subplot_handle.set_ydata(rx_signal)
         self.figure.canvas.draw()

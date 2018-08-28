@@ -168,14 +168,22 @@ class Radar_FFT_Plot(wx.Panel):
         print(target_range_idx)
         #if self.range_fft_subplot_handle == None:
         self.range_fft_subplot.cla()
-        self.range_fft_subplot.set_title('Range by FFT')
+        self.range_fft_subplot.set_title('Range by FFT (psd dBm)')
         
-        range_fft_power = 20.0 * np.log10(range_fft[0:len(x)])
-        fft_power_max = max(range_fft_power)
-        fft_power_min = min(range_fft_power)
-        self.range_fft_subplot.set_ylim([fft_power_min, fft_power_max])
-        self.range_fft_subplot_handle = self.range_fft_subplot.plot(x, 20.0 * np.log10(range_fft[0:len(x)]))[0]
-        self.range_fft_peaks_handle = self.range_fft_subplot.scatter(target_range_idx, 20.0 * np.log10(range_fft[target_range_idx]), color='red')
+        #range_fft_power = 20.0 * np.log10(range_fft[0:len(x)])
+        Fs = 150.0e6
+        N = 1024.0
+        psdx = np.absolute(range_fft)**2/(Fs*N)
+        psdx = 2*psdx
+        freq = range(0,int(Fs/8), int(Fs/len(x)/8))
+        psdx_dbm = 10 * np.log10(psdx) - 30  #30 is db to dbm
+        #fft_power_max = max(psdx_db)
+        #fft_power_min = min(psdx_db)
+        self.range_fft_subplot.set_ylim([-110, -40])
+        self.range_fft_subplot_handle = self.range_fft_subplot.plot(freq[0:len(x)], psdx_dbm[0:len(x)])[0]
+        print target_range_idx
+        peaks = target_range_idx * Fs/len(x)/8
+        self.range_fft_peaks_handle = self.range_fft_subplot.scatter(peaks, psdx_dbm[target_range_idx], color='red')
         #self.range_fft_subplot_handle.set_xdata(x)
         #self.range_fft_subplot_handle.set_ydata(np.log10(range_fft[0:len(x)]))
         #self.range_fft_subplot.scatter(target_range_idx, np.log10(range_fft[target_range_idx]))
@@ -251,11 +259,13 @@ class Radar_Rx_Signal_Plot(wx.Panel):
             self.update_rx_signal_plot(rx_signal)
 
     def update_rx_signal_plot(self, rx_signal):
+        #voltage_z0 = 50.0 * (1e3) ** 2
+        #rx_signal = voltage_z0 * rx_signal
         x = range(len(rx_signal))
         if self.rx_signal_subplot_handle == None:
             self.rx_signal_subplot_handle = self.rx_signal_subplot.plot(x,rx_signal)[0]
-        signal_max = max(rx_signal.real)    
-        self.rx_signal_subplot.set_ylim([-signal_max,signal_max])
+        #signal_max = max(rx_signal.real)    
+        self.rx_signal_subplot.set_ylim([-250,250])
         self.rx_signal_subplot_handle.set_xdata(x)
         self.rx_signal_subplot_handle.set_ydata(rx_signal)
         self.figure.canvas.draw()
@@ -316,7 +326,8 @@ class Radar_Polar_Plot(wx.Panel):
     def update_bounding(self,msg):
         if msg:
             self.targets_bounding_box = Bounding_Box_Message(msg)
-            self.string_time_bb.SetLabelText('BB    TIMESTAMP: {0}'.format(self.targets.game_time))
+            if self.targets_bounding_box != None:
+                self.string_time_bb.SetLabelText('BB    TIMESTAMP: {0}'.format(self.targets_bounding_box.game_time))
             #self.update_plot(self.targets)
         else:
             print("empty bounding target list")

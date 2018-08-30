@@ -95,12 +95,12 @@
       "fps": 4.0
     },
     "logger": {
-      "sensor": "info",
-      "network": "info",
+      "sensor": "debug",
+      "network": "debug",
       "control": "debug",
-      "scenario": "error",
-      "simulator": "info",
-      "vehicle": "info"
+      "scenario": "debug",
+      "simulator": "debug",
+      "vehicle": "debug"
     }
   }
 }

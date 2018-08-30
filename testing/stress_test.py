@@ -76,7 +76,7 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
     for sensor in vehicle_config.sensor_configuration:
         sensor['fps'] = fps
 
-    simulator.send_simulator_configuration()
+    simulator.send_configuration()
     simulator.send_vehicle_configuration(vehicle_config)
 
     sensors = []

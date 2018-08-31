@@ -42,7 +42,7 @@ class Simulator(object):
         # Send both simulator configuration and scenario
         # self.send_configuration(self.configuration)
         self.send_scenario(scenario)
-        print('Received Response From Sending Scenario')
+        #print('Received Response From Sending Scenario')
 
         # Get Ego vehicle configuration from scenario, use that to create vehicle process
         vehicle_configuration = scenario.ego_vehicle_config
@@ -56,7 +56,7 @@ class Simulator(object):
         # Create vehicle process form received class
         self.map_data = self.request_map()
         if not self.map_data:
-            print(self.map_data)
+            #print(self.map_data)
             logging.getLogger("simulator").error("failed to get map")
             return None
 
@@ -84,7 +84,7 @@ class Simulator(object):
     def kill_process_tree(self, pid, including_parent=True):
         parent = psutil.Process(pid)
         for child in parent.children(recursive=True):
-            print("kill monodrive child {0}".format(child))
+            #print("kill monodrive child {0}".format(child))
             child.kill()
 
         if including_parent:

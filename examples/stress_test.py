@@ -7,14 +7,14 @@ __version__ = "1.0"
 
 import argparse
 import json
+import logging
 import math
-import random
 import threading
 import time
 
 from monodrive import Simulator
 from monodrive.configuration import SimulatorConfiguration, VehicleConfiguration
-from monodrive.constants import SIMULATOR_STATUS_UUID, ClockMode_Continuous, ClockMode_AutoStep, ClockMode_ClientStep
+from monodrive.constants import ClockMode_Continuous, ClockMode_AutoStep, ClockMode_ClientStep
 from monodrive.networking import messaging
 from monodrive.sensors import GPS
 
@@ -22,9 +22,8 @@ from monodrive.sensors import GPS
 parser = argparse.ArgumentParser(description='monoDrive simulator stress test script')
 parser.add_argument('--sim-config', default='simulator.json')
 parser.add_argument('--vehicle-config', default='test.json')
-#parser.add_argument('--clock-mode', default=None, help='override clock mode',
-#                    choices=['Continuous', 'AutoStep', 'ClientStep'])
-#parser.add_argument('--fps', help='override sensor fps', type=int)
+parser.add_argument('--clock-mode', default=ClockMode_Continuous, help='specify clock mode, default is Continuous',
+                    choices=['Continuous', 'AutoStep', 'ClientStep'])
 parser.add_argument('--exclude',
                     help='comma separated list of sensors to exclude (sensors not in list will be included)')
 parser.add_argument('--include',
@@ -95,13 +94,10 @@ class SensorTask:
 
             if start is None:
                 start = get_time()
-                print("start: %f" % start)
+                logging.getLogger("test").info("start: %f" % start)
 
             if millis() - timer >= 1000:
                 seconds = (get_time() - start) / 1000
-                # print("game time: %f, diff: %f" % (get_time(), seconds))
-                #if (data.get('game_time', None) is None):
-                #    seconds /= 1000
 
                 try:
                     fps = packets / seconds
@@ -109,16 +105,15 @@ class SensorTask:
                     fps = 0
 
                 location, distance = self.tracker.get_last_distance_travelled()
-                print('{0}: {1:.2f} fps ({2} frames received in {3:.2f} secs ({4})), distance: {5:.4f}, speed: {6:.4f}'.format(
+                logging.getLogger("test").info(
+                    '{0}: {1:.2f} fps ({2} frames received in {3:.2f} secs ({4})), distance: {5:.4f}, speed: {6:.4f}'.format(
                     self.sensor.name, fps, packets, seconds, time_units(), distance, location.get('speed',0)))
                 packets = 0
                 timer = millis()
                 start = get_time()
 
-        print("  THREAD COMPLETED %s" % self.sensor.name)
-
     def stop(self):
-        print("stopping %s" % self.sensor.name)
+        logging.getLogger("test").info("stopping %s" % self.sensor.name)
         self.sensor.stop()
         self.running = False
 
@@ -127,8 +122,8 @@ class SensorTask:
             self.thread.join()
 
 def run_test(simulator, vehicle_config, clock_mode, fps):
-    print("======  test start  ======")
-    print("  running test. clock-mode: {0}, fps: {1}".format(clock_mode, fps))
+    logging.getLogger("test").info("======  test start  ======")
+    logging.getLogger("test").info("  running test. clock-mode: {0}, fps: {1}".format(clock_mode, fps))
     vehicle_config.configuration['clock_mode'] = clock_mode
     for sensor in vehicle_config.sensor_configuration:
         sensor['fps'] = fps
@@ -144,15 +139,13 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
             sensors.append(sensor_class(idx, sensor_config, sim_config))
             idx = idx + 1
 
-    print("  starting %d sensors" % len(sensors))
+    logging.getLogger("test").info("  starting %d sensors" % len(sensors))
     tasklist = []
     tracker = Tracker()
     for sensor in sensors:
-        print("--> %s" % sensor.name)
         sensor.start()
         print(sensor.send_start_stream_command(simulator))
 
-    print("starting sensor tasks")
     for sensor in sensors:
         try:
             st = SensorTask(sensor, clock_mode, tracker)
@@ -160,13 +153,9 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
         except Exception as e:
             print(str(e))
 
-    print("  waiting on sensors")
     for sensor in sensors:
-        print(" waiting on %s" % sensor.name)
         sensor.socket_ready_event.wait()
-        print(" %s ready" % sensor.name)
 
-    print("  sampling sensors")
     #msg = messaging.EgoControlCommand(random.randrange(-5.0, 5.0), random.randrange(-3.0, 3.0)) # drive randomly
     msg = messaging.EgoControlCommand(2.5, 0.0) # go straight
     for _ in range(0, 100):
@@ -177,21 +166,18 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
                 st.data_received.clear()
         else:
             time.sleep(.2)
-#        print(simulator.request(messaging.Message(SIMULATOR_STATUS_UUID)))
 
-    print("  stopping")
     for task in tasklist:
         print(task.sensor.send_stop_stream_command(simulator))
         task.stop()
 
-    print("  waiting on sensors to exit")
     for sensor in sensors:
         sensor.join()
 
     for task in tasklist:
         task.join()
 
-    print("======  test end  ======\n\n")
+    logging.getLogger("test").info("======  test end  ======\n\n")
 
 
 if __name__ == "__main__":
@@ -230,18 +216,19 @@ if __name__ == "__main__":
         vehicle_config.sensor_configuration = list
         vehicle_config.configuration['sensors'] = list
 
-    # if args.fps:
-    #     for sensor in vehicle_config.sensor_configuration:
-    #         sensor['fps'] = args.fps
 
     print(json.dumps(vehicle_config.configuration))
     simulator = Simulator(sim_config)
 
-    for fps in range(30, 50, 10):
-        modes = [ClockMode_Continuous, ClockMode_AutoStep, ClockMode_ClientStep]
-        random.shuffle(modes)
-        for clock_mode in modes:
-            run_test(simulator, vehicle_config, clock_mode, fps)
-            time.sleep(1)
+    clock_mode = ClockMode_Continuous
+    if args.clock_mode == 'AutoStep':
+        clock_mode = ClockMode_AutoStep
+    elif args.clock_mode == 'ClientStep':
+        clock_mode = ClockMode_ClientStep
+
+    for fps in range(10, 110, 10):
+        run_test(simulator, vehicle_config, clock_mode, fps)
+        time.sleep(1)
+
 
 

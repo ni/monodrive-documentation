@@ -83,7 +83,7 @@ class BaseSensor(object):
         try:
             data = self.q_data.get(block=block, timeout=timeout)
         except PythonQueue.Empty as e:
-            logging.getLogger("sensor").warning("{0}:get_message->{1}".format(self.name, e))
+            pass#logging.getLogger("sensor").warning("{0}:get_message->{1}".format(self.name, e))
         return data
 
     def get_messages(self, block=True, timeout=None):
@@ -132,11 +132,9 @@ class BaseSensor(object):
         return messages
 
     def start(self):
-        print("%s: starting sensor" % self.name)
         self.process = multiprocessing.Process(target=self.sensor_loop)
         self.process.name = self.name
         self.process.start()
-        print("%s: started sensor" % self.name)
 
     def stop(self):
         self.stop_event.set()
@@ -149,13 +147,10 @@ class BaseSensor(object):
 
     def sensor_loop(self):
         monitor = None
-        print("%s: running sensor loop" % self.name)
         if self.connect():
-            print("%s: starting monitoring thread" % self.name)
             monitor = threading.Thread(target=self.monitor_process_state)
             monitor.start()
         else:
-            print("%s: connect failed... stopping" % self.name)
             self.stop()
 
         while not self.stop_event.is_set():
@@ -168,7 +163,6 @@ class BaseSensor(object):
             else:
                 self.receiving_data = False
 
-        print("STOPPING %s" % self.name)
         # clear the queues so we can die
         self.q_display.cancel_join_thread()
         self.q_data.cancel_join_thread()
@@ -176,10 +170,8 @@ class BaseSensor(object):
         # we're done just make sure monitor is done done
         if monitor is not None:
             monitor.join(timeout=1)
-        print("STOPPED %s" % self.name)
 
     def connect(self):
-        print('CONNECTING tcp sensor on %s %s for %s' % (self.server_ip, self.port_number, self.name))
         if self.sock is None:
             self.create_socket()
 
@@ -215,9 +207,9 @@ class BaseSensor(object):
             self.socket_ready_event.set()
             logging.getLogger("network").debug(
                 'connected tcp sensor on %s %s for %s' % (self.server_ip, self.port_number, self.name))
-            print('connected tcp sensor on %s %s for %s' % (self.server_ip, self.port_number, self.name))
         else:
-            print('FAILED to connect tcp sensor on %s %s for %s' % (self.server_ip, self.port_number, self.name))
+            logging.getLogger("network").error(
+                'FAILED to connect tcp sensor on %s %s for %s' % (self.server_ip, self.port_number, self.name))
         return connected
 
     def create_socket(self):

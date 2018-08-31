@@ -32,7 +32,6 @@ class Simulator(object):
         self.restart_event = Event()
         self.ego_vehicle = None
         self.scenario = None
-        self.map = None
         self._client = None
         self.setup_logger()
         self.map_data = None
@@ -105,7 +104,10 @@ class Simulator(object):
         return self.client.request(message_cls, timeout)
 
     def request_sensor_stream(self, message_cls):
-        return self.client.request_sensor_stream(message_cls)
+        # wait for 2 responses when requesting the sensor to stream data
+        # the second will include a sensor_ready flag
+        messages = self.client.request(message_cls, 10, 2)
+        return messages[1]
 
     def send_vehicle_configuration(self, vehicle_configuration):
         logging.getLogger("simulator").info('Sending vehicle configuration {0}'.format(vehicle_configuration.name))

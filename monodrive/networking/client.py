@@ -16,6 +16,7 @@ try:
     from Queue import Queue
 except:
     from queue import Queue # for Python 3
+from queue import Empty
 
 from monodrive.networking.messaging import Message
 
@@ -122,8 +123,8 @@ class Client(object):
     def __init__(self, endpoint):
         self.message_client = BaseClient(endpoint, self.__raw_message_handler)
         self.message_id = 0
-        self.wait_response = threading.Event()
-        self.response = ''
+        self.responses = Queue()
+
 
         self.isconnected = self.message_client.isconnected
         self.connect = self.message_client.connect
@@ -138,8 +139,7 @@ class Client(object):
         
 
     def __raw_message_handler(self, raw_message):
-        self.response = raw_message
-        self.wait_response.set()
+        self.responses.put(raw_message)
 
     def stop(self, timeout=2):
         logging.getLogger("network").debug('stopping client')
@@ -156,7 +156,7 @@ class Client(object):
                     task()
                     self.queue.task_done()
 
-    def request(self, message, timeout=5):
+    def request(self, message, timeout=5, num_messages=1):
         """ Return a response from Unreal """
         def do_request():
             if not self.message_client.send(message):
@@ -168,49 +168,18 @@ class Client(object):
         else:
             self.queue.put(do_request)
             self.data_ready.set()
-        # Timeout is required
-        # see: https://bugs.python.org/issue8844
-        self.wait_response.clear() # This is important
-        isset = self.wait_response.wait(timeout)    # Returns false when event times out
-        self.message_id += 1 # Increment only after the request/response cycle finished
 
-        assert(isset != None) # only python prior to 2.7 will return None
-        if isset or self.response:
-            r = self.response
-            self.response = None
-            return r
-        else:
-            logging.getLogger("network").error('Can not receive a response from server. \
-                   timeout after {:0.2f} seconds'.format(timeout))
-            return None
+        responses = []
+        while len(responses) < num_messages:
+            try:
+                response = self.responses.get(True, timeout)
+                responses.append(response)
+            except Empty:
+                logging.getLogger("network").error('Can not receive a response from server. \
+                       timeout after {:0.2f} seconds'.format(timeout))
+                responses.append(None)
+        self.message_id += 1  # Increment only after the request/response cycle finished
 
-    def request_sensor_stream(self, message, timeout=1):
-        def do_request():
-            if not self.message_client.send(message):
-                return None
-
-        # request can only be sent in the main thread, do not support multi-thread submitting request together
-        if threading.current_thread().name == self.main_thread.name:
-            do_request()
-        else:
-            self.queue.put(do_request)
-            self.data_ready.set()
-
-        sensor_ready = False
-        isset = None
-        while not sensor_ready:
-            self.wait_response.clear()  # This is important
-            isset = self.wait_response.wait(timeout)  # Returns false when event times out
-            if isset:
-                sensor_ready = self.response.is_sensor_ready
-                self.message_id += 1  # Increment only after the request/response cycle finished
-
-        assert (isset != None)  # only python prior to 2.7 will return None
-        if isset or self.response:
-            r = self.response
-            self.response = None
-            return r
-        else:
-            logging.getLogger("network").error('Can not receive a response from server. \
-                           timeout after {:0.2f} seconds'.format(timeout))
-            return None
+        if num_messages == 1:
+            return responses[0]
+        return responses

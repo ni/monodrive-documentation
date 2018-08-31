@@ -131,7 +131,7 @@ class Packetizer(object):
         self.image_threader = None
         self.frame_ready = False
         self.digest_frame_callback = None
-        self.log_timestamp_callback = None
+        #self.log_timestamp_callback = None
         self.should_patch_frame = False
 
         self.game_time = 0
@@ -195,8 +195,8 @@ class Packetizer(object):
         if start:
             self.frame_count += 1
             # print("gametime prev:{0} cur:{1} diff:{2}".format(prev_game_time, self.game_time, game_time_dif))
-            if self.delegate.log_timestamp_callback is not None:
-                self.delegate.log_timestamp_delegate(self.time_stamp, self.game_time)
+            #if self.delegate.log_timestamp_callback is not None:
+            #    self.delegate.log_timestamp_delegate(self.time_stamp, self.game_time)
 
         # check if we completed our frame
         if self.packet_count == self.get_expected_packet_count():

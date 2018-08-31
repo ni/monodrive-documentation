@@ -77,7 +77,7 @@ class MonoRosBridge(object):
         self.vehicle_config = VehicleConfiguration(params['VehicleConfig'])
 
         self.simulator = Simulator(simulator_config)
-        self.vehicle = self.simulator.start_vehicle(self.vehicle_config, RosVehicle)
+        self.vehicle = self.simulator.get_ego_vehicle(self.vehicle_config, RosVehicle)
 
         self.param_sensors = params.get('sensors', {})
 

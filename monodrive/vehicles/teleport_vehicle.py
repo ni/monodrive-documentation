@@ -10,7 +10,7 @@ import numpy as np
 from . import BaseVehicle
 from monodrive.sensors import Waypoint, GPS
 
-
+import pygame
 #for keyboard control
 import threading
 import time
@@ -33,26 +33,42 @@ except ImportError:
 
 
 class TeleportVehicle(BaseVehicle):
-    def __init__(self, simulator_config, vehicle_config, restart_event=None, **kwargs):
+    def __init__(self, simulator_config, vehicle_config, restart_event=None, road_map = None,**kwargs):
         super(TeleportVehicle, self).__init__(simulator_config, vehicle_config, restart_event)
-        self.waypoint_sensor = Waypoint.get_sensor(self.sensors)
-        self.gps_sensor = GPS.get_sensor(self.sensors)
+        self.road_map = road_map
         self.throttle = 0.0
         self.steer = 0.0
-        self.start_keyboard_listener()
-        self.keyboard_thread = None
-        self.keyboard_thread_running = True
 
-    def drive(self, sensors, vehicle_state):
-        logging.getLogger("control").debug("Control Forward,Steer = {0},{1}".format(self.throttle,self.steer))
-        control = {'forward': self.throttle,'right': self.steer}
+        self.keyboard_thread = None
+        self.keyboard_thread_running = False
+        self.start_keyboard_listener()
+
+    def drive(self, sensors):
+        #logging.getLogger("control").debug("Control Forward,Steer = {0},{1}".format(self.throttle,self.steer))
+        control = {'forward': self.throttle, 'right': self.steer}
         return control
     
     def start_keyboard_listener(self):
         self.keyboard_thread = threading.Thread(target=self._keyboard_listener)
+        self.keyboard_thread.daemon = True
         self.keyboard_thread.start()
 
+    def stop(self):
+        self.keyboard_thread_running = False
+        super(TeleportVehicle, self).stop()
+        self.keyboard_thread.join()
+
+    def close(self):
+        if self.keyboard_thread_running:
+            self.keyboard_thread_running = False
+            try:
+                pygame.display.quit()
+                pygame.quit()
+            except: pass
+
     def _keyboard_listener(self):
+        self.keyboard_thread_running = True
+
         pygame.init()
         screen = pygame.display.set_mode((480, 360))
         name = "monoDrive tele control"
@@ -72,11 +88,11 @@ class TeleportVehicle(BaseVehicle):
                         screen.blit(block, rect)
                         pygame.display.flip()
                     else:
-                        self.keyboard_thread_running = False
-                        pygame.display.quit()
-                        pygame.quit()
+                        self.close()
                         self.restart_event.set()
                         break
+            
+            time.sleep(.1)
 
     def _get_keyboard_control(self, key):
         status = True

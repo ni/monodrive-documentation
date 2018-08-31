@@ -13,6 +13,7 @@ RESPONSE_HEADER = 0x6f6e6f6d
 STREAM_DATA_FORMAT_RAW = 0
 
 # UUIDs for ingame manipulation
+SIMULATOR_STATUS_UUID = u"2e1831fd-dd75-4ca3-bdc0-cfb8bbff9369"
 STREAM_DATA_COMMAND_UUID = u"7fb9bacd-5d2b-4a68-8121-bdbd541a8136"
 SIMULATOR_CONFIG_COMMAND_UUID = u"767e0f95-736f-4aee-bd65-38063aad5fc5"
 VEHICLE_CONFIG_COMMAND_UUID = u"2f475af5-4412-4e7f-819a-4ccfea425285"
@@ -27,3 +28,7 @@ VELOVIEW_PORT = 2368
 VELOVIEW_IP = '127.0.0.1'
 
 BASE_PATH = os.path.dirname(os.path.dirname(__file__))
+
+ClockMode_Continuous = 0
+ClockMode_AutoStep   = 1
+ClockMode_ClientStep = 2

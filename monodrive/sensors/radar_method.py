@@ -19,7 +19,7 @@ try:
     import matlab.engine
 except ImportError:
     eng = None
-from monodrive.sensors import spectral_high_resolution as shr
+from monodrive.sensors.radar_processing import RadarProcessing as rp
 
 
 class BaseRadarMethod:
@@ -31,7 +31,7 @@ class BaseRadarMethod:
 
         self.nSweep = config['num_sweeps']
         self.range_max = config['range_max']
-        self.v_max = config['max_velocity']
+        self.v_max = config['max_velocities']
         self.NN = 1024
         self.N_Clean = self.N
         self.n_rx_elements = 8
@@ -44,10 +44,10 @@ class BaseRadarMethod:
         self.vvv = []
         self.rrr = []
 
-        self.My_Range = []
-        self.My_Range_indx = np.array([])
-        self.Estimated_RCS = []
-        self.PowerLevel = []
+        self.range = []
+        self.range_idx = np.array([])
+        self.rcs_estimate = []
+        self.rx_power = []
         self.colour_of_dots = []
         self.obstaclesR = []
         self.obstaclesV = []
@@ -69,14 +69,14 @@ class BaseRadarMethod:
         self.cte_Dop = Delta_f * lam
 
         self.rngdop = []
-        self.My_velocity = []
-        self.My_velocity_kmh = []
+        self.velocities = []
+        self.velocities_kmh = []
         self.hanning_aoa = None
         self.build_hanning()
 
         self.My_aoa = []
         self.range_aoa = []
-        self.My_Targets = []
+        #self.My_Targets = []
         fc = 77e9
         self.lam = self.cc / fc
         Ts = 1.0 / self.fs
@@ -91,7 +91,7 @@ class BaseRadarMethod:
                 }
 
     def has_data(self):
-        return len(self.rngdop) > 0 or len(self.My_Range) > 0
+        return len(self.rngdop) > 0 or len(self.range) > 0
 
     def build_hanning(self):
         han = np.hanning(self.N)
@@ -106,7 +106,7 @@ class BaseRadarMethod:
         delta = f[1] - f[0]
         return [f[0] - delta / 2, f[-1] + delta / 2]
 
-    def process_radar_data_cube(self, xr, hannMat):
+    def process_radar_data_cube(self, xr, hann_matrix):
         raise Exception('Must implement process_radar_data_cube')
 
     def setup_radar_plots(self, subplot):
@@ -116,9 +116,9 @@ class BaseRadarMethod:
         raise Exception('Must implement set_data')
 
 
-class BaseRadarMethodDoppler(BaseRadarMethod):
+class BaseRadarDoppler(BaseRadarMethod):
     def __init__(self, config, ncores):
-        super(BaseRadarMethodDoppler, self).__init__(config, ncores)
+        super(BaseRadarDoppler, self).__init__(config, ncores)
 
         fc = 77e9
         lam = self.cc / fc
@@ -129,10 +129,10 @@ class BaseRadarMethodDoppler(BaseRadarMethod):
         self.cte_Dop = Delta_f * lam
 
         self.rngdop = []
-        self.My_velocity = []
+        self.velocities = []
 
     def has_data(self):
-        return len(self.rngdop) > 0 or len(self.My_Range) > 0
+        return len(self.rngdop) > 0 or len(self.range) > 0
 
 
 class BaseRadarMethodAoA(BaseRadarMethod):
@@ -160,28 +160,28 @@ class BaseRadarMethodAoA(BaseRadarMethod):
         hanning_aoa = np.transpose(np.tile(han_aoa, (self.N, 1)))
         self.hanning_aoa = hanning_matrix_ts[0:self.n_rx_elements] * hanning_aoa
 
-class RadarMethodDetectionRootMusicAndESPRIT(BaseRadarMethod):
-    def process_radar_data_cube(self, xr, hannMat_aoa,hannMat):
-    #--------- Estimate Range then Velocity and AoA (AoA can be estimated either from range or from velocity)
-        results = RadarMethodRootMusicAndESPRIT.compute_my_range_and_indx(xr, self.N, self.NN, hannMat, self.cte_range)
-        self.My_Range_indx = results[0]
-        self.My_Range = results[1]
-        self.Estimated_RCS = results[2]
-        self.PowerLevel = results[3]
+class DetectionRootMusicAndESPRIT(BaseRadarMethod):
+    def process_radar_data_cube(self, xr, hann_matrix_aoa,hann_matrix):
+    #--------- Estimate Range then velocities and AoA (AoA can be estimated either from range or from velocities)
+        results = RootMusicAndEsprit.compute_range_and_indx(xr, self.N, self.NN, hann_matrix, self.cte_range)
+        self.range_idx = results[0]
+        self.range = results[1]
+        self.rcs_estimate = results[2]
+        self.rx_power = results[3]
 
-        #print(self.My_Range_indx, self.My_Range, self.Estimated_RCS)
+        #print(self.range_idx, self.range, self.rcs_estimate)
 
-        if len(self.My_Range)>0:
-            self.My_velocity = RadarMethodRootMusicAndESPRIT.process_radar_data_cube_doppler(xr, self.N, self.NN, hannMat, self.My_Range_indx, self.cte_Dop, True)
-            # self.My_aoa_v = RadarMethodRootMusicAndESPRIT.process_radar_data_cube_aoa2(xr, self.N, self.NN, hannMat_aoa, self.My_velocity, self.n_rx_elements, True)
-            [self.obstaclesR, self.obstaclesV, self.obstaclesA, self.obstaclesRCS, self.obstaclesPL] = RadarMethodRootMusicAndESPRIT.process_radar_data_cube_aoa(xr, self.N, self.NN, hannMat_aoa, self.My_Range_indx, self.My_Range, self.My_velocity, self.Estimated_RCS, self.PowerLevel, self.n_rx_elements,self.nSweep, True)
-            self.My_velocity_kmh = 3.6*self.My_velocity
+        if len(self.range)>0:
+            self.velocities = RootMusicAndEsprit.process_radar_data_cube_doppler(xr, self.N, self.NN, hann_matrix, self.range_idx, self.cte_Dop, True)
+            # self.My_aoa_v = RootMusicAndEsprit.process_radar_data_cube_aoa2(xr, self.N, self.NN, hann_matrix_aoa, self.velocities, self.n_rx_elements, True)
+            [self.obstaclesR, self.obstaclesV, self.obstaclesA, self.obstaclesRCS, self.obstaclesPL] = RootMusicAndEsprit.process_radar_data_cube_aoa(xr, self.N, self.NN, hann_matrix_aoa, self.range_idx, self.range, self.velocities, self.rcs_estimate, self.rx_power, self.n_rx_elements,self.nSweep, True)
+            self.velocities_kmh = 3.6*self.velocities
 
 
     def setup_radar_plots(self, subplot1, subplot2):
         self.collabel = ("Obstacle", "Range", "Speed", "AoA", "RCS", "Power\n level")
         subplot1.grid(visible=True)
-        AOA_handle, = subplot1.plot(self.obstaclesA, self.obstaclesR, linestyle='None', marker='s', markerfacecolor = 'r', markeredgecolor = 'r')
+        AOA_plot_handle, = subplot1.plot(self.obstaclesA, self.obstaclesR, linestyle='None', marker='s', markerfacecolor = 'r', markeredgecolor = 'r')
         if len(self.obstaclesR)> 20:  #to adjust table vertical position in the figure
             self.SizeMaxOfTable = 27
         else:
@@ -197,7 +197,7 @@ class RadarMethodDetectionRootMusicAndESPRIT(BaseRadarMethod):
 
         self.old_size = len(self.obstaclesR)
 
-        return AOA_handle, obstacles_handle
+        return AOA_plot_handle, obstacles_handle
 
     def set_data(self, handle1, handle2):
 
@@ -231,8 +231,8 @@ class RadarMethodDetectionRootMusicAndESPRIT(BaseRadarMethod):
         self.old_size = len(self.obstaclesR)
 
 
-class RadarMethodDopplerFFT(BaseRadarMethodDoppler):
-    def process_radar_data_cube(self, xr, hannMat):
+class DopplerFFT(BaseRadarDoppler):
+    def process_radar_data_cube(self, xr, hann_matrix):
         z = np.transpose(xr[:, 0, :])
         rngdop = fftpack.fftshift(abs(pyfftw.interfaces.numpy_fft.fft2(z, s=(self.NN, self.NN),
                                                                        threads=self.ncores, overwrite_input=True,
@@ -246,16 +246,16 @@ class RadarMethodDopplerFFT(BaseRadarMethodDoppler):
         self.vvv = self.extents(np.linspace(-self.v_max, self.v_max, self.nSweep))
         self.rrr = self.extents(np.linspace(self.range_max, 0, self.NN))
 
-        doppler_handle = subplot.imshow(
+        doppler_plot_handle = subplot.imshow(
             data, aspect='auto', interpolation='none', extent=self.vvv + self.rrr, origin='lower')
-        return doppler_handle
+        return doppler_plot_handle
 
     def set_data(self, handle):
         handle.set_data(self.rngdop)
 
 
-class RadarMethodAoAFFT(BaseRadarMethodAoA):
-    def process_radar_data_cube(self, xr, hannMat):
+class AoAFFT(BaseRadarMethodAoA):
+    def process_radar_data_cube(self, xr, hann_matrix):
         sweepNumber = int(self.nSweep/2)
         range_aoa = np.transpose(xr[sweepNumber, :, :] * self.hanning_aoa)
         x_aoa = fftpack.fftshift(abs(pyfftw.interfaces.numpy_fft.fft2(range_aoa, s=(self.NN, self.NN),
@@ -269,46 +269,46 @@ class RadarMethodAoAFFT(BaseRadarMethodAoA):
         self.vvv = self.extents(np.linspace(-self.v_max, self.v_max, self.nSweep))
         self.rrr = self.extents(np.linspace(self.range_max, 0, self.NN))
 
-        AOA_handle = subplot.imshow(
+        AOA_plot_handle = subplot.imshow(
             data, aspect='auto', interpolation='none', extent=self.vvv + self.rrr, origin='lower')
-        return AOA_handle
+        return AOA_plot_handle
 
     def set_data(self, handle):
         handle.set_data(self.range_aoa)
 
-class RadarMethodRootMusicAndESPRIT:
+class RootMusicAndEsprit:
 
     @staticmethod
-    def compute_my_range_and_indx(xr, N, NN, hannMat,cte_range):
+    def compute_range_and_indx(xr, N, NN, hann_matrix,cte_range):
         #if scipyio:
         #    scipyio.savemat('radar_cube__04_07_2018_001.mat', {'xr': xr})
         z = np.transpose(xr[:, 0, 0:1024])
-        Wx1 = hannMat[:, 0]
-        Wx1 = Wx1.reshape(1024, 1)
-        [My_Range_indx, toto] = np.array(shr.range_by_fft(z, Wx1, NN))
-        My_Range = cte_range * (My_Range_indx+1)  # range converted in meters
-        Estimated_RCS = 10*np.log10(toto * (My_Range ** 2)*(4*np.pi)**3 / NN**2)-34 # 25 is a Tuning constant chosen roughly
-        PowerLevel = 10*np.log10(toto)
+        wx = hann_matrix[:, 0]
+        wx = wx.reshape(1024, 1)
+        [range_idx, toto] = np.array(rp.range_by_fft(z, wx, NN))
+        range = cte_range * (range_idx+1)  # range converted in meters
+        rcs_estimate = 10*np.log10(toto * (range ** 2)*(4*np.pi)**3 / NN**2)-34 # 25 is a Tuning constant chosen roughly
+        rx_power = 10*np.log10(toto)
 
-        return [My_Range_indx, My_Range, Estimated_RCS, PowerLevel]
+        return [range_idx, range, rcs_estimate, rx_power]
 
-    # --------velocity estimation by High resolution algorithms RootMusic or ESPRIT---------------------
+    # --------velocities estimation by High resolution algorithms RootMusic or ESPRIT---------------------
     @staticmethod
-    def process_radar_data_cube_doppler(xr, N, NN, hannMat, My_Range_indx, cte_Dop, is_root_music):
+    def process_radar_data_cube_doppler(xr, N, NN, hann_matrix, range_idx, cte_Dop, is_root_music):
         z = np.transpose(xr[:, 0, 0:1024]) # consider fast and slow samples plan for antenna 0
-        Rxh = z * hannMat # Hann windowing of dechirped samples
-        NumberOfTargets = My_Range_indx.size
+        rx_hann = z * hann_matrix # Hann windowing of dechirped samples
+        NumberOfTargets = range_idx.size
         try:
             fx3 = np.zeros(NumberOfTargets)# initialize returned array of velocities
             #--- Perform a projection on the detcted range by DFT
             for k in range(NumberOfTargets):
-                f_x1 = np.exp(-2j * np.pi * My_Range_indx[k] / NN * np.arange(1024))# DFT Twiddle factors
-                ProjVect = np.dot(f_x1,Rxh)
+                f_x1 = np.exp(-2j * np.pi * range_idx[k] / NN * np.arange(1024))# DFT Twiddle factors
+                ProjVect = np.dot(f_x1,rx_hann)
                 if is_root_music:
-                    fx4 = shr.root_MUSIC_One(ProjVect, 1, 16, 1) #perform RootMusic on projected vector to estimate velocity components
+                    fx4 = rp.root_music(ProjVect, 1, 16, 1) #perform RootMusic on projected vector to estimate velocities components
                 else:
-                    fx4 = shr.Esprit(ProjVect, 1, 16, 1) #perform Esprit on projected vector to estimate velocity components
-                # return the first (most reliable component) of the velocity vector
+                    fx4 = rp.esprit(ProjVect, 1, 16, 1) #perform Esprit on projected vector to estimate velocities components
+                # return the first (most reliable component) of the velocities vector
                 if len(fx4) > 0:
                     fx3[k] = fx4[0]
                 else:
@@ -322,8 +322,8 @@ class RadarMethodRootMusicAndESPRIT:
 
     # --------AoA estimation by High resolution algorithms RootMusic or ESPRIT from Range---------------------
     @staticmethod
-    def process_radar_data_cube_aoa(xr, N,  NN, hannMat, My_Range_indx,My_Range, My_velocity, Estimated_RCS, PowerLevel, n_rx_elements,nSweep, is_root_music):
-        NumberOfRanges = My_Range_indx.size
+    def process_radar_data_cube_aoa(xr, N,  NN, hann_matrix, range_idx,range, velocities, rcs_estimate, rx_power, n_rx_elements,nSweep, is_root_music):
+        NumberOfRanges = range_idx.size
         fx33 = [] #np.zeros(NumberOfRanges)
         fx3 = []
         fxR = []
@@ -331,26 +331,26 @@ class RadarMethodRootMusicAndESPRIT:
         fxRCS = []
         fxPL = []
         z = np.transpose(xr[0, :, 0:1024])  # consider dechirped samples for Swwep 0
-        Rxh_aoa = z * hannMat  # Hann windowing of dechirped samples 1375x8
+        rx_hann_aoa = z * hann_matrix  # Hann windowing of dechirped samples 1375x8
         kTargets = 0
-        f_x1 = pyfftw.interfaces.numpy_fft.fft((Rxh_aoa), NN, 0)
+        f_x1 = pyfftw.interfaces.numpy_fft.fft((rx_hann_aoa), NN, 0)
         #scipyio.savemat('z_04_07_2018_001.mat', {'z': z})
-        #scipyio.savemat('hannMat_04_07_2018_001.mat', {'hannMat': hannMat})
-        #scipyio.savemat('Rxh_aoa_04_07_2018_001.mat', {'Rxh': Rxh_aoa})
+        #scipyio.savemat('hann_matrix_04_07_2018_001.mat', {'hann_matrix': hann_matrix})
+        #scipyio.savemat('rx_hann_aoa_04_07_2018_001.mat', {'rx_hann': rx_hann_aoa})
 
 
         #scipyio.savemat('f_x1_04_07_2018_001.mat', {'f_x1': f_x1})
-        #scipyio.savemat('My_Range_indx_04_07_2018_001.mat', {'My_Range_indx': My_Range_indx})
+        #scipyio.savemat('range_idx_04_07_2018_001.mat', {'range_idx': range_idx})
         try:
             # --- Perform a projection on the detected range by DFT
             for k in range(NumberOfRanges):
-                # f_x1 = np.exp(-2j * np.pi * My_Range_indx[k] / NN * np.arange(1024))# DFT Twiddle factors
-                ProjVect = f_x1[int(My_Range_indx[k]),:] #np.dot(f_x1, Rxh_aoa)
-                L_AIC_new = shr.NumberOfTargetsAIC(ProjVect, n_rx_elements - 4)
+                # f_x1 = np.exp(-2j * np.pi * range_idx[k] / NN * np.arange(1024))# DFT Twiddle factors
+                ProjVect = f_x1[int(range_idx[k]),:] #np.dot(f_x1, rx_hann_aoa)
+                L_AIC_new = rp.NumberOfTargetsAIC(ProjVect, n_rx_elements - 4)
                 if is_root_music:
-                    fx4 = shr.root_MUSIC_One(ProjVect, L_AIC_new, n_rx_elements - 4, 1)#perform RootMusic on projected vector to estimate AoA components
+                    fx4 = rp.root_music(ProjVect, L_AIC_new, n_rx_elements - 4, 1)#perform RootMusic on projected vector to estimate AoA components
                 else:
-                    fx4 = shr.Esprit(ProjVect, L_AIC_new, n_rx_elements - 4, 1)#perform Esprit on projected vector to estimate velocity components
+                    fx4 = rp.esprit(ProjVect, L_AIC_new, n_rx_elements - 4, 1)#perform Esprit on projected vector to estimate velocities components
                 if len(fx4) > 0:
                     fx3 = np.hstack((fx3,fx4[0]))
                 else:
@@ -362,41 +362,41 @@ class RadarMethodRootMusicAndESPRIT:
 
                 fx33 = np.hstack((fx33, fx4[0:L_AIC_new]))  # return the first (most reliable component) of the AoA vector
                 for klm in range(L_AIC_new):
-                    fxR = np.hstack((fxR,My_Range[k]))
-                    fxV = np.hstack((fxV, My_velocity[k]))
-                    fxRCS = np.hstack((fxRCS, Estimated_RCS[k]))
-                    fxPL = np.hstack((fxPL, PowerLevel[k]))
+                    fxR = np.hstack((fxR,range[k]))
+                    fxV = np.hstack((fxV, velocities[k]))
+                    fxRCS = np.hstack((fxRCS, rcs_estimate[k]))
+                    fxPL = np.hstack((fxPL, rx_power[k]))
                 kTargets = kTargets + L_AIC_new
             angle = np.arcsin(-2. * fx33) / np.pi * 180.
 
      #----To chose OMP Uncomment following code--------------------------------
 
-        # NumberOfRanges = My_Range_indx.size
+        # NumberOfRanges = range_idx.size
         # fx3 = np.zeros(NumberOfRanges)
         #
         # try:
         #     z = np.transpose(xr[0, :, :])  # consider dechirped samples for Swwep 0
-        #     Rxh_aoa = z * hannMat  # Hann windowing of dechirped samples 1375x8
-        #     f_x111 = pyfftw.interfaces.numpy_fft.fft(Rxh_aoa, NN, 0)  # 1024x8
+        #     rx_hann_aoa = z * hann_matrix  # Hann windowing of dechirped samples 1375x8
+        #     f_x111 = pyfftw.interfaces.numpy_fft.fft(rx_hann_aoa, NN, 0)  # 1024x8
         #     if scipyio:
-        #       scipyio.savemat('Rxh__06_06_2018.mat', {'Rxh_aoa': Rxh_aoa})
+        #       scipyio.savemat('rx_hann__06_06_2018.mat', {'rx_hann_aoa': rx_hann_aoa})
         #       scipyio.savemat('f_x111__06_06_2018.mat', {'f_x111': f_x111})
-        #       scipyio.savemat('Range_indx__06_06_2018.mat', {'My_Range_indx': My_Range_indx})
+        #       scipyio.savemat('Range_indx__06_06_2018.mat', {'range_idx': range_idx})
         #     for k in range(NumberOfRanges):  #
-        #         # f_x1 = np.exp(-2j * np.pi * My_Range_indx[k] / NN * np.arange(N))  # DFT Twiddle factors 1375
+        #         # f_x1 = np.exp(-2j * np.pi * range_idx[k] / NN * np.arange(N))  # DFT Twiddle factors 1375
         #         for ks in range(1):
         #
-        #             ProjVect1 = f_x111[int(My_Range_indx[k]),:] # size = (8,)
+        #             ProjVect1 = f_x111[int(range_idx[k]),:] # size = (8,)
         #             if ks == 0:
         #                 Xproj = np.transpose(ProjVect1)
         #             else:
         #                 Xproj = np.column_stack((Xproj, np.transpose(ProjVect1)))
         #             # Corr_Xproj = np.dot(Xproj, np.conj(np.transpose(Xproj)))
         #         if is_root_music:
-        #             fx4 = shr.ML_AoA_Estimation(Xproj)
+        #             fx4 = rp.ML_AoA_Estimation(Xproj)
         #
         #         else:
-        #             fx4 = shr.ML_AoA_Estimation(Xproj)
+        #             fx4 = rp.ML_AoA_Estimation(Xproj)
         #         fx3[k] = fx4  # return the first (most reliable component) of the AoA vector
         #         angle = fx3
             #logging.getLogger("sensor").debug("radar targets:{0}".format(len(fxR)))
@@ -412,25 +412,25 @@ class RadarMethodRootMusicAndESPRIT:
             print("AOA Process Failure: " + str(e))
             return []
 
-    # --------AoA estimation by High resolution algorithms RootMusic or ESPRIT from Velocity---------------------
+    # --------AoA estimation by High resolution algorithms RootMusic or ESPRIT from velocities---------------------
 
     @staticmethod
-    def process_radar_data_cube_aoa2(xr, N, NN, hannMat, My_velocity, n_rx_elements, is_root_music):
+    def process_radar_data_cube_aoa2(xr, N, NN, hann_matrix, velocities, n_rx_elements, is_root_music):
         z = np.transpose(xr[0, :, :])
-        Rxh_aoa = z * hannMat
+        rx_hann_aoa = z * hann_matrix
 
-        NumberOfRanges = My_velocity.size
+        NumberOfRanges = velocities.size
         fx3 = np.zeros(NumberOfRanges)
         try:
-            # --- Perform a projection on the detected velocity by DFT
+            # --- Perform a projection on the detected velocities by DFT
             for k in range(NumberOfRanges):
-                f_x1 = np.exp(-2j * np.pi * My_velocity[k] / NN * np.arange(N))# DFT Twiddle factors
-                ProjVect = np.dot(f_x1, Rxh_aoa)
+                f_x1 = np.exp(-2j * np.pi * velocities[k] / NN * np.arange(N))# DFT Twiddle factors
+                ProjVect = np.dot(f_x1, rx_hann_aoa)
                 fx4 = []
                 if is_root_music:
-                    fx4 = shr.root_MUSIC_One(ProjVect, 1, n_rx_elements - 4, 1)#perform RootMusic on projected vector to estimate AoA components
+                    fx4 = rp.root_music(ProjVect, 1, n_rx_elements - 4, 1)#perform RootMusic on projected vector to estimate AoA components
                 else:
-                    fx4 = shr.Esprit(ProjVect, 1, n_rx_elements - 4, 1)#perform Esprit on projected vector to estimate velocity components
+                    fx4 = rp.esprit(ProjVect, 1, n_rx_elements - 4, 1)#perform Esprit on projected vector to estimate velocities components
                 fx3[k] = fx4[0]#return the first (most reliable component) of the AoA vector
 
             return np.arcsin(-2 * fx3) / np.pi * 180 # angle returned in degrees

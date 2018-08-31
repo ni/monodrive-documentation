@@ -6,16 +6,11 @@ __version__ = "1.0"
 
 import numpy as np
 import struct
-try:
-    from tkinter import *
-except ImportError:
-    from Tkinter import *
 
 from . import BaseSensor
-from .gui import TkinterSensorUI
 
 
-class GPS(TkinterSensorUI, BaseSensor):
+class GPS(BaseSensor):
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(GPS, self).__init__(idx=idx, config=config, simulator_config=simulator_config, **kwargs)
         self.framing = None
@@ -44,27 +39,3 @@ class GPS(TkinterSensorUI, BaseSensor):
         }
         return data_dict
 
-    def initialize_views(self):
-        self.view_lock.acquire()
-        super(GPS, self).initialize_views()
-
-        self.string_lat = StringVar()
-        self.lat_text_display = Label(self.master_tk, textvariable=self.string_lat)
-        self.lat_text_display.pack()
-
-        self.string_lng = StringVar()
-        self.lng_text_display = Label(self.master_tk, textvariable=self.string_lng)
-        self.lng_text_display.pack()
-
-        self.string_time = StringVar()
-        self.time_text_display = Label(self.master_tk, textvariable=self.string_time)
-        self.time_text_display.pack()
-
-        self.view_lock.release()
-
-    def process_display_data(self):
-        data = self.q_display.get()
-        self.string_lat.set('LAT: {0}'.format(data['lat']))
-        self.string_lng.set('LNG: {0}'.format(data['lng']))
-        self.string_time.set('TIMESTAMP: {0}'.format(data['time_stamp']))
-        self.update_sensors_got_data_count()

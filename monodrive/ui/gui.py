@@ -165,7 +165,7 @@ class Radar_FFT_Plot(wx.Panel):
 
     def update_range_fft_plot(self, range_fft, target_range_idx):
         x = range(len(range_fft)/4)
-        print(target_range_idx)
+        #print(target_range_idx)
         #if self.range_fft_subplot_handle == None:
         self.range_fft_subplot.cla()
         self.range_fft_subplot.set_title('Range by FFT (psd dBm)')
@@ -181,7 +181,7 @@ class Radar_FFT_Plot(wx.Panel):
         #fft_power_min = min(psdx_db)
         self.range_fft_subplot.set_ylim([-110, -40])
         self.range_fft_subplot_handle = self.range_fft_subplot.plot(freq[0:len(x)], psdx_dbm[0:len(x)])[0]
-        print target_range_idx
+        #print target_range_idx
         peaks = target_range_idx * Fs/len(x)/8
         self.range_fft_peaks_handle = self.range_fft_subplot.scatter(peaks, psdx_dbm[target_range_idx], color='red')
         #self.range_fft_subplot_handle.set_xdata(x)

@@ -42,7 +42,7 @@ class Base_Radar(BaseSensor):
         self.framing = None
         self.ncores = multiprocessing.cpu_count()
         self.nSweep = int(config['num_sweeps'])
-        self.n_rx_elements = 8
+        self.n_rx_elements = int(config['elements'])
         self.bounding_box = None
         speed_of_light = 3.0e8
         tm = config['sweep_num_for_range_max']* 2 * config['range_max']/ speed_of_light
@@ -280,12 +280,13 @@ class Radar(Base_Radar):
         #self.target_range_idx = ranges[0]
         #self.targets_rx_power = ranges[1]
         self.targets_range = self.bin_range * (target_range_idx+1)  # range converted in meters
-        self.targets_rcs = 10*np.log10(self.targets_rx_power * (self.targets_range ** 2)*(4*np.pi)**3 / self.N_FFT **2) - 44 # dBsm
+        self.targets_rcs = 10*np.log10(self.targets_rx_power * (self.targets_range ** 2)*(4*np.pi)**3 / self.N_FFT **2) - 43 # dBsm
         #self.target_rcs = 10 ** ((self.targets_rx_power + 30)/10) #dBsm
         self.targets_rx_power_db = 10*np.log10(self.targets_rx_power) - 30.0 
         print("# radar targets {0}".format(len(self.targets_range)))
         print("# targets range {0}".format(self.targets_range))
         print("# targets power {0}".format(self.targets_rx_power_db))
+        print("# targets rcs {0}".format(self.targets_rcs))
         if len(self.targets_range) > 0:
             return True
         else:

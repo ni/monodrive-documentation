@@ -68,6 +68,7 @@ class SensorTask:
         self.sensor = sensor
         self.clock_mode = clock_mode
         self.tracker = tracker
+        self.data_received = threading.Event()
         self.thread = threading.Thread(target=self.run)
         self.thread.start()
 
@@ -82,6 +83,7 @@ class SensorTask:
             data = self.sensor.get_message(timeout=.5)
             if data is None:
                 continue
+            self.data_received.set()
 
             if data:
                 packets += 1
@@ -169,7 +171,12 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
     msg = messaging.EgoControlCommand(2.5, 0.0) # go straight
     for _ in range(0, 100):
         simulator.request(msg)
-        time.sleep(.2)
+        if clock_mode == ClockMode_ClientStep:
+            for st in tasklist:
+                st.data_received.wait()
+                st.data_received.clear()
+        else:
+            time.sleep(.2)
 #        print(simulator.request(messaging.Message(SIMULATOR_STATUS_UUID)))
 
     print("  stopping")

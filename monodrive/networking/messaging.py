@@ -11,6 +11,7 @@ __version__ = "1.0"
 
 import json
 import struct
+import sys
 import umsgpack
 
 from monodrive.constants import *
@@ -63,8 +64,11 @@ class Message(object):
         length = data[1]
 
         if magic == RESPONSE_HEADER and length > 8:
-            packed = rfile.read(length - 8)
-            data = umsgpack.unpackb(packed)
+            if sys.version_info[0] == 3:
+                data = umsgpack.unpack(rfile)
+            else:
+                packed = rfile.read(length - 8)
+                data = umsgpack.unpackb(packed)
 
             self.message_class = data['class']
             self.status = data['status']

@@ -356,7 +356,10 @@ class BaseSensor(object):
         if not self.stop_event.is_set():
             res = simulator.start_sensor_command(self.type, self.port_number, self.sensor_id,
                                                  self.packet_size, self.drop_frames)
-            if res is None or not res.is_success:
+            if res is None:
+                logging.getLogger("sensor").error(
+                    "Failed start stream command for sensor %s" % self.name)
+            elif not res.is_success:
                 logging.getLogger("sensor").error(
                     "Failed start stream command for sensor %s %s" % (self.name, res.error_message))
             else:

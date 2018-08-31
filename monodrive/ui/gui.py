@@ -57,15 +57,18 @@ class TextRow(wx.Panel):
         wx.Panel.__init__(self, parent, *args, **kwargs)
         self.SetBackgroundColour(BACKGROUND_COLOR)
 
+
 class GraphRow(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
         wx.Panel.__init__(self, parent, *args, **kwargs)
         self.SetBackgroundColour(BACKGROUND_COLOR)
 
+
 class CameraRow(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
         wx.Panel.__init__(self, parent, *args, **kwargs)
         self.SetBackgroundColour(BACKGROUND_COLOR)
+
 
 class Bounding_Polar_Plot(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
@@ -106,7 +109,7 @@ class Bounding_Polar_Plot(wx.Panel):
         else:
             print("empty target list")
 
-    def update_plot(self,targets):
+    def update_plot(self, targets):
         if len(targets.radar_distances) > 0:
             self.set_data(targets)
         self.Layout()
@@ -130,6 +133,7 @@ class Bounding_Polar_Plot(wx.Panel):
         self.target_polar_subplot.scatter(theta, r, c='b', cmap='hsv', alpha =0.75)
         #self.target_polar_handle.set_offsets([theta,r])
         self.figure.canvas.draw()
+
 
 class Radar_Polar_Plot(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
@@ -166,7 +170,7 @@ class Radar_Polar_Plot(wx.Panel):
         self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
         self.SetSizer(self.sizer)
     
-    def update_bounding(self,msg):
+    def update_bounding(self, msg):
         if msg:
             self.targets_bounding_box = Bounding_Box_Message(msg)
             #self.update_plot(self.targets)
@@ -180,7 +184,7 @@ class Radar_Polar_Plot(wx.Panel):
         else:
             print("empty target list")
 
-    def update_plot(self,targets):
+    def update_plot(self, targets):
         if len(targets.ranges) > 0:
             self.set_data(targets)
         self.Layout()
@@ -206,7 +210,8 @@ class Radar_Polar_Plot(wx.Panel):
         self.target_polar_subplot.scatter(bounding_box_angles, bounding_box_distances, c='b', s=rcs, cmap='hsv', alpha =0.75)
         #self.target_polar_handle.set_offsets([theta,r])
         self.figure.canvas.draw()
-    
+
+
 class Radar_Target_Table(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
         wx.Panel.__init__(self, parent, *args, **kwargs)
@@ -424,6 +429,7 @@ class IMU_View(wx.Panel):
         self.string_ang_rate_z.SetLabelText('ANG RATE X: {0}'.format(imu_msg.string_ang_rate_z))
         self.string_timer.SetLabelText('TIMESTAMP: {0}'.format(imu_msg.time_stamp))
 
+
 class Wheel_RPM_View(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
         wx.Panel.__init__(self, parent, *args, **kwargs)
@@ -441,12 +447,13 @@ class Wheel_RPM_View(wx.Panel):
         self.sizer.Add(self.string_rpm_rr, 1, wx.EXPAND)
         self.SetSizer(self.sizer)
 
+
 class Camera_View(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
         wx.Panel.__init__(self, parent, *args, **kwargs)
         self.impil = None
         self.png = wx.Image(filepath, wx.BITMAP_TYPE_ANY)
-        self.bmwx = wx.StaticBitmap(self, wx.ID_ANY, wx.BitmapFromImage(self.png),(0, 0))
+        self.bmwx = wx.StaticBitmap(self, wx.ID_ANY, wx.BitmapFromImage(self.png), (0, 0))
         self.sizer = wx.BoxSizer(wx.HORIZONTAL)
         self.sizer.Add(self.bmwx,1,wx.EXPAND | wx.TOP | wx.BOTTOM)
         self.SetSizer(self.sizer)
@@ -508,6 +515,7 @@ class Camera_View(wx.Panel):
         bmp = self.png.Scale(frame_h,frame_w)
         self.bmp.SetBitmap(wx.BitmapFromImage(bmp))'''
 
+
 class MainWindow(wx.Frame):
     def __init__(self, parent, title = "monoDrive Visualizer", *args, **kwargs):
         wx.Frame.__init__(self, parent, size=(1800,1000), title = title,*args, **kwargs)
@@ -557,16 +565,18 @@ class MainWindow(wx.Frame):
 
         self.Layout()
         self.Refresh()
-        
     
     def shutdown(self, msg):
         print("Frame shutting down {0}".format(msg))
         self.Close()
         #self.Destroy()
 
+
 class MyFrame(wx.Frame):
     pass
-#Ctrl-Alt-I, or Cmd-Alt-I on Mac for inspection app for viewing layout
+
+
+#  Ctrl-Alt-I, or Cmd-Alt-I on Mac for inspection app for viewing layout
 class MonoDriveGUIApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
 #class MonoDriveGUIApp(wx.App):
     def OnInit(self):
@@ -584,15 +594,17 @@ class MonoDriveGUIApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
         wx.CallAfter(self.Destroy)
         time.sleep(0.2)
 
+
 class SensorPoll(Thread):
     """Thread to pull data from sensor q's and publish to views"""
-    def __init__(self, vehicle, fps, map):
+    def __init__(self, sensors, fps, map):
         super(SensorPoll,self).__init__()
-        self.vehicle = vehicle
+        #self.vehicle = vehicle
         #TODO need to fix the map getting here
         #self.road_map = vehicle.get_road_map()
         self.road_map = map
-        self.sensors = vehicle.get_sensors()
+        #self.sensors = vehicle.get_sensors()
+        self.sensors = sensors
         self.stop_event = multiprocessing.Event()
         self.fps = fps
         self.start()
@@ -609,6 +621,8 @@ class SensorPoll(Thread):
             elif "GPS" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_gps", msg=message)
             elif "Camera" in sensor.name:
+                message['width'] = sensor.width
+                message['height'] = sensor.height
                 wx.CallAfter(pub.sendMessage, "update_camera", msg=message)
             elif "Radar" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_radar_table", msg=message)
@@ -634,13 +648,45 @@ class SensorPoll(Thread):
         self.stop_event.set()
         self.join(timeout=timeout)
 
+
+class GUISensor(object):
+    def __init__(self, sensor, **kwargs):
+        self.name = sensor.name
+        self.queue = sensor.q_display
+        if 'Camera' in sensor.name:
+            self.width = sensor.width
+            self.height = sensor.height
+
+    def get_display_messages(self, block=True, timeout=None):
+
+        messages = []
+        try:
+            msg = self.queue.get(block=block, timeout=timeout)
+            messages.append(msg)
+            while self.queue.qsize():
+                msg = self.queue.get(block=True, timeout=0)
+                messages.append(msg)
+                # If `False`, the program is not blocked. `Queue.Empty` is thrown if
+                # the queue is empty
+        except Exception as e:
+            #print("{0} Display Q_EMPTY".format(self.name))
+            # if len(messages) == 0:
+            #     messages.append("NO_DATA")
+            pass
+        return messages
+
+
 class GUI(object):
     def __init__(self, simulator, **kwargs):
         super(GUI, self).__init__(**kwargs)
         self.daemon = True
         self.name = "GUI"
-        self.simulator = simulator
-        self.vehicle = simulator.ego_vehicle
+        self.simulator_event = simulator.restart_event
+        #self.simulator = simulator
+        #self.vehicle = None
+        #self.vehicle = simulator.ego_vehicle
+
+        self.sensors = [GUISensor(s) for s in simulator.ego_vehicle.sensors]
 
         self.app = None
         self.fps = None
@@ -684,11 +730,11 @@ class GUI(object):
 
         #prctl.set_proctitle("mono{0}".format(self.name))
         #start sensor polling
-        self.sensor_polling = SensorPoll(self.vehicle, self.fps, self.map)
+        self.sensor_polling = SensorPoll(self.sensors, self.fps, self.map)
         self.app = MonoDriveGUIApp()
         while not self.stop_event.is_set():
             self.app.MainLoop()
-            self.simulator.restart_event.set()
+            self.simulator_event.set()
             time.sleep(0.5)
 
         monitor.join(timeout=2)
@@ -701,6 +747,7 @@ class GUI(object):
         self.sensor_polling.stop()
         self.app.Close()
         #print("exiting monitor process")
+
 
 if __name__ == '__main__':
     #vehicle = "vehicle"

@@ -214,7 +214,14 @@ class GPS_Message(object):
 class Camera_Message(object):
       
     def __init__(self, msg):
-        self.np_image = np.array(msg)
+        height = msg['height']
+        width = msg['width']
+        image_buffer = msg['image']
+        if len(image_buffer) == height * width * 4:
+            self.np_image = np.array(bytearray(image_buffer), dtype=np.uint8).reshape(height, width, 4)
+        else:
+            self.np_image = None
+        #self.np_image = np.array(msg)
     
     def test_message(self):
         self.np_image = None

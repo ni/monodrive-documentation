@@ -115,37 +115,37 @@ class RadarProcessing(object):
         return f
 
     @staticmethod
-    def range_by_fft(z1, Wx, NN):
-        Hz = z1 * Wx  # 1375x64 2D-array Hann windowed dechirped samples (fast/slow plan)
-        Z = pyfftw.interfaces.numpy_fft.fft(Hz, NN, 0)  # 1024 points FFT performed on the 64 1D-arrays
-        ZA = abs(Z)  # 1024x64 2D-array with amplitudes
-        x = ZA[:,0] #ZA.sum(axis=1)/64  # 1024 points 1D-Array, summing up over sweeps in order to reduce noise effect and clean up the spectrum
-        Lgx = x.size
+    def range_by_fft(rx_signal_fft, hanning, N_FFT):
+        #rx_signal_shaped = rx_signal * hanning  # 1375x64 2D-array Hann windowed dechirped samples (fast/slow plan)
+        #rx_signal_fft = pyfftw.interfaces.numpy_fft.fft(rx_signal_shaped, N_FFT, 0)  # 1024 points FFT performed on the 64 1D-arrays
+        rx_signal_abs_fft = abs(rx_signal_fft)  # 1024x64 2D-array with amplitudes
+        rx_sum = rx_signal_abs_fft[:,0] #ZA.sum(axis=1)/64  # 1024 points 1D-Array, summing up over sweeps in order to reduce noise effect and clean up the spectrum
+        #Lgx = rx_sum.size
         # Following is CFAR algorithm
         # we used CFAR order statistics : OSCFAR (refer to the report by Celite on Radar design, CFAR section)
-        G = 2  # Guard interval
-        Ncfar = 10  # averaging window size
-        Thr = 20  # threshold depending on false alarm detection probability
-        y = x * x  # compute energy x[k]^2
-        p = []  # initialization of peaks array
-        p = np.array(p)
-        qy = 0 * y  # initialization of the value of the peaks
+        guard = 2  # Guard interval
+        window_size = 10  # averaging window size
+        threshold = 20  # threshold depending on false alarm detection probability
+        rx_sum_sqr = rx_sum * rx_sum  # compute energy x[k]^2
+        #p = []  # initialization of peaks array
+        peaks_index = np.array([]) # initialization of peaks array
+        peaks_energy = 0 * rx_sum_sqr  # initialization of the value of the peaks
 
         # compute CFAR for the first samples of the block (right neighbours)
-        for k in range(0, 2 * (G + Ncfar) - 1):
-            z = y[k + G:k + G +int(Ncfar/2)]
-            T = np.median(z)
-            if (y[k] > Thr* T):
-                p = np.hstack((p, [k]))
-                qy[k] = x[k]
+        for idx in range(0, 2 * (guard + window_size) - 1):
+            rx_sum_sqr_window = rx_sum_sqr[idx + guard:idx + guard +int(window_size/2)]
+            rx_sum_sqr_median = np.median(rx_sum_sqr_window)
+            if (rx_sum_sqr[idx] > threshold * rx_sum_sqr_median):
+                peaks_index = np.hstack((peaks_index, [idx]))
+                peaks_energy[idx] = rx_sum[idx]
 
         # compute CFAR for the following block (right and left neighbours)
-        for k in range(2 * (G + Ncfar) - 1, 200): #(Lgx - G - Ncfar - 1)):
-            z = np.concatenate((y[k + G:k + G + Ncfar], y[k - G:k - G - Ncfar:-1]), axis=0)
-            T = np.median(z)
-            if (y[k] > Thr * T):
-                p = np.hstack((p, [k]))
-                qy[k] = x[k]
+        for idx in range(2 * (guard + window_size) - 1, 200): #(Lgx - G - Ncfar - 1)):
+            rx_sum_sqr_window = np.concatenate((rx_sum_sqr[idx + guard:idx + guard + window_size], rx_sum_sqr[idx - guard:idx - guard - window_size:-1]), axis=0)
+            rx_sum_sqr_median = np.median(rx_sum_sqr_window)
+            if (rx_sum_sqr[idx] > threshold * rx_sum_sqr_median):
+                peaks_index = np.hstack((peaks_index, [idx]))
+                peaks_energy[idx] = rx_sum[idx]
 
         # compute CFAR for the last samples of the block (left neighbours)
         # for k in range(2 * (G + Ncfar) - 1, Lgx - 1):
@@ -155,50 +155,51 @@ class RadarProcessing(object):
         #         p = np.hstack((p, [k]))
         #         qy[k] = x[k]
         # peaks localization
+        #DenoisingThreshold = 1/500
         DenoisingThreshold = 1/500
-        Lgy = qy.size
-        k = 1
-        p = np.array([])
-        q = np.array([])
-        mm = max(qy) * DenoisingThreshold
-        RCS_Th = 2
-        if (qy[0] > mm and qy[0] > qy[1]):
-            p += [0]
-            q += [qy[0]]
-        for k in range(0, Lgy - 2):
-            if (qy[k] > 0):
-                RCS_k = 10 * np.log10(qy[k] * ((k+1) ** 2) * (4 * np.pi) ** 3 / NN ** 2) - 25
+        #Lgy = peak_energy.size
+        #k = 1
+        peaks = np.array([])  #TODO setting this to zero?  what does the above do?
+        energy = np.array([])
+        min_energy = max(peaks_energy) * DenoisingThreshold
+        #RCS_Th = 2
+        if (peaks_energy[0] > min_energy and peaks_energy[0] > peaks_energy[1]):
+            peaks += [0]
+            energy += [peaks_energy[0]]
+        for idx in range(0, peaks_energy.size - 1):
+            '''if (peaks_energy[idx] > 0):
+                RCS_k = 10 * np.log10(peaks_energy[idx] * ((idx+1) ** 2) * (4 * np.pi) ** 3 / N_FFT ** 2) - 25
             else:
-                RCS_k = 1
-            if (qy[k] > qy[k - 1] and qy[k] > qy[k + 1] and qy[k]> mm):
-                p = np.hstack((p, [k]))
-                q = np.hstack((q, [qy[k]]))
-        return [p, q]
+                RCS_k = 1'''
+            if (peaks_energy[idx] > peaks_energy[idx - 1] and peaks_energy[idx] > peaks_energy[idx + 1] and peaks_energy[idx]> min_energy):
+                peaks = np.hstack((peaks, [idx]))
+                energy = np.hstack((energy, [peaks_energy[idx]]))
+        return [peaks, energy]
 
     @staticmethod
-    def ML_AoA_Estimation(project):
+    def max_likelihood_aoa_estimation(project):
             N = project.shape[0]
             # M = project.shape[1]
 
-            Theta = np.arange(-25,25,0.1)
-            Theta_rd = Theta / 180. * np.pi
-            P = len(Theta)
-            V = np.zeros((N, P))+np.zeros((N, P))*1j
-            for p in range(P):
+            theta = np.arange(-10,10,0.5)
+            theta_rad = theta / 180. * np.pi
+            theta_length = len(theta)
+            V = np.zeros((N, theta_length)) + np.zeros((N, theta_length)) * 1j
+            for idx in range(theta_length):
                 for n in range(N):
-                    V[n, p] = np.exp(-1j * np.pi * n  * np.sin(Theta_rd[p]))
-            Theta_Est = 0. #np.zeros(1, M)
+                    V[n, idx] = np.exp(-1j * np.pi * n  * np.sin(theta_rad[idx]))
+            theta_est = 0. #np.zeros(1, M)
 
-            ML = np.zeros(P)
-            for p in range(P):
-                A = V[:, p]
+            max_likelihood = np.zeros(theta_length) #initialize max likelihood to zeros
+            for idx in range(theta_length):
+                A = V[:, idx]
                 cte = np.dot(np.conj(np.transpose(A)), np.transpose(project))
-                ML[p] = np.abs(cte)
+                max_likelihood[idx] = np.abs(cte)
 
-                index = ML.argmax()
-                Theta_Est = Theta[index]
+                index = max_likelihood.argmax()
+                theta_est = theta[index]
 
-            return Theta_Est
+            return theta_est
  
     @staticmethod
     def NumberOfTargetsAIC(x, M):

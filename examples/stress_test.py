@@ -19,6 +19,8 @@ from monodrive.networking import messaging
 from monodrive.sensors import GPS
 
 
+LOG_CATEGORY = "test"
+
 parser = argparse.ArgumentParser(description='monoDrive simulator stress test script')
 parser.add_argument('--sim-config', default='simulator.json')
 parser.add_argument('--vehicle-config', default='test.json')
@@ -94,7 +96,7 @@ class SensorTask:
 
             if start is None:
                 start = get_time()
-                logging.getLogger("test").info("start: %f" % start)
+                logging.getLogger(LOG_CATEGORY).info("start: %f" % start)
 
             if millis() - timer >= 1000:
                 seconds = (get_time() - start) / 1000
@@ -105,7 +107,7 @@ class SensorTask:
                     fps = 0
 
                 location, distance = self.tracker.get_last_distance_travelled()
-                logging.getLogger("test").info(
+                logging.getLogger(LOG_CATEGORY).info(
                     '{0}: {1:.2f} fps ({2} frames received in {3:.2f} secs ({4})), distance: {5:.4f}, speed: {6:.4f}'.format(
                     self.sensor.name, fps, packets, seconds, time_units(), distance, location.get('speed',0)))
                 packets = 0
@@ -113,7 +115,7 @@ class SensorTask:
                 start = get_time()
 
     def stop(self):
-        logging.getLogger("test").info("stopping %s" % self.sensor.name)
+        logging.getLogger(LOG_CATEGORY).info("stopping %s" % self.sensor.name)
         self.sensor.stop()
         self.running = False
 
@@ -122,8 +124,8 @@ class SensorTask:
             self.thread.join()
 
 def run_test(simulator, vehicle_config, clock_mode, fps):
-    logging.getLogger("test").info("======  test start  ======")
-    logging.getLogger("test").info("  running test. clock-mode: {0}, fps: {1}".format(clock_mode, fps))
+    logging.getLogger(LOG_CATEGORY).info("======  test start  ======")
+    logging.getLogger(LOG_CATEGORY).info("  running test. clock-mode: {0}, fps: {1}".format(clock_mode, fps))
     vehicle_config.configuration['clock_mode'] = clock_mode
     for sensor in vehicle_config.sensor_configuration:
         sensor['fps'] = fps
@@ -139,7 +141,7 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
             sensors.append(sensor_class(idx, sensor_config, sim_config))
             idx = idx + 1
 
-    logging.getLogger("test").info("  starting %d sensors" % len(sensors))
+    logging.getLogger(LOG_CATEGORY).info("  starting %d sensors" % len(sensors))
     tasklist = []
     tracker = Tracker()
     for sensor in sensors:
@@ -168,7 +170,7 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
             time.sleep(.2)
 
     for task in tasklist:
-        print(task.sensor.send_stop_stream_command(simulator))
+        task.sensor.send_stop_stream_command(simulator)
         task.stop()
 
     for sensor in sensors:
@@ -177,10 +179,13 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
     for task in tasklist:
         task.join()
 
-    logging.getLogger("test").info("======  test end  ======\n\n")
+    logging.getLogger(LOG_CATEGORY).info("======  test end  ======\n\n")
 
 
 if __name__ == "__main__":
+    # set up logging
+    logging.basicConfig(level=logging.DEBUG)
+
     args = parser.parse_args()
 
     sim_config = SimulatorConfiguration(args.sim_config)
@@ -188,6 +193,7 @@ if __name__ == "__main__":
 
     sim_config.client_settings['logger']['sensor']='debug'
     sim_config.client_settings['logger']['network']='debug'
+    simulator = Simulator(sim_config)
 
     if args.include:
         sensor_ids = args.include.split(',')
@@ -217,8 +223,7 @@ if __name__ == "__main__":
         vehicle_config.configuration['sensors'] = list
 
 
-    print(json.dumps(vehicle_config.configuration))
-    simulator = Simulator(sim_config)
+    logging.getLogger(LOG_CATEGORY).debug(json.dumps(vehicle_config.configuration))
 
     clock_mode = ClockMode_Continuous
     if args.clock_mode == 'AutoStep':

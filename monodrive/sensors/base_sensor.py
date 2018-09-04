@@ -12,8 +12,10 @@ except ImportError:
     import Queue as PythonQueue
 
 import logging
+import signal
 import socket
 import struct
+import sys
 import threading
 import time
 
@@ -131,6 +133,9 @@ class BaseSensor(object):
             pass
         return messages
 
+    def is_sensor_running(self):
+        return self.process is not None and self.process.is_alive()
+
     def start(self):
         self.process = multiprocessing.Process(target=self.sensor_loop)
         self.process.name = self.name
@@ -145,7 +150,12 @@ class BaseSensor(object):
         except Exception as e:
             logging.getLogger("sensor").error("could not join process {0} -> {1}".format(self.name, e))
 
+    def shutdown(self):
+        self.shutdown_socket()
+        self.stop()
+
     def sensor_loop(self):
+        signal.signal(signal.SIGINT, self.shutdown)
         monitor = None
         if self.connect():
             monitor = threading.Thread(target=self.monitor_process_state)

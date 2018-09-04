@@ -7,20 +7,15 @@ __version__ = "1.0"
 import logging
 from logging.handlers import RotatingFileHandler
 
-from multiprocessing import Event, Process, Queue
-import threading
+from multiprocessing import Event
 try:
     import psutil
-except: pass
-#import os, psutil  # for removing processing after episode
-#try:
-
-import sys
+except:
+    pass
 
 from monodrive.networking import messaging
 from monodrive.networking.client import Client
 from monodrive.constants import *
-#from monodrive.scene import Map
 
 from monodrive import VehicleConfiguration
 
@@ -167,16 +162,11 @@ class Simulator(object):
             logger = logging.getLogger(category)
             logger.setLevel(level)
 
-            console_handler = logging.StreamHandler(sys.stdout)
-            console_handler.setLevel(level)
-            console_handler.setFormatter(simple_formatter)
-
             file_handler = logging.handlers.RotatingFileHandler('client_logs.log', maxBytes=100000, backupCount=5)
             file_handler.setLevel(level)
             file_handler.setFormatter(simple_formatter)
 
             logger.addHandler(file_handler)
-            logger.addHandler(console_handler)
 
     def request_map(self):
         command = messaging.MapCommand(self.configuration.map_settings)

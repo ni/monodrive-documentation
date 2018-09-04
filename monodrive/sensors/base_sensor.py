@@ -49,8 +49,8 @@ class BaseSensor(object):
         # synchronization
         #self.q_data = SingleQueue()
         #self.q_display = SingleQueue()
-        self.q_data = multiprocessing.Queue(maxsize=5)
-        self.q_display = multiprocessing.Queue(maxsize=5)
+        self.q_data = multiprocessing.Queue(maxsize=10)
+        self.q_display = multiprocessing.Queue(maxsize=10)
         self.socket_ready_event = multiprocessing.Event()
         self.stop_event = multiprocessing.Event()
         self.process = None
@@ -83,7 +83,7 @@ class BaseSensor(object):
         try:
             data = self.q_data.get(block=block, timeout=timeout)
         except PythonQueue.Empty as e:
-            logging.getLogger("sensor").warning("{0}:get_message->{1}".format(self.name, e))
+            pass#logging.getLogger("sensor").warning("{0}:get_message->{1}".format(self.name, e))
         return data
 
     def get_messages(self, block=True, timeout=None):
@@ -95,9 +95,9 @@ class BaseSensor(object):
                 # If `False`, the program is not blocked. `Queue.Empty` is thrown if 
                 # the queue is empty
         except PythonQueue.Empty:
-            print("{0} Q_EMPTY".format(self.name))
-            msg = "EMPTY"
-            messages.append(msg)        
+            logging.getLogger("sensor").debug("{0} Q_EMPTY".format(self.name))
+            #msg = "EMPTY"
+            #messages.append(msg)
         return messages
 
     def get_display_message(self, block=True, timeout=None):
@@ -107,13 +107,14 @@ class BaseSensor(object):
         except PythonQueue.Empty as e:
             data = None
             self.frame_error += 1
-            print("Empty display_q({0}) after timeout {1}".format(self.name, e))
+            logging.getLogger("sensor").debug("Empty display_q({0}) after timeout {1}".format(self.name, e))
             # if self.frame_error > self.errors_max:
             #     print("signaling done - too many errors")
 
         return data
 
     def get_display_messages(self, block=True, timeout=None):
+
         messages = []
         try:
             msg = self.q_display.get(block=block, timeout=timeout)
@@ -125,8 +126,9 @@ class BaseSensor(object):
                 # the queue is empty
         except PythonQueue.Empty:
             #print("{0} Display Q_EMPTY".format(self.name))
-            if len(messages) == 0:
-                messages.append("NO_DATA")
+            # if len(messages) == 0:
+            #     messages.append("NO_DATA")
+            pass
         return messages
 
     def start(self):
@@ -141,7 +143,7 @@ class BaseSensor(object):
         try:
             self.process.join(timeout=timeout)
         except Exception as e:
-            print("could not join process {0} -> {1}".format(self.name, e))
+            logging.getLogger("sensor").error("could not join process {0} -> {1}".format(self.name, e))
 
     def sensor_loop(self):
         monitor = None
@@ -161,6 +163,10 @@ class BaseSensor(object):
             else:
                 self.receiving_data = False
 
+        # clear the queues so we can die
+        self.q_display.cancel_join_thread()
+        self.q_data.cancel_join_thread()
+
         # we're done just make sure monitor is done done
         if monitor is not None:
             monitor.join(timeout=1)
@@ -179,7 +185,7 @@ class BaseSensor(object):
                     self.sock.bind(('', self.port_number))
                     connected = True
                 except Exception as e:
-                    print('%s Could not bind udp to %s for %s - x:%s - (%s)' % (
+                    logging.getLogger("sensor").error('%s Could not bind udp to %s for %s - x:%s - (%s)' % (
                         self.name, self.server_ip, self.port_number, tries, str(e)))
                     tries += 1
                     time.sleep(.2)
@@ -192,7 +198,7 @@ class BaseSensor(object):
                 except Exception as e:
                     tries += 1
                     if tries >= 5:
-                        print('%s Could not connect to %s for %s - x:%s - (%s)' % (
+                        logging.getLogger("sensor").error('%s Could not connect to %s for %s - x:%s - (%s)' % (
                             self.name, self.server_ip, self.port_number, tries, str(e)))
                     time.sleep(.2)
 
@@ -201,7 +207,9 @@ class BaseSensor(object):
             self.socket_ready_event.set()
             logging.getLogger("network").debug(
                 'connected tcp sensor on %s %s for %s' % (self.server_ip, self.port_number, self.name))
-
+        else:
+            logging.getLogger("network").error(
+                'FAILED to connect tcp sensor on %s %s for %s' % (self.server_ip, self.port_number, self.name))
         return connected
 
     def create_socket(self):
@@ -213,20 +221,20 @@ class BaseSensor(object):
 
     #this will simply wait for sensor to stop running - and kill the socket
     def monitor_process_state(self):
-        print("{0} thread monitor waiting for shutdown".format(self.name))
+        logging.getLogger("sensor").debug("{0} thread monitor waiting for shutdown".format(self.name))
         self.stop_event.wait()
-        print("{0} stop received - shutting down real socket".format(self.name))
+        logging.getLogger("sensor").debug("{0} stop received - shutting down real socket".format(self.name))
         self.shutdown_socket()
 
     def shutdown_socket(self):
-        print("{0} socket is closing".format(self.name))
+        logging.getLogger("sensor").debug("{0} socket is closing".format(self.name))
         try:
             self.sock.shutdown(socket.SHUT_RDWR)
             self.sock.close()
             self.sock = None
         except Exception as e:
-            print("{0} could not close socket error:{1}".format(self.name, e))
-        print("{0} socket is closed".format(self.name))
+            logging.getLogger("sensor").error("{0} could not close socket error:{1}".format(self.name, e))
+        logging.getLogger("sensor").debug("{0} socket is closed".format(self.name))
 
     def wait_until_ready(self, timeout=None):
         return self.socket_ready_event.wait(timeout)
@@ -244,8 +252,14 @@ class BaseSensor(object):
                 time_stamp, game_time = struct.unpack('=If', packet[:offset])
                 packet = packet[offset:]
         else:
+            received = 0
+            packet_header = None
             header_size = 4 + 4 + 4  # length, time_stamp, game_time
-            received, packet_header = self.read(header_size)
+            try:
+                received, packet_header = self.read(header_size)
+            except Exception as e:
+                logging.getLogger("sensor").debug("Could not read network data({0}) - {1}".format(self.name, e))
+                self.stop()  # socket is dead - must stop
 
             if packet_header is not None and received == header_size:
                 length, time_stamp, game_time = struct.unpack('=IIf', packet_header)
@@ -255,14 +269,14 @@ class BaseSensor(object):
                 try:
                     received, packet = self.read(length)
                 except Exception as e:
-                    print("Could not read network data({0}) - {1}".format(self.name, e))
+                    logging.getLogger("sensor").debug("Could not read network data({0}) - {1}".format(self.name, e))
                     self.stop()  # socket is dead - must stop
 
-                if len(packet) != length or received != length:
-                    print("{0}: incomplete frame received: {1} != {2} (rcv count: {3})".format(
-                        self.name, len(packet), length, received))
+                if packet is None or len(packet) != length or received != length:
+                    logging.getLogger("sensor").debug("{0}: incomplete frame received: {1} != {2} (rcv count: {3})".format(
+                        self.name, 0 if packet is None else len(packet), length, received))
             else:
-                print("incomplete header: {0},{1},{2}".format(header_size, received, packet_header))
+                logging.getLogger("sensor").debug("incomplete header: {0},{1},{2}".format(header_size, received, packet_header))
 
         return packet, time_stamp, game_time
 
@@ -301,8 +315,17 @@ class BaseSensor(object):
         # self.log_control_time(self.name, self.last_control_real_time.value)
         if hasattr(self, 'parse_frame'):
             frame = self.parse_frame(frame, time_stamp, game_time)
+
+        # if our queue is filled up pop the top one
+        if self.q_data.full():
+            self.q_data.get()
         self.q_data.put(frame)
+
+        # if our queue is filled up pop the top one
+        if self.q_display.full():
+            self.q_display.get()
         self.q_display.put(frame)
+        
         # if not self.display_process or not self.synchronized_display:
         # self.message_event.set()
 
@@ -325,7 +348,10 @@ class BaseSensor(object):
         if not self.stop_event.is_set():
             res = simulator.start_sensor_command(self.type, self.port_number, self.sensor_id,
                                                  self.packet_size, self.drop_frames)
-            if res is None or not res.is_success:
+            if res is None:
+                logging.getLogger("sensor").error(
+                    "Failed start stream command for sensor %s" % self.name)
+            elif not res.is_success:
                 logging.getLogger("sensor").error(
                     "Failed start stream command for sensor %s %s" % (self.name, res.error_message))
             else:

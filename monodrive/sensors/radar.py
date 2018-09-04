@@ -42,11 +42,11 @@ class Base_Radar(BaseSensor):
         self.framing = None
         self.ncores = multiprocessing.cpu_count()
         self.nSweep = int(config['num_sweeps'])
-        self.n_rx_elements = 8
+        self.n_rx_elements = int(config['elements'])
         self.bounding_box = None
-        speed_of_light = 3e8
-        Tm = config['sweep_num_for_range_max']* 2 * config['range_max']/ speed_of_light
-        self.N = int(round(config['fs'] * Tm))
+        speed_of_light = 3.0e8
+        tm = config['sweep_num_for_range_max']* 2 * config['range_max']/ speed_of_light
+        self.N = int(round(config['fs'] * tm))
         self.samples_per_frame = self.N * self.n_rx_elements * self.nSweep * 2
         self.range_max = config['range_max']
         self.v_max = config['max_velocity']
@@ -73,7 +73,8 @@ class Base_Radar(BaseSensor):
         #self.radar_method = radar_method.DetectionRootMusicAndESPRIT(config, self.ncores)
 
         #self.rx_power = []
-        
+        self.rx_range_fft = []
+        self.rx_signal_real = []
         self.target_range_idx = np.array([])
         self.targets_range = []
         self.targets_velocity = []
@@ -82,9 +83,77 @@ class Base_Radar(BaseSensor):
         self.targets_rx_power = []
         self.targets_rx_power_db = []
         self.targets_rcs = []
+        
+        #Mock Transmitter 
+        range_resolution = config['range_resolution']
+        bandwidth = speed_of_light/(2.0 * range_resolution)
+        self.sweep_slope = bandwidth / tm
+        self.tx_aperture = config['transmitter']['aperture']
+        self.tx_antenna_gain = self.aperature2gain(self.tx_aperture)
+        self.tx_antenna_gain_db = self.power2db(self.tx_antenna_gain)
+        self.tx_power_db = config['transmitter']['gain']
+        self.tx_power_watts = self.db2power(self.tx_power_db)
+        self.pa_voltage = self.pa_output_voltage()
+        self.tx_power_dbm = 13.5 + self.tx_antenna_gain_db
+        self.time_series = self.generate_time_series()
+        self.tx_waveform = self.generate_fmcw(self.tx_power_dbm)
 
         self.is_root_music = True
         self.hann_matrix_range, self.hann_matrix_aoa = self.build_hanning()
+
+    def pa_output_voltage(self):
+        pa_max_dbm = 13.5 #dbm
+        pa_max_db = pa_max_dbm - 30
+        power_watts = 10**(pa_max_db/10)
+        z0 = 50 # ohms
+        # power = Vrms^2/z0
+        v_rms = np.sqrt(power_watts * z0)
+        # for complex signals
+        v_pk = v_rms
+        return v_pk        
+
+
+    def generate_fmcw(self, power_dbm):
+        tx_waveform = np.zeros(self.N, dtype=complex)
+        for n in range(self.N):
+            t = self.time_series[n]
+            tx_waveform[n] = np.multiply(power_dbm,np.exp(self.sweep_slope * -1j * np.pi * t*t )) 
+        return tx_waveform
+
+    def generate_time_series(self):
+        time_series = np.zeros(self.N)
+        for n in range(self.N):
+            time_series[n] = n*self.Ts 
+        return time_series
+
+    def peak_power_watts(self,antenna_gain_dbi, eirp_max_dbm = 55):
+        peak_power_mw = 10 ** ((eirp_max_dbm - antenna_gain_dbi)/10)
+        peak_power_watts = peak_power_mw * 1e-3
+        return peak_power_watts 
+
+    def tx_power_at_eirp_dbm(self, eirp_max = 55, tx_antenna_gain = 20):
+        tx_power_peak =  eirp_max  - tx_antenna_gain
+        return tx_power_peak
+
+    def get_transmit_power(self, tx_peak_power_watts, tx_gain, tx_antenna_power_dbi):
+        tx_power = np.sqrt(tx_peak_power_watts * self.db2power(tx_gain + tx_antenna_power_dbi) * 1e-3)
+        print("tx peak power watts = {0}".format(tx_peak_power_watts))
+        print("tx gain + tx antenna gain watts = {0}".format(self.db2power(tx_gain + tx_antenna_power_dbi)*1e-3))
+        print("tx_power_watts = {0}".format(tx_power))
+        return tx_power
+
+    def mag2db(self,y):
+        return 20.0*np.log10(y)
+
+    def db2power(self, db):
+        return 10.0 ** (db/10.0)
+
+    def power2db(self, power):
+        return 10.0*np.log10(power)
+
+    def aperature2gain(self, aperture):
+        antenna_power = 4.0 * np.pi * aperture / (self.lamda **2)
+        return antenna_power
 
     def get_frame_size(self):
         return self.N * 32 * 2 * self.n_rx_elements * self.nSweep / 8
@@ -100,13 +169,19 @@ class Base_Radar(BaseSensor):
             radar_data['aoa_list'] = self.targets_aoa 
             radar_data['rcs_list'] =self.targets_rcs
             radar_data['power_list'] = self.targets_rx_power_db
+            radar_data['range_fft'] = abs(self.rx_range_fft[:,0]) #just use first [0] rx signal from the 64 sweeps output is 1024x1 np array for visualization
+            radar_data['rx_signal'] = self.rx_signal_real       #use real part of first sweep signal for visualization
+            radar_data['target_range_idx'] = self.target_range_idx
+            radar_data['tx_waveform'] = self.tx_waveform
+            radar_data['time_series'] = self.time_series
+
             #print("parsed radar data = {0}".format(radar_data))
         else:
             print("Radar Data parse frame is empty")
         return radar_data
 
     def build_hanning(self):
-        han = np.hanning(self.N_FFT)
+        han = np.hanning(self.N)
         han = np.transpose(han)
         hann_matrix_range = np.tile(han, (self.nSweep, 1))
         hann_matrix_range = np.transpose(hann_matrix_range)
@@ -189,16 +264,29 @@ class Radar(Base_Radar):
     def compute_range_and_indx(self,xr):
         #if scipyio:
         #    scipyio.savemat('radar_cube__04_07_2018_001.mat', {'xr': xr})
-        z = np.transpose(xr[:, 0, 0:self.N_FFT])
-        wx = self.hann_matrix_range[:, 0]
-        wx = wx.reshape(self.N_FFT, 1)
-        ranges = np.array(rp.range_by_fft(z, wx, self.N_FFT))
-        self.target_range_idx = ranges[0]
-        self.targets_rx_power = ranges[1]
-        self.targets_range = self.bin_range * (self.target_range_idx+1)  # range converted in meters
-        self.targets_rcs = 10*np.log10(self.targets_rx_power * (self.targets_range ** 2)*(4*np.pi)**3 / self.N_FFT **2)-34 # 25 is a Tuning constant chosen roughly
-        self.targets_rx_power_db = 10*np.log10(self.targets_rx_power)
+        rx_signal_element_0 = np.transpose(xr[:, 0, :])
         
+        hanning = self.hann_matrix_range[:, 0]
+        hanning = hanning.reshape(self.N, 1)
+        rx_signal_shaped = rx_signal_element_0 * hanning  # 1375x64 2D-array Hann windowed dechirped samples (fast/slow plan)
+        
+        rx_signal = rx_signal_shaped[:,0]       
+        self.rx_signal_real = rx_signal.imag    #used for display only
+
+        self.rx_range_fft = pyfftw.interfaces.numpy_fft.fft(rx_signal_shaped, self.N_FFT, 0)  # 1024 points FFT performed on the 64 1D-arrays
+
+        target_range_idx, self.targets_rx_power = np.array(rp.range_by_fft(self.rx_range_fft, hanning, self.N_FFT))
+        self.target_range_idx = target_range_idx.astype(int)
+        #self.target_range_idx = ranges[0]
+        #self.targets_rx_power = ranges[1]
+        self.targets_range = self.bin_range * (target_range_idx+1)  # range converted in meters
+        self.targets_rcs = 10*np.log10(self.targets_rx_power * (self.targets_range ** 2)*(4*np.pi)**3 / self.N_FFT **2) - 43 # dBsm
+        #self.target_rcs = 10 ** ((self.targets_rx_power + 30)/10) #dBsm
+        self.targets_rx_power_db = 10*np.log10(self.targets_rx_power) - 30.0 
+        print("# radar targets {0}".format(len(self.targets_range)))
+        print("# targets range {0}".format(self.targets_range))
+        print("# targets power {0}".format(self.targets_rx_power_db))
+        print("# targets rcs {0}".format(self.targets_rcs))
         if len(self.targets_range) > 0:
             return True
         else:
@@ -206,14 +294,14 @@ class Radar(Base_Radar):
 
     # --------velocities estimation by High resolution algorithms RootMusic or ESPRIT---------------------
     def process_doppler(self,xr):
-        z = np.transpose(xr[:, 0, 0:1024]) # consider fast and slow samples plan for antenna 0
+        z = np.transpose(xr[:, 0, :]) # consider fast and slow samples plan for antenna 0
         rx_hann = z * self.hann_matrix_range # Hann windowing of dechirped samples
         NumberOfTargets = self.target_range_idx.size
         try:
             velocity_list = np.zeros(NumberOfTargets)# initialize returned array of velocities
             #--- Perform a projection on the detcted range by DFT
             for k in range(NumberOfTargets):
-                twiddle_factors = np.exp(-2j * np.pi * self.target_range_idx[k] / self.N_FFT * np.arange(self.N_FFT)) # DFT Twiddle factors
+                twiddle_factors = np.exp(-2j * np.pi * self.target_range_idx[k] / self.N * np.arange(self.N)) # DFT Twiddle factors
                 projection_vector = np.dot(twiddle_factors,rx_hann)
                 if self.is_root_music:
                     velocity = rp.root_music(projection_vector, 1, 16, 1) #perform RootMusic on projected vector to estimate velocities components
@@ -240,10 +328,12 @@ class Radar(Base_Radar):
         fxV = []
         fxRCS = []
         fxPL = []
-        z = np.transpose(xr[0, :, 0:1024])  # consider dechirped samples for Sweep 0
+        #z = np.transpose(xr[0, :, 0:1024])  # consider dechirped samples for Sweep 0
+        z = np.transpose(xr[0, :, :])
         rx_hann_aoa = z * self.hann_matrix_aoa  # Hann windowing of dechirped samples 1375x8
+        print("hanning rx size = {0}".format(rx_hann_aoa.shape))
         kTargets = 0
-        np_fft = pyfftw.interfaces.numpy_fft.fft((rx_hann_aoa), self.N_FFT, 0)
+        np_fft = pyfftw.interfaces.numpy_fft.fft(rx_hann_aoa, self.N_FFT, 0)
 
         try:
             # --- Perform a projection on the detected range by DFT

@@ -32,7 +32,6 @@ class Simulator(object):
         self.restart_event = Event()
         self.ego_vehicle = None
         self.scenario = None
-        self.map = None
         self._client = None
         self.setup_logger()
         self.map_data = None
@@ -43,7 +42,7 @@ class Simulator(object):
         # Send both simulator configuration and scenario
         # self.send_configuration(self.configuration)
         self.send_scenario(scenario)
-        print('Received Response From Sending Scenario')
+        #print('Received Response From Sending Scenario')
 
         # Get Ego vehicle configuration from scenario, use that to create vehicle process
         vehicle_configuration = scenario.ego_vehicle_config
@@ -57,7 +56,7 @@ class Simulator(object):
         # Create vehicle process form received class
         self.map_data = self.request_map()
         if not self.map_data:
-            print(self.map_data)
+            #print(self.map_data)
             logging.getLogger("simulator").error("failed to get map")
             return None
 
@@ -71,26 +70,25 @@ class Simulator(object):
         self.ego_vehicle.stop()
         logging.getLogger("simulator").info("simulator client shutdown complete")
 
+
+        # Disconnect from server
+        self.client.disconnect()
+        self.client.stop()
+
         ## get the pid of this program
         #pid=os.getpid()
 
         ## when you want to kill everything, including this program
         #self.kill_process_tree(pid, False)
 
-        # Disconnect from server
-        self.client.disconnect()
-        self.client.stop()
-
-
     def kill_process_tree(self, pid, including_parent=True):
         parent = psutil.Process(pid)
         for child in parent.children(recursive=True):
-            print("kill monodrive child {0}".format(child))
+            #print("kill monodrive child {0}".format(child))
             child.kill()
 
         if including_parent:
             parent.kill()
-
 
     @property
     def client(self):
@@ -106,7 +104,10 @@ class Simulator(object):
         return self.client.request(message_cls, timeout)
 
     def request_sensor_stream(self, message_cls):
-        return self.client.request_sensor_stream(message_cls)
+        # wait for 2 responses when requesting the sensor to stream data
+        # the second will include a sensor_ready flag
+        messages = self.client.request(message_cls, 10, 2)
+        return messages[1]
 
     def send_vehicle_configuration(self, vehicle_configuration):
         logging.getLogger("simulator").info('Sending vehicle configuration {0}'.format(vehicle_configuration.name))

@@ -16,6 +16,7 @@ try:
     from Queue import Queue
 except:
     from queue import Queue # for Python 3
+from queue import Empty
 
 from monodrive.networking.messaging import Message
 
@@ -32,7 +33,6 @@ class BaseClient(object):
         self.raw_message_handler = raw_message_handler
         self.b_socket_connnected = False # if socket == None, means client is not connected
         self.wait_connected = threading.Event()
-        self.b_running = True
         self.sock = None
 
         # Start a thread to get data from the socket
@@ -123,36 +123,40 @@ class Client(object):
     def __init__(self, endpoint):
         self.message_client = BaseClient(endpoint, self.__raw_message_handler)
         self.message_id = 0
-        self.wait_response = threading.Event()
-        self.response = ''
+        self.responses = Queue()
+
 
         self.isconnected = self.message_client.isconnected
         self.connect = self.message_client.connect
         self.disconnect = self.message_client.disconnect
-        self.b_running = True
         self.queue = Queue()
+
+        self.data_ready = threading.Event()
+        self.stop_event = threading.Event()
         self.main_thread = threading.Thread(target=self.worker, args=(self,))
         self.main_thread.setDaemon(1)
         self.main_thread.start()
         
 
     def __raw_message_handler(self, raw_message):
-        self.response = raw_message
-        self.wait_response.set()
+        self.responses.put(raw_message)
 
-    def stop(self):
-        self.b_running = False
+    def stop(self, timeout=2):
+        logging.getLogger("network").debug('stopping client')
+        self.stop_event.set()
+        self.main_thread.join(timeout=timeout)
+        logging.getLogger("network").debug('stopped client')
 
     def worker(self, _client):
-        while _client.b_running:
-            if not self.queue.empty():
-                task = self.queue.get()
-                task()
-                self.queue.task_done()
-            #TODO without this processor pegs at 100%
-            time.sleep(.1)
+        while not self.stop_event.is_set():
+            if self.data_ready.wait(.1):
+                self.data_ready.clear()
+                while not self.queue.empty():
+                    task = self.queue.get()
+                    task()
+                    self.queue.task_done()
 
-    def request(self, message, timeout=5):
+    def request(self, message, timeout=5, num_messages=1):
         """ Return a response from Unreal """
         def do_request():
             if not self.message_client.send(message):
@@ -163,48 +167,19 @@ class Client(object):
             do_request()
         else:
             self.queue.put(do_request)
-        # Timeout is required
-        # see: https://bugs.python.org/issue8844
-        self.wait_response.clear() # This is important
-        isset = self.wait_response.wait(timeout)    # Returns false when event times out
-        self.message_id += 1 # Increment only after the request/response cycle finished
+            self.data_ready.set()
 
-        assert(isset != None) # only python prior to 2.7 will return None
-        if isset or self.response:
-            r = self.response
-            self.response = None
-            return r
-        else:
-            logging.getLogger("network").error('Can not receive a response from server. \
-                   timeout after {:0.2f} seconds'.format(timeout))
-            return None
+        responses = []
+        while len(responses) < num_messages:
+            try:
+                response = self.responses.get(True, timeout)
+                responses.append(response)
+            except Empty:
+                logging.getLogger("network").error('Can not receive a response from server. \
+                       timeout after {:0.2f} seconds'.format(timeout))
+                responses.append(None)
+        self.message_id += 1  # Increment only after the request/response cycle finished
 
-    def request_sensor_stream(self, message, timeout=1):
-        def do_request():
-            if not self.message_client.send(message):
-                return None
-
-        # request can only be sent in the main thread, do not support multi-thread submitting request together
-        if threading.current_thread().name == self.main_thread.name:
-            do_request()
-        else:
-            self.queue.put(do_request)
-
-        sensor_ready = False
-        isset = None
-        while not sensor_ready:
-            self.wait_response.clear()  # This is important
-            isset = self.wait_response.wait(timeout)  # Returns false when event times out
-            if isset:
-                sensor_ready = self.response.is_sensor_ready
-                self.message_id += 1  # Increment only after the request/response cycle finished
-
-        assert (isset != None)  # only python prior to 2.7 will return None
-        if isset or self.response:
-            r = self.response
-            self.response = None
-            return r
-        else:
-            logging.getLogger("network").error('Can not receive a response from server. \
-                           timeout after {:0.2f} seconds'.format(timeout))
-            return None
+        if num_messages == 1:
+            return responses[0]
+        return responses

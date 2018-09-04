@@ -38,13 +38,14 @@ class TeleportVehicle(BaseVehicle):
         self.road_map = road_map
         self.throttle = 0.0
         self.steer = 0.0
-        self.start_keyboard_listener()
+
         self.keyboard_thread = None
-        self.keyboard_thread_running = True
+        self.keyboard_thread_running = False
+        self.start_keyboard_listener()
 
     def drive(self, sensors):
         #logging.getLogger("control").debug("Control Forward,Steer = {0},{1}".format(self.throttle,self.steer))
-        control = {'forward': self.throttle,'right': self.steer}
+        control = {'forward': self.throttle, 'right': self.steer}
         return control
     
     def start_keyboard_listener(self):
@@ -52,7 +53,22 @@ class TeleportVehicle(BaseVehicle):
         self.keyboard_thread.daemon = True
         self.keyboard_thread.start()
 
+    def stop(self):
+        self.keyboard_thread_running = False
+        super(TeleportVehicle, self).stop()
+        self.keyboard_thread.join()
+
+    def close(self):
+        if self.keyboard_thread_running:
+            self.keyboard_thread_running = False
+            try:
+                pygame.display.quit()
+                pygame.quit()
+            except: pass
+
     def _keyboard_listener(self):
+        self.keyboard_thread_running = True
+
         pygame.init()
         screen = pygame.display.set_mode((480, 360))
         name = "monoDrive tele control"
@@ -72,9 +88,7 @@ class TeleportVehicle(BaseVehicle):
                         screen.blit(block, rect)
                         pygame.display.flip()
                     else:
-                        self.keyboard_thread_running = False
-                        pygame.display.quit()
-                        pygame.quit()
+                        self.close()
                         self.restart_event.set()
                         break
             

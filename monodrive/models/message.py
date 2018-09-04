@@ -8,6 +8,47 @@ try:
     import cPickle as pickle
 except:
     import _pickle as pickle
+class Bounding_Box_Message(object):
+    def __init__(self, msg):
+        if msg:
+            self.time_stamp = msg['time_stamp']
+            self.game_time  = msg['game_time']
+            self.distances  = msg['distances']
+            self.angles     = msg['angles'] 
+            self.x_points   = msg['x_points']
+            self.y_points   = msg['y_points']
+            self.x_bounds   = msg['x_bounds']
+            self.y_bounds   = msg['y_bounds']
+            self.z_bounds   = msg['z_bounds']
+            self.box_rotations  = msg['box_rotations']
+            self.velocities     = msg['velocities']
+            self.radar_distances= msg['radar_distances']
+            self.radar_angles   = msg['radar_angles']
+            self.radar_velocities=msg['radar_velocities']
+            self.bounding_box_positions = msg['bounding_box_positions']
+            self.in_camera_los  = msg['in_camera_los']
+
+    def test_message(self):
+            pass
+            '''data_dict = {
+            'time_stamp': time_stamp,
+            'game_time': game_time,
+            'distances': distances,
+            'angles': angles,
+            'x_points': x_points,
+            'y_points': y_points,
+            'x_bounds': x_bounds,
+            'y_bounds': y_bounds,
+            'z_bounds': z_bounds,
+            'box_rotations': box_rotations,
+            'velocities': velocities,
+            'radar_distances': radar_distances,
+            'radar_angles': radar_angles,
+            'radar_velocities': radar_velocities,
+            'bounding_box_positions': bounding_box_positions,
+
+            'in_camera_los': in_line_of_sight
+            }'''
 
 class Radar_Message(object):
     def __init__(self, msg):
@@ -19,6 +60,12 @@ class Radar_Message(object):
             self.aoa_list = msg['aoa_list']
             self.rcs_list = msg['rcs_list']
             self.power_list = msg['power_list']
+            self.range_fft = msg['range_fft']
+            self.rx_signal = msg['rx_signal']
+            self.target_range_idx = msg['target_range_idx']
+            self.tx_waveform = msg['tx_waveform']
+            self.time_series = msg['time_series']
+            
         else:
             print("Radar Message Empty")
     
@@ -173,7 +220,14 @@ class GPS_Message(object):
 class Camera_Message(object):
       
     def __init__(self, msg):
-        self.np_image = np.array(msg)
+        height = msg['height']
+        width = msg['width']
+        image_buffer = msg['image']
+        if len(image_buffer) == height * width * 4:
+            self.np_image = np.array(bytearray(image_buffer), dtype=np.uint8).reshape(height, width, 4)
+        else:
+            self.np_image = None
+        #self.np_image = np.array(msg)
     
     def test_message(self):
         self.np_image = None

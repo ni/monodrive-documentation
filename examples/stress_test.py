@@ -9,6 +9,8 @@ import argparse
 import json
 import logging
 import math
+import signal
+import sys
 import threading
 import time
 
@@ -80,10 +82,11 @@ class SensorTask:
         timer = millis()
         get_time = lambda: data.get('game_time', millis()) if isinstance(data, dict) and self.clock_mode is not 0 else millis()
         time_units = lambda: 'real time' if (isinstance(data, dict) and data.get('game_time', None) is None) or self.clock_mode is 0 else 'game time'
-        while self.running:
+        while self.running and self.sensor.is_sensor_running():
             data = self.sensor.get_message(timeout=.5)
             if data is None:
                 continue
+
             self.data_received.set()
 
             if data:
@@ -114,6 +117,8 @@ class SensorTask:
                 timer = millis()
                 start = get_time()
 
+        print("sensor task done %s" % self.sensor.name)
+
     def stop(self):
         logging.getLogger(LOG_CATEGORY).info("stopping %s" % self.sensor.name)
         self.sensor.stop()
@@ -122,6 +127,7 @@ class SensorTask:
     def join(self):
         if self.thread is not None:
             self.thread.join()
+
 
 def run_test(simulator, vehicle_config, clock_mode, fps):
     logging.getLogger(LOG_CATEGORY).info("======  test start  ======")
@@ -182,7 +188,14 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
     logging.getLogger(LOG_CATEGORY).info("======  test end  ======\n\n")
 
 
+def shutdown(sig, frame):
+    print('shutting down...')
+    time.sleep(5)
+    sys.exit(0)
+
+
 if __name__ == "__main__":
+    signal.signal(signal.SIGINT, shutdown)
     # set up logging
     logging.basicConfig(level=logging.DEBUG)
 

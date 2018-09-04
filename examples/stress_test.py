@@ -40,13 +40,19 @@ class Tracker:
     def __init__(self):
         self.last_location = None
         self.lock = threading.Lock()
+        self.start_location = None
         self.last_distance = 0
 
     def update(self, location):
         self.lock.acquire()
+
+        if self.start_location is None:
+            self.start_location = location
+
         if self.last_location is not None:
             self.last_distance = self.haversine(location, self.last_location)
         self.last_location = location
+
         self.lock.release()
 
     def get_last_distance_travelled(self):
@@ -55,6 +61,9 @@ class Tracker:
         distance = self.last_distance
         self.lock.release()
         return location, distance
+
+    def total_distance(self):
+        return self.haversine(self.start_location, self.last_location)
 
     def haversine(self, location1, location2):
         lat1, lng1, lat2, lng2 = map(math.radians, [location1['lat'], location1['lng'], location2['lat'], location2['lng']])
@@ -79,48 +88,43 @@ class SensorTask:
         self.running = True
         packets = 0
         start = None
-        timer = millis()
-        get_time = lambda: data.get('game_time', millis()) if isinstance(data, dict) and self.clock_mode is not 0 else millis()
-        time_units = lambda: 'real time' if (isinstance(data, dict) and data.get('game_time', None) is None) or self.clock_mode is 0 else 'game time'
+
+        get_time = lambda: data.get('game_time', millis()) \
+            if isinstance(data, dict) and self.clock_mode is not 0 \
+            else millis()
+
+        time_units = lambda: 'real time' \
+            if (isinstance(data, dict) and data.get('game_time', None) is None) or self.clock_mode is 0 \
+            else 'game time'
+
         while self.running and self.sensor.is_sensor_running():
             data = self.sensor.get_message(timeout=.5)
             if data is None:
                 continue
 
-            self.data_received.set()
-
-            if data:
-                packets += 1
-
-                if isinstance(self.sensor, GPS):
-                    self.tracker.update(data)
-            else:
-                continue
-
             if start is None:
                 start = get_time()
-                logging.getLogger(LOG_CATEGORY).info("start: %f" % start)
 
-            if millis() - timer >= 1000:
-                seconds = (get_time() - start) / 1000
+            packets += 1
 
-                try:
-                    fps = packets / seconds
-                except:
-                    fps = 0
+            if isinstance(self.sensor, GPS):
+                self.tracker.update(data)
 
-                location, distance = self.tracker.get_last_distance_travelled()
-                logging.getLogger(LOG_CATEGORY).info(
-                    '{0}: {1:.2f} fps ({2} frames received in {3:.2f} secs ({4})), distance: {5:.4f}, speed: {6:.4f}'.format(
-                    self.sensor.name, fps, packets, seconds, time_units(), distance, location.get('speed',0)))
-                packets = 0
-                timer = millis()
-                start = get_time()
+            self.data_received.set()
 
-        print("sensor task done %s" % self.sensor.name)
+        seconds = (get_time() - start) / 1000
+
+        try:
+            fps = packets / seconds
+        except:
+            fps = 0
+        location, distance = self.tracker.get_last_distance_travelled()
+        logging.getLogger(LOG_CATEGORY).info(
+                    '{0: >18}: {1:5.2f} fps ({2:3} frames received in {3:6.2f} secs ({4})), distance: {5:6.4f}, speed: {6:6.4f}'.format(
+                    self.sensor.name, fps, packets, seconds, time_units(), self.tracker.total_distance(), location.get('speed',0)))
 
     def stop(self):
-        logging.getLogger(LOG_CATEGORY).info("stopping %s" % self.sensor.name)
+        #logging.getLogger(LOG_CATEGORY).info("stopping %s" % self.sensor.name)
         self.sensor.stop()
         self.running = False
 
@@ -152,7 +156,7 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
     tracker = Tracker()
     for sensor in sensors:
         sensor.start()
-        print(sensor.send_start_stream_command(simulator))
+        sensor.send_start_stream_command(simulator)
 
     for sensor in sensors:
         try:
@@ -189,7 +193,7 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
 
 
 def shutdown(sig, frame):
-    print('shutting down...')
+    #print('shutting down...')
     time.sleep(5)
     sys.exit(0)
 
@@ -236,7 +240,7 @@ if __name__ == "__main__":
         vehicle_config.configuration['sensors'] = list
 
 
-    logging.getLogger(LOG_CATEGORY).debug(json.dumps(vehicle_config.configuration))
+    #logging.getLogger(LOG_CATEGORY).debug(json.dumps(vehicle_config.configuration))
 
     clock_mode = ClockMode_Continuous
     if args.clock_mode == 'AutoStep':

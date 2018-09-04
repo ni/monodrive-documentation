@@ -14,9 +14,10 @@ import time
 
 try:
     from Queue import Queue
+    from Queue import Empty
 except:
     from queue import Queue # for Python 3
-from queue import Empty
+    from queue import Empty
 
 from monodrive.networking.messaging import Message
 

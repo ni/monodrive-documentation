@@ -114,6 +114,7 @@ class Simulator(object):
 
         else:
             logging.getLogger("simulator").debug('{0}'.format(vehicle_response))
+        return vehicle_response
 
     def send_configuration(self):
         logging.getLogger("simulator").info('Sending simulator configuration ip:{0}:{1}'.format(self.configuration.server_ip,self.configuration.server_port))

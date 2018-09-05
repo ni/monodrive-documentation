@@ -52,6 +52,7 @@ class TestHarness:
         self.simulator_process_thread = None
         self.simulator_running = AtomicBool(False)
         self.simulator = simulator.Simulator(configuration.SimulatorConfiguration(self.args.sim_config))
+        self.vehicle_config = configuration.VehicleConfiguration(self.args.vehicle_config)
 
     def get_all_tests(self):
         tests = []
@@ -63,6 +64,7 @@ class TestHarness:
 
     def run_tests(self):
         tests = self.get_all_tests()
+        found = len(tests)
         if self.args.include:
             tests = filter(lambda t: t.id in self.args.include)
         elif self.args.exclude:
@@ -70,11 +72,21 @@ class TestHarness:
 
         tests = sorted(tests, key=lambda t: t.id)
 
+        pass_count = 0
         for test in tests:
             print("starting test %s" % test.id)
             test.run()
             print("result: %s" % test.result)
             print("========================================\n")
+            if test.result.success:
+                pass_count += 1
+
+        n = len(tests)
+        print("\n  TESTS: {0}\n   PASS: {1} ({2:.2f}%)\n   FAIL: {3} ({4:.2f}%)\nSKIPPED: {5}\n".format(
+            found,
+            pass_count, (pass_count / n) * 100,
+            n - pass_count, ((n - pass_count) / n) * 100,
+            found - n))
 
     def get_simulator_path(self):
         return self.args.simpath[0:self.args.simpath.rfind(os.sep)]
@@ -84,6 +96,9 @@ class TestHarness:
 
     def get_simulator(self):
         return self.simulator
+
+    def get_vehicle_config(self):
+        return self.vehicle_config
 
     def start_simulator(self):
         if self.args.no_launch:

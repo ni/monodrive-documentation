@@ -25,6 +25,7 @@ parser.add_argument('--exclude',
                     help='comma separated list of tests to exclude (tests not in list will be included)')
 parser.add_argument('--include',
                     help='comma separated list of tests to include (tests not in list will be excluded)')
+parser.add_argument('--no-launch', action="store_true", help='don\'t launch simulator')
 parser.add_argument('simpath', metavar='simpath', help='path to simulator executable')
 
 
@@ -85,6 +86,9 @@ class TestHarness:
         return self.simulator
 
     def start_simulator(self):
+        if self.args.no_launch:
+            return
+
         if self.simulator_running.get():
             print('simulator is already running')
             return
@@ -111,6 +115,9 @@ class TestHarness:
         print("simulator exited")
 
     def stop_simulator(self):
+        if self.args.no_launch:
+            return
+
         if self.simulator_running.get():
             if self.simulator_process is not None and self.simulator_process.returncode is None:
                 print("shutting down simulator")

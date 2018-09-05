@@ -5,6 +5,7 @@ import time
 from . import BaseTest, TestResult
 from monodrive.networking import messaging
 
+
 class GoodLicenseTest(BaseTest):
     def __init__(self, env):
         super(GoodLicenseTest, self).__init__('licensing.1', env)
@@ -30,11 +31,12 @@ class GoodLicenseTest(BaseTest):
     def test(self):
         self.env.start_simulator()
         time.sleep(10)
-        assert self.env.simulator_running.get()
+        #assert self.env.simulator_running.get()
 
         simulator = self.env.get_simulator()
         result = simulator.request(messaging.Message(messaging.SIMULATOR_STATUS_UUID))
         assert result is not None and result.data is not None
+        assert result.data['license']['valid']
 
         self.env.stop_simulator()
         self.result = TestResult(True, result.to_json())
@@ -57,6 +59,14 @@ class MissingLicenseTest(BaseTest):
     def test(self):
         self.env.start_simulator()
         time.sleep(10)
+
+        simulator = self.env.get_simulator()
+        result = simulator.request(messaging.Message(messaging.SIMULATOR_STATUS_UUID))
+        assert result is not None and result.data is not None
+        assert result.data['license']['valid'] is False
+
+        self.env.stop_simulator()
+        self.result = TestResult(True, result.to_json())
 
 
 class BadLicenseTest(BaseTest):
@@ -86,3 +96,11 @@ class BadLicenseTest(BaseTest):
     def test(self):
         self.env.start_simulator()
         time.sleep(10)
+
+        simulator = self.env.get_simulator()
+        result = simulator.request(messaging.Message(messaging.SIMULATOR_STATUS_UUID))
+        assert result is not None and result.data is not None
+        assert result.data['license']['valid'] is False
+
+        self.env.stop_simulator()
+        self.result = TestResult(True, result.to_json())

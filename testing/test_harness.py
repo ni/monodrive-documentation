@@ -51,7 +51,7 @@ class TestHarness:
         self.args = args
         self.simulator_process_thread = None
         self.simulator_running = AtomicBool(False)
-        self.simulator = simulator.Simulator(configuration.SimulatorConfiguration(self.args.sim_config))
+        self.simulator = None
         self.vehicle_config = configuration.VehicleConfiguration(self.args.vehicle_config)
 
     def get_all_tests(self):
@@ -80,6 +80,11 @@ class TestHarness:
             print("========================================\n")
             if test.result.success:
                 pass_count += 1
+            time.sleep(1)
+
+            if self.simulator_running.get():
+                self.stop_simulator()
+                time.sleep(1)
 
         n = len(tests)
         print("\n  TESTS: {0}\n   PASS: {1} ({2:.2f}%)\n   FAIL: {3} ({4:.2f}%)\nSKIPPED: {5}\n".format(
@@ -101,6 +106,7 @@ class TestHarness:
         return self.vehicle_config
 
     def start_simulator(self):
+        self.simulator = simulator.Simulator(configuration.SimulatorConfiguration(self.args.sim_config))
         if self.args.no_launch:
             return
 
@@ -112,6 +118,7 @@ class TestHarness:
         self.simulator_running.set(True)
         self.simulator_process_thread = threading.Thread(target=self.launch_simulator_)
         self.simulator_process_thread.start()
+        time.sleep(2.5)
 
     def launch_simulator_(self):
         #print(subprocess.run(self.args.simpath, stdout=subprocess.PIPE, stderr=subprocess.PIPE))
@@ -130,6 +137,9 @@ class TestHarness:
         print("simulator exited")
 
     def stop_simulator(self):
+        self.simulator.stop()
+        self.simulator = None
+
         if self.args.no_launch:
             return
 

@@ -4,7 +4,7 @@ class TestResult:
     def __init__(self, success, result=None, errors=[]):
         self.success = success
         self.result = result
-        self.errors = errors if isinstance(errors, list) else [errors]
+        self.errors = errors
 
     def __str__(self):
         return json.dumps({
@@ -32,12 +32,12 @@ class BaseTest(object):
         try:
             self.before_test()
         except Exception as e:
-            self.result = TestResult(False, 'unhandled exception when setting up test', e)
+            self.result = TestResult(False, 'unhandled exception when setting up test', [e])
 
         try:
             self.test()
         except Exception as e:
-            self.result = TestResult(False, 'unhandled exception when running test', e)
+            self.result = TestResult(False, 'unhandled exception when running test', [e])
 
         try:
             self.after_test()

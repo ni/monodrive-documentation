@@ -62,7 +62,8 @@ class Simulator(object):
 
         # Stop all processes
         logging.getLogger("simulator").info("start shutting down simulator client")
-        self.ego_vehicle.stop()
+        if self.ego_vehicle is not None:
+            self.ego_vehicle.stop()
         logging.getLogger("simulator").info("simulator client shutdown complete")
 
 

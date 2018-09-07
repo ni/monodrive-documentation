@@ -4,10 +4,6 @@ __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
-from multiprocessing import Queue
-import socket
-
-from monodrive.constants import VELOVIEW_PORT, VELOVIEW_IP
 from . import BaseSensor
 
 
@@ -31,4 +27,3 @@ class Lidar(BaseSensor):
             self.frame_buffer = []
             super(Lidar, self).digest_frame(temp_buffer, time_stamp, game_time)
 
-            

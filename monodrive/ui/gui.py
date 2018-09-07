@@ -36,8 +36,10 @@ try:
     import prctl
 except: pass
 
+import socket
 import time
 
+from monodrive.constants import VELOVIEW_PORT, VELOVIEW_IP
 from monodrive.models import IMU_Message
 from monodrive.models import GPS_Message
 from monodrive.models import Camera_Message
@@ -851,6 +853,8 @@ class SensorPoll(Thread):
                 wx.CallAfter(pub.sendMessage, "update_bounding_box", msg = message)
             elif "Radar" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_radar_table", msg=message)
+            elif "Lidar" in sensor.name:
+                sensor.forward_data(message)
             result = True
         return result
 
@@ -899,6 +903,33 @@ class GUISensor(object):
         return messages
 
 
+class LidarGUISensor(GUISensor):
+    def __init__(self, sensor, **kwargs):
+        super(LidarGUISensor, self).__init__(sensor, **kwargs)
+        self.connect()
+
+    def forward_data(self, data):
+        if self.veloview_socket is None:
+            return
+
+        if isinstance(data, list):
+            for datum in data:
+                self.veloview_socket.sendto(datum, (VELOVIEW_IP, VELOVIEW_PORT))
+        else:
+            self.veloview_socket.sendto(data, (VELOVIEW_IP, VELOVIEW_PORT))
+
+    def connect(self):
+        try:
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            self.veloview_socket = s
+            return s
+        except Exception as e:
+            print('Can send to {0}'.format(str((VELOVIEW_PORT, VELOVIEW_PORT))))
+            print("Error {0}".format(e))
+            self.veloview_socket = None
+            return None
+
+
 class GUI(object):
     def __init__(self, simulator, **kwargs):
         super(GUI, self).__init__(**kwargs)
@@ -909,7 +940,12 @@ class GUI(object):
         #self.vehicle = None
         #self.vehicle = simulator.ego_vehicle
 
-        self.sensors = [GUISensor(s) for s in simulator.ego_vehicle.sensors]
+        self.sensors = []
+        for sensor in simulator.ego_vehicle.sensors:
+            if "Lidar" in sensor.name:
+                self.sensors.append(LidarGUISensor(sensor))
+            else:
+                self.sensors.append(GUISensor(sensor))
 
         self.app = None
         self.fps = None

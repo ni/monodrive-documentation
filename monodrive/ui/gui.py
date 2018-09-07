@@ -555,8 +555,8 @@ class GPS_View(wx.Panel):
         self.string_time = wx.StaticText(self, label="")
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.sizer.Add(self.string_lat,1, wx.LEFT | wx.RIGHT | wx.EXPAND)
-        self.sizer.Add(self.string_lng,1, wx.LEFT | wx.RIGHT | wx.EXPAND)
+        self.sizer.Add(self.string_lat, 1, wx.LEFT | wx.RIGHT | wx.EXPAND)
+        self.sizer.Add(self.string_lng, 1, wx.LEFT | wx.RIGHT | wx.EXPAND)
         self.sizer.Add(self.string_time, 1, wx.LEFT | wx.RIGHT | wx.EXPAND)
         self.SetSizerAndFit(self.sizer)
 
@@ -691,9 +691,6 @@ class Camera_View(wx.Panel):
         self.bmp.SetBitmap(wx.BitmapFromImage(bmp))'''
 
 
-class MainWindow(wx.Frame):
-    def __init__(self, parent, title = "monoDrive Visualizer", *args, **kwargs):
-        wx.Frame.__init__(self, parent, size=(1800,1000), title = title,*args, **kwargs)
 class Radar_Panel(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
         wx.Panel.__init__(self, parent,*args, **kwargs)
@@ -725,7 +722,6 @@ class Overview_Panel(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
         wx.Panel.__init__(self, parent,*args, **kwargs)
         #set up frame panels
-
 
         self.graph_row_panel = GraphRow(self)
         self.text_row_panel = TextRow(self)
@@ -774,7 +770,9 @@ class Overview_Panel(wx.Panel):
 
 class MainFrame(wx.Frame):
     def __init__(self):
-        wx.Frame.__init__(self, None, size=(2400,1200), title = "monoDrive Visualizer")
+        width = int(wx.SystemSettings.GetMetric(wx.SYS_SCREEN_X) * .9)
+        height = int(wx.SystemSettings.GetMetric(wx.SYS_SCREEN_Y) * .9)
+        wx.Frame.__init__(self, None, size=(width,height), title = "monoDrive Visualizer")
         pub.subscribe(self.shutdown, "SHUTDOWN")
         # Here we create a panel and a notebook on the panel
         p = wx.Panel(self)

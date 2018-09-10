@@ -101,9 +101,9 @@ class Bounding_Polar_Plot(wx.Panel):
         self.target_polar_handle = self.target_polar_subplot.scatter(theta, r, marker='o', cmap='hsv', alpha =0.75)
         self.string_time = wx.StaticText(self, label="")
         self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.sizer.Add(self.string_time,0)
-        self.sizer.Add(self.canvas, 1,  wx.EXPAND)
-        self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
+        self.sizer.Add(self.string_time, 0)
+        self.sizer.Add(self.canvas, 1,  wx.ALL | wx.EXPAND)
+        self.sizer.Add(self.toolbar, 0,  wx.HORIZONTAL | wx.EXPAND)
         self.SetSizer(self.sizer)
 
     def update_view(self, msg):
@@ -158,7 +158,7 @@ class Radar_FFT_Plot(wx.Panel):
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.sizer.Add(self.canvas, 1,  wx.EXPAND)
-        self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
+        self.sizer.Add(self.toolbar, 0, wx.HORIZONTAL | wx.EXPAND)
         self.SetSizer(self.sizer)
         pub.subscribe(self.update_view, "update_radar_table")
 
@@ -216,7 +216,7 @@ class Radar_Tx_Signal_Plot(wx.Panel):
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.sizer.Add(self.canvas, 1,  wx.EXPAND)
-        self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
+        self.sizer.Add(self.toolbar, 0, wx.HORIZONTAL | wx.EXPAND)
         self.SetSizer(self.sizer)
         pub.subscribe(self.update_view, "update_radar_table")
 
@@ -327,8 +327,8 @@ class Radar_Polar_Plot(wx.Panel):
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.sizer.Add(self.string_time_radar, 0)
         self.sizer.Add(self.string_time_bb, 0)
-        self.sizer.Add(self.canvas, 1,  wx.EXPAND)
-        self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
+        self.sizer.Add(self.canvas, 1, wx.ALL | wx.EXPAND)
+        self.sizer.Add(self.toolbar, 0, wx.HORIZONTAL | wx.EXPAND)
         self.SetSizer(self.sizer)
     
     def update_bounding(self, msg):
@@ -365,7 +365,7 @@ class Radar_Polar_Plot(wx.Panel):
         #there seems to be a bug in the new polar plot library, set_offsets is not working
         #so we have to do all the following on every frame
         self.target_long_range_subplot.cla()
-        self.target_long_range_subplot.set_title('Radar Target Plot')
+        #self.target_long_range_subplot.set_title('Radar Target Plot')
         self.target_long_range_subplot.set_thetamin(-10)
         self.target_long_range_subplot.set_thetamax(10)
         self.target_long_range_subplot.set_ylim(40, 150)
@@ -688,18 +688,18 @@ class Radar_Panel(wx.Panel):
         self.rx_signal_details = GraphRow(self)
 
         self.main_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        self.main_sizer.Add(self.radar_tx_signal, 1, wx.EXPAND|wx.ALL, border =2)
-        self.main_sizer.Add(self.rx_signal_details, 1, wx.EXPAND|wx.ALL, border = 2)
-        self.main_sizer.Add(self.radar_polar_plot, 1, wx.EXPAND|wx.ALL, border = 2)
-        self.main_sizer.Add(self.radar_target_table, 1, wx.EXPAND|wx.ALL, border=2)
+        self.main_sizer.Add(self.radar_tx_signal, 1, wx.EXPAND | wx.ALL, border=2)
+        self.main_sizer.Add(self.rx_signal_details, 1, wx.EXPAND | wx.ALL, border=2)
+        self.main_sizer.Add(self.radar_polar_plot, 1, wx.EXPAND | wx.ALL, border=2)
+        self.main_sizer.Add(self.radar_target_table, 1, wx.EXPAND | wx.ALL, border=2)
         self.SetSizerAndFit(self.main_sizer)
 
         self.rx_signal_plot = Radar_Rx_Signal_Plot(self.rx_signal_details)
         self.range_fft_plot = Radar_FFT_Plot(self.rx_signal_details)
 
         self.signal_details_sizer = wx.BoxSizer(wx.VERTICAL)
-        self.signal_details_sizer.Add(self.rx_signal_plot, 1, wx.EXPAND|wx.ALL, border =2)
-        self.signal_details_sizer.Add(self.range_fft_plot, 1, wx.EXPAND|wx.ALL, border = 2)
+        self.signal_details_sizer.Add(self.rx_signal_plot, 1, wx.EXPAND | wx.ALL, border=2)
+        self.signal_details_sizer.Add(self.range_fft_plot, 1, wx.EXPAND | wx.ALL, border=2)
         self.rx_signal_details.SetSizer(self.signal_details_sizer)
 
         self.Layout()
@@ -717,9 +717,9 @@ class Overview_Panel(wx.Panel):
 
         #set up sizers for frame panels
         self.main_sizer = wx.BoxSizer(wx.VERTICAL)
-        self.main_sizer.Add(self.graph_row_panel,0, wx.ALL|wx.EXPAND, border = 2)
-        self.main_sizer.Add(self.text_row_panel, 0, wx.ALL|wx.EXPAND, border = 2)
-        self.main_sizer.Add(self.camera_row_panel, 0, wx.ALL|wx.EXPAND, border = 2)
+        self.main_sizer.Add(self.graph_row_panel, 1, wx.ALL | wx.EXPAND, border=2)
+        self.main_sizer.Add(self.text_row_panel, 0, wx.HORIZONTAL | wx.EXPAND, border=2)
+        self.main_sizer.Add(self.camera_row_panel, 1, wx.ALL | wx.EXPAND, border=2)
         self.SetSizer(self.main_sizer)
 
         #add figures to graph row
@@ -728,11 +728,10 @@ class Overview_Panel(wx.Panel):
         self.bounding_box_plot = Bounding_Polar_Plot(self.graph_row_panel)
 
         self.graph_row_panel_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        self.graph_row_panel_sizer.Add(self.roadmap_view, 1, wx.EXPAND|wx.ALL, border=2)
-        self.graph_row_panel_sizer.Add(self.radar_polar_plot, 1, wx.EXPAND|wx.ALL, border = 2)
-        self.graph_row_panel_sizer.Add(self.bounding_box_plot, 1, wx.EXPAND|wx.ALL, border = 2)
+        self.graph_row_panel_sizer.Add(self.roadmap_view, 1, wx.EXPAND | wx.ALL, border=2)
+        self.graph_row_panel_sizer.Add(self.radar_polar_plot, 1, wx.EXPAND | wx.ALL, border=2)
+        self.graph_row_panel_sizer.Add(self.bounding_box_plot, 1, wx.EXPAND | wx.ALL, border=2)
         self.graph_row_panel.SetSizerAndFit(self.graph_row_panel_sizer)
-        
  
         #add panels to center row and size them
         self.gps_view = GPS_View(self.text_row_panel)
@@ -747,14 +746,34 @@ class Overview_Panel(wx.Panel):
         #add camera to bottom row and size it
         self.camera_view = Camera_View(self.camera_row_panel)
         self.camera_row_panel_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        self.camera_row_panel_sizer.Add(self.camera_view, 1, wx.EXPAND|wx.ALL, border = 2)
+        self.camera_row_panel_sizer.Add(self.camera_view, 1, wx.EXPAND | wx.ALL, border=2)
         self.camera_row_panel.SetSizerAndFit(self.camera_row_panel_sizer)
+
+        self.Bind(wx.EVT_SIZE, self.OnSize)
 
         self.Layout()
         self.Refresh()
 
         #self.Destroy()
 
+    def OnSize(self, evt):
+        GraphHeaders = 68
+        Size = self.ClientSize
+        TextSize = self.text_row_panel.GetBestSize()
+        h = (Size.y - TextSize.y - GraphHeaders) / 2
+
+        #print("OnSize(%s,%s) Text:(%s,%s) h:%s" % (Size.x, Size.y, TextSize.x, TextSize.y, h))
+        min_h = min(Size.x / 3, h)
+
+        self.roadmap_view.SetMinSize(wx.Size(min_h, min_h))
+        self.radar_polar_plot.SetMinSize(wx.Size(min_h, min_h))
+        self.bounding_box_plot.SetMinSize(wx.Size(min_h, min_h))
+
+        self.graph_row_panel.SetMinSize(wx.Size(Size.x, h + GraphHeaders))
+        self.camera_row_panel.SetMinSize(wx.Size(Size.x, h))
+
+        self.graph_row_panel.Layout()
+        self.Layout()
 
 class MainFrame(wx.Frame):
     def __init__(self):
@@ -795,6 +814,7 @@ class MonoDriveGUIApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
         self.MainWindow = MainFrame()
         self.MainWindow.Show(True)
         self.SetTopWindow(self.MainWindow)
+        #wx.lib.inspection.InspectionTool().Show()
         return True
 
     def Close(self):

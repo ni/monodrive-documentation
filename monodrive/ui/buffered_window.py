@@ -62,7 +62,7 @@ class BufferedWindow(wx.Window):
         ## wx.Bitmap::SaveFile for the details
         self._Buffer.SaveFile(FileName, FileType)
 
-    def UpdateDrawing(self):
+    def UpdateDrawing(self, rect=None):
         """
         This would get called if the drawing needed to change, for whatever reason.
 
@@ -76,5 +76,5 @@ class BufferedWindow(wx.Window):
         dc.SelectObject(self._Buffer)
         self.Draw(dc)
         del dc  # need to get rid of the MemoryDC before Update() is called.
-        self.Refresh()
+        self.Refresh(False, rect)
         self.Update()

@@ -117,7 +117,7 @@ class Bounding_Polar_Plot(wx.Panel):
     def update_plot(self, targets):
         if len(targets.radar_distances) > 0:
             self.set_data(targets)
-        self.Layout()
+        #self.Layout()
         self.Refresh()
 
     def set_data(self, targets):
@@ -352,7 +352,7 @@ class Radar_Polar_Plot(wx.Panel):
     def update_plot(self, targets):
         if len(targets.ranges) > 0:
             self.set_data(targets)
-        self.Layout()
+        #self.Layout()
         self.Refresh()
     
     def set_data(self, targets):
@@ -423,7 +423,7 @@ class Radar_Target_Table(wx.Panel):
         if len(targets.ranges) > 0:
             self.set_data(self.targets)
         self.figure.canvas.draw()
-        self.Layout()
+        #self.Layout()
         self.Refresh()
 
     def setup_radar_plots(self, targets={}):
@@ -543,7 +543,7 @@ class RoadMap_View(wx.Panel):
         self.map_subplot_handle.set_xdata(x)
         self.map_subplot_handle.set_ydata(y)
         self.figure.canvas.draw()
-        self.Layout()
+        #self.Layout()
         self.Refresh()
 
 
@@ -645,7 +645,10 @@ class Camera_View(BufferedWindow):
             self.current_size = wx.Size(self.current_bitmap.GetWidth(), self.current_bitmap.GetHeight())
             self.SetMinSize(self.current_size)
             print("update camera view(%s,%s)" % (self.current_bitmap.GetWidth(), self.current_bitmap.GetHeight()))
-        self.UpdateDrawing()
+
+        rect = wx.Rect((self.ClientSize.x - self.current_size.x) / 2, (self.ClientSize.y - self.current_size.y) / 2,
+            self.current_size.x, self.current_size.y)
+        self.UpdateDrawing(rect)
 
     def to_bmp(self, np_image):
         imcv = cv2.cvtColor(np_image, cv2.COLOR_BGR2RGB)
@@ -658,15 +661,18 @@ class Camera_View(BufferedWindow):
 
     def scale_bitmap(self, bitmap):
         frame_size = self.ClientSize
-        if frame_size.x <= 0 or frame_size.y <= 0:
-            frame_size = bitmap.GetSize()
-        aspect = bitmap.GetWidth() / bitmap.GetHeight()
-        image = bitmap.ConvertToImage()
-        frame_h = frame_size.y
-        frame_w = frame_size.y * aspect
-        #print("scale_bitmap s:(%s,%s) f:(%s,%s)" % (frame_size.x, frame_size.y, frame_w, frame_h))
-        image = image.Scale(frame_w, frame_h, wx.IMAGE_QUALITY_HIGH)
-        scaled_bitmap = wx.Bitmap(image)
+        bitmap_size = bitmap.GetSize()
+        if frame_size.x > 0 and frame_size.y > 0 and \
+                (frame_size.x < bitmap_size.x or frame_size.y < bitmap_size.y):
+            aspect = bitmap.GetWidth() / bitmap.GetHeight()
+            image = bitmap.ConvertToImage()
+            frame_h = frame_size.y
+            frame_w = frame_size.y * aspect
+            #print("scale_bitmap s:(%s,%s) f:(%s,%s)" % (frame_size.x, frame_size.y, frame_w, frame_h))
+            image = image.Scale(frame_w, frame_h, wx.IMAGE_QUALITY_HIGH)
+            scaled_bitmap = wx.Bitmap(image)
+        else:
+            scaled_bitmap = bitmap
         return scaled_bitmap
 
     def Draw(self, dc):

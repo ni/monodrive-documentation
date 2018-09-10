@@ -39,7 +39,8 @@ except: pass
 import socket
 import time
 
-from monodrive.constants import VELOVIEW_PORT, VELOVIEW_IP
+from monodrive.ui.buffered_window import BufferedWindow
+from monodrive.constants import VELOVIEW_PORT, VELOVIEW_IP, ClockMode_ClientStep
 from monodrive.models import IMU_Message
 from monodrive.models import GPS_Message
 from monodrive.models import Camera_Message
@@ -623,72 +624,59 @@ class Wheel_RPM_View(wx.Panel):
         self.SetSizer(self.sizer)
 
 
-class Camera_View(wx.Panel):
+class Camera_View(BufferedWindow):
     def __init__(self, parent, *args, **kwargs):
-        wx.Panel.__init__(self, parent, *args, **kwargs)
-        self.impil = None
         self.png = wx.Image(filepath, wx.BITMAP_TYPE_ANY)
-        self.bmwx = wx.StaticBitmap(self, wx.ID_ANY, wx.BitmapFromImage(self.png), (0, 0))
-        self.sizer = wx.BoxSizer(wx.HORIZONTAL)
-        self.sizer.Add(self.bmwx,1,wx.EXPAND | wx.TOP | wx.BOTTOM)
-        self.SetSizer(self.sizer)
-        #self.Bind(wx.EVT_SIZE, self.onResize)
+        self.current_bitmap = wx.Bitmap(self.png)
+        self.current_size = wx.Size(self.current_bitmap.GetWidth(), self.current_bitmap.GetHeight())
+        BufferedWindow.__init__(self, parent, *args, **kwargs)
+        self.SetMinSize(self.current_size)
+        self.impil = None
+
         pub.subscribe(self.update_view, "update_camera")
+        self.UpdateDrawing()
 
     def update_view(self, msg):
-        #print("update camera view")
         camera_msg = Camera_Message(msg)
-        bitmap = self.to_bmp(camera_msg.np_image)
-        self.bmwx.SetBitmap(bitmap)
-        self.Refresh()
-        self.Layout()
+        self.current_bitmap = self.to_bmp(camera_msg.np_image)
+        size = wx.Size(self.current_bitmap.GetWidth(), self.current_bitmap.GetHeight())
+        if size != self.current_size:
+            self.current_size = wx.Size(self.current_bitmap.GetWidth(), self.current_bitmap.GetHeight())
+            self.SetMinSize(self.current_size)
+            print("update camera view(%s,%s)" % (self.current_bitmap.GetWidth(), self.current_bitmap.GetHeight()))
+        self.UpdateDrawing()
 
     def to_bmp(self, np_image):
         imcv = cv2.cvtColor(np_image, cv2.COLOR_BGR2RGB)
         self.impil = Image.fromarray(imcv)
-        imwx = wx.EmptyImage(self.impil.size[0], self.impil.size[1])
+        imwx = wx.Image(self.impil.size[0], self.impil.size[1])
         imwx.SetData(self.impil.convert('RGB').tobytes()) 
-        bitmap = wx.BitmapFromImage(imwx)
+        bitmap = wx.Bitmap(imwx)
         #scaled_bitmap = self.scale_bitmap(bitmap)
-        return bitmap
+        return self.scale_bitmap(bitmap)
 
     def scale_bitmap(self, bitmap):
-        frame_size = self.GetBestSize()
-        frame_h = (frame_size[0]-10)
-        frame_w = (frame_size[1]-10)
-        image = wx.ImageFromBitmap(bitmap)
+        frame_size = self.ClientSize
+        if frame_size.x <= 0 or frame_size.y <= 0:
+            frame_size = bitmap.GetSize()
+        aspect = bitmap.GetWidth() / bitmap.GetHeight()
+        image = bitmap.ConvertToImage()
+        frame_h = frame_size.y
+        frame_w = frame_size.y * aspect
+        #print("scale_bitmap s:(%s,%s) f:(%s,%s)" % (frame_size.x, frame_size.y, frame_w, frame_h))
         image = image.Scale(frame_w, frame_h, wx.IMAGE_QUALITY_HIGH)
-        scaled_bitmap = wx.BitmapFromImage(image)
+        scaled_bitmap = wx.Bitmap(image)
         return scaled_bitmap
 
-    '''def onResize(self, event):
-        bmp = self.impil.Scale(self.)
-        self.bmwx.SetBitmap(wx.BitmapFromImage(bmp))
-        self.Refresh()
-        self.Layout()
-    
-    def get_bitmap( self, np_image, width=32, height=32, colour = (0,0,0) ):
-        image = cv2.cvtColor(np_image, cv2.COLOR_BGR2RGB)
-        array = np.zeros( (height, width, 3),'uint8')
-        array[:,:,] = colour
-        image = wx.EmptyImage(width,height)
-        image.SetData( array.tostring())
-        wxBitmap = image.ConvertToBitmap()       # OR:  wx.BitmapFromImage(image)
-        return wxBitmap
+    def Draw(self, dc):
+        dc.SetBackground(wx.Brush("White"))
+        dc.Clear()
 
-    def scale_bitmap(self, bitmap, width, height):
-        image = wx.ImageFromBitmap(bitmap)
-        image = image.Scale(width, height, wx.IMAGE_QUALITY_HIGH)
-        result = wx.BitmapFromImage(image)
-        return result
-
-    def onResize(self, event):
-        # self.Layout()
-        frame_size = self.GetSize()
-        frame_h = (frame_size[0]-10) / 2
-        frame_w = (frame_size[1]-10) / 2
-        bmp = self.png.Scale(frame_h,frame_w)
-        self.bmp.SetBitmap(wx.BitmapFromImage(bmp))'''
+        if self.current_bitmap is not None:
+            Size = self.ClientSize
+            dc.DrawBitmap(self.current_bitmap,
+                          max(0, (Size.x - self.current_size.x) / 2),
+                          max(0, (Size.y - self.current_size.y) / 2))
 
 
 class Radar_Panel(wx.Panel):

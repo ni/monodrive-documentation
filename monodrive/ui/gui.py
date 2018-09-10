@@ -99,9 +99,9 @@ class Bounding_Polar_Plot(wx.Panel):
 
         #self.target_polar_handle = self.target_polar_subplot.scatter(theta, r, c=colors, s=area, cmap='hsv', alpha =0.75)
         self.target_polar_handle = self.target_polar_subplot.scatter(theta, r, marker='o', cmap='hsv', alpha =0.75)
-        self.string_time = wx.StaticText(self, label="")
+        self.string_time = wx.StaticText(self, label="", style=wx.ELLIPSIZE_END)
         self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.sizer.Add(self.string_time, 0)
+        self.sizer.Add(self.string_time, 0,  wx.HORIZONTAL | wx.EXPAND)
         self.sizer.Add(self.canvas, 1,  wx.ALL | wx.EXPAND)
         self.sizer.Add(self.toolbar, 0,  wx.HORIZONTAL | wx.EXPAND)
         self.SetSizer(self.sizer)
@@ -110,7 +110,8 @@ class Bounding_Polar_Plot(wx.Panel):
         if msg:
             self.targets = Bounding_Box_Message(msg)
             self.update_plot(self.targets)
-            self.string_time.SetLabelText('TIMESTAMP: {0}'.format(self.targets.time_stamp))
+            self.string_time.SetLabelText('GAMETIME: {0: .2f} \tTIMESTAMP: {1}'.
+                                          format(self.targets.game_time, self.targets.time_stamp))
         else:
             print("empty target list")
 
@@ -322,12 +323,12 @@ class Radar_Polar_Plot(wx.Panel):
 
         self.target_mid_range_subplot.scatter(theta, r, c='r', marker='s', cmap='hsv', alpha =0.75)
 
-        self.string_time_radar = wx.StaticText(self, label="")
-        self.string_time_bb = wx.StaticText(self, label="")
+        self.string_time_radar = wx.StaticText(self, label="", style=wx.ELLIPSIZE_END)
+        self.string_time_bb = wx.StaticText(self, label="", style=wx.ELLIPSIZE_END)
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.sizer.Add(self.string_time_radar, 0)
-        self.sizer.Add(self.string_time_bb, 0)
+        self.sizer.Add(self.string_time_radar, 0, wx.HORIZONTAL | wx.EXPAND)
+        self.sizer.Add(self.string_time_bb, 0, wx.HORIZONTAL | wx.EXPAND)
         self.sizer.Add(self.canvas, 1, wx.ALL | wx.EXPAND)
         self.sizer.Add(self.toolbar, 0, wx.HORIZONTAL | wx.EXPAND)
         self.SetSizer(self.sizer)
@@ -336,7 +337,9 @@ class Radar_Polar_Plot(wx.Panel):
         if msg:
             self.targets_bounding_box = Bounding_Box_Message(msg)
             if self.targets_bounding_box != None:
-                self.string_time_bb.SetLabelText('BB    TIMESTAMP: {0}'.format(self.targets_bounding_box.game_time))
+                self.string_time_bb.SetLabelText('BB    GAMETIME: {0: .2f} \tTIMESTAMP: {1}'.
+                                          format(self.targets_bounding_box.game_time,
+                                                 self.targets_bounding_box.time_stamp))
             #self.update_plot(self.targets)
         else:
             print("empty bounding target list")
@@ -345,7 +348,8 @@ class Radar_Polar_Plot(wx.Panel):
         if msg:
             self.targets = Radar_Message(msg)
             self.update_plot(self.targets)
-            self.string_time_radar.SetLabelText('Radar TIMESTAMP: {0}'.format(self.targets.game_time))
+            self.string_time_radar.SetLabelText('Radar GAMETIME: {0: .2f} \tTIMESTAMP: {1}'.
+                                          format(self.targets.game_time, self.targets.time_stamp))
         else:
             print("empty target list")
 
@@ -554,21 +558,22 @@ class GPS_View(wx.Panel):
 
         self.string_lat = wx.StaticText(self, label="")
         self.string_lng = wx.StaticText(self, label="")
-        self.string_time = wx.StaticText(self, label="")
+        self.string_time = wx.StaticText(self, label="", style=wx.ELLIPSIZE_END)
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.sizer.Add(self.string_lat, 1, wx.LEFT | wx.RIGHT | wx.EXPAND)
-        self.sizer.Add(self.string_lng, 1, wx.LEFT | wx.RIGHT | wx.EXPAND)
-        self.sizer.Add(self.string_time, 1, wx.LEFT | wx.RIGHT | wx.EXPAND)
+        self.sizer.Add(self.string_lat, 1, wx.HORIZONTAL | wx.EXPAND | wx.ALIGN_CENTER_VERTICAL)
+        self.sizer.Add(self.string_lng, 1, wx.HORIZONTAL | wx.EXPAND | wx.ALIGN_CENTER_VERTICAL)
+        self.sizer.Add(self.string_time, 1, wx.HORIZONTAL | wx.EXPAND | wx.ALIGN_CENTER_VERTICAL)
         self.SetSizerAndFit(self.sizer)
 
         pub.subscribe(self.update_view, "update_gps")
 
     def update_view(self, msg):
         #print("GPS update view:", msg)
-        self.string_lat.SetLabelText('LAT: {0}'.format(msg['lat']))
-        self.string_lng.SetLabelText('LNG: {0}'.format(msg['lng']))
-        self.string_time.SetLabelText('TIMESTAMP: {0}'.format(msg['time_stamp']))
+        gps_msg = GPS_Message(msg)
+        self.string_lat.SetLabelText('LAT: {0}'.format(gps_msg.lat))
+        self.string_lng.SetLabelText('LNG: {0}'.format(gps_msg.lng))
+        self.string_time.SetLabelText('GAMETIME: {0: .2f} \tTIMESTAMP: {1}'.format(gps_msg.game_time, gps_msg.time_stamp))
 
 
 class IMU_View(wx.Panel):
@@ -582,7 +587,7 @@ class IMU_View(wx.Panel):
         self.string_ang_rate_x = wx.StaticText(self, label="")
         self.string_ang_rate_y = wx.StaticText(self, label="")
         self.string_ang_rate_z = wx.StaticText(self, label="")
-        self.string_timer = wx.StaticText(self, label="")
+        self.string_timer = wx.StaticText(self, label="", style=wx.ELLIPSIZE_END)
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.sizer.Add(self.string_accel_x, 1,  wx.EXPAND)
@@ -591,7 +596,7 @@ class IMU_View(wx.Panel):
         self.sizer.Add(self.string_ang_rate_x, 1,  wx.EXPAND)
         self.sizer.Add(self.string_ang_rate_y, 1,  wx.EXPAND)
         self.sizer.Add(self.string_ang_rate_z, 1,  wx.EXPAND)
-        self.sizer.Add(self.string_timer, 1,  wx.EXPAND)
+        self.sizer.Add(self.string_timer, 1, wx.HORIZONTAL | wx.EXPAND)
         self.SetSizerAndFit(self.sizer)
 
         pub.subscribe(self.update_view, "update_imu")
@@ -604,7 +609,7 @@ class IMU_View(wx.Panel):
         self.string_ang_rate_x.SetLabelText('ANG RATE X: {0}'.format(imu_msg.string_ang_rate_x))
         self.string_ang_rate_y.SetLabelText('ANG RATE Y: {0}'.format(imu_msg.string_ang_rate_y))
         self.string_ang_rate_z.SetLabelText('ANG RATE X: {0}'.format(imu_msg.string_ang_rate_z))
-        self.string_timer.SetLabelText('TIMESTAMP: {0}'.format(imu_msg.time_stamp))
+        self.string_timer.SetLabelText('GAMETIME: {0: .2f} \tTIMESTAMP: {1}'.format(imu_msg.game_time, imu_msg.time_stamp))
 
 
 class Wheel_RPM_View(wx.Panel):
@@ -866,7 +871,7 @@ class SensorPoll(Thread):
                 message['height'] = sensor.height
                 wx.CallAfter(pub.sendMessage, "update_camera", msg=message)
             elif "Bounding" in sensor.name:
-                wx.CallAfter(pub.sendMessage, "update_bounding_box", msg = message)
+                wx.CallAfter(pub.sendMessage, "update_bounding_box", msg=message)
             elif "Radar" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_radar_table", msg=message)
             elif "Lidar" in sensor.name:

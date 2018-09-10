@@ -37,6 +37,7 @@ try:
 except: pass
 
 import socket
+import sys
 import time
 
 from monodrive.ui.buffered_window import BufferedWindow
@@ -633,7 +634,7 @@ class Wheel_RPM_View(wx.Panel):
 class Camera_View(BufferedWindow):
     def __init__(self, parent, *args, **kwargs):
         self.png = wx.Image(filepath, wx.BITMAP_TYPE_ANY)
-        self.current_bitmap = wx.Bitmap(self.png)
+        self.current_bitmap = self.bitmap_from_image(self.png)
         self.current_size = wx.Size(self.current_bitmap.GetWidth(), self.current_bitmap.GetHeight())
         BufferedWindow.__init__(self, parent, *args, **kwargs)
         self.SetMinSize(self.current_size)
@@ -642,6 +643,21 @@ class Camera_View(BufferedWindow):
         pub.subscribe(self.update_view, "update_camera")
         self.UpdateDrawing()
 
+    def create_image(self, width, height):
+        if sys.version_info[0] == 2:
+            return wx.EmptyImage(width, height)
+        return wx.Image(width, height)
+
+    def bitmap_from_image(self, image):
+        if sys.version_info[0] == 2:
+            return wx.BitmapFromImage(image)
+        return wx.Bitmap(image)
+
+    def image_from_bitmap(self, bitmap):
+        if sys.version_info[0] == 2:
+            return wx.ImageFromBitmap(bitmap)
+        return bitmap.ConvertToImage()
+
     def update_view(self, msg):
         camera_msg = Camera_Message(msg)
         self.current_bitmap = self.to_bmp(camera_msg.np_image)
@@ -649,7 +665,7 @@ class Camera_View(BufferedWindow):
         if size != self.current_size:
             self.current_size = wx.Size(self.current_bitmap.GetWidth(), self.current_bitmap.GetHeight())
             self.SetMinSize(self.current_size)
-            print("update camera view(%s,%s)" % (self.current_bitmap.GetWidth(), self.current_bitmap.GetHeight()))
+            #print("update camera view(%s,%s)" % (self.current_bitmap.GetWidth(), self.current_bitmap.GetHeight()))
 
         rect = wx.Rect((self.ClientSize.x - self.current_size.x) / 2, (self.ClientSize.y - self.current_size.y) / 2,
             self.current_size.x, self.current_size.y)
@@ -658,10 +674,9 @@ class Camera_View(BufferedWindow):
     def to_bmp(self, np_image):
         imcv = cv2.cvtColor(np_image, cv2.COLOR_BGR2RGB)
         self.impil = Image.fromarray(imcv)
-        imwx = wx.Image(self.impil.size[0], self.impil.size[1])
+        imwx = self.create_image(self.impil.size[0], self.impil.size[1])
         imwx.SetData(self.impil.convert('RGB').tobytes()) 
-        bitmap = wx.Bitmap(imwx)
-        #scaled_bitmap = self.scale_bitmap(bitmap)
+        bitmap = self.bitmap_from_image(imwx)
         return self.scale_bitmap(bitmap)
 
     def scale_bitmap(self, bitmap):
@@ -669,13 +684,12 @@ class Camera_View(BufferedWindow):
         bitmap_size = bitmap.GetSize()
         if frame_size.x > 0 and frame_size.y > 0 and \
                 (frame_size.x < bitmap_size.x or frame_size.y < bitmap_size.y):
-            aspect = bitmap.GetWidth() / bitmap.GetHeight()
-            image = bitmap.ConvertToImage()
+            aspect = float(bitmap.GetWidth()) / float(bitmap.GetHeight())
+            image = self.image_from_bitmap(bitmap)
             frame_h = frame_size.y
             frame_w = frame_size.y * aspect
-            #print("scale_bitmap s:(%s,%s) f:(%s,%s)" % (frame_size.x, frame_size.y, frame_w, frame_h))
             image = image.Scale(frame_w, frame_h, wx.IMAGE_QUALITY_HIGH)
-            scaled_bitmap = wx.Bitmap(image)
+            scaled_bitmap = self.bitmap_from_image(image)
         else:
             scaled_bitmap = bitmap
         return scaled_bitmap
@@ -1032,10 +1046,11 @@ class GUI(object):
         monitor = Thread(target=self.monitor_process_state)
         monitor.start()
 
+        self.app = MonoDriveGUIApp()
+
         #prctl.set_proctitle("mono{0}".format(self.name))
         #start sensor polling
         self.sensor_polling = SensorPoll(self.sensors, self.fps, self.map, self.vehicle_clock_mode, self.vehicle_sync_event)
-        self.app = MonoDriveGUIApp()
         while not self.stop_event.is_set():
             self.app.MainLoop()
             self.simulator_event.set()

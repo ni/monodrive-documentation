@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import wx
+import sys
 
 
 # https://wiki.wxpython.org/DoubleBufferedDrawing
@@ -53,7 +54,10 @@ class BufferedWindow(wx.Window):
         # Make new offscreen bitmap: this bitmap will always have the
         # current drawing in it, so it can be used to save the image to
         # a file, or whatever.
-        self._Buffer = wx.Bitmap(*Size)
+        if sys.version_info[0] == 2:
+            self._Buffer = wx.EmptyBitmap(*Size)
+        else:
+            self._Buffer = wx.Bitmap(*Size)
         self.UpdateDrawing()
 
     def SaveToFile(self, FileName, FileType=wx.BITMAP_TYPE_PNG):
@@ -76,5 +80,8 @@ class BufferedWindow(wx.Window):
         dc.SelectObject(self._Buffer)
         self.Draw(dc)
         del dc  # need to get rid of the MemoryDC before Update() is called.
-        self.Refresh(False, rect)
+        if rect is None:
+            self.Refresh()
+        else:
+            self.Refresh(False, rect)
         self.Update()

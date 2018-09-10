@@ -820,7 +820,7 @@ class MonoDriveGUIApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
 
 class SensorPoll(Thread):
     """Thread to pull data from sensor q's and publish to views"""
-    def __init__(self, sensors, fps, map):
+    def __init__(self, sensors, fps, map, clock_mode, sync_event):
         super(SensorPoll,self).__init__()
         #self.vehicle = vehicle
         #TODO need to fix the map getting here
@@ -829,14 +829,17 @@ class SensorPoll(Thread):
         #self.sensors = vehicle.get_sensors()
         self.sensors = sensors
         self.stop_event = multiprocessing.Event()
+        self.sync_event = sync_event
+        self.clock_mode = clock_mode
         self.fps = fps
+        self.update_gui_rate = .1
         self.start()
 
-    def update_gui(self, sensor):
+    def update_sensor_widget(self, sensor):
 
-        result = False
         messages = sensor.get_display_messages(block=True, timeout=0.0)
-        if messages:
+        found_data = len(messages) > 0
+        if found_data:
             #print("{0} found {1} messages".format(sensor.name, len(messages)))
             message = messages.pop() #pop last message aka. most recent
             if "IMU" in sensor.name:
@@ -853,17 +856,40 @@ class SensorPoll(Thread):
                 wx.CallAfter(pub.sendMessage, "update_radar_table", msg=message)
             elif "Lidar" in sensor.name:
                 sensor.forward_data(message)
-            result = True
-        return result
+        return found_data
+
+    def check_client_mode_update(self, sensor):
+        should_stop = False
+        wait_time = 0
+        updated = False
+        while not updated and not should_stop and wait_time < 2.0:
+            # if wait_time == 0:
+            #     print("Client_Mode - sensor data not available: " + sensor.name)
+            should_stop = self.stop_event.wait(self.update_gui_rate)
+            updated = self.update_sensor_widget(sensor)
+            wait_time += self.update_gui_rate
+
+        if not updated:
+            print("Client_Mode - sensor data not found(%s): %s" % (should_stop, sensor.name))
+        return should_stop
+
+    def update_gui(self, sensor):
+        updated = self.update_sensor_widget(sensor)
+        if self.clock_mode == ClockMode_ClientStep:
+            self.sync_event.set()
+            if not updated and self.check_client_mode_update(sensor):
+                return False
+        return True
 
     #this thread will run while application is running
     def run(self):
-        while not self.stop_event.wait(.1):
-            #self.road_map = self.vehicle.get_road_map()
-            #print("GUI THREAD RUNNING")
+        while not self.stop_event.wait(self.update_gui_rate):
+            # print("GUI THREAD RUNNING")
             for sensor in self.sensors:
-                self.update_gui(sensor)
-            # if self.running == False:
+                #print("GUI THREAD updating: ", sensor.name)
+                if not self.update_gui(sensor):
+                    break
+
             #     print("GUI THREAD STOPPED")
             if self.road_map:
                 wx.CallAfter(pub.sendMessage, "update_roadmap", msg=self.road_map)
@@ -872,7 +898,6 @@ class SensorPoll(Thread):
     def stop(self, timeout=2):
         self.stop_event.set()
         self.join(timeout=timeout)
-
 
 class GUISensor(object):
     def __init__(self, sensor, **kwargs):
@@ -934,6 +959,8 @@ class GUI(object):
         self.daemon = True
         self.name = "GUI"
         self.simulator_event = simulator.restart_event
+        self.vehicle_sync_event = simulator.ego_vehicle.vehicle_drive
+        self.vehicle_clock_mode = simulator.ego_vehicle.vehicle_config.clock_mode
         #self.simulator = simulator
         #self.vehicle = None
         #self.vehicle = simulator.ego_vehicle
@@ -987,7 +1014,7 @@ class GUI(object):
 
         #prctl.set_proctitle("mono{0}".format(self.name))
         #start sensor polling
-        self.sensor_polling = SensorPoll(self.sensors, self.fps, self.map)
+        self.sensor_polling = SensorPoll(self.sensors, self.fps, self.map, self.vehicle_clock_mode, self.vehicle_sync_event)
         self.app = MonoDriveGUIApp()
         while not self.stop_event.is_set():
             self.app.MainLoop()

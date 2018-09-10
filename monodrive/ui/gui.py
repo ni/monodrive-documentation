@@ -36,8 +36,10 @@ try:
     import prctl
 except: pass
 
+import socket
 import time
 
+from monodrive.constants import VELOVIEW_PORT, VELOVIEW_IP
 from monodrive.models import IMU_Message
 from monodrive.models import GPS_Message
 from monodrive.models import Camera_Message
@@ -553,8 +555,8 @@ class GPS_View(wx.Panel):
         self.string_time = wx.StaticText(self, label="")
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.sizer.Add(self.string_lat,1, wx.LEFT | wx.RIGHT | wx.EXPAND)
-        self.sizer.Add(self.string_lng,1, wx.LEFT | wx.RIGHT | wx.EXPAND)
+        self.sizer.Add(self.string_lat, 1, wx.LEFT | wx.RIGHT | wx.EXPAND)
+        self.sizer.Add(self.string_lng, 1, wx.LEFT | wx.RIGHT | wx.EXPAND)
         self.sizer.Add(self.string_time, 1, wx.LEFT | wx.RIGHT | wx.EXPAND)
         self.SetSizerAndFit(self.sizer)
 
@@ -689,9 +691,6 @@ class Camera_View(wx.Panel):
         self.bmp.SetBitmap(wx.BitmapFromImage(bmp))'''
 
 
-class MainWindow(wx.Frame):
-    def __init__(self, parent, title = "monoDrive Visualizer", *args, **kwargs):
-        wx.Frame.__init__(self, parent, size=(1800,1000), title = title,*args, **kwargs)
 class Radar_Panel(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
         wx.Panel.__init__(self, parent,*args, **kwargs)
@@ -723,7 +722,6 @@ class Overview_Panel(wx.Panel):
     def __init__(self, parent, *args, **kwargs):
         wx.Panel.__init__(self, parent,*args, **kwargs)
         #set up frame panels
-
 
         self.graph_row_panel = GraphRow(self)
         self.text_row_panel = TextRow(self)
@@ -772,7 +770,9 @@ class Overview_Panel(wx.Panel):
 
 class MainFrame(wx.Frame):
     def __init__(self):
-        wx.Frame.__init__(self, None, size=(2400,1200), title = "monoDrive Visualizer")
+        width = int(wx.SystemSettings.GetMetric(wx.SYS_SCREEN_X) * .9)
+        height = int(wx.SystemSettings.GetMetric(wx.SYS_SCREEN_Y) * .9)
+        wx.Frame.__init__(self, None, size=(width,height), title = "monoDrive Visualizer")
         pub.subscribe(self.shutdown, "SHUTDOWN")
         # Here we create a panel and a notebook on the panel
         p = wx.Panel(self)
@@ -851,6 +851,8 @@ class SensorPoll(Thread):
                 wx.CallAfter(pub.sendMessage, "update_bounding_box", msg = message)
             elif "Radar" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_radar_table", msg=message)
+            elif "Lidar" in sensor.name:
+                sensor.forward_data(message)
             result = True
         return result
 
@@ -899,6 +901,33 @@ class GUISensor(object):
         return messages
 
 
+class LidarGUISensor(GUISensor):
+    def __init__(self, sensor, **kwargs):
+        super(LidarGUISensor, self).__init__(sensor, **kwargs)
+        self.connect()
+
+    def forward_data(self, data):
+        if self.veloview_socket is None:
+            return
+
+        if isinstance(data, list):
+            for datum in data:
+                self.veloview_socket.sendto(datum, (VELOVIEW_IP, VELOVIEW_PORT))
+        else:
+            self.veloview_socket.sendto(data, (VELOVIEW_IP, VELOVIEW_PORT))
+
+    def connect(self):
+        try:
+            s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            self.veloview_socket = s
+            return s
+        except Exception as e:
+            print('Can send to {0}'.format(str((VELOVIEW_PORT, VELOVIEW_PORT))))
+            print("Error {0}".format(e))
+            self.veloview_socket = None
+            return None
+
+
 class GUI(object):
     def __init__(self, simulator, **kwargs):
         super(GUI, self).__init__(**kwargs)
@@ -909,7 +938,12 @@ class GUI(object):
         #self.vehicle = None
         #self.vehicle = simulator.ego_vehicle
 
-        self.sensors = [GUISensor(s) for s in simulator.ego_vehicle.sensors]
+        self.sensors = []
+        for sensor in simulator.ego_vehicle.sensors:
+            if "Lidar" in sensor.name:
+                self.sensors.append(LidarGUISensor(sensor))
+            else:
+                self.sensors.append(GUISensor(sensor))
 
         self.app = None
         self.fps = None

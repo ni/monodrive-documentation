@@ -15,58 +15,52 @@ class RadarProcessing(object):
     
     def __init__(self):
         pass
-    @staticmethod
-    def compute_covariance(X):
-        N = X.shape[1]
-        R = (1. / N) * X * X.H
-
-        return R
-    @staticmethod
-    def compute_autocovariance(x, M):
-        N = x.shape[0]
-
-        x_vect = np.transpose(np.matrix(x))
-
-        yn = x_vect[M - 1::-1]
-        R = yn * yn.H
-        for indice in range(1, N - M):
-            yn = x_vect[M - 1 + indice:indice - 1:-1]
-            R = R + yn * yn.H
-
-        R = R / N
-        return R
 
     @staticmethod
+
     def modified_correlation(x, M):
+    #----Compute backward/Forward correlation
+    # it is used by RootLMusic, Esprit and AIC algorithms
+    # x : input signal vector 
+    # M : size of correlation window
+    #---- returns the correlation vector
         N = x.shape[0]
         x2=np.conj(x[N-1::-1])
 
-        x_vect = np.transpose(np.matrix(x))
-        x_vect2 =np.transpose(np.matrix(x2))
-        yn = x_vect[M - 1::-1]
-        zn = x_vect2[M - 1::-1]
-        R = yn * yn.H
-        R2 = zn*zn.H
+        x_vect = np.transpose(np.matrix(x)) # Forward vector
+        x_vect2 =np.transpose(np.matrix(x2)) # Backward vector
+        yn = x_vect[M - 1::-1] # Consider M samples forward
+        zn = x_vect2[M - 1::-1] #consider M samples backward
+        R = yn * yn.H  #initialize forward correlation
+        R2 = zn*zn.H #initialize backward correlation
         for indice in range(1, N - M):
             yn = x_vect[M - 1 + indice:indice - 1:-1]
             zn = x_vect2[M - 1 + indice:indice - 1:-1]
-            R = R + yn * yn.H
-            R2 = R2 +zn*zn.H
+            R = R + yn * yn.H   #Multiply and accumulate for forward correlation
+            R2 = R2 +zn*zn.H    #Multiply and accumulate for backwardrward correlation
 
-        R = (R+R2) / (2.*N)
+        R = (R+R2) / (2.*N) # final correlation is mean of forward and backward components
         return R
     
     @staticmethod
     def root_music(x, L, M, Fe):
+    # --- This function estimates the frequency components from given signal using RootMusic algorithm
+    # Can be used to estimate AoA or velocity
+    # x : input signal vector 
+    # L : number of frequency components to be extracted
+    # M : size of correlation window
+    # Fe : Sampling Frequency
+    #---- returns an array containing the L frequencies
+
         N = x.shape[0]
 
-        R = RadarProcessing.modified_correlation(x, M)
-        U, S, V = lg.svd(R)
-        G = U[:, 2:]
+        R = RadarProcessing.modified_correlation(x, M) # Compute M-size forward/backward correlation vector of input signal
+        U, S, V = lg.svd(R) # Singular value decomposition of R
+        G = U[:, 2:] # Unitary matrix
 
         P = G * G.H
 
-        Q = 0j * np.zeros(2 * M - 1)
+        Q = 0j * np.zeros(2 * M - 1) # Polynomila for which roots will be calculated
 
         for (idx, val) in enumerate(range(M - 1, -M, -1)):
             diag = np.diag(P, val)
@@ -75,42 +69,48 @@ class RadarProcessing(object):
         roots = np.roots(Q)
 
         roots = np.extract(np.abs(roots) < 1, roots)
-        # roots = np.extract(np.imag(roots) != 0, roots)
+        distance_from_circle = np.abs(np.abs(roots) - 1) # Calculate the distance of different roots from unit circle
+        index_sort = np.argsort(distance_from_circle) # sort roots by distance
+        component_roots = roots[index_sort[:L]] # keep only L closer roots to circle
 
-        distance_from_circle = np.abs(np.abs(roots) - 1)
-        index_sort = np.argsort(distance_from_circle)
-        component_roots = roots[index_sort[:L]]
+        angle = -np.angle(component_roots) # phase of L choosed roots
 
-        angle = -np.angle(component_roots)
-
-        f = Fe * angle / (2. * np.pi)
+        f = Fe * angle / (2. * np.pi) # convert phases to normalized frequencies
 
         return f
 
     @staticmethod
-    def esprit(x, L, M, Fe):
+    def esprit(x, L, M, Fe):    
+    # --- This function estimates the frequency components from given signal using Esprit algorithm
+    # Can be used to estimate AoA or velocity
+    # x : input signal vector 
+    # L : number of frequency components to be extracted
+    # M : size of correlation window
+    # Fe : Sampling Frequency
+    #---- returns an array containing the L frequencies
+
         N = x.shape[0]
 
         if M == None:
             M = N // 2
 
-        R = RadarProcessing.modified_correlation(x, M)
+        R = RadarProcessing.modified_correlation(x, M) # Compute M-size forward/backward correlation vector of input signal
 
-        U, S, V = lg.svd(R)
+        U, S, V = lg.svd(R) # Singular value decomposition of R
 
-        S = U[:, :L]
+        S = U[:, :L] # Consider the signal subspace
 
-        S1 = S[:-1, :]
+        S1 = S[:-1, :] #Remove last row
 
-        S2 = S[1:, :]
+        S2 = S[1:, :] #Remove first row
 
-        Phi = (S1.H * S1).I * S1.H * S2
+        Phi = (S1.H * S1).I * S1.H * S2  #Compute matrix Phi 
 
-        V, U = lg.eig(Phi)
+        V, U = lg.eig(Phi) # Compute eigen values of matrix Phi
 
-        angle = -np.angle(V)
+        angle = -np.angle(V) # extract phases
 
-        f = Fe * angle / (2. * np.pi)
+        f = Fe * angle / (2. * np.pi) # deduce normalized frequencies
 
         return f
 
@@ -177,39 +177,46 @@ class RadarProcessing(object):
         return [peaks, energy]
 
     @staticmethod
-    def max_likelihood_aoa_estimation(project):
+    def max_likelihood_aoa_estimation(project):    
+    # --- This function estimates AoA from the projection vector obtained for a given Range
+    # --- It is an alternative algorithm to RootMusic and Esprit for AoA estimation
+
             N = project.shape[0]
             # M = project.shape[1]
 
-            theta = np.arange(-10,10,0.5)
+            theta = np.arange(-10,10,0.5) # operates in filed -10 to +10 degrees with a 0.5 resolution
             theta_rad = theta / 180. * np.pi
             theta_length = len(theta)
             V = np.zeros((N, theta_length)) + np.zeros((N, theta_length)) * 1j
             for idx in range(theta_length):
                 for n in range(N):
-                    V[n, idx] = np.exp(-1j * np.pi * n  * np.sin(theta_rad[idx]))
+                    V[n, idx] = np.exp(-1j * np.pi * n  * np.sin(theta_rad[idx])) 
             theta_est = 0. #np.zeros(1, M)
 
             max_likelihood = np.zeros(theta_length) #initialize max likelihood to zeros
             for idx in range(theta_length):
                 A = V[:, idx]
-                cte = np.dot(np.conj(np.transpose(A)), np.transpose(project))
+                cte = np.dot(np.conj(np.transpose(A)), np.transpose(project)) # correlation calculation
                 max_likelihood[idx] = np.abs(cte)
 
-                index = max_likelihood.argmax()
+                index = max_likelihood.argmax() # deduce component with maximum correlation
                 theta_est = theta[index]
 
             return theta_est
  
     @staticmethod
-    def NumberOfTargetsAIC(x, M):
+    def NumberOfTargetsAIC(x, M):    
+    #--- This function estimates the number of targets based on the Akaike information criterion algorithm
+    #--- It is used for a given range to compute the number of targets with different AoAs
+    # x : input signal vector 
+    # M : size of correlation window
+    # ---returns the number of detected targets
+
         N = x.shape[0]
-        R = RadarProcessing.modified_correlation(x,M)
-        S_vec= abs(linalg.eigvals(R))
-        U, S, V = lg.svd(R)
-        # S_vec = S.reshape(M, 1)
+        R = RadarProcessing.modified_correlation(x,M) # Compute M-size forward/backward correlation vector of input signal
+        S_vec= abs(linalg.eigvals(R))  # compute signal space
         S_vec = np.sqrt(S_vec)
-        S_vec = S_vec / S_vec.max()
+        S_vec = S_vec / S_vec.max() # and normalize it
         J = np.zeros(M - 2)
         for d in range(0, M - 2):
             cte1 = 1
@@ -219,12 +226,11 @@ class RadarProcessing(object):
                 cte0 = cte0 + S_vec[i]
             cte1 = cte1 ** (1 / (M - d))
             cte0 = cte0 / (M - d)
-            J[d] = abs((M/2* np.log((cte1 / cte0) ** (M - d))) + d * (2 * M - d) / 2)   #-(1.0 * np.log((cte1 / cte0) ** (M - d))) + d * (2 * M - d) / 2  #
+            J[d] = abs((M/2* np.log((cte1 / cte0) ** (M - d))) + d * (2 * M - d) / 2)  
 
         mn = np.argmin(J)
         toto = S_vec[0:mn + 1]
-        # toto = S_vec[np.nonzero(S_vec > Thrshld)[0]]
-        L1 = mn+1 #toto.size
+        L1 = mn+1 
 
         k = 0
         mn2 = 0
@@ -237,7 +243,5 @@ class RadarProcessing(object):
                 p = 0
 
         L = min(L1, mn2)
-        # L = min(L1,2)
-
-        # L = 2
+        
         return L

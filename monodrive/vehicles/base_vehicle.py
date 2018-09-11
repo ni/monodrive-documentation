@@ -15,8 +15,7 @@ except ImportError:
 import sys, traceback
 
 from monodrive.networking import messaging
-from monodrive.sensors import GPS, Waypoint
-from monodrive.networking.queues import SingleQueue
+from monodrive.constants import ClockMode_AutoStep, ClockMode_ClientStep
 
 import multiprocessing
 
@@ -39,9 +38,10 @@ class BaseVehicle(object):
         self.sensor_process_dict = {}
         self.init_sensors()
 
-        self.vehicle_update_rate = 1  # ticks per second
+        self.vehicle_update_rate = .1  # ticks per second
         self.vehicle_stop = multiprocessing.Event()
         self.vehicle_thread = None
+        self.vehicle_drive = multiprocessing.Event()
 
     def init_vehicle_loop(self):
         self.vehicle_thread = threading.Thread(target=self.vehicle_loop)
@@ -61,13 +61,24 @@ class BaseVehicle(object):
         time.sleep(1)
         # self.ready_event.set()
         while not self.vehicle_stop.wait(self.vehicle_update_rate):
-            control = self.drive(sensors)
-            self.step(control)
-            time.sleep(.1)
+            if self.wait_for_drive_ready():
+                control = self.drive(sensors)
+                self.step(control)
 
     def step(self, control_data):
         self.control_thread = threading.Thread(target=self.do_control_thread(control_data))
         self.control_thread.start()
+
+    # This will wait for up to 2 seconds for all the sensor data and then proceed regardless
+    def wait_for_drive_ready(self):
+        should_drive = True
+        if self.vehicle_config.clock_mode == ClockMode_ClientStep:
+            wait_time = self.vehicle_update_rate
+            while wait_time < 2.0 and not self.vehicle_drive.wait(self.vehicle_update_rate):
+                wait_time += self.vehicle_update_rate
+            self.vehicle_drive.clear()
+            should_drive = not self.vehicle_stop.wait(0)
+        return should_drive
 
     def do_control_thread(self, control_data):
         forward = control_data['forward']

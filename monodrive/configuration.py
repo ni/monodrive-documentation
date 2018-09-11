@@ -57,6 +57,7 @@ class VehicleConfiguration(Configuration):
         self.animation_path = self.configuration['anim_path']
         self.wheels = self.configuration['wheels']
         self.sensor_configuration = self.configuration['sensors']
+        self.clock_mode = self.configuration['clock_mode']
 
         if not self.validate_sensors():
             raise AttributeError("Invalid Configuration. Validate the file is valid JSON.")

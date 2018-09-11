@@ -70,6 +70,7 @@ class TeleportVehicle(BaseVehicle):
         self.keyboard_thread_running = True
 
         pygame.init()
+        pygame.mixer.quit()
         screen = pygame.display.set_mode((480, 360))
         name = "monoDrive tele control"
         font = pygame.font.Font(None, 50)

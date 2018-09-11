@@ -96,7 +96,7 @@ class IMU_Message(object):
         self.string_ang_rate_x = msg['angular_velocity_vector'][0]
         self.string_ang_rate_y = msg['angular_velocity_vector'][1]
         self.string_ang_rate_z = msg['angular_velocity_vector'][2]
-        self.game_time_stamp = msg['time_stamp']
+        self.game_time = msg['game_time']
         self.time_stamp = msg['time_stamp']
     
     @classmethod
@@ -220,6 +220,8 @@ class GPS_Message(object):
 class Camera_Message(object):
       
     def __init__(self, msg):
+        self.time_stamp = msg['time_stamp']
+        self.game_time = msg['game_time']
         height = msg['height']
         width = msg['width']
         image_buffer = msg['image']

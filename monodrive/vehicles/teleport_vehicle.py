@@ -41,10 +41,16 @@ class TeleportVehicle(BaseVehicle):
 
         self.keyboard_thread = None
         self.keyboard_thread_running = False
-        self.start_keyboard_listener()
+        #self.start_keyboard_listener()
+
+        self.name = "monoDrive tele control"
+        self.instructions1 = "Select this window then"
+        self.instructions2 = "use the ARROW keys drive the vehicle"
 
     def drive(self, sensors):
         #logging.getLogger("control").debug("Control Forward,Steer = {0},{1}".format(self.throttle,self.steer))
+        if self.keyboard_thread is None:
+            self.start_keyboard_listener()
         control = {'forward': self.throttle, 'right': self.steer}
         return control
     
@@ -71,29 +77,58 @@ class TeleportVehicle(BaseVehicle):
 
         pygame.init()
         pygame.mixer.quit()
+        self.font1 = pygame.font.Font(None, 50)
+        self.font2 = pygame.font.Font(None, 28)
         screen = pygame.display.set_mode((480, 360))
-        name = "monoDrive tele control"
-        font = pygame.font.Font(None, 50)
-        block = font.render(name, True, (255, 255, 255))
+
+        self.draw(screen, False)
+
         while self.keyboard_thread_running:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if(self._get_keyboard_control(event.key)):
                         self.throttle = round(self.throttle, 2)
                         self.steer = round(self.steer, 2)
-                        name = "throttle = {0} steering = {1}".format(self.throttle, self.steer)
-                        screen.fill ((0, 0, 0))
-                        block = font.render(name, True, (255, 255, 255))
-                        rect = block.get_rect()
-                        rect.center = screen.get_rect().center
-                        screen.blit(block, rect)
-                        pygame.display.flip()
+                        self.draw(screen)
                     else:
                         self.close()
                         self.restart_event.set()
                         break
             
             time.sleep(.1)
+
+    def draw(self, screen, render_control=True):
+        screen.fill((0, 0, 0))
+
+        screen_rect = screen.get_rect()
+
+        block = self.font2.render(self.name, True, (255, 255, 255))
+        rect = block.get_rect()
+        rect.left = (screen_rect.width - rect.width) / 2
+        screen.blit(block, rect)
+
+        block = self.font2.render(self.instructions1, True, (200, 200, 200))
+        top = rect.bottom
+        rect = block.get_rect()
+        rect.top = top + 8
+        rect.left = (screen_rect.width - rect.width) / 2
+        screen.blit(block, rect)
+
+        block = self.font2.render(self.instructions2, True, (200, 200, 200))
+        top = rect.bottom
+        rect = block.get_rect()
+        rect.top = top + 2
+        rect.left = (screen_rect.width - rect.width) / 2
+        screen.blit(block, rect)
+
+        if render_control:
+            control = "throttle = {0} steering = {1}".format(self.throttle, self.steer)
+            block = self.font1.render(control, True, (255, 255, 255))
+            rect = block.get_rect()
+            rect.center = screen_rect.center
+            screen.blit(block, rect)
+
+        pygame.display.flip()
 
     def _get_keyboard_control(self, key):
         status = True

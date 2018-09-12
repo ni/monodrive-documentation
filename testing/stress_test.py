@@ -42,6 +42,7 @@ class Tracker:
         self.lock = threading.Lock()
         self.start_location = None
         self.last_distance = 0
+        self.speed = 0
 
     def update(self, location):
         self.lock.acquire()
@@ -52,6 +53,8 @@ class Tracker:
         if self.last_location is not None:
             self.last_distance = self.haversine(location, self.last_location)
         self.last_location = location
+
+        self.speed += location.get('speed',0)
 
         self.lock.release()
 
@@ -112,16 +115,16 @@ class SensorTask:
 
             self.data_received.set()
 
-        seconds = (get_time() - start) / 1000
-
         try:
+            seconds = (get_time() - start) / 1000
             fps = packets / seconds
+
+            logging.getLogger(LOG_CATEGORY).info(
+                '{0: >18}: {1:5.2f} fps ({2:3} frames received in {3:6.2f} secs ({4})), distance: {5:6.4f}, avg speed: {6:6.4f}'.format(
+                    self.sensor.name, fps, packets, seconds, time_units(), self.tracker.total_distance(),
+                    self.tracker.speed / packets))
         except:
-            fps = 0
-        location, distance = self.tracker.get_last_distance_travelled()
-        logging.getLogger(LOG_CATEGORY).info(
-                    '{0: >18}: {1:5.2f} fps ({2:3} frames received in {3:6.2f} secs ({4})), distance: {5:6.4f}, speed: {6:6.4f}'.format(
-                    self.sensor.name, fps, packets, seconds, time_units(), self.tracker.total_distance(), location.get('speed',0)))
+            pass
 
     def stop(self):
         #logging.getLogger(LOG_CATEGORY).info("stopping %s" % self.sensor.name)

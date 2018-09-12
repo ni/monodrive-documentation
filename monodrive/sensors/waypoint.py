@@ -6,11 +6,9 @@ __version__ = "1.0"
 
 import numpy as np
 import struct
-import math
 from multiprocessing import Value
 
 from . import BaseSensor
-from monodrive.networking import messaging
 
 
 class Waypoint(BaseSensor):
@@ -54,8 +52,8 @@ class Waypoint(BaseSensor):
         }
         return data_dict
 
-    def get_message(self, timeout = None):
-        data = super(Waypoint, self).get_message(timeout = timeout)
+    def get_message(self, block=True, timeout = None):
+        data = super(Waypoint, self).get_message(block=block, timeout=timeout)
         if self.update_command_sent is True:
             n1 = self.get_waypoints_for_current_lane()[0]
             try:
@@ -67,23 +65,6 @@ class Waypoint(BaseSensor):
                 self.update_command_sent.value = False
 
         return data
-
-    '''def process_display_data(self):
-
-        msg = self.q_data.get()
-
-        self.view_lock.acquire()
-        points_by_lane = msg['points_by_lane']
-        x_combined = []
-        y_combined = []
-        for points in points_by_lane:
-            x_combined = np.append(x_combined, points[:, 0])
-            y_combined = np.append(y_combined, points[:, 1])
-
-        self.xy_combined = np.column_stack((x_combined, y_combined))
-
-        self.view_lock.release()
-        self.update_sensors_got_data_count()'''
 
 
     '''def update_tracking_index(self, tracking_point_index, ego_lane):

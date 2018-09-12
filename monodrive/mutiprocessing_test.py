@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 
-#For image getting
 from os import path
-import sys
 
 basepath = path.dirname(__file__)
 filepath = path.abspath(path.join(basepath, "ui/Capture.png"))
@@ -20,9 +18,9 @@ import time
 import socket
 import pickle
 
-import random
-import numpy as np 
+import numpy as np
 import cv2
+
 
 NUMBER_OF_MESSAGES = 100
 FPS = float(60)

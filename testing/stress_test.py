@@ -172,7 +172,7 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
         sensor.socket_ready_event.wait()
 
     #msg = messaging.EgoControlCommand(random.randrange(-5.0, 5.0), random.randrange(-3.0, 3.0)) # drive randomly
-    msg = messaging.EgoControlCommand(2.5, 0.0) # go straight
+    msg = messaging.EgoControlCommand(1.5, 0.0) # go straight
     for _ in range(0, 100):
         simulator.request(msg)
         if clock_mode == ClockMode_ClientStep:

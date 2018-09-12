@@ -8,6 +8,8 @@ try:
     import cPickle as pickle
 except:
     import _pickle as pickle
+
+
 class Bounding_Box_Message(object):
     def __init__(self, msg):
         if msg:
@@ -66,8 +68,8 @@ class Radar_Message(object):
             self.tx_waveform = msg['tx_waveform']
             self.time_series = msg['time_series']
             
-        else:
-            print("Radar Message Empty")
+        #else:
+        #    print("Radar Message Empty")
     
     @classmethod
     def test_message(self):

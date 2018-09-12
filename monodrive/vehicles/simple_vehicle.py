@@ -115,11 +115,11 @@ class SimpleVehicle(BaseVehicle):
                 self.world_location = self.gps_msg.world_location
                 self.velocity = self.gps_msg.speed
                 self.gps_sensor = sensor
-                print("vehicle{:>26} ts={:>10} gt={:>10} msg_len{:>8}".format(sensor.name, self.gps_msg.time_stamp, self.gps_msg.game_time, len(str(msg)))) 
+#                print("vehicle{:>26} ts={:>10} gt={:>10} msg_len{:>8}".format(sensor.name, self.gps_msg.time_stamp, self.gps_msg.game_time, len(str(msg))))
             elif sensor.__class__ == Waypoint:   
                 self.waypoint_msg = Waypoint_Message(msg) 
                 self.waypoint_sensor = sensor
-                print("vehicle{:>26} ts={:>10} gt={:>10} msg_len{:>8}".format(sensor.name, self.gps_msg.time_stamp, self.gps_msg.game_time,len(str(msg)))) 
+ #               print("vehicle{:>26} ts={:>10} gt={:>10} msg_len{:>8}".format(sensor.name, self.gps_msg.time_stamp, self.gps_msg.game_time,len(str(msg))))
             
         if self.waypoint_msg and self.gps_msg:
             return True

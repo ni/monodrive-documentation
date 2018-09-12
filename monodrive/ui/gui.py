@@ -17,8 +17,6 @@ try:
     import cPickle as pickle
 except:
     import _pickle as pickle
-#import matplotlib
-#from matplotlib import pyplot as plt
 
 #For image getting
 from os import path
@@ -28,7 +26,6 @@ filepath = path.abspath(path.join(basepath, "Capture.png"))
 import numpy as np
 from PIL import Image
 import cv2
-#f = open(filepath, "r")
 
 import multiprocessing
 from threading import Thread
@@ -113,8 +110,8 @@ class Bounding_Polar_Plot(wx.Panel):
             self.update_plot(self.targets)
             self.string_time.SetLabelText('GAMETIME: {0: .2f} \tTIMESTAMP: {1}'.
                                           format(self.targets.game_time, self.targets.time_stamp))
-        else:
-            print("empty target list")
+        #else:
+        #    print("empty target list")
 
     def update_plot(self, targets):
         if len(targets.radar_distances) > 0:
@@ -342,8 +339,8 @@ class Radar_Polar_Plot(wx.Panel):
                                           format(self.targets_bounding_box.game_time,
                                                  self.targets_bounding_box.time_stamp))
             #self.update_plot(self.targets)
-        else:
-            print("empty bounding target list")
+        #else:
+        #    print("empty bounding target list")
 
     def update_view(self, msg):
         if msg:
@@ -351,8 +348,8 @@ class Radar_Polar_Plot(wx.Panel):
             self.update_plot(self.targets)
             self.string_time_radar.SetLabelText('Radar GAMETIME: {0: .2f} \tTIMESTAMP: {1}'.
                                           format(self.targets.game_time, self.targets.time_stamp))
-        else:
-            print("empty target list")
+        # else:
+        #     print("empty target list")
 
     def update_plot(self, targets):
         if len(targets.ranges) > 0:
@@ -419,8 +416,8 @@ class Radar_Target_Table(wx.Panel):
         if msg:
             self.targets = Radar_Message(msg)
             self.update_plot(self.targets)
-        else:
-            print("empty target list")
+        # else:
+        #     print("empty target list")
 
     def update_plot(self,targets):
         if self.target_table_handle == None and len(targets.ranges) > 0:
@@ -828,7 +825,7 @@ class MainFrame(wx.Frame):
         p.SetSizer(sizer)
 
     def shutdown(self, msg):
-        print("Frame shutting down {0}".format(msg))
+        #print("Frame shutting down {0}".format(msg))
         self.Close()
 
 

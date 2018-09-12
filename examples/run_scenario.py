@@ -5,10 +5,8 @@ __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
-import os
 
 from monodrive import SimulatorConfiguration
-from monodrive.constants import BASE_PATH
 from monodrive.vehicles import SimpleVehicle
 from monodrive import Simulator
 from monodrive.scenario import Scenario

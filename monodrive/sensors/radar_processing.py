@@ -5,10 +5,7 @@ __version__ = "1.0"
 
 import numpy as np
 from numpy import linalg as lg
-import pyfftw
 from scipy import linalg
-import time
-import numpy.fft as fftpack
 
 
 class RadarProcessing(object):

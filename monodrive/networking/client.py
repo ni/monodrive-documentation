@@ -10,7 +10,6 @@ __version__ = "1.0"
 import logging
 import socket
 import threading
-import time
 
 try:
     from Queue import Queue
@@ -87,9 +86,7 @@ class BaseClient(object):
             try:
                 message = Message()
                 message.read(self.sock)
-                #print("<-- ", message)
             except Exception as e:
-                print(str(e))
                 logging.getLogger("network").error('Failed to receive message: %s' % str(e))
                 message = None
 
@@ -101,15 +98,12 @@ class BaseClient(object):
             if self.raw_message_handler:
                 self.raw_message_handler(message) # will block this thread
             else:
-                # print('No message handler for raw message {0}'.format(
-                #     message))
                 pass
                 
 
     def send(self, message):
         """ Return response from Unreal """
         if self.isconnected():
-            # print("--> ", message)
             return message.write(self.sock)
         else:
             logging.getLogger("network").error('Fail to send message, client is not connected')

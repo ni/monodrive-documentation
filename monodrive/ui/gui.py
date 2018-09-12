@@ -557,7 +557,7 @@ class GPS_View(BufferedWindow):
         self.string_lat = ""
         self.string_lng = ""
         self.string_time = ""
-        self.font = wx.Font(wx.FontInfo(9).Family(wx.FONTFAMILY_SWISS))
+        self.font = wx.Font(9, wx.FONTFAMILY_SWISS, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL)
         BufferedWindow.__init__(self, parent, *args, **kwargs)
         self.SetMinSize(wx.Size(100, 16*3))
         self.SetBackgroundColour(INNER_PANEL_COLOR)
@@ -578,8 +578,8 @@ class GPS_View(BufferedWindow):
     def update_view(self, msg):
         #print("GPS update view:", msg)
         gps_msg = GPS_Message(msg)
-        self.string_lat = 'LAT: {0}'.format(gps_msg.lat)
-        self.string_lng = 'LNG: {0}'.format(gps_msg.lng)
+        self.string_lat = 'LAT: {:0.8f}'.format(gps_msg.lat)
+        self.string_lng = 'LNG: {:0.8f}'.format(gps_msg.lng)
         self.string_time = 'GAMETIME: {0: .2f} \tTIMESTAMP: {1}'.format(gps_msg.game_time, gps_msg.time_stamp)
         # self.string_lat.SetLabelText('LAT: {0}'.format(gps_msg.lat))
         # self.string_lng.SetLabelText('LNG: {0}'.format(gps_msg.lng))
@@ -595,20 +595,21 @@ class GPS_View(BufferedWindow):
         left = 2
         y = 0
         size = dc.GetTextExtent("X")
+        height = size[1]
 
         dc.DrawText(self.string_lat, left, y)
-        y += size.y*2
+        y += height*2
 
         dc.DrawText(self.string_lng, left, y)
-        y += size.y*2
+        y += height*2
 
         dc.DrawText(self.string_time, left, y)
-        y += size.y*2
+        y += height*2
 
 class IMU_View(BufferedWindow):
     def __init__(self, parent, *args, **kwargs):
 
-        self.font = wx.Font(wx.FontInfo(9).Family(wx.FONTFAMILY_SWISS))
+        self.font = wx.Font(9, wx.FONTFAMILY_SWISS, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL)
         self.string_accel_x = ""
         self.string_accel_y = ""
         self.string_accel_z = ""
@@ -643,12 +644,12 @@ class IMU_View(BufferedWindow):
 
     def update_view(self, msg):
         imu_msg = IMU_Message(msg)
-        self.string_accel_x = 'ACCEL_X: {0}'.format(imu_msg.string_accel_x)
-        self.string_accel_y = 'ACCEL_Y: {0}'.format(imu_msg.string_accel_y)
-        self.string_accel_z = 'ACCEL_Z: {0}'.format(imu_msg.string_accel_z)
-        self.string_ang_rate_x = 'ANG RATE X: {0}'.format(imu_msg.string_ang_rate_x)
-        self.string_ang_rate_y = 'ANG RATE Y: {0}'.format(imu_msg.string_ang_rate_y)
-        self.string_ang_rate_z = 'ANG RATE X: {0}'.format(imu_msg.string_ang_rate_z)
+        self.string_accel_x = 'ACCEL_X: {:0.8f}'.format(imu_msg.string_accel_x)
+        self.string_accel_y = 'ACCEL_Y: {:0.8f}'.format(imu_msg.string_accel_y)
+        self.string_accel_z = 'ACCEL_Z: {:0.8f}'.format(imu_msg.string_accel_z)
+        self.string_ang_rate_x = 'ANG RATE X: {:0.8f}'.format(imu_msg.string_ang_rate_x)
+        self.string_ang_rate_y = 'ANG RATE Y: {:0.8f}'.format(imu_msg.string_ang_rate_y)
+        self.string_ang_rate_z = 'ANG RATE X: {:0.8f}'.format(imu_msg.string_ang_rate_z)
         self.string_timer = 'GAMETIME: {0: .2f} \tTIMESTAMP: {1}'.format(imu_msg.game_time, imu_msg.time_stamp)
         # self.string_accel_x.SetLabelText('ACCEL_X: {0}'.format(imu_msg.string_accel_x))
         # self.string_accel_y.SetLabelText('ACCEL_Y: {0}'.format(imu_msg.string_accel_y))
@@ -668,27 +669,28 @@ class IMU_View(BufferedWindow):
         left = 2
         y = 0
         size = dc.GetTextExtent("X")
+        height = size[1]
 
         dc.DrawText(self.string_accel_x, left, y)
-        y += size.y
+        y += height
 
         dc.DrawText(self.string_accel_y, left, y)
-        y += size.y
+        y += height
 
         dc.DrawText(self.string_accel_z, left, y)
-        y += size.y
+        y += height
 
         dc.DrawText(self.string_ang_rate_x, left, y)
-        y += size.y
+        y += height
 
         dc.DrawText(self.string_ang_rate_y, left, y)
-        y += size.y
+        y += height
 
         dc.DrawText(self.string_ang_rate_z, left, y)
-        y += size.y
+        y += height
 
         dc.DrawText(self.string_timer, left, y)
-        y += size.y
+        y += height
 
 
 class Wheel_RPM_View(wx.Panel):

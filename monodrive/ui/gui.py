@@ -552,65 +552,143 @@ class RoadMap_View(wx.Panel):
         self.Refresh()
 
 
-class GPS_View(wx.Panel):
+class GPS_View(BufferedWindow):
     def __init__(self, parent, *args, **kwargs):
-        wx.Panel.__init__(self, parent, *args, **kwargs)
+        self.string_lat = ""
+        self.string_lng = ""
+        self.string_time = ""
+        self.font = wx.Font(wx.FontInfo(9).Family(wx.FONTFAMILY_SWISS))
+        BufferedWindow.__init__(self, parent, *args, **kwargs)
+        self.SetMinSize(wx.Size(100, 16*3))
         self.SetBackgroundColour(INNER_PANEL_COLOR)
+        self.UpdateDrawing()
 
-        self.string_lat = wx.StaticText(self, label="")
-        self.string_lng = wx.StaticText(self, label="")
-        self.string_time = wx.StaticText(self, label="", style=wx.ELLIPSIZE_END)
-
-        self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.sizer.Add(self.string_lat, 1, wx.HORIZONTAL | wx.EXPAND | wx.ALIGN_CENTER_VERTICAL)
-        self.sizer.Add(self.string_lng, 1, wx.HORIZONTAL | wx.EXPAND | wx.ALIGN_CENTER_VERTICAL)
-        self.sizer.Add(self.string_time, 1, wx.HORIZONTAL | wx.EXPAND | wx.ALIGN_CENTER_VERTICAL)
-        self.SetSizerAndFit(self.sizer)
+        # self.string_lat = wx.StaticText(self, label="")
+        # self.string_lng = wx.StaticText(self, label="")
+        # self.string_time = wx.StaticText(self, label="", style=wx.ELLIPSIZE_END)
+        #
+        # self.sizer = wx.BoxSizer(wx.VERTICAL)
+        # self.sizer.Add(self.string_lat, 1, wx.HORIZONTAL | wx.EXPAND | wx.ALIGN_CENTER_VERTICAL)
+        # self.sizer.Add(self.string_lng, 1, wx.HORIZONTAL | wx.EXPAND | wx.ALIGN_CENTER_VERTICAL)
+        # self.sizer.Add(self.string_time, 1, wx.HORIZONTAL | wx.EXPAND | wx.ALIGN_CENTER_VERTICAL)
+        # self.SetSizerAndFit(self.sizer)
 
         pub.subscribe(self.update_view, "update_gps")
 
     def update_view(self, msg):
         #print("GPS update view:", msg)
         gps_msg = GPS_Message(msg)
-        self.string_lat.SetLabelText('LAT: {0}'.format(gps_msg.lat))
-        self.string_lng.SetLabelText('LNG: {0}'.format(gps_msg.lng))
-        self.string_time.SetLabelText('GAMETIME: {0: .2f} \tTIMESTAMP: {1}'.format(gps_msg.game_time, gps_msg.time_stamp))
+        self.string_lat = 'LAT: {0}'.format(gps_msg.lat)
+        self.string_lng = 'LNG: {0}'.format(gps_msg.lng)
+        self.string_time = 'GAMETIME: {0: .2f} \tTIMESTAMP: {1}'.format(gps_msg.game_time, gps_msg.time_stamp)
+        # self.string_lat.SetLabelText('LAT: {0}'.format(gps_msg.lat))
+        # self.string_lng.SetLabelText('LNG: {0}'.format(gps_msg.lng))
+        # self.string_time.SetLabelText('GAMETIME: {0: .2f} \tTIMESTAMP: {1}'.format(gps_msg.game_time, gps_msg.time_stamp))
+        self.UpdateDrawing()
 
+    def Draw(self, dc):
+        dc.SetBackground(wx.Brush(INNER_PANEL_COLOR))
+        dc.Clear()
 
-class IMU_View(wx.Panel):
+        dc.SetFont(self.font)
+
+        left = 2
+        y = 0
+        size = dc.GetTextExtent("X")
+
+        dc.DrawText(self.string_lat, left, y)
+        y += size.y*2
+
+        dc.DrawText(self.string_lng, left, y)
+        y += size.y*2
+
+        dc.DrawText(self.string_time, left, y)
+        y += size.y*2
+
+class IMU_View(BufferedWindow):
     def __init__(self, parent, *args, **kwargs):
-        wx.Panel.__init__(self, parent, *args, **kwargs)
+
+        self.font = wx.Font(wx.FontInfo(9).Family(wx.FONTFAMILY_SWISS))
+        self.string_accel_x = ""
+        self.string_accel_y = ""
+        self.string_accel_z = ""
+        self.string_ang_rate_x = ""
+        self.string_ang_rate_y = ""
+        self.string_ang_rate_z = ""
+        self.string_timer = ""
+        BufferedWindow.__init__(self, parent, *args, **kwargs)
+        self.SetMinSize(wx.Size(100, 16*7))
         self.SetBackgroundColour(INNER_PANEL_COLOR)
+        self.UpdateDrawing()
 
-        self.string_accel_x = wx.StaticText(self, label="")
-        self.string_accel_y = wx.StaticText(self, label="")
-        self.string_accel_z = wx.StaticText(self, label="")
-        self.string_ang_rate_x = wx.StaticText(self, label="")
-        self.string_ang_rate_y = wx.StaticText(self, label="")
-        self.string_ang_rate_z = wx.StaticText(self, label="")
-        self.string_timer = wx.StaticText(self, label="", style=wx.ELLIPSIZE_END)
-
-        self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.sizer.Add(self.string_accel_x, 1,  wx.EXPAND)
-        self.sizer.Add(self.string_accel_y, 1,  wx.EXPAND)
-        self.sizer.Add(self.string_accel_z, 1,  wx.EXPAND)
-        self.sizer.Add(self.string_ang_rate_x, 1,  wx.EXPAND)
-        self.sizer.Add(self.string_ang_rate_y, 1,  wx.EXPAND)
-        self.sizer.Add(self.string_ang_rate_z, 1,  wx.EXPAND)
-        self.sizer.Add(self.string_timer, 1, wx.HORIZONTAL | wx.EXPAND)
-        self.SetSizerAndFit(self.sizer)
+        # self.string_accel_x = wx.StaticText(self, label="")
+        # self.string_accel_y = wx.StaticText(self, label="")
+        # self.string_accel_z = wx.StaticText(self, label="")
+        # self.string_ang_rate_x = wx.StaticText(self, label="")
+        # self.string_ang_rate_y = wx.StaticText(self, label="")
+        # self.string_ang_rate_z = wx.StaticText(self, label="")
+        # self.string_timer = wx.StaticText(self, label="", style=wx.ELLIPSIZE_END)
+        #
+        # self.sizer = wx.BoxSizer(wx.VERTICAL)
+        # self.sizer.Add(self.string_accel_x, 1,  wx.EXPAND)
+        # self.sizer.Add(self.string_accel_y, 1,  wx.EXPAND)
+        # self.sizer.Add(self.string_accel_z, 1,  wx.EXPAND)
+        # self.sizer.Add(self.string_ang_rate_x, 1,  wx.EXPAND)
+        # self.sizer.Add(self.string_ang_rate_y, 1,  wx.EXPAND)
+        # self.sizer.Add(self.string_ang_rate_z, 1,  wx.EXPAND)
+        # self.sizer.Add(self.string_timer, 1, wx.HORIZONTAL | wx.EXPAND)
+        # self.SetSizerAndFit(self.sizer)
 
         pub.subscribe(self.update_view, "update_imu")
 
     def update_view(self, msg):
         imu_msg = IMU_Message(msg)
-        self.string_accel_x.SetLabelText('ACCEL_X: {0}'.format(imu_msg.string_accel_x))
-        self.string_accel_y.SetLabelText('ACCEL_Y: {0}'.format(imu_msg.string_accel_y))
-        self.string_accel_z.SetLabelText('ACCEL_Z: {0}'.format(imu_msg.string_accel_z))
-        self.string_ang_rate_x.SetLabelText('ANG RATE X: {0}'.format(imu_msg.string_ang_rate_x))
-        self.string_ang_rate_y.SetLabelText('ANG RATE Y: {0}'.format(imu_msg.string_ang_rate_y))
-        self.string_ang_rate_z.SetLabelText('ANG RATE X: {0}'.format(imu_msg.string_ang_rate_z))
-        self.string_timer.SetLabelText('GAMETIME: {0: .2f} \tTIMESTAMP: {1}'.format(imu_msg.game_time, imu_msg.time_stamp))
+        self.string_accel_x = 'ACCEL_X: {0}'.format(imu_msg.string_accel_x)
+        self.string_accel_y = 'ACCEL_Y: {0}'.format(imu_msg.string_accel_y)
+        self.string_accel_z = 'ACCEL_Z: {0}'.format(imu_msg.string_accel_z)
+        self.string_ang_rate_x = 'ANG RATE X: {0}'.format(imu_msg.string_ang_rate_x)
+        self.string_ang_rate_y = 'ANG RATE Y: {0}'.format(imu_msg.string_ang_rate_y)
+        self.string_ang_rate_z = 'ANG RATE X: {0}'.format(imu_msg.string_ang_rate_z)
+        self.string_timer = 'GAMETIME: {0: .2f} \tTIMESTAMP: {1}'.format(imu_msg.game_time, imu_msg.time_stamp)
+        # self.string_accel_x.SetLabelText('ACCEL_X: {0}'.format(imu_msg.string_accel_x))
+        # self.string_accel_y.SetLabelText('ACCEL_Y: {0}'.format(imu_msg.string_accel_y))
+        # self.string_accel_z.SetLabelText('ACCEL_Z: {0}'.format(imu_msg.string_accel_z))
+        # self.string_ang_rate_x.SetLabelText('ANG RATE X: {0}'.format(imu_msg.string_ang_rate_x))
+        # self.string_ang_rate_y.SetLabelText('ANG RATE Y: {0}'.format(imu_msg.string_ang_rate_y))
+        # self.string_ang_rate_z.SetLabelText('ANG RATE X: {0}'.format(imu_msg.string_ang_rate_z))
+        # self.string_timer.SetLabelText('GAMETIME: {0: .2f} \tTIMESTAMP: {1}'.format(imu_msg.game_time, imu_msg.time_stamp))
+        self.UpdateDrawing()
+
+    def Draw(self, dc):
+        dc.SetBackground(wx.Brush(INNER_PANEL_COLOR))
+        dc.Clear()
+
+        dc.SetFont(self.font)
+
+        left = 2
+        y = 0
+        size = dc.GetTextExtent("X")
+
+        dc.DrawText(self.string_accel_x, left, y)
+        y += size.y
+
+        dc.DrawText(self.string_accel_y, left, y)
+        y += size.y
+
+        dc.DrawText(self.string_accel_z, left, y)
+        y += size.y
+
+        dc.DrawText(self.string_ang_rate_x, left, y)
+        y += size.y
+
+        dc.DrawText(self.string_ang_rate_y, left, y)
+        y += size.y
+
+        dc.DrawText(self.string_ang_rate_z, left, y)
+        y += size.y
+
+        dc.DrawText(self.string_timer, left, y)
+        y += size.y
 
 
 class Wheel_RPM_View(wx.Panel):
@@ -866,7 +944,7 @@ class SensorPoll(Thread):
         self.sync_event = sync_event
         self.clock_mode = clock_mode
         self.fps = fps
-        self.update_gui_rate = .1
+        self.update_gui_rate = 1.0 / float(fps)
         self.start()
 
     def update_sensor_widget(self, sensor):

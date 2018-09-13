@@ -223,7 +223,7 @@ class BaseSensor(object):
     def monitor_process_state(self):
         logging.getLogger("sensor").debug("{0} thread monitor waiting for shutdown".format(self.name))
         self.stop_event.wait()
-        logging.getLogger("sensor").debug("{0} stop received - shutting down real socket".format(self.name))
+        logging.getLogger("sensor").debug("{0} stop received - shutting down socket".format(self.name))
         self.shutdown_socket()
 
     def shutdown_socket(self):
@@ -336,7 +336,7 @@ class BaseSensor(object):
         
         res = simulator.stop_sensor_command(self.type, self.port_number, self.sensor_id,
                                             self.packet_size, self.drop_frames)
-        logging.getLogger("sensor").info("***{0}".format(self.name))                                    
+        logging.getLogger("sensor").info("{0} stop stream requested".format(self.name))
         return res
 
     def get_transform(self):

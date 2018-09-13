@@ -49,7 +49,6 @@ class BufferedWindow(wx.Window):
         # the same size as the Window
         #Size  = self.GetClientSizeTuple()
         Size = self.ClientSize
-        #print("camera OnSize(%s,%s)" % (Size.x, Size.y))
 
         # Make new offscreen bitmap: this bitmap will always have the
         # current drawing in it, so it can be used to save the image to

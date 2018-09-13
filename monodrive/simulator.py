@@ -152,6 +152,7 @@ class Simulator(object):
         return response
 
     def setup_logger(self):
+        logging.basicConfig(filename="client_logs.log", level=logging.DEBUG)
         # Get the formatter to capitalize the logger name
         simple_formatter = MyFormatter("%(name)s-%(levelname)s: %(message)s")
         # detailed_formatter = MyFormatter("%(asctime)s %(name)s-%(levelname)s:[%(process)d]:  - %(message)s")

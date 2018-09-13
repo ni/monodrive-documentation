@@ -4,6 +4,7 @@ __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
+import logging
 import numpy as np
 import struct
 from multiprocessing import Value
@@ -54,15 +55,15 @@ class Waypoint(BaseSensor):
 
     def get_message(self, block=True, timeout = None):
         data = super(Waypoint, self).get_message(block=block, timeout=timeout)
-        if self.update_command_sent is True:
-            n1 = self.get_waypoints_for_current_lane()[0]
-            try:
-                p1 = self.previous_points[0]
-            except:
-                print("Waypoint Sensor is not working")
-                p1 = None
-            if not np.array_equal(n1, p1):
-                self.update_command_sent.value = False
+        # if self.update_command_sent is True:
+        #     n1 = self.get_waypoints_for_current_lane()[0]
+        #     try:
+        #         p1 = self.previous_points[0]
+        #     except Exception as e:
+        #         logging.getLogger("sensor").debug("unexpected exception in Waypoint Sensor: {0}".format(str(e)))
+        #         p1 = None
+        #     if not np.array_equal(n1, p1):
+        #         self.update_command_sent.value = False
 
         return data
 

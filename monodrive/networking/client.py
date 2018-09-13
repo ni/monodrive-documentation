@@ -52,7 +52,7 @@ class BaseClient(object):
                 self.b_socket_connnected = True
                 self.receiving_thread.start()
                 #self.sock = s
-                # logging.getLogger("network").info("connected to %s" % self.endpoint)
+                # logging.getLogger("network").debug("connected to %s" % self.endpoint)
             except Exception as e:
                 # logging.getLogger("network").error(
                 #     'Can not connect to {0} \n Is your game running? \n Error {1}'.format(str(self.endpoint), e))

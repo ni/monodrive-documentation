@@ -92,7 +92,7 @@
       "point_delta": 100.0
     },
     "gui":{
-      "fps": 4.0
+      "fps": 10.0
     },
     "logger": {
       "sensor": "debug",

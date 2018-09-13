@@ -188,7 +188,7 @@
         "yaw":0.0,
         "roll":0.0
       },
-      "fps": 10.0
+      "fps": 5.0
     },
     {
       "type": "RPM",
@@ -207,7 +207,7 @@
         "yaw": 0,
         "roll": 0
       },
-      "fps": 1,
+      "fps": 5,
       "wheel_number": 0
     }
   ]

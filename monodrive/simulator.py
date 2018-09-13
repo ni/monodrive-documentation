@@ -150,7 +150,8 @@ class Simulator(object):
         u_sensor_type = u"{}".format(sensor_type)
         response = self.request(
             messaging.StreamDataCommand(u_sensor_type, sensor_id, self.configuration.client_ip,
-                                    display_port, u'tcp', 1, packet_size=packet_size, dropFrames=drop_frames))
+                                    display_port, u'tcp', 1, packet_size=packet_size, dropFrames=drop_frames),
+            timeout=2)
 
         return response
 
@@ -164,7 +165,7 @@ class Simulator(object):
             logger = logging.getLogger(category)
             logger.setLevel(level)
 
-            file_handler = logging.handlers.RotatingFileHandler('client_logs.log', maxBytes=100000, backupCount=5)
+            file_handler = logging.handlers.RotatingFileHandler('client_logs.log', mode="w")
             file_handler.setLevel(level)
             file_handler.setFormatter(simple_formatter)
 

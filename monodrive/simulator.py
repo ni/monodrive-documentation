@@ -165,7 +165,7 @@ class Simulator(object):
             logger = logging.getLogger(category)
             logger.setLevel(level)
 
-            file_handler = logging.handlers.RotatingFileHandler('client_logs.log', maxBytes=100000, backupCount=5)
+            file_handler = logging.handlers.RotatingFileHandler('client_logs.log', mode="w")
             file_handler.setLevel(level)
             file_handler.setFormatter(simple_formatter)
 

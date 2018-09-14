@@ -26,7 +26,7 @@ class InterruptHelper:
         signal.signal(signal.SIGTERM, self.on_shutdown)
 
     def on_shutdown(self, signum, frame):
-        print("Kill signal received(%s)" % signum)
+        #print("Kill signal received(%s)" % signum)
         self.stop_event.set()
 
     #  this will check both the app event and the kill signal and return true if either signal is set

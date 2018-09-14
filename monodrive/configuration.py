@@ -104,11 +104,11 @@ class VehicleConfiguration(Configuration):
         for sensor in self.sensor_configuration:
             if sensor['type'] not in self.available_sensor_classes:
                 _m = 'Sensor Type: {0}'.format(sensor['type'])
-                print('m', sensor, self.available_sensor_classes)
+                #print('m', sensor, self.available_sensor_classes)
                 _suggestions = [cls.__name__ for cls in self.available_sensor_classes
                                 if sensor['type'] in cls.__name__]
                 if len(_suggestions):
                     _m += ' Maybe you meant? {0}'.format(_suggestions)
-                print(_m)
+                #print(_m)
                 valid = False
         return valid

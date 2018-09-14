@@ -6,7 +6,6 @@ __license__ = "MIT"
 __version__ = "1.0"
 
 import argparse
-import json
 import logging
 import math
 import signal
@@ -172,8 +171,12 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
         sensor.socket_ready_event.wait()
 
     #msg = messaging.EgoControlCommand(random.randrange(-5.0, 5.0), random.randrange(-3.0, 3.0)) # drive randomly
-    msg = messaging.EgoControlCommand(2.5, 0.0) # go straight
-    for _ in range(0, 100):
+    accel = 0.5
+    accel_total = 0
+    msg = messaging.EgoControlCommand(accel, 0.0) # go straight
+
+    for _ in range(0, 60):
+        accel_total += accel
         simulator.request(msg)
         if clock_mode == ClockMode_ClientStep:
             for st in tasklist:
@@ -181,6 +184,9 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
                 st.data_received.clear()
         else:
             time.sleep(.2)
+
+    simulator.request(messaging.EgoControlCommand(-accel_total, 0.0))
+    simulator.request(messaging.EgoControlCommand(0.0, 0.0))
 
     for task in tasklist:
         task.sensor.send_stop_stream_command(simulator)
@@ -204,7 +210,7 @@ def shutdown(sig, frame):
 if __name__ == "__main__":
     signal.signal(signal.SIGINT, shutdown)
     # set up logging
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.DEBUG, format="%(name)-12s %(levelname)-8s: %(message)s")
 
     args = parser.parse_args()
 
@@ -251,9 +257,14 @@ if __name__ == "__main__":
     elif args.clock_mode == 'ClientStep':
         clock_mode = ClockMode_ClientStep
 
+    # run test
     for fps in range(10, 110, 10):
         run_test(simulator, vehicle_config, clock_mode, fps)
         time.sleep(1)
+
+    # reset vehicle and stop
+    simulator.send_vehicle_configuration(vehicle_config)
+    simulator.stop()
 
 
 

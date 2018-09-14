@@ -1,5 +1,4 @@
 from __future__ import print_function
-from matplotlib import pyplot as plt
 
 import matplotlib
 matplotlib.use('TkAgg')
@@ -7,13 +6,6 @@ from copy import deepcopy
 import numpy as np
 import numpy.fft as fftpack
 import pyfftw
-#try:
-#    import scipy.io as scipyio
-#except:
-#    scipyio = None
-
-import math
-import time
 
 try:
     import matlab.engine
@@ -24,7 +16,6 @@ from monodrive.sensors.radar_processing import RadarProcessing as rp
 
 class BaseRadarMethod:
     def __init__(self, config, ncores):
-        #self.N = config['num_samples_per_sweep']
         C = 3e8
         Tm = config['sweep_num_for_range_max']* 2 * config['range_max']/ C
         self.N = int(round(config['fs'] * Tm))
@@ -76,7 +67,6 @@ class BaseRadarMethod:
 
         self.My_aoa = []
         self.range_aoa = []
-        #self.My_Targets = []
         fc = 77e9
         self.lam = self.cc / fc
         Ts = 1.0 / self.fs
@@ -317,7 +307,7 @@ class RootMusicAndEsprit:
             My_cte = cte_Dop * NN # constant to convert returned values to m/s
             return My_cte * fx3
         except ValueError as e:
-            print("Doppler Process Failure: " + str(e))
+            #print("Doppler Process Failure: " + str(e))
             return []
 
     # --------AoA estimation by High resolution algorithms RootMusic or ESPRIT from Range---------------------
@@ -409,7 +399,7 @@ class RootMusicAndEsprit:
 
             return [fxR, fxV, angle, fxRCS, fxPL] # angle returned in degrees
         except ValueError as e:
-            print("AOA Process Failure: " + str(e))
+            #print("AOA Process Failure: " + str(e))
             return []
 
     # --------AoA estimation by High resolution algorithms RootMusic or ESPRIT from velocities---------------------
@@ -435,5 +425,5 @@ class RootMusicAndEsprit:
 
             return np.arcsin(-2 * fx3) / np.pi * 180 # angle returned in degrees
         except ValueError as e:
-            print("AOA Process Failure: " + str(e))
+            #print("AOA Process Failure: " + str(e))
             return []

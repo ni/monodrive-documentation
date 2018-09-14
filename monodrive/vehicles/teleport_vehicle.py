@@ -2,15 +2,10 @@ __author__ = "monoDrive"
 __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
-import logging
 
-import math
-import numpy as np
 
 from . import BaseVehicle
-from monodrive.sensors import Waypoint, GPS
 
-import pygame
 #for keyboard control
 import threading
 import time

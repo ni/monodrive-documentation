@@ -137,9 +137,9 @@ class Base_Radar(BaseSensor):
 
     def get_transmit_power(self, tx_peak_power_watts, tx_gain, tx_antenna_power_dbi):
         tx_power = np.sqrt(tx_peak_power_watts * self.db2power(tx_gain + tx_antenna_power_dbi) * 1e-3)
-        print("tx peak power watts = {0}".format(tx_peak_power_watts))
-        print("tx gain + tx antenna gain watts = {0}".format(self.db2power(tx_gain + tx_antenna_power_dbi)*1e-3))
-        print("tx_power_watts = {0}".format(tx_power))
+        #print("tx peak power watts = {0}".format(tx_peak_power_watts))
+        #print("tx gain + tx antenna gain watts = {0}".format(self.db2power(tx_gain + tx_antenna_power_dbi)*1e-3))
+        #print("tx_power_watts = {0}".format(tx_power))
         return tx_power
 
     def mag2db(self,y):
@@ -176,8 +176,8 @@ class Base_Radar(BaseSensor):
             radar_data['time_series'] = self.time_series
 
             #print("parsed radar data = {0}".format(radar_data))
-        else:
-            print("Radar Data parse frame is empty")
+        #else:
+        #    print("Radar Data parse frame is empty")
         return radar_data
 
     def build_hanning(self):
@@ -226,7 +226,7 @@ class Base_Radar(BaseSensor):
             self.process_radar_data_cube(xr)
             return True
         else:
-            print("len(s_data) != samples_per_frame")
+            #print("len(s_data) != samples_per_frame")
             pass
         
         return False
@@ -253,12 +253,12 @@ class Radar(Base_Radar):
                     #self.targets_velocity_kmh = 3.6 * self.targets_velocity
                     #print("Radar Done")
                     pass
-                else:
-                    print("AOA FAILED")
-            else:
-                print("Doppler calculation failed")
-        else: 
-            print("Compute range and index failed")
+        #         else:
+        #             print("AOA FAILED")
+        #     else:
+        #         print("Doppler calculation failed")
+        # else:
+        #     print("Compute range and index failed")
         
 
     def compute_range_and_indx(self,xr):
@@ -283,10 +283,10 @@ class Radar(Base_Radar):
         self.targets_rcs = 10*np.log10(self.targets_rx_power * (self.targets_range ** 2)*(4*np.pi)**3 / self.N_FFT **2) - 43 # dBsm
         #self.target_rcs = 10 ** ((self.targets_rx_power + 30)/10) #dBsm
         self.targets_rx_power_db = 10*np.log10(self.targets_rx_power) - 30.0 
-        print("# radar targets {0}".format(len(self.targets_range)))
-        print("# targets range {0}".format(self.targets_range))
-        print("# targets power {0}".format(self.targets_rx_power_db))
-        print("# targets rcs {0}".format(self.targets_rcs))
+        # print("# radar targets {0}".format(len(self.targets_range)))
+        # print("# targets range {0}".format(self.targets_range))
+        # print("# targets power {0}".format(self.targets_rx_power_db))
+        # print("# targets rcs {0}".format(self.targets_rcs))
         if len(self.targets_range) > 0:
             return True
         else:
@@ -316,7 +316,7 @@ class Radar(Base_Radar):
             return True
 
         except ValueError as e:
-            print("Doppler Process Failure: " + str(e))
+#            print("Doppler Process Failure: " + str(e))
             return False
 
     # --------AoA estimation by High resolution algorithms RootMusic or ESPRIT from Range---------------------
@@ -331,7 +331,7 @@ class Radar(Base_Radar):
         #z = np.transpose(xr[0, :, 0:1024])  # consider dechirped samples for Sweep 0
         z = np.transpose(xr[0, :, :])
         rx_hann_aoa = z * self.hann_matrix_aoa  # Hann windowing of dechirped samples 1375x8
-        print("hanning rx size = {0}".format(rx_hann_aoa.shape))
+#        print("hanning rx size = {0}".format(rx_hann_aoa.shape))
         kTargets = 0
         np_fft = pyfftw.interfaces.numpy_fft.fft(rx_hann_aoa, self.N_FFT, 0)
 
@@ -369,5 +369,5 @@ class Radar(Base_Radar):
             self.targets_rcs = fxRCS
             return True # angle returned in degrees
         except ValueError as e:
-            print("AOA Process Failure: " + str(e))
+#            print("AOA Process Failure: " + str(e))
             return False

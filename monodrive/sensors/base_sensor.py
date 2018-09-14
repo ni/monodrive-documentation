@@ -15,11 +15,9 @@ import logging
 import signal
 import socket
 import struct
-import sys
 import threading
 import time
 
-from multiprocessing import Queue, Process
 from monodrive.transform import Rotation, Transform, Translation
 
 BITS_PER_BYTE = 8.0
@@ -56,7 +54,6 @@ class BaseSensor(object):
         self.socket_ready_event = multiprocessing.Event()
         self.stop_event = multiprocessing.Event()
         self.process = None
-        #self.message_event = multiprocessing.Event()
 
         # tracking / error handling config
         self.drop_frames = True
@@ -85,7 +82,7 @@ class BaseSensor(object):
         try:
             data = self.q_data.get(block=block, timeout=timeout)
         except PythonQueue.Empty as e:
-            pass#logging.getLogger("sensor").warning("{0}:get_message->{1}".format(self.name, e))
+            pass
         return data
 
     def get_messages(self, block=True, timeout=None):
@@ -98,8 +95,6 @@ class BaseSensor(object):
                 # the queue is empty
         except PythonQueue.Empty:
             logging.getLogger("sensor").debug("{0} Q_EMPTY".format(self.name))
-            #msg = "EMPTY"
-            #messages.append(msg)
         return messages
 
     def get_display_message(self, block=True, timeout=None):
@@ -110,8 +105,6 @@ class BaseSensor(object):
             data = None
             self.frame_error += 1
             logging.getLogger("sensor").debug("Empty display_q({0}) after timeout {1}".format(self.name, e))
-            # if self.frame_error > self.errors_max:
-            #     print("signaling done - too many errors")
 
         return data
 
@@ -127,9 +120,6 @@ class BaseSensor(object):
                 # If `False`, the program is not blocked. `Queue.Empty` is thrown if 
                 # the queue is empty
         except PythonQueue.Empty:
-            #print("{0} Display Q_EMPTY".format(self.name))
-            # if len(messages) == 0:
-            #     messages.append("NO_DATA")
             pass
         return messages
 
@@ -233,7 +223,7 @@ class BaseSensor(object):
     def monitor_process_state(self):
         logging.getLogger("sensor").debug("{0} thread monitor waiting for shutdown".format(self.name))
         self.stop_event.wait()
-        logging.getLogger("sensor").debug("{0} stop received - shutting down real socket".format(self.name))
+        logging.getLogger("sensor").debug("{0} stop received - shutting down socket".format(self.name))
         self.shutdown_socket()
 
     def shutdown_socket(self):
@@ -273,7 +263,6 @@ class BaseSensor(object):
 
             if packet_header is not None and received == header_size:
                 length, time_stamp, game_time = struct.unpack('=IIf', packet_header)
-                # print("{0} packet received l:{1} t:{2} g:{3}".format(self.name, length, time_stamp, game_time))
                 length = length - header_size
 
                 try:
@@ -294,14 +283,12 @@ class BaseSensor(object):
         received = 0
         data = b''
 
-        # print("receiving {0} bytes on {1}".format(length, self.name))
         while received < length:
             recv_buffer = self.sock.recv(length - received)
             if recv_buffer is None or len(recv_buffer) == 0:
                 raise Exception("error reading from socket")
             data += recv_buffer
             received += len(recv_buffer)
-            # print(self.name + " recv'd:" + str(received))
 
         return received, data
 
@@ -314,15 +301,8 @@ class BaseSensor(object):
     # Override to manipulate data, see Waypoint and BoundingBox for example
     # Radar and Camera don't need to manipulate the data
     def digest_frame(self, frame, time_stamp, game_time):
-        # print("digest_frame for {:>16} ts={:>10} gt={:>10}".format(self.name, time_stamp, game_time))
-        # if "SHUTDOWN" in frame:
-        #     self.q_data.put("SHUTDOWN")
-        #     self.q_display.put("SHUTDOWN")
-        #     return
-
         self.frame_count += 1
-        # self.last_game_time.value = game_time
-        # self.log_control_time(self.name, self.last_control_real_time.value)
+
         if hasattr(self, 'parse_frame'):
             frame = self.parse_frame(frame, time_stamp, game_time)
 
@@ -336,23 +316,6 @@ class BaseSensor(object):
             self.q_display.get()
         self.q_display.put(frame)
         
-        # if not self.display_process or not self.synchronized_display:
-        # self.message_event.set()
-
-    # def digest_frame_w_pipe(self, frame, time_stamp, game_time):
-    #     print("digest_frame for {:>16} ts={:>10} gt={:>10}".format(self.name, time_stamp, game_time))
-    #
-    #     self.frame_count += 1
-    #     if hasattr(self, 'parse_frame'):
-    #         frame = self.parse_frame(frame, time_stamp, game_time)
-    #     self.tx_pipe.send(frame)
-    #     self.message_event.set()
-
-    def start_logging(self):
-        # self.logging_thread = threading.Thread(target=self._display_logging)
-        # self.logging_thread.start()
-        pass
-
     def send_start_stream_command(self, simulator):
         res = None
         if not self.stop_event.is_set():
@@ -373,7 +336,7 @@ class BaseSensor(object):
         
         res = simulator.stop_sensor_command(self.type, self.port_number, self.sensor_id,
                                             self.packet_size, self.drop_frames)
-        logging.getLogger("sensor").info("***{0}".format(self.name))                                    
+        logging.getLogger("sensor").info("{0} stop stream requested".format(self.name))
         return res
 
     def get_transform(self):
@@ -424,16 +387,3 @@ class BaseSensor(object):
         return '{0}_{1}'.format(self.__class__.__name__, self.port_number)
 
 
-'''class BaseSensorPacketized(BaseSensor):
-    def __init__(self, idx, config, simulator_config, **kwargs):
-        super(BaseSensorPacketized, self).__init__(idx=idx, config=config, simulator_config=simulator_config, **kwargs)
-        self.q_network = Queue()
-        
-    def digest_packet(self, packet, time_stamp, game_time):
-        super(BaseSensorPacketized, self).digest_packet(packet, time_stamp, game_time)
-
-    def get_message(self, timeout=1, block=True):
-        return super(BaseSensorPacketized, self)..get_message()
-
-    def get_display_message(self, timeout=1, block=True):
-        return super(BaseSensorPacketized, self)..get_message()'''

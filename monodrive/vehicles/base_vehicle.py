@@ -1,5 +1,4 @@
 import logging
-import math
 import time
 import threading
 try:
@@ -130,7 +129,6 @@ class BaseVehicle(object):
         return _processes
 
     def start(self):
-        print("start processes")
         [p.start() for p in self.get_process_list()]
 
         logging.getLogger("vehicle").debug("start streaming sensors")

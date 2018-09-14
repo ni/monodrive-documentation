@@ -6,6 +6,7 @@ __version__ = "1.0"
 
 from copy import deepcopy
 import cv2
+import logging
 import numpy as np
 import struct
 import time
@@ -30,7 +31,7 @@ def timerfunc(func):
         end = time.time()
         runtime = end - start
         msg = "The runtime for {func} took {time} seconds to complete"
-        print(msg.format(func=func.__name__,
+        logging.getLogger().debug(msg.format(func=func.__name__,
                          time=runtime))
         return value
 
@@ -131,7 +132,6 @@ class Packetizer(object):
         self.image_threader = None
         self.frame_ready = False
         self.digest_frame_callback = None
-        #self.log_timestamp_callback = None
         self.should_patch_frame = False
 
         self.game_time = 0
@@ -171,9 +171,8 @@ class Packetizer(object):
             self.img_channels, self.time_stamp, self.game_time, self.payload_size, \
             self.packet_payload, self.header_size = list(struct.unpack(fmt_string, data[8:36]))
             self.expected_packet_count = -1
-            #print('header', self.sequence_id, self.width, self.height, self.calculated_image_size, self.payload_size)
             if self.calculated_image_size != self.payload_size:
-                print("Received image Size does not match requested size: {0},{1},{2},{3},{4},{5}".format(
+                logging.getLogger("packetizer").error("Received image Size does not match requested size: {0},{1},{2},{3},{4},{5}".format(
                     self.calculated_image_size, self.payload_size, self.width, self.height, self.img_channels, self.delegate.name))
         else:
             self.sequence_id, self.packet_payload, self.header_size = list(struct.unpack("!HHH", data[0:6]))
@@ -194,7 +193,6 @@ class Packetizer(object):
         # additional processing for start frame
         if start:
             self.frame_count += 1
-            # print("gametime prev:{0} cur:{1} diff:{2}".format(prev_game_time, self.game_time, game_time_dif))
             #if self.delegate.log_timestamp_callback is not None:
             #    self.delegate.log_timestamp_delegate(self.time_stamp, self.game_time)
 
@@ -206,8 +204,6 @@ class Packetizer(object):
         self.frame_error()
 
     def frame_complete(self):
-        # print("frame_complete: {0} len:{1}".format(self.delegate.name, len(self.buffer.image)))
-        #print("packets: ", self.packet_count, "expected: ", self.expected_packet_count)
         self.prev_frame = deepcopy(self.buffer)
         self.send_digest_frame(self.buffer.image)
         self.packet_count = 0
@@ -215,7 +211,7 @@ class Packetizer(object):
             self.buffer = IntegerKeyBuffer()
 
     def frame_error(self):
-        print("error: {0} did not receive complete frame. received:{1} expected:{2}".format(
+        logging.getLogger("packetizer").error("error: {0} did not receive complete frame. received:{1} expected:{2}".format(
             self.delegate.name, self.packet_count, self.get_expected_packet_count()))
         # todo - we need to check the clock mode - if we're blocking for client controlled stepping
         # todo - we need to signal the sensor that this frame did not complete
@@ -229,19 +225,17 @@ class Packetizer(object):
             idx = 0
             while idx < self.get_expected_packet_count():
                 if idx not in self.buffer:
-                    # print("missing packet seq: ", idx)
                     # experimental - replace missing image frames with black pixels
                     if self.should_patch_frame:
                         self.buffer[idx] = bytearray(self.packet_size - self.header_size)
                 idx += 1
 
             if self.should_patch_frame:
-                # print("sending patched image: p:{0} l:{1}".format(len(self.buffer), len(self.buffer.image)))
                 self.send_digest_frame(self.buffer.image)
             elif self.prev_frame is not None:
                 self.send_digest_frame(self.prev_frame.image)
             else:
-                print("error first frame had error - no previous frame to send")
+                logging.getLogger("packetizer").error("error first frame had error - no previous frame to send")
 
         self.packet_count = 0
         if not self.should_patch_frame:

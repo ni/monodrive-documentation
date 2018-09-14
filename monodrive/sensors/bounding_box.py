@@ -25,7 +25,6 @@ def create_point(distance, degrees):
 class BoundingBox(BaseSensor):
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(BoundingBox, self).__init__(idx=idx, config=config, simulator_config=simulator_config, **kwargs)
-        #self.plot = None
         self.patches = []
         self.distances = None
         self.angles = None
@@ -38,7 +37,6 @@ class BoundingBox(BaseSensor):
 
     @classmethod
     def parse_frame(cls, frame, time_stamp, game_time):
-        # frame = frame[0]
         fmt = '=hi'
         cur_frame_start = 0
         cur_frame_end = 6
@@ -119,58 +117,5 @@ class BoundingBox(BaseSensor):
         }
         return data_dict
 
-    '''def initialize_views(self):
-        self.view_lock.acquire()
-        super(BoundingBox, self).initialize_views()
-        self.main_plot.set_size_inches(3.0,2.0)
-        self.map_subplot = self.main_plot.add_subplot(111)
-#        self.display(x_points, y_points, x_bounds, y_bounds, box_rotations)
-        self.map_subplot.set_xlim(-80, 80)
-        self.map_subplot.set_ylim(-80, 80)
-        self.map_subplot.set_title("Vehicle Targets (birds eye)")
-        self.map_subplot.set_xlabel('Range X (m)')
-        self.map_subplot.set_ylabel('Range Y (m)')
-        self.map_subplot.add_patch(patches.Rectangle((-1.0, -2.0), 2.0, 4.0, color='r'))
-        self.view_lock.release()
-
-    def display(self, x_points, y_points, x_bounds, y_bounds, box_rotations):
-        for patch in self.patches:
-            patch.remove()
-        self.patches = []
-
-        if len(x_points) == 0:
-            #plt.pause(.001)
-            return
-
-        for i in range(0, len(x_points)):
-            p = self.map_subplot.add_patch(patches.Rectangle((x_points[i], y_points[i]), x_bounds[i], y_bounds[i],
-                                                             angle=box_rotations[i], color='b',fill=False))
-            self.patches.append(p)
-        #plt.pause(.001)
-
-    def update_views(self, frame):
-        if SHOW_MAP:
-            self.view_lock.acquire()
-            self.display(self.x_points, self.y_points, self.x_bounds, self.y_bounds, self.box_rotations)
-            self.view_lock.release()
-            return self.map_subplot
-        return None
-
-    def process_display_data(self):
-        data = self.q_display.get()
-        if "SHUTDOWN" in data:
-            self.q_data.put("SHUTDOWN")
-            self.q_display.put("SHUTDOWN")
-        return
-
-        
-        self.view_lock.acquire()
-        self.x_points = data['x_points']
-        self.y_points = data['y_points']
-        self.x_bounds = data['x_bounds']
-        self.y_bounds = data['y_bounds']
-        self.box_rotations = data['box_rotations']
-        self.view_lock.release()
-        self.update_sensors_got_data_count()'''
 
 

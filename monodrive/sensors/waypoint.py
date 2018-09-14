@@ -4,13 +4,12 @@ __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
+import logging
 import numpy as np
 import struct
-import math
 from multiprocessing import Value
 
 from . import BaseSensor
-from monodrive.networking import messaging
 
 
 class Waypoint(BaseSensor):
@@ -54,36 +53,19 @@ class Waypoint(BaseSensor):
         }
         return data_dict
 
-    def get_message(self, timeout = None):
-        data = super(Waypoint, self).get_message(timeout = timeout)
-        if self.update_command_sent is True:
-            n1 = self.get_waypoints_for_current_lane()[0]
-            try:
-                p1 = self.previous_points[0]
-            except:
-                print("Waypoint Sensor is not working")
-                p1 = None
-            if not np.array_equal(n1, p1):
-                self.update_command_sent.value = False
+    def get_message(self, block=True, timeout = None):
+        data = super(Waypoint, self).get_message(block=block, timeout=timeout)
+        # if self.update_command_sent is True:
+        #     n1 = self.get_waypoints_for_current_lane()[0]
+        #     try:
+        #         p1 = self.previous_points[0]
+        #     except Exception as e:
+        #         logging.getLogger("sensor").debug("unexpected exception in Waypoint Sensor: {0}".format(str(e)))
+        #         p1 = None
+        #     if not np.array_equal(n1, p1):
+        #         self.update_command_sent.value = False
 
         return data
-
-    '''def process_display_data(self):
-
-        msg = self.q_data.get()
-
-        self.view_lock.acquire()
-        points_by_lane = msg['points_by_lane']
-        x_combined = []
-        y_combined = []
-        for points in points_by_lane:
-            x_combined = np.append(x_combined, points[:, 0])
-            y_combined = np.append(y_combined, points[:, 1])
-
-        self.xy_combined = np.column_stack((x_combined, y_combined))
-
-        self.view_lock.release()
-        self.update_sensors_got_data_count()'''
 
 
     '''def update_tracking_index(self, tracking_point_index, ego_lane):

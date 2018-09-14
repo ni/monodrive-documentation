@@ -7,14 +7,13 @@ from __future__ import print_function
 import numpy as np
 import cv2
 import os
-import time, threading, sys, traceback
+import threading, sys, traceback
 
 
 class Object3d(object):
     ''' 3d object label '''
 
     def __init__(self, h, w, l, x, y, z, ry):
-        print("Object3D(" + str(h) + ", " + str(w) + ", " + str(l) + ", " + str(x) + ", " + str(y) + ", " + str(z) + ", " + str(ry)+ ")")
         self.h = h
         self.w = w
         self.l = l
@@ -309,7 +308,7 @@ def compute_box_3d(obj, P):
 
     # project the 3d bounding box into the image plane
     corners_2d = project_to_image(np.transpose(corners_3d), P);
-    print('corners_2d: ', corners_2d)
+    #print('corners_2d: ', corners_2d)
     return corners_2d, np.transpose(corners_3d)
 
 

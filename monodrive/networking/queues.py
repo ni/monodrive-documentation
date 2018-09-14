@@ -12,7 +12,6 @@ except:
 import time
 import multiprocessing as mp
 from multiprocessing.queues import Queue as sq
-import os
 import sys
 
 

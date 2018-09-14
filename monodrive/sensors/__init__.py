@@ -6,7 +6,7 @@ __version__ = "1.0"
 
 
 
-from .base_sensor import BaseSensor#, BaseSensorPacketized
+from .base_sensor import BaseSensor
 from .camera import Camera, MultiCamera
 from .imu import IMU
 from .lidar import Lidar

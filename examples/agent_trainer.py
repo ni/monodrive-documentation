@@ -1,21 +1,19 @@
 #!/usr/bin/env python
+from __future__ import print_function
 
 __author__ = "monoDrive"
 __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
-from __future__ import print_function
-import os
 import math
 import numpy as np
 import pickle
 import cv2
 import sys, traceback
 
-from monodrive import Configuration, SensorManager, SimulatorConfiguration, VehicleConfiguration, Simulator
-from monodrive.vehicles import MDVehicle
-from monodrive.constants import BASE_PATH
+from monodrive import Configuration, Simulator, SimulatorConfiguration, VehicleConfiguration
+from monodrive.vehicles import SimpleVehicle
 
 
 class SimpleNeuralNetwork(object):
@@ -237,7 +235,7 @@ class SimpleNeuralNetwork(object):
         self.prev_x = np.zeros(self.dimensionality)
 
 
-class TrainingVehicle(MDVehicle):
+class TrainingVehicle(SimpleVehicle):
     def __init__(self, simulator_config, vehicle_config, agent_config, brain):
         super(TrainingVehicle, self).__init__(simulator_config, vehicle_config)
         self.simulator_config = simulator_config
@@ -278,11 +276,11 @@ class TrainingVehicle(MDVehicle):
 
             while not done:
                 if self.config["render"]:
-                    self.render()
+                    self.render(observation)
 
                 h, accel, steer, dError = self.brain.perceive_and_decide(observation)
                 # print("--> %d, %f %f" % (action, accel, steer))
-                observation, rewards, done = self.step(accel, steer)
+                observation, rewards, done = self.step({'forward': accel, 'right': steer})
                 reward = 0.0
                 for r in rewards:
                     reward = reward + float(r)
@@ -304,12 +302,10 @@ class TrainingVehicle(MDVehicle):
         finally:
             print("exit!")
 
-    def step(self, accel, steer):
-        self.vehicle_controller.send_control_data({'forward': accel, 'right': steer})
+    def step(self, control_data):
+        super(TrainingVehicle, self).step(control_data)
 
-        self.all_sensors_ready.wait()
         control_data = super(TrainingVehicle, self).drive(self.sensors)
-        self.all_sensors_ready.clear()
 
         observation = None
         for sensor in self.sensors:
@@ -325,6 +321,7 @@ class TrainingVehicle(MDVehicle):
         return observation, [reward], done
 
     def score(self, control_data):
+        control_data = self.get_lane_offset_and_speed()
         print('offset: ', control_data['offset'])
         reward = -math.fabs(control_data['offset']) - math.fabs(control_data['speed_limit'] - control_data['speed'])
 
@@ -333,10 +330,23 @@ class TrainingVehicle(MDVehicle):
         print(reward, done)
         return reward, done
 
+    def get_lane_offset_and_speed(self):
+        offset = 0
+        speed_limit = 0
+        speed = self.velocity
+        if self.waypoint_msg:
+            speed_limit = self.waypoint_msg.speed_limit_by_lane[self.waypoint_msg.lane_number]
+
+        return {
+            'offset': offset,
+            'speed_limit': speed_limit,
+            'speed': speed,
+            'restart': False
+        }
 
 if __name__ == "__main__":
     simulator_config = SimulatorConfiguration('simulator.json')
-    vehicle_config = VehicleConfiguration('training.json')
+    vehicle_config = VehicleConfiguration('test.json')
     agent_config = Configuration('../examples/agent_trainer_config.json')
 
     dim = int(agent_config.configuration["image_width"] / agent_config.configuration["down_sample"] * \
@@ -350,16 +360,22 @@ if __name__ == "__main__":
                                 learning_rate=agent_config.configuration['learning_rate'],
                                 resume=agent_config.configuration['resume'])
 
+    simulator = Simulator(simulator_config)
+    simulator.send_configuration()
+
     cycles = 0
     while cycles < agent_config.configuration['training_cycles']:
         # Create vehicle process
-        vehicle_process = TrainingVehicle(simulator_config, vehicle_config, agent_config, brain)
+        vehicle_process = TrainingVehicle(simulator, vehicle_config, agent_config, brain)
+
+        simulator.restart_event.clear()
+        simulator.send_vehicle_configuration(vehicle_config)
 
         # Start the Vehicle process
         vehicle_process.start()
 
         # Waits for the restart event to be set in the control process
-        vehicle_process.restart_event.wait()
+        simulator.restart_event.wait()
 
         # Terminates control process
         vehicle_process.stop()

@@ -37,7 +37,6 @@ class Simulator(object):
         # Send both simulator configuration and scenario
         # self.send_configuration(self.configuration)
         self.send_scenario(scenario)
-        #print('Received Response From Sending Scenario')
 
         # Get Ego vehicle configuration from scenario, use that to create vehicle process
         vehicle_configuration = scenario.ego_vehicle_config
@@ -51,7 +50,6 @@ class Simulator(object):
         # Create vehicle process form received class
         self.map_data = self.request_map()
         if not self.map_data:
-            #print(self.map_data)
             logging.getLogger("simulator").error("failed to get map")
             return None
 
@@ -80,7 +78,6 @@ class Simulator(object):
     def kill_process_tree(self, pid, including_parent=True):
         parent = psutil.Process(pid)
         for child in parent.children(recursive=True):
-            #print("kill monodrive child {0}".format(child))
             child.kill()
 
         if including_parent:
@@ -113,8 +110,8 @@ class Simulator(object):
         if vehicle_response is None:
             logging.getLogger("network").error('Failed to send the vehicle configuration')
 
-        else:
-            logging.getLogger("simulator").debug('{0}'.format(vehicle_response))
+        #else:
+        #    logging.getLogger("simulator").debug('{0}'.format(vehicle_response))
         return vehicle_response
 
     def send_configuration(self):
@@ -124,8 +121,8 @@ class Simulator(object):
         if simulator_response is None:
             logging.getLogger("network").error('Failed to send the simulator configuration')
 
-        else:
-            logging.getLogger("simulator").debug('{0}'.format(simulator_response))
+        #else:
+        #    logging.getLogger("simulator").debug('{0}'.format(simulator_response))
 
     def send_scenario_init(self, scen):
         init = scen.init_scene_json
@@ -156,8 +153,9 @@ class Simulator(object):
         return response
 
     def setup_logger(self):
+        logging.basicConfig(filename="client_logs.log", level=logging.DEBUG, format="%(name)-12s %(levelname)-8s: %(message)s")
         # Get the formatter to capitalize the logger name
-        simple_formatter = MyFormatter("%(name)s-%(levelname)s: %(message)s")
+        simple_formatter = MyFormatter("%(name)-12s %(levelname)-8s: %(message)s")
         # detailed_formatter = MyFormatter("%(asctime)s %(name)s-%(levelname)s:[%(process)d]:  - %(message)s")
 
         for category, level in self.configuration.logger_settings.items():

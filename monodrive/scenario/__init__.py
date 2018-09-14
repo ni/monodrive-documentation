@@ -1,3 +1,4 @@
+import logging
 import os
 
 from monodrive.constants import BASE_PATH
@@ -35,8 +36,7 @@ class ScenarioManager:
         try:
             ready = res.data["ready"]
         except Exception as e:
-            print("error parsing response\n")
-            print(e)
+            logging.getLogger("scenario").error("error parsing response: {0}".format(str(e)))
 
         return ready
 

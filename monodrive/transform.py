@@ -14,12 +14,6 @@ except ImportError:
     raise RuntimeError(
         'cannot import numpy, make sure numpy package is installed.')
 
-'''try:
-    from . import monodrive_server_pb2 as monodrive_protocol
-except ImportError:
-    raise RuntimeError('cannot import "monodrive_server_pb2.py", run '
-                       'the protobuf compiler to generate this file')
-'''
 
 Translation = namedtuple('Translation', 'x y z')
 Translation.__new__.__defaults__ = (0.0, 0.0, 0.0)

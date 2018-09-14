@@ -5,6 +5,7 @@ __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
+import logging
 import wx
 import wx.lib.mixins.inspection
 from wx.lib.pubsub import pub
@@ -17,8 +18,6 @@ try:
     import cPickle as pickle
 except:
     import _pickle as pickle
-#import matplotlib
-#from matplotlib import pyplot as plt
 
 #For image getting
 from os import path
@@ -28,7 +27,6 @@ filepath = path.abspath(path.join(basepath, "Capture.png"))
 import numpy as np
 from PIL import Image
 import cv2
-#f = open(filepath, "r")
 
 import multiprocessing
 from threading import Thread
@@ -113,8 +111,6 @@ class Bounding_Polar_Plot(wx.Panel):
             self.update_plot(self.targets)
             self.string_time.SetLabelText('GAMETIME: {0: .2f} \tTIMESTAMP: {1}'.
                                           format(self.targets.game_time, self.targets.time_stamp))
-        else:
-            print("empty target list")
 
     def update_plot(self, targets):
         if len(targets.radar_distances) > 0:
@@ -125,8 +121,6 @@ class Bounding_Polar_Plot(wx.Panel):
     def set_data(self, targets):
         r = targets.radar_distances
         theta = -np.radians(targets.radar_angles)
-        #print("bounding_box distance = {0}".format(r))
-        #print("bounding_box theta = {0}".format(theta))
         #rcs = targets.angles
         #speed = targets.velocities/100
         #there seems to be a bug in the new polar plot library, set_offsets is not working
@@ -174,7 +168,6 @@ class Radar_FFT_Plot(wx.Panel):
 
     def update_range_fft_plot(self, range_fft, target_range_idx):
         x = range(len(range_fft)/4)
-        #print(target_range_idx)
         #if self.range_fft_subplot_handle == None:
         self.range_fft_subplot.cla()
         self.range_fft_subplot.set_title('Range by FFT (psd dBm)')
@@ -190,7 +183,6 @@ class Radar_FFT_Plot(wx.Panel):
         #fft_power_min = min(psdx_db)
         self.range_fft_subplot.set_ylim([-110, -40])
         self.range_fft_subplot_handle = self.range_fft_subplot.plot(freq[0:len(x)], psdx_dbm[0:len(x)])[0]
-        #print target_range_idx
         peaks = target_range_idx * Fs/len(x)/8
         self.range_fft_peaks_handle = self.range_fft_subplot.scatter(peaks, psdx_dbm[target_range_idx], color='red')
         #self.range_fft_subplot_handle.set_xdata(x)
@@ -341,9 +333,6 @@ class Radar_Polar_Plot(wx.Panel):
                 self.string_time_bb.SetLabelText('BB    GAMETIME: {0: .2f} \tTIMESTAMP: {1}'.
                                           format(self.targets_bounding_box.game_time,
                                                  self.targets_bounding_box.time_stamp))
-            #self.update_plot(self.targets)
-        else:
-            print("empty bounding target list")
 
     def update_view(self, msg):
         if msg:
@@ -351,8 +340,6 @@ class Radar_Polar_Plot(wx.Panel):
             self.update_plot(self.targets)
             self.string_time_radar.SetLabelText('Radar GAMETIME: {0: .2f} \tTIMESTAMP: {1}'.
                                           format(self.targets.game_time, self.targets.time_stamp))
-        else:
-            print("empty target list")
 
     def update_plot(self, targets):
         if len(targets.ranges) > 0:
@@ -419,8 +406,6 @@ class Radar_Target_Table(wx.Panel):
         if msg:
             self.targets = Radar_Message(msg)
             self.update_plot(self.targets)
-        else:
-            print("empty target list")
 
     def update_plot(self,targets):
         if self.target_table_handle == None and len(targets.ranges) > 0:
@@ -576,7 +561,6 @@ class GPS_View(BufferedWindow):
         pub.subscribe(self.update_view, "update_gps")
 
     def update_view(self, msg):
-        #print("GPS update view:", msg)
         gps_msg = GPS_Message(msg)
         self.string_lat = 'LAT: {:0.8f}'.format(gps_msg.lat)
         self.string_lng = 'LNG: {:0.8f}'.format(gps_msg.lng)
@@ -745,7 +729,6 @@ class Camera_View(BufferedWindow):
         if size != self.current_size:
             self.current_size = wx.Size(self.current_bitmap.GetWidth(), self.current_bitmap.GetHeight())
             self.SetMinSize(self.current_size)
-            #print("update camera view(%s,%s)" % (self.current_bitmap.GetWidth(), self.current_bitmap.GetHeight()))
 
         rect = wx.Rect((self.ClientSize.x - self.current_size.x) / 2, (self.ClientSize.y - self.current_size.y) / 2,
             self.current_size.x, self.current_size.y)
@@ -868,7 +851,6 @@ class Overview_Panel(wx.Panel):
         TextSize = self.text_row_panel.GetBestSize()
         h = (Size.y - TextSize.y - GraphHeaders) / 2
 
-        #print("OnSize(%s,%s) Text:(%s,%s) h:%s" % (Size.x, Size.y, TextSize.x, TextSize.y, h))
         min_h = min(Size.x / 3, h)
 
         self.roadmap_view.SetMinSize(wx.Size(min_h, min_h))
@@ -908,13 +890,11 @@ class MainFrame(wx.Frame):
         p.SetSizer(sizer)
 
     def shutdown(self, msg):
-        print("Frame shutting down {0}".format(msg))
         self.Close()
 
 
 #Ctrl-Alt-I, or Cmd-Alt-I on Mac for inspection app for viewing layout
 class MonoDriveGUIApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
-#class MonoDriveGUIApp(wx.App):
     def OnInit(self):
         self.Init()  # initialize the inspection tool
         self.MainWindow = MainFrame()
@@ -954,7 +934,6 @@ class SensorPoll(Thread):
         messages = sensor.get_display_messages(block=True, timeout=0.0)
         found_data = len(messages) > 0
         if found_data:
-            #print("{0} found {1} messages".format(sensor.name, len(messages)))
             message = messages.pop() #pop last message aka. most recent
             if "IMU" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_imu", msg=message)
@@ -977,14 +956,13 @@ class SensorPoll(Thread):
         wait_time = 0
         updated = False
         while not updated and not should_stop and wait_time < 2.0:
-            # if wait_time == 0:
-            #     print("Client_Mode - sensor data not available: " + sensor.name)
             should_stop = self.stop_event.wait(self.update_gui_rate)
             updated = self.update_sensor_widget(sensor)
             wait_time += self.update_gui_rate
 
         if not updated:
-            print("Client_Mode - sensor data not found(%s): %s" % (should_stop, sensor.name))
+            logging.getLogger("gui").debug("gui update skipped - sensor data not received (mode: ClockMode_ClientStep, stop_event = %s): %s"
+                                           % (should_stop, sensor.name))
         return should_stop
 
     def update_gui(self, sensor):
@@ -998,16 +976,12 @@ class SensorPoll(Thread):
     #this thread will run while application is running
     def run(self):
         while not self.stop_event.wait(self.update_gui_rate):
-            # print("GUI THREAD RUNNING")
             for sensor in self.sensors:
-                #print("GUI THREAD updating: ", sensor.name)
                 if not self.update_gui(sensor):
                     break
 
-            #     print("GUI THREAD STOPPED")
             if self.road_map:
                 wx.CallAfter(pub.sendMessage, "update_roadmap", msg=self.road_map)
-        #print("GUI THREAD NOT RUNNING")
 
     def stop(self, timeout=2):
         self.stop_event.set()
@@ -1033,9 +1007,6 @@ class GUISensor(object):
                 # If `False`, the program is not blocked. `Queue.Empty` is thrown if
                 # the queue is empty
         except Exception as e:
-            #print("{0} Display Q_EMPTY".format(self.name))
-            # if len(messages) == 0:
-            #     messages.append("NO_DATA")
             pass
         return messages
 
@@ -1061,8 +1032,8 @@ class LidarGUISensor(GUISensor):
             self.veloview_socket = s
             return s
         except Exception as e:
-            print('Can send to {0}'.format(str((VELOVIEW_PORT, VELOVIEW_PORT))))
-            print("Error {0}".format(e))
+            logging.getLogger("gui").debug('Cannot connect to {0}'.format(str((VELOVIEW_PORT, VELOVIEW_PORT))))
+            logging.getLogger("gui").debug("Error {0}".format(e))
             self.veloview_socket = None
             return None
 
@@ -1119,7 +1090,7 @@ class GUI(object):
         try:
             self.process.join(timeout=timeout)
         except Exception as e:
-            print("could not join process {0} -> {1}".format(self.name, e))
+            logging.getLogger("gui").debug("could not join process {0} -> {1}".format(self.name, e))
 
     def run(self):
 
@@ -1138,22 +1109,17 @@ class GUI(object):
 
         monitor.join(timeout=2)
 
-        print("GUI main DONE")
 
     #this will simply wait for sensor to stop running - and kill the app
     def monitor_process_state(self):
         self.stop_event.wait()
         self.sensor_polling.stop()
         self.app.Close()
-        #print("exiting monitor process")
 
 
 if __name__ == '__main__':
-    #vehicle = "vehicle"
-    #gui = GUI(vehicle)
-    print("running MonoDriveGUIApp")
     app = MonoDriveGUIApp()
     if app:
         app.MainLoop()
     else:
-        print("MonoDriveGUI app not running")
+        logging.getLogger("gui").debug("MonoDriveGUI app not running")

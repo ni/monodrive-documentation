@@ -285,7 +285,7 @@ class BaseSensor(object):
 
         while received < length:
             recv_buffer = self.sock.recv(length - received)
-            if recv_buffer is None:
+            if recv_buffer is None or len(recv_buffer) == 0:
                 raise Exception("error reading from socket")
             data += recv_buffer
             received += len(recv_buffer)

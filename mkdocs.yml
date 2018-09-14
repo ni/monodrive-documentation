@@ -1,10 +1,27 @@
 site_name: monoDrive Simulator
 repo_url: https://github.com/monodriveio/client
-docs_dir: Docs
+docs_dir: docs
 theme: readthedocs
 
 pages:
-- Home: 'README.md'
+- Home: 'index.md'
+- Installation: 'Installation.md'
+- Configuration:
+  - 'System': 'Configuration.md'
+  - 'Simulator': 'Simulator-Configuration.md'
+  - 'Vehicle': 'Vehicle-Configuration.md'
+  - 'Sensors':
+    - 'Common': 'Base-Sensor.md'
+    - 'Radar': 'Radar.md'
+    - 'Lidar': 'Lidar.md'
+    - 'Multi Camera': 'Multi-Camera.md'
+    - 'Camera': 'Camera.md'
+    - 'GPS': 'GPS.md'
+    - 'IMU': 'IMU.md'
+    - 'Waypoint': 'Waypoint.md'
+    - 'Bounding Box': 'Bounding-Box.md'
+    - 'RPM': 'RPM.md'
+- Starting the Simulator: 'Starting-Simulator.md'
 
 markdown_extensions:
   - admonition

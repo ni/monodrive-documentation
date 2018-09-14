@@ -1,0 +1,3 @@
+![monoDrive](https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png "monoDrive")
+
+The monoDrive simulator is configured from the Client. Everything about the simulator can be configured, from the material properties, to the vehicle properties, to the sensor properties. For examples on how to start the Client with custom configurations refer [here](https://github.com/monoDriveIO/client/blob/master/examples/test.py) and read more about the configurations for the [simulator](Simulator-Configuration.md), [vehicle](Vehicle-Configuration.md), and [sensors](Base-Sensor.md).

@@ -6,7 +6,6 @@ __license__ = "MIT"
 __version__ = "1.0"
 
 import argparse
-import json
 import logging
 import math
 import signal
@@ -172,7 +171,7 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
         sensor.socket_ready_event.wait()
 
     #msg = messaging.EgoControlCommand(random.randrange(-5.0, 5.0), random.randrange(-3.0, 3.0)) # drive randomly
-    accel = 1.0
+    accel = 0.5
     accel_total = 0
     msg = messaging.EgoControlCommand(accel, 0.0) # go straight
 
@@ -186,8 +185,8 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
         else:
             time.sleep(.2)
 
-    msg = messaging.EgoControlCommand(-accel_total, 0.0)
-    simulator.request(msg)
+    simulator.request(messaging.EgoControlCommand(-accel_total, 0.0))
+    simulator.request(messaging.EgoControlCommand(0.0, 0.0))
 
     for task in tasklist:
         task.sensor.send_stop_stream_command(simulator)
@@ -258,9 +257,14 @@ if __name__ == "__main__":
     elif args.clock_mode == 'ClientStep':
         clock_mode = ClockMode_ClientStep
 
-    for fps in range(60, 110, 10):
+    # run test
+    for fps in range(10, 110, 10):
         run_test(simulator, vehicle_config, clock_mode, fps)
         time.sleep(1)
+
+    # reset vehicle and stop
+    simulator.send_vehicle_configuration(vehicle_config)
+    simulator.stop()
 
 
 

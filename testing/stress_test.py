@@ -211,7 +211,7 @@ def shutdown(sig, frame):
 if __name__ == "__main__":
     signal.signal(signal.SIGINT, shutdown)
     # set up logging
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.DEBUG, format="%(name)-12s %(levelname)-8s: %(message)s")
 
     args = parser.parse_args()
 
@@ -258,7 +258,7 @@ if __name__ == "__main__":
     elif args.clock_mode == 'ClientStep':
         clock_mode = ClockMode_ClientStep
 
-    for fps in range(10, 110, 10):
+    for fps in range(60, 110, 10):
         run_test(simulator, vehicle_config, clock_mode, fps)
         time.sleep(1)
 

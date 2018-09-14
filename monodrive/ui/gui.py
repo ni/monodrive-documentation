@@ -881,7 +881,8 @@ class SensorPoll(Thread):
             wait_time += self.update_gui_rate
 
         if not updated:
-            logging.getLogger("gui").debug("Client_Mode - sensor data not found(%s): %s" % (should_stop, sensor.name))
+            logging.getLogger("gui").debug("gui update skipped - sensor data not received (mode: ClockMode_ClientStep, stop_event = %s): %s"
+                                           % (should_stop, sensor.name))
         return should_stop
 
     def update_gui(self, sensor):

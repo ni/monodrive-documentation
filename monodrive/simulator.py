@@ -152,9 +152,9 @@ class Simulator(object):
         return response
 
     def setup_logger(self):
-        logging.basicConfig(filename="client_logs.log", level=logging.DEBUG)
+        logging.basicConfig(filename="client_logs.log", level=logging.DEBUG, format="%(name)-12s %(levelname)-8s: %(message)s")
         # Get the formatter to capitalize the logger name
-        simple_formatter = MyFormatter("%(name)s-%(levelname)s: %(message)s")
+        simple_formatter = MyFormatter("%(name)-12s %(levelname)-8s: %(message)s")
         # detailed_formatter = MyFormatter("%(asctime)s %(name)s-%(levelname)s:[%(process)d]:  - %(message)s")
 
         for category, level in self.configuration.logger_settings.items():

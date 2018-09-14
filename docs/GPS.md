@@ -1,5 +1,6 @@
+## GPS Sensor
 <p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/gpssensor.PNG" width="400" height="400" />
+<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/gpssensor.PNG" />
 </p>
 
 The configuration for a GPS sensor.

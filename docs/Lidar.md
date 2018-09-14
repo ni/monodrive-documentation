@@ -1,3 +1,5 @@
+## Lidar Sensor
+
 The configuration for a LiDAR sensor that is modeled after the Velodyne LiDAR line. To view the lidar data download [VeloView](https://www.paraview.org/VeloView/). Run VeloView, click `Sensor Stream`, and select the correct configuration (16, 32, or 64). Then run the simulator and client normally when the stream data starts coming through VeloView will populate with the lidar data.
 
 <p align="center">

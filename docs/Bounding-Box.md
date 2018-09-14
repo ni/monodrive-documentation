@@ -1,5 +1,6 @@
+## Bounding Box Sensor
 <p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/boundingboxsensor.PNG" width="400" height="400" />
+<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/boundingboxsensor.PNG" width="400"  />
 </p>
 
 The configuration for a bounding box sensor.

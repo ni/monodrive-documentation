@@ -1,3 +1,5 @@
+## Camera Sensor
+
 The configuration for a camera sensor that streams camera data and renders it into a view created by the client.
 
 - `"semantic_processing": false`

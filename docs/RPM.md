@@ -28,9 +28,9 @@ The configuration for an RPM sensor.
 ```
 
 ## Output Data
-See [base sensor](Base-Sensor.md) for examples on how to get the queue that maintains the sensor's data. All data that comes from sensor queues is a dictionary.
+See [base sensor](Base-Sensor.md) for examples on how to get the sensor. All data that comes from sensor queues is a dictionary.
 
-data_rpm = rpm_q.get()
+`data_rpm = rpm.get_message()`
 
 ### Parsed RPM Data Dictionary Keys and Values.
 

@@ -1,7 +1,7 @@
 The configuration for a radar sensor that is modeled after **CELITE**
 
 <p align="center">
-<img src="https://github.com/monoDriveIO/PythonClient/blob/master/WikiPhotos/radarsensor.PNG" width="400" height="400" />
+<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/radarsensor.PNG" width="400" height="400" />
 </p>
 
 ```
@@ -68,7 +68,7 @@ The configuration for a radar sensor that is modeled after **CELITE**
 ### Output Data
 
 ```
-# See [base sensor](https://github.com/monoDriveIO/PythonClient/wiki/Base-Sensor) for examples on how to get the q.
+# See [base sensor](Base-Sensor.md) for examples on how to get the q.
 data_radar = radar_q.get()
 
 # The data in data_radar is a dictionary.

@@ -10,7 +10,7 @@
 - Clone [Client](https://github.com/monoDriveIO/Client.git).
 - Open the root directory of the repo in PyCharm.
 - Go to `File` then `Settings`.
-- Expand the `Project: PythonClient` and select `Project Interpreter`.
+- Expand the `Project: Client` and select `Project Interpreter`.
 - Click the gear icon in the upper right and select `Create VirtualEnv`.
 - Set the field
   - Name: `python35`

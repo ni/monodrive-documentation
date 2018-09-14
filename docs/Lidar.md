@@ -1,7 +1,7 @@
 The configuration for a LiDAR sensor that is modeled after the Velodyne LiDAR line. To view the lidar data download [VeloView](https://www.paraview.org/VeloView/). Run VeloView, click `Sensor Stream`, and select the correct configuration (16, 32, or 64). Then run the simulator and client normally when the stream data starts coming through VeloView will populate with the lidar data.
 
 <p align="center">
-<img src="https://github.com/monoDriveIO/PythonClient/blob/master/WikiPhotos/lidarsensor.PNG" width="400" height="400" />
+<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/lidarsensor.PNG" width="400" height="400" />
 </p>
 
 ```

@@ -1,7 +1,7 @@
 The configuration for a multi camera sensor that streams all of the cameras in the `camera_ids` array through a single UDP port into one rendered image.
 
 <p align="center">
-<img src="https://github.com/monoDriveIO/PythonClient/blob/master/WikiPhotos/multicamerasensor.PNG" width="1000" height="250" />
+<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/multicamerasensor.PNG" width="1000" height="250" />
 </p>
 
 ```
@@ -41,7 +41,7 @@ The configuration for a multi camera sensor that streams all of the cameras in t
 - **camera_ids**: An array of strings that representing the ids of the cameras that are to be streamed through the multi camera.
 
 ## Output Data
-See [base sensor](https://github.com/monoDriveIO/PythonClient/wiki/Base-Sensor) for examples on how to get the queue that maintains the sensor's data. All data that comes from sensor queues is a dictionary.
+See [base sensor](Base-Sensor.md) for examples on how to get the queue that maintains the sensor's data. All data that comes from sensor queues is a dictionary.
 
 data_camera= camera_q.get()
 

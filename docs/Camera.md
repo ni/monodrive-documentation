@@ -2,12 +2,12 @@ The configuration for a camera sensor that streams camera data and renders it in
 
 - `"semantic_processing": false`
 <p align="center">
-<img src="https://github.com/monoDriveIO/PythonClient/blob/master/WikiPhotos/camerasensor.PNG" width="400" height="400" />
+<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/camerasensor.PNG" width="400" height="400" />
 </p>
 
 - `"semantic_processing": true`
 <p align="center">
-<img src="https://github.com/monoDriveIO/PythonClient/blob/master/WikiPhotos/semanticcamerasensor.PNG" width="400" height="400" />
+<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/semanticcamerasensor.PNG" width="400" height="400" />
 </p>
 
 ```
@@ -47,7 +47,7 @@ The configuration for a camera sensor that streams camera data and renders it in
 - **semantic_processing**: A boolean that determines whether the camera will act as a semantic camera or a normal camera.
 
 ## Output Data
-See [base sensor](https://github.com/monoDriveIO/PythonClient/wiki/Base-Sensor) for examples on how to get the queue that maintains the sensor's data. All data that comes from sensor queues is a dictionary.
+See [base sensor](Base-Sensor.md) for examples on how to get the queue that maintains the sensor's data. All data that comes from sensor queues is a dictionary.
 
 data_camera= camera_q.get()
 

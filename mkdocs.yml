@@ -5,9 +5,8 @@ theme: readthedocs
 
 pages:
 - Home: 'index.md'
-- Quick start: '../README.md'
 - Installation: 'Installation.md'
-- 'How to Configure':
+- Configuration:
   - 'System': 'Configuration.md'
   - 'Simulator': 'Simulator-Configuration.md'
   - 'Vehicle': 'Vehicle-Configuration.md'
@@ -22,7 +21,7 @@ pages:
     - 'Waypoint': 'Waypoint.md'
     - 'Bounding Box': 'Bounding-Box.md'
     - 'RPM': 'RPM.md'
-- Starting Simulator: 'Starting-Simulator.md'
+- Starting the Simulator: 'Starting-Simulator.md'
 
 markdown_extensions:
   - admonition

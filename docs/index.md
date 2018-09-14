@@ -1,4 +1,4 @@
-![monoDrive](https://github.com/monoDriveIO/PythonClient/blob/master/WikiPhotos/monoDriveLogo.png "monoDrive")
+![monoDrive](https://github.com/monoDriveIO/Client/blob/master/WikiPhotos/monoDriveLogo.png "monoDrive")
 
 # Autonomous Vehicle Simulator
 ### [Download Monodrive](https://www.monodrive.io/download)

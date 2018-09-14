@@ -1,6 +1,6 @@
 ## Client Control Flow with Simulator
 
-<img src="https://github.com/monoDriveIO/PythonClient/blob/master/WikiPhotos/ControlFlow.PNG" width="600" height="400" />
+<img src="https://github.com/monoDriveIO/Client/blob/master/WikiPhotos/ControlFlow.PNG" width="600" height="400" />
 </p>
 
 1. Control:

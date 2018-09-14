@@ -1,3 +1,5 @@
+## Camera Sensor
+
 The configuration for a camera sensor that streams camera data and renders it into a view created by the client.
 
 - `"semantic_processing": false`
@@ -40,16 +42,16 @@ The configuration for a camera sensor that streams camera data and renders it in
 }
 ```
 
-- **hdmi_streaming**: A boolean representing whether the camera data gets streamed the HDMI, or the default of UDP.
-- **stream_dimensions**: The dimensions of which the stream will stream over UDP. These dimensions are set in a dictionary with keys x and y with float values.
+- **hdmi_streaming**: A boolean representing whether the camera data gets streamed the HDMI, or the default of TCP.
+- **stream_dimensions**: The dimensions of which the stream will stream over TCP. These dimensions are set in a dictionary with keys x and y with float values.
 - **max_distance**: The max distance, in centimeters, the simulator's camera will look forward in the world.
 - **horizontal_fov_angle**: The horizontal field of view angle, in degrees, of the simulator's camera.
 - **semantic_processing**: A boolean that determines whether the camera will act as a semantic camera or a normal camera.
 
 ## Output Data
-See [base sensor](Base-Sensor.md) for examples on how to get the queue that maintains the sensor's data. All data that comes from sensor queues is a dictionary.
+See [base sensor](Base-Sensor.md) for examples on how to get the sensor. All data that comes from sensor queues is a dictionary.
 
-data_camera= camera_q.get()
+`data_camera= camera.get_message()`
 
 ### Parsed Camera Data Dictionary Keys and Values.
 

@@ -1,5 +1,7 @@
+## IMU Sensor
+
 <p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/imusensor.PNG" width="400" height="400" />
+<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/imusensor.PNG" />
 </p>
 
 The configuration for an IMU sensor.
@@ -27,9 +29,9 @@ The configuration for an IMU sensor.
 ```
 
 ## Output Data
-See [base sensor](Base-Sensor.md) for examples on how to get the queue that maintains the sensor's data. All data that comes from sensor queues is a dictionary.
+See [base sensor](Base-Sensor.md) for examples on how to get the sensor. All data that comes from sensor queues is a dictionary.
 
-data_waypoint = imu_q.get()
+`data_waypoint = imu_sensor.get_message()`
 
 ### Parsed IMU Data Dictionary Keys and Values.
 

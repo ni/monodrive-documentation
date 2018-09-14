@@ -1,3 +1,5 @@
+## Multi-Camera Sensor
+
 The configuration for a multi camera sensor that streams all of the cameras in the `camera_ids` array through a single UDP port into one rendered image.
 
 <p align="center">
@@ -34,16 +36,16 @@ The configuration for a multi camera sensor that streams all of the cameras in t
 }
 ```
 
-- **hdmi_streaming**: A boolean representing whether the camera data gets streamed the HDMI, or the default of UDP.
-- **stream_dimensions**: The dimensions of which the stream will stream over UDP.
+- **hdmi_streaming**: A boolean representing whether the camera data gets streamed the HDMI, or the default of TCP.
+- **stream_dimensions**: The dimensions of which the stream will stream over TCP.
   - *x*: The x dimension.
   - *y*: The y dimension.
 - **camera_ids**: An array of strings that representing the ids of the cameras that are to be streamed through the multi camera.
 
 ## Output Data
-See [base sensor](Base-Sensor.md) for examples on how to get the queue that maintains the sensor's data. All data that comes from sensor queues is a dictionary.
+See [base sensor](Base-Sensor.md) for examples on how to get the sensor. All data that comes from sensor queues is a dictionary.
 
-data_camera= camera_q.get()
+`data_camera= camera.get_message()`
 
 ### Parsed Camera Data Dictionary Keys and Values.
 

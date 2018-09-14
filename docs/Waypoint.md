@@ -1,5 +1,7 @@
+## Waypoint Sensor
+
 <p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/waypointsensor.PNG" width="400" height="400" />
+<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/waypointsensor.PNG" />
 </p>
 
 The configuration for a waypoint sensor.
@@ -32,9 +34,9 @@ The configuration for a waypoint sensor.
 
 
 ## Output Data
-See [base sensor](Base-Sensor.md) for examples on how to get the queue that maintains the sensor's data. All data that comes from sensor queues is a dictionary.
+See [base sensor](Base-Sensor.md) for examples on how to get the sensor. All data that comes from sensor queues is a dictionary.
 
-data_waypoint = waypoint_q.get()
+`data_waypoint = waypoint.get_message()`
 
 ### Parsed Waypoint Data Dictionary Keys and Values.
 

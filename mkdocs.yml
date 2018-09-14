@@ -7,10 +7,12 @@ pages:
 - Home: 'index.md'
 - Quick start: '../README.md'
 - Installation: 'Installation.md'
-- Configuration: 'Configuration.md'
+- 'How to Configure':
+  - 'System': 'Configuration.md'
   - 'Simulator': 'Simulator-Configuration.md'
   - 'Vehicle': 'Vehicle-Configuration.md'
-  - 'Sensors': 'Base-Sensor.md'
+  - 'Sensors':
+    - 'Common': 'Base-Sensor.md'
     - 'Radar': 'Radar.md'
     - 'Lidar': 'Lidar.md'
     - 'Multi Camera': 'Multi-Camera.md'

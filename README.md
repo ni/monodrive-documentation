@@ -1,5 +1,7 @@
 ![monoDrive](https://github.com/monoDriveIO/Client/blob/master/WikiPhotos/monoDriveLogo.png "monoDrive")
 
+for full documentation visit: https://monodrive.readthedocs.io/en/latest/
+
 # monoDrive client installation
 
 # Linux

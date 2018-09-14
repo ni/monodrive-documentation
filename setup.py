@@ -46,5 +46,5 @@ setup(
     zip_safe=True,
     install_requires=requirements,
 
-    data_files=[('configurations', ['configurations/basic.json', 'configurations/demo.json', 'configurations/light.json', 'configurations/pro.json', 'configurations/simulator.json', 'configurations/test.json', 'configurations/training.json'])]
+    data_files=[('configurations', ['configurations/demo.json', 'configurations/simulator.json', 'configurations/test.json'])]
 )

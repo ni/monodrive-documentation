@@ -66,9 +66,9 @@ class TestHarness:
         tests = self.get_all_tests()
         found = len(tests)
         if self.args.include:
-            tests = filter(lambda t: t.id in self.args.include)
+            tests = filter(lambda t: t.id in self.args.include.split(','), tests)
         elif self.args.exclude:
-            tests = filter(lambda t: t.id not in self.args.exclude)
+            tests = filter(lambda t: t.id not in self.args.exclude.split(','), tests)
 
         tests = sorted(tests, key=lambda t: t.id)
 

@@ -5,6 +5,22 @@ theme: readthedocs
 
 pages:
 - Home: 'index.md'
+- Quick start: '../README.md'
+- Installation: 'Installation.md'
+- Configuration: 'Configuration.md'
+  - Simulator: 'Simulator-Configuration.md'
+  - Vehicle: 'Vehicle-Configuration.md'
+  - Sensors: 'Base-Sensor.md'
+    - Radar: 'Radar.md'
+    - Lidar: 'Lidar.md'
+    - Multi Camera: 'Multi-Camera.md'
+    - Camera: 'Camera.md'
+    - GPS: 'GPS.md'
+    - IMU: 'IMU.md'
+    - Waypoint: 'Waypoint.md'
+    - Bounding Box: 'Bounding-Box.md'
+    - RPM: 'RPM.md'
+- Starting Simulator: 'Starting-Simulator.md'
 
 markdown_extensions:
   - admonition

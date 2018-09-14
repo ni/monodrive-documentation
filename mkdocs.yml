@@ -1,10 +1,10 @@
 site_name: monoDrive Simulator
 repo_url: https://github.com/monodriveio/client
-docs_dir: Docs
+docs_dir: docs
 theme: readthedocs
 
 pages:
-- Home: 'README.md'
+- Home: 'index.md'
 
 markdown_extensions:
   - admonition

@@ -174,3 +174,19 @@ class MapCommand(Message):
     def __init__(self, config):
         super(MapCommand, self).__init__(
             MAP_COMMAND_UID, config)
+
+
+class SpawnCommand(Message):
+    """ Send a command to spawn an object in the world. """
+
+    def __init__(self, config):
+        super(SpawnCommand, self).__init__(
+            SPAWN_COMMAND_UID, config)
+
+
+class MoveActorCommand(Message):
+    """ Send a command to move an object in the world. """
+
+    def __init__(self, config):
+        super(MoveActorCommand, self).__init__(
+            MOVE_ACTOR_COMMAND_UID, config)

@@ -226,7 +226,7 @@ class Base_Radar(BaseSensor):
             self.process_radar_data_cube(xr)
             return True
         else:
-            print("len(s_data) != samples_per_frame")
+            logging.getLogger("sensor").error("len(s_data) != samples_per_frame")
             pass
         
         return False
@@ -248,11 +248,11 @@ class Radar(Base_Radar):
                     # print("Radar Done")
                     pass
                 else:
-                    print("AOA FAILED")
+                    logging.getLogger("sensor").error("AOA Failed")
             else:
-                print("Doppler calculation failed")
+                logging.getLogger("sensor").error("Doppler calculation failed")
         else:
-            print("Compute range and index failed")
+            logging.getLogger("sensor").error("Compute range and index failed")
 
     def range_idx(self, xr):
         #if scipyio:
@@ -308,7 +308,7 @@ class Radar(Base_Radar):
             return True
 
         except ValueError as e:
-            print("Doppler Process Failure: " + str(e))
+            logging.getLogger("sensor").error("Doppler Process Failure: " + str(e))
             return False
 
     # --------AoA estimation by High resolution algorithms RootMusic or ESPRIT from Range---------------------
@@ -357,7 +357,7 @@ class Radar(Base_Radar):
             # print("target_velocity = {0}".format(self.targets_velocity))
             # print("target_aoa = {0}".format(self.targets_aoa))
 
-            return True # angle returned in degrees
+            return True  
         except ValueError as e:
-            print("AOA Process Failure: " + str(e))
+            logging.getLogger("sensor").error("AOA Process Failure: " + str(e))
             return False

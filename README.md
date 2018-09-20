@@ -11,6 +11,7 @@ for full documentation visit: https://monodrive.readthedocs.io/en/latest/
 - `virtualenv venv`
 - `venv\Scripts\activate`
 - `pip install -e . --upgrade`
+- `pip install -r requirements.txt`
 - `python -c "import monodrive; print('Success')"`
 - `python examples\test.py`
 
@@ -40,6 +41,7 @@ for full documentation visit: https://monodrive.readthedocs.io/en/latest/
             - `virtualenv venv`
             - `venv\Scripts\activate`
             - `pip install -e . --upgrade`
+            - `pip install -r requirements.txt`
             - `python -c "import monodrive; print('Success')"`
             - `python examples\test.py`
 

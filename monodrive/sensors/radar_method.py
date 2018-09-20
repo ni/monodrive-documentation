@@ -150,9 +150,10 @@ class BaseRadarMethodAoA(BaseRadarMethod):
         hanning_aoa = np.transpose(np.tile(han_aoa, (self.N, 1)))
         self.hanning_aoa = hanning_matrix_ts[0:self.n_rx_elements] * hanning_aoa
 
+
 class DetectionRootMusicAndESPRIT(BaseRadarMethod):
     def process_radar_data_cube(self, xr, hann_matrix_aoa,hann_matrix):
-    #--------- Estimate Range then velocities and AoA (AoA can be estimated either from range or from velocities)
+        # --------- Estimate Range then velocities and AoA (AoA can be estimated either from range or from velocities)
         results = RootMusicAndEsprit.compute_range_and_indx(xr, self.N, self.NN, hann_matrix, self.cte_range)
         self.range_idx = results[0]
         self.range = results[1]
@@ -166,7 +167,6 @@ class DetectionRootMusicAndESPRIT(BaseRadarMethod):
             # self.My_aoa_v = RootMusicAndEsprit.process_radar_data_cube_aoa2(xr, self.N, self.NN, hann_matrix_aoa, self.velocities, self.n_rx_elements, True)
             [self.obstaclesR, self.obstaclesV, self.obstaclesA, self.obstaclesRCS, self.obstaclesPL] = RootMusicAndEsprit.process_radar_data_cube_aoa(xr, self.N, self.NN, hann_matrix_aoa, self.range_idx, self.range, self.velocities, self.rcs_estimate, self.rx_power, self.n_rx_elements,self.nSweep, True)
             self.velocities_kmh = 3.6*self.velocities
-
 
     def setup_radar_plots(self, subplot1, subplot2):
         self.collabel = ("Obstacle", "Range", "Speed", "AoA", "RCS", "Power\n level")
@@ -312,7 +312,7 @@ class RootMusicAndEsprit:
 
     # --------AoA estimation by High resolution algorithms RootMusic or ESPRIT from Range---------------------
     @staticmethod
-    def process_radar_data_cube_aoa(xr, N,  NN, hann_matrix, range_idx,range, velocities, rcs_estimate, rx_power, n_rx_elements,nSweep, is_root_music):
+    def process_radar_data_cube_aoa(xr, N,  NN, hann_matrix, range_idx, range, velocities, rcs_estimate, rx_power, n_rx_elements,nSweep, is_root_music):
         NumberOfRanges = range_idx.size
         fx33 = [] #np.zeros(NumberOfRanges)
         fx3 = []

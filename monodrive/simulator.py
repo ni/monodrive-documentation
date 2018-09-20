@@ -176,6 +176,22 @@ class Simulator(object):
             return result.data
         else:
             return None
+
+    def spawn_object(self, spawn_type, location, rotation):
+        command = messaging.SpawnCommand({"type": spawn_type, "location": location, "rotation": rotation})
+        result = self.request(command)
+        if result.data:
+            return result.data["id"]
+        else:
+            return None
+
+    def move_actor(self, id, location, rotation):
+        command = messaging.MoveActorCommand({"id": id, "location": location, "rotation": rotation})
+        result = self.request(command)
+        if result.data:
+            return result.data["success"]
+        else:
+            return None
         
 
 

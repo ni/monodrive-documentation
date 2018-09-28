@@ -14,7 +14,6 @@ class wxHelper(object):
 
     @staticmethod
     def newInstance():
-        print("v: %s v(): %s" % (wx.__version__, wx.version()))
         if wx.__version__.startswith("4"):
             return wxHelper4()
         return wxHelper3()

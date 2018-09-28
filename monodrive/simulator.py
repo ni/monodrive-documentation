@@ -5,9 +5,9 @@ __license__ = "MIT"
 __version__ = "1.0"
 
 import logging
-from logging import StreamHandler
 from logging.handlers import RotatingFileHandler
 from multiprocessing import Event
+import sys
 try:
     import psutil
 except:
@@ -156,7 +156,7 @@ class Simulator(object):
         simple_formatter = LevelNameFormatter("%(levelname)-8s:%(name)-10s: %(message)s")
         color_formatter = ColorFormatter("%(levelname)-15s:%(name)-10s: %(message)s")
 
-        stream_handler = StreamHandler(sys.stdout)
+        stream_handler = logging.StreamHandler(sys.stdout)
         stream_handler.setFormatter(color_formatter)
 
         for category, level in self.configuration.logger_settings.items():

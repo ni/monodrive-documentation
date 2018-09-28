@@ -38,6 +38,7 @@ import socket
 import time
 
 from monodrive.ui.buffered_window import BufferedWindow
+from monodrive.ui.wx_helper import wxHelper
 from monodrive.constants import VELOVIEW_PORT, VELOVIEW_IP, ClockMode_ClientStep
 from monodrive.models import IMU_Message
 from monodrive.models import GPS_Message
@@ -45,7 +46,6 @@ from monodrive.models import Camera_Message
 from monodrive.models import MapData
 from monodrive.models import Radar_Message
 from monodrive.models import Bounding_Box_Message
-from wx_helper import wxHelper
 
 
 BACKGROUND_COLOR = '#eaf7ff'

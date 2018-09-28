@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import wx
-from wx_helper import wxHelper
+from monodrive.ui.wx_helper import wxHelper
 
 
 # https://wiki.wxpython.org/DoubleBufferedDrawing

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import wx
-import sys
+from wx_helper import wxHelper
 
 
 # https://wiki.wxpython.org/DoubleBufferedDrawing
@@ -27,6 +27,7 @@ class BufferedWindow(wx.Window):
         kwargs['style'] = kwargs.setdefault('style', wx.NO_FULL_REPAINT_ON_RESIZE) | wx.NO_FULL_REPAINT_ON_RESIZE
         wx.Window.__init__(self, *args, **kwargs)
 
+        self.wxHelper = wxHelper.newInstance()
         self.Bind(wx.EVT_PAINT, self.OnPaint)
         self.Bind(wx.EVT_SIZE, self.OnSize)
 
@@ -53,10 +54,7 @@ class BufferedWindow(wx.Window):
         # Make new offscreen bitmap: this bitmap will always have the
         # current drawing in it, so it can be used to save the image to
         # a file, or whatever.
-        if sys.version_info[0] == 2:
-            self._Buffer = wx.EmptyBitmap(*Size)
-        else:
-            self._Buffer = wx.Bitmap(*Size)
+        self._Buffer = self.wxHelper.CreateBitmap(Size)
         self.UpdateDrawing()
 
     def SaveToFile(self, FileName, FileType=wx.BITMAP_TYPE_PNG):

@@ -14,6 +14,7 @@ class wxHelper(object):
 
     @staticmethod
     def newInstance():
+        print("v: %s v(): %s" % (wx.__version__, wx.version()))
         if wx.__version__.startswith("4"):
             return wxHelper4()
         return wxHelper3()
@@ -56,7 +57,7 @@ class wxHelper3(wxHelper):
         return wx.BitmapFromImage(image)
 
     def CreateBitmap(self, size):
-        return wx.Bitmap(*size)
+        return wx.EmptyBitmap(*size)
 
     def CreateImage(self, width, height):
         return wx.EmptyImage(width, height)

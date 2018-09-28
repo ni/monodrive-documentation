@@ -167,7 +167,7 @@ class Radar_FFT_Plot(wx.Panel):
 
 
     def update_range_fft_plot(self, range_fft, target_range_idx):
-        x = range(round(len(range_fft)/4))
+        x = range(int(round(len(range_fft)/4)))
         #if self.range_fft_subplot_handle == None:
         self.range_fft_subplot.cla()
         self.range_fft_subplot.set_title('Range by FFT (psd dBm)')

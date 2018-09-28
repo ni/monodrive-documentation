@@ -209,8 +209,6 @@ def shutdown(sig, frame):
 
 if __name__ == "__main__":
     signal.signal(signal.SIGINT, shutdown)
-    # set up logging
-    logging.basicConfig(level=logging.DEBUG, format="%(name)-12s %(levelname)-8s: %(message)s")
 
     args = parser.parse_args()
 

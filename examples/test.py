@@ -7,6 +7,7 @@ __version__ = "1.0"
 
 
 import logging
+import sys
 import time
 
 try:
@@ -25,7 +26,6 @@ ManualDriveMode = True
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.DEBUG)
 
     # Simulator configuration defines network addresses for connecting to the simulator and material properties
     simulator_config = SimulatorConfiguration('simulator.json')

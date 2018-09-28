@@ -5,8 +5,8 @@ __license__ = "MIT"
 __version__ = "1.0"
 
 import logging
+from logging import StreamHandler
 from logging.handlers import RotatingFileHandler
-
 from multiprocessing import Event
 try:
     import psutil
@@ -153,13 +153,15 @@ class Simulator(object):
         return response
 
     def setup_logger(self):
-        logging.basicConfig(filename="client_logs.log", level=logging.DEBUG, format="%(name)-12s %(levelname)-8s: %(message)s")
-        # Get the formatter to capitalize the logger name
-        simple_formatter = MyFormatter("%(name)-12s %(levelname)-8s: %(message)s")
-        # detailed_formatter = MyFormatter("%(asctime)s %(name)s-%(levelname)s:[%(process)d]:  - %(message)s")
+        simple_formatter = LevelNameFormatter("%(levelname)-8s:%(name)-10s: %(message)s")
+        color_formatter = ColorFormatter("%(levelname)-15s:%(name)-10s: %(message)s")
+
+        stream_handler = StreamHandler(sys.stdout)
+        stream_handler.setFormatter(color_formatter)
 
         for category, level in self.configuration.logger_settings.items():
-            level = logging.getLevelName(level.upper())
+            levelname = level.upper()
+            level = logging.getLevelName(levelname)
             logger = logging.getLogger(category)
             logger.setLevel(level)
 
@@ -168,6 +170,7 @@ class Simulator(object):
             file_handler.setFormatter(simple_formatter)
 
             logger.addHandler(file_handler)
+            logger.addHandler(stream_handler)
 
     def request_map(self):
         command = messaging.MapCommand(self.configuration.map_settings)
@@ -194,10 +197,33 @@ class Simulator(object):
             return None
         
 
-
-class MyFormatter(logging.Formatter):
+class LevelNameFormatter(logging.Formatter):
     def format(self, record):
         record.name = record.name.upper()
+        return logging.Formatter.format(self, record)
+
+
+class ColorFormatter(logging.Formatter):
+    WHITE, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, GRAY, LIGHTER_GRAY, LIGHT_GRAY = range(10)
+
+    COLORS = {
+        'WARNING': YELLOW,
+        'INFO': LIGHT_GRAY,
+        'DEBUG': BLUE,
+        'CRITICAL': YELLOW,
+        'ERROR': RED
+    }
+
+    # These are the sequences need to get colored ouput
+    RESET_SEQ = "\033[0m"
+    COLOR_SEQ = "\033[1;%dm"
+    BOLD_SEQ = "\033[1m"
+
+    def format(self, record):
+        record.name = record.name.upper()
+        levelname = record.levelname
+        if levelname in ColorFormatter.COLORS:
+            record.levelname = ColorFormatter.COLOR_SEQ % (30 + ColorFormatter.COLORS[levelname]) + levelname
         return logging.Formatter.format(self, record)
 
 

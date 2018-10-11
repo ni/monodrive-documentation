@@ -153,7 +153,7 @@ class Radar_FFT_Plot(wx.Panel):
         self.range_fft_subplot_handle = None
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.sizer.Add(self.canvas, 1,  wx.EXPAND)
+        self.sizer.Add(self.canvas, 1,  wx.ALL | wx.EXPAND)
         self.sizer.Add(self.toolbar, 0, wx.HORIZONTAL | wx.EXPAND)
         self.SetSizer(self.sizer)
         pub.subscribe(self.update_view, "update_radar_table")
@@ -209,7 +209,7 @@ class Radar_Tx_Signal_Plot(wx.Panel):
         self.tx_signal_subplot_handle = None
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.sizer.Add(self.canvas, 1,  wx.EXPAND)
+        self.sizer.Add(self.canvas, 1,  wx.ALL | wx.EXPAND)
         self.sizer.Add(self.toolbar, 0, wx.HORIZONTAL | wx.EXPAND)
         self.SetSizer(self.sizer)
         pub.subscribe(self.update_view, "update_radar_table")
@@ -249,8 +249,8 @@ class Radar_Rx_Signal_Plot(wx.Panel):
         self.rx_signal_subplot_handle = None
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.sizer.Add(self.canvas, 1,  wx.EXPAND)
-        self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
+        self.sizer.Add(self.canvas, 1,  wx.ALL | wx.EXPAND)
+        self.sizer.Add(self.toolbar, 0, wx.HORIZONTAL | wx.EXPAND)
         self.SetSizer(self.sizer)
         pub.subscribe(self.update_view, "update_radar_table")
 
@@ -777,8 +777,23 @@ class Radar_Panel(wx.Panel):
         self.signal_details_sizer.Add(self.range_fft_plot, 1, wx.EXPAND | wx.ALL, border=2)
         self.rx_signal_details.SetSizer(self.signal_details_sizer)
 
+        self.Bind(wx.EVT_SIZE, self.OnSize)
+
         self.Layout()
         self.Refresh()
+
+    def OnSize(self, evt):
+        Size = self.ClientSize
+
+        min_size = min(Size.x / 4, Size.y)
+
+        self.radar_tx_signal.SetMinSize(wx.Size(min_size, min_size))
+        self.rx_signal_details.SetMinSize(wx.Size(min_size, min_size))
+        self.radar_polar_plot.SetMinSize(wx.Size(min_size, min_size))
+        self.radar_target_table.SetMinSize(wx.Size(min_size, min_size))
+
+        self.rx_signal_details.Layout()
+        self.Layout()
 
 
 class Overview_Panel(wx.Panel):

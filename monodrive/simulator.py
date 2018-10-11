@@ -159,6 +159,17 @@ class Simulator(object):
         stream_handler = logging.StreamHandler(sys.stdout)
         stream_handler.setFormatter(color_formatter)
 
+        # add default handler
+        level = logging.getLevelName("DEBUG")
+        file_handler = logging.handlers.RotatingFileHandler('client_logs.log', mode="w")
+        file_handler.setLevel(level)
+        file_handler.setFormatter(simple_formatter)
+
+        logging.root.setLevel(level)
+        logging.root.addHandler(file_handler)
+        logging.root.addHandler(stream_handler)
+
+        # add category handlers
         for category, level in self.configuration.logger_settings.items():
             levelname = level.upper()
             level = logging.getLevelName(levelname)

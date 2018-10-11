@@ -215,8 +215,8 @@ if __name__ == "__main__":
     sim_config = SimulatorConfiguration(args.sim_config)
     vehicle_config = VehicleConfiguration(args.vehicle_config)
 
-    sim_config.client_settings['logger']['sensor']='debug'
-    sim_config.client_settings['logger']['network']='debug'
+    #sim_config.client_settings['logger']['sensor'] = 'debug'
+    #sim_config.client_settings['logger']['network'] = 'debug'
     simulator = Simulator(sim_config)
 
     if args.include:

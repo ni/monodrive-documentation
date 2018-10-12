@@ -35,10 +35,10 @@ try:
 except: pass
 
 import socket
-import sys
 import time
 
 from monodrive.ui.buffered_window import BufferedWindow
+from monodrive.ui.wx_helper import wxHelper
 from monodrive.constants import VELOVIEW_PORT, VELOVIEW_IP, ClockMode_ClientStep
 from monodrive.models import IMU_Message
 from monodrive.models import GPS_Message
@@ -153,7 +153,7 @@ class Radar_FFT_Plot(wx.Panel):
         self.range_fft_subplot_handle = None
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.sizer.Add(self.canvas, 1,  wx.EXPAND)
+        self.sizer.Add(self.canvas, 1,  wx.ALL | wx.EXPAND)
         self.sizer.Add(self.toolbar, 0, wx.HORIZONTAL | wx.EXPAND)
         self.SetSizer(self.sizer)
         pub.subscribe(self.update_view, "update_radar_table")
@@ -167,7 +167,7 @@ class Radar_FFT_Plot(wx.Panel):
 
 
     def update_range_fft_plot(self, range_fft, target_range_idx):
-        x = range(round(len(range_fft)/4))
+        x = range(int(round(len(range_fft)/4)))
         #if self.range_fft_subplot_handle == None:
         self.range_fft_subplot.cla()
         self.range_fft_subplot.set_title('Range by FFT (psd dBm)')
@@ -209,7 +209,7 @@ class Radar_Tx_Signal_Plot(wx.Panel):
         self.tx_signal_subplot_handle = None
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.sizer.Add(self.canvas, 1,  wx.EXPAND)
+        self.sizer.Add(self.canvas, 1,  wx.ALL | wx.EXPAND)
         self.sizer.Add(self.toolbar, 0, wx.HORIZONTAL | wx.EXPAND)
         self.SetSizer(self.sizer)
         pub.subscribe(self.update_view, "update_radar_table")
@@ -249,8 +249,8 @@ class Radar_Rx_Signal_Plot(wx.Panel):
         self.rx_signal_subplot_handle = None
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
-        self.sizer.Add(self.canvas, 1,  wx.EXPAND)
-        self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
+        self.sizer.Add(self.canvas, 1,  wx.ALL | wx.EXPAND)
+        self.sizer.Add(self.toolbar, 0, wx.HORIZONTAL | wx.EXPAND)
         self.SetSizer(self.sizer)
         pub.subscribe(self.update_view, "update_radar_table")
 
@@ -697,8 +697,9 @@ class Wheel_RPM_View(wx.Panel):
 
 class Camera_View(BufferedWindow):
     def __init__(self, parent, *args, **kwargs):
+        self.wxHelper = wxHelper.newInstance()
         self.png = wx.Image(filepath, wx.BITMAP_TYPE_ANY)
-        self.current_bitmap = self.bitmap_from_image(self.png)
+        self.current_bitmap = self.wxHelper.BitmapFromImage(self.png)
         self.current_size = wx.Size(self.current_bitmap.GetWidth(), self.current_bitmap.GetHeight())
         BufferedWindow.__init__(self, parent, *args, **kwargs)
         self.SetMinSize(self.current_size)
@@ -706,21 +707,6 @@ class Camera_View(BufferedWindow):
 
         pub.subscribe(self.update_view, "update_camera")
         self.UpdateDrawing()
-
-    def create_image(self, width, height):
-        if sys.version_info[0] == 2:
-            return wx.EmptyImage(width, height)
-        return wx.Image(width, height)
-
-    def bitmap_from_image(self, image):
-        if sys.version_info[0] == 2:
-            return wx.BitmapFromImage(image)
-        return wx.Bitmap(image)
-
-    def image_from_bitmap(self, bitmap):
-        if sys.version_info[0] == 2:
-            return wx.ImageFromBitmap(bitmap)
-        return bitmap.ConvertToImage()
 
     def update_view(self, msg):
         camera_msg = Camera_Message(msg)
@@ -737,9 +723,9 @@ class Camera_View(BufferedWindow):
     def to_bmp(self, np_image):
         imcv = cv2.cvtColor(np_image, cv2.COLOR_BGR2RGB)
         self.impil = Image.fromarray(imcv)
-        imwx = self.create_image(self.impil.size[0], self.impil.size[1])
+        imwx = self.wxHelper.CreateImage(self.impil.size[0], self.impil.size[1])
         imwx.SetData(self.impil.convert('RGB').tobytes()) 
-        bitmap = self.bitmap_from_image(imwx)
+        bitmap = self.wxHelper.BitmapFromImage(imwx)
         return self.scale_bitmap(bitmap)
 
     def scale_bitmap(self, bitmap):
@@ -748,11 +734,11 @@ class Camera_View(BufferedWindow):
         if frame_size.x > 0 and frame_size.y > 0 and \
                 (frame_size.x < bitmap_size.x or frame_size.y < bitmap_size.y):
             aspect = float(bitmap.GetWidth()) / float(bitmap.GetHeight())
-            image = self.image_from_bitmap(bitmap)
+            image = self.wxHelper.ImageFromBitmap(bitmap)
             frame_h = frame_size.y
             frame_w = frame_size.y * aspect
             image = image.Scale(frame_w, frame_h, wx.IMAGE_QUALITY_HIGH)
-            scaled_bitmap = self.bitmap_from_image(image)
+            scaled_bitmap = self.wxHelper.BitmapFromImage(image)
         else:
             scaled_bitmap = bitmap
         return scaled_bitmap
@@ -791,8 +777,23 @@ class Radar_Panel(wx.Panel):
         self.signal_details_sizer.Add(self.range_fft_plot, 1, wx.EXPAND | wx.ALL, border=2)
         self.rx_signal_details.SetSizer(self.signal_details_sizer)
 
+        self.Bind(wx.EVT_SIZE, self.OnSize)
+
         self.Layout()
         self.Refresh()
+
+    def OnSize(self, evt):
+        Size = self.ClientSize
+
+        min_size = min(Size.x / 4, Size.y)
+
+        self.radar_tx_signal.SetMinSize(wx.Size(min_size, min_size))
+        self.rx_signal_details.SetMinSize(wx.Size(min_size, min_size))
+        self.radar_polar_plot.SetMinSize(wx.Size(min_size, min_size))
+        self.radar_target_table.SetMinSize(wx.Size(min_size, min_size))
+
+        self.rx_signal_details.Layout()
+        self.Layout()
 
 
 class Overview_Panel(wx.Panel):
@@ -931,7 +932,7 @@ class SensorPoll(Thread):
 
     def update_sensor_widget(self, sensor):
 
-        messages = sensor.get_display_messages(block=True, timeout=0.0)
+        messages = sensor.get_display_messages(block=True, timeout=0.01)
         found_data = len(messages) > 0
         if found_data:
             message = messages.pop() #pop last message aka. most recent
@@ -968,7 +969,6 @@ class SensorPoll(Thread):
     def update_gui(self, sensor):
         updated = self.update_sensor_widget(sensor)
         if self.clock_mode == ClockMode_ClientStep:
-            self.sync_event.set()
             if not updated and self.check_client_mode_update(sensor):
                 return False
         return True
@@ -979,6 +979,9 @@ class SensorPoll(Thread):
             for sensor in self.sensors:
                 if not self.update_gui(sensor):
                     break
+
+            if self.clock_mode == ClockMode_ClientStep:
+                self.sync_event.set()
 
             if self.road_map:
                 wx.CallAfter(pub.sendMessage, "update_roadmap", msg=self.road_map)

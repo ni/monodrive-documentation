@@ -45,7 +45,7 @@ class Base_Radar(BaseSensor):
         self.n_rx_elements = int(config['elements'])
         self.bounding_box = None
         speed_of_light = 3.0e8
-        tm = config['sweep_num_for_range_max']* 2 * config['range_max']/ speed_of_light
+        tm = config['sweep_num_for_range_max'] * 2 * config['range_max'] / speed_of_light
         self.samples_per_sweep = int(round(config['fs'] * tm))
         self.samples_per_frame = self.samples_per_sweep * self.n_rx_elements * self.nSweep * 2
         self.range_max = config['range_max']
@@ -87,7 +87,7 @@ class Base_Radar(BaseSensor):
         
         #Mock Transmitter 
         range_resolution = config['range_resolution']
-        bandwidth = speed_of_light/(2.0 * range_resolution)
+        bandwidth = speed_of_light / (2.0 * range_resolution)
         self.sweep_slope = bandwidth / tm
         self.tx_aperture = config['transmitter']['aperture']
         self.tx_antenna_gain = self.aperature2gain(self.tx_aperture)
@@ -111,14 +111,14 @@ class Base_Radar(BaseSensor):
         v_rms = np.sqrt(power_watts * z0)
         # for complex signals
         v_pk = v_rms
-        return v_pk        
+        return v_pk
 
 
     def generate_fmcw(self, power_dbm):
         tx_waveform = np.zeros(self.samples_per_sweep, dtype=complex)
         for n in range(self.samples_per_sweep):
             t = self.time_series[n]
-            tx_waveform[n] = np.multiply(power_dbm,np.exp(self.sweep_slope * -1j * np.pi * t*t )) 
+            tx_waveform[n] = np.exp(self.sweep_slope * 1j * np.pi * t*t)
         return tx_waveform
 
     def generate_time_series(self):

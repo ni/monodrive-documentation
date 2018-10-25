@@ -179,4 +179,10 @@ class BaseVehicle(object):
             print(line)
         print("\n*** STACKTRACE - END ***\n")
 
+    # example to push generated fmcw(ndarray) to sensor config
+    # the fmcw can be generated from anywhere - using an example of a pre-generated one here
+    def update_fmcw_in_config(self):
+        radar_sensor = [s for s in self.sensors if s.type == 'Radar'][0]
+        self.vehicle_config.update_radar_waveform(radar_sensor.tx_waveform)
+
 

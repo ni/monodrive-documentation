@@ -9,7 +9,7 @@ for full documentation visit: https://monodrive.readthedocs.io/en/latest/
 - `pip install virtualenv`
 - `cd client`
 - `virtualenv venv`
-- `venv\Scripts\activate`
+- `source venv/bin/activate`
 - `pip install -e . --upgrade`
 - `pip install -r requirements.txt`
 - `python -c "import monodrive; print('Success')"`

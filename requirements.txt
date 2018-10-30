@@ -20,3 +20,4 @@ scipy
 structlog
 wxPython
 psutil
+pyfftw

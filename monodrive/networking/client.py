@@ -154,6 +154,7 @@ class Client(object):
     def request(self, message, timeout=5, num_messages=1):
         """ Return a response from Unreal """
         def do_request():
+            logging.getLogger('network').info('--> {0}'.format(message))
             if not self.message_client.send(message):
                 return None
 
@@ -169,6 +170,7 @@ class Client(object):
             try:
                 response = self.responses.get(True, timeout)
                 responses.append(response)
+                logging.getLogger("network").info('<-- {0}'.format(response))
             except Empty:
                 logging.getLogger("network").error('Can not receive a response from server. \
                        timeout after {:0.2f} seconds'.format(timeout))

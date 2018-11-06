@@ -980,7 +980,7 @@ class SensorPoll(Thread):
                 if not self.update_gui(sensor):
                     break
 
-            if self.clock_mode == ClockMode_ClientStep:
+            if self.clock_mode == ClockMode_ClientStep and self.sync_event is not None:
                 self.sync_event.set()
 
             if self.road_map:
@@ -1033,6 +1033,7 @@ class LidarGUISensor(GUISensor):
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             self.veloview_socket = s
+            logging.getLogger("gui").debug('Lidar connected to {0}'.format(str((VELOVIEW_PORT, VELOVIEW_PORT))))
             return s
         except Exception as e:
             logging.getLogger("gui").debug('Cannot connect to {0}'.format(str((VELOVIEW_PORT, VELOVIEW_PORT))))
@@ -1047,8 +1048,8 @@ class GUI(object):
         self.daemon = True
         self.name = "GUI"
         self.simulator_event = simulator.restart_event
-        self.vehicle_sync_event = simulator.ego_vehicle.vehicle_drive
-        self.vehicle_clock_mode = simulator.ego_vehicle.vehicle_config.clock_mode
+        self.vehicle_sync_event = simulator.ego_vehicle.vehicle_drive if simulator.ego_vehicle else None
+        self.vehicle_clock_mode = simulator.ego_vehicle.vehicle_config.clock_mode if simulator.ego_vehicle else 0
         #self.simulator = simulator
         #self.vehicle = None
         #self.vehicle = simulator.ego_vehicle

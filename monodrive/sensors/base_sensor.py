@@ -42,7 +42,7 @@ class BaseSensor(object):
         self.server_ip = simulator_config.server_ip
         self.client_ip = simulator_config.client_ip
         self.port_number = int(config['listen_port'])
-        self.packet_size = int(config["packet_size"])
+        self.packet_size = int(config.get("packet_size", 1472))
         self.socket_udp = config.get('connection_type', None) == "udp"
         self.sock = None
 

@@ -99,6 +99,7 @@ class Simulator(object):
     def request_sensor_stream(self, message_cls):
         # wait for 2 responses when requesting the sensor to stream data
         # the second will include a sensor_ready flag
+        #logging.getLogger('simulator').info('--> {0}'.format(message_cls))
         messages = self.client.request(message_cls, 10, 2)
         return messages[1]
 

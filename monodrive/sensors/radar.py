@@ -37,6 +37,8 @@ from monodrive.sensors.radar_processing import RadarProcessing as rp
 
 
 class Base_Radar(BaseSensor):
+    bin_range = ...  # type: float
+
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(Base_Radar, self).__init__(idx=idx, config=config, simulator_config=simulator_config, **kwargs)
         self.framing = None
@@ -53,7 +55,7 @@ class Base_Radar(BaseSensor):
         self.N_FFT = 1024
         self.fs = float(config['fs'])
         self.cc = 3.0e8
-        self.bin_range = self.cc / 2 * self.samples_per_sweep / self.N_FFT / self.fs
+        self.bin_range = 1.25*self.cc / 2 * self.samples_per_sweep / self.N_FFT / self.fs
         self.fc = 77.0e9
         self.lamda = self.cc / self.fc
         self.Ts = 1.0 / self.fs
@@ -162,6 +164,7 @@ class Base_Radar(BaseSensor):
     #@classmethod
     def parse_frame(self, frame, time_stamp, game_time):
         radar_data = {}
+        print("radar parse_frame")
         if self.process_frame(frame):
             radar_data['time_stamp'] = time_stamp
             radar_data['game_time'] = game_time
@@ -204,6 +207,7 @@ class Base_Radar(BaseSensor):
 
     def process_frame(self, frame):
         # start_time = time.time()
+        print("Process Radar Frame")
         if len(frame) > 0:
             done = self.process_radar(frame)
             # print('Radar Processing Time: {0}'.format(time.time() - start_time))
@@ -232,10 +236,8 @@ class Base_Radar(BaseSensor):
         return False
 
 
-
-
 class Radar(Base_Radar):
-    #DetectionRootMusicAndESPRIT
+    # DetectionRootMusicAndESPRIT
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(Radar, self).__init__(idx=idx, config=config, simulator_config=simulator_config, **kwargs)
 
@@ -245,7 +247,7 @@ class Radar(Base_Radar):
         if self.range_idx(xr):
             if self.process_doppler(xr):
                 if self.process_aoa(xr):
-                    # print("Radar Done")
+                    print("Radar Done")
                     pass
                 else:
                     logging.getLogger("sensor").error("AOA Failed")
@@ -255,7 +257,7 @@ class Radar(Base_Radar):
             logging.getLogger("sensor").error("Compute range and index failed")
 
     def range_idx(self, xr):
-        #if scipyio:
+        # if scipyio:
         #    scipyio.savemat('radar_cube__04_07_2018_001.mat', {'xr': xr})
         rx_signal_element_0 = np.transpose(xr[:, 0, :])
         
@@ -280,7 +282,7 @@ class Radar(Base_Radar):
         # print("# targets range {0}".format(self.targets_range))
         # print("# targets power {0}".format(self.targets_rx_power_db))
         # print("# targets rcs {0}".format(self.targets_rcs))
-        if len(self.targets_range) > 0:
+        if len(target_range_idx) > 0:
             return True
         else:
             return False
@@ -336,7 +338,7 @@ class Radar(Base_Radar):
                 # perform RootMusic on projected vector to estimate AoA components
                 aoa_estimates = rp.root_music(projection_vector, length_aic, self.n_rx_elements - 4, 1)
 
-                angles = np.arcsin(-2. * aoa_estimates[0:length_aic]) / np.pi * 180.
+                angles = np.arcsin(-2. * aoa_estimates[0:length_aic]) / np.pi * 180.0
                 aoa_angles_truncated = np.extract(np.abs(angles) <= 20, angles)  # 10 is azimuth FOV
                 length_aic_truncated = len(aoa_angles_truncated)
 
@@ -353,9 +355,9 @@ class Radar(Base_Radar):
             self.targets_velocity = fxV
             self.targets_aoa = aoa_degrees
             self.targets_rcs = fxRCS
-            # print("target_range_idx = {0}".format(self.target_range_idx))
-            # print("target_velocity = {0}".format(self.targets_velocity))
-            # print("target_aoa = {0}".format(self.targets_aoa))
+            print("target_range_idx = {0}".format(self.target_range_idx))
+            print("target_velocity = {0}".format(self.targets_velocity))
+            print("target_aoa = {0}".format(self.targets_aoa))
 
             return True  
         except ValueError as e:

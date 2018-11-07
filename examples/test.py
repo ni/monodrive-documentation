@@ -45,7 +45,7 @@ if __name__ == "__main__":
     else:
         ego_vehicle = simulator.get_ego_vehicle(vehicle_config, SimpleVehicle)
 
-    #ego_vehicle.update_fmcw_in_config()
+    ego_vehicle.update_fmcw_in_config()
 
     # prctl.set_proctitle("monoDrive")
     #

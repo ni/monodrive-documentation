@@ -21,8 +21,8 @@ drive_vehicle = True
 
 
 class SimpleVehicle(BaseVehicle):
-    def __init__(self, client, simulator_config, vehicle_config, map=None, restart_event=None, **kwargs):
-        super(SimpleVehicle, self).__init__(client, simulator_config, vehicle_config, restart_event)
+    def __init__(self, simulator_config, vehicle_config, map=None, restart_event=None, **kwargs):
+        super(SimpleVehicle, self).__init__(simulator_config, vehicle_config, restart_event)
         self.waypoint_sensor = None
         self.gps_sensor = None
         self.gps_msg = None

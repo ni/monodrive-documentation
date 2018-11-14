@@ -20,7 +20,7 @@ import multiprocessing
 
 
 class BaseVehicle(object):
-    def __init__(self, client, simulator_config, vehicle_config, restart_event=None, **kwargs):
+    def __init__(self, simulator_config, vehicle_config, restart_event=None, **kwargs):
         super(BaseVehicle, self).__init__()
         self.simulator_config = simulator_config
         self.name = vehicle_config.id
@@ -29,7 +29,6 @@ class BaseVehicle(object):
         self.previous_control_sent_time = None
         self.control_thread = None
         self.b_control_thread_running = True
-        self.client = client
 
         #FROM old sensor manager
         self.vehicle_config = vehicle_config
@@ -63,8 +62,8 @@ class BaseVehicle(object):
                 control = self.drive(sensors)
                 self.step(control)
 
-    def step(self, control_data):
-        self.control_thread = threading.Thread(target=self.do_control_thread(control_data))
+    def step(self, client, control_data):
+        self.control_thread = threading.Thread(target=self.do_control_thread(client, control_data))
         self.control_thread.start()
 
     # This will wait for up to 2 seconds for all the sensor data and then proceed regardless
@@ -78,12 +77,13 @@ class BaseVehicle(object):
             should_drive = not self.vehicle_stop.wait(0)
         return should_drive
 
-    def do_control_thread(self, control_data):
+    def do_control_thread(self, client, control_data):
         forward = control_data['forward']
         right = control_data['right']
         logging.getLogger("control").debug("Sending control data forward: %.4s, right: %.4s" % (forward, right))
         msg = messaging.EgoControlCommand(forward, right)
-        resp = self.simulator.request(msg)
+        #resp = self.simulator.request(msg)
+        resp = client.request(msg)
         if resp is None:
             logging.getLogger("control").error(
                 "Failed response from sending control data forward: %s, right: %s" % (forward, right))
@@ -123,6 +123,20 @@ class BaseVehicle(object):
             if getattr(sensor, 'packetizer_process', None) is not None:
                 _processes.append(sensor.packetizer_process)
         return _processes
+
+    def start_sensor_streaming(self, client):
+        [s.send_start_stream_command(client) for s in self.sensors]
+        return 1
+
+    def stop_sensor_streaming(self, client):
+        [s.stop_sensor_command(client) for s in self.sensors]
+        return 1
+
+    def start_sensor_listening(self):
+        [p.start() for p in self.get_process_list()]
+        logging.getLogger("vehicle").debug("waiting for sensors ready")
+        [s.wait_until_ready() for s in self.sensors]
+        return 1
 
     def start(self):
         [p.start() for p in self.get_process_list()]

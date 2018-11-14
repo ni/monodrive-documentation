@@ -52,9 +52,9 @@ if __name__ == "__main__":
 
 
     if ManualDriveMode == True:
-        ego_vehicle = simulator.get_ego_vehicle(client, vehicle_config, TeleportVehicle)
+        ego_vehicle = simulator.get_ego_vehicle(vehicle_config, TeleportVehicle)
     else:
-        ego_vehicle = simulator.get_ego_vehicle(client, vehicle_config, SimpleVehicle)
+        ego_vehicle = simulator.get_ego_vehicle(vehicle_config, SimpleVehicle)
 
     ego_vehicle.update_fmcw_in_config()
 
@@ -69,7 +69,9 @@ if __name__ == "__main__":
         simulator.restart_event.clear()
         simulator.send_vehicle_configuration(vehicle_config)
         logging.getLogger("simulator").info('Starting vehicle')
-        ego_vehicle.start()
+        ego_vehicle.start_sensor_streaming(client)
+        ego_vehicle.start_sensor_listening()
+        #ego_vehicle.start()
 
         gui = GUI(simulator)
 

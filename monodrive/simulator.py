@@ -14,7 +14,7 @@ except:
     pass
 
 from monodrive.networking import messaging
-from monodrive.networking.client import Client
+#from monodrive.networking.client import Client
 from monodrive.constants import *
 
 from monodrive import VehicleConfiguration
@@ -47,14 +47,14 @@ class Simulator(object):
         self.ego_vehicle.start_scenario(scenario)
 
 
-    def get_ego_vehicle(self, client, vehicle_configuration, vehicle_class):
+    def get_ego_vehicle(self, vehicle_configuration, vehicle_class):
         # Create vehicle process form received class
         self.map_data = self.request_map()
         if not self.map_data:
             logging.getLogger("simulator").error("failed to get map")
             return None
 
-        self.ego_vehicle = vehicle_class(client, self.configuration, vehicle_configuration, self.restart_event, self.map_data)
+        self.ego_vehicle = vehicle_class(self.configuration, vehicle_configuration, self.restart_event, self.map_data)
         return self.ego_vehicle
 
     def stop(self):
@@ -100,8 +100,8 @@ class Simulator(object):
     def request_sensor_stream(self, message_cls):
         # wait for 2 responses when requesting the sensor to stream data
         # the second will include a sensor_ready flag
-        messages = self.client.request(message_cls, 10, 2)
-        return messages[1]
+        messages = self.client.request(message_cls, 10, 1)
+        return messages
 
     def send_vehicle_configuration(self, vehicle_configuration):
         logging.getLogger("simulator").info('Sending vehicle configuration {0}'.format(vehicle_configuration.name))

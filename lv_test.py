@@ -103,6 +103,7 @@ class TestDrive(object):
     def close_connection(self):
         if self.client.isconnected():
             self.client.disconnect()
+            self.client.stop()
 
     def start_sensor_listening(self):
         self.ego_vehicle.start_sensor_listening()

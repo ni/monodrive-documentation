@@ -18,6 +18,8 @@ from monodrive.configuration import SimulatorConfiguration, VehicleConfiguration
 from monodrive.constants import ClockMode_Continuous, ClockMode_AutoStep, ClockMode_ClientStep
 from monodrive.networking import messaging
 from monodrive.sensors import GPS
+from monodrive.networking.client import Client
+
 
 
 LOG_CATEGORY = "test"
@@ -150,7 +152,7 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
     for sensor_config in vehicle_config.sensor_configuration:
         if sensor_config['sensor_process']:
             sensor_class = vehicle_config.get_class(sensor_config['type'])
-            sensors.append(sensor_class(idx, sensor_config, sim_config))
+            sensors.append(sensor_class(idx, sensor_config, simulator_config))
             idx = idx + 1
 
     logging.getLogger(LOG_CATEGORY).info("  starting %d sensors" % len(sensors))
@@ -177,7 +179,7 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
 
     for _ in range(0, 60):
         accel_total += accel
-        simulator.request(msg)
+        client.request(msg)
         if clock_mode == ClockMode_ClientStep:
             for st in tasklist:
                 st.data_received.wait()
@@ -185,11 +187,11 @@ def run_test(simulator, vehicle_config, clock_mode, fps):
         else:
             time.sleep(.2)
 
-    simulator.request(messaging.EgoControlCommand(-accel_total, 0.0))
-    simulator.request(messaging.EgoControlCommand(0.0, 0.0))
+    client.request(messaging.EgoControlCommand(-accel_total, 0.0))
+    client.request(messaging.EgoControlCommand(0.0, 0.0))
 
     for task in tasklist:
-        task.sensor.send_stop_stream_command(simulator)
+        task.sensor.stop_sensor_command(client)
         task.stop()
 
     for sensor in sensors:
@@ -212,12 +214,17 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    sim_config = SimulatorConfiguration(args.sim_config)
+    simulator_config = SimulatorConfiguration(args.sim_config)
     vehicle_config = VehicleConfiguration(args.vehicle_config)
 
     #sim_config.client_settings['logger']['sensor'] = 'debug'
     #sim_config.client_settings['logger']['network'] = 'debug'
-    simulator = Simulator(sim_config)
+    client = Client((simulator_config.configuration["server_ip"], simulator_config.configuration["server_port"]))
+
+    if not client.isconnected():
+        client.connect()
+
+    simulator = Simulator(client, simulator_config)
 
     if args.include:
         sensor_ids = args.include.split(',')

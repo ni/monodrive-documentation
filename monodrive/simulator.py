@@ -28,7 +28,7 @@ class Simulator(object):
         self.ego_vehicle = None
         self.scenario = None
         self.client = client
-        self.setup_logger()
+        #self.setup_logger()
         self.map_data = None
 
     def start_scenario(self, scenario, vehicle_class):

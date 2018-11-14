@@ -1,6 +1,6 @@
 {
   "id": "basic_configuration",
-  "clock_mode": 2,
+  "clock_mode": 0,
   "lane_number": 0,
   "position": 0,
   "bounding_data_on_radar_graph": true,
@@ -106,7 +106,7 @@
       "sweep_num_for_range_max": 5.5,
       "range_resolution": 1.0,
       "max_velocity": 100.0,
-      "max_targets": 100,
+      "max_targets": 400,
       "fps": 1.0,
       "elements": 8,
       "transmitter": {

@@ -46,6 +46,7 @@ class Simulator(object):
         # Start the Vehicle process
         self.ego_vehicle.start_scenario(scenario)
 
+
     def get_ego_vehicle(self, vehicle_configuration, vehicle_class):
         # Create vehicle process form received class
         self.map_data = self.request_map()
@@ -187,6 +188,7 @@ class Simulator(object):
         command = messaging.MapCommand(self.configuration.map_settings)
         result = self.request(command, 60)
         if result is not None and result.data:
+            self.map_data = result.data
             return result.data
         else:
             return None

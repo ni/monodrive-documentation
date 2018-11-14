@@ -7,8 +7,8 @@ __version__ = "1.0"
 
 import logging
 
-import matplotlib
-matplotlib.use('TkAgg')
+#import matplotlib
+#matplotlib.use('TkAgg')
 
 import struct
 import numpy as np
@@ -37,7 +37,7 @@ from monodrive.sensors.radar_processing import RadarProcessing as rp
 
 
 class Base_Radar(BaseSensor):
-    bin_range = ...  # type: float
+    #bin_range = ...  # type: float
 
     def __init__(self, idx, config, simulator_config, **kwargs):
         super(Base_Radar, self).__init__(idx=idx, config=config, simulator_config=simulator_config, **kwargs)
@@ -307,6 +307,7 @@ class Radar(Base_Radar):
                 else:
                     velocity_list[k] = 0
             self.targets_velocity = self.doppler_bin_size * velocity_list
+            print("targets_velocity = {0}".format(self.targets_velocity))
             return True
 
         except ValueError as e:
@@ -339,7 +340,8 @@ class Radar(Base_Radar):
                 aoa_estimates = rp.root_music(projection_vector, length_aic, self.n_rx_elements - 4, 1)
 
                 angles = np.arcsin(-2. * aoa_estimates[0:length_aic]) / np.pi * 180.0
-                aoa_angles_truncated = np.extract(np.abs(angles) <= 20, angles)  # 10 is azimuth FOV
+                print("angles = {0}".format(angles))
+                aoa_angles_truncated = np.extract(np.abs(angles) <= 50, angles)  # 10 is azimuth FOV
                 length_aic_truncated = len(aoa_angles_truncated)
 
                 aoa_list = np.hstack((aoa_list, aoa_estimates[0:length_aic_truncated]))  # return the first (most reliable component) of the AoA vector

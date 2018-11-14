@@ -267,7 +267,7 @@ class Radar_Rx_Signal_Plot(wx.Panel):
         if self.rx_signal_subplot_handle == None:
             self.rx_signal_subplot_handle = self.rx_signal_subplot.plot(x,rx_signal)[0]
         #signal_max = max(rx_signal.real)
-        self.rx_signal_subplot.set_ylim([-250,250])
+        self.rx_signal_subplot.set_ylim([-500,500])
         self.rx_signal_subplot_handle.set_xdata(x)
         self.rx_signal_subplot_handle.set_ydata(rx_signal)
         self.figure.canvas.draw()

@@ -1,7 +1,7 @@
 from __future__ import print_function
 
-import matplotlib
-matplotlib.use('TkAgg')
+#import matplotlib
+#matplotlib.use('TkAgg')
 from copy import deepcopy
 import numpy as np
 import numpy.fft as fftpack

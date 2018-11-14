@@ -33,7 +33,6 @@ class BaseVehicle(object):
 
         #FROM old sensor manager
         self.vehicle_config = vehicle_config
-        self.simulator = simulator
         self.sensor_process_dict = {}
         self.init_sensors()
 
@@ -88,9 +87,6 @@ class BaseVehicle(object):
         if resp is None:
             logging.getLogger("control").error(
                 "Failed response from sending control data forward: %s, right: %s" % (forward, right))
-        #self.previous_control_sent_time = time.time()
-        #for s in self.sensors:
-            #s.last_control_real_time.value = self.previous_control_sent_time
 
     def drive(self, sensors):
         raise NotImplementedError("To be implemented in base class")
@@ -137,9 +133,9 @@ class BaseVehicle(object):
         logging.getLogger("vehicle").debug("waiting for sensors ready")
         [s.wait_until_ready() for s in self.sensors]
 
-        logging.getLogger("vehicle").info("starting vehicle loop")
+        #logging.getLogger("vehicle").info("starting vehicle loop")
         # Kicks off simulator for stepping
-        self.init_vehicle_loop()
+        #self.init_vehicle_loop()
 
 
     def stop(self):

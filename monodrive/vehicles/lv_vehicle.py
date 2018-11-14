@@ -14,7 +14,7 @@ from monodrive.networking import messaging
 
 
 class LV_Vehicle(BaseVehicle):
-    def __init__(self, simulator, vehicle_config, map=None, restart_event=None, **kwargs):
+    def __init__(self, simulator, vehicle_config, simulator_config, map=None, restart_event=None, **kwargs):
         super(LV_Vehicle, self).__init__(simulator, vehicle_config, restart_event)
         self.waypoint_sensor = None
         self.gps_sensor = None

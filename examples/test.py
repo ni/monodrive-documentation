@@ -21,8 +21,11 @@ from monodrive.util import InterruptHelper
 from monodrive.vehicles import SimpleVehicle
 from monodrive.vehicles import TeleportVehicle
 
+from monodrive.networking.client import Client
 
 ManualDriveMode = True
+
+
 
 
 if __name__ == "__main__":
@@ -33,23 +36,33 @@ if __name__ == "__main__":
     # Vehicle configuration defines ego vehicle configuration and the individual sensors configurations
     vehicle_config = VehicleConfiguration('demo.json')
 
-    simulator = Simulator(simulator_config)
+    client = Client((simulator_config.configuration["server_ip"],
+                     simulator_config.configuration["server_port"]))
+
+    if not client.isconnected():
+        client.connect()
+
+    simulator = Simulator(client, simulator_config)
     simulator.send_configuration()
 
     # time.sleep(30)
 
     episodes = 1  # TODO... this should come from the scenario config
     # Setup Ego Vehicle
+
+
     if ManualDriveMode == True:
-        ego_vehicle = simulator.get_ego_vehicle(vehicle_config, TeleportVehicle)
+        ego_vehicle = simulator.get_ego_vehicle(client, vehicle_config, TeleportVehicle)
     else:
-        ego_vehicle = simulator.get_ego_vehicle(vehicle_config, SimpleVehicle)
+        ego_vehicle = simulator.get_ego_vehicle(client, vehicle_config, SimpleVehicle)
 
     ego_vehicle.update_fmcw_in_config()
 
     # prctl.set_proctitle("monoDrive")
     #
     gui = None
+
+
     while episodes > 0:
         helper = InterruptHelper()
 

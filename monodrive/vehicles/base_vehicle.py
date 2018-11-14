@@ -20,16 +20,16 @@ import multiprocessing
 
 
 class BaseVehicle(object):
-    def __init__(self, simulator, vehicle_config, restart_event=None, **kwargs):
+    def __init__(self, client, simulator_config, vehicle_config, restart_event=None, **kwargs):
         super(BaseVehicle, self).__init__()
-        self.simulator = simulator
-        self.simulator_config = simulator.configuration
+        self.simulator_config = simulator_config
         self.name = vehicle_config.id
         self.sensors = []
         self.restart_event = restart_event
         self.previous_control_sent_time = None
         self.control_thread = None
         self.b_control_thread_running = True
+        self.client = client
 
         #FROM old sensor manager
         self.vehicle_config = vehicle_config
@@ -128,7 +128,8 @@ class BaseVehicle(object):
         [p.start() for p in self.get_process_list()]
 
         logging.getLogger("vehicle").debug("start streaming sensors")
-        [s.send_start_stream_command(self.simulator) for s in self.sensors]
+        #[s.send_start_stream_command(self.simulator) for s in self.sensors]
+        [s.send_start_stream_command(self.client) for s in self.sensors]
 
         logging.getLogger("vehicle").debug("waiting for sensors ready")
         [s.wait_until_ready() for s in self.sensors]

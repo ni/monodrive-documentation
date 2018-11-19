@@ -81,11 +81,7 @@ if __name__ == "__main__":
         gui = GUI(ego_vehicle, simulator)
 
         ego_vehicle.init_vehicle_loop(client)
-        #ego_vehicle.start()
 
-        #gui = GUI(ego_vehicle, simulator)
-
-        # simulator.restart_event.set()
         # Waits for the restart event to be set in the control process
         # time.sleep(100)
         helper.wait(simulator.restart_event)

@@ -267,7 +267,7 @@ class Radar_Rx_Signal_Plot(wx.Panel):
         if self.rx_signal_subplot_handle == None:
             self.rx_signal_subplot_handle = self.rx_signal_subplot.plot(x,rx_signal)[0]
         #signal_max = max(rx_signal.real)
-        self.rx_signal_subplot.set_ylim([-250,250])
+        self.rx_signal_subplot.set_ylim([-500,500])
         self.rx_signal_subplot_handle.set_xdata(x)
         self.rx_signal_subplot_handle.set_ydata(rx_signal)
         self.figure.canvas.draw()
@@ -403,6 +403,7 @@ class Radar_Target_Table(wx.Panel):
         pub.subscribe(self.update_view, 'update_radar_table')
     
     def update_view(self, msg):
+        print("Update radar table")
         if msg:
             self.targets = Radar_Message(msg)
             self.update_plot(self.targets)
@@ -410,6 +411,7 @@ class Radar_Target_Table(wx.Panel):
     def update_plot(self,targets):
         if self.target_table_handle == None and len(targets.ranges) > 0:
             self.target_table_handle = self.setup_radar_plots(targets)
+        print(len(targets.ranges))
         if len(targets.ranges) > 0:
             self.set_data(self.targets)
         self.figure.canvas.draw()
@@ -915,7 +917,7 @@ class MonoDriveGUIApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
 
 class SensorPoll(Thread):
     """Thread to pull data from sensor q's and publish to views"""
-    def __init__(self, sensors, fps, map, clock_mode, sync_event):
+    def __init__(self, sensors, fps, map, clock_mode, vehicle_step_event):
         super(SensorPoll,self).__init__()
         #self.vehicle = vehicle
         #TODO need to fix the map getting here
@@ -924,7 +926,7 @@ class SensorPoll(Thread):
         #self.sensors = vehicle.get_sensors()
         self.sensors = sensors
         self.stop_event = multiprocessing.Event()
-        self.sync_event = sync_event
+        self.vehicle_step_event = vehicle_step_event
         self.clock_mode = clock_mode
         self.fps = fps
         self.update_gui_rate = 1.0 / float(fps)
@@ -981,7 +983,7 @@ class SensorPoll(Thread):
                     break
 
             if self.clock_mode == ClockMode_ClientStep:
-                self.sync_event.set()
+                self.vehicle_step_event.set()
 
             if self.road_map:
                 wx.CallAfter(pub.sendMessage, "update_roadmap", msg=self.road_map)
@@ -1042,19 +1044,19 @@ class LidarGUISensor(GUISensor):
 
 
 class GUI(object):
-    def __init__(self, simulator, **kwargs):
+    def __init__(self, ego_vehicle, simulator, **kwargs):
         super(GUI, self).__init__(**kwargs)
         self.daemon = True
         self.name = "GUI"
         self.simulator_event = simulator.restart_event
-        self.vehicle_sync_event = simulator.ego_vehicle.vehicle_drive
-        self.vehicle_clock_mode = simulator.ego_vehicle.vehicle_config.clock_mode
+        self.vehicle_step_event = ego_vehicle.vehicle_step_event
+        self.vehicle_clock_mode = ego_vehicle.vehicle_config.clock_mode
         #self.simulator = simulator
         #self.vehicle = None
         #self.vehicle = simulator.ego_vehicle
 
         self.sensors = []
-        for sensor in simulator.ego_vehicle.sensors:
+        for sensor in ego_vehicle.sensors:
             if "Lidar" in sensor.name:
                 self.sensors.append(LidarGUISensor(sensor))
             else:
@@ -1104,7 +1106,7 @@ class GUI(object):
 
         #prctl.set_proctitle("mono{0}".format(self.name))
         #start sensor polling
-        self.sensor_polling = SensorPoll(self.sensors, self.fps, self.map, self.vehicle_clock_mode, self.vehicle_sync_event)
+        self.sensor_polling = SensorPoll(self.sensors, self.fps, self.map, self.vehicle_clock_mode, self.vehicle_step_event)
         while not self.stop_event.is_set():
             self.app.MainLoop()
             self.simulator_event.set()

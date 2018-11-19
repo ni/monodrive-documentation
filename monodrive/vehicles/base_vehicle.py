@@ -20,10 +20,10 @@ import multiprocessing
 
 
 class BaseVehicle(object):
-    def __init__(self, simulator, vehicle_config, restart_event=None, **kwargs):
+    def __init__(self, simulator_config, vehicle_config, restart_event=None, **kwargs):
         super(BaseVehicle, self).__init__()
-        self.simulator = simulator
-        self.simulator_config = simulator.configuration
+        self.client = None
+        self.simulator_config = simulator_config
         self.name = vehicle_config.id
         self.sensors = []
         self.restart_event = restart_event
@@ -33,17 +33,16 @@ class BaseVehicle(object):
 
         #FROM old sensor manager
         self.vehicle_config = vehicle_config
-        self.simulator = simulator
         self.sensor_process_dict = {}
         self.init_sensors()
 
         self.vehicle_update_rate = .1  # ticks per second
         self.vehicle_stop = multiprocessing.Event()
         self.vehicle_thread = None
-        self.vehicle_drive = multiprocessing.Event()
+        self.vehicle_step_event = multiprocessing.Event()
 
-    def init_vehicle_loop(self):
-        self.vehicle_thread = threading.Thread(target=self.vehicle_loop)
+    def init_vehicle_loop(self, client):
+        self.vehicle_thread = threading.Thread(target=self.vehicle_loop(client))
         self.vehicle_thread.daemon = True
         self.vehicle_thread.start()
 
@@ -52,9 +51,9 @@ class BaseVehicle(object):
         self.vehicle_thread.join(timeout=timeout)
         self.vehicle_thread = None
     
-    def vehicle_loop(self):
+    def vehicle_loop(self, client):
         # step the vehicle to start the measurements
-        self.step({'forward': 0.0, 'right': 0.0})
+        self.step(client, {'forward': 0.0, 'right': 0.0})
         
         sensors = self.get_sensors()
         time.sleep(1)
@@ -62,10 +61,10 @@ class BaseVehicle(object):
         while not self.vehicle_stop.wait(self.vehicle_update_rate):
             if self.wait_for_drive_ready():
                 control = self.drive(sensors)
-                self.step(control)
+                self.step(client, control)
 
-    def step(self, control_data):
-        self.control_thread = threading.Thread(target=self.do_control_thread(control_data))
+    def step(self, client, control_data):
+        self.control_thread = threading.Thread(target=self.do_control_thread(client, control_data))
         self.control_thread.start()
 
     # This will wait for up to 2 seconds for all the sensor data and then proceed regardless
@@ -73,24 +72,22 @@ class BaseVehicle(object):
         should_drive = True
         if self.vehicle_config.clock_mode == ClockMode_ClientStep:
             wait_time = self.vehicle_update_rate
-            while wait_time < 2.0 and not self.vehicle_drive.wait(self.vehicle_update_rate):
+            while wait_time < 2.0 and not self.vehicle_step_event.wait(self.vehicle_update_rate):
                 wait_time += self.vehicle_update_rate
-            self.vehicle_drive.clear()
+            self.vehicle_step_event.clear()
             should_drive = not self.vehicle_stop.wait(0)
         return should_drive
 
-    def do_control_thread(self, control_data):
+    def do_control_thread(self, client, control_data):
         forward = control_data['forward']
         right = control_data['right']
         logging.getLogger("control").debug("Sending control data forward: %.4s, right: %.4s" % (forward, right))
         msg = messaging.EgoControlCommand(forward, right)
-        resp = self.simulator.request(msg)
+        #resp = self.simulator.request(msg)
+        resp = client.request(msg)
         if resp is None:
             logging.getLogger("control").error(
                 "Failed response from sending control data forward: %s, right: %s" % (forward, right))
-        #self.previous_control_sent_time = time.time()
-        #for s in self.sensors:
-            #s.last_control_real_time.value = self.previous_control_sent_time
 
     def drive(self, sensors):
         raise NotImplementedError("To be implemented in base class")
@@ -128,18 +125,33 @@ class BaseVehicle(object):
                 _processes.append(sensor.packetizer_process)
         return _processes
 
-    def start(self):
+    def start_sensor_streaming(self, client):
+        [s.send_start_stream_command(client) for s in self.sensors]
+        return 1
+
+    def stop_sensor_streaming(self, client):
+        [s.stop_sensor_command(client) for s in self.sensors]
+        return 1
+
+    def start_sensor_listening(self):
+        [p.start() for p in self.get_process_list()]
+        logging.getLogger("vehicle").debug("waiting for sensors ready")
+        [s.wait_until_ready() for s in self.sensors]
+        return 1
+
+    '''def start(self):
         [p.start() for p in self.get_process_list()]
 
         logging.getLogger("vehicle").debug("start streaming sensors")
-        [s.send_start_stream_command(self.simulator) for s in self.sensors]
+        #[s.send_start_stream_command(self.simulator) for s in self.sensors]
+        [s.send_start_stream_command(self.client) for s in self.sensors]
 
         logging.getLogger("vehicle").debug("waiting for sensors ready")
         [s.wait_until_ready() for s in self.sensors]
 
         logging.getLogger("vehicle").info("starting vehicle loop")
         # Kicks off simulator for stepping
-        self.init_vehicle_loop()
+        self.init_vehicle_loop()'''
 
 
     def stop(self):

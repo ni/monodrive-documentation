@@ -151,7 +151,7 @@ class Client(object):
                     task()
                     self.queue.task_done()
 
-    def request(self, message, timeout=5, num_messages=1):
+    def request(self, message, timeout=5):
         """ Return a response from Unreal """
         def do_request():
             if not self.message_client.send(message):
@@ -164,17 +164,17 @@ class Client(object):
             self.queue.put(do_request)
             self.data_ready.set()
 
-        responses = []
-        while len(responses) < num_messages:
-            try:
-                response = self.responses.get(True, timeout)
-                responses.append(response)
-            except Empty:
-                logging.getLogger("network").error('Can not receive a response from server. \
+        response = None
+        #while len(responses) < num_messages:
+        try:
+            response = self.responses.get(True, timeout)
+            #responses.append(response)
+        except Empty:
+            logging.getLogger("network").error('Can not receive a response from server. \
                        timeout after {:0.2f} seconds'.format(timeout))
-                responses.append(None)
-        self.message_id += 1  # Increment only after the request/response cycle finished
+            #responses.append(None)
+        #self.message_id += 1  # Increment only after the request/response cycle finished
 
-        if num_messages == 1:
-            return responses[0]
-        return responses
+        #if num_messages == 1:
+        #    return responses[0]
+        return response

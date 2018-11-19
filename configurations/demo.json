@@ -59,7 +59,7 @@
       "type": "Lidar",
       "id": "0",
       "packet_size": 1472,
-      "listen_port": 8080,
+      "listen_port": 8089,
       "display_process": true,
       "sensor_process": true,
       "synchronized_display": true,
@@ -76,7 +76,7 @@
       "max_distance": 8000.0,
       "vertical_fov_angle": 30.0,
       "horizontal_resolution": 0.4,
-      "fps": 5.0,
+      "fps": 1.0,
       "n_lasers": 32,
       "reset_angle": 0.0
     },
@@ -154,7 +154,7 @@
       },
       "max_distance": 50000.0,
       "horizontal_fov_angle": 70.0,
-      "fps": 5,
+      "fps": 1.0,
       "stream_dimensions": {
         "x":768.0,
         "y":512.0
@@ -180,7 +180,7 @@
         "yaw":0.0,
         "roll":0.0
       },
-      "fps": 5.0
+      "fps": 1.0
     },
     {
       "type": "Waypoint",
@@ -200,7 +200,7 @@
         "yaw": 0.0,
         "roll": 0.0
       },
-      "fps": 5.0,
+      "fps": 1.0,
       "point_delta": 100.0,
       "total_points": 100.0
     },
@@ -222,7 +222,7 @@
         "yaw": 0.0,
         "roll": 0.0
       },
-      "fps": 5.0
+      "fps": 1.0
     },
     {
       "type": "IMU",
@@ -242,7 +242,7 @@
         "yaw":0.0,
         "roll":0.0
       },
-      "fps": 5.0
+      "fps": 1.0
     },
     {
       "type": "RPM",
@@ -261,7 +261,7 @@
         "yaw": 0,
         "roll": 0
       },
-      "fps": 5,
+      "fps": 1.0,
       "wheel_number": 0
     }
   ]

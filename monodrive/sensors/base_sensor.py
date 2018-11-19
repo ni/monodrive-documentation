@@ -18,6 +18,7 @@ import struct
 import threading
 import time
 
+from monodrive.networking import messaging
 from monodrive.transform import Rotation, Transform, Translation
 
 BITS_PER_BYTE = 8.0
@@ -315,12 +316,26 @@ class BaseSensor(object):
         if self.q_display.full():
             self.q_display.get()
         self.q_display.put(frame)
-        
-    def send_start_stream_command(self, simulator):
+
+    def request_sensor_stream(self, client, message_cls):
+        # wait for 2 responses when requesting the sensor to stream data
+        # the second will include a sensor_ready flag
+        message = client.request(message_cls, 10)
+        return message
+
+    def start_sensor_command(self, client):
+        """ Return server response from Sensor request. """
+        u_sensor_type = u"{}".format(self.type)
+        msg_cls = messaging.StreamDataCommand(u_sensor_type, self.sensor_id, self.client_ip,
+                                              self.port_number, u'tcp', 0, packet_size=self.packet_size)
+        response = self.request_sensor_stream(client, msg_cls)
+
+        return response
+
+    def send_start_stream_command(self, client):
         res = None
         if not self.stop_event.is_set():
-            res = simulator.start_sensor_command(self.type, self.port_number, self.sensor_id,
-                                                 self.packet_size, self.drop_frames)
+            res = self.start_sensor_command(client)
             if res is None:
                 logging.getLogger("sensor").error(
                     "Failed start stream command for sensor %s" % self.name)
@@ -332,12 +347,15 @@ class BaseSensor(object):
 
         return res
 
-    def send_stop_stream_command(self, simulator):
-        
-        res = simulator.stop_sensor_command(self.type, self.port_number, self.sensor_id,
-                                            self.packet_size, self.drop_frames)
-        logging.getLogger("sensor").info("{0} stop stream requested".format(self.name))
-        return res
+    def stop_sensor_command(self, client):
+        """ Return server response from Sensor request. """
+        u_sensor_type = u"{}".format(self.type)
+        response = client.request(
+            messaging.StreamDataCommand(u_sensor_type, self.sensor_id, self.client_ip, self.port_number, u'tcp',
+                                        1, packet_size=self.packet_size, dropFrames=self.drop_frames),
+            timeout=2)
+
+        return response
 
     def get_transform(self):
         position = self.config.get("location", None)

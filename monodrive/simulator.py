@@ -14,7 +14,7 @@ except:
     pass
 
 from monodrive.networking import messaging
-from monodrive.networking.client import Client
+#from monodrive.networking.client import Client
 from monodrive.constants import *
 
 from monodrive import VehicleConfiguration
@@ -22,13 +22,13 @@ from monodrive import VehicleConfiguration
 
 class Simulator(object):
 
-    def __init__(self, configuration):
+    def __init__(self, client, configuration):
         self.configuration = configuration
         self.restart_event = Event()
         self.ego_vehicle = None
         self.scenario = None
-        self._client = None
-        self.setup_logger()
+        self.client = client
+        #self.setup_logger()
         self.map_data = None
 
     def start_scenario(self, scenario, vehicle_class):
@@ -46,15 +46,15 @@ class Simulator(object):
         # Start the Vehicle process
         self.ego_vehicle.start_scenario(scenario)
 
-    def get_ego_vehicle(self, vehicle_configuration, vehicle_class):
+    '''def get_ego_vehicle(self, vehicle_configuration, vehicle_class):
         # Create vehicle process form received class
         self.map_data = self.request_map()
         if not self.map_data:
             logging.getLogger("simulator").error("failed to get map")
             return None
 
-        self.ego_vehicle = vehicle_class(self, vehicle_configuration, self.restart_event, self.map_data)
-        return self.ego_vehicle
+        self.ego_vehicle = vehicle_class(self.configuration, vehicle_configuration, self.restart_event, self.map_data)
+        return self.ego_vehicle'''
 
     def stop(self):
 
@@ -83,7 +83,7 @@ class Simulator(object):
         if including_parent:
             parent.kill()
 
-    @property
+    ''''@property
     def client(self):
         if self._client is None:
             self._client = Client((self.configuration.server_ip,
@@ -91,7 +91,7 @@ class Simulator(object):
 
         if not self._client.isconnected():
             self._client.connect()
-        return self._client
+        return self._client'''
 
     def request(self, message_cls, timeout=5):
         return self.client.request(message_cls, timeout)
@@ -99,8 +99,8 @@ class Simulator(object):
     def request_sensor_stream(self, message_cls):
         # wait for 2 responses when requesting the sensor to stream data
         # the second will include a sensor_ready flag
-        messages = self.client.request(message_cls, 10, 2)
-        return messages[1]
+        messages = self.client.request(message_cls, 10, 1)
+        return messages
 
     def send_vehicle_configuration(self, vehicle_configuration):
         logging.getLogger("simulator").info('Sending vehicle configuration {0}'.format(vehicle_configuration.name))
@@ -116,8 +116,9 @@ class Simulator(object):
 
     def send_configuration(self):
         logging.getLogger("simulator").info('Sending simulator configuration ip:{0}:{1}'.format(self.configuration.server_ip,self.configuration.server_port))
-        simulator_response = self.request(messaging.JSONConfigurationCommand(
-            self.configuration.configuration, SIMULATOR_CONFIG_COMMAND_UUID))
+
+        msg = messaging.JSONConfigurationCommand(self.configuration.configuration, SIMULATOR_CONFIG_COMMAND_UUID)
+        simulator_response = self.request(msg)
         if simulator_response is None:
             logging.getLogger("network").error('Failed to send the simulator configuration')
 
@@ -181,12 +182,13 @@ class Simulator(object):
             file_handler.setFormatter(simple_formatter)
 
             logger.addHandler(file_handler)
-            logger.addHandler(stream_handler)
+            #logger.addHandler(stream_handler)
 
     def request_map(self):
         command = messaging.MapCommand(self.configuration.map_settings)
         result = self.request(command, 60)
         if result is not None and result.data:
+            self.map_data = result.data
             return result.data
         else:
             return None

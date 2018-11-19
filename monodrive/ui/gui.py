@@ -917,7 +917,7 @@ class MonoDriveGUIApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
 
 class SensorPoll(Thread):
     """Thread to pull data from sensor q's and publish to views"""
-    def __init__(self, sensors, fps, map, clock_mode, sync_event):
+    def __init__(self, sensors, fps, map, clock_mode, vehicle_step_event):
         super(SensorPoll,self).__init__()
         #self.vehicle = vehicle
         #TODO need to fix the map getting here
@@ -926,7 +926,7 @@ class SensorPoll(Thread):
         #self.sensors = vehicle.get_sensors()
         self.sensors = sensors
         self.stop_event = multiprocessing.Event()
-        self.sync_event = sync_event
+        self.vehicle_step_event = vehicle_step_event
         self.clock_mode = clock_mode
         self.fps = fps
         self.update_gui_rate = 1.0 / float(fps)
@@ -983,7 +983,7 @@ class SensorPoll(Thread):
                     break
 
             if self.clock_mode == ClockMode_ClientStep:
-                self.sync_event.set()
+                self.vehicle_step_event.set()
 
             if self.road_map:
                 wx.CallAfter(pub.sendMessage, "update_roadmap", msg=self.road_map)
@@ -1044,19 +1044,19 @@ class LidarGUISensor(GUISensor):
 
 
 class GUI(object):
-    def __init__(self, simulator, **kwargs):
+    def __init__(self, ego_vehicle, simulator, **kwargs):
         super(GUI, self).__init__(**kwargs)
         self.daemon = True
         self.name = "GUI"
         self.simulator_event = simulator.restart_event
-        self.vehicle_sync_event = simulator.ego_vehicle.vehicle_drive
-        self.vehicle_clock_mode = simulator.ego_vehicle.vehicle_config.clock_mode
+        self.vehicle_step_event = ego_vehicle.vehicle_step_event
+        self.vehicle_clock_mode = ego_vehicle.vehicle_config.clock_mode
         #self.simulator = simulator
         #self.vehicle = None
         #self.vehicle = simulator.ego_vehicle
 
         self.sensors = []
-        for sensor in simulator.ego_vehicle.sensors:
+        for sensor in ego_vehicle.sensors:
             if "Lidar" in sensor.name:
                 self.sensors.append(LidarGUISensor(sensor))
             else:
@@ -1106,7 +1106,7 @@ class GUI(object):
 
         #prctl.set_proctitle("mono{0}".format(self.name))
         #start sensor polling
-        self.sensor_polling = SensorPoll(self.sensors, self.fps, self.map, self.vehicle_clock_mode, self.vehicle_sync_event)
+        self.sensor_polling = SensorPoll(self.sensors, self.fps, self.map, self.vehicle_clock_mode, self.vehicle_step_event)
         while not self.stop_event.is_set():
             self.app.MainLoop()
             self.simulator_event.set()

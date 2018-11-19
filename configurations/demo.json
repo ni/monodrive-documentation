@@ -1,6 +1,6 @@
 {
   "id": "basic_configuration",
-  "clock_mode": 0,
+  "clock_mode": 2,
   "lane_number": 0,
   "position": 0,
   "bounding_data_on_radar_graph": true,

@@ -41,7 +41,6 @@ class TestDrive(object):
         self.gui = None
         self.ego_vehicle = None
         self.client = None
-        pass
 
     def start_ego(self):
         self.ego_vehicle.start()

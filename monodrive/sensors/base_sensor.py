@@ -78,12 +78,6 @@ class BaseSensor(object):
     def get_frame_count(self):
         return self.q_data.qsize()
 
-    def connect(self):
-        pass
-
-    def dis_connect(self):
-        pass
-
     def get_message(self, block=True, timeout=None):
         data = None
         try:

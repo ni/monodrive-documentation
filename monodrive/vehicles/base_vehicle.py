@@ -22,6 +22,7 @@ import multiprocessing
 class BaseVehicle(object):
     def __init__(self, simulator_config, vehicle_config, restart_event=None, **kwargs):
         super(BaseVehicle, self).__init__()
+        self.client = None
         self.simulator_config = simulator_config
         self.name = vehicle_config.id
         self.sensors = []
@@ -38,10 +39,10 @@ class BaseVehicle(object):
         self.vehicle_update_rate = .1  # ticks per second
         self.vehicle_stop = multiprocessing.Event()
         self.vehicle_thread = None
-        self.vehicle_drive = multiprocessing.Event()
+        self.vehicle_step_event = multiprocessing.Event()
 
-    def init_vehicle_loop(self):
-        self.vehicle_thread = threading.Thread(target=self.vehicle_loop)
+    def init_vehicle_loop(self, client):
+        self.vehicle_thread = threading.Thread(target=self.vehicle_loop(client))
         self.vehicle_thread.daemon = True
         self.vehicle_thread.start()
 
@@ -50,9 +51,9 @@ class BaseVehicle(object):
         self.vehicle_thread.join(timeout=timeout)
         self.vehicle_thread = None
     
-    def vehicle_loop(self):
+    def vehicle_loop(self, client):
         # step the vehicle to start the measurements
-        self.step({'forward': 0.0, 'right': 0.0})
+        self.step(client, {'forward': 0.0, 'right': 0.0})
         
         sensors = self.get_sensors()
         time.sleep(1)
@@ -60,7 +61,7 @@ class BaseVehicle(object):
         while not self.vehicle_stop.wait(self.vehicle_update_rate):
             if self.wait_for_drive_ready():
                 control = self.drive(sensors)
-                self.step(control)
+                self.step(client, control)
 
     def step(self, client, control_data):
         self.control_thread = threading.Thread(target=self.do_control_thread(client, control_data))
@@ -71,9 +72,9 @@ class BaseVehicle(object):
         should_drive = True
         if self.vehicle_config.clock_mode == ClockMode_ClientStep:
             wait_time = self.vehicle_update_rate
-            while wait_time < 2.0 and not self.vehicle_drive.wait(self.vehicle_update_rate):
+            while wait_time < 2.0 and not self.vehicle_step_event.wait(self.vehicle_update_rate):
                 wait_time += self.vehicle_update_rate
-            self.vehicle_drive.clear()
+            self.vehicle_step_event.clear()
             should_drive = not self.vehicle_stop.wait(0)
         return should_drive
 
@@ -138,7 +139,7 @@ class BaseVehicle(object):
         [s.wait_until_ready() for s in self.sensors]
         return 1
 
-    def start(self):
+    '''def start(self):
         [p.start() for p in self.get_process_list()]
 
         logging.getLogger("vehicle").debug("start streaming sensors")
@@ -148,9 +149,9 @@ class BaseVehicle(object):
         logging.getLogger("vehicle").debug("waiting for sensors ready")
         [s.wait_until_ready() for s in self.sensors]
 
-        #logging.getLogger("vehicle").info("starting vehicle loop")
+        logging.getLogger("vehicle").info("starting vehicle loop")
         # Kicks off simulator for stepping
-        #self.init_vehicle_loop()
+        self.init_vehicle_loop()'''
 
 
     def stop(self):

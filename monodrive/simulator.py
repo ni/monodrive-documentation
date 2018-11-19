@@ -46,8 +46,7 @@ class Simulator(object):
         # Start the Vehicle process
         self.ego_vehicle.start_scenario(scenario)
 
-
-    def get_ego_vehicle(self, vehicle_configuration, vehicle_class):
+    '''def get_ego_vehicle(self, vehicle_configuration, vehicle_class):
         # Create vehicle process form received class
         self.map_data = self.request_map()
         if not self.map_data:
@@ -55,7 +54,7 @@ class Simulator(object):
             return None
 
         self.ego_vehicle = vehicle_class(self.configuration, vehicle_configuration, self.restart_event, self.map_data)
-        return self.ego_vehicle
+        return self.ego_vehicle'''
 
     def stop(self):
 

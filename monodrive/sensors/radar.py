@@ -164,7 +164,7 @@ class Base_Radar(BaseSensor):
     #@classmethod
     def parse_frame(self, frame, time_stamp, game_time):
         radar_data = {}
-        print("radar parse_frame")
+        #print("radar parse_frame")
         if self.process_frame(frame):
             radar_data['time_stamp'] = time_stamp
             radar_data['game_time'] = game_time
@@ -207,7 +207,7 @@ class Base_Radar(BaseSensor):
 
     def process_frame(self, frame):
         # start_time = time.time()
-        print("Process Radar Frame")
+        #print("Process Radar Frame")
         if len(frame) > 0:
             done = self.process_radar(frame)
             # print('Radar Processing Time: {0}'.format(time.time() - start_time))
@@ -247,7 +247,7 @@ class Radar(Base_Radar):
         if self.range_idx(xr):
             if self.process_doppler(xr):
                 if self.process_aoa(xr):
-                    print("Radar Done")
+                    #print("Radar Done")
                     pass
                 else:
                     logging.getLogger("sensor").error("AOA Failed")
@@ -307,7 +307,7 @@ class Radar(Base_Radar):
                 else:
                     velocity_list[k] = 0
             self.targets_velocity = self.doppler_bin_size * velocity_list
-            print("targets_velocity = {0}".format(self.targets_velocity))
+            #print("targets_velocity = {0}".format(self.targets_velocity))
             return True
 
         except ValueError as e:
@@ -340,7 +340,7 @@ class Radar(Base_Radar):
                 aoa_estimates = rp.root_music(projection_vector, length_aic, self.n_rx_elements - 4, 1)
 
                 angles = np.arcsin(-2. * aoa_estimates[0:length_aic]) / np.pi * 180.0
-                print("angles = {0}".format(angles))
+                #print("angles = {0}".format(angles))
                 aoa_angles_truncated = np.extract(np.abs(angles) <= 50, angles)  # 10 is azimuth FOV
                 length_aic_truncated = len(aoa_angles_truncated)
 
@@ -357,9 +357,9 @@ class Radar(Base_Radar):
             self.targets_velocity = fxV
             self.targets_aoa = aoa_degrees
             self.targets_rcs = fxRCS
-            print("target_range_idx = {0}".format(self.target_range_idx))
-            print("target_velocity = {0}".format(self.targets_velocity))
-            print("target_aoa = {0}".format(self.targets_aoa))
+            #print("target_range_idx = {0}".format(self.target_range_idx))
+            #print("target_velocity = {0}".format(self.targets_velocity))
+            #print("target_aoa = {0}".format(self.targets_aoa))
 
             return True  
         except ValueError as e:

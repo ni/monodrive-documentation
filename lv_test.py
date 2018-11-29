@@ -1,5 +1,6 @@
 
 import time
+import struct
 
 
 class LabVehicleSensors(object):
@@ -117,6 +118,16 @@ class TestDrive(object):
 
 '''WRAPPERS FOR LABVIEW METHOD CALLS'''
 s = TestDrive()
+
+
+def parse_header(packet_header):
+    #print(len(packet_header.encode()))
+    byte_packet_header = packet_header.encode()
+    try:
+        length, time_stamp, game_time = struct.unpack('=IIf', byte_packet_header)
+    except Exception as e:
+        raise ValueError(len(packet_header.encode()))
+    return length
 
 
 def set_up_simulator():

@@ -156,7 +156,7 @@
       "horizontal_fov_angle": 70.0,
       "fps": 1.0,
       "stream_dimensions": {
-        "x":768.0,
+        "x":512.0,
         "y":512.0
       },
       "semantic_processing": false,

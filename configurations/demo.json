@@ -126,10 +126,10 @@
         "minimum_radar_distance": 5.0,
         "long_range_scan_distance": 150.0,
         "short_range_scan_distance": 60.0,
-        "num_scans_azimuth": 180.0,
+        "num_scans_azimuth": 20.0,
         "long_range_fov": 20.0,
         "short_range_fov": 90.0,
-        "num_scans_elevation": 20.0,
+        "num_scans_elevation": 10.0,
         "elevation_fov": 5.0,
         "max_raycast_hits": 1
       }

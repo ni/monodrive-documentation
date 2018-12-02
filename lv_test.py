@@ -1,6 +1,7 @@
 
 import time
 import struct
+import matplotlib.pyplot as plt
 
 
 class LabVehicleSensors(object):
@@ -138,6 +139,8 @@ def set_up_simulator():
 
 
 def start_sensor_streams():
+    #plt.plot(1, 1)
+    #plt.show()
     try:
         s.start_sensor_streams()
     except Exception as e:

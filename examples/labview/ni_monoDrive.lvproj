@@ -10,12 +10,6 @@
 		<Property Name="server.vi.callsEnabled" Type="Bool">true</Property>
 		<Property Name="server.vi.propertiesEnabled" Type="Bool">true</Property>
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
-		<Item Name="Control 1.ctl" Type="VI" URL="../../../Control 1.ctl"/>
-		<Item Name="Control 3.ctl" Type="VI" URL="../Control 3.ctl"/>
-		<Item Name="Control 4.ctl" Type="VI" URL="../Control 4.ctl"/>
-		<Item Name="Control 5.ctl" Type="VI" URL="../../../Control 5.ctl"/>
-		<Item Name="Control 6.ctl" Type="VI" URL="../Control 6.ctl"/>
-		<Item Name="Control 9.ctl" Type="VI" URL="../Control 9.ctl"/>
 		<Item Name="mono_camera.vi" Type="VI" URL="../mono_camera.vi"/>
 		<Item Name="mono_gps.vi" Type="VI" URL="../mono_gps.vi"/>
 		<Item Name="mono_step.vi" Type="VI" URL="../mono_step.vi"/>

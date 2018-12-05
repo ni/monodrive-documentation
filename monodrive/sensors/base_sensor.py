@@ -264,6 +264,7 @@ class BaseSensor(object):
 
             if packet_header is not None and received == header_size:
                 length, time_stamp, game_time = struct.unpack('=IIf', packet_header)
+
                 length = length - header_size
 
                 try:

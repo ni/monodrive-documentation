@@ -190,3 +190,28 @@ class MoveActorCommand(Message):
     def __init__(self, config):
         super(MoveActorCommand, self).__init__(
             MOVE_ACTOR_COMMAND_UID, config)
+
+
+class AttachSensorCommand(Message):
+    """ Attach a sensor to the specified vehicle """
+
+    def __init__(self, vehicle_id, sensor):
+        super(AttachSensorCommand, self).__init__(
+            ATTACH_SENSOR_COMMAND_UID,
+            {
+                "vehicle_id": vehicle_id,
+                "sensor": sensor
+            })
+
+
+class DetachSensorCommand(Message):
+    """ Attach a sensor to the specified vehicle """
+
+    def __init__(self, vehicle_id, sensor):
+        super(DetachSensorCommand, self).__init__(
+            DETACH_SENSOR_COMMAND_UID,
+            {
+                "vehicle_id": vehicle_id,
+                "sensor": sensor
+            })
+

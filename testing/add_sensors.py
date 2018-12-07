@@ -5,10 +5,8 @@ __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
-import argparse
 import json
 import logging
-import math
 import signal
 import sys
 import threading
@@ -17,7 +15,6 @@ import time
 from monodrive import Simulator
 from monodrive.configuration import SimulatorConfiguration, VehicleConfiguration
 from monodrive.networking import messaging
-from monodrive.sensors import GPS
 from monodrive.networking.client import Client
 
 
@@ -46,6 +43,8 @@ class SensorTask:
         time_units = lambda: 'real time' \
             if (isinstance(data, dict) and data.get('game_time', None) is None) or self.clock_mode is 0 \
             else 'game time'
+
+        logging.getLogger(LOG_CATEGORY).info('{0} sensor loop start'.format(self.sensor.name))
 
         while self.running and self.sensor.is_sensor_running():
             data = self.sensor.get_message(timeout=.5)
@@ -86,6 +85,8 @@ def shutdown(sig, frame):
 if __name__ == "__main__":
     signal.signal(signal.SIGINT, shutdown)
 
+    logging.basicConfig(level=logging.DEBUG)
+
     simulator_config = SimulatorConfiguration('simulator.json')
     vehicle_config = VehicleConfiguration('test.json')
 
@@ -108,9 +109,9 @@ if __name__ == "__main__":
     idx = 0
     for sensor_config in sensor_configuration:
         cmd = messaging.AttachSensorCommand('ego', sensor_config)
-        logging.getLogger(LOG_CATEGORY).debug('--> '.format(cmd))
+        logging.getLogger(LOG_CATEGORY).debug('--> {0}'.format(json.dumps(cmd.to_json())))
         response = client.request(cmd)
-        logging.getLogger(LOG_CATEGORY).debug('<-- '.format(response))
+        logging.getLogger(LOG_CATEGORY).debug('<-- {0}'.format(json.dumps(response.to_json())))
 
         sensor_class = vehicle_config.get_class(sensor_config['type'])
         sensors.append(sensor_class(idx, sensor_config, simulator_config))

@@ -10,10 +10,17 @@
 		<Property Name="server.vi.callsEnabled" Type="Bool">true</Property>
 		<Property Name="server.vi.propertiesEnabled" Type="Bool">true</Property>
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
+		<Item Name="mono_bbox.vi" Type="VI" URL="../mono_bbox.vi"/>
 		<Item Name="mono_camera.vi" Type="VI" URL="../mono_camera.vi"/>
 		<Item Name="mono_gps.vi" Type="VI" URL="../mono_gps.vi"/>
+		<Item Name="mono_header.vi" Type="VI" URL="../mono_header.vi"/>
+		<Item Name="mono_imu.vi" Type="VI" URL="../mono_imu.vi"/>
+		<Item Name="mono_radar.vi" Type="VI" URL="../mono_radar.vi"/>
+		<Item Name="mono_rpm.vi" Type="VI" URL="../mono_rpm.vi"/>
+		<Item Name="mono_sensor_init.vi" Type="VI" URL="../mono_sensor_init.vi"/>
 		<Item Name="mono_step.vi" Type="VI" URL="../mono_step.vi"/>
 		<Item Name="ni_monoDrive.vi" Type="VI" URL="../ni_monoDrive.vi"/>
+		<Item Name="python_test.vi" Type="VI" URL="../python_test.vi"/>
 		<Item Name="Sensor Connections.ctl" Type="VI" URL="../Sensor Connections.ctl"/>
 		<Item Name="Sensor Streams.ctl" Type="VI" URL="../Sensor Streams.ctl"/>
 		<Item Name="Dependencies" Type="Dependencies">

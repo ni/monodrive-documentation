@@ -16,6 +16,8 @@ import umsgpack
 
 from monodrive.constants import *
 
+from json import JSONEncoder
+import codecs
 
 class Message(object):
     """
@@ -58,17 +60,19 @@ class Message(object):
         """ Read JSON from TCP data from the Unreal Server. """
         rbufsize = 0
         rfile = socket.makefile('rb', rbufsize)
-        raw_payload_size = rfile.read(8)
-        data = struct.unpack('!II', raw_payload_size)
+        header = rfile.read(8)
+        data = struct.unpack('!II', header)
         magic = data[0]
         length = data[1]
 
         if magic == RESPONSE_HEADER and length > 8:
-            if sys.version_info[0] == 3:
+            '''if sys.version_info[0] == 3:
                 data = umsgpack.unpack(rfile)
             else:
                 packed = rfile.read(length - 8)
-                data = umsgpack.unpackb(packed)
+                data = umsgpack.unpackb(packed)'''
+            reader = codecs.getreader("utf-8")
+            data = json.load(socket.recv(length-8))
 
             self.message_class = data['class']
             self.status = data['status']
@@ -81,7 +85,8 @@ class Message(object):
 
     def write(self, socket):
         """ Package JSON to send over TCP to Unreal Server. """
-        data = umsgpack.packb(self.to_json())
+        #data = umsgpack.packb(self.to_json())
+        data = str(self.to_json()).encode('utf8')
         length = len(data) + 8
         wfile = socket.makefile('wb', -1)
         wfile.write(struct.pack('!II', CONTROL_HEADER, length))

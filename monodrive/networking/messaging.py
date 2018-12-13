@@ -71,7 +71,7 @@ class Message(object):
             else:
                 packed = rfile.read(length - 8)
                 data = umsgpack.unpackb(packed)'''
-            reader = codecs.getreader("utf-8")
+            #reader = codecs.getreader("utf-8")
             data = json.load(socket.recv(length-8))
 
             self.message_class = data['class']

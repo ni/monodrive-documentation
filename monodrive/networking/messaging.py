@@ -72,7 +72,7 @@ class Message(object):
                 packed = rfile.read(length - 8)
                 data = umsgpack.unpackb(packed)'''
             #reader = codecs.getreader("utf-8")
-            data = json.load(socket.recv(length-8))
+            data = json.loads(rfile.read(length - 8).decode("utf-8"))
 
             self.message_class = data['class']
             self.status = data['status']
@@ -86,11 +86,11 @@ class Message(object):
     def write(self, socket):
         """ Package JSON to send over TCP to Unreal Server. """
         #data = umsgpack.packb(self.to_json())
-        data = str(self.to_json()).encode('utf8')
+        data = json.dumps(self.to_json()) #str(self.to_json()).encode('utf8')
         length = len(data) + 8
         wfile = socket.makefile('wb', -1)
         wfile.write(struct.pack('!II', CONTROL_HEADER, length))
-        wfile.write(data)
+        wfile.write(data.encode('utf8'))
         wfile.close()
 
 

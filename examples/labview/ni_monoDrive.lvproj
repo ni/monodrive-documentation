@@ -16,12 +16,17 @@
 		<Item Name="mono_camera_test.vi" Type="VI" URL="../mono_camera_test.vi"/>
 		<Item Name="mono_commands.ctl" Type="VI" URL="../mono_commands.ctl"/>
 		<Item Name="mono_config_parser_example.vi" Type="VI" URL="../mono_config_parser_example.vi"/>
+		<Item Name="mono_connect.vi" Type="VI" URL="../mono_connect.vi"/>
 		<Item Name="mono_gps.vi" Type="VI" URL="../mono_gps.vi"/>
 		<Item Name="mono_header.vi" Type="VI" URL="../mono_header.vi"/>
 		<Item Name="mono_imu.vi" Type="VI" URL="../mono_imu.vi"/>
 		<Item Name="mono_radar.vi" Type="VI" URL="../mono_radar.vi"/>
 		<Item Name="mono_rpm.vi" Type="VI" URL="../mono_rpm.vi"/>
+		<Item Name="mono_send_command.vi" Type="VI" URL="../mono_send_command.vi"/>
+		<Item Name="mono_send_simulator_config.vi" Type="VI" URL="../mono_send_simulator_config.vi"/>
+		<Item Name="mono_send_vehicle_config.vi" Type="VI" URL="../mono_send_vehicle_config.vi"/>
 		<Item Name="mono_sensor_init.vi" Type="VI" URL="../mono_sensor_init.vi"/>
+		<Item Name="mono_simulator.vi" Type="VI" URL="../mono_simulator.vi"/>
 		<Item Name="mono_step.vi" Type="VI" URL="../mono_step.vi"/>
 		<Item Name="ni_monoDrive.vi" Type="VI" URL="../ni_monoDrive.vi"/>
 		<Item Name="python_test.vi" Type="VI" URL="../python_test.vi"/>
@@ -54,6 +59,7 @@
 				<Item Name="ROI Descriptor" Type="VI" URL="/&lt;vilib&gt;/vision/Image Controls.llb/ROI Descriptor"/>
 				<Item Name="subElapsedTime.vi" Type="VI" URL="/&lt;vilib&gt;/express/express execution control/ElapsedTimeBlock.llb/subElapsedTime.vi"/>
 			</Item>
+			<Item Name="mono_config_lidar.ctl" Type="VI" URL="../mono_config_lidar.ctl"/>
 			<Item Name="mono_config_vehicle.ctl" Type="VI" URL="../mono_config_vehicle.ctl"/>
 			<Item Name="nivision.dll" Type="Document" URL="nivision.dll">
 				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
@@ -61,6 +67,7 @@
 			<Item Name="nivissvc.dll" Type="Document" URL="nivissvc.dll">
 				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
 			</Item>
+			<Item Name="Simulator_Configuration.ctl" Type="VI" URL="../Simulator_Configuration.ctl"/>
 		</Item>
 		<Item Name="Build Specifications" Type="Build"/>
 	</Item>

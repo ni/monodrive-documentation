@@ -55,7 +55,7 @@ class Base_Radar(BaseSensor):
         self.N_FFT = 1024
         self.fs = float(config['fs'])
         self.cc = 3.0e8
-        self.bin_range = 1.25*self.cc / 2 * self.samples_per_sweep / self.N_FFT / self.fs
+        self.bin_range = 1.00*self.cc / 2 * self.samples_per_sweep / self.N_FFT / self.fs
         self.fc = 77.0e9
         self.lamda = self.cc / self.fc
         self.Ts = 1.0 / self.fs

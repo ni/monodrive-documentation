@@ -1,5 +1,7 @@
 
 import time
+import struct
+import matplotlib.pyplot as plt
 
 
 class LabVehicleSensors(object):
@@ -119,6 +121,16 @@ class TestDrive(object):
 s = TestDrive()
 
 
+def parse_header(packet_header):
+    #print(len(packet_header.encode()))
+    byte_packet_header = packet_header.encode()
+    try:
+        length, time_stamp, game_time = struct.unpack('=IIf', byte_packet_header)
+    except Exception as e:
+        raise ValueError(len(packet_header.encode()))
+    return length
+
+
 def set_up_simulator():
     try:
         s.run_setup()
@@ -127,6 +139,8 @@ def set_up_simulator():
 
 
 def start_sensor_streams():
+    #plt.plot(1, 1)
+    #plt.show()
     try:
         s.start_sensor_streams()
     except Exception as e:

@@ -1,0 +1,61 @@
+{
+  "id": "basic_configuration",
+  "clock_mode": 2,
+  "lane_number": 0,
+  "position": 0,
+  "bounding_data_on_radar_graph": true,
+  "bounding_data_on_camera": true,
+  "spawning_rotation": {
+    "pitch": 0.0,
+    "yaw": 90.0,
+    "roll": 0.0
+  },
+  "mesh_path": "/Game/Vehicles_Vol1/Models/SUV/SUV_rigged.SUV_rigged",
+  "anim_path": "/Game/Vehicles_Vol1/Blueprints/SUV_AnimBP.SUV_AnimBP_C",
+  "wheels": [
+    {
+      "id": "FL_Wheel",
+      "wheel_number": 0,
+      "offset": {
+        "x": 0.0,
+        "y": 12.0,
+        "z": 0.0
+      },
+      "front": true
+    },
+    {
+      "id": "FR_Wheel",
+      "wheel_number": 1,
+      "offset": {
+        "x": 0.0,
+        "y": 12.0,
+        "z": 0.0
+      },
+      "front": true
+    },
+    {
+      "id": "BL_Wheel",
+      "wheel_number": 2,
+      "offset": {
+        "x": 0.0,
+        "y": 12.0,
+        "z": 0.0
+      },
+      "front": false
+    },
+    {
+      "id": "BR_Wheel",
+      "wheel_number": 3,
+      "offset": {
+        "x": 0.0,
+        "y": 12.0,
+        "z": 0.0
+      },
+      "front": false
+    }
+  ],
+  "sensors":[{
+    "type":"000"
+    }
+  ]
+}

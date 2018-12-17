@@ -51,10 +51,11 @@ if __name__ == "__main__":
     # Setup Ego Vehicle
 
     from monodrive import VehicleConfiguration
-    from monodrive.vehicles import LV_Vehicle
+    #from monodrive.vehicles import LV_Vehicle
 
     simulator.send_configuration()
-    map_data = simulator.request_map()
+    #map_data = simulator.request_map()
+    map_data = None
 
     # Setup Ego Vehicle
     if ManualDriveMode == True:

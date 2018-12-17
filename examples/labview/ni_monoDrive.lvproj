@@ -22,12 +22,15 @@
 		<Item Name="mono_imu.vi" Type="VI" URL="../mono_imu.vi"/>
 		<Item Name="mono_radar.vi" Type="VI" URL="../mono_radar.vi"/>
 		<Item Name="mono_rpm.vi" Type="VI" URL="../mono_rpm.vi"/>
+		<Item Name="mono_send_camera_config.vi" Type="VI" URL="../mono_send_camera_config.vi"/>
 		<Item Name="mono_send_command.vi" Type="VI" URL="../mono_send_command.vi"/>
 		<Item Name="mono_send_simulator_config.vi" Type="VI" URL="../mono_send_simulator_config.vi"/>
+		<Item Name="mono_send_vehicle_command.vi" Type="VI" URL="../mono_send_vehicle_command.vi"/>
 		<Item Name="mono_send_vehicle_config.vi" Type="VI" URL="../mono_send_vehicle_config.vi"/>
 		<Item Name="mono_sensor_init.vi" Type="VI" URL="../mono_sensor_init.vi"/>
 		<Item Name="mono_simulator.vi" Type="VI" URL="../mono_simulator.vi"/>
 		<Item Name="mono_step.vi" Type="VI" URL="../mono_step.vi"/>
+		<Item Name="mono_test.ctl" Type="VI" URL="../mono_test.ctl"/>
 		<Item Name="ni_monoDrive.vi" Type="VI" URL="../ni_monoDrive.vi"/>
 		<Item Name="python_test.vi" Type="VI" URL="../python_test.vi"/>
 		<Item Name="Sensor Connections.ctl" Type="VI" URL="../Sensor Connections.ctl"/>

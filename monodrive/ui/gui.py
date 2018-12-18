@@ -86,8 +86,8 @@ class Bounding_Polar_Plot(wx.Panel):
         self.target_polar_subplot.set_ylim(0, 150)
         #self.target_polar_subplot.set_
         self.target_polar_subplot.set_theta_zero_location('N')
-        self.toolbar = NavigationToolbar(self.canvas)
-        self.toolbar.Realize()
+        #self.toolbar = NavigationToolbar(self.canvas)
+        #self.toolbar.Realize()
         pub.subscribe(self.update_view, 'update_bounding_box')
 
         N = 20
@@ -102,7 +102,7 @@ class Bounding_Polar_Plot(wx.Panel):
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.sizer.Add(self.string_time, 0,  wx.HORIZONTAL | wx.EXPAND)
         self.sizer.Add(self.canvas, 1,  wx.ALL | wx.EXPAND)
-        self.sizer.Add(self.toolbar, 0,  wx.HORIZONTAL | wx.EXPAND)
+        #self.sizer.Add(self.toolbar, 0,  wx.HORIZONTAL | wx.EXPAND)
         self.SetSizer(self.sizer)
 
     def update_view(self, msg):
@@ -146,15 +146,15 @@ class Radar_FFT_Plot(wx.Panel):
         self.range_fft_subplot = self.figure.add_subplot(111)
         self.range_fft_subplot.set_title('Range_FFT')
         self.range_fft_subplot.set_ylim([-5,3])
-        self.toolbar = NavigationToolbar(self.canvas)
-        self.toolbar.Realize()
+        #self.toolbar = NavigationToolbar(self.canvas)
+        #self.toolbar.Realize()
 
         #this seems hacky but it is the only way to start the prot
         self.range_fft_subplot_handle = None
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.sizer.Add(self.canvas, 1,  wx.ALL | wx.EXPAND)
-        self.sizer.Add(self.toolbar, 0, wx.HORIZONTAL | wx.EXPAND)
+        #self.sizer.Add(self.toolbar, 0, wx.HORIZONTAL | wx.EXPAND)
         self.SetSizer(self.sizer)
         pub.subscribe(self.update_view, "update_radar_table")
 
@@ -202,15 +202,15 @@ class Radar_Tx_Signal_Plot(wx.Panel):
         #self.figure.set_title("Radar Target Plot")
         self.tx_signal_subplot = self.figure.add_subplot(111)
         self.tx_signal_subplot.set_title('Tx Signal')
-        self.toolbar = NavigationToolbar(self.canvas)
-        self.toolbar.Realize()
+        #self.toolbar = NavigationToolbar(self.canvas)
+        #self.toolbar.Realize()
 
         #this seems hacky but it is the only way to start the prot
         self.tx_signal_subplot_handle = None
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.sizer.Add(self.canvas, 1,  wx.ALL | wx.EXPAND)
-        self.sizer.Add(self.toolbar, 0, wx.HORIZONTAL | wx.EXPAND)
+        #self.sizer.Add(self.toolbar, 0, wx.HORIZONTAL | wx.EXPAND)
         self.SetSizer(self.sizer)
         pub.subscribe(self.update_view, "update_radar_table")
 
@@ -242,15 +242,15 @@ class Radar_Rx_Signal_Plot(wx.Panel):
         #self.rx_signal_subplot.autoscale(tight=True)
         self.rx_signal_subplot.set_title('Rx Dechirped Signal')
 
-        self.toolbar = NavigationToolbar(self.canvas)
-        self.toolbar.Realize()
+        #self.toolbar = NavigationToolbar(self.canvas)
+        #self.toolbar.Realize()
 
         #this seems hacky but it is the only way to start the prot
         self.rx_signal_subplot_handle = None
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.sizer.Add(self.canvas, 1,  wx.ALL | wx.EXPAND)
-        self.sizer.Add(self.toolbar, 0, wx.HORIZONTAL | wx.EXPAND)
+        #self.sizer.Add(self.toolbar, 0, wx.HORIZONTAL | wx.EXPAND)
         self.SetSizer(self.sizer)
         pub.subscribe(self.update_view, "update_radar_table")
 
@@ -298,8 +298,8 @@ class Radar_Polar_Plot(wx.Panel):
         self.target_mid_range_subplot.set_theta_zero_location('N')
 
 
-        self.toolbar = NavigationToolbar(self.canvas)
-        self.toolbar.Realize()
+        #self.toolbar = NavigationToolbar(self.canvas)
+        #self.toolbar.Realize()
         self.targets_bounding_box = None
 
         pub.subscribe(self.update_view, 'update_radar_table')
@@ -323,7 +323,7 @@ class Radar_Polar_Plot(wx.Panel):
         self.sizer.Add(self.string_time_radar, 0, wx.HORIZONTAL | wx.EXPAND)
         self.sizer.Add(self.string_time_bb, 0, wx.HORIZONTAL | wx.EXPAND)
         self.sizer.Add(self.canvas, 1, wx.ALL | wx.EXPAND)
-        self.sizer.Add(self.toolbar, 0, wx.HORIZONTAL | wx.EXPAND)
+        #self.sizer.Add(self.toolbar, 0, wx.HORIZONTAL | wx.EXPAND)
         self.SetSizer(self.sizer)
     
     def update_bounding(self, msg):
@@ -351,6 +351,8 @@ class Radar_Polar_Plot(wx.Panel):
         r = targets.ranges
         theta = -np.radians(targets.aoa_list)
         rcs = targets.rcs_list
+        bounding_box_distances = []
+        bounding_box_angles = []
         if self.targets_bounding_box:
             bounding_box_distances = self.targets_bounding_box.radar_distances
             bounding_box_angles = -np.radians(self.targets_bounding_box.radar_angles)
@@ -389,15 +391,15 @@ class Radar_Target_Table(wx.Panel):
         self.target_table_subplot.axis('tight')
         self.target_table_subplot.axis('off')
         self.target_table_subplot.grid(visible=True)
-        self.toolbar = NavigationToolbar(self.canvas)
-        self.toolbar.Realize()
+        #self.toolbar = NavigationToolbar(self.canvas)
+        #self.toolbar.Realize()
         self.target_table_handle = None
         self.old_size = 0
         self.max_number_of_targets = 24
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.sizer.Add(self.canvas, 1,  wx.EXPAND)
-        self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
+        #self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
         self.SetSizer(self.sizer)
 
         pub.subscribe(self.update_view, 'update_radar_table')
@@ -472,8 +474,8 @@ class RoadMap_View(wx.Panel):
         self.figure = Figure()
         self.canvas = FigureCanvas(self, 1, self.figure)
         self.map_subplot = self.figure.add_subplot(111)
-        self.toolbar = NavigationToolbar(self.canvas)
-        self.toolbar.Realize()
+        #self.toolbar = NavigationToolbar(self.canvas)
+        #self.toolbar.Realize()
         
         #this seems hacky but it is the only way to start the prot
         self.map_subplot_handle = None
@@ -481,7 +483,7 @@ class RoadMap_View(wx.Panel):
 
         self.sizer = wx.BoxSizer(wx.VERTICAL)
         self.sizer.Add(self.canvas, 1,  wx.EXPAND)
-        self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
+        #self.sizer.Add(self.toolbar, 0, wx.LEFT | wx.EXPAND)
         self.SetSizer(self.sizer)
         pub.subscribe(self.update_view, "update_roadmap")
 
@@ -700,8 +702,8 @@ class Wheel_RPM_View(wx.Panel):
 class Camera_View(BufferedWindow):
     def __init__(self, parent, *args, **kwargs):
         self.wxHelper = wxHelper.newInstance()
-        self.png = wx.Image(filepath, wx.BITMAP_TYPE_ANY)
-        self.current_bitmap = self.wxHelper.BitmapFromImage(self.png)
+        #self.png = wx.Image(filepath, wx.BITMAP_TYPE_ANY)
+        self.current_bitmap = self.wxHelper.BitmapFromImage(wx.Bitmap(512, 512))
         self.current_size = wx.Size(self.current_bitmap.GetWidth(), self.current_bitmap.GetHeight())
         BufferedWindow.__init__(self, parent, *args, **kwargs)
         self.SetMinSize(self.current_size)

@@ -405,7 +405,7 @@ class Radar_Target_Table(wx.Panel):
         pub.subscribe(self.update_view, 'update_radar_table')
     
     def update_view(self, msg):
-        print("Update radar table")
+        #print("Update radar table")
         if msg:
             self.targets = Radar_Message(msg)
             self.update_plot(self.targets)
@@ -413,7 +413,7 @@ class Radar_Target_Table(wx.Panel):
     def update_plot(self,targets):
         if self.target_table_handle == None and len(targets.ranges) > 0:
             self.target_table_handle = self.setup_radar_plots(targets)
-        print(len(targets.ranges))
+        #print(len(targets.ranges))
         if len(targets.ranges) > 0:
             self.set_data(self.targets)
         self.figure.canvas.draw()

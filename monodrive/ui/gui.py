@@ -351,8 +351,8 @@ class Radar_Polar_Plot(wx.Panel):
         r = targets.ranges
         theta = -np.radians(targets.aoa_list)
         rcs = targets.rcs_list
-        bounding_box_distances = []
         bounding_box_angles = []
+        bounding_box_distances = []
         if self.targets_bounding_box:
             bounding_box_distances = self.targets_bounding_box.radar_distances
             bounding_box_angles = -np.radians(self.targets_bounding_box.radar_angles)

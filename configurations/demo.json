@@ -106,7 +106,7 @@
       "sweep_num_for_range_max": 5.5,
       "range_resolution": 1.0,
       "max_velocity": 100.0,
-      "max_targets": 100,
+      "max_targets": 1000,
       "fps": 1.0,
       "elements": 8,
       "transmitter": {
@@ -126,12 +126,12 @@
         "minimum_radar_distance": 5.0,
         "long_range_scan_distance": 150.0,
         "short_range_scan_distance": 60.0,
-        "num_scans_azimuth": 20.0,
+        "num_scans_azimuth": 80.0,
         "long_range_fov": 20.0,
         "short_range_fov": 90.0,
-        "num_scans_elevation": 10.0,
+        "num_scans_elevation": 40.0,
         "elevation_fov": 5.0,
-        "max_raycast_hits": 1
+        "max_raycast_hits": 1000
       }
     },
       {

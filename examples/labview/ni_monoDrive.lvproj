@@ -26,7 +26,6 @@
 				<Item Name="NI License Manager.lvclass" Type="LVClass" URL="/&lt;vilib&gt;/NI License Manager/NI License Manager.lvclass"/>
 				<Item Name="Error Cluster From Error Code.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Error Cluster From Error Code.vi"/>
 			</Item>
-			<Item Name="mono_camera_single.vi" Type="VI" URL="../mono_camera_single.vi"/>
 			<Item Name="mono_config_lidar.ctl" Type="VI" URL="../mono_config_lidar.ctl"/>
 			<Item Name="mono_config_vehicle.ctl" Type="VI" URL="../mono_config_vehicle.ctl"/>
 			<Item Name="mono_start_sensor_stream.vi" Type="VI" URL="../mono_start_sensor_stream.vi"/>
@@ -34,6 +33,7 @@
 			<Item Name="Simulator_Configuration.ctl" Type="VI" URL="../Simulator_Configuration.ctl"/>
 			<Item Name="NationalInstruments.LicenseManagement.Sdk.dll" Type="Document" URL="/&lt;resource&gt;/NationalInstruments.LicenseManagement.Sdk.dll"/>
 			<Item Name="9c1d1a77308d2a44" Type="VI" URL="/&lt;resource&gt;/9c1d1a77308d2a44"/>
+			<Item Name="mono_camera_single.vi" Type="VI" URL="../mono_camera_single.vi"/>
 		</Item>
 		<Item Name="Build Specifications" Type="Build"/>
 	</Item>

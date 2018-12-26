@@ -45,7 +45,7 @@ if __name__ == "__main__":
     simulator = Simulator(client, simulator_config)
     simulator.send_configuration()
 
-    # time.sleep(30)
+    time.sleep(2)
 
     episodes = 1  # TODO... this should come from the scenario config
     # Setup Ego Vehicle

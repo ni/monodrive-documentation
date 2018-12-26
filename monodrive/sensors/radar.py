@@ -274,7 +274,7 @@ class Radar(Base_Radar):
         self.target_range_idx = target_range_idx.astype(int)
         #self.target_range_idx = ranges[0]
         #self.targets_rx_power = ranges[1]
-        self.targets_range = self.bin_range * (target_range_idx+1)  # range converted in meters
+        self.targets_range = 1.15*self.bin_range * (target_range_idx+1)  # range converted in meters
         self.targets_rcs = 10*np.log10(self.targets_rx_power * (self.targets_range ** 2)*(4*np.pi)**3 / self.N_FFT **2) - 43 # dBsm
         #self.target_rcs = 10 ** ((self.targets_rx_power + 30)/10) #dBsm
         self.targets_rx_power_db = 10*np.log10(self.targets_rx_power) - 30.0 

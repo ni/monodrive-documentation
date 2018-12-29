@@ -4,30 +4,41 @@
 	<Property Name="NI.Lib.SourceVersion" Type="Int">402685952</Property>
 	<Property Name="NI.Lib.Version" Type="Str">1.0.0.0</Property>
 	<Property Name="NI.LV.All.SourceOnly" Type="Bool">false</Property>
-	<Item Name="mono_bbox.vi" Type="VI" URL="../mono_bbox.vi"/>
-	<Item Name="mono_camera.vi" Type="VI" URL="../mono_camera.vi"/>
-	<Item Name="mono_camera_test.vi" Type="VI" URL="../mono_camera_test.vi"/>
-	<Item Name="mono_commands.ctl" Type="VI" URL="../mono_commands.ctl"/>
-	<Item Name="mono_config_parser_example.vi" Type="VI" URL="../mono_config_parser_example.vi"/>
-	<Item Name="mono_connect.vi" Type="VI" URL="../mono_connect.vi"/>
-	<Item Name="mono_gps.vi" Type="VI" URL="../mono_gps.vi"/>
-	<Item Name="mono_header.vi" Type="VI" URL="../mono_header.vi"/>
-	<Item Name="mono_imu.vi" Type="VI" URL="../mono_imu.vi"/>
-	<Item Name="mono_licensing.vi" Type="VI" URL="../mono_licensing.vi"/>
-	<Item Name="mono_radar.vi" Type="VI" URL="../mono_radar.vi"/>
-	<Item Name="mono_rpm.vi" Type="VI" URL="../mono_rpm.vi"/>
-	<Item Name="mono_send_camera_config.vi" Type="VI" URL="../mono_send_camera_config.vi"/>
-	<Item Name="mono_send_command.vi" Type="VI" URL="../mono_send_command.vi"/>
-	<Item Name="mono_send_simulator_config.vi" Type="VI" URL="../mono_send_simulator_config.vi"/>
-	<Item Name="mono_send_vehicle_command.vi" Type="VI" URL="../mono_send_vehicle_command.vi"/>
-	<Item Name="mono_send_vehicle_config.vi" Type="VI" URL="../mono_send_vehicle_config.vi"/>
-	<Item Name="mono_sensor_init.vi" Type="VI" URL="../mono_sensor_init.vi"/>
+	<Item Name="sensors" Type="Folder">
+		<Item Name="mono_bbox.vi" Type="VI" URL="../mono_bbox.vi"/>
+		<Item Name="mono_camera.vi" Type="VI" URL="../mono_camera.vi"/>
+		<Item Name="mono_camera_test.vi" Type="VI" URL="../mono_camera_test.vi"/>
+		<Item Name="mono_gps.vi" Type="VI" URL="../mono_gps.vi"/>
+		<Item Name="mono_imu.vi" Type="VI" URL="../mono_imu.vi"/>
+		<Item Name="mono_radar.vi" Type="VI" URL="../mono_radar.vi"/>
+		<Item Name="mono_rpm.vi" Type="VI" URL="../mono_rpm.vi"/>
+		<Item Name="mono_send_camera_config.vi" Type="VI" URL="../mono_send_camera_config.vi"/>
+		<Item Name="mono_sensor_init.vi" Type="VI" URL="../mono_sensor_init.vi"/>
+	</Item>
+	<Item Name="simulator" Type="Folder">
+		<Item Name="mono_config_parser_example.vi" Type="VI" URL="../mono_config_parser_example.vi"/>
+		<Item Name="mono_connect.vi" Type="VI" URL="../mono_connect.vi"/>
+		<Item Name="mono_header.vi" Type="VI" URL="../mono_header.vi"/>
+		<Item Name="mono_licensing.vi" Type="VI" URL="../mono_licensing.vi"/>
+		<Item Name="mono_send_command.vi" Type="VI" URL="../mono_send_command.vi"/>
+		<Item Name="mono_send_simulator_config.vi" Type="VI" URL="../mono_send_simulator_config.vi"/>
+		<Item Name="mono_step.vi" Type="VI" URL="../mono_step.vi"/>
+	</Item>
+	<Item Name="structures" Type="Folder">
+		<Item Name="mono_commands.ctl" Type="VI" URL="../mono_commands.ctl"/>
+		<Item Name="mono_test.ctl" Type="VI" URL="../mono_test.ctl"/>
+		<Item Name="Sensor Connections.ctl" Type="VI" URL="../Sensor Connections.ctl"/>
+		<Item Name="Sensor Streams.ctl" Type="VI" URL="../Sensor Streams.ctl"/>
+		<Item Name="Sensors.ctl" Type="VI" URL="../Sensors.ctl"/>
+	</Item>
+	<Item Name="utilities" Type="Folder">
+		<Item Name="Error Fork Stacker.vi" Type="VI" URL="../../../../../../Downloads/Error Fork Stacker.vi"/>
+	</Item>
+	<Item Name="vehicle" Type="Folder">
+		<Item Name="mono_send_vehicle_command.vi" Type="VI" URL="../mono_send_vehicle_command.vi"/>
+		<Item Name="mono_send_vehicle_config.vi" Type="VI" URL="../mono_send_vehicle_config.vi"/>
+	</Item>
 	<Item Name="mono_simulator.vi" Type="VI" URL="../mono_simulator.vi"/>
-	<Item Name="mono_step.vi" Type="VI" URL="../mono_step.vi"/>
-	<Item Name="mono_test.ctl" Type="VI" URL="../mono_test.ctl"/>
 	<Item Name="ni_monoDrive.vi" Type="VI" URL="../ni_monoDrive.vi"/>
 	<Item Name="python_test.vi" Type="VI" URL="../python_test.vi"/>
-	<Item Name="Sensor Connections.ctl" Type="VI" URL="../Sensor Connections.ctl"/>
-	<Item Name="Sensor Streams.ctl" Type="VI" URL="../Sensor Streams.ctl"/>
-	<Item Name="Sensors.ctl" Type="VI" URL="../Sensors.ctl"/>
 </Library>

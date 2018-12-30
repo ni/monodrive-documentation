@@ -43,6 +43,7 @@ if __name__ == "__main__":
         client.connect()
 
     simulator = Simulator(client, simulator_config)
+    simulator.setup_logger()
     simulator.send_configuration()
 
     time.sleep(2)

@@ -96,17 +96,19 @@ class Simulator(object):
     def request(self, message_cls, timeout=5):
         return self.client.request(message_cls, timeout)
 
-    def request_sensor_stream(self, message_cls):
-        # wait for 2 responses when requesting the sensor to stream data
-        # the second will include a sensor_ready flag
-        messages = self.client.request(message_cls, 10, 1)
-        return messages
+    # def request_sensor_stream(self, message_cls):
+    #     # wait for 2 responses when requesting the sensor to stream data
+    #     # the second will include a sensor_ready flag
+    #     logging.getLogger("simulator").info('Request sensor stream ')
+    #     messages = self.client.request(message_cls, 10, 1)
+    #     logging.getLogger("simulator").info("Response:" + str(messages))
+    #     return messages
 
     def send_vehicle_configuration(self, vehicle_configuration):
         logging.getLogger("simulator").info('Sending vehicle configuration {0}'.format(vehicle_configuration.name))
         vehicle_response = self.request(messaging.JSONConfigurationCommand(
-            vehicle_configuration.configuration, VEHICLE_CONFIG_COMMAND_UUID))
-        
+            VEHICLE_CONFIG_COMMAND_UUID, vehicle_configuration.configuration))
+        logging.getLogger("simulator").info("Response:" + str(vehicle_response))
         if vehicle_response is None:
             logging.getLogger("network").error('Failed to send the vehicle configuration')
 
@@ -115,10 +117,12 @@ class Simulator(object):
         return vehicle_response
 
     def send_configuration(self):
-        logging.getLogger("simulator").info('Sending simulator configuration ip:{0}:{1}'.format(self.configuration.server_ip,self.configuration.server_port))
+        logging.getLogger("simulator").info('Sending simulator configuration ip:{0}:{1}'
+                                            .format(self.configuration.server_ip, self.configuration.server_port))
 
-        msg = messaging.JSONConfigurationCommand(self.configuration.configuration, SIMULATOR_CONFIG_COMMAND_UUID)
+        msg = messaging.JSONConfigurationCommand(SIMULATOR_CONFIG_COMMAND_UUID, self.configuration.configuration)
         simulator_response = self.request(msg)
+        logging.getLogger("simulator").info("Response:" + str(simulator_response))
         if simulator_response is None:
             logging.getLogger("network").error('Failed to send the simulator configuration')
 
@@ -134,24 +138,6 @@ class Simulator(object):
         json = scen.to_json
         msg = messaging.ScenarioModelCommand(scenario=json)
         return self.request(msg, timeout=180)
-
-    def start_sensor_command(self, sensor_type, display_port, sensor_id, packet_size, drop_frames):
-        """ Return server response from Sensor request. """
-        u_sensor_type = u"{}".format(sensor_type)
-        response = self.request_sensor_stream(
-            messaging.StreamDataCommand(u_sensor_type, sensor_id, self.configuration.client_ip,
-                                        display_port, u'tcp', 0, packet_size=packet_size, dropFrames=drop_frames))
-        return response
-
-    def stop_sensor_command(self, sensor_type, display_port, sensor_id, packet_size, drop_frames):
-        """ Return server response from Sensor request. """
-        u_sensor_type = u"{}".format(sensor_type)
-        response = self.request(
-            messaging.StreamDataCommand(u_sensor_type, sensor_id, self.configuration.client_ip,
-                                    display_port, u'tcp', 1, packet_size=packet_size, dropFrames=drop_frames),
-            timeout=2)
-
-        return response
 
     def setup_logger(self):
         simple_formatter = LevelNameFormatter("%(levelname)-8s:%(name)-10s: %(message)s")
@@ -185,13 +171,17 @@ class Simulator(object):
             #logger.addHandler(stream_handler)
 
     def request_map(self):
+        logging.getLogger("simulator").info('Requesting Map...')
         command = messaging.MapCommand(self.configuration.map_settings)
-        result = self.request(command, 60)
-        if result is not None and result.data:
-            self.map_data = result.data
-            return result.data
+        response = self.request(command, 60)
+        if response is not None and response.message:
+            self.map_data = response.message
+            logging.getLogger("simulator").info('Map Received')
+            return response.message
         else:
+            logging.getLogger("simulator").error('Map Request Failed')
             return None
+
 
     def spawn_object(self, spawn_type, location, rotation):
         command = messaging.SpawnCommand({"type": spawn_type, "location": location, "rotation": rotation})
@@ -227,7 +217,7 @@ class ColorFormatter(logging.Formatter):
         'ERROR': RED
     }
 
-    # These are the sequences need to get colored ouput
+    # These are the sequences need to get colored output
     RESET_SEQ = "\033[0m"
     COLOR_SEQ = "\033[1;%dm"
     BOLD_SEQ = "\033[1m"

@@ -10,9 +10,9 @@ __version__ = "1.0"
 
 
 import json
+import random
 import struct
 import sys
-import umsgpack
 
 from monodrive.constants import *
 
@@ -28,12 +28,15 @@ class Message(object):
     """
 
     def __init__(self, cls=u'', message=None):
+        self.reference = random.randint(1,sys.maxsize)
         self.type = cls
         self.success = True
         self.message = message
+        self.raw_data = None
 
     def to_json(self):
         return {
+            u"reference": self.reference,
             u"type": self.type,
             u"success": self.success,
             u"message": self.message
@@ -67,11 +70,19 @@ class Message(object):
         magic = parsed_header[0]
         length = parsed_header[1]
 
+        print("reading {0} bytes".format(length - 8))
         if magic == RESPONSE_HEADER and length > 8:
-            payload = json.loads(rfile.read(length - 8).decode("utf-8"))
+            self.raw_data = b''
+            while len(self.raw_data) < length - 8:
+                left = length - 8 - len(self.raw_data)
+                self.raw_data += rfile.read(left)
+
+            print("received {0}".format(len(self.raw_data)))
+            payload = json.loads(self.raw_data.decode("utf-8"))
+            self.reference = payload.get("reference", 0)
             self.type = payload['type']
             self.success = payload['success']
-            self.message = payload['message']
+            self.message = payload.get('message',{})
 
         rfile.close()
 

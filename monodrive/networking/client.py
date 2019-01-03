@@ -83,11 +83,12 @@ class BaseClient(object):
         """ Method used within thread to retrieve information from the socket. """
         # logging.getLogger("network").info("TCPClient start receiver on {0}".format(threading.current_thread().name))
         while self.isconnected():
+            message = Message()
             try:
-                message = Message()
                 message.read(self.sock)
             except Exception as e:
                 logging.getLogger("network").error('Failed to receive message: %s' % str(e))
+                logging.getLogger("network").error('raw data: %s' % str(message.raw_data))
                 message = None
 
             if message is None:

@@ -331,7 +331,7 @@ class BaseSensor(object):
         msg_cls = messaging.StreamDataCommand(u_sensor_type, self.sensor_id, self.client_ip,
                                               self.port_number, u'tcp', 0, packet_size=self.packet_size)
         response = self.request_sensor_stream(client, msg_cls)
-        logging.getLogger("sensor").debug("Response:" + str(response))
+        logging.getLogger("sensor").debug("Sensor:" + str(self.name) + " Response:" + str(response))
         return response
 
     def send_start_stream_command(self, client):

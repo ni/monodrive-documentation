@@ -86,9 +86,10 @@ class BaseClient(object):
             message = Message()
             try:
                 message.read(self.sock)
+                logging.getLogger("network").debug(str(self.endpoint) + "  " + str(message))
             except Exception as e:
                 logging.getLogger("network").error('Failed to receive message: %s' % str(e))
-                logging.getLogger("network").error('raw data: %s' % str(message.raw_data))
+                logging.getLogger("network").error(str(self.endpoint) + " raw data:" + str(message.raw_data))
                 message = None
 
             if message is None:

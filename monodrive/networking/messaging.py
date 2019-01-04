@@ -70,14 +70,14 @@ class Message(object):
         magic = parsed_header[0]
         length = parsed_header[1]
 
-        print("reading {0} bytes".format(length - 8))
+        #print("reading {0} bytes".format(length - 8))
         if magic == RESPONSE_HEADER and length > 8:
             self.raw_data = b''
             while len(self.raw_data) < length - 8:
                 left = length - 8 - len(self.raw_data)
                 self.raw_data += rfile.read(left)
 
-            print("received {0}".format(len(self.raw_data)))
+            #print("received {0}".format(len(self.raw_data)))
             payload = json.loads(self.raw_data.decode("utf-8"))
             self.reference = payload.get("reference", 0)
             self.type = payload['type']

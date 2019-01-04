@@ -2,7 +2,7 @@
   "id": "basic_configuration",
   "clock_mode": 2,
   "lane_number": 0,
-  "position": 0,
+  "position": 2500,
   "bounding_data_on_radar_graph": true,
   "bounding_data_on_camera": true,
   "spawning_rotation": {
@@ -134,44 +134,13 @@
         "max_raycast_hits": 1000
       }
     },
-      {
-        "type":"MultiCamera",
-        "id": "multi_camera",
-        "packet_size": 64000,
-        "listen_port": 8081,
-        "fps": 2,
-        "display_process": true,
-        "sensor_process": true,
-        "synchronized_display": true,
-        "hdmi_streaming": false,
-        "location": {
-          "x":38.0,
-          "y":-25.0,
-          "z":147.0
-        },
-        "rotation": {
-          "pitch":0.0,
-          "yaw":-10.0,
-          "roll":0.0
-        },
-        "stream_dimensions": {
-          "x":2048.0,
-          "y":512.0
-        },
-        "camera_ids": [
-            "0",
-            "1",
-            "2",
-            "3"
-        ]
-      },
-      {
+    {
         "type":"Camera",
         "id": "0",
         "packet_size": 23552,
         "listen_port": 7080,
-        "display_process": false,
-        "sensor_process": false,
+        "display_process": true,
+        "sensor_process": true,
         "location": {
           "x":38.0,
           "y":-25.0,
@@ -197,8 +166,8 @@
         "id": "1",
         "packet_size": 23552,
         "listen_port": 7081,
-        "display_process": false,
-        "sensor_process": false,
+        "display_process": true,
+        "sensor_process": true,
         "location": {
           "x":38.0,
           "y":25.0,
@@ -224,8 +193,8 @@
       "id": "2",
       "packet_size": 23552,
       "listen_port": 7082,
-      "display_process": false,
-      "sensor_process": false,
+      "display_process": true,
+      "sensor_process": true,
       "location": {
         "x":-238.0,
         "y":-25.0,
@@ -251,8 +220,8 @@
       "id": "3",
       "packet_size": 23552,
       "listen_port": 7083,
-      "display_process": false,
-      "sensor_process": false,
+      "display_process": true,
+      "sensor_process": true,
       "location": {
         "x":-238.0,
         "y":25.0,

@@ -709,7 +709,7 @@ class Camera_View(BufferedWindow):
         self.SetMinSize(self.current_size)
         self.impil = None
 
-        pub.subscribe(self.update_view, "update_camera")
+        pub.subscribe(self.update_view, "update_camera1")
         self.UpdateDrawing()
 
     def update_view(self, msg):
@@ -729,6 +729,65 @@ class Camera_View(BufferedWindow):
         self.impil = Image.fromarray(imcv)
         imwx = self.wxHelper.CreateImage(self.impil.size[0], self.impil.size[1])
         imwx.SetData(self.impil.convert('RGB').tobytes()) 
+        bitmap = self.wxHelper.BitmapFromImage(imwx)
+        return self.scale_bitmap(bitmap)
+
+    def scale_bitmap(self, bitmap):
+        frame_size = self.ClientSize
+        bitmap_size = bitmap.GetSize()
+        if frame_size.x > 0 and frame_size.y > 0 and \
+                (frame_size.x < bitmap_size.x or frame_size.y < bitmap_size.y):
+            aspect = float(bitmap.GetWidth()) / float(bitmap.GetHeight())
+            image = self.wxHelper.ImageFromBitmap(bitmap)
+            frame_h = frame_size.y
+            frame_w = frame_size.y * aspect
+            image = image.Scale(frame_w, frame_h, wx.IMAGE_QUALITY_HIGH)
+            scaled_bitmap = self.wxHelper.BitmapFromImage(image)
+        else:
+            scaled_bitmap = bitmap
+        return scaled_bitmap
+
+    def Draw(self, dc):
+        dc.SetBackground(wx.Brush("White"))
+        dc.Clear()
+
+        if self.current_bitmap is not None:
+            Size = self.ClientSize
+            dc.DrawBitmap(self.current_bitmap,
+                          max(0, (Size.x - self.current_size.x) / 2),
+                          max(0, (Size.y - self.current_size.y) / 2))
+
+
+class Camera_View2(BufferedWindow):
+    def __init__(self, parent, *args, **kwargs):
+        self.wxHelper = wxHelper.newInstance()
+        #self.png = wx.Image(filepath, wx.BITMAP_TYPE_ANY)
+        self.current_bitmap = self.wxHelper.BitmapFromImage(wx.Bitmap(512, 512))
+        self.current_size = wx.Size(self.current_bitmap.GetWidth(), self.current_bitmap.GetHeight())
+        BufferedWindow.__init__(self, parent, *args, **kwargs)
+        self.SetMinSize(self.current_size)
+        self.impil = None
+
+        pub.subscribe(self.update_view, "update_camera2")
+        self.UpdateDrawing()
+
+    def update_view(self, msg):
+        camera_msg = Camera_Message(msg)
+        self.current_bitmap = self.to_bmp(camera_msg.np_image)
+        size = wx.Size(self.current_bitmap.GetWidth(), self.current_bitmap.GetHeight())
+        if size != self.current_size:
+            self.current_size = wx.Size(self.current_bitmap.GetWidth(), self.current_bitmap.GetHeight())
+            self.SetMinSize(self.current_size)
+
+        rect = wx.Rect((self.ClientSize.x - self.current_size.x) / 2, (self.ClientSize.y - self.current_size.y) / 2,
+            self.current_size.x, self.current_size.y)
+        self.UpdateDrawing(rect)
+
+    def to_bmp(self, np_image):
+        imcv = cv2.cvtColor(np_image, cv2.COLOR_BGR2RGB)
+        self.impil = Image.fromarray(imcv)
+        imwx = self.wxHelper.CreateImage(self.impil.size[0], self.impil.size[1])
+        imwx.SetData(self.impil.convert('RGB').tobytes())
         bitmap = self.wxHelper.BitmapFromImage(imwx)
         return self.scale_bitmap(bitmap)
 
@@ -839,8 +898,10 @@ class Overview_Panel(wx.Panel):
 
         #add camera to bottom row and size it
         self.camera_view = Camera_View(self.camera_row_panel)
+        self.camera_view2 = Camera_View2(self.camera_row_panel)
         self.camera_row_panel_sizer = wx.BoxSizer(wx.HORIZONTAL)
         self.camera_row_panel_sizer.Add(self.camera_view, 1, wx.EXPAND | wx.ALL, border=2)
+        self.camera_row_panel_sizer.Add(self.camera_view2, 1, wx.EXPAND | wx.ALL, border=2)
         self.camera_row_panel.SetSizerAndFit(self.camera_row_panel_sizer)
 
         self.Bind(wx.EVT_SIZE, self.OnSize)
@@ -872,7 +933,7 @@ class MainFrame(wx.Frame):
     def __init__(self):
         width = int(wx.SystemSettings.GetMetric(wx.SYS_SCREEN_X) * .9)
         height = int(wx.SystemSettings.GetMetric(wx.SYS_SCREEN_Y) * .9)
-        wx.Frame.__init__(self, None, size=(width,height), title = "monoDrive Visualizer")
+        wx.Frame.__init__(self, None, size=(width, height), title = "monoDrive Visualizer")
         pub.subscribe(self.shutdown, "SHUTDOWN")
         # Here we create a panel and a notebook on the panel
         p = wx.Panel(self)
@@ -899,9 +960,10 @@ class MainFrame(wx.Frame):
 
 
 #Ctrl-Alt-I, or Cmd-Alt-I on Mac for inspection app for viewing layout
-class MonoDriveGUIApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
+#class MonoDriveGUIApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
+class MonoDriveGUIApp(wx.App):
     def OnInit(self):
-        self.Init()  # initialize the inspection tool
+        #self.Init()  # initialize the inspection tool
         self.MainWindow = MainFrame()
         self.MainWindow.Show(True)
         self.SetTopWindow(self.MainWindow)
@@ -944,10 +1006,16 @@ class SensorPoll(Thread):
                 wx.CallAfter(pub.sendMessage, "update_imu", msg=message)
             elif "GPS" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_gps", msg=message)
-            elif "Camera" in sensor.name:
+            elif "Camera_7080" in sensor.name:
+                print(sensor.name)
                 message['width'] = sensor.width
                 message['height'] = sensor.height
-                wx.CallAfter(pub.sendMessage, "update_camera", msg=message)
+                wx.CallAfter(pub.sendMessage, "update_camera1", msg=message)
+            elif "Camera_7081" in sensor.name:
+                print(sensor.name)
+                message['width'] = sensor.width
+                message['height'] = sensor.height
+                wx.CallAfter(pub.sendMessage, "update_camera2", msg=message)
             elif "Bounding" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_bounding_box", msg=message)
             elif "Radar" in sensor.name:

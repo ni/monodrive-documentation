@@ -16,7 +16,7 @@ from monodrive.ui.cameraview import *
 
 
 class Overview_Panel(wx.Panel):
-    def __init__(self, parent, *args, **kwargs):
+    def __init__(self, parent, cameras, *args, **kwargs):
         wx.Panel.__init__(self, parent,*args, **kwargs)
         #set up frame panels
 
@@ -53,12 +53,21 @@ class Overview_Panel(wx.Panel):
         self.text_row_panel.SetSizerAndFit(self.text_row_panel_sizer)
 
         #add camera to bottom row and size it
-        self.camera_view = Camera_View(self.camera_row_panel)
-        self.camera_view2 = Camera_View2(self.camera_row_panel)
+        self.camera_views = []
         self.camera_row_panel_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        self.camera_row_panel_sizer.Add(self.camera_view, 1, wx.EXPAND | wx.ALL, border=2)
-        self.camera_row_panel_sizer.Add(self.camera_view2, 1, wx.EXPAND | wx.ALL, border=2)
+        #for x in range(0, num_cameras):
+        for camera_name in cameras:
+            self.camera_views.append(Camera_View(self.camera_row_panel, camera_name))
+            self.camera_row_panel_sizer.Add(self.camera_views[-1], 1, wx.EXPAND | wx.ALL, border=2)
         self.camera_row_panel.SetSizerAndFit(self.camera_row_panel_sizer)
+
+
+        #self.camera_view = Camera_View(self.camera_row_panel)
+        #self.camera_view2 = Camera_View2(self.camera_row_panel)
+        #self.camera_row_panel_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        #self.camera_row_panel_sizer.Add(self.camera_view, 1, wx.EXPAND | wx.ALL, border=2)
+        #self.camera_row_panel_sizer.Add(self.camera_view2, 1, wx.EXPAND | wx.ALL, border=2)
+        #self.camera_row_panel.SetSizerAndFit(self.camera_row_panel_sizer)
 
         self.Bind(wx.EVT_SIZE, self.OnSize)
 
@@ -86,7 +95,7 @@ class Overview_Panel(wx.Panel):
         self.Layout()
 
 class MainFrame(wx.Frame):
-    def __init__(self):
+    def __init__(self, cameras):
         width = int(wx.SystemSettings.GetMetric(wx.SYS_SCREEN_X) * .9)
         height = int(wx.SystemSettings.GetMetric(wx.SYS_SCREEN_Y) * .9)
         wx.Frame.__init__(self, None, size=(width, height), title = "monoDrive Visualizer")
@@ -96,9 +105,9 @@ class MainFrame(wx.Frame):
         nb = wx.Notebook(p)
 
         # create the page windows as children of the notebook
-        overview = Overview_Panel(nb)
+        overview = Overview_Panel(nb, cameras)
         radar = Radar_Panel(nb)
-        camera = Camera_View(nb)
+        camera = Camera_View(nb, "Camera")
 
         # add the pages to the notebook with the label to show on the tab
         nb.AddPage(overview, "All Sensors")
@@ -118,13 +127,15 @@ class MainFrame(wx.Frame):
 #Ctrl-Alt-I, or Cmd-Alt-I on Mac for inspection app for viewing layout
 #class MonoDriveGUIApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
 class MonoDriveGUIApp(wx.App):
-    def OnInit(self):
+    #def OnInit(self, num_cameras):
+    def __init__(self, cameras):
+        wx.App.__init__(self)
         #self.Init()  # initialize the inspection tool
-        self.MainWindow = MainFrame()
+        self.MainWindow = MainFrame(cameras)
         self.MainWindow.Show(True)
         self.SetTopWindow(self.MainWindow)
         #wx.lib.inspection.InspectionTool().Show()
-        return True
+        #return True
 
     def Close(self):
         try:
@@ -162,6 +173,11 @@ class SensorPoll(Thread):
                 wx.CallAfter(pub.sendMessage, "update_imu", msg=message)
             elif "GPS" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_gps", msg=message)
+            elif "Camera" in sensor.name:
+                print(sensor.name)
+                message['width'] = sensor.width
+                message['height'] = sensor.height
+                wx.CallAfter(pub.sendMessage, sensor.name, msg=message)
             elif "Camera_7080" in sensor.name:
                 print(sensor.name)
                 message['width'] = sensor.width
@@ -277,16 +293,26 @@ class GUI(object):
         self.simulator_event = simulator.restart_event
         self.vehicle_step_event = ego_vehicle.vehicle_step_event
         self.vehicle_clock_mode = ego_vehicle.vehicle_config.clock_mode
+        #for instance in ego_vehicle.sensor_process_dict:
+        #    print(instance)
+            #print(instance.name)
+
+
         #self.simulator = simulator
         #self.vehicle = None
-        #self.vehicle = simulator.ego_vehicle
+        #self.vehicle = ego_vehicle
 
+        #self.num_cameras = 0
+        self.cameras = []
         self.sensors = []
         for sensor in ego_vehicle.sensors:
             if "Lidar" in sensor.name:
                 self.sensors.append(LidarGUISensor(sensor))
             else:
                 self.sensors.append(GUISensor(sensor))
+            if "Camera" in sensor.name:
+                self.cameras.append(sensor.name)
+                #self.num_cameras = self.num_cameras + 1
 
         self.app = None
         self.fps = None
@@ -328,7 +354,7 @@ class GUI(object):
         monitor = Thread(target=self.monitor_process_state)
         monitor.start()
 
-        self.app = MonoDriveGUIApp()
+        self.app = MonoDriveGUIApp(self.cameras)
 
         #prctl.set_proctitle("mono{0}".format(self.name))
         #start sensor polling
@@ -349,7 +375,7 @@ class GUI(object):
 
 
 if __name__ == '__main__':
-    app = MonoDriveGUIApp()
+    app = MonoDriveGUIApp(1)
     if app:
         app.MainLoop()
     else:

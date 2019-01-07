@@ -9,7 +9,7 @@ from monodrive.ui.guiincludes import *
 
 
 class Camera_View(BufferedWindow):
-    def __init__(self, parent, *args, **kwargs):
+    def __init__(self, parent, camera_name, *args, **kwargs):
         self.wxHelper = wxHelper.newInstance()
         #self.png = wx.Image(filepath, wx.BITMAP_TYPE_ANY)
         self.current_bitmap = self.wxHelper.BitmapFromImage(wx.Bitmap(512, 512))
@@ -18,7 +18,8 @@ class Camera_View(BufferedWindow):
         self.SetMinSize(self.current_size)
         self.impil = None
 
-        pub.subscribe(self.update_view, "update_camera1")
+        pub.subscribe(self.update_view, camera_name)
+        #pub.subscribe(self.update_view, "update_camera1")
         self.UpdateDrawing()
 
     def update_view(self, msg):

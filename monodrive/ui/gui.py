@@ -90,12 +90,13 @@ class Overview_Panel(wx.Panel):
 class CameraPanel(wx.Panel):
     def __init__(self, parent, cameras, *args, **kwargs):
         wx.Panel.__init__(self, parent, *args, **kwargs)
-        num_cameras = len(cameras)
-        num_rows = int(math.sqrt(num_cameras))
-        nominal_col_length = math.ceil(num_cameras/num_rows)
 
+        num_cameras = len(cameras)
         if num_cameras == 0:
             return
+
+        num_rows = int(math.sqrt(num_cameras))
+        nominal_col_length = math.ceil(num_cameras/num_rows)
 
         gs = wx.GridSizer(rows=num_rows, cols=nominal_col_length, vgap=2, hgap=2)
         for camera in cameras:

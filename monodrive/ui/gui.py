@@ -13,11 +13,12 @@ from monodrive.ui.gpsview import *
 from monodrive.ui.imuview import *
 from monodrive.ui.rpmview import *
 from monodrive.ui.cameraview import *
+import math
 
 
 class Overview_Panel(wx.Panel):
     def __init__(self, parent, cameras, *args, **kwargs):
-        wx.Panel.__init__(self, parent,*args, **kwargs)
+        wx.Panel.__init__(self, parent, *args, **kwargs)
         #set up frame panels
 
         self.graph_row_panel = GraphRow(self)
@@ -94,6 +95,39 @@ class Overview_Panel(wx.Panel):
         self.graph_row_panel.Layout()
         self.Layout()
 
+
+class CameraPanel(wx.Panel):
+    def __init__(self, parent, cameras, *args, **kwargs):
+        wx.Panel.__init__(self, parent, *args, **kwargs)
+        num_cameras = len(cameras)
+        num_rows = int(math.sqrt(num_cameras))
+        nominal_col_length = math.ceil(num_cameras/num_rows)
+        self.camera_rows = []
+        self.camera_views = []
+
+        if num_cameras == 0:
+            return
+        print(num_rows, num_cameras, nominal_col_length)
+        #set up sizers for frame panels
+        self.main_sizer = wx.BoxSizer(wx.VERTICAL)
+        for i in range(0, num_rows):
+            self.camera_rows.append(CameraRow(self))
+            self.main_sizer.Add(self.camera_rows[-1], 1, wx.ALL | wx.EXPAND, border=2)
+        self.SetSizer(self.main_sizer)
+
+        self.camera_row_panel_sizers = []
+        count = 0
+        for i in range(0, num_rows):
+            self.camera_row_panel_sizers.append(wx.BoxSizer(wx.HORIZONTAL))
+            for j in range(0, nominal_col_length):
+                count = count + 1
+                if count > num_cameras:
+                    break
+                self.camera_views.append(Camera_View(self.camera_rows[i], cameras[count-1]))
+                self.camera_row_panel_sizers[-1].Add(self.camera_views[-1], 1, wx.EXPAND | wx.ALL, border=2)
+            self.camera_rows[i].SetSizerAndFit(self.camera_row_panel_sizers[-1])
+
+
 class MainFrame(wx.Frame):
     def __init__(self, cameras):
         width = int(wx.SystemSettings.GetMetric(wx.SYS_SCREEN_X) * .9)
@@ -107,7 +141,8 @@ class MainFrame(wx.Frame):
         # create the page windows as children of the notebook
         overview = Overview_Panel(nb, cameras)
         radar = Radar_Panel(nb)
-        camera = Camera_View(nb, "Camera")
+        #camera = Camera_View(nb, "Camera")
+        camera = CameraPanel(nb, cameras)
 
         # add the pages to the notebook with the label to show on the tab
         nb.AddPage(overview, "All Sensors")
@@ -174,20 +209,9 @@ class SensorPoll(Thread):
             elif "GPS" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_gps", msg=message)
             elif "Camera" in sensor.name:
-                print(sensor.name)
                 message['width'] = sensor.width
                 message['height'] = sensor.height
                 wx.CallAfter(pub.sendMessage, sensor.name, msg=message)
-            elif "Camera_7080" in sensor.name:
-                print(sensor.name)
-                message['width'] = sensor.width
-                message['height'] = sensor.height
-                wx.CallAfter(pub.sendMessage, "update_camera1", msg=message)
-            elif "Camera_7081" in sensor.name:
-                print(sensor.name)
-                message['width'] = sensor.width
-                message['height'] = sensor.height
-                wx.CallAfter(pub.sendMessage, "update_camera2", msg=message)
             elif "Bounding" in sensor.name:
                 wx.CallAfter(pub.sendMessage, "update_bounding_box", msg=message)
             elif "Radar" in sensor.name:

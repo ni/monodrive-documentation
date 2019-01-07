@@ -56,19 +56,10 @@ class Overview_Panel(wx.Panel):
         #add camera to bottom row and size it
         self.camera_views = []
         self.camera_row_panel_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        #for x in range(0, num_cameras):
         for camera_name in cameras:
             self.camera_views.append(Camera_View(self.camera_row_panel, camera_name))
             self.camera_row_panel_sizer.Add(self.camera_views[-1], 1, wx.EXPAND | wx.ALL, border=2)
         self.camera_row_panel.SetSizerAndFit(self.camera_row_panel_sizer)
-
-
-        #self.camera_view = Camera_View(self.camera_row_panel)
-        #self.camera_view2 = Camera_View2(self.camera_row_panel)
-        #self.camera_row_panel_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        #self.camera_row_panel_sizer.Add(self.camera_view, 1, wx.EXPAND | wx.ALL, border=2)
-        #self.camera_row_panel_sizer.Add(self.camera_view2, 1, wx.EXPAND | wx.ALL, border=2)
-        #self.camera_row_panel.SetSizerAndFit(self.camera_row_panel_sizer)
 
         self.Bind(wx.EVT_SIZE, self.OnSize)
 
@@ -102,30 +93,15 @@ class CameraPanel(wx.Panel):
         num_cameras = len(cameras)
         num_rows = int(math.sqrt(num_cameras))
         nominal_col_length = math.ceil(num_cameras/num_rows)
-        self.camera_rows = []
-        self.camera_views = []
 
         if num_cameras == 0:
             return
-        print(num_rows, num_cameras, nominal_col_length)
-        #set up sizers for frame panels
-        self.main_sizer = wx.BoxSizer(wx.VERTICAL)
-        for i in range(0, num_rows):
-            self.camera_rows.append(CameraRow(self))
-            self.main_sizer.Add(self.camera_rows[-1], 1, wx.ALL | wx.EXPAND, border=2)
-        self.SetSizer(self.main_sizer)
 
-        self.camera_row_panel_sizers = []
-        count = 0
-        for i in range(0, num_rows):
-            self.camera_row_panel_sizers.append(wx.BoxSizer(wx.HORIZONTAL))
-            for j in range(0, nominal_col_length):
-                count = count + 1
-                if count > num_cameras:
-                    break
-                self.camera_views.append(Camera_View(self.camera_rows[i], cameras[count-1]))
-                self.camera_row_panel_sizers[-1].Add(self.camera_views[-1], 1, wx.EXPAND | wx.ALL, border=2)
-            self.camera_rows[i].SetSizerAndFit(self.camera_row_panel_sizers[-1])
+        gs = wx.GridSizer(rows=num_rows, cols=nominal_col_length, vgap=2, hgap=2)
+        for camera in cameras:
+            gs.Add(Camera_View(self, camera), 1, wx.EXPAND)
+        self.SetSizer(gs)
+        self.SetBackgroundColour(BACKGROUND_COLOR)
 
 
 class MainFrame(wx.Frame):

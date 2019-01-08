@@ -326,11 +326,12 @@ class BaseSensor(object):
 
     def start_sensor_command(self, client):
         """ Return server response from Sensor request. """
+        logging.getLogger("sensor").debug('Request sensor stream {0}'.format(self.type))
         u_sensor_type = u"{}".format(self.type)
         msg_cls = messaging.StreamDataCommand(u_sensor_type, self.sensor_id, self.client_ip,
                                               self.port_number, u'tcp', 0, packet_size=self.packet_size)
         response = self.request_sensor_stream(client, msg_cls)
-        print(msg_cls)
+        logging.getLogger("sensor").debug("Sensor:" + str(self.name) + " Response:" + str(response))
         return response
 
     def send_start_stream_command(self, client):

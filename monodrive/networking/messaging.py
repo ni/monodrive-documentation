@@ -10,9 +10,9 @@ __version__ = "1.0"
 
 
 import json
+import random
 import struct
 import sys
-import umsgpack
 
 from monodrive.constants import *
 
@@ -27,31 +27,36 @@ class Message(object):
     for a message object to successfully communicate.
     """
 
-    def __init__(self, cls=u'', data=None):
-        self.message_class = cls
-        self.status = 0
-        self.messages = []
-        self.data = data
+    def __init__(self, cls=u'', message=None):
+        self.reference = random.randint(1,sys.maxsize)
+        self.type = cls
+        self.success = True
+        self.message = message
+        self.raw_data = None
 
     def to_json(self):
         return {
-            u"class": self.message_class,
-            u"status": self.status,
-            u"messages": self.messages,
-            u"data": self.data
+            u"reference": self.reference,
+            u"type": self.type,
+            u"success": self.success,
+            u"message": self.message
         }
 
     @property
     def is_success(self):
-        return self.data['success']
+        return self.success
 
     @property
     def is_sensor_ready(self):
-        return self.data['sensor_ready'] if 'sensor_ready' in self.data else False
+        return self.message['sensor_ready'] if 'sensor_ready' in self.message else False
 
     @property
     def error_message(self):
-        return self.data['error']
+        if not self.success:
+            error = self.message
+        else:
+            error = None
+        return error
 
     def __str__(self):
         return json.dumps(self.to_json())
@@ -61,36 +66,34 @@ class Message(object):
         rbufsize = 0
         rfile = socket.makefile('rb', rbufsize)
         header = rfile.read(8)
-        data = struct.unpack('!II', header)
-        magic = data[0]
-        length = data[1]
+        parsed_header = struct.unpack('!II', header)
+        magic = parsed_header[0]
+        length = parsed_header[1]
 
+        #print("reading {0} bytes".format(length - 8))
         if magic == RESPONSE_HEADER and length > 8:
-            '''if sys.version_info[0] == 3:
-                data = umsgpack.unpack(rfile)
-            else:
-                packed = rfile.read(length - 8)
-                data = umsgpack.unpackb(packed)'''
-            #reader = codecs.getreader("utf-8")
-            data = json.loads(rfile.read(length - 8).decode("utf-8"))
+            self.raw_data = b''
+            while len(self.raw_data) < length - 8:
+                left = length - 8 - len(self.raw_data)
+                self.raw_data += rfile.read(left)
 
-            self.message_class = data['class']
-            self.status = data['status']
-            self.messages = data['messages']
-            try:
-                self.data = json.loads(data['data'])
-            except:
-                self.data = data['data']
+            #print("received {0}".format(len(self.raw_data)))
+            payload = json.loads(self.raw_data.decode("utf-8"))
+            self.reference = payload.get("reference", 0)
+            self.type = payload['type']
+            self.success = payload['success']
+            self.message = payload.get('message',{})
+
         rfile.close()
 
     def write(self, socket):
         """ Package JSON to send over TCP to Unreal Server. """
         #data = umsgpack.packb(self.to_json())
-        data = json.dumps(self.to_json()) #str(self.to_json()).encode('utf8')
-        length = len(data) + 8
+        payload = json.dumps(self.to_json()) #str(self.to_json()).encode('utf8')
+        length = len(payload) + 8
         wfile = socket.makefile('wb', -1)
         wfile.write(struct.pack('!II', CONTROL_HEADER, length))
-        wfile.write(data.encode('utf8'))
+        wfile.write(payload.encode('utf8'))
         wfile.close()
 
 
@@ -127,7 +130,7 @@ class StreamDataCommand(Message):
 
 
 class JSONConfigurationCommand(Message):
-    def __init__(self, config_json, uuid):
+    def __init__(self, uuid, config_json):
         super(JSONConfigurationCommand, self).__init__(
             uuid,
             config_json)

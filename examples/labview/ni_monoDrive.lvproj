@@ -13,6 +13,7 @@
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
 		<Item Name="SubVIs" Type="Folder"/>
 		<Item Name="monoDrive.lvlib" Type="Library" URL="../monoDrive.lvlib"/>
+		<Item Name="mono_simulator_response.ctl" Type="VI" URL="../mono_simulator_response.ctl"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="Draw Flattened Pixmap.vi" Type="VI" URL="/&lt;vilib&gt;/picture/picture.llb/Draw Flattened Pixmap.vi"/>

@@ -43,6 +43,7 @@ if __name__ == "__main__":
         client.connect()
 
     simulator = Simulator(client, simulator_config)
+    simulator.setup_logger()
     simulator.send_configuration()
 
     time.sleep(2)
@@ -54,6 +55,7 @@ if __name__ == "__main__":
     #from monodrive.vehicles import LV_Vehicle
 
     map_data = simulator.request_map()
+    #map_data = None
 
     # Setup Ego Vehicle
     if ManualDriveMode == True:

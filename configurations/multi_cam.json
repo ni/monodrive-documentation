@@ -76,7 +76,7 @@
         "max_distance": 8000.0,
         "vertical_fov_angle": 30.0,
         "horizontal_resolution": 0.4,
-        "fps": 4.0,
+        "fps": 1.0,
         "n_lasers": 32,
         "reset_angle": 0.0
       },
@@ -99,7 +99,7 @@
         },
         "max_distance": 50000.0,
         "horizontal_fov_angle": 50.0,
-        "fps": 4,
+        "fps": 1,
         "stream_dimensions": {
           "x":512.0,
           "y":512.0
@@ -126,7 +126,7 @@
         },
         "max_distance": 50000.0,
         "horizontal_fov_angle": 50.0,
-        "fps": 4,
+        "fps": 1,
         "stream_dimensions": {
           "x":512.0,
           "y":512.0
@@ -153,7 +153,7 @@
         },
         "max_distance": 50000.0,
         "horizontal_fov_angle": 50.0,
-        "fps": 4,
+        "fps": 1,
         "stream_dimensions": {
           "x":512.0,
           "y":512.0
@@ -180,7 +180,7 @@
         },
         "max_distance": 50000.0,
         "horizontal_fov_angle": 50.0,
-        "fps": 4,
+        "fps": 1,
         "stream_dimensions": {
           "x":512.0,
           "y":512.0
@@ -206,7 +206,7 @@
           "yaw":0.0,
           "roll":0.0
         },
-        "fps": 4.0
+        "fps": 1.0
       },
       {
         "type": "GPS",
@@ -226,7 +226,7 @@
           "yaw": 0.0,
           "roll": 0.0
         },
-        "fps": 4.0
+        "fps": 1.0
       },
       {
         "type": "IMU",
@@ -246,7 +246,7 @@
           "yaw":0.0,
           "roll":0.0
         },
-        "fps": 4.0
+        "fps": 1.0
       }
     ]
   }

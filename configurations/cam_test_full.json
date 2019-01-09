@@ -1,14 +1,14 @@
 {
   "id": "basic_configuration",
-  "clock_mode": 2,
+  "clock_mode": 0,
   "lane_number": 0,
-  "position": 2500,
+  "position": 0,
   "bounding_data_on_radar_graph": true,
   "bounding_data_on_camera": true,
   "spawning_rotation": {
-        "pitch":0.0,
-        "yaw":-90.0,
-        "roll":0.0
+    "pitch":0.0,
+    "yaw":-90.0,
+    "roll":0.0
   },
   "mesh_path": "/Game/Vehicles_Vol1/Models/SUV/SUV_rigged.SUV_rigged",
   "anim_path": "/Game/Vehicles_Vol1/Blueprints/SUV_AnimBP.SUV_AnimBP_C",
@@ -55,7 +55,7 @@
     }
   ],
   "sensors": [
-      {
+    {
       "type": "Lidar",
       "id": "0",
       "packet_size": 1472,
@@ -106,7 +106,7 @@
       "sweep_num_for_range_max": 5.5,
       "range_resolution": 1.0,
       "max_velocity": 100.0,
-      "max_targets": 1000,
+      "max_targets": 100,
       "fps": 1.0,
       "elements": 8,
       "transmitter": {
@@ -126,68 +126,68 @@
         "minimum_radar_distance": 5.0,
         "long_range_scan_distance": 150.0,
         "short_range_scan_distance": 60.0,
-        "num_scans_azimuth": 80.0,
+        "num_scans_azimuth": 20.0,
         "long_range_fov": 20.0,
         "short_range_fov": 90.0,
-        "num_scans_elevation": 40.0,
+        "num_scans_elevation": 10.0,
         "elevation_fov": 5.0,
-        "max_raycast_hits": 1000
+        "max_raycast_hits": 1
       }
     },
     {
-        "type":"Camera",
-        "id": "0",
-        "packet_size": 23552,
-        "listen_port": 7080,
-        "display_process": true,
-        "sensor_process": true,
-        "location": {
-          "x":38.0,
-          "y":-25.0,
-          "z":147.0
-        },
-        "rotation": {
-          "pitch":0.0,
-          "yaw":-10.0,
-          "roll":0.0
-        },
-        "max_distance": 50000.0,
-        "horizontal_fov_angle": 50.0,
-        "fps": 1,
-        "stream_dimensions": {
-          "x":512.0,
-          "y":512.0
-        },
-        "semantic_processing": false,
-        "hdmi_streaming": false
+      "type":"Camera",
+      "id": "0",
+      "packet_size": 23552,
+      "listen_port": 7080,
+      "display_process": true,
+      "sensor_process": true,
+      "location": {
+        "x":38.0,
+        "y":-25.0,
+        "z":147.0
       },
-      {
-        "type":"Camera",
-        "id": "1",
-        "packet_size": 23552,
-        "listen_port": 7081,
-        "display_process": true,
-        "sensor_process": true,
-        "location": {
-          "x":38.0,
-          "y":25.0,
-          "z":147.0
-        },
-        "rotation": {
-          "pitch":0.0,
-          "yaw":10.0,
-          "roll":0.0
-        },
-        "max_distance": 50000.0,
-        "horizontal_fov_angle": 50.0,
-        "fps": 1,
-        "stream_dimensions": {
-          "x":512.0,
-          "y":512.0
-        },
-        "semantic_processing": false,
-        "hdmi_streaming": false
+      "rotation": {
+        "pitch":0.0,
+        "yaw":-10.0,
+        "roll":0.0
       },
+      "max_distance": 50000.0,
+      "horizontal_fov_angle": 50.0,
+      "fps": 1,
+      "stream_dimensions": {
+        "x":512.0,
+        "y":512.0
+      },
+      "semantic_processing": false,
+      "hdmi_streaming": false
+    },
+    {
+      "type":"Camera",
+      "id": "1",
+      "packet_size": 23552,
+      "listen_port": 7081,
+      "display_process": true,
+      "sensor_process": true,
+      "location": {
+        "x":38.0,
+        "y":25.0,
+        "z":147.0
+      },
+      "rotation": {
+        "pitch":0.0,
+        "yaw":10.0,
+        "roll":0.0
+      },
+      "max_distance": 50000.0,
+      "horizontal_fov_angle": 50.0,
+      "fps": 1,
+      "stream_dimensions": {
+        "x":512.0,
+        "y":512.0
+      },
+      "semantic_processing": false,
+      "hdmi_streaming": false
+    },
     {
       "type":"Camera",
       "id": "2",
@@ -220,6 +220,33 @@
       "id": "3",
       "packet_size": 23552,
       "listen_port": 7083,
+      "display_process": true,
+      "sensor_process": true,
+      "location": {
+        "x":-238.0,
+        "y":25.0,
+        "z":147.0
+      },
+      "rotation": {
+        "pitch":0.0,
+        "yaw":170.0,
+        "roll":0.0
+      },
+      "max_distance": 50000.0,
+      "horizontal_fov_angle": 50.0,
+      "fps": 1,
+      "stream_dimensions": {
+        "x":512.0,
+        "y":512.0
+      },
+      "semantic_processing": false,
+      "hdmi_streaming": false
+    },
+    {
+      "type":"Camera",
+      "id": "4",
+      "packet_size": 23552,
+      "listen_port": 7084,
       "display_process": true,
       "sensor_process": true,
       "location": {

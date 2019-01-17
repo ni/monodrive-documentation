@@ -1,0 +1,29 @@
+{
+     "type": "Camera",
+    "id": "0",
+    "packet_size": 23552,
+    "listen_port": 8081,
+    "display_process": false,
+    "sensor_process": false,
+    "location": {
+      "x": -800.0,
+      "y": 0.0,
+      "z": 400.0
+    },
+    "rotation": {
+      "pitch": -15.0,
+      "yaw": 0.0,
+      "roll": 0.0
+    },
+    "max_distance": 50000.0,
+    "horizontal_fov_angle": 50.0,
+    "fps": 10,
+    "stream_dimensions": {
+      "x": 768.0,
+      "y": 768.0
+    },
+    "semantic_processing": false,
+    "hdmi_streaming": false
+}
+
+

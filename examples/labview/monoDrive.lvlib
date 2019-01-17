@@ -7,6 +7,8 @@
 	<Item Name="sensors" Type="Folder">
 		<Item Name="mono_bbox.vi" Type="VI" URL="../mono_bbox.vi"/>
 		<Item Name="mono_camera.vi" Type="VI" URL="../mono_camera.vi"/>
+		<Item Name="mono_camera_array1.vi" Type="VI" URL="../mono_camera_array1.vi"/>
+		<Item Name="mono_camera_array_display.vi" Type="VI" URL="../mono_camera_array_display.vi"/>
 		<Item Name="mono_camera_test.vi" Type="VI" URL="../mono_camera_test.vi"/>
 		<Item Name="mono_gps.vi" Type="VI" URL="../mono_gps.vi"/>
 		<Item Name="mono_imu.vi" Type="VI" URL="../mono_imu.vi"/>

@@ -23,10 +23,12 @@
 		<Item Name="mono_header.vi" Type="VI" URL="../mono_header.vi"/>
 		<Item Name="mono_licensing.vi" Type="VI" URL="../mono_licensing.vi"/>
 		<Item Name="mono_send_command.vi" Type="VI" URL="../mono_send_command.vi"/>
+		<Item Name="mono_send_gps_config.vi" Type="VI" URL="../mono_send_gps_config.vi"/>
 		<Item Name="mono_send_simulator_config.vi" Type="VI" URL="../mono_send_simulator_config.vi"/>
 		<Item Name="mono_step.vi" Type="VI" URL="../mono_step.vi"/>
 	</Item>
 	<Item Name="structures" Type="Folder">
+		<Item Name="mono_camera_single.vi" Type="VI" URL="../mono_camera_single.vi"/>
 		<Item Name="mono_commands.ctl" Type="VI" URL="../mono_commands.ctl"/>
 		<Item Name="mono_test.ctl" Type="VI" URL="../mono_test.ctl"/>
 		<Item Name="Sensor Connections.ctl" Type="VI" URL="../Sensor Connections.ctl"/>
@@ -42,5 +44,4 @@
 	</Item>
 	<Item Name="mono_simulator.vi" Type="VI" URL="../mono_simulator.vi"/>
 	<Item Name="ni_monoDrive.vi" Type="VI" URL="../ni_monoDrive.vi"/>
-	<Item Name="python_test.vi" Type="VI" URL="../python_test.vi"/>
 </Library>

@@ -14,6 +14,7 @@
 		<Item Name="SubVIs" Type="Folder"/>
 		<Item Name="monoDrive.lvlib" Type="Library" URL="../monoDrive.lvlib"/>
 		<Item Name="mono_simulator_response.ctl" Type="VI" URL="../mono_simulator_response.ctl"/>
+		<Item Name="mono_gps_0.vi" Type="VI" URL="../mono_gps_0.vi"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="Draw Flattened Pixmap.vi" Type="VI" URL="/&lt;vilib&gt;/picture/picture.llb/Draw Flattened Pixmap.vi"/>
@@ -34,7 +35,6 @@
 			<Item Name="Simulator_Configuration.ctl" Type="VI" URL="../Simulator_Configuration.ctl"/>
 			<Item Name="NationalInstruments.LicenseManagement.Sdk.dll" Type="Document" URL="/&lt;resource&gt;/NationalInstruments.LicenseManagement.Sdk.dll"/>
 			<Item Name="9c1d1a77308d2a44" Type="VI" URL="/&lt;resource&gt;/9c1d1a77308d2a44"/>
-			<Item Name="mono_camera_single.vi" Type="VI" URL="../mono_camera_single.vi"/>
 		</Item>
 		<Item Name="Build Specifications" Type="Build"/>
 	</Item>

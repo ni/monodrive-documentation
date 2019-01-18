@@ -17,7 +17,7 @@
     },
     "max_distance": 50000.0,
     "horizontal_fov_angle": 50.0,
-    "fps": 10,
+    "fps": 1,
     "stream_dimensions": {
       "x": 256.0,
       "y": 256.0

@@ -37,5 +37,6 @@ class GPS(BaseSensor):
             'ego_yaw': ego_yaw,
             'speed': speed
         }
+
         return data_dict
 

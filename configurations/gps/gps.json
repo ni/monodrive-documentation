@@ -2,7 +2,7 @@
       "type": "GPS",
       "id": "0",
       "packet_size": 1472,
-      "listen_port": 8084,
+      "listen_port": 8090,
       "display_process": true,
       "sensor_process": true,
       "synchronized_display": true,

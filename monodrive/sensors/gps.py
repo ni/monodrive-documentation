@@ -37,6 +37,6 @@ class GPS(BaseSensor):
             'ego_yaw': ego_yaw,
             'speed': speed
         }
-
+        print("payload length: " + str(ord(payload_length)))
         return data_dict
 

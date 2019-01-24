@@ -13,8 +13,11 @@ class Configuration(object):
         try:
             self.configuration = json.load(open(os.path.join(BASE_PATH, 'configurations', file_name)), 'r')
         except:
-            file_path = os.path.join('..','configurations',file_name)
-            self.configuration = json.loads(resource_string(__name__, file_path).decode('utf8'))
+            try:
+                self.configuration = json.load(open(file_name, 'r'))
+            except:
+                file_path = os.path.join('..','configurations',file_name)
+                self.configuration = json.loads(resource_string(__name__, file_path).decode('utf8'))
 
         self.id = self.configuration.get('id', None)
         self.name = file_name

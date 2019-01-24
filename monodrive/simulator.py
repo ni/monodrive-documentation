@@ -14,7 +14,7 @@ except:
     pass
 
 from monodrive.networking import messaging
-from monodrive.networking.client import Client
+#from monodrive.networking.client import Client
 from monodrive.constants import *
 
 from monodrive import VehicleConfiguration
@@ -22,13 +22,13 @@ from monodrive import VehicleConfiguration
 
 class Simulator(object):
 
-    def __init__(self, configuration):
+    def __init__(self, client, configuration):
         self.configuration = configuration
         self.restart_event = Event()
         self.ego_vehicle = None
         self.scenario = None
-        self._client = None
-        self.setup_logger()
+        self.client = client
+        #self.setup_logger()
         self.map_data = None
 
     def start_scenario(self, scenario, vehicle_class):
@@ -46,15 +46,15 @@ class Simulator(object):
         # Start the Vehicle process
         self.ego_vehicle.start_scenario(scenario)
 
-    def get_ego_vehicle(self, vehicle_configuration, vehicle_class):
+    '''def get_ego_vehicle(self, vehicle_configuration, vehicle_class):
         # Create vehicle process form received class
         self.map_data = self.request_map()
         if not self.map_data:
             logging.getLogger("simulator").error("failed to get map")
             return None
 
-        self.ego_vehicle = vehicle_class(self, vehicle_configuration, self.restart_event, self.map_data)
-        return self.ego_vehicle
+        self.ego_vehicle = vehicle_class(self.configuration, vehicle_configuration, self.restart_event, self.map_data)
+        return self.ego_vehicle'''
 
     def stop(self):
 
@@ -83,7 +83,7 @@ class Simulator(object):
         if including_parent:
             parent.kill()
 
-    @property
+    ''''@property
     def client(self):
         if self._client is None:
             self._client = Client((self.configuration.server_ip,
@@ -91,23 +91,24 @@ class Simulator(object):
 
         if not self._client.isconnected():
             self._client.connect()
-        return self._client
+        return self._client'''
 
     def request(self, message_cls, timeout=5):
         return self.client.request(message_cls, timeout)
 
-    def request_sensor_stream(self, message_cls):
-        # wait for 2 responses when requesting the sensor to stream data
-        # the second will include a sensor_ready flag
-        #logging.getLogger('simulator').info('--> {0}'.format(message_cls))
-        messages = self.client.request(message_cls, 10, 2)
-        return messages[1]
+    # def request_sensor_stream(self, message_cls):
+    #     # wait for 2 responses when requesting the sensor to stream data
+    #     # the second will include a sensor_ready flag
+    #     logging.getLogger("simulator").info('Request sensor stream ')
+    #     messages = self.client.request(message_cls, 10, 1)
+    #     logging.getLogger("simulator").info("Response:" + str(messages))
+    #     return messages
 
     def send_vehicle_configuration(self, vehicle_configuration):
         logging.getLogger("simulator").info('Sending vehicle configuration {0}'.format(vehicle_configuration.name))
         vehicle_response = self.request(messaging.JSONConfigurationCommand(
-            vehicle_configuration.configuration, VEHICLE_CONFIG_COMMAND_UUID))
-        
+            VEHICLE_CONFIG_COMMAND_UUID, vehicle_configuration.configuration))
+        logging.getLogger("simulator").info("Response:" + str(vehicle_response))
         if vehicle_response is None:
             logging.getLogger("network").error('Failed to send the vehicle configuration')
 
@@ -116,9 +117,12 @@ class Simulator(object):
         return vehicle_response
 
     def send_configuration(self):
-        logging.getLogger("simulator").info('Sending simulator configuration ip:{0}:{1}'.format(self.configuration.server_ip,self.configuration.server_port))
-        simulator_response = self.request(messaging.JSONConfigurationCommand(
-            self.configuration.configuration, SIMULATOR_CONFIG_COMMAND_UUID))
+        logging.getLogger("simulator").info('Sending simulator configuration ip:{0}:{1}'
+                                            .format(self.configuration.server_ip, self.configuration.server_port))
+
+        msg = messaging.JSONConfigurationCommand(SIMULATOR_CONFIG_COMMAND_UUID, self.configuration.configuration)
+        simulator_response = self.request(msg)
+        logging.getLogger("simulator").info("Response:" + str(simulator_response))
         if simulator_response is None:
             logging.getLogger("network").error('Failed to send the simulator configuration')
 
@@ -134,24 +138,6 @@ class Simulator(object):
         json = scen.to_json
         msg = messaging.ScenarioModelCommand(scenario=json)
         return self.request(msg, timeout=180)
-
-    def start_sensor_command(self, sensor_type, display_port, sensor_id, packet_size, drop_frames):
-        """ Return server response from Sensor request. """
-        u_sensor_type = u"{}".format(sensor_type)
-        response = self.request_sensor_stream(
-            messaging.StreamDataCommand(u_sensor_type, sensor_id, self.configuration.client_ip,
-                                        display_port, u'tcp', 0, packet_size=packet_size, dropFrames=drop_frames))
-        return response
-
-    def stop_sensor_command(self, sensor_type, display_port, sensor_id, packet_size, drop_frames):
-        """ Return server response from Sensor request. """
-        u_sensor_type = u"{}".format(sensor_type)
-        response = self.request(
-            messaging.StreamDataCommand(u_sensor_type, sensor_id, self.configuration.client_ip,
-                                    display_port, u'tcp', 1, packet_size=packet_size, dropFrames=drop_frames),
-            timeout=2)
-
-        return response
 
     def setup_logger(self):
         simple_formatter = LevelNameFormatter("%(levelname)-8s:%(name)-10s: %(message)s")
@@ -182,15 +168,20 @@ class Simulator(object):
             file_handler.setFormatter(simple_formatter)
 
             logger.addHandler(file_handler)
-            logger.addHandler(stream_handler)
+            #logger.addHandler(stream_handler)
 
     def request_map(self):
+        logging.getLogger("simulator").info('Requesting Map...')
         command = messaging.MapCommand(self.configuration.map_settings)
-        result = self.request(command, 60)
-        if result.data:
-            return result.data
+        response = self.request(command, 60)
+        if response is not None and response.message:
+            self.map_data = response.message
+            logging.getLogger("simulator").info('Map Received')
+            return response.message
         else:
+            logging.getLogger("simulator").error('Map Request Failed')
             return None
+
 
     def spawn_object(self, spawn_type, location, rotation):
         command = messaging.SpawnCommand({"type": spawn_type, "location": location, "rotation": rotation})
@@ -226,7 +217,7 @@ class ColorFormatter(logging.Formatter):
         'ERROR': RED
     }
 
-    # These are the sequences need to get colored ouput
+    # These are the sequences need to get colored output
     RESET_SEQ = "\033[0m"
     COLOR_SEQ = "\033[1;%dm"
     BOLD_SEQ = "\033[1m"

@@ -4,13 +4,13 @@ __copyright__ = "Copyright (C) 2018 monoDrive"
 __license__ = "MIT"
 __version__ = "1.0"
 
-import matplotlib
+#import matplotlib
 import numpy as np
 import struct
-import matplotlib.patches as patches
+#import matplotlib.patches as patches
 
 from . import BaseSensor
-matplotlib.use('TkAgg')
+#matplotlib.use('TkAgg')
 
 SHOW_MAP = True
 

@@ -115,3 +115,19 @@ class VehicleConfiguration(Configuration):
                 #print(_m)
                 valid = False
         return valid
+
+    # fmcw is an ndarray of complex values for the radar
+    def update_radar_waveform(self, fmcw):
+        for sc in self.sensor_configuration:
+            if sc['type'] == 'Radar':
+                sc['fmcw'] = json.dumps(fmcw.tolist(), cls=ComplexEncoder)
+
+
+class ComplexEncoder(json.JSONEncoder):
+    def default(self, z):
+        if isinstance(z, complex):
+            return (z.real, z.imag)
+        else:
+            super().default(self, z)
+
+

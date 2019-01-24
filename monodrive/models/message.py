@@ -134,7 +134,7 @@ class Waypoint_Message(object):
     def test_message(self):
         msg_list = []
         for x in range(12):
-            msg_list.append(random.random(1,1000))
+            msg_list.append(random.random(1, 1000))
 
         msg_dict = {
             'time_stamp': time.time(),

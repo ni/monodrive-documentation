@@ -83,11 +83,13 @@ class BaseClient(object):
         """ Method used within thread to retrieve information from the socket. """
         # logging.getLogger("network").info("TCPClient start receiver on {0}".format(threading.current_thread().name))
         while self.isconnected():
+            message = Message()
             try:
-                message = Message()
                 message.read(self.sock)
+                logging.getLogger("network").debug(str(self.endpoint) + "  " + str(message))
             except Exception as e:
                 logging.getLogger("network").error('Failed to receive message: %s' % str(e))
+                logging.getLogger("network").error(str(self.endpoint) + " raw data:" + str(message.raw_data))
                 message = None
 
             if message is None:
@@ -151,7 +153,7 @@ class Client(object):
                     task()
                     self.queue.task_done()
 
-    def request(self, message, timeout=5, num_messages=1):
+    def request(self, message, timeout=5):
         """ Return a response from Unreal """
         def do_request():
             logging.getLogger('network').info('--> {0}'.format(message))
@@ -165,18 +167,18 @@ class Client(object):
             self.queue.put(do_request)
             self.data_ready.set()
 
-        responses = []
-        while len(responses) < num_messages:
-            try:
-                response = self.responses.get(True, timeout)
-                responses.append(response)
-                logging.getLogger("network").info('<-- {0}'.format(response))
-            except Empty:
-                logging.getLogger("network").error('Can not receive a response from server. \
+        response = None
+        #while len(responses) < num_messages:
+        try:
+            response = self.responses.get(True, timeout)
+            logging.getLogger("network").info('<-- {0}'.format(response))
+            #responses.append(response)
+        except Empty:
+            logging.getLogger("network").error('Can not receive a response from server. \
                        timeout after {:0.2f} seconds'.format(timeout))
-                responses.append(None)
-        self.message_id += 1  # Increment only after the request/response cycle finished
+            #responses.append(None)
+        #self.message_id += 1  # Increment only after the request/response cycle finished
 
-        if num_messages == 1:
-            return responses[0]
-        return responses
+        #if num_messages == 1:
+        #    return responses[0]
+        return response

@@ -1,0 +1,20 @@
+    {
+      "type": "GPS",
+      "id": "0",
+      "packet_size": 1472,
+      "listen_port": 8090,
+      "display_process": true,
+      "sensor_process": true,
+      "synchronized_display": true,
+      "location": {
+        "x": -75.0,
+        "y": -25.0,
+        "z": 245.0
+      },
+      "rotation": {
+        "pitch": 0.0,
+        "yaw": 0.0,
+        "roll": 0.0
+      },
+      "fps": 1.0
+    }

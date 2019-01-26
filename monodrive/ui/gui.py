@@ -105,7 +105,7 @@ class CameraPanel(wx.Panel):
 
 
 class MainFrame(wx.Frame):
-    def __init__(self, cameras):
+    def __init__(self, sensors):
         width = int(wx.SystemSettings.GetMetric(wx.SYS_SCREEN_X) * .9)
         height = int(wx.SystemSettings.GetMetric(wx.SYS_SCREEN_Y) * .9)
         wx.Frame.__init__(self, None, size=(width, height), title = "monoDrive Visualizer")
@@ -114,16 +114,29 @@ class MainFrame(wx.Frame):
         p = wx.Panel(self)
         nb = wx.Notebook(p)
 
-        # create the page windows as children of the notebook
-        overview = Overview_Panel(nb, cameras)
-        radar = Radar_Panel(nb)
-        #camera = Camera_View(nb, "Camera")
-        camera = CameraPanel(nb, cameras)
+        cameras = 0
+        overview_panel = False
+        radar_panel = False
+        for sensor in sensors:
+            if sensor.type in ["BoundingBox","Waypoint","GPS","IMU","RPM"]:
+                overview_panel = True
+            elif sensor.type == "Camera":
+                cameras += 1
+            elif sensor.type == "Radar":
+                radar_panel = True
 
-        # add the pages to the notebook with the label to show on the tab
-        nb.AddPage(overview, "All Sensors")
-        nb.AddPage(radar, "Radar")
-        nb.AddPage(camera, "Camera")
+        # create the page windows as children of the notebook
+        if overview_panel:
+            overview = Overview_Panel(nb, cameras)
+            nb.AddPage(overview, "All Sensors")
+
+        if radar_panel:
+            radar = Radar_Panel(nb)
+            nb.AddPage(radar, "Radar")
+
+        if cameras > 0:
+            camera = CameraPanel(nb, cameras)
+            nb.AddPage(camera, "Camera")
 
         # finally, put the notebook in a sizer for the panel to manage
         # the layout
@@ -139,10 +152,10 @@ class MainFrame(wx.Frame):
 #class MonoDriveGUIApp(wx.App, wx.lib.mixins.inspection.InspectionMixin):
 class MonoDriveGUIApp(wx.App):
     #def OnInit(self, num_cameras):
-    def __init__(self, cameras):
+    def __init__(self, sensors):
         wx.App.__init__(self)
         #self.Init()  # initialize the inspection tool
-        self.MainWindow = MainFrame(cameras)
+        self.MainWindow = MainFrame(sensors)
         self.MainWindow.Show(True)
         self.SetTopWindow(self.MainWindow)
         #wx.lib.inspection.InspectionTool().Show()
@@ -355,7 +368,7 @@ class GUI(object):
         monitor = Thread(target=self.monitor_process_state)
         monitor.start()
 
-        self.app = MonoDriveGUIApp(self.cameras)
+        self.app = MonoDriveGUIApp(self.sensors)
 
         #prctl.set_proctitle("mono{0}".format(self.name))
         #start sensor polling

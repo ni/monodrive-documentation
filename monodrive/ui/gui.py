@@ -249,6 +249,7 @@ class SensorPoll(Thread):
 
 class GUISensor(object):
     def __init__(self, sensor, **kwargs):
+        self.type = sensor.type
         self.name = sensor.name
         self.queue = sensor.q_display
         if 'Camera' in sensor.name:

@@ -11,7 +11,7 @@ Send TCP messages to the server to configure sensors as  cameras, lidars, radar,
 
 - **TCP Connection in (TCP Network connection) :** TCP connection to the server .
 - **Sensor Config (Path):** Path or name of the file with the Sensor configuration in JSON format.
-- **Command_ID (String) :** A valid command to the server.
+- **Command_ID (String) :** A valid command to the server. Typically **REPLAY_ConfigureSensorsCommand_ID**
 
 | Valid commands  |
 | ------------ | 

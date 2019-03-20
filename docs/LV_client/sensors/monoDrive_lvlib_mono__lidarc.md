@@ -1,11 +1,11 @@
-## mono_gps.vi
+## mono_lidar.vi
 <p align="center">
 <img src="https://github.com/monoDriveIO/client/blob/lv_client_docs/WikiPhotos/LV_client/sensors/monoDrive_lvlib_mono__lidarc.png?raw=true" 
 width="400"  />
 </p>
 
 ## Description
-Reads the data stream data for the GPS sensor and outpust a cluster with the  formatted data.
+Gets data from Lidar parse it  and forward it to port 2368 (VeloView)
 
 ### Inputs
 

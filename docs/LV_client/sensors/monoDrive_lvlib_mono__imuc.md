@@ -4,6 +4,9 @@
 width="400"  />
 </p>
 
+### Description
+Reads the data stream for the IMU sensor and outputs the IMU sample.
+
 ### Inputs
 
 - **Array_IMU (1D Array of Clusters) :** Collection of IMU sensor configured.

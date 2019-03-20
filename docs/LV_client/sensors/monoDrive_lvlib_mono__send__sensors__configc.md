@@ -39,7 +39,7 @@ width="400"  />
 
 - **config response (String):** Response from the server.
 - **TCP Connection Out (TCP Network connection):** TCP connection to the server.
-- **success (Boolean):** **True** if message succesful, **False** if message failed .
+- **success (Boolean):** **True** if configuration was succesful, **False** otherwise .
 - **ports (Array of int):** Array with all the number ports for sensors specified in the Sensor config file.
-- **Sensors(Array of String):** Array with the name type of all the sensors specified in the Sensor config file.
+- **Sensors(Array of String):** Array with the type name of all the sensors specified in the Sensor config file.
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

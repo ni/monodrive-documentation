@@ -10,7 +10,7 @@ width="400"  />
   - Cluster with 2 elements:
     * connection ID (TCP Network connection): Connection ID corresponding to the TCP connection for this **GPS** sensor.
     * port (int): System port corresponding to this GPS sensor.
-- **Index:** Index of the elemenet in the **Array_GP** you are interested.
+- **Index:** Index of the elemenet in the **Array_GPS** you are interested.
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 ### Outputs

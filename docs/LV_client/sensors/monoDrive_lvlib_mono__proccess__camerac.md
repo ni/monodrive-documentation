@@ -4,6 +4,9 @@
 width="400"  />
 </p>
 
+### Description
+Process the camera stream data and assign each image data to an individual picture.
+
 ### Inputs
 
 - **Array_Camera (1D Array of Clusters) :** Collection of Camera sensors configured.

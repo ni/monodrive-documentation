@@ -4,6 +4,9 @@
 width="400"  />
 </p>
 
+### Description
+Reads the stream data for a camera sensor  and returns a picture with the format specified in the stream dimensions.
+
 ### Inputs
 
 - **connection ID (TCP Network connection):** connection ID corresponding to the TCP connection for **camera** sensor.

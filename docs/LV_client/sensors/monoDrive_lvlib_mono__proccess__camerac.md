@@ -1,4 +1,4 @@
-## mono_proccess_camera.vi
+## mono_process_camera.vi
 <p align="center">
 <img src="https://github.com/monoDriveIO/client/blob/lv_client_docs/WikiPhotos/LV_client/sensors/monoDrive_lvlib_mono__proccess__camerac.png?raw=true" 
 width="400"  />

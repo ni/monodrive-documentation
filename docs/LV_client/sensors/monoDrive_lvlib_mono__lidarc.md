@@ -4,6 +4,9 @@
 width="400"  />
 </p>
 
+## Description
+Reads the data stream data for the GPS sensor and outpust a cluster with the  formatted data.
+
 ### Inputs
 
 - **Array_Lidar (1D Array of Clusters) :** Collection of Lidar sensors configured.

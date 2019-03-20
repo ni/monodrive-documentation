@@ -1,8 +1,11 @@
-## mono_gps.vi
+## mono_radar.vi
 <p align="center">
 <img src="https://github.com/monoDriveIO/client/blob/lv_client_docs/WikiPhotos/LV_client/sensors/monoDrive_lvlib_mono__radarc.png?raw=true" 
 width="400"  />
 </p>
+
+### Description
+Reads the stream data for the Radar sensor and outputs a 3D array with the formatted data.
 
 ### Inputs
 

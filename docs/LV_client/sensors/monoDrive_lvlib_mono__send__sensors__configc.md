@@ -10,7 +10,7 @@ width="400"  />
 - **Sensor Config (Path):** Path or name of the file with the Sensor configuration in JSON format.
 - **Command_ID (String) :** A valid command to the server.
 
-| Name  |
+| Valid commands  |
 | ------------ | 
 |Status_ID   |
 |SimulatorConfig_ID |

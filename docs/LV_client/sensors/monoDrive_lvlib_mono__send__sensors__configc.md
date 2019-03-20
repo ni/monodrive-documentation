@@ -4,6 +4,9 @@
 width="400"  />
 </p>
 
+### Description
+Send TCP messages to the server to configure sensors as  cameras, lidars, radar, etc by proving a path to a JSON file with the sensor configuration.
+
 ### Inputs
 
 - **TCP Connection in (TCP Network connection) :** TCP connection to the server .

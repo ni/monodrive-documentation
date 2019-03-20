@@ -46,5 +46,5 @@ Configures simulator given a path to a  JSON file. The file will configure serve
 
 - **TCP Connecton in (TCP Network connection):** TCP connection to the server .
 - **success (Boolean):** **True** if configuration was succesful, **False** otherwise .
-- **success (Boolean):** Response from the server.
+- **response (String):** Response from the server.
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

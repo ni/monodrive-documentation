@@ -1,6 +1,6 @@
 ## mono_imu.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/blob/lv_client_docs/WikiPhotos/LV_client/sensors/monoDrive_lvlib_mono__imuc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/monoDrive_lvlib_mono__imuc.png" 
 width="400"  />
 </p>
 

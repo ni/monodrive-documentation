@@ -23,8 +23,6 @@ pages:
     - 'RPM': 'RPM.md'
 - LabVIEW_Client: 'LabVIEW_client.md'
 - Detailed_Help:
-    - 'Example':
-        - 'monoDrive_Simulator_Interface_Example.vi': 'LV_client\monoDrive_Simulator_Interface_Example.md'
     - 'Sensors':
         - 'mono_camera_single.vi': 'LV_client\sensors\monoDrive_lvlib_mono__camera__singlec.md'
         - 'mono_gps.vi': 'LV_client\sensors\monoDrive_lvlib_mono__gpsc.md'

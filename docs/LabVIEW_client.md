@@ -1,6 +1,6 @@
 # LabVIEW Client
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/blob/master/WikiPhotos/LV_client/main.jpg" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/main.jpg" 
 width="400"  />
 </p>
 

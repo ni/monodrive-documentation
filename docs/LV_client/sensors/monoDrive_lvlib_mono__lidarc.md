@@ -13,13 +13,14 @@ Gets data from Lidar parse it  and forward it to port 2368 (VeloView)
   - Cluster with 2 elements:
     * connection ID (TCP Network connection): Connection ID corresponding to the TCP connection for this **Lidar** sensor.
     * port (int): System port corresponding to this Lidar sensor.
-- **Index:** Index of the elemenet in the **Array_Lidar** you are interested.
+- **Index (Int):** Index of the elemenet in the **Array_Lidar** you are interested.
+- **UDP port (UDP Network Connection):** UDP connection to the port where VeloView is listening, typically 2368.
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 ### Outputs
 
-- **lidar raw data** Output connection ID corresponding to the TCP connection for **Lidar** sensor, same as input connection ID.
-- **lidar_data:** Cluster with the processed data for the Lidar sensor.
+- **lidar raw data (String)** Output connection ID corresponding to the TCP connection for **Lidar** sensor, same as input connection ID.
+- **lidar_data (Cluster):** Cluster with the processed data for the Lidar sensor.
 
 | Type  | Name   |
 | ------------ | ------------ |

@@ -1,6 +1,6 @@
 ## mono__init.vi
 <p align="center">
-<img src="monoDrive_lvlib_mono__initc.png" 
+<img src="https://github.com/monoDriveIO/client/blob/lv_client_docs/WikiPhotos/LV_client/simulator/monoDrive_lvlib_mono__initc.png" 
 width="400"  />
 </p>
 
@@ -11,6 +11,7 @@ Module to initialize the monoDrive simulator. This module must be run before oth
 
 - **Simulator IP (string):** IP of the simulator, typically **127.0.0.1**.
 - **Control Port (int):** Port to write and read messages from the simualor, typically **8999**.
+- **License Status (Reference):** Reference to the license status indicator.
 - **error in (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 

@@ -4,6 +4,12 @@
 width="400"  />
 </p>
 
+
+### Setup
+1. Download LabVIEW 2018 (32 bit) from this [website](http://www.ni.com/download/labview-development-system-2018/7406/en/).
+2. Download VeloView from this [website](https://www.paraview.org/download/).
+3. Download the monoDrive Simulator from https://www.monodrive.io/download
+
 ### Description 
 
 This example demonstrates how to use LabVIEW as a client for the monoDrive Simulator.

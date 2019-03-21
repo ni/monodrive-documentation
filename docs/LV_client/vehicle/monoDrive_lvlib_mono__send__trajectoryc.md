@@ -11,6 +11,7 @@ Configure the trajectory EGO and other cars in the scene will follow  by given a
 
 - **TCP Connection in (TCP Network connection) :** TCP connection to the server .
 - **Trajectory Config (Path):** Path or name of the file with the Sensor configuration in JSON format.
+- **Reference indicator ( Bundle of Reference):** All the references to indicator of status .
 - **Command_ID (String) :** A valid command to the server. Typically **REPLAY_ConfigureTrajectoryCommand_ID**
 
 | Valid commands  |

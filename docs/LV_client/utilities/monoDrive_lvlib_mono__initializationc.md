@@ -21,23 +21,19 @@ Takes care of initilization given a path to the sensor, simulator and trajectory
     * 1 - Replay
     * 2 - Replay_step 
 - **Base_Path:** $(User Home directory)/monoDriveConfig. The directory gets created when installing the package.
+- **Reference indicator :** All the references to indicator of status .
 - **error in (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 
 ### Outputs
 
 - **UDP port (UDP Network Connection):** UDP connection to the port where VeloView is listening, typically 2368.- **license success :** 
-- **license success (Boolean):** True if the license is found, false otherwise.
-- **config sim (Boolean):** True if the simulator configuration was successful, false otherwise.
-- **trajectory config (Boolean):** True if the simulator configuration was successful, false otherwise.
 - **TCP Network Conection out (TCP Network connection):** TCP connection to the simulator.
 - **Mode (Int):** Running mode.
-- **config sensors (Boolean):** True if the simulator configuration was successful, false otherwise.
+- **AllTrajectories (Invariant):**  All vehicles obtained from the trajectory object as a JSON object in LabVIEW.
 - **trajectories (Int):** Number of trajectories obtained from the trajectory configuration file.
 - **ports (Array of Int):** Array with all the ports numbers for sensors specified in the Sensor config file.
 - **Connections (Array of TCP Network connection):** Array with all the TCP connections opened for sensors specified in the Sensor config file.
 - **address (Int):** Local address .
 - **Sensors (Array of String):** Array with the type name of all the sensors specified in the Sensor config file.
-- **AllTrajectories (Invariant):**  All vehicles obtained from the trajectory object as a JSON object in LabVIEW.
-- **Loading (Boolean):** True when loading, False when it finish it.
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

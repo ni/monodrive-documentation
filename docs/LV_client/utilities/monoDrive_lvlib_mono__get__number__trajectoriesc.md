@@ -1,0 +1,19 @@
+## mono_get_number_trajectories.vi
+<p align="center">
+<img src="https://github.com/monoDriveIO/client/blob/lv_client_docs/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__get__number__trajectoriesc.png?raw=true" 
+width="400"  />
+</p>
+
+### Description 
+Obtain the number of trajectories on the Trajectory Configuration text.
+
+### Inputs
+
+- **input_text (String):** Text obtained from reading the Trajectory configuration file.
+- **error in (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+
+### Outputs
+
+- **no.trajectories:** Number of trajectories in the text.
+- **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

@@ -21,7 +21,7 @@ Takes care of initilization given a path to the sensor, simulator and trajectory
     * 1 - Replay
     * 2 - Replay_step 
 - **Base_Path:** $(User Home directory)/monoDriveConfig. The directory gets created when installing the package.
-- **Reference indicator :** All the references to indicator of status .
+- **Reference indicator(Bundle of Reference) :** All the references to indicator of status .
 - **error in (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 

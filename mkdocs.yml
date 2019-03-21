@@ -21,6 +21,7 @@ pages:
     - 'Waypoint': 'Waypoint.md'
     - 'Bounding Box': 'Bounding-Box.md'
     - 'RPM': 'RPM.md'
+- LabVIEW Client: 'test.md'
 - Starting the Simulator: 'Starting-Simulator.md'
 
 markdown_extensions:

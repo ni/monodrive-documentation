@@ -21,7 +21,8 @@ pages:
     - 'Waypoint': 'Waypoint.md'
     - 'Bounding Box': 'Bounding-Box.md'
     - 'RPM': 'RPM.md'
-- Starting the Simulator: 'Starting-Simulator.md'
+- LabVIEW Clien: 'Starting-Simulator.md'
+- Starting the Simulator: '/LV_client/monoDrive_Simulator_Interface_Example.md'
 
 markdown_extensions:
   - admonition

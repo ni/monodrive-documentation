@@ -1,6 +1,6 @@
 ## mono_connect.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/blob/lv_client_docs/WikiPhotos/LV_client/simulator/monoDrive_lvlib_mono__connectc.png?raw=true" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/simulator/monoDrive_lvlib_mono__connectc.png" 
 width="400"  />
 </p>
 
@@ -16,5 +16,5 @@ Open a TCP connection given an IP and control port.
 
 ### Outputs
 
-- **monoDrive Connection (TCP Network connection) :** TCP connection with the simulator.
+- **TCP Network connection Out (TCP Network connection) :** TCP connection with the simulator.
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

@@ -9,16 +9,13 @@ Reads the data stream for the IMU sensor and outputs the IMU sample.
 
 ### Inputs
 
-- **Array_IMU (1D Array of Clusters) :** Collection of IMU sensor configured.
-  - Cluster with 2 elements:
-    * connection ID (TCP Network connection): Connection ID corresponding to the TCP connection for this **IMU** sensor.
-    * port (int): System port corresponding to this IMU sensor.
-- **Index:** Index of the elemenet in the **Array_IMU** you are interested.
+- **sensor variants (Variant):** Contains the camera information for the **imu** sensor.
+- **Port number (String):** Port number where the **imu** sensor is connected.
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 ### Outputs
 
-- **Connection ID Out (TCP Network connection):** Output connection ID corresponding to the TCP connection for **IMU** sensor, same as input connection ID.
+- **sensor variants out (Variant):** Contains the camera information for the **imu** sensor.
 - **imu_sample:** Cluster with the processed data for the IMU sensor.
 
 | Type  | Name   |

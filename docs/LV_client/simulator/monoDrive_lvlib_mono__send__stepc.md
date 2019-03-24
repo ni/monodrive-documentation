@@ -1,6 +1,6 @@
 ## mono_send_step.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/blob/lv_client_docs/WikiPhotos/LV_client/simulator/monoDrive_lvlib_mono__send__stepc.png?raw=true" 
+<img src="https://github.com/monoDriveIO/client/blob/master/WikiPhotos/LV_client/simulator/monoDrive_lvlib_mono__send__stepc.png" 
 width="400"  />
 </p>
 
@@ -9,7 +9,7 @@ Send the command to step the simulation for a given amount. Specify the desired 
 
 ### Inputs
 
-- **TCP Connection in (TCP Network connection) :** TCP connection to the server .
+- **TCP Network connection in (TCP Network connection) :** TCP connection to the server .
 - **Command_ID (String) :** A valid command to the server. Typically **REPLAY_ConfigureSensorsCommand_ID**
 - **message :** a JSON format text. Used in Replay mode and replya_step mode.
   * Replay: A specific amount (1,2,3, etc...)
@@ -21,7 +21,7 @@ Send the command to step the simulation for a given amount. Specify the desired 
 
 ### Outputs
 
-- **TCP Connection in (TCP Network connection) :** TCP connection to the server .
+- **TCP Network connection out (TCP Network connection) :** TCP connection to the server .
 - **success (Boolean):** **True** if configuration was succesful, **False** otherwise .
 - **config response (String):** Response from the server.
 

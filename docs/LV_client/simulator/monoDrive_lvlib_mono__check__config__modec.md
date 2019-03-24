@@ -1,6 +1,6 @@
 ## mono_check_config_mode.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/blob/lv_client_docs/WikiPhotos/LV_client/simulator/monoDrive_lvlib_mono__check__config__modec.png?raw=true" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/simulator/monoDrive_lvlib_mono__check__config__modec.png" 
 width="400"  />
 </p>
 
@@ -9,7 +9,7 @@ Replaces the running mode from the configuration text with the running mode  cho
 
 ### Inputs
 
-- **config_text (String) :** Text obtain by reading the Simulator configuration file .
+- **configurationtext (String) :** Text obtain by reading the Simulator configuration file .
 - **Running mode (Enum)** 
     * 0 - Closed_loop 
     * 1 - Replay

@@ -1,6 +1,6 @@
 ## mono_send_sensors_config .vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/blob/lv_client_docs/WikiPhotos/LV_client/sensors/monoDrive_lvlib_mono__send__sensors__configc.png?raw=true" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/monoDrive_lvlib_mono__send__sensors__configc.png" 
 width="400"  />
 </p>
 
@@ -9,8 +9,8 @@ Send TCP messages to the server to configure sensors as  cameras, lidars, radar,
 
 ### Inputs
 
-- **TCP Connection in (TCP Network connection) :** TCP connection to the server .
-- **Sensor Config (Path):** Path or name of the file with the Sensor configuration in JSON format.
+- **TCP Network Connection in (TCP Network connection) :** TCP connection to the server .
+- **Sensor Configuration Path (Path):** Path or name of the file with the Sensor configuration in JSON format.
 - **Command_ID (String) :** A valid command to the server. Typically **REPLAY_ConfigureSensorsCommand_ID**
 
 | Valid commands  |
@@ -41,8 +41,7 @@ Send TCP messages to the server to configure sensors as  cameras, lidars, radar,
 ### Outputs
 
 - **config response (String):** Response from the server.
-- **TCP Connection Out (TCP Network connection):** TCP connection to the server.
-- **success (Boolean):** **True** if configuration was succesful, **False** otherwise .
+- **TCP Network Connection Out (TCP Network connection):** TCP connection to the server.
+- **sensor config (Boolean):** **True** if configuration was succesful, **False** otherwise .
 - **ports (Array of int):** Array with all the number ports for sensors specified in the Sensor config file.
-- **Sensors(Array of String):** Array with the type name of all the sensors specified in the Sensor config file.
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

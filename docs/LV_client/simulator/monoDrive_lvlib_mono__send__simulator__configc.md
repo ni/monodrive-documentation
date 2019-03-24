@@ -10,7 +10,7 @@ Configures simulator given a path to a  JSON file. The file will configure serve
 ### Inputs
 
 - **TCP Network connection in (TCP Network connection):** TCP connection to the server .
-- **Simulator Config (Path):** Path or name of the file with the Simulator configuration in JSON format.
+- **Simulator Config Path (Path):** Path or name of the file with the Simulator configuration in JSON format.
 - **Command_ID (String) :** A valid command to the server. Typically **SimulatorConfig_ID**
 
 | Valid commands  |

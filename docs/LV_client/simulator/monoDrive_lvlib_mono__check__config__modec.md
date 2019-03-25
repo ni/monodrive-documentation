@@ -9,7 +9,7 @@ Replaces the running mode from the configuration text with the running mode  cho
 
 ### Inputs
 
-- **configurationtext (String) :** Text obtain by reading the Simulator configuration file .
+- **configuration text (String) :** Text obtain by reading the Simulator configuration file .
 - **Running mode (Enum)** 
     * 0 - Closed_loop 
     * 1 - Replay

@@ -1,6 +1,6 @@
 ## mono_send_command.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/blob/master/WikiPhotos/LV_client/simulator/monoDrive_lvlib_mono__send__commandc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/simulator/monoDrive_lvlib_mono__send__commandc.png" 
 width="400"  />
 </p>
 

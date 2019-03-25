@@ -18,8 +18,8 @@ Process radar data cube and run a Matlab script to plot Radar data.
 |1D Array SGL | ranges  |
 |1D Array SGL  | aoa_list |
 |1D Array SGL | velocities |
-- **error in (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
+- **error in (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 ### Outputs
 

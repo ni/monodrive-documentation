@@ -1,6 +1,6 @@
 ## mono_check_simulator.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/blob/lv_client_docs/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__check__simulatorc.png?raw=true" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__check__simulatorc.png" 
 width="400"  />
 </p>
 

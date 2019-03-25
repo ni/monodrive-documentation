@@ -38,7 +38,7 @@ pages:
     - 'Simulator':
         - 'mono_check_config_mode.vi': 'LV_client/simulator/monoDrive_lvlib_mono__check__config__modec.md'
         - 'mono_connect.vi': 'LV_client/simulator/monoDrive_lvlib_mono__connectc.md'
-        - 'mono_heade.vi': 'LV_client/simulator/monoDrive_lvlib_mono__headerc.md'
+        - 'mono_header.vi': 'LV_client/simulator/monoDrive_lvlib_mono__headerc.md'
         - 'mono_init.vi': 'LV_client/simulator/monoDrive_lvlib_mono__initc.md'
         - 'mono_send_command.vi': 'LV_client/simulator/monoDrive_lvlib_mono__send__commandc.md'
         - 'mono_send_simulator_config.vi': 'LV_client/simulator/monoDrive_lvlib_mono__send__simulator__configc.md'

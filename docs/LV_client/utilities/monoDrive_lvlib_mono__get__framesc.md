@@ -1,7 +1,6 @@
 ## mono_get_frames.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/blob/lv_client_docs/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__get__framesc.png" 
-width="400"  />
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__get__framesc.png"  />
 </p>
 
 ### Description 

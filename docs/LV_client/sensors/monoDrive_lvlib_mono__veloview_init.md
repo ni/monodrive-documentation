@@ -1,6 +1,6 @@
 ## mono__veloview_init.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/blob/master/WikiPhotos/LV_client/sensors/monoDrive_lvlib_mono__veloview_init.png"  />
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/monoDrive_lvlib_mono__veloview_init.png"  />
 </p>
 
 ### Description

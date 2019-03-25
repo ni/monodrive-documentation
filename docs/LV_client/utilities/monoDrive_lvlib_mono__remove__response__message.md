@@ -1,6 +1,6 @@
 ## mono_remove_response_message.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/blob/lv_client_docs/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__remove__response__messagec.png?raw=true" 
+<img src="https://github.com/monoDriveIO/client/blob/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__remove__response__messagec.png" 
 width="400"  />
 </p>
 

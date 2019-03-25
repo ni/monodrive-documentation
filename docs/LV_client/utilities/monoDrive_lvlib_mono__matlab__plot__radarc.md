@@ -1,7 +1,6 @@
 ## mono_matlab_plot_radar.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__matlab__plot__radarc.png" 
-width="400"  />
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__matlab__plot__radarc.png"  />
 </p>
 
 ### Description 

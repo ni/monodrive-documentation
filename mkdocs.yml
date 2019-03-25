@@ -31,6 +31,7 @@ pages:
         - 'mono_imu.vi': 'LV_client/sensors/monoDrive_lvlib_mono__imuc.md'
         - 'mono_lidar.vi': 'LV_client/sensors/monoDrive_lvlib_mono__lidarc.md'
         - 'mono_radar.vi': 'LV_client/sensors/monoDrive_lvlib_mono__radarc.md'
+        - 'mono_rpm.vi': 'LV_client/sensors/monoDrive_lvlib_mono__rpmc.md'
         - 'mono_send_sensors_config.vi': 'LV_client/sensors/monoDrive_lvlib_mono__send__sensors__configc.md'
         - 'mono_open_sensors_connections.vi': 'LV_client/sensors/monoDrive_lvlib_mono__open_sensors_connections.md'
         - 'mono__veloview_init.vi': 'LV_client/sensors/monoDrive_lvlib_mono__veloview_init.md'

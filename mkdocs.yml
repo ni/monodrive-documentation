@@ -55,6 +55,7 @@ pages:
         - 'mono_remove_response_message.vi': 'LV_client/utilities/monoDrive_lvlib_mono__remove__response__message.md'
         - 'mono_sensor_parser.vi': 'LV_client/utilities/monoDrive_lvlib_mono__sensor__parserc.md'
         - 'mono_config_directory_paths.vi': 'LV_client/utilities/mono_config_directory_paths.md'
+        - 'mono_reset_to_defaultsc.vi': 'LV_client/utilities/monoDrive_lvlib_mono__reset__to__defaultsc.md'
     - 'Vehicle':
         - 'mono_send_trajectory.vi': 'LV_client/vehicle/monoDrive_lvlib_mono__send__trajectoryc.md'
         - 'mono_send_vehicle_command.vi': 'LV_client/vehicle/monoDrive_lvlib_mono__send__vehicle__commandc.md'

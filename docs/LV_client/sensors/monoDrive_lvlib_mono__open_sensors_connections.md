@@ -1,7 +1,7 @@
 ## mono_open_sensors_connections.vi	
 <p align="center">	
 <img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/monoDrive_lvlib_mono__open_sensors_connections.png" 	
-width="400"  />	
+/>	
 </p>	
 
  ## Description	

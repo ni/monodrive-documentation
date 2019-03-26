@@ -1,15 +1,15 @@
-## mono__set__defaultsc.vi
+## mono_reset_to_defaults.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/blob/lv_client_docs/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__set__defaultsc.png?raw=true" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__reset__to__defaultsc.png" 
 width="400"  />
 </p>
 
 ### Description 
-Set the indicators to default state given a reference to the front panel indicators.
+Reinitialize all the boolean indicators to False.
 
 ### Inputs
 
-- **Reference indicator :** All the references to indicator of status .
+- **Indicators_references (Cluster of references):** A cluster with Boolean references to the status indicators.
 - **error in (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 

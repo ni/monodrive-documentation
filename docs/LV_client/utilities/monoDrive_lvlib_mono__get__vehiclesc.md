@@ -1,6 +1,6 @@
 ## mono_get_vehicles.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/blob/lv_client_docs/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__get__vehiclesc.png?raw=true" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__get__vehiclesc.png" 
 width="400"  />
 </p>
 
@@ -10,7 +10,7 @@ Get the name of the vehicles and attributes of each trajectory in JSON format gi
 ### Inputs
 
 - **Index (Int):** The number of trajectory to index from **AllTrajectories**. Number of current iteration.
-- **AllTrajectories (Invariant) :** All trajectories obtained from the trajectory config file as a JSON object in LabVIEW.
+- **All Trajectories (Invariant) :** All trajectories obtained from the trajectory config file as a JSON object in LabVIEW.
 - **error in (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 

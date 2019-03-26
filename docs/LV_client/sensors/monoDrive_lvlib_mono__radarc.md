@@ -1,6 +1,6 @@
 ## mono_radar.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/blob/lv_client_docs/WikiPhotos/LV_client/sensors/monoDrive_lvlib_mono__radarc.png?raw=true" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/monoDrive_lvlib_mono__radarc.png" 
 width="400"  />
 </p>
 
@@ -9,16 +9,12 @@ Reads the stream data for the Radar sensor and outputs a 3D array with the forma
 
 ### Inputs
 
-- **Array_Radar (1D Array of Clusters) :** Collection of Radar sensor configured.
-  - Cluster with 2 elements:
-    * connection ID (TCP Network connection): Connection ID corresponding to the TCP connection for this **Radar** sensor.
-    * port (int): System port corresponding to this Radar sensor.
-- **Index:** Index of the elemenet in the **Array_Radar** you are interested.
+- **sensor variants (Variant):** Contains the camera information for the **radar** sensor.
+- **Port number (String):** Port number where the **radar** sensor is connected.d.
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 ### Outputs
-
-- **Connection ID Out (TCP Network connection):** Output connection ID corresponding to the TCP connection for **Radar** sensor, same as input connection ID.
+- **sensor variants out (Variant):** Contains the camera information for the **radar** sensor.
 - **radar_output(Cluster):** Cluster with the processed data for the Radar sensor.
 
 | Type  | Name   |
@@ -30,6 +26,5 @@ Reads the stream data for the Radar sensor and outputs a 3D array with the forma
 |1D Array SGL | velocities |
 
 - **radar data cube (String):** Raw data.
-
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 

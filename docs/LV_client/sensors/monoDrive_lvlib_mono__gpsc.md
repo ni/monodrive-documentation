@@ -1,6 +1,6 @@
 ## mono_gps.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/blob/lv_client_docs/WikiPhotos/LV_client/sensors/monoDrive_lvlib_mono__gpsc.png?raw=true" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/monoDrive_lvlib_mono__gpsc.png" 
 width="400"  />
 </p>
 
@@ -9,17 +9,13 @@ Reads the data stream data for the GPS sensor and outpust a cluster with the  fo
 
 ### Inputs
 
-- **Array_GPS (1D Array of Clusters) :** Collection of GPS sensor configured.
-  - Cluster with 2 elements:
-    * connection ID (TCP Network connection): Connection ID corresponding to the TCP connection for this **GPS** sensor.
-    * port (int): System port corresponding to this GPS sensor.
-- **Index:** Index of the elemenet in the **Array_GPS** you are interested.
+- **sensor variants (Variant):** Contains the camera information for the **camera** sensor.
+- **Port number (String):** Port number where the **camera** sensor is connected.
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 ### Outputs
-
-- **Connection ID Out (TCP Network connection):** Output connection ID corresponding to the TCP connection for **GPS** sensor, same as input connection ID.
-- **gps sample:** Cluster with the processed data for the GPS sensor.
+- **sensor variants out (Variant):** Contains the camera information for the **camera** sensor.
+- **gps_sample:** Cluster with the processed data for the GPS sensor.
 
 | Type  | Name   |
 | ------------ | ------------ |

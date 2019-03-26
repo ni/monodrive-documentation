@@ -1,6 +1,6 @@
 ## mono_send_trajectory.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/blob/lv_client_docs/WikiPhotos/LV_client/vehicle/monoDrive_lvlib_mono__send__trajectoryc.png?raw=true" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/vehicle/monoDrive_lvlib_mono__send__trajectoryc.png" 
 width="400"  />
 </p>
 
@@ -9,9 +9,8 @@ Configure the trajectory EGO and other cars in the scene will follow  by given a
 
 ### Inputs
 
-- **TCP Connection in (TCP Network connection) :** TCP connection to the server .
+- **TCP Network Connection in (TCP Network connection) :** TCP connection to the server .
 - **Trajectory Config (Path):** Path or name of the file with the Sensor configuration in JSON format.
-- **Reference indicator ( Bundle of Reference):** All the references to indicator of status .
 - **Command_ID (String) :** A valid command to the server. Typically **REPLAY_ConfigureTrajectoryCommand_ID**
 
 | Valid commands  |
@@ -46,9 +45,8 @@ Configure the trajectory EGO and other cars in the scene will follow  by given a
 ### Outputs
 
 - **config response (String):** Response from the server.
-- **TCP Connection Out (TCP Network connection):** TCP connection to the server.
-- **trajectory config (Boolean):** **True** if configuration was succesful, **False** otherwise .
+- **TCP Network Connection Out (TCP Network connection):** TCP connection to the server.
 - **AllTrajectories (Boolean):** JSON object with the trajectories read from the configuration file .
-- **Loading (Boolean) :** **True** when the files is being converted to JSON object .
-- **trajectories(Int) :** Number of trajectories in the configuration file.
+- **trajectories config (Int) :** Number of trajectories in the configuration file.
+- **number of trajectories (Int) :** Number of trajectories in the configuration file.
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

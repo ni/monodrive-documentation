@@ -6,13 +6,13 @@ width="400"  />
 
 ### Inputs
 
-- **TestStant (Boolean):** Port to write and read messages from the simualor, typically **8999**.
-- **Running Mode(string):** IP of the simulator, typically **127.0.0.1**.
+- **TestStant (Boolean):** Using TestStand to run the client.
+- **Running Mode(string):** Indicate mode of operation. Closed_loop, Replay or Replay_step.
 - **Simulator Config (Path):** Path or name of the file with the Simulator configuration in JSON format.
 - **Sensor Config (Path):** Path or name of the file with the Sensor configuration in JSON format.
 - **Trajectory Config (Path):** Path or name of the file with the Trajectory configuration in JSON format.
 - **Ok settings (Boolean):** To use with Test Stand, activate configuration.
-- **Weather Index (Int):** Number of weather configuration to use or external VI. To use with Test Stand or external VI.
+- **Weather Index (Int):** Weather configuration. To use with Test Stand or external VI.
 - **error In (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 

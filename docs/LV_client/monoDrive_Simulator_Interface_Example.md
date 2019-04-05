@@ -6,12 +6,14 @@ width="400"  />
 
 ### Inputs
 
-- **Control Port (int):** Port to write and read messages from the simualor, typically **8999**.
-- **Simulator IP (string):** IP of the simulator, typically **127.0.0.1**.
+- **TestStant (Boolean):** Port to write and read messages from the simualor, typically **8999**.
+- **Running Mode(string):** IP of the simulator, typically **127.0.0.1**.
 - **Simulator Config (Path):** Path or name of the file with the Simulator configuration in JSON format.
 - **Sensor Config (Path):** Path or name of the file with the Sensor configuration in JSON format.
 - **Trajectory Config (Path):** Path or name of the file with the Trajectory configuration in JSON format.
-- **Simulator Error In (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+- **Ok settings (Boolean):** To use with Test Stand, activate configuration.
+- **Weather Index (Int):** Number of weather configuration to use or external VI. To use with Test Stand or external VI.
+- **error In (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 
 ### Outputs

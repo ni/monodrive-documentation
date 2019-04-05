@@ -5,6 +5,7 @@ width="400"  />
 </p>
 
 ### Description 
+Obtains the weather configuration  from a file and populates a cluster with the configuration.
 
 ### Inputs
 

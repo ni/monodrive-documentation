@@ -5,6 +5,7 @@ width="400"  />
 </p>
 
 ### Description 
+Sends weather configuration to the simulator.
 
 ### Inputs
 

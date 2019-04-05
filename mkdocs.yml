@@ -18,8 +18,8 @@ pages:
         - 'mono_rpm.vi': 'LV_client/sensors/monoDrive_lvlib_mono__rpmc.md'
         - 'mono_send_sensors_config.vi': 'LV_client/sensors/monoDrive_lvlib_mono__send__sensors__configc.md'
         - 'mono_open_sensors_connections.vi': 'LV_client/sensors/monoDrive_lvlib_mono__open_sensors_connections.md'
-        - 'mono__veloview_init.vi': 'LV_client/sensors/monoDrive_lvlib_mono__veloview_init.md'
-
+        - 'mono_veloview_init.vi': 'LV_client/sensors/monoDrive_lvlib_mono__veloview_init.md'
+        - 'mono_state_sensor.vi': 'LV_client/sensors/monoDrive_lvlib_mono__state__sensorc.md'
     - 'Simulator':
         - 'mono_check_config_mode.vi': 'LV_client/simulator/monoDrive_lvlib_mono__check__config__modec.md'
         - 'mono_connect.vi': 'LV_client/simulator/monoDrive_lvlib_mono__connectc.md'
@@ -33,17 +33,19 @@ pages:
         - 'mono_build_json.vi': 'LV_client/utilities/monoDrive_lvlib_mono__build__jsonc.md'
         - 'mono_check_simulator.vi': 'LV_client/utilities/monoDrive_lvlib_mono__check__simulatorc.md'
         - 'mono_get_config_path.vi': 'LV_client/utilities/monoDrive_lvlib_mono__get__config__pathc.md'
-        - 'mono_get_frames.vi': 'LV_client/utilities/monoDrive_lvlib_mono__get__framesc.md'
         - 'mono_get_number_trajectories.vi': 'LV_client/utilities/monoDrive_lvlib_mono__get__number__trajectoriesc.md'
-        - 'mono_get_vehicles.vi': 'LV_client/utilities/monoDrive_lvlib_mono__get__vehiclesc.md'
         - 'mono_matlab_plot_radar.vi': 'LV_client/utilities/monoDrive_lvlib_mono__matlab__plot__radarc.md'
         - 'mono_remove_response_message.vi': 'LV_client/utilities/monoDrive_lvlib_mono__remove__response__message.md'
         - 'mono_sensor_parser.vi': 'LV_client/utilities/monoDrive_lvlib_mono__sensor__parserc.md'
         - 'mono_config_directory_paths.vi': 'LV_client/utilities/mono_config_directory_paths.md'
         - 'mono_reset_to_defaultsc.vi': 'LV_client/utilities/monoDrive_lvlib_mono__reset__to__defaultsc.md'
+    - 'Weather':
+        - 'mono_send_trajectory.vi': 'LV_client/weather/monoDrive_lvlib_mono__get__weatherc.md'
+        - 'mono_send_vehicle_command.vi': 'LV_client/weather/monoDrive_lvlib_mono__weather__updatec.md'
     - 'Vehicle':
         - 'mono_send_trajectory.vi': 'LV_client/vehicle/monoDrive_lvlib_mono__send__trajectoryc.md'
         - 'mono_send_vehicle_command.vi': 'LV_client/vehicle/monoDrive_lvlib_mono__send__vehicle__commandc.md'
+    
     
 markdown_extensions:
   - admonition

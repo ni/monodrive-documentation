@@ -11,11 +11,11 @@ Get the response from the server after sending all the sensors data.
 
 - **TCP Network Connection in (TCP Network connection) :** TCP connection to the server .
 
-**error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+- **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 
 ### Outputs
 
-- **Status*(boolean):** True if the server was succesful at sending the data, otherwise False.
-- **response(string):** Response from the server..
+- **Status (Boolean):** True if the server was succesful at sending the data, otherwise False.
+- **response (String):** Response from the server..
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

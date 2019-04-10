@@ -40,6 +40,7 @@ pages:
         - 'mono_config_directory_paths.vi': 'LV_client/utilities/mono_config_directory_paths.md'
         - 'mono_reset_to_defaultsc.vi': 'LV_client/utilities/monoDrive_lvlib_mono__reset__to__defaultsc.md'
         - 'mono_read_trajectoryc.vi': 'LV_client/utilities/monoDrive_lvlib_mono__read__trajectoryc.md'
+        - 'mono_get_server_response.vi': 'LV_client/utilities/monoDrive_lvlib_mono__get__server__responsec.md'
     - 'Weather':
         - 'mono_send_trajectory.vi': 'LV_client/weather/monoDrive_lvlib_mono__get__weatherc.md'
         - 'mono_send_vehicle_command.vi': 'LV_client/weather/monoDrive_lvlib_mono__weather__updatec.md'

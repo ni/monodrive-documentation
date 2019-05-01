@@ -1,4 +1,4 @@
-## .vi
+## mono_intensity_to_color.vi
 <p align="center">
 <img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__intensity__to__colorc.png" 
 width="400"  />
@@ -16,7 +16,7 @@ Converts from a color number to its components in RGB.
 ### Outputs
 
 - **RGBA array:** An array with Cluster "Color".
-Cluster "Color"
+
 | Type  | Name   |
 | ------------ | ------------ |
 |SGL  | Red |

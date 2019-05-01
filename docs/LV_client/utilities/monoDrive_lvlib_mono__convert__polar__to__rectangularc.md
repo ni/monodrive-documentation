@@ -5,7 +5,7 @@ width="400"  />
 </p>
 
 ### Description 
-Converts polar coordinates from the Velodyne to rectagular.
+Converts polar coordinates from the Velodyne to rectangular.
 
 ### Inputs
 
@@ -24,6 +24,11 @@ Converts polar coordinates from the Velodyne to rectagular.
 
 ### Outputs
 
-- ** :**  .
-- ** :**  .
+- **Cartesians Coordinates (Cluster) :** A cluster with cartesian coordinate x,y,z .
+
+| Type  | Name   |
+| ------------ | ------------ |
+|SGL  | X |
+|SGL | Y  |
+|SGL | Z  |
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

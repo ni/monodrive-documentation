@@ -1,4 +1,4 @@
-## mono__lidar__VLP16__HiResc.vi
+## mono_lidar_VLP16_HiResc.vi
 <p align="center">
 <img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/monoDrive_lvlib_mono__lidar__VLP16__HiResc.png" 
 width="400"  />
@@ -16,7 +16,6 @@ Gets data from Lidar parse it  and forward it to port 2368 (VeloView)
 
 ### Outputs
 - **sensor variants out (Variant):** Contains the camera information for the **camera** sensor.
-- **lidar data out (String)** Output connection ID corresponding to the TCP connection for **Lidar** sensor, same as input connection ID.
 - **lidar_data (Cluster):** Cluster with the processed data for the Lidar sensor.
 
 | Type  | Name   |

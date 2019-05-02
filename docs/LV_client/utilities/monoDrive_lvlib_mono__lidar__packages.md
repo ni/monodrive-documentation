@@ -1,6 +1,6 @@
 ## mono_lidar_packages.vi
 <p align="center">
-<img src="" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__lidar__packagesc.png" 
 width="400"  />
 </p>
 
@@ -10,6 +10,7 @@ Calculate how many packages to send thu UDP based on the lidar configuration.
 ### Inputs
 
 - **settings(Cluster):** Settings for Lidar.
+
 | Type  | Name   |
 | ------------ | ------------ |
 |DBL  | horizontal_resolution |

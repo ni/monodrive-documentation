@@ -1,6 +1,6 @@
 ## mono_get_lidar_setting.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/blob/master/WikiPhotos/LV_client/utilities/mono__get__lidar__settingsc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__get__lidar__settingsc.png" 
 width="400"  />
 </p>
 

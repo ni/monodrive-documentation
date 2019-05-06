@@ -1,6 +1,6 @@
 ## mono_simulink_image.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/rawblob/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__simulink__imagec.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__simulink__imagec.png" 
 width="400"  />
 </p>
 

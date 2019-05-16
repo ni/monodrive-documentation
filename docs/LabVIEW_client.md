@@ -9,6 +9,9 @@ width="400"  />
 1. Download LabVIEW 2018 (32 bit) from this [website](http://www.ni.com/download/labview-development-system-2018/7406/en/).
 2. Download VeloView from this [website](https://www.paraview.org/download/).
 3. Download the monoDrive Simulator from [here](https://www.monodrive.io/download).
+4. Download the monoDrive Client from the VIPM (installed with LabVIEW). Look for *monoDrive* on the VIPM browser. Install a compatible version for the simulator you have, i.e. Simulator 1.4.x.x with client 1.4.x.x
+
+
 
 ### Description 
 

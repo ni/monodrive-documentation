@@ -55,7 +55,6 @@ pages:
         - 'mono_get_weather.vi': 'LV_client/weather/monoDrive_lvlib_mono__get__weatherc.md'
         - 'mono_weather_update.vi': 'LV_client/weather/monoDrive_lvlib_mono__weather__updatec.md'
         - 'mono_weather_id.vi': 'LV_client/weather/monoDrive_lvlib_mono__weather__idc.md'
-        .md
     - 'Vehicle':
         - 'mono_send_trajectory.vi': 'LV_client/vehicle/monoDrive_lvlib_mono__send__trajectoryc.md'
         - 'mono_send_vehicle_command.vi': 'LV_client/vehicle/monoDrive_lvlib_mono__send__vehicle__commandc.md'

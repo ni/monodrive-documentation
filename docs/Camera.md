@@ -4,7 +4,7 @@ The configuration for a camera sensor that streams camera data and renders it in
 
 ### Semantic vs. Normal Camera
 
-There are two types of camera that have the same configuration. The `"type": "Camera"` will provide a a full
+There are two types of camera that have the same configuration. The `"type": "Camera"` will provide a full
 color camera stream that is post-processed for illumination:
 <p align="center">
 <img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/camerasensor.PNG" width="400" height="400" />
@@ -53,7 +53,7 @@ The `"type": "SemanticCamera"` provides a grayscale camera stream with optional 
 - **stream_dimensions**: The dimensions of which the stream will stream over TCP. These dimensions are set in a dictionary with keys x and y with float values.
 - **max_distance**: The max distance, in centimeters, the simulator's camera will look forward in the world.
 - **dynamic_range**: The dynamic range of the camera in decibels.
-- **angle_of_view**: (optional) If set this will override the angle of view calculated fromt he sensor size and lens focal length.
+- **angle_of_view**: (optional) If set this will override the angle of view calculated from the sensor size and lens focal length.
 - **focal_length**: The focal length of the lens in millimeters.
 - **fstop**: The f-stop value for the lens in stops.
 - **min_shutter**: The minimum shutter speed, in seconds, for dynamic exposure.

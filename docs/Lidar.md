@@ -37,8 +37,8 @@ The configuration for a LiDAR sensor that is modeled after the Velodyne LiDAR li
 - **horizontal_resolution**: The horizontal angle, in degrees, the LiDAR must rotate before shooting out the next set of lasers.
 - **n_lasers**: The number of lasers the LiDAR sensor shoots out per sweep. This can be set to 16 (VLP-16), 32 (HDL-32), or 64 (HDL-64).
 - **max_distance**: The max distance, in centimeters, the LiDAR laser will travel.
-  **reset_angle**: The angle that indicates a full revolution (i.e. full 360 degree revolution will start at this reported angle).
-  **rpms**: The expected number of revolutions per minute for a full 360 degree sweep. Controls the expected time between laser lines.
+- **reset_angle**: The angle that indicates a full revolution (i.e. full 360 degree revolution will start at this reported angle).
+- **rpms**: The expected number of revolutions per minute for a full 360 degree sweep. Controls the expected time between laser lines.
 
 ### Raw Output Data Format
 

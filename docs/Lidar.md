@@ -34,12 +34,6 @@ The configuration for a LiDAR sensor that is modeled after the Velodyne LiDAR li
 }
 ```
 
-    json_get(Configuration, "horizontal_resolution", horizontalResolution);
-    json_get(Configuration, "n_lasers", nLasers);
-    json_get(Configuration, "max_distance", maxLaserDistance);
-    json_get(Configuration, "reset_angle", resetAngle);
-    json_get(Configuration, "rpms", rpms);
-
 - **horizontal_resolution**: The horizontal angle, in degrees, the LiDAR must rotate before shooting out the next set of lasers.
 - **n_lasers**: The number of lasers the LiDAR sensor shoots out per sweep. This can be set to 16 (VLP-16), 32 (HDL-32), or 64 (HDL-64).
 - **max_distance**: The max distance, in centimeters, the LiDAR laser will travel.

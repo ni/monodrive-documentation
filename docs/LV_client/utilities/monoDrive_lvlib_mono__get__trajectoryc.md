@@ -1,6 +1,6 @@
 ## mono_get_trajectory.vi
 <p align="center">
-<img src="" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__get__trajectoryc.png" 
 width="400"  />
 </p>
 

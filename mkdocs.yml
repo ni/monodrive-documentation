@@ -69,6 +69,7 @@ pages:
         - 'mono_get_no_points_lidar.vi': 'LV_client/utilities/monoDrive_lvlib_mono__get__no__points__lidarc.md'
         - 'mono_parse_lidar_configuration.vi': 'LV_client/utilities/monoDrive_lvlib_mono__parse__lidar__configurationc.md'
         - 'mono_start.vi': 'LV_client/utilities/monoDrive_lvlib_mono__startc.md'
+        - 'mono_get_trajectory.vi': 'LV_client/utilities/monoDrive_lvlib_mono__get__trajectoryc.md'
         
     - 'Weather':
         - 'mono_get_weather.vi': 'LV_client/weather/monoDrive_lvlib_mono__get__weatherc.md'

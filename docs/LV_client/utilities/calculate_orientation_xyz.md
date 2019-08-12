@@ -15,6 +15,5 @@ Converts orientation Yaw, Pitch and roll to X,Y,Z,W .
 
 ### Outputs
 
-- ** :**  .
-- ** :**  .
+- **pose(Array DBL):**  Orientation on X,Y,Z,W.
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

@@ -37,6 +37,7 @@ pages:
         - 'mono_open_sensors_connections.vi': 'LV_client/sensors/monoDrive_lvlib_mono__open_sensors_connections.md'
         - 'mono_veloview_init.vi': 'LV_client/sensors/monoDrive_lvlib_mono__veloview_init.md'
         - 'mono_state_sensor.vi': 'LV_client/sensors/monoDrive_lvlib_mono__state__sensorc.md'
+        - 'mono_ultrasonic.vi': 'LV_client/sensors/mono_ultrasonic.md'
     - 'Simulator':
         - 'mono_check_config_mode.vi': 'LV_client/simulator/monoDrive_lvlib_mono__check__config__modec.md'
         - 'mono_connect.vi': 'LV_client/simulator/monoDrive_lvlib_mono__connectc.md'
@@ -70,7 +71,9 @@ pages:
         - 'mono_parse_lidar_configuration.vi': 'LV_client/utilities/monoDrive_lvlib_mono__parse__lidar__configurationc.md'
         - 'mono_start.vi': 'LV_client/utilities/monoDrive_lvlib_mono__startc.md'
         - 'mono_get_trajectory.vi': 'LV_client/utilities/monoDrive_lvlib_mono__get__trajectoryc.md'
-        
+        - 'parse_lidar_raw_data.vi': 'LV_client/utilities/parse_lidar_raw_data.md'
+        - 'mono_get_stream_dimensions.vi' : 'LV_client/utilities/mono_get_stream_dimensions.md'
+        - 'calculate_orientation_xyz.vi' : 'LV_client/utilities/calculate_orientation_xyz.md'
     - 'Weather':
         - 'mono_get_weather.vi': 'LV_client/weather/monoDrive_lvlib_mono__get__weatherc.md'
         - 'mono_weather_update.vi': 'LV_client/weather/monoDrive_lvlib_mono__weather__updatec.md'

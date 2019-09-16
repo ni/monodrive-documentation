@@ -1,6 +1,6 @@
 ## mono_state_sensor.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/monoDrive_lvlib_mono__state__sensorc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__state__sensorc.png" 
 width="400"  />
 </p>
 

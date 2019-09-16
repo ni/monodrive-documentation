@@ -1,6 +1,6 @@
 ## mono_lidar_VLP16_HiResc.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/monoDrive_lvlib_mono__lidar__VLP16__HiResc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__lidar__VLP16__HiResc.png" 
 width="400"  />
 </p>
 

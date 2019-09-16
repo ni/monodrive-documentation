@@ -1,6 +1,6 @@
 ## mono_send_sensors_config .vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/monoDrive_lvlib_mono__send__sensors__configc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__send__sensors__configc.png" 
 width="400"  />
 </p>
 

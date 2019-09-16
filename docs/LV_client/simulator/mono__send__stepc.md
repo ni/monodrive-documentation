@@ -1,6 +1,6 @@
 ## mono_send_step.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/simulator/monoDrive_lvlib_mono__send__stepc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/simulator/mono__send__stepc.png" 
 width="400"  />
 </p>
 

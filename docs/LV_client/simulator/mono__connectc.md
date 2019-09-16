@@ -1,6 +1,6 @@
 ## mono_connect.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/simulator/monoDrive_lvlib_mono__connectc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/simulator/mono__connectc.png" 
 width="400"  />
 </p>
 

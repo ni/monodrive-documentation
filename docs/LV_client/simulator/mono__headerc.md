@@ -1,6 +1,6 @@
 ## mono_header.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/simulator/monoDrive_lvlib_mono__headerc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/simulator/mono__headerc.png" 
 width="400"  />
 </p>
 

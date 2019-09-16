@@ -1,6 +1,6 @@
 ## mono_send_simulator_config.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/simulator/mono__send__simulator__configc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__send__simulator__configc.png" 
 width="400"  />
 </p>
 

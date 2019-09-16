@@ -1,6 +1,6 @@
 ## mono__camera__single.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__camera__singlec.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__camerac.png" 
 width="400"  />
 </p>
 

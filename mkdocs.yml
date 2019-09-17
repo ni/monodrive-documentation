@@ -22,6 +22,8 @@ pages:
     - 'RPM': 'RPM.md'
 - LabVIEW_Client: 'LabVIEW_client.md'
 - Detailed_Help:
+    - 'Controls':
+        - 'monoDrive.ctl': 'LV_client/structures/monoDrive.md'
     - 'Sensors':
         - 'mono_camera_single.vi': 'LV_client/sensors/mono__camerac.md'
         - 'mono_gps.vi': 'LV_client/sensors/mono__gpsc.md'

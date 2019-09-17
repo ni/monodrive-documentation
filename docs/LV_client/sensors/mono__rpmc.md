@@ -9,13 +9,11 @@ Get the RPM information of the vehicle.
 
 ### Inputs
 
-- **sensor variants (Variant):** Contains the camera information for the **RPM** sensor.
-- **port number (String):** Port number where the **RPM** sensor is connected.
+- **monoDrive.ctl (Cluster):** See description at **monoDrive.ctl**.
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 ### Outputs
-- **sensor variants out (Variant):** Contains the information for the **RPM** sensor.
-- **wheel_rpm_sample:** Cluster with the processed data for the RPM sensor.
+- **RPM Sample:** Contains the information for the **RPM** sensor.
 
 | Type  | Name   |
 | ------------ | ------------ |

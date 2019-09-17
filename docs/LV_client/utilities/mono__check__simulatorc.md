@@ -8,11 +8,11 @@ width="400"  />
 Check if the simulator is open and running. If it is not running then it will stop running the client.
 
 ### Inputs
+- **monoDrive in (Cluster):** See description at **monoDrive.ctl**.
 - **error in (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 
 ### Outputs
 
-- **Vehicle.exe error (String):** Output from the command line if the simulator is not running.
 - **Connected (Boolean) :** True if the simulator is running.
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

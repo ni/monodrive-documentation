@@ -12,6 +12,7 @@ Parse UDP packet from Velodyne HDL.
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 ### Outputs
+- **timestamps(Array of U32):** Array containing the timestamps of the packets received. 
 - **Parsed LIDAR Data(Array of Clusters):** Array of clusters with the processed data for the Lidar sensor.
 
 | Type  | Name   |

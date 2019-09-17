@@ -4,21 +4,21 @@
 2. Run the **VehicleAI.exe**
 3. Run one of the examples provided.
 
-### Closed Loop
+### monoDrive_closed_loop_example.vi
 
 <p align="center">
 <img src="https://github.com/monoDriveIO/client/raw/master/docs/LV_client/closed_loop_FP.jpg" 
 width="500"  />
 </p>
 
-### Replay
+### monoDrive_replay_example.vi
 
 <p align="center">
 <img src="https://github.com/monoDriveIO/client/raw/master/docs/LV_client/reply_FP.jpg" 
 width="500"  />
 </p>
 
-### HIL
+### monoDrive_hil_example.vi
 
 <p align="center">
 <img src="https://github.com/monoDriveIO/client/raw/master/docs/LV_client/hil_FP.jpg" 

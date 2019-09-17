@@ -1,8 +1,6 @@
 # LabVIEW Client
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/docs/LV_client/closed_loop_FP.jpg" 
-     
-width="400"  />
+<img src="https://github.com/monoDriveIO/client/raw/master/docs/LV_client/closed_loop_FP.jpg" width="400"  />
 </p>
 
 

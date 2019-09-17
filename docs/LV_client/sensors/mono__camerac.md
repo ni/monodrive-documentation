@@ -9,7 +9,7 @@ Reads the stream data for a camera sensor  and returns a picture with the format
 
 ### Inputs
 
-- **monoDrive.ctl (Cluster):** See description at **monoDrive.ctl**.
+- **monoDrive in (Cluster):** See description at **monoDrive.ctl**.
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 

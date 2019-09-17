@@ -1,6 +1,6 @@
 ## mono_config_directory_paths.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono_config_directory_paths.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__config__directory__pathsc.png" 
 width="400"  />
 </p>
 

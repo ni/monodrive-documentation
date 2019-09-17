@@ -10,7 +10,7 @@ Check if a path is relative or absolute. Decide to pass the name of the file or 
 ### Inputs
 
 - **Config_Path:** Path to a configuration file, by default point to $(User Home directory)/monoDriveConfig .
-- **Base_Path:** $(User Home directory)/monoDriveConfig. The directory gets created when installing the package.
+- **Base_Path:** Base path to build an absolute path. 
 - **error in (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 

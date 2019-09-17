@@ -20,9 +20,4 @@ Send the command to step the simulation for a given amount. Specify the desired 
 
 
 ### Outputs
-
-- **TCP Network connection out (TCP Network connection) :** TCP connection to the server .
-- **success (Boolean):** **True** if configuration was succesful, **False** otherwise .
-- **config response (String):** Response from the server.
-
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

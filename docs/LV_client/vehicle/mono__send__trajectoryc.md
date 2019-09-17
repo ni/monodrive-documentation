@@ -1,6 +1,6 @@
 ## mono_send_trajectory.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/vehicle/mono__send__trajectoryc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__send__trajectoryc.png" 
 width="400"  />
 </p>
 

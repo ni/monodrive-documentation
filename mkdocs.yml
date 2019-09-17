@@ -22,8 +22,6 @@ pages:
     - 'RPM': 'RPM.md'
 - LabVIEW_Client: 'LabVIEW_client.md'
 - Detailed_Help:
-    - 'Example':
-        - 'monoDrive_Simulator_Interface_Example.vi': 'LV_client/monoDrive_Simulator_Interface_Example.md'
     - 'Sensors':
         - 'mono_camera_single.vi': 'LV_client/sensors/mono__camerac.md'
         - 'mono_gps.vi': 'LV_client/sensors/mono__gpsc.md'
@@ -67,7 +65,9 @@ pages:
         - 'mono_get_weather.vi': 'LV_client/weather/mono__get__weatherc.md'
         - 'mono_weather_update.vi': 'LV_client/weather/mono__weather__updatec.md'
         - 'mono_weather_id.vi': 'LV_client/weather/mono__weather__idc.md'
-    
+    - 'Vehicle':
+        - 'mono_send_trajectory.vi': 'LV_client/vehicle/mono__send__trajectoryc.md'
+        - 'mono_send_vehicle_command.vi': 'LV_client/vehicle/mono__send__vehicle__commandc.md'
 
 markdown_extensions:
   - admonition

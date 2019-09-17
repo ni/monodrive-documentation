@@ -22,6 +22,7 @@ pages:
     - 'RPM': 'RPM.md'
 - LabVIEW_Client: 'LabVIEW_client.md'
 - Detailed_Help:
+    - 'Examples': 'LV_client/monoDrive_Simulator_Interface_Example.md'
     - 'Controls':
         - 'monoDrive.ctl': 'LV_client/structures/monoDrive.md'
     - 'Sensors':

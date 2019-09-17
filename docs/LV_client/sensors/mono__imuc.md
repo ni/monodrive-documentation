@@ -9,14 +9,12 @@ Reads the data stream for the IMU sensor and outputs the IMU sample.
 
 ### Inputs
 
-- **sensor variants (Variant):** Contains the camera information for the **imu** sensor.
-- **Port number (String):** Port number where the **imu** sensor is connected.
+- **monoDrive.ctl (Cluster):** See description at **monoDrive.ctl**.
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 ### Outputs
 
-- **sensor variants out (Variant):** Contains the camera information for the **imu** sensor.
-- **imu_sample:** Cluster with the processed data for the IMU sensor.
+- **IMU Sample:** Cluster with the processed data for the IMU sensor.
 
 | Type  | Name   |
 | ------------ | ------------ |
@@ -31,4 +29,6 @@ Reads the data stream for the IMU sensor and outputs the IMU sample.
 |U16 | checksum|
 |I32 | timeWeek  |
 
+- **Raw data (String):** Raw data from the simulator.
+- **IMU Configuration(String):** Configuration used for IMU.
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

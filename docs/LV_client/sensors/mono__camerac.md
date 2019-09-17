@@ -9,15 +9,12 @@ Reads the stream data for a camera sensor  and returns a picture with the format
 
 ### Inputs
 
-- **sensor variants (Variant):** Contains the camera information for the **camera** sensor.
-- **Port number (String):** Port number where the **camera** sensor is connected.
-- **stream dimensions (Cluster):** Specify the dimension of the image obtain with a specific camera.
-  - Cluster with two elements **"x dimension" (I32)** and **"y dimension" (I32)**.
+- **monoDrive.ctl (Cluster):** See description at **monoDrive.ctl**.
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 
 ### Outputs
-- **sensor variants out (Variant):** Contains the camera information for the **camera** sensor.
-- **TCP Network connection Out (TCP Network connection):** Output connection ID corresponding to the TCP connection for **camera** sensor, same as input connection ID.
-- **camera_out (picture):** Procesed image, ready for display .
+- **Image (Picture):** Procesed image, ready for display.
+- **Raw data :** Pixel values for the images .
+- **Camera configuration :** Camera configuration used for the camera.
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

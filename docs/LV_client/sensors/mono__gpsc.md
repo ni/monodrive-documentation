@@ -9,13 +9,11 @@ Reads the data stream data for the GPS sensor and outpust a cluster with the  fo
 
 ### Inputs
 
-- **sensor variants (Variant):** Contains the camera information for the **camera** sensor.
-- **Port number (String):** Port number where the **camera** sensor is connected.
+- **monoDrive.ctl (Cluster):** See description at **monoDrive.ctl**.
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 ### Outputs
-- **sensor variants out (Variant):** Contains the camera information for the **camera** sensor.
-- **gps_sample:** Cluster with the processed data for the GPS sensor.
+- **GPS Sample:** Cluster with the processed data for the GPS sensor.
 
 | Type  | Name   |
 | ------------ | ------------ |
@@ -39,5 +37,7 @@ Reads the data stream data for the GPS sensor and outpust a cluster with the  fo
 |U8  | mode   |
 |U16 | CRC  |
 
+- **Raw data (String):** Raw data from the simulator.
+- **GPS Configuration(String):** Configuration used for GPS.
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 

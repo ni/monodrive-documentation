@@ -9,15 +9,14 @@ Sends a command to the monoDrive Simulator to control the movement of ego vehicl
 
 ### Inputs
 
-- **TCP Connecton in (TCP Network connection):** TCP connection to the server .
+- **monoDrive in (Cluster):** See description at **monoDrive.ctl**.
 - **forward_amount:** a value between -1.0 and 1.0 that determines the amount of throttle to apply.
 - **right_amount :** a value between -1.0 and 1.0 that determines the steering position (-1 is left, +1 is right).
+- **drive_mode (Boolean):** Move forward or backwards.
+- **brake (Boolean):** Enable and disable Brake.
 - **error in (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 
 ### Outputs
 
-- **TCP Connecton out (TCP Network connection):** TCP connection to the server .
-- **success (Boolean):** **True** if configuration was succesful, **False** otherwise .
-- **vehicle command response (String):** Response from the server.
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

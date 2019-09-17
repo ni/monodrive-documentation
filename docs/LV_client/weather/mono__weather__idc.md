@@ -1,6 +1,6 @@
 ## mono_weather_id.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/weather/monoDrive_lvlib_mono__weather__idc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/weather/mono__weather__idc.png" 
 width="400"  />
 </p>
 

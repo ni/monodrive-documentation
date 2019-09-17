@@ -1,6 +1,6 @@
 ## mono_reset_to_defaults.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__reset__to__defaultsc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__reset__to__defaultsc.png" 
 width="400"  />
 </p>
 

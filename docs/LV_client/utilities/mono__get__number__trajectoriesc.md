@@ -1,6 +1,6 @@
 ## mono_get_number_trajectories.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__get__number__trajectoriesc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__get__number__trajectoriesc.png" 
 width="400"  />
 </p>
 

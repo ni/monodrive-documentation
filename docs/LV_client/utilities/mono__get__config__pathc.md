@@ -1,6 +1,6 @@
 ## mono_get_config_path.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__get__config__pathc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__get__config__pathc.png" 
 width="400"  />
 </p>
 

@@ -1,6 +1,6 @@
 ## mono_start.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__startc.png?raw=true" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__startc.png?raw=true" 
 width="400"  />
 </p>
 

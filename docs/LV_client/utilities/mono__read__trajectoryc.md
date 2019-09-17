@@ -1,6 +1,6 @@
 ## mono_read_trajectory.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__read__trajectoryc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__read__trajectoryc.png" 
 width="400"  />
 </p>
 

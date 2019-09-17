@@ -1,6 +1,6 @@
 ## mono_lidar_plot.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__lidar__plotc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__lidar__plotc.png" 
 width="400"  />
 </p>
 

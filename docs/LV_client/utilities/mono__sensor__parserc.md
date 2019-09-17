@@ -1,6 +1,6 @@
 ## mono_sensor_parser.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__sensor__parserc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__sensor__parserc.png" 
 width="400"  />
 </p>
 

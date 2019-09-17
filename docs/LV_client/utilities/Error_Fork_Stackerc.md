@@ -1,6 +1,6 @@
 ## Error_Fork_Stacker.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_Error_Fork_Stackerc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/Error_Fork_Stackerc.png" 
 width="400"  />
 </p>
 

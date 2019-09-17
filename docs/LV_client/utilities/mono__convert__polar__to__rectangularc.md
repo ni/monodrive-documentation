@@ -1,6 +1,6 @@
 ## mono_convert_polar_to_rectangular.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__convert__polar__to__rectangularc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__convert__polar__to__rectangularc.png" 
 width="400"  />
 </p>
 

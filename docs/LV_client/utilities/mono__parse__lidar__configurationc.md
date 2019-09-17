@@ -1,6 +1,6 @@
 ## mono_parse_lidar_configuration.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/monoDrive_lvlib_mono__parse__lidar__configurationc.png" 
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__parse__lidar__configurationc.png" 
 width="400"  />
 </p>
 

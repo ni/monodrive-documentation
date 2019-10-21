@@ -23,7 +23,7 @@ requirements = [
     'requests==2.18.4',
     'six==1.11.0',
     'u-msgpack-python==2.4.1',
-    'urllib3==1.22',
+    'urllib3==1.24.2',
     'pyfftw==0.10.4',
     'openpyxl',
     'numpy==1.13.1',

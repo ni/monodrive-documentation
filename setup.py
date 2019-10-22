@@ -15,7 +15,7 @@ requirements = [
     'matplotlib==2.0.2',
     'olefile==0.44',
     'opencv-python==3.2.0.7',
-    'Pillow==4.2.1',
+    'Pillow==6.2.0',
     'pygame==1.9.3',
     'pyparsing==2.2.0',
     'python-dateutil==2.6.1',

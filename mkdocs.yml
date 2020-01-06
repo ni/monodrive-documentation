@@ -69,8 +69,8 @@ pages:
         - 'calculate_orientation_xyz.vi' : 'LV_client/utilities/calculate_orientation_xyz.md'
         - 'mono_select_map.vi' : 'LV_client/utilities/mono_select_map.md'
         - 'mono_radar_plot.vi' : 'LV_client/utilities/mono_radar_plot.md'
-        - 'mono_send_trajectory.vi': 'LV_client/utilities/mono_GrayScaleToSimulink.md'
-        - 'mono_send_vehicle_command.vi': 'LV_client/utilities/radar_flag.md'
+        - 'mono_GrayScaleToSimulink.vi': 'LV_client/utilities/mono_GrayScaleToSimulink.md'
+        - 'radar_flag.vi': 'LV_client/utilities/radar_flag.md'
     - 'Weather':
         - 'mono_get_weather.vi': 'LV_client/weather/monoDrive_lvlib_mono__get__weatherc.md'
         - 'mono_weather_update.vi': 'LV_client/weather/monoDrive_lvlib_mono__weather__updatec.md'

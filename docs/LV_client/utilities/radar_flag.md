@@ -1,6 +1,6 @@
 ## radar_flag.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/blob/raw/WikiPhotos/LV_client/utilities/radar__flagc.png" 
+<img src="https://github.com/monoDriveIO/client/blob/master/WikiPhotos/LV_client/utilities/radar__plotc.png" 
 width="400"  />
 </p>
 

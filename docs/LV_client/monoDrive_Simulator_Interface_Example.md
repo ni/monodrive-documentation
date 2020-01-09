@@ -4,6 +4,10 @@
 2. Run the **VehicleAI.exe**
 3. Run one of the examples provided.
 
+**NOTE:**
+We recommend this hardware setup to run the simulator and the client with the best performance.  
+**Windows 10 running on Intel Core i9-9900 or better with NVIDIA RTX GPU and minimum 16GB RAM
+
 ### monoDrive_closed_loop_example.vi
 
 <p align="center">

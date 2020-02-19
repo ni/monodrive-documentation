@@ -55,9 +55,10 @@ The configuration for a radar sensor.
 }
 ]
 ```
-
+- **gpu_number:** Select the specific GPU number(0-N) where each radar sensor will run.
 - **send_radar_cube:** Enable to obtain the radar cube from the simulator. 
 - **paint_targets:** Tool to draw a box around the targets detected.
+- **target_paint_lifetime:** Specify how long a painted target box will be rendered for in the engine, in seconds.
 - **location:** Modify the x,y,z position of the radar in the car.
 - **rotation:** Modify the yaw,pitch and roll of the radar.
 - **long_range_scan_distance:** the maximum distance the long range radar will detect targets.

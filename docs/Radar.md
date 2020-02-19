@@ -2,10 +2,6 @@
 
 The configuration for a radar sensor.
 
-<p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/radarsensor.PNG" />
-</p>
-
 ```
 [
     {
@@ -63,7 +59,7 @@ The configuration for a radar sensor.
 - **send_radar_cube:** Enable to obtain the radar cube from the simulator. 
 - **paint_targets:** Tool to draw a box around the targets detected.
 - **location:** Modify the x,y,z position of the radar in the car.
-- **rotation:**Modify the yaw,pitch and roll of the radar.
+- **rotation:** Modify the yaw,pitch and roll of the radar.
 - **long_range_scan_distance:** the maximum distance the long range radar will detect targets.
 - **short_range_scan_distance:** the maximum distance the short range radar will detect targets.
 - **long_range_fov:** Field of view (angle) for the long range radar.

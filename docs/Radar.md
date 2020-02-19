@@ -2,10 +2,6 @@
 
 The configuration for a radar sensor.
 
-<p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/radarsensor.PNG" />
-</p>
-
 ```
 [
     {
@@ -59,11 +55,12 @@ The configuration for a radar sensor.
 }
 ]
 ```
-
+- **gpu_number:** Select the specific GPU number(0-N) where each radar sensor will run.
 - **send_radar_cube:** Enable to obtain the radar cube from the simulator. 
 - **paint_targets:** Tool to draw a box around the targets detected.
+- **target_paint_lifetime:** Specify how long a painted target box will be rendered for in the engine, in seconds.
 - **location:** Modify the x,y,z position of the radar in the car.
-- **rotation:**Modify the yaw,pitch and roll of the radar.
+- **rotation:** Modify the yaw,pitch and roll of the radar.
 - **long_range_scan_distance:** the maximum distance the long range radar will detect targets.
 - **short_range_scan_distance:** the maximum distance the short range radar will detect targets.
 - **long_range_fov:** Field of view (angle) for the long range radar.
@@ -81,7 +78,7 @@ The configuration for a radar sensor.
 
 #### Change on short and long range FOV with debug_frustum enable 
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/frustum_fov.jpg" />
+<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/frustrum_fov.jpg" />
 </p>
 
 #### Change on short and long range distance with debug_frustum enable 

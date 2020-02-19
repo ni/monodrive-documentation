@@ -81,7 +81,7 @@ The configuration for a radar sensor.
 
 #### Change on short and long range FOV with debug_frustum enable 
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/frustum_fov.jpg" />
+<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/frustrum_fov.jpg" />
 </p>
 
 #### Change on short and long range distance with debug_frustum enable 

@@ -76,27 +76,27 @@ The configuration for a radar sensor.
 
 #### Paint target enable
 <p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/radar_paint_target.jpg" />
+<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/radar_paint_target.jpg" />
 </p>
 
 #### Change on short and long range FOV with debug_frustum enable 
 <p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/frustum_fov.jpg" />
+<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/frustum_fov.jpg" />
 </p>
 
 #### Change on short and long range distance with debug_frustum enable 
 <p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/frustum_distance.jpg" />
+<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/frustum_distance.jpg" />
 </p>
 
 #### Change elavation fov with debug_frustum enable 
 <p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/elevation.jpg" />
+<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/elevation.jpg" />
 </p>
 
 #### debug_scan enable 
 <p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/debug_scan.jpg" />
+<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/debug_scan.jpg" />
 </p>
 
 

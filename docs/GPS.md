@@ -6,25 +6,22 @@
 The configuration for a GPS sensor.
 
 ```
-{
-      "type": string,
-      "id": string,
-      "packet_size": int,
-      "listen_port": int,
-      "display_process": bool,
-      "sensor_process": bool,
-      "location": {
-        "x": float,
-        "y": float,
-        "z": float
-      },
-      "rotation": {
-        "pitch": float,
-        "yaw": float,
-        "roll": float
-      },
-      "fps": float
-}
+[
+   {
+    "type": "GPS",
+    "listen_port": 8400,
+    "location": {
+      "x": -75.0,
+      "y": -25.0,
+      "z": 245.0
+    },
+    "rotation": {
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0
+    }
+  }
+]
 ```
 
 ## Output Data

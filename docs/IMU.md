@@ -7,25 +7,23 @@
 The configuration for an IMU sensor.
 
 ```
-{
-      "type": "IMU",
-      "id": "1",
-      "packet_size": 1472,
-      "listen_port": 8083,
-      "display_process": true,
-      "sensor_process": true,
-      "location": {
-        "x":-75.0,
-        "y":-25.0,
-        "z":245.0
-      },
-      "rotation": {
-        "pitch":0.0,
-        "yaw":0.0,
-        "roll":0.0
-      },
-      "fps": 5.0
-}
+[
+  {
+    "type": "IMU",
+    "listen_port": 8500,
+    "location": {
+      "x":-75.0,
+      "y":-25.0,
+      "z":245.0
+    },
+    "rotation": {
+      "pitch":0.0,
+      "yaw":0.0,
+      "roll":0.0
+    }
+  }
+
+]
 ```
 
 ## Output Data

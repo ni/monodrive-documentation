@@ -7,26 +7,23 @@
 The configuration for an RPM sensor.
 
 ```
+[
 {
-      "type": string,
-      "id": string,
-      "packet_size": int,
-      "listen_port": int,
-      "display_process": bool,
-      "sensor_process": bool,
-      "location": {
-        "x": float,
-        "y": float,
-        "z": float
-      },
-      "rotation": {
-        "pitch": float,
-        "yaw": float,
-        "roll": float
-      },
-      "fps": float,
-      "wheel_number": int
+  "type": "RPM",
+  "listen_port": 8600,
+  "location": {
+    "x": 0,
+    "y": 0,
+    "z": 0
+  },
+  "rotation": {
+    "pitch": 0,
+    "yaw": 0,
+    "roll": 0
+  },
+  "wheelNumber": 3
 }
+]
 ```
 
 ## Output Data

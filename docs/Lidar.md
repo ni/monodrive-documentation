@@ -9,16 +9,11 @@ The configuration for a LiDAR sensor that is modeled after the Velodyne LiDAR li
 ```
 {
   "type": "Lidar",
-  "id": "0",
-  "packet_size": 1472,
-  "listen_port": 8093,
-  "display_process": true,
-  "sensor_process": true,
-  "synchronized_display": true,
+  "listen_port": 8200,
   "location": {
-    "x":0.0,
-    "y":0.0,
-    "z":200.0
+    "x":-75.0,
+    "y":-25.0,
+    "z":350.0
   },
   "rotation": {
     "pitch":0.0,
@@ -26,9 +21,8 @@ The configuration for a LiDAR sensor that is modeled after the Velodyne LiDAR li
     "roll":0.0
   },
   "max_distance": 8000.0,
-  "vertical_fov_angle": 30.0,
-  "horizontal_resolution": 0.4,
-  "rpms": 600.0,
+  "horizontal_resolution": 0.8,
+  "rpms": 300.0,
   "n_lasers": 16,
   "reset_angle": 0.0
 }

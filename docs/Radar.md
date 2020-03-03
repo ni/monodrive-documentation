@@ -97,17 +97,6 @@ The configuration for a radar sensor.
 </p>
 
 
-### Output Data
-
-```
-# See [base sensor](Base-Sensor.md) for examples on how to get the sensor.
-data_radar = radar.get_message()
-
-# The data in data_radar is a dictionary.
-game_time = data_radar['game_time']
-data = data_radar['data']
-```
-
 ### Raw Output Data Format
 
 - **0...NumberOfSweeps as i:**

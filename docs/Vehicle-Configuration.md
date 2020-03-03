@@ -85,8 +85,3 @@
 }
 ```
 
-- Open `examples/test.py`
-- In the main method of the file there is an initialization of `vehicle_config`. You can change which json file is used here.
-- The different configurations reside in the configurations folder.
-- To add sensors open a configuration and go to the sensors array. You can copy an existing sensor if it is in the configuration, or you can open one of the other configurations to find a sensor you are wanting to add, then modify the parameters to fit your needs.
-- To remove a sensor open a configuration and go to the sensors array. Then just delete that dictionary for the sensor you want to remove.

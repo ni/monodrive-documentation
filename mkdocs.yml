@@ -10,17 +10,14 @@ pages:
   - 'Simulator': 'Simulator-Configuration.md'
   - 'Vehicle': 'Vehicle-Configuration.md'
   - 'Sensors':
-    - 'Common': 'Base-Sensor.md'
     - 'Radar': 'Radar.md'
     - 'Lidar': 'Lidar.md'
-    - 'Multi Camera': 'Multi-Camera.md'
     - 'Camera': 'Camera.md'
     - 'GPS': 'GPS.md'
     - 'IMU': 'IMU.md'
-    - 'Waypoint': 'Waypoint.md'
-    - 'Bounding Box': 'Bounding-Box.md'
     - 'RPM': 'RPM.md'
 - LabVIEW_Client: 'LabVIEW_client.md'
+- Quick-Start: 'Quick-Start Guide v2.0.pdf'
 - Detailed_Help:
     - 'Examples': 'LV_client/monoDrive_Simulator_Interface_Example.md'
     - 'Controls':

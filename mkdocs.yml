@@ -6,6 +6,7 @@ theme: readthedocs
 pages:
 - Home: 'index.md'
 - Configuration:
+  - 'Common': 'Base-Sensor.md'
   - 'System': 'Configuration.md'
   - 'Simulator': 'Simulator-Configuration.md'
   - 'Vehicle': 'Vehicle-Configuration.md'

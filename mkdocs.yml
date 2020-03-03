@@ -18,7 +18,6 @@ pages:
     - 'IMU': 'IMU.md'
     - 'RPM': 'RPM.md'
 - LabVIEW_Client: 'LabVIEW_client.md'
-- Quick-Start: 'Quick_Start_Guide.pdf'
 - Detailed_Help:
     - 'Examples': 'LV_client/monoDrive_Simulator_Interface_Example.md'
     - 'Controls':

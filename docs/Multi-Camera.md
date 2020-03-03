@@ -9,13 +9,7 @@ The configuration for a multi camera sensor that streams all of the cameras in t
 ```
 {
       "type": string,
-      "id": string,
-      "packet_size": int,
       "listen_port": int,
-      "fps": int,
-      "display_process": bool,
-      "sensor_process": bool,
-      "hdmi_streaming": bool,
       "location": {
         "x": float,
         "y": float,

@@ -25,12 +25,6 @@ The configuration for an IMU sensor.
 
 ]
 ```
-
-## Output Data
-See [base sensor](Base-Sensor.md) for examples on how to get the sensor. All data that comes from sensor queues is a dictionary.
-
-`data_waypoint = imu_sensor.get_message()`
-
 ### Parsed IMU Data Dictionary Keys and Values.
 
 - **time_stamp (int):** Timestamp representing milliseconds since Sunday.

@@ -18,11 +18,7 @@ The `"type": "SemanticCamera"` provides a grayscale camera stream with optional 
 ```
 {
     "type": "Camera",
-    "id": "0",
-    "packet_size": 23552,
     "listen_port": 8081,
-    "display_process": false,
-    "sensor_process": true,
     "location": {
         "x": -260.0,
         "y": -0.0,
@@ -61,11 +57,6 @@ The `"type": "SemanticCamera"` provides a grayscale camera stream with optional 
 - **sensor_size**: The size of the camera sensor in millimeters.
 - **paint_boxes**: (semantic camera) If set to true, then labeled semantic boxes will be drawn on the semantic image.
 - **pixel_area_cull**: (semantic camera) The minimum number of pixels a target must be to have a semantic box drawn around it.
-
-## Output Data
-See [base sensor](Base-Sensor.md) for examples on how to get the sensor. All data that comes from sensor queues is a dictionary.
-
-`data_camera= camera.get_message()`
 
 ### Parsed Camera Data Dictionary Keys and Values.
 

@@ -1,51 +1,169 @@
 ## Camera Sensor
 
-The configuration for a camera sensor that streams camera data and renders it into a view created by the client.
+The camera sensor streams image data and renders it into a view created by the client.
 
-### Semantic vs. Normal Camera
 
-There are two types of camera that have the same configuration. The `"type": "Camera"` will provide a full
-color camera stream that is post-processed for illumination:
+### Types of camera
+monoDrive simulator support different types of camera.
+
+#### RGB camera
+Provides a RGBA camera stream with optional bounding boxes for dynamic objects in the scene.
+```
+[
+   {
+    "type": "Camera",
+    "packet_size": 23552,
+    "listen_port": 8000,
+    "location": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 250.0
+    },
+    "rotation": {
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0
+    },
+    "stream_dimensions": {
+      "x": 512.0,
+      "y": 512.0
+    },
+    "max_distance": 50000.0,
+    "dynamic_range": 50,
+    "fov": 60.0,
+    "focal_length": 9.0,
+    "fstop": 1.4,
+    "min_shutter": 0.000500,
+    "max_shutter": 0.001400,
+    "sensor_size": 9.07,
+    "channels": "rgba"
+  }
+]
+```
 <p align="center">
 <img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/camerasensor.PNG" width="400" height="400" />
 </p>
 
-The `"type": "SemanticCamera"` provides a grayscale camera stream with optional bounding boxes for dynamic objects in the scene:
+#### Semantic camera
+Provides a grayscale camera stream with optional bounding boxes for dynamic objects in the scene.
+```
+[
+  {
+     "type": "SemanticCamera",
+     "listen_port": 8051,
+     "location": {
+       "x": -800.0,
+       "y": 0.0,
+       "z": 400.0
+     },
+     "rotation": {
+       "pitch": -15.0,
+       "yaw": 0.0,
+       "roll": 0.0
+     },
+     "stream_dimensions": {
+       "x": 512.0,
+       "y": 512.0
+     },
+    "max_distance": 50000.0,
+    "dynamic_range":  50,
+    "fov": 60.0,
+    "focal_length": 9.0,
+    "fstop": 1.4,
+    "min_shutter":  0.000500,
+    "max_shutter":  0.001400,
+    "sensor_size":  9.07,
+   "channels" : "rgba"
+ }
+
+]
+```
 <p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/semanticcamerasensor.PNG" width="400" height="400" />
+<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/camerasensor.PNG" width="400" height="400" />
 </p>
 
+#### Grayscale
+Provides a grayscale camera stream with optional bounding boxes for dynamic objects in the scene.
 ```
-{
-    "type": "Camera",
-    "listen_port": 8081,
-    "location": {
-        "x": -260.0,
-        "y": -0.0,
-        "z": 85.0
-    },
-    "rotation": {
-        "pitch": -0.0,
-        "yaw": 180.0,
-        "roll": 0.0
-    },
-    "stream_dimensions": {
-        "x": 1280.0,
-        "y": 800.0
-    },
+[
+  {
+     "type": "Camera",
+     "listen_port": 8120,
+     "location": {
+       "x": -800.0,
+       "y": 0.0,
+       "z": 400.0
+     },
+     "rotation": {
+       "pitch": -15.0,
+       "yaw": 0.0,
+       "roll": 0.0
+     },
+     "stream_dimensions": {
+       "x": 512.0,
+       "y": 512.0
+     },
     "max_distance": 50000.0,
-    "dynamic_range": 50,
-    "angle_of_view": 60.0,
-    "focal_length": 3.0,
+    "dynamic_range":  50,
+    "fov": 60.0,
+    "focal_length": 9.0,
     "fstop": 1.4,
-    "min_shutter": 0.0005,
-    "max_shutter": 0.0014,
-    "sensor_size": 12.8,
-    "paint_boxes": true,
-    "pixel_area_cull": 40
+    "min_shutter":  0.000500,
+    "max_shutter":  0.001400,
+    "sensor_size":  9.07,
+   "channels" : "gray"
+
+ }
+
+]
+```
+<p align="center">
+<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/camerasensor.PNG" width="400" height="400" />
+</p>
+
+### Depth Camera
+Provides a grayscale camera stream with different intensity depending on the distance to the objects.
+
+[
+  {
+     "type": "DepthCamera",
+      "listen_port": 8120,
+      "location": {
+       "x": -800.0,
+       "y": 0.0,
+       "z": 400.0
+     },
+     "rotation": {
+       "pitch": -15.0,
+       "yaw": 0.0,
+       "roll": 0.0
+     },
+     "stream_dimensions": {
+       "x": 512.0,
+       "y": 512.0
+     },
+    "fov": 60.0
+ }
+
+]
+
+<p align="center">
+<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/camerasensor.PNG" width="400" height="400" />
+</p>
+
+## Annotation
+All cameras support annotation. The annotation feature will give you bounding boxes for all the dynamic objects in the scene. Add the following json tags to any camera configuration.
+```
+"annotation": {
+    "desired_tags": [
+    "traffic_sign", "vehicle"
+    ],
+    "far_plane": 10000.0,
+    "include_tags": true
 }
 ```
 
+## Configuration Tags
 - **stream_dimensions**: The dimensions of which the stream will stream over TCP. These dimensions are set in a dictionary with keys x and y with float values.
 - **max_distance**: The max distance, in centimeters, the simulator's camera will look forward in the world.
 - **dynamic_range**: The dynamic range of the camera in decibels.

@@ -10,10 +10,6 @@ The image output support different sizes i.e. 512x512 pixels.
 The location of the sensor can be modified in the "x", "y" and "z" axis with respect to the car.   
 The sensor's orientation can be modified in the "yaw", "pitch" and "roll" axis. 
 
-
-### Types of camera
-monoDrive simulator support different types of camera.
-
 #### RGB camera
 Provides a RGBA camera stream with optional bounding boxes for dynamic objects in the scene.
 ```

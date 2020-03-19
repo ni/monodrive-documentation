@@ -8,7 +8,7 @@ The monoDrive camera sensor supports 4 types of image output:
 
 The image output support different sizes i.e. 512x512 pixels.  
 The location of the sensor can be modified in the "x", "y" and "z" axis with respect to the car.   
-The sensor's orientation can be modified "yaw", "pitch" and "roll" axis. 
+The sensor's orientation can be modified in the "yaw", "pitch" and "roll" axis. 
 
 
 ### Types of camera

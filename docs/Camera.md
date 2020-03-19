@@ -41,7 +41,7 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
 ]
 ```
 <p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/camerasensor.PNG" width="400" height="400" />
+<img src="https://github.com/monoDriveIO/documentation/blob/update-docs/WikiPhotos/camerasensor.PNG" width="400" height="400" />
 </p>
 
 #### Semantic camera
@@ -79,7 +79,7 @@ Provides a grayscale camera stream with optional bounding boxes for dynamic obje
 ]
 ```
 <p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/camerasensor.PNG" width="400" height="400" />
+<img src="https://github.com/monoDriveIO/documentation/blob/update-docs/WikiPhotos/semanticcamerasensor.PNG" width="400" height="400" />
 </p>
 
 #### Grayscale
@@ -118,7 +118,7 @@ Provides a grayscale camera stream with optional bounding boxes for dynamic obje
 ]
 ```
 <p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/camerasensor.PNG" width="400" height="400" />
+<img src="https://github.com/monoDriveIO/documentation/blob/update-docs/WikiPhotos/camera_grayscale.png" width="400" height="400" />
 </p>
 
 ### Depth Camera
@@ -148,7 +148,7 @@ Provides a grayscale camera stream with different intensity depending on the dis
 ]
 
 <p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/camerasensor.PNG" width="400" height="400" />
+<img src="https://github.com/monoDriveIO/documentation/blob/update-docs/WikiPhotos/camera_depth.png" width="400" height="400" />
 </p>
 
 ## Annotation

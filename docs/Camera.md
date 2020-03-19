@@ -1,6 +1,14 @@
 ## Camera Sensor
 
-The camera sensor streams image data and renders it into a view created by the client.
+The monoDrive camera sensor supports 4 types of image output:
+- RGB 
+- Semantic segmantation
+- Grayscale
+- Depth camera
+
+The image output support different sizes i.e. 512x512 pixels.  
+The location of the sensor can be modified in the "x", "y" and "z" axis with respect to the car.   
+The sensor's orientation can be modified "yaw", "pitch" and "roll" axis. 
 
 
 ### Types of camera
@@ -44,7 +52,7 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
 </p>
 
 #### Semantic camera
-Provides a grayscale camera stream with optional bounding boxes for dynamic objects in the scene.
+Provides a grayscale camera stream.
 ```
 [
   {
@@ -82,7 +90,7 @@ Provides a grayscale camera stream with optional bounding boxes for dynamic obje
 </p>
 
 #### Grayscale
-Provides a grayscale camera stream with optional bounding boxes for dynamic objects in the scene.
+Provides a grayscale camera stream.
 ```
 [
   {
@@ -152,7 +160,7 @@ Provides a grayscale camera stream with different intensity depending on the dis
 </p>
 
 ## Annotation
-All cameras support annotation. The annotation feature will give you bounding boxes for all the dynamic objects in the scene. Add the following json tags to any camera configuration.
+All cameras support the annotation feature. The annotation feature will give you bounding boxes for all the dynamic objects in the scene. Add the following json tags to any camera configuration.
 ```
 "annotation": {
     "desired_tags": [

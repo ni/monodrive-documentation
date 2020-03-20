@@ -198,7 +198,7 @@ If set this would enable the anottation of objects in the scene.
 - **cull_partial_frame**: If set to true an object only partially visible in the camera frame will be toss out that annotation. 
 
 
-### Parsed Camera Data Dictionary Keys and Values.
+### Raw Output Data Format
 
 - **time_stamp (int):** Timestamp representing milliseconds since Sunday.
 - **game_time (float):** Current game time of simulator, this value will be more prominent.

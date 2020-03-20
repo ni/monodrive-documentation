@@ -17,6 +17,7 @@ pages:
     - 'GPS': 'GPS.md'
     - 'IMU': 'IMU.md'
     - 'RPM': 'RPM.md'
+    - 'State Sensor': 'State-sensor.md'
 - LabVIEW_Client: 'LabVIEW_client.md'
 - Detailed_Help:
     - 'Examples': 'LV_client/monoDrive_Simulator_Interface_Example.md'

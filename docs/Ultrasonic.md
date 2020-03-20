@@ -6,11 +6,11 @@ The sensor's orientation can be modified in the "yaw", "pitch" and "roll" axis.
 ### Configuration
 ```
 [
- {
+   {
   "type": "Ultrasonic",
-  "listen_port": 8900,
+  "listen_port": 8977,
   "location": {
-    "x": 250.0,
+    "x": 130.0,
     "y": 0.0,
     "z": 50.0
   },
@@ -21,39 +21,34 @@ The sensor's orientation can be modified in the "yaw", "pitch" and "roll" axis.
   },
   "fc": 40000.0,
   "pwm_factor": 2.5,
-  "range_max": 4.0,
-  "range_min": 0.0,
-  "max_targets": 93,
+  "max_ultrasonic_returns": 93,
   "period": 0.06,
-  "uschannel": {
-    "minimum_ultrasonic_distance": 0.0,
-    "range_scan_distance":4.0,
-    "azimuth_fov":30.0,
-    "elevation_fov": 0.50,
-    "rescan_density": 10.0,
-    "max_raycast_hits": 5,
-    "debug_scan": true,
-    "debug_rescan": true
+   "sbr": {
+   "scan_distance":4.0,
+   "azimuth_fov":30.0,
+   "elevation_fov": 0.50,
+    "ray_division_y": 5.0,
+    "ray_division_z": 5.0,
+    "debug_frustum": false,
+    "debug_scan": false,
+    "debug_rescan": false
   }
 }
-]
-
 ```
 ### Configuration Description
 - **fc:**
 - **pwm_factor:**
-- **range_max:**
-- **range_min:**
-- **max_targets:**
+- **max_ultrasonic_returns**
 - **period:**
-- **minimum_ultrasonic_distance:**
-- **range_scan_distance:**
+- **scan_distance:**
 - **azimuth_fov:**
 - **elevation_fov:**
-- **rescan_density:**
-- **max_raycast_hits:**
+- **ray_division_y:**
+- **ray_division_z:**
+- **debug_frustum:**
 - **debug_scan:**
 - **debug_rescan:**
+
 
 ### Output Data Format
 **Ranges:** Distance to the closest object in front of the sensor.

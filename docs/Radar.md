@@ -98,7 +98,7 @@ The configuration for a radar sensor.
 
 
 ### Output Data Format
-- Ranges : A array with the distances to targets.
-- Angle of Arrival: The angle where the targes are detected.
-- Velocities: The velocity of the moving and stationary targets.
-- RCS: Radar cross-section detected by the radar. 
+- **Ranges:** A array with the distances to targets.
+- **Angle of Arrival:** The angle where the targes are detected.
+- **Velocities:** The velocity of the moving and stationary targets.
+- **RCS:** Radar cross-section detected by the radar. 

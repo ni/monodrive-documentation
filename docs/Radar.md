@@ -97,8 +97,8 @@ The configuration for a radar sensor.
 </p>
 
 
-### Raw Output Data Format
-
-- **0...NumberOfSweeps as i:**
-  - **Bytes 8i-4+8i:** Real bits represented as a float in single precision IEEE-754 format.
-  - **Bytes 4+8i-8+8i:** Imaginary bits represented as a float in single precision IEEE-754 format.
+### Output Data Format
+- Ranges : A array with the distances to targets.
+- Angle of Arrival: The angle where the targes are detected.
+- Velocities: The velocity of the moving and stationary targets.
+- RCS: Radar cross-section detected by the radar. 

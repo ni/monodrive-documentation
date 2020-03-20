@@ -1,10 +1,10 @@
-## Lidar Sensor
+## LiDAR Sensor
 
-The configuration for a LiDAR sensor that is modeled after the Velodyne LiDAR line. To view the lidar data download [VeloView](https://www.paraview.org/VeloView/). Run VeloView, click `Sensor Stream`, and select the correct configuration (Puck Hi-Res or HDL-32). Then run the simulator and client normally when the stream data starts coming through VeloView will populate with the lidar data.
+The configuration for a LiDAR sensor is modeled after the Velodyne LiDAR.  
+The location of the sensor can be modified in the "x", "y" and "z" axis with respect to the car.   
+The sensor's orientation can be modified in the "yaw", "pitch" and "roll" axis.
 
-<p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/lidarsensor.PNG" width="400" height="400" />
-</p>
+## Configuration
 
 ```
 {
@@ -28,14 +28,27 @@ The configuration for a LiDAR sensor that is modeled after the Velodyne LiDAR li
 }
 ```
 
-- **horizontal_resolution**: The horizontal angle, in degrees, the LiDAR must rotate before shooting out the next set of lasers.
-- **n_lasers**: The number of lasers the LiDAR sensor shoots out per sweep. This can be set to 16 (VLP-16), 32 (HDL-32), or 64 (HDL-64).
-- **max_distance**: The max distance, in centimeters, the LiDAR laser will travel.
-- **reset_angle**: The angle that indicates a full revolution (i.e. full 360 degree revolution will start at this reported angle).
+- **max_distance**: The maximum distance, in centimeters, the LiDAR laser will travel.
+- **horizontal_resolution**: The horizontal angle, in degrees, the LiDAR must rotate before shooting out the next set of lasers. Usually from 0.1 to 0.8.
 - **rpms**: The expected number of revolutions per minute for a full 360 degree sweep. Controls the expected time between laser lines.
+- **n_lasers**: The number of lasers the LiDAR sensor shoots out per sweep. This can be set to 16 (VLP-16), 32 (HDL-32), or 64 (HDL-64).
+- **reset_angle**: The angle that indicates a full revolution (i.e. full 360 degree revolution will start at this reported angle).
 
 ### Raw Output Data Format
+Each data packet from the LiDAR sensor contains **1206 bytes**.  
+There are 12 data blocks, each block is **100 bytes** and there are **4 bytes** for the timestamp and **2 bytes** called factory bytes. The number of packets for a revolution depends on the **horizontal revolution**.  
 
 - [VLP-16 Manual Download](http://velodynelidar.com/vlp-16.html)
 - [HDL-32E Manual Download](http://velodynelidar.com/hdl-32e.html)
+
+## Visualize LiDAR output
+1. Download [VeloView](https://www.paraview.org/VeloView/). 
+2. Run VeloView
+3. Click `Sensor Stream`, and select the correct configuration (Puck Hi-Res or HDL-32). 
+3. Run the simulator and client normally when the stream data starts coming through VeloView will populate with the LiDAR data.
+
+<p align="center">
+<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/lidarsensor.PNG" width="400" height="400" />
+</p>  
+
 

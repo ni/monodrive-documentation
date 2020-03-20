@@ -3,6 +3,10 @@
 The location of the sensor can be modified in the "x", "y" and "z" axis with respect to the car.  
 The sensor's orientation can be modified in the "yaw", "pitch" and "roll" axis.
 
+### Tree detected by Ultrasonic sensor
+<img src="https://github.com/monoDriveIO/documentation/blob/update-docs/WikiPhotos/LV_client/sensors/configuration/ultrasonic/tree_detected.png" />
+</p>
+
 ### Configuration
 ```
 [
@@ -36,20 +40,44 @@ The sensor's orientation can be modified in the "yaw", "pitch" and "roll" axis.
 }
 ```
 ### Configuration Description
-- **fc:**
-- **pwm_factor:**
-- **max_ultrasonic_returns**
-- **period:**
-- **scan_distance:**
-- **azimuth_fov:**
-- **elevation_fov:**
-- **ray_division_y:**
-- **ray_division_z:**
-- **debug_frustum:**
-- **debug_scan:**
-- **debug_rescan:**
-
+- **scan_distance:** The maximum distance the sensor will detect objects [meters]
+- **azimuth_fov:** The angle in the x-y plane to detect objects [degrees].
+- **elevation_fov:** The angle in the y-z plane to detect objects [degrees]
+- **ray_division_y:** The density of the return per cm [ray/cm].
+- **ray_division_z:** The density of the return per cm [ray/cm].
+- **debug_frustum:** If set to true, the frustum area will be drawn.
+- **debug_scan:** If set to true, the scan lines will be drawn.
+- **debug_rescan:** If set to true, the scan lines will be drawn only when there is an object enters the **scan_distance**.
 
 ### Output Data Format
-**Ranges:** Distance to the closest object in front of the sensor.
+**Ranges:** Distance in **centimeters** to the closest object in front of the sensor.
+
+### Configuration Examples  
+
+#### Debug Frustum Enabled
+
+<p align="center">
+<img src="https://github.com/monoDriveIO/documentation/blob/update-docs/WikiPhotos/LV_client/sensors/configuration/ultrasonic/debug_frustum.PNG" />
+</p>
+
+#### Debug Scan Enabled
+<img src="https://github.com/monoDriveIO/documentation/blob/update-docs/WikiPhotos/LV_client/sensors/configuration/ultrasonic/debug_scan.png" />
+</p>
+
+#### Debug Rescan Enabled
+<img src="https://github.com/monoDriveIO/documentation/blob/update-docs/WikiPhotos/LV_client/sensors/configuration/ultrasonic/debug_rescan.PNG" />
+</p>
+
+#### Comparison between settings
+<img src="https://github.com/monoDriveIO/documentation/blob/update-docs/WikiPhotos/LV_client/sensors/configuration/ultrasonic/different_settings.PNG" />
+</p>
+
+
+### Ray division Y
+<img src="https://github.com/monoDriveIO/documentation/blob/update-docs/WikiPhotos/LV_client/sensors/configuration/ultrasonic/ray_division_y.png" />
+</p>
+
+### Ray division Z
+<img src="https://github.com/monoDriveIO/documentation/blob/update-docs/WikiPhotos/LV_client/sensors/configuration/ultrasonic/ray_division_z.png" />
+</p>
 

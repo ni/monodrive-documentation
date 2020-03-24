@@ -5,7 +5,7 @@ width="400"/>
 </p>
 
 ### Description 
-Use this tool to start a HIL application. This takes care of the initialization of the simulator on HIL mode. 
+Use this tool to start a Replay application. This takes care of the initialization of the simulator on Replay mode. 
 
 ### Inputs
 - **Array in:** A reference to the weather profile cluster.

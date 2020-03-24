@@ -1,6 +1,6 @@
 ## mono_GrayScaleToSimulink.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/tools/mono__GrayScaleToSimulinkc.png" width="400"  />
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/mono__GrayScaleToSimulinkc.png" width="400"  />
 </p>
 
 ### Description 

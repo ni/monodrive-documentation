@@ -4,7 +4,7 @@
 </p>
 
 ### Description 
-Send a command via TCP with format "type", "success", "reference",  "message"
+Send a command via TCP with format "type", "success", "reference",  "message". This VI is used to send server commands. 
 
 ### Inputs
 

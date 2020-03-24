@@ -1,6 +1,6 @@
 ## mono_select_map.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__select_map.png" width="400"  />
+<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/utilities/mono__select__mapc.png" width="400"  />
 </p>
 
 ### Description 

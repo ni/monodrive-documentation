@@ -62,7 +62,8 @@ pages:
         - 'mono_header.vi': 'LV_client/simulator/mono__headerc.md'
         - 'mono_send_command.vi': 'LV_client/simulator/mono__send__commandc.md'
         - 'mono_send_step.vi': 'LV_client/simulator/mono__send__stepc.md'
-        - 'LV_client/simulator/monoDrive_lvlib_mono__initc.md'
+        - 'mono_init.vi' : 'LV_client/simulator/monoDrive_lvlib_mono__initc.md'
+        - 'mono_check_simulator_version.vi':'LV_client/simulator/mono__check__simulator__versionc.md'
     - 'Utilities':
         - 'mono_build_json.vi': 'LV_client/utilities/mono__build__jsonc.md'
         - 'calculate_orientation_xyz.vi' : 'LV_client/utilities/mono__calculate__orientation__xyzc.md'

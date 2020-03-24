@@ -4,15 +4,14 @@
 </p>
 
 ### Description
-Reads the data stream data for the GPS sensor and outpust a cluster with the  formatted data.
+Configure and reads the data stream data for the GPS sensor.
 
 ### Inputs
 
-- **monoDrive in (Cluster):** See description at **monoDrive.ctl**.
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 ### Outputs
-- **GPS Sample:** Cluster with the processed data for the GPS sensor.
+- **Raw data (String):** Raw data from the simulator. Output format as follows:
 
 | Type  | Name   |
 | ------------ | ------------ |
@@ -35,8 +34,6 @@ Reads the data stream data for the GPS sensor and outpust a cluster with the  fo
 |U8  | satellites  |
 |U8  | mode   |
 |U16 | CRC  |
-
-- **Raw data (String):** Raw data from the simulator.
 - **GPS Configuration(String):** Configuration used for GPS.
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 

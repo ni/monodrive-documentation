@@ -9,7 +9,7 @@ Read a trajectory string and modify the EGO pose with values given by the user o
 ### Inputs
 
 - **monoDrive in (Cluster):** See description at **monoDrive.ctl**.
-- **trajectory_nmumber(U32):** Index of the frame chosen from the trajectory.
+- **trajectory_number(U32):** Index of the frame chosen from the trajectory.
 - **EGO pose(Cluster):** Setting of the EGO vehicle usually set from HIL .
 
 | Type  | Name   |

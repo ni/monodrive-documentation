@@ -4,14 +4,10 @@
 </p>
 
 ### Description 
-Set the indicators to default state given a reference to the front panel indicators.
+Obtain the absolute path to the trajectory file and read the trajectory configuration.
 
 ### Inputs
-- **Sensor Config (Reference) :** Reference to the Sensor Config path, used to set default directory .
-- **Trajectory Config (Reference):** Reference to the Sensor Trajectory path, used to set default directory .
-- **Simulator Config (Reference):** Reference to the Simulator path, used to set default directory .
-- **Simulator Configuration Path (Path):** Simulator configuration path.
-- **Sensor Configuration Path (Path):**  Sensor configuration path.
+- **Trajectory Config (Path):** Relative or absolute path to the Trajectory file.
 - **error in (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 

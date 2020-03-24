@@ -1,8 +1,7 @@
 ## calculate_orientation_xyz.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__calculate_orientation_xyz.png" width="400"  />
+<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/utilities/mono__calculate__orientation__xyzc.png" width="400"/>
 </p>
-
 ### Description 
 Converts orientation Yaw, Pitch and roll to X,Y,Z,W .
 

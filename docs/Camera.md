@@ -44,7 +44,7 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
 ]
 ```
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/update-docs/WikiPhotos/camerasensor.PNG" width="400" height="400" />
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camerasensor.PNG" width="400" height="400" />
 </p>
 
 #### Semantic camera
@@ -82,7 +82,7 @@ Provides a grayscale camera stream.
 ]
 ```
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/update-docs/WikiPhotos/semanticcamerasensor.PNG" width="400" height="400" />
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/semanticcamerasensor.PNG" width="400" height="400" />
 </p>
 
 #### Grayscale
@@ -121,7 +121,7 @@ Provides a grayscale camera stream.
 ]
 ```
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/update-docs/WikiPhotos/camera_grayscale.png" width="400" height="400" />
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_grayscale.png" width="400" height="400" />
 </p>
 
 ### Depth Camera
@@ -152,7 +152,7 @@ Provides a grayscale camera stream with different intensity depending on the dis
 ```
 
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/update-docs/WikiPhotos/camera_depth.png" width="400" height="400" />
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_depth.png" width="400" height="400" />
 </p>
 
 ## Annotation
@@ -209,15 +209,15 @@ If set this would enable the anottation of objects in the scene.
 ### Camera configuration examples.
 #### FOV
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/update-docs/WikiPhotos/LV_client/sensors/configuration/camera/FOV.png" />
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/FOV.png" />
 </p>
 
 #### far_plane 
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/update-docs/WikiPhotos/LV_client/sensors/configuration/camera/far_plane.png" />
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/far_plane.png" />
 </p>
 
 #### cull_partial_frame 
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/update-docs/WikiPhotos/LV_client/sensors/configuration/camera/cull_partial_frame.png" />
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/cull_partial_frame.png" />
 </p>

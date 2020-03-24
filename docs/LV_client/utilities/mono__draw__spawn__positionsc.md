@@ -1,6 +1,6 @@
 ## mono_draw_spawn_positionsc.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/utilities/mono__draw__spawn__positionsc.png" 
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/utilities/mono__draw__spawn__positionsc.png" 
 width="400"  />
 </p>
 

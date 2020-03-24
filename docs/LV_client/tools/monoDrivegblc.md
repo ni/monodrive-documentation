@@ -1,6 +1,6 @@
 ## monoDrive.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/update-docs/WikiPhotos/LV_client/tools/monoDrivegblc.png" 
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/monoDrivegblc.png" 
 width="50"  />
 </p>
 

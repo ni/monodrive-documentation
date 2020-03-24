@@ -1,6 +1,6 @@
 ## mono_radar_plots_with_KF.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/tools/mono__radar__plots__with__KFc.png" 
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/mono__radar__plots__with__KFc.png" 
 width="400"  />
 </p>
 

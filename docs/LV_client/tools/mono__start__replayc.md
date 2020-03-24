@@ -1,6 +1,6 @@
 ## mono_start_replay.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/tools/mono__start__replayc.png" 
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/mono__start__replayc.png" 
 width="400"/>
 </p>
 

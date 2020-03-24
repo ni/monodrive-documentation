@@ -1,6 +1,6 @@
 ## mono_get_map.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/utilities/mono__get__mapc.png" 
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/utilities/mono__get__mapc.png" 
 width="400"  />
 </p>
 

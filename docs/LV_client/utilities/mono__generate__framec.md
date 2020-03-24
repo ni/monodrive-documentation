@@ -1,6 +1,6 @@
 ## mono_generate_frame.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/utilities/mono__generate__framec.png" 
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/utilities/mono__generate__framec.png" 
 width="400"  />
 </p>
 

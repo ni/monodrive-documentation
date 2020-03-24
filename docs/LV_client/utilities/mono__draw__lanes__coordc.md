@@ -1,6 +1,6 @@
 ## mono_draw_lanes_coord.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/utilities/mono__draw__lanes__coordc.png" 
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/utilities/mono__draw__lanes__coordc.png" 
 width="400"  />
 </p>
 

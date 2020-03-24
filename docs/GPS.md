@@ -28,7 +28,7 @@ The sensor's orientation can be modified in the "yaw", "pitch" and "roll" axis.
 ### Raw Output Data Format
 
 The sensor output has 78 bytes, where 12 bytes correspond to the header of the message and 66 correspond to data from the sensor.  
-Following the data format found [here](https://github.com/swift-nav/libsbp/blob/master/docs/sbp.pdf).
+Following the data format found [here](https://github.com/swift-nav/libsbp/raw/master/docs/sbp.pdf).
 
 | Type  | Name   |
 | ------------ | ------------ |

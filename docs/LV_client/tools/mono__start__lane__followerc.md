@@ -1,6 +1,6 @@
 ## mono_start_lane_follower.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/tools/mono__start__lane__followerc.png" 
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/mono__start__lane__followerc.png" 
 width="400"/>
 </p>
 

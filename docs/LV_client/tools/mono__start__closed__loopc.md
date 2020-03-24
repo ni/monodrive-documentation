@@ -1,6 +1,6 @@
 ## mono_start_closed_loop.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/tools/mono__start__closed__loopc.png" 
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/mono__start__closed__loopc.png" 
 width="400"/>
 </p>
 

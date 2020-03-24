@@ -1,6 +1,6 @@
 ## mono_save_camera_imagesc.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/tools/mono__save__camera__imagesc.png" 
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/mono__save__camera__imagesc.png" 
 width="400"  />
 </p>
 

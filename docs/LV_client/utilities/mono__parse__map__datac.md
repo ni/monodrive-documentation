@@ -1,6 +1,6 @@
 ## mono_parse_map_data.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/utilities/mono__parse__map__datac.png" 
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/utilities/mono__parse__map__datac.png" 
 width="400"  />
 </p>
 

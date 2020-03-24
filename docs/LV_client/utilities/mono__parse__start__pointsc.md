@@ -1,6 +1,6 @@
 ## mono__parse__start__points.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/utilities/mono__parse__start__pointsc.png" 
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/utilities/mono__parse__start__pointsc.png" 
 width="400"  />
 </p>
 

@@ -1,6 +1,6 @@
 ## mono_calculate_orientation_xyzc.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/utilities/mono__calculate__orientation__xyzc.png" width="400"/>
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/utilities/mono__calculate__orientation__xyzc.png" width="400"/>
 </p>
 
 ## Description 

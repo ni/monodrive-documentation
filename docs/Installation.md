@@ -1,4 +1,4 @@
-![monoDrive](https://github.com/monoDriveIO/Client/blob/master/WikiPhotos/monoDriveLogo.png "monoDrive")
+![monoDrive](https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/monoDriveLogo.png "monoDrive")
 
 # monoDrive client installation
 

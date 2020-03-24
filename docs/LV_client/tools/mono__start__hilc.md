@@ -1,6 +1,6 @@
 ## mono_start_hil.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/tools/mono__start__hilc.png" 
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/mono__start__hilc.png" 
 width="400"/>
 </p>
 

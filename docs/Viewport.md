@@ -41,5 +41,5 @@ The monoDrive Viewport sensor allows you to configure the information displayed 
 Image on the left is the camera output and on the right the image on the Viewport on the VehicleAI Editor.
 
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/update-docs/WikiPhotos/LV_client/sensors/configuration/viewport/comparison_camera_viewport.png" />
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/sensors/configuration/viewport/comparison_camera_viewport.png" />
 </p>

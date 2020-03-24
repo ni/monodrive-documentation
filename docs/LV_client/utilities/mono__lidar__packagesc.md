@@ -1,6 +1,6 @@
 ## mono_lidar_packages.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__lidar__packages.png" width="400"  />
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__lidar__packagesc.png" width="400"  />
 </p>
 
 ### Description 

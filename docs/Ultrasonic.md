@@ -4,7 +4,7 @@ The location of the sensor can be modified in the "x", "y" and "z" axis with res
 The sensor's orientation can be modified in the "yaw", "pitch" and "roll" axis.
 
 ### Tree detected by Ultrasonic sensor
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/sensors/configuration/ultrasonic/tree_detected.png" />
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/sensors/configuration/ultrasonic/tree_detected.png" />
 </p>
 
 ### Configuration
@@ -57,27 +57,27 @@ The sensor's orientation can be modified in the "yaw", "pitch" and "roll" axis.
 #### Debug Frustum Enabled
 
 <p align="center">
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/sensors/configuration/ultrasonic/debug_frustum.PNG" />
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/sensors/configuration/ultrasonic/debug_frustum.PNG" />
 </p>
 
 #### Debug Scan Enabled
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/sensors/configuration/ultrasonic/debug_scan.png" />
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/sensors/configuration/ultrasonic/debug_scan.png" />
 </p>
 
 #### Debug Rescan Enabled
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/sensors/configuration/ultrasonic/debug_rescan.PNG" />
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/sensors/configuration/ultrasonic/debug_rescan.PNG" />
 </p>
 
 #### Comparison between settings
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/sensors/configuration/ultrasonic/different_settings.PNG" />
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/sensors/configuration/ultrasonic/different_settings.PNG" />
 </p>
 
 
 ### Ray division Y
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/sensors/configuration/ultrasonic/ray_division_y.png" />
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/sensors/configuration/ultrasonic/ray_division_y.png" />
 </p>
 
 ### Ray division Z
-<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/sensors/configuration/ultrasonic/ray_division_z.png" />
+<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/sensors/configuration/ultrasonic/ray_division_z.png" />
 </p>
 

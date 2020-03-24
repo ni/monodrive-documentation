@@ -4,24 +4,23 @@
 </p>
 
 ### Description
-Reads the stream data for the Radar sensor and outputs a 3D array with the formatted data.
+Configure and reads the stream data for the Radar sensor and outputs a outputs a cluster with three 1D arrays for **Ranges**, **aoas** and **velocities**.
 
 ### Inputs
-
-- **monoDrive in (Cluster):** See description at **monoDrive.ctl**.
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 ### Outputs
+- **Radar configuration(String):** Settings specific for the Radar detection.
+- **Raw data:** The data without parsing. Output directly from the sensor.
+- **Radar Data Cube (String):** Only send if, **send_cube** is set to **true** on the **Radar configuration**. Raw data for a cube of dimensions M (number of array antenna inputs) by L (number of range bins in fast time) by N (number of pulse in CPI in slow time).
 - **Radar Sample (Cluster):** Cluster with the processed data for the Radar sensor.
 
-| Type  | Name   |
-| ------------ | ------------ |
-|I32  | time_stamp |
-|I32 | game_time  |
-|1D Array SGL | ranges  |
-|1D Array SGL  | aoa_list |
-|1D Array SGL | velocities |
-
-- **Radar Data Cube (String):** Raw data.
+| Type  | Name   | Units   |
+| ------------ | ------------ |------------ |
+|I32  | time_stamp | seconds |
+|I32 | game_time  | seconds |
+|1D Array SGL | ranges  | meters |
+|1D Array SGL  | aoa_list | degrees |
+|1D Array SGL | velocities | m/s |
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 

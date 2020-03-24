@@ -1,14 +1,12 @@
 ## mono__radar__ground__truth.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__radar__ground__truth.png" width="400"  />
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__radar__ground__truthc.png" width="400"  />
 </p>
 
 ### Description
-Reads the stream data for the Radar sensor and outputs a 3D array with the formatted data.
+Configures and reads the stream data for the Ground Truth Radar sensor and outputs a cluster with 3 1D arrays for **Ranges**, **aoas** and **velocities**.
 
 ### Inputs
-
-- **monoDrive in (Cluster):** See description at **monoDrive.ctl**.
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 ### Outputs

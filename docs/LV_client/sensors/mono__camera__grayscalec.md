@@ -11,7 +11,7 @@ Configures and reads the stream data for a grayscale camera sensor and outputs a
 
 
 ### Outputs
-- **Camera configuration(String):** Camera configuration used for the camera.
+- **Camera configuration(String):** Camera configuration.
 - **Image (Picture):** Procesed image, ready for display.
 - **Raw data (2D U8 array):** Pixel values for the images .
 - **Annotation data(String):** Classification data for elements in the image (Optional). 

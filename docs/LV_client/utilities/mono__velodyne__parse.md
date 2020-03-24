@@ -1,6 +1,6 @@
 ## mono_velodyne_parse.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__velodyne__parse.png" width="400"  />
+<img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/utilities/mono__velodyne__parsec.png" width="400"  />
 </p>
 
 ### Description

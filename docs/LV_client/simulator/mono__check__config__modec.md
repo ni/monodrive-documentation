@@ -4,11 +4,11 @@
 </p>
 
 ### Description
-Replaces the running mode from the configuration text with the running mode  chosen by the user.
+Build the simulator configuration with the running mode chosen by the user.
 
 ### Inputs
 
-- **configuration text (String) :** Text obtain by reading the Simulator configuration file .
+- **configuration text (String) :** Base simulator configuration file .
 - **Running mode (Enum)** 
     * 0 - Closed_loop 
     * 1 - Replay

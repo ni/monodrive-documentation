@@ -4,16 +4,15 @@
 </p>
 
 ### Description
-Reads the stream data for a camera sensor  and returns a picture with the format specified in the stream dimensions.
+Configures and reads the stream data for a grayscale camera sensor and outputs a picture of the size specified on the **Camera configuration**.
 
 ### Inputs
-
-- **monoDrive in (Cluster):** See description at **monoDrive.ctl**.
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 
 ### Outputs
+- **Camera configuration :** Camera configuration used for the camera.
 - **Image (Picture):** Procesed image, ready for display.
 - **Raw data :** Pixel values for the images .
-- **Camera configuration :** Camera configuration used for the camera.
+- **Annotation data:** Classification data for elements in the image. 
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

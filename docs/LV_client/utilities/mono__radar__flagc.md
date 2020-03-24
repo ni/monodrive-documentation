@@ -1,9 +1,10 @@
-## radar_flag.vi
+## mono_radar_flagc.vi
 <p align="center">
 <img src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/utilities/mono__radar__flagc.png" width="400"  />
 </p>
 
 ### Description 
+Check if the radar configuration has the `send_radar_cube` tag set to true.
 
 ### Inputs
 

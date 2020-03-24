@@ -73,32 +73,32 @@ The configuration for a radar sensor.
 
 #### Paint target enable
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/radar_paint_target.jpg" />
+<img src="https://github.com/monoDriveIO/client/raw/update-docs/WikiPhotos/LV_client/sensors/configuration/radar/radar_paint_target.jpg" />
 </p>
 
 #### Change on short and long range FOV with debug_frustum enable 
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/frustrum_fov.jpg" />
+<img src="https://github.com/monoDriveIO/client/raw/update-docs/WikiPhotos/LV_client/sensors/configuration/radar/frustrum_fov.jpg" />
 </p>
 
 #### Change on short and long range distance with debug_frustum enable 
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/frustum_distance.jpg" />
+<img src="https://github.com/monoDriveIO/client/raw/update-docs/WikiPhotos/LV_client/sensors/configuration/radar/frustum_distance.jpg" />
 </p>
 
 #### Change elavation fov with debug_frustum enable 
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/elevation.jpg" />
+<img src="https://github.com/monoDriveIO/client/raw/update-docs/WikiPhotos/LV_client/sensors/configuration/radar/elevation.jpg" />
 </p>
 
 #### debug_scan enable 
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/debug_scan.jpg" />
+<img src="https://github.com/monoDriveIO/client/raw/update-docs/WikiPhotos/LV_client/sensors/configuration/radar/debug_scan.jpg" />
 </p>
 
 
-### Raw Output Data Format
-
-- **0...NumberOfSweeps as i:**
-  - **Bytes 8i-4+8i:** Real bits represented as a float in single precision IEEE-754 format.
-  - **Bytes 4+8i-8+8i:** Imaginary bits represented as a float in single precision IEEE-754 format.
+### Output Data Format
+- **Ranges:** A array with the distances to targets.
+- **Angle of Arrival:** The angle where the targes are detected.
+- **Velocities:** The velocity of the moving and stationary targets.
+- **RCS:** Radar cross-section detected by the radar. 

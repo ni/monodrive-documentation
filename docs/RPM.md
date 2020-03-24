@@ -1,11 +1,7 @@
 ## RPM Sensor
+The monoDrive sensor give you information on the Revolutions per second on the spexified wheel. You can obtain information of the four wheels on the car (0-3). 
 
-<p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/rpmsensor.png" width="400" height="400" />
-</p>
-
-The configuration for an RPM sensor.
-
+## Configuration
 ```
 [
 {
@@ -26,15 +22,9 @@ The configuration for an RPM sensor.
 ]
 ```
 
-### Parsed RPM Data Dictionary Keys and Values.
+### Raw Output Data Format
 
-- **time_stamp (int):** Timestamp representing milliseconds since Sunday.
-- **game_time (float):** Current game time of simulator, this value will be more prominent.
-- **wheel_number(int):** Wheel number the sensor is attached to.
-- **wheel_rpm(float):** Rotations per minute.
-
-
-### Raw Output Data Format Parsed in `RPM.digest_frame()`
-
-- **Bytes 0-4:** The wheel number for the RPM sensor.
-- **Bytes 4-8:** The wheel speed in RPM for the specific RPM sensor.
+| Byte   | Description |
+| ------------ | ------------ |
+|Bytes 0-4  | The wheel number for the RPM sensor. |
+|Bytes 4-8 | The wheel speed in RPM for the specific RPM sensor.  |

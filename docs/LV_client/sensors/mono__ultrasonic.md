@@ -4,16 +4,14 @@
 </p>
 
 ### Description
-Configures and sample the ultrasonic sensor according to the configuration setting.
+Configures and sample the ultrasonic sensor according to the configuration settings.
 
 
 ### Inputs
-
-- **monoDrive in (Cluster):** See description at **monoDrive.ctl**.
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 
 ### Outputs
-- **Ultrasonic Range:** Distance in meters of the objects detected.
-- **Ultrasonic configuration:** Outputs the configuration for the **ultrasinc** sensor sensor.
+- **Ultrasonic Range:** Distance in **meters** of the objects detected.
+- **Ultrasonic configuration:** Outputs the configuration used for the **ultrasonic** sensor.
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

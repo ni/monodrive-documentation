@@ -4,10 +4,9 @@
 </p>
 
 ### Description
-Gets data from Lidar parse it  and forward it to port 2368 (VeloView)
-
+Configure and procces the data stream for LiDAR sensor. This VI also forward the raw data to port 2368 thru TCP to be visualized by VeloView.
+ 
 ### Inputs
-- **monoDrive in (Cluster):** See description at **monoDrive.ctl**.
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 ### Outputs

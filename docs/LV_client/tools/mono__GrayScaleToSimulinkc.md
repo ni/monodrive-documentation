@@ -12,6 +12,4 @@ Used to send a Grayscale image to matlab.
 
 
 ### Outputs
-
-- **send_radar_cube (Boolean) :** Indicates if the flag is present or not.
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

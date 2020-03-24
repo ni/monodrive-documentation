@@ -1,6 +1,6 @@
 ## mono__radar__ground__truth.vi
 <p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__radar__ground__truth.png" width="400"  />
+<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__radar__ground__truthc.png" width="400"  />
 </p>
 
 ### Description

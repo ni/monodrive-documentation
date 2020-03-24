@@ -11,8 +11,8 @@ Configures and reads the stream data for a grayscale camera sensor and outputs a
 
 
 ### Outputs
-- **Camera configuration :** Camera configuration used for the camera.
+- **Camera configuration(String):** Camera configuration used for the camera.
 - **Image (Picture):** Procesed image, ready for display.
-- **Raw data :** Pixel values for the images .
-- **Annotation data:** Classification data for elements in the image. 
+- **Raw data (2D U8 array):** Pixel values for the images .
+- **Annotation data(String):** Classification data for elements in the image. 
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.

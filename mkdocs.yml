@@ -90,7 +90,6 @@ pages:
         - 'mono_parse_start_pointsc' : 'LV_client/utilities/mono__parse__start__pointsc.md'
         - 'mono_proccess_annotation_datac' : 'LV_client/utilities/mono__proccess__annotation__datac.md'
         - 'radar_flag.vi': 'LV_client/utilities/mono__radar__flagc.md'
-        - 'mono_radar_plots.vi' : 'LV_client/utilities/mono__radar__plotsc.md'
         - 'mono_read_trajectoryc.vi': 'LV_client/utilities/mono__read__trajectoryc.md'
         - 'mono_remove_response_message.vi': 'LV_client/utilities/mono__remove__response__messagec.md'
         - 'mono_select_mapc' : 'LV_client/utilities/mono__select__mapc.md'

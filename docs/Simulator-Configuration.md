@@ -3,16 +3,25 @@
 {
   "id": "simulator",
   "server_ip": "127.0.0.1",
-  "map": "Almono_P",
+   "map": "Almono",
   "server_port": 8999,
-  "client_ip": "127.0.0.1",
   "simulation_mode": 2,
   "ego_config": {
   "body": {
-      "type": "/Game/Vehicles_Vol1/VehicleBlueprints/Sedan4DBP.Sedan4DBP_C",
-      "color": [ 0, 0, 0, 255 ]
+      "type": "/Game/Vehicles/crossover_monoDrive_01.crossover_monoDrive_01_C",
+      "color": "Carpaint_White.Carpaint_White"
   }
 },
+  "traffic_configuration": {
+    "max_vehicles": 20,
+    "min_desired_speed": 0.0,
+    "max_desired_speed": 5.0,
+    "spawn_leash_distance": 15000,
+    "min_spawn_range": 2000,
+    "swarm_traffic": true,
+    "vertical_offset": 10,
+    "overtake_slower_vehicles" : false
+  },
   "phys_materials": {
     "Aluminum": {
       "specular_exponent": 15.0,
@@ -112,16 +121,6 @@
       "dielectric_constant": 10.0,
       "roughness": 0.15
     }
-  },
-  "traffic_configuration": {
-    "max_vehicles": 50,
-    "min_desired_speed": 0.0,
-    "max_desired_speed": 5.0,
-    "spawn_leash_distance": 15000,
-    "min_spawn_range": 2000,
-    "swarm_traffic": true,
-    "vertical_offset": 10,
-    "overtake_slower_vehicles" : false
   },
   "client_settings": {
     "map": {

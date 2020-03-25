@@ -6,15 +6,15 @@ The configuration for a radar sensor.
 [
     {
   "type": "Radar",
-  "gpu_number":0,
-  "listen_port": 8301,
-  "send_radar_cube": false,
+   "gpu_number":0,
+  "listen_port": 8302,
+"send_radar_cube": false,
   "paint_targets": false,
   "target_paint_lifetime": 0.5,
   "location": {
-    "x": 250.0,
+    "x": 290.0,
     "y": 0.0,
-    "z": 50.0
+    "z": 80.0
   },
   "rotation": {
     "pitch": 0.0,
@@ -27,7 +27,7 @@ The configuration for a radar sensor.
   "num_sweeps": 32,
   "sweep_time" : 0.0000069,
   "bandwidth" : 250000000,
-  "max_targets": 250,
+  "max_radar_returns": 500,
   "elements": 8,
   "transmitter": {
     "peak_power": 5.0,
@@ -42,12 +42,13 @@ The configuration for a radar sensor.
     "gain": 10.0
   },
   "sbr": {
-    "long_range_scan_distance": 150.0,
-    "short_range_scan_distance": 60.0,
-    "long_range_fov": 20.0,
-    "short_range_fov": 60.0,
+    "long_range_scan_distance": 60.0,
+    "short_range_scan_distance": 30.0,
+    "long_range_fov": 60.0,
+    "short_range_fov": 30.0,
     "elevation_fov": 10.0,
-    "rescan_density": 2.0,
+    "ray_division_y": 10.0,
+    "ray_division_z":10.0,
     "debug_frustum": false,
     "debug_scan": false,
     "debug_rescan": false

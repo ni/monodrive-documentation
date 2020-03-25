@@ -102,6 +102,17 @@ pages:
         - 'mono_sensor_parser.vi': 'LV_client/utilities/mono__sensor__parserc.md'
         - 'mono_start_pointc.vi' : 'LV_client/utilities/mono__start__pointc.md'
         - 'mono_velodyne_parse.vi': 'LV_client/utilities/mono__velodyne__parse.md'
+        
+    - 'Shared Libraries':
+        - 'mono_control.vi': 'LV_client/shared_libraries/mono__control.md'
+        - 'mono_control_vehiclec.vi': 'LV_client/shared_libraries/mono__control__vehiclec.md'
+        - 'mono_initc.md.vi': 'LV_client/shared_libraries/mono__initc.md.md'
+        - 'mono_kf_update.vi': 'LV_client/shared_libraries/mono__kf__update.md'
+        - 'mono_kf_init.vi': 'LV_client/shared_libraries/mono_kf_init.md'
+        
+        
+        
+    
 
 markdown_extensions:
   - admonition

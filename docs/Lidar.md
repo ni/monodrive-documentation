@@ -1,6 +1,6 @@
 ## LiDAR Sensor
 
-The configuration for a LiDAR sensor is modeled after the Velodyne LiDAR.  
+The configuration for a LiDAR sensor is modeled after the Velodyne LiDAR. Currently we only support **16 and 32 laser**.  
 The location of the sensor can be modified in the "x", "y" and "z" axis with respect to the car.   
 The sensor's orientation can be modified in the "yaw", "pitch" and "roll" axis.
 

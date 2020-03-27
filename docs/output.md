@@ -244,7 +244,7 @@ Visualize LiDAR output
 ```{=html}
 <p align="center">
 ```
-`<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/lidarsensor.PNG" width="400" height="400" />`{=html}
+`<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/lidarsensor.PNG"  height="400" />`{=html}
 ```{=html}
 </p>
 ```

@@ -1,7 +1,7 @@
 ## mono_start_replay.vi
 <p class="img_container">
 <img class="lg_img" src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/mono__start__replayc.png" 
-width="400"/>
+/>
 </p>
 
 ### Description 

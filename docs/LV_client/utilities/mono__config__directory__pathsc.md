@@ -1,6 +1,6 @@
 ## mono_config_directory_paths.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__config__directory__pathsc.png" width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__config__directory__pathsc.png"   />
 </p>
 
 ### Description 
@@ -14,3 +14,5 @@ Obtain the absolute path to the trajectory file and read the trajectory configur
 ### Outputs
 - **Configuration Paths (Cluster of Paths):**  Cluster with all the paths to the configuration files.
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+<p>&nbsp;</p>

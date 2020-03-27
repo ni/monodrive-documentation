@@ -1,7 +1,7 @@
 ## Waypoint Sensor
 
-<p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/waypointsensor.PNG" />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/waypointsensor.PNG" />
 </p>
 
 The configuration for a waypoint sensor.

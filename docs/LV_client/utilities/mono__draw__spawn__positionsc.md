@@ -1,7 +1,7 @@
 ## mono_draw_spawn_positionsc.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/utilities/mono__draw__spawn__positionsc.png" 
-width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/utilities/mono__draw__spawn__positionsc.png" 
+  />
 </p>
 
 ### Description 
@@ -18,3 +18,5 @@ pointing (only on Editor mode).
 
 - **monoDrive out (Cluster): :**  .
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+<p>&nbsp;</p>

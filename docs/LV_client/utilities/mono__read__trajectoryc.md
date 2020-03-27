@@ -1,6 +1,6 @@
 ## mono_read_trajectory.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__read__trajectoryc.png" width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__read__trajectoryc.png"   />
 </p>
 
 ### Description 
@@ -27,3 +27,5 @@ Read a trajectory string and modify the EGO pose with values given by the user o
 
 - **Trajectory string out:** Trajectory with the new pose for the EGO vehicle in all the frames.
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+<p>&nbsp;</p>

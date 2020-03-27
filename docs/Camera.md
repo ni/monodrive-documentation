@@ -82,7 +82,7 @@ Provides a grayscale camera stream.
 ]
 ```
 <p class="img_container">
-  <img class='lg_img'src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_grayscale.png" width="400" height="400" />
+  <img class='lg_img'src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_grayscale.png"  height="400" />
 </p>
 <p>&nbsp;</p>
 
@@ -121,7 +121,7 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
 ]
 ```
 <p class="img_container">
-  <img class='lg_img'src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camerasensor.PNG" width="400" height="400" />
+  <img class='lg_img'src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camerasensor.PNG"  height="400" />
 </p>
 <p>&nbsp;</p>
 
@@ -161,7 +161,7 @@ Provides a grayscale camera stream.
 ]
 ```
 <p class="img_container">
-  <img class='lg_img'src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/semanticcamerasensor.PNG" width="400" height="400" />
+  <img class='lg_img'src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/semanticcamerasensor.PNG"  height="400" />
 </p>
 <p>&nbsp;</p>
 

@@ -92,7 +92,7 @@ objects in the scene.
 ```{=html}
 <p align="center">
 ```
-`<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camerasensor.PNG" width="400" height="400" />`{=html}
+`<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camerasensor.PNG"  height="400" />`{=html}
 ```{=html}
 </p>
 ```
@@ -134,7 +134,7 @@ Provides a grayscale camera stream.
 ```{=html}
 <p align="center">
 ```
-`<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/semanticcamerasensor.PNG" width="400" height="400" />`{=html}
+`<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/semanticcamerasensor.PNG"  height="400" />`{=html}
 ```{=html}
 </p>
 ```
@@ -177,7 +177,7 @@ Provides a grayscale camera stream.
 ```{=html}
 <p align="center">
 ```
-`<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_grayscale.png" width="400" height="400" />`{=html}
+`<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_grayscale.png"  height="400" />`{=html}
 ```{=html}
 </p>
 ```
@@ -212,7 +212,7 @@ the distance to the objects.
 ```{=html}
 <p align="center">
 ```
-`<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_depth.png" width="400" height="400" />`{=html}
+`<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_depth.png"  height="400" />`{=html}
 ```{=html}
 </p>
 ```
@@ -628,7 +628,7 @@ Visualize LiDAR output
 ```{=html}
 <p align="center">
 ```
-`<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/lidarsensor.PNG" width="400" height="400" />`{=html}
+`<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/lidarsensor.PNG"  height="400" />`{=html}
 ```{=html}
 </p>
 ```

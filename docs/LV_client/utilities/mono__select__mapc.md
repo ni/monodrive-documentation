@@ -1,6 +1,6 @@
 ## mono_select_map.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/utilities/mono__select__mapc.png" width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/utilities/mono__select__mapc.png"   />
 </p>
 
 ### Description 
@@ -17,3 +17,5 @@ Builds a simulator using the name specified.
 
 - **Simulator configuration out (String):** The modified simulator configuration, according to the selected map.
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+<p>&nbsp;</p>

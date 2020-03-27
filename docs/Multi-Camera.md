@@ -2,8 +2,8 @@
 
 The configuration for a multi camera sensor that streams all of the cameras in the `camera_ids` array through a single UDP port into one rendered image.
 
-<p align="center">
-<img src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/multicamerasensor.PNG" width="1000" height="250" />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/multicamerasensor.PNG" width="1000" height="250" />
 </p>
 
 ```

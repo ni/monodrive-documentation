@@ -1,7 +1,6 @@
 ## mono_start_closed_loop.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/mono__start__closed__loopc.png" 
-width="400"/>
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/mono__start__closed__loopc.png" />
 </p>
 
 ### Description 
@@ -19,3 +18,5 @@ Use this tool to start a Closed Loop  application. This takes care of the initia
 - **Trajectory configuration(String):** The string of the trajectory read in.
 - **weather profiles(Cluster):** A cluster with the weather information.
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+<p>&nbsp;</p>

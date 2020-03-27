@@ -103,21 +103,21 @@ Provides radar stream.
 
 #### Change on Short and Long Range FOV Example (with debug_frustum enable)
 <p class="img_container">
-<img class="double_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/frustrum_fov.jpg" />
+<img class="wide_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/frustrum_fov.jpg" />
 </p>
 <p>&nbsp;</p>
 
 
 #### Change Short and Long Range Distance Example (with debug_frustum enable)
 <p class="img_container">
-<img class="double_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/frustum_distance.jpg" />
+<img class="wide_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/frustum_distance.jpg" />
 </p>
 <p>&nbsp;</p>
 
 
 #### Change Elevation FOV Example (with debug_frustum enable)
 <p class="img_container">
-<img class="double_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/elevation.jpg" />
+<img class="wide_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/elevation.jpg" />
 </p>
 <p>&nbsp;</p>
 

@@ -28,7 +28,7 @@ The configuration for a bounding box sensor.
 ```
 
 ## Output Data
-See [base sensor](Base-Sensor.md) for examples on how to get the sensor. All data that comes from sensor queues is a dictionary.
+See [base sensor](Common.md) for examples on how to get the sensor. All data that comes from sensor queues is a dictionary.
 
 `data_bounding_box = bounding_box.get_message()`
 

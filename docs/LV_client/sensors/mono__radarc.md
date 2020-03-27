@@ -1,6 +1,6 @@
 ## mono_radar.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__radarc.png" width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__radarc.png"/>
 </p>
 
 ### Description
@@ -24,3 +24,4 @@ Configure and reads the stream data for the Radar sensor and outputs a outputs a
 |1D Array SGL | velocities | m/s |
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
+<p>&nbsp;</p>

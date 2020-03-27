@@ -1,3 +1,4 @@
+
 ### Parameter Format
 
 Every sensor follows the following format as the base for what you can

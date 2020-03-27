@@ -81,7 +81,7 @@ Provides a grayscale camera stream.
 
 ]
 ```
-<p align="center" class="img_container">
+<p class="img_container">
   <img class='lg_img'src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_grayscale.png" width="400" height="400" />
 </p>
 <p>&nbsp;</p>
@@ -120,7 +120,7 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
   }
 ]
 ```
-<p align="center" class="img_container">
+<p class="img_container">
   <img class='lg_img'src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camerasensor.PNG" width="400" height="400" />
 </p>
 <p>&nbsp;</p>
@@ -160,7 +160,7 @@ Provides a grayscale camera stream.
 
 ]
 ```
-<p align="center" class="img_container">
+<p class="img_container">
   <img class='lg_img'src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/semanticcamerasensor.PNG" width="400" height="400" />
 </p>
 <p>&nbsp;</p>
@@ -222,18 +222,18 @@ All cameras support the annotation feature. The annotation feature will give you
 
 ### Camera Configuration Examples
 
-<p align="center" class="img_container">
-  <img class='double_img'src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/cull_partial_frame.png" />
+<p class="img_container">
+  <img class='wide_img'src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/cull_partial_frame.png" />
 </p>
 
 #### Field Of View Example
 
-<p align="center" class="img_container">
-  <img class='double_img'src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/FOV.png" />
+<p class="img_container">
+  <img class='wide_img'src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/FOV.png" />
 </p>
 
 #### Far Plane Example
 
-<p align="center" class="img_container">
-  <img class='double_img'src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/far_plane.png" />
+<p class="img_container">
+  <img class='wide_img'src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/far_plane.png" />
 </p>

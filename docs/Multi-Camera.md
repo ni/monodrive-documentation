@@ -37,7 +37,7 @@ The configuration for a multi camera sensor that streams all of the cameras in t
 - **camera_ids**: An array of strings that representing the ids of the cameras that are to be streamed through the multi camera.
 
 ## Output Data
-See [base sensor](Base-Sensor.md) for examples on how to get the sensor. All data that comes from sensor queues is a dictionary.
+See [base sensor](Common.md) for examples on how to get the sensor. All data that comes from sensor queues is a dictionary.
 
 `data_camera= camera.get_message()`
 

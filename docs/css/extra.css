@@ -32,6 +32,10 @@ button, input, aside {
     justify-content: center;
 }
 
+.thumbnail {
+    width: 50px;
+}
+
 .sm_img {
     width: 200px;
 }
@@ -40,6 +44,12 @@ button, input, aside {
     width: 400px;
 }
 
-.double_img {
+.wide_img {
     width: 90%;
+}
+
+.center {
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
 }

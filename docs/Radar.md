@@ -1,6 +1,7 @@
-## Radar Sensor
+# Radar Sensor
 
-The configuration for a radar sensor.
+## Radar
+Provides radar stream.
 
 ```
 [
@@ -56,6 +57,14 @@ The configuration for a radar sensor.
 }
 ]
 ```
+<p>&nbsp;</p>
+
+
+
+## Configuration
+
+### Configuration Tags
+
 - **gpu_number:** Select the specific GPU number(0-N) where each radar sensor will run.
 - **send_radar_cube:** Enable to obtain the radar cube from the simulator. 
 - **paint_targets:** Tool to draw a box around the targets detected.
@@ -69,37 +78,51 @@ The configuration for a radar sensor.
 - **elevation_fov:** Pitch for the field of view (angle).
 - **debug_frustum:** Enable to visualize the FOV and distance for long and short range radar. 
 - **debug_scan:** Enable to visualize the targets detected while scanning. 
-
-### Sensor configuration examples
-
-#### Paint target enable
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/radar_paint_target.jpg" />
-</p>
-
-#### Change on short and long range FOV with debug_frustum enable 
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/frustrum_fov.jpg" />
-</p>
-
-#### Change on short and long range distance with debug_frustum enable 
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/frustum_distance.jpg" />
-</p>
-
-#### Change elavation fov with debug_frustum enable 
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/elevation.jpg" />
-</p>
-
-#### debug_scan enable 
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/debug_scan.jpg" />
-</p>
+<p>&nbsp;</p>
 
 
-### Output Data Format
+
+### Raw Output Data Format
+
 - **Ranges:** A array with the distances to targets.
-- **Angle of Arrival:** The angle where the targes are detected.
+- **Angle of Arrival:** The angle where the targets are detected.
 - **Velocities:** The velocity of the moving and stationary targets.
 - **RCS:** Radar cross-section detected by the radar. 
+<p>&nbsp;</p>
+
+
+
+### Sensor Configuration Examples
+
+#### Paint Target Enable Example
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/radar_paint_target.jpg" />
+</p>
+<p>&nbsp;</p>
+
+
+#### Change on Short and Long Range FOV Example (with debug_frustum enable)
+<p class="img_container">
+<img class="double_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/frustrum_fov.jpg" />
+</p>
+<p>&nbsp;</p>
+
+
+#### Change Short and Long Range Distance Example (with debug_frustum enable)
+<p class="img_container">
+<img class="double_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/frustum_distance.jpg" />
+</p>
+<p>&nbsp;</p>
+
+
+#### Change Elevation FOV Example (with debug_frustum enable)
+<p class="img_container">
+<img class="double_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/elevation.jpg" />
+</p>
+<p>&nbsp;</p>
+
+
+#### debug_scan Enable Example
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/debug_scan.jpg" />
+</p>

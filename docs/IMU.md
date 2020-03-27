@@ -1,9 +1,7 @@
-## IMU Sensor
-The monoDrive reports the Ego's acceleration in x,y and z axis. As well as the angular velocity in the same axis.  
-The location and orientation of the sensor can be modified in the "x", "y" and "z" axis with respect to the car.
+# IMU Sensor
 
-## IMU configuration
-The configuration for an IMU sensor.
+## IMU
+Provides IMU stream
 
 ```
 [
@@ -24,6 +22,14 @@ The configuration for an IMU sensor.
 
 ]
 ```
+<p>&nbsp;</p>
+
+
+## Configuration
+
+### Configuration Tags
+The monoDrive reports the EGO's acceleration in x, y and z axis. As well as the angular velocity in the same axis.  
+The location and orientation of the sensor can be modified in the "x", "y" and "z" axis with respect to the car.
 
 ### Raw Output Data Format 
 
@@ -41,3 +47,5 @@ Following the data format found [here](http://files.microstrain.com/dcp/Inertia-
 |Bytes 25-29 | Timestamp as indicated in the above link.|
 |Bytes 29-31 | Checksum.|
 |Byte 31-35| Time of week.|
+
+<p>&nbsp;</p>

@@ -1,10 +1,7 @@
-## GPS Sensor  
+# GPS Sensor  
 
-The GPS sensor provides the location information from the EGO vehicle such as latitude and longitude.  
-The location of the sensor can be modified in the "x", "y" and "z" axis with respect to the car.    
-The sensor's orientation can be modified in the "yaw", "pitch" and "roll" axis.
-
-## Configuration for a GPS sensor.
+## GPS
+Provides GPS stream
 
 ```
 [
@@ -24,6 +21,16 @@ The sensor's orientation can be modified in the "yaw", "pitch" and "roll" axis.
   }
 ]
 ```
+<p>&nbsp;</p>
+
+
+
+## Configuration
+
+### Configuration Tags
+The GPS sensor provides the location information from the EGO vehicle such as latitude and longitude.  
+The location of the sensor can be modified in the "x", "y" and "z" axis with respect to the car.    
+The sensor's orientation can be modified in the "yaw", "pitch" and "roll" axis.
 
 ### Raw Output Data Format
 
@@ -51,4 +58,6 @@ Following the data format found [here](https://github.com/swift-nav/libsbp/raw/m
 |Bytes 60-62  | Number of satellites used for signal  |
 |Bytes 62-64  | Fixed more status|
 |Bytes 64-66 | CRC  |
+
+<p>&nbsp;</p>
 

@@ -59,7 +59,7 @@ pages:
         - 'mono_start_replay.vi' : 'LV_client/tools/mono__start__replayc.md'
         - 'monoDrive.vi': 'LV_client/tools/monoDrivegblc.md'
         - 'monoDrive.vi': 'LV_client/tools/monoDrivegblc.md'
-        - 'mono_create_replay.vi': 'LV_client/tools/mono__create__replayc.md
+        - 'mono_create_replay.vi': 'LV_client/tools/mono__create__replayc.md'
     - 'Simulator':
         - 'mono_check_config_mode.vi': 'LV_client/simulator/mono__check__config__modec.md'
         - 'mono_connect.vi': 'LV_client/simulator/mono__connectc.md'

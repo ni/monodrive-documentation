@@ -1,1 +1,1 @@
-ivory
+mkdocs-ivory==0.4.2

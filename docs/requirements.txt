@@ -25,7 +25,6 @@ MarkupSafe==1.1.1
 matplotlib==3.1.1
 mkdocs==1.0.4
 mkdocs-ivory==0.4.2
-mkl-fft==1.0.14
 mkl-random==1.0.2
 mkl-service==2.0.2
 mpmath==1.1.0

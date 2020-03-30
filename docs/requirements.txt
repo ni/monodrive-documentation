@@ -48,7 +48,6 @@ requests==2.22.0
 rsa==3.4.2
 ruamel-yaml==0.15.46
 Rx==3.0.1
-sip==4.19.13
 six==1.12.0
 sympy==1.4
 termcolor==1.1.0

@@ -1,4 +1,6 @@
-### Example JSON
+# Vehicle Configuration
+
+## Vehicle
 ```
 {
   "id": "laptop_test",
@@ -84,4 +86,4 @@
   ]
 }
 ```
-
+<p>&nbsp;</p>

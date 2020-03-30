@@ -1,0 +1,55 @@
+main {
+    max-width: 800px;
+    background-color: #ffffff;
+    margin-left: -20px;
+    padding-left: 20px;
+    padding-top: 50px;
+    padding-right: 20px;
+    font-family: "Roboto Slab","ff-tisa-web-pro","Georgia",Arial,sans-serif;
+}
+
+@media all 
+    and (min-width: 600px) 
+    and (max-width: 1200px) {
+        main {
+            max-width: 100%;
+            padding-left: 40px;
+        }
+}
+
+body {
+    background-color: #EFEFEF;
+    color: #404040;
+}
+
+button, input, aside {
+    font-family: "Lato","proxima-nova","Helvetica Neue",Arial,sans-serif
+}
+
+.img_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.thumbnail {
+    width: 50px;
+}
+
+.sm_img {
+    width: 200px;
+}
+
+.lg_img {
+    width: 400px;
+}
+
+.wide_img {
+    width: 90%;
+}
+
+.center {
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}

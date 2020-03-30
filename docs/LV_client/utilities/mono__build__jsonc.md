@@ -1,6 +1,6 @@
 ## mono_build_json.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__build__jsonc.png" width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__build__jsonc.png"   />
 </p>
 
 ### Description 
@@ -49,3 +49,5 @@ Builds a JSON message to send via TCP with format "type", "success", "reference"
 }
 ```
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+<p>&nbsp;</p>

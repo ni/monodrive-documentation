@@ -1,29 +1,34 @@
 site_name: monoDrive Simulator
 repo_url: https://github.com/monodriveio/client
 docs_dir: docs
-theme: readthedocs
+theme: 
+  name: 'ivory'
+  navigation_depth: 6
 
-pages:
-- Home: 'index.md'
-- Configuration:
-  - 'System': 'Configuration.md'
-  - 'Simulator': 'Simulator-Configuration.md'
-  - 'Vehicle': 'Vehicle-Configuration.md'
-  - 'Sensors':
-    - 'Common': 'Base-Sensor.md'
-    - 'Camera': 'Camera.md'
-    - 'Radar': 'Radar.md'
-    - 'Ultrasonic': 'Ultrasonic.md'
-    - 'Lidar': 'Lidar.md'
-    - 'Viewport': 'Viewport.md'
-    - 'State-sensor': 'State-sensor.md'
-    - 'GPS': 'GPS.md'
-    - 'IMU': 'IMU.md'
-    - 'RPM': 'RPM.md'
-    - 'State Sensor': 'State-sensor.md'
-- LabVIEW_Client: 'LabVIEW_client.md'
-- Detailed_Help:
-    - 'Examples': 'LV_client/monoDrive_Simulator_Interface_Example.md'
+nav:
+- monoDrive :
+  - Home: 
+    - monoDrive: index.md
+  - Configuration:
+    - System: Configuration.md
+    - Simulator : Simulator-Configuration.md
+    - Vehicle : Vehicle-Configuration.md
+    - Sensor Configurations:
+        - Common: Common.md
+        - Camera: Camera.md
+        - GPS: GPS.md
+        - IMU: IMU.md
+        - Lidar: Lidar.md
+        - Radar: Radar.md
+        - RPM: RPM.md
+        - State Sensor: State-sensor.md
+        - Ultrasonic: Ultrasonic.md
+        - Viewport: Viewport.md
+
+- LabVIEW_Client: 
+  - Setup: 'LabVIEW_client.md'
+  - Examples: 'LV_client/monoDrive_Simulator_Interface_Example.md'
+  - Detailed Help:
     - 'Controls':
         - 'monoDrive.ctl': 'LV_client/structures/monoDrive.md'
     - 'Sensors':
@@ -113,9 +118,8 @@ pages:
         - 'mono_kf_update.vi': 'LV_client/shared_libraries/mono__kf__update.md'
         - 'mono_kf_init.vi': 'LV_client/shared_libraries/mono_kf_init.md'
         
+extra_css:
+    - css/extra.css        
         
-        
-    
-
 markdown_extensions:
   - admonition

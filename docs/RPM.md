@@ -1,7 +1,8 @@
-## RPM Sensor
-The monoDrive sensor give you information on the Revolutions per second on the spexified wheel. You can obtain information of the four wheels on the car (0-3). 
+# RPM Sensor
+The monoDrive sensor give you information on the Revolutions per second on the specified wheel. You can obtain information of the four wheels on the car (0-3). 
 
-## Configuration
+## RPM
+Provides RPM stream
 ```
 [
 {
@@ -21,6 +22,9 @@ The monoDrive sensor give you information on the Revolutions per second on the s
 }
 ]
 ```
+<p>&nbsp;</p>
+
+## Configuration
 
 ### Raw Output Data Format
 
@@ -28,3 +32,5 @@ The monoDrive sensor give you information on the Revolutions per second on the s
 | ------------ | ------------ |
 |Bytes 0-4  | The wheel number for the RPM sensor. |
 |Bytes 4-8 | The wheel speed in RPM for the specific RPM sensor.  |
+
+<p>&nbsp;</p>

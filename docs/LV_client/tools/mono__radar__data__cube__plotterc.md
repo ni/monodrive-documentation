@@ -1,7 +1,6 @@
 ## mono_radar_data_cube_plotter.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/mono__radar__data__cube__plotterc.png" 
-width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/mono__radar__data__cube__plotterc.png"/>
 </p>
 
 ### Description 
@@ -20,3 +19,5 @@ Use to plot the FFT of the radar cube.
 - **Fast Channel FFT:** Fast Channel FFT.
 - **Sweep Response:** Sweep Response.
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+<p>&nbsp;</p>

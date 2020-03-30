@@ -1,7 +1,7 @@
 ## mono_send_vehicle_command.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__send__vehicle__commandc.png" 
-width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__send__vehicle__commandc.png" 
+  />
 </p>
 
 ### Description 
@@ -20,3 +20,5 @@ Sends a command to the monoDrive Simulator to control the movement of ego vehicl
 ### Outputs
 
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+<p>&nbsp;</p>

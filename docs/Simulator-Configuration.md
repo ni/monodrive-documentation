@@ -1,4 +1,6 @@
-### Example JSON
+# Simulator Configuration
+
+## Simulator
 ```
 {
   "id": "simulator",
@@ -141,8 +143,14 @@
   }
 }
 ```
+<p>&nbsp;</p>
+
+## Configuration
+
+### Configuration Tags
 
 - **max_vehicles**: Maximum number of vehicles spawn in the map.
 - Open the configuration you want to use in the configurations folder and you can change the `server_ip` (the ip address of the computer running the simulator), the `server_port` (the port for the simulator, should be 8998), and the `client_ip` (the ip address of the computer running the simulator). If both simulator and client are running on the same computer use localhost as the ip addresses (127.0.0.1).
 - The optional `ego_config` specifies the model, color, and UE4 chase camera location for the vehicle. If `ego_config` is omitted from the file, then a random vehicle and color will be chosen. The `body`'s `type` specifier allows you to provide a path the model BluePrint for the Ego Vehicle and the `color` specifies the vehicle's color. The `camera` key allows you to specify the location and orientation of the chase camera that will be rendered in the simulator window.
 - In this configuration you can also change the physical material properties for the specular exponent (10-100), specular reflection coefficient (0.0-1.0), diffuse reflection coefficient (0.0-1.0), dielectric constant (0.10-10,000+), and roughness (0.0-1.0).
+<p>&nbsp;</p>

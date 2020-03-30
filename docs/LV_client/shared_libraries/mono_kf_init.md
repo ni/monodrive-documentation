@@ -1,7 +1,7 @@
 ## mono_kf_init.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/shared_libraries/mono__kf__initc.png" 
-width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/shared_libraries/mono__kf__initc.png" 
+  />
 </p>
 
 ### Description 
@@ -16,3 +16,5 @@ Initialize a `KalmanFilter` object.
 - **DLL path out(Path:** Path to the Release or Debug DLL.  .
 - **inti:** return value if executed succesfully .
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+<p>&nbsp;</p>

@@ -1,9 +1,6 @@
-## State Sensor
+# State Sensor
 
-The monoDrive state sensor reports information of all objects included in the **desired_tags** list. 
-It will ignore the objects in the **undesired_tags** list.  
-
-#### Configuration
+## State
 ```
 [
  {
@@ -21,6 +18,16 @@ It will ignore the objects in the **undesired_tags** list.
 
 ]
 ```
+<p>&nbsp;</p>
+
+
+
+## Configuration
+
+### Configuration Tags
+The monoDrive state sensor reports information of all objects included in the **desired_tags** list. 
+It will ignore the objects in the **undesired_tags** list.
+
 
 ### Raw Output Example
 ```
@@ -67,4 +74,4 @@ It will ignore the objects in the **undesired_tags** list.
 	"time": 1558625081
 }
 ```
-
+<p>&nbsp;</p>

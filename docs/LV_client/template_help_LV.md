@@ -1,7 +1,7 @@
 ## .vi
-<p align="center">
-<img src="" 
-width="400"  />
+<p class="img_container">
+<img class="lg_img" src="" 
+  />
 </p>
 
 ### Description 

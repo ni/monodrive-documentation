@@ -1,6 +1,6 @@
 ## mono_GrayScaleToSimulink.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/mono__GrayScaleToSimulinkc.png" width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/mono__GrayScaleToSimulinkc.png"/>
 </p>
 
 ### Description 
@@ -13,3 +13,5 @@ Used to send a Grayscale image to matlab.
 
 ### Outputs
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+<p>&nbsp;</p>

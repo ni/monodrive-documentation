@@ -1,7 +1,6 @@
 ## mono_weather_id.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/weather/mono__weather__idc.png" 
-width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/weather/mono__weather__idc.png"/>
 </p>
 
 ### Description 
@@ -22,3 +21,5 @@ Obtains the weather id name selected by the user.
 - **monoConfig out(Cluster):** Refer to monoConfig cluster.
 - **id:** Name of the weather configuration.
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+<p>&nbsp;</p>

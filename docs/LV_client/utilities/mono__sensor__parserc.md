@@ -1,6 +1,6 @@
 ## mono_sensor_parser.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__sensor__parserc.png" width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__sensor__parserc.png"   />
 </p>
 
 ### Description 
@@ -21,3 +21,5 @@ Gets Sensor type and ports from the configuration text.
 - **Port out (Int):** Port obtained .
 - **EOL (Boolean):** End of the file .
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+<p>&nbsp;</p>

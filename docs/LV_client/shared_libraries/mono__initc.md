@@ -1,7 +1,7 @@
 ## mono_initc.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/shared_libraries/mono__initc.png" 
-width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/shared_libraries/mono__initc.png" 
+  />
 </p>
 
 ### Description 
@@ -17,3 +17,5 @@ Initialized a `LaneFollower` object on the DLL.
 - **DLL path in:** Path to the Release or Debug DLL.
 - **return:** Return value if executed succesfully.
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+<p>&nbsp;</p>

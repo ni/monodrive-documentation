@@ -1,6 +1,6 @@
 ## mono_lidar.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__lidarc.png" width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__lidarc.png"/>
 </p>
 
 ### Description
@@ -15,3 +15,4 @@ Configure and procces the data stream for LiDAR sensor. This VI also forward the
 - **time_zero (U32):** Timestamp of the first azimuth.
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
+<p>&nbsp;</p>

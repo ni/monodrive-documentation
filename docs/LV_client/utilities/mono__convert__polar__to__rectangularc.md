@@ -1,6 +1,6 @@
 ## mono_convert_polar_to_rectangular.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__convert__polar__to__rectangularc.png" width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/utilities/mono__convert__polar__to__rectangularc.png"   />
 </p>
 
 ### Description 
@@ -31,3 +31,5 @@ Converts polar coordinates from the Velodyne to rectangular.
 |SGL | Y  |
 |SGL | Z  |
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+<p>&nbsp;</p>

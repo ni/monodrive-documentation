@@ -1,7 +1,7 @@
 # mono_kf_updatec.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/shared_libraries/mono__kf__updatec.png" 
-width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/shared_libraries/mono__kf__updatec.png" 
+  />
 </p>
 
 ### Description 
@@ -17,3 +17,5 @@ Call the function `Update` from the DLL.
 - **KF_dll_path :** Path to the Release or Debug DLL. .
 - **aoa_kf :** Aoa value from the Kalman Filter.
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+<p>&nbsp;</p>

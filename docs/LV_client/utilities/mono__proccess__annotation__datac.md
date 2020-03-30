@@ -1,7 +1,7 @@
 ## mono_proccess_annotation_data.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/utilities/mono__proccess__annotation__datac.png" 
-width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/utilities/mono__proccess__annotation__datac.png" 
+  />
 </p>
 
 ### Description 
@@ -18,3 +18,5 @@ Tool to draw bounding boxes on top an image based on the annotation data provide
 - **Image_out :** The output image with the bounding box drawn based on the annotation data.
 - **Annotation data cluster :** A cluster with the bounding box information and tags.
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+<p>&nbsp;</p>

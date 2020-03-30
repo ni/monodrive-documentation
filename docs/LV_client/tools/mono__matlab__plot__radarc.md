@@ -1,6 +1,6 @@
 ## mono_matlab_plot_radar.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/mono__matlab__plot__radarc.png"  /mono__matlab__plot__radarc.png" </p>
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/mono__matlab__plot__radarc.png"/>  </p>
 
 ### Description 
 Process radar data cube and run a Matlab script to plot Radar data.

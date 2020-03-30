@@ -1,6 +1,6 @@
 ## mono__radar__ground__truth.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__radar__ground__truthc.png" width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__radar__ground__truthc.png"/>
 </p>
 
 ### Description
@@ -23,3 +23,4 @@ Configures and reads the stream data for the Ground Truth Radar sensor and outpu
 - **Radar Data Cube (String):** Raw data.
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
+<p>&nbsp;</p>

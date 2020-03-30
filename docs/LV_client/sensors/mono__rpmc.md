@@ -1,6 +1,6 @@
 ## mono_rpm.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__rpmc.png" width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__rpmc.png"/>
 </p>
 
 ### Description
@@ -22,3 +22,4 @@ Configure and read the RPM information of the vehicle.
 
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
+<p>&nbsp;</p>

@@ -1,4 +1,6 @@
-### Parameter Format
+# Common Sensor
+
+## Parameter Format
 
 Every sensor follows the following format as the base for what you can do with a sensor. The individual sensor pages will explain their own parameters in addition to these base parameters. 
 
@@ -23,6 +25,8 @@ Every sensor follows the following format as the base for what you can do with a
       "fps": float
 }
 ```
+
+## Configuration
 
 - **type**: The values of type can be: `MultiCamera`, `Camera`, `Semantic`, `Lidar`, `IMU`, `GPS`, `RPM`, `Radar`, `Waypoint`, or `BoundingBox` depending on what type of sensor you are trying to set up.
 - **listen_port**: The TCP or UDP port that the simulator must send the data through for that sensor to get the data to the client.

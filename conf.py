@@ -1,1 +1,3 @@
-master_doc = 'index'
+mkdocs:
+  configuration: mkdocs.yml
+  fail_on_warning: false

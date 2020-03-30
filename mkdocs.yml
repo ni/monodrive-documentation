@@ -5,7 +5,7 @@ theme:
   name: 'ivory'
   navigation_depth: 6
 
-nav:
+pages:
 - monoDrive :
   - Home: 
     - monoDrive: index.md
@@ -39,6 +39,7 @@ nav:
         - 'mono_gps.vi': 'LV_client/sensors/mono__gpsc.md'
         - 'mono_imu.vi': 'LV_client/sensors/mono__imuc.md'
         - 'mono_lidar.vi': 'LV_client/sensors/mono__lidarc.md'
+        - 'mono_semantic_lidar.vi': 'LV_client/sensors/mono__semantic__lidarc.md'
         - 'mono_radar.vi': 'LV_client/sensors/mono__radarc.md'
         - 'mono_radar_ground_truth.vi': 'LV_client/sensors/mono__radar__ground__truthc.md'
         - 'mono_rpm.vi': 'LV_client/sensors/mono__rpmc.md'

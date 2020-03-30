@@ -1,6 +1,0 @@
-version: 2
-requirements_file: docs/requirements.txt
-python:
-  version: 3.5
-  install:
-    - method: pip

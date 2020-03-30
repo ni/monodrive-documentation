@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-mkdocs-ivory
-=======
-mkdocs-ivory==0.4.2
->>>>>>> cd583befd0087bb5ff0b8bc9dbc0e919167395e0
+ivory==0.4.2

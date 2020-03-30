@@ -1,6 +1,6 @@
 ## mono_send_command.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/simulator/mono__send__commandc.png" width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/simulator/mono__send__commandc.png"/>
 </p>
 
 ### Description 
@@ -28,3 +28,5 @@ Send a command via TCP with format "type", "success", "reference",  "message". T
 - **success :** True if the configuration was succesful, otherwise False .
 - **response :** Response from the server.
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+<p>&nbsp;</p>

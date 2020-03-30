@@ -1,7 +1,6 @@
 ## mono_ncap_sensor.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/sensors/mono__ncap__sensorc.png" 
-width="400"  />
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/sensors/mono__ncap__sensorc.png"/>
 </p>
 
 ### Description 
@@ -18,3 +17,5 @@ It reports if a collision was present during the simulation.
 It reports if a collision was present during the simulation.
 - **NCAP Configuration:**  .
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+
+<p>&nbsp;</p>

@@ -26,9 +26,16 @@ pages:
         - Viewport: Viewport.md
 
 - LabVIEW_Client: 
-  - Setup: 'LabVIEW_client.md'
-  - Examples: 'LV_client/monoDrive_Simulator_Interface_Example.md'
-  - Detailed Help:
+  - Quick Start: 
+    - Setup: 'LV_client/quick_start/LabVIEW_client_quick_start.md'
+    - Run Examples: 'LV_client/quick_start/LabVIEW_run_examples.md'
+    - Configuration Examples: 'LV_client/quick_start/LabView_configurations.md'
+    - FAQ: 'LV_client/quick_start/FAQ.md'
+
+  - Quick Start: 
+    - Setup: 'LabVIEW_client.md'
+    - Examples: 'LV_client/monoDrive_Simulator_Interface_Example.md'
+  - LabVIEW Detailed Help:
     - 'Controls':
         - 'monoDrive.ctl': 'LV_client/structures/monoDrive.md'
     - 'Sensors':

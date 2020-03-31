@@ -62,8 +62,8 @@ Repeat the same title twice, once for the overall section, and one for the basic
 
 ## Additional Header Example Information
 
-Headers need to go in order, so for instance, resist going from a h2 ## to an h4 #### for any reason. This could break the side panel. 
-Any sub-sections that get to h4 or smaller will not be included in the side panel. This probably indicates that you need to break down your information into more manageable chunks for the user. 
+Headers need to go in order, so for instance, resist going from a h2 ## to an h4 ####. This might break the styling of the side panel. 
+Any sub-sections that get to h4 or smaller will not be included in the side panel, and will show the same as h3 ###. This probably indicates a need to break down the information into more manageable chunks for the user. 
 
 ### Sub-Header is Seen and Clickable in Side Panel
 

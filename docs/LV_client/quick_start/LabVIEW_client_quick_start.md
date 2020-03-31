@@ -35,13 +35,27 @@
 
 1. Navigate to the monoDriveClient folder, you can find it on your NI Examples, typically on:
 
-*C:\Program Files\National Instruments\LabVIEW 2019\examples\monoDrive\monoDriveClient* 
+    *C:\Program Files\National Instruments\LabVIEW 2019\examples\monoDrive\monoDriveClient* 
 
-<div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/openLabview1.png"/>
-</div>
+        You can also find the examples on the NI example Finder.
 
-You can also find the examples on the NI example Finder.
+        Navigate to Help -> Find Examples...
+
+        Select Directory Structure
+
+        Expand the monoDrive folder
+
+
+    <div class="img_container">
+    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/find_examples.png"/>
+    </div>
+
+    <div class="img_container">
+    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/find_examples2.png"/>
+    </div>
+
+
+    You can also find the examples on the NI example Finder.
 
 2. The client provides the following examples:
 

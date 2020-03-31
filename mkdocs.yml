@@ -6,6 +6,7 @@ theme:
   navigation_depth: 6
 
 pages:
+- readme : read.md
 - monoDrive :
   - Home: 
     - monoDrive: index.md

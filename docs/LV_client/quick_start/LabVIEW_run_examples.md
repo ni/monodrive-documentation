@@ -94,8 +94,9 @@
 <p>&nbsp;</p>
 
 ### Lane Follower Example.
+This example is in experimental stage.
 
-1. Make sure you build the Lane Follower dll, following the instruction on the README.md found on the “examples_cpp_dll” directory
+1. Make sure you build the Lane Follower dll, following the instruction on the README.md found on the “experimental” directory
 
 2. Click on the arrow on the top-left corner to runt the client.
 
@@ -108,8 +109,9 @@
 <p>&nbsp;</p>
 
 ### Radar with Kalman Filter Example
+This example is in experimental stage.
 
-1. Make sure you build the Kalman Filter dll, following the instruction on the README.md found on the “examples_cpp_dll” directory.
+1. Make sure you build the Kalman Filter dll, following the instruction on the README.md found on the “experimental” directory.
 
 2. Click on the arrow on the top-left corner to runt the client.
 

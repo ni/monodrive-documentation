@@ -85,7 +85,7 @@ To center an image, wrap in a div with the class img_container like in the examp
 
         <img class="thumbnail" src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
 
-    <img class="thumbnail" src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
+    <img width=50px src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
 
  - sm_img { width: 200px }
 

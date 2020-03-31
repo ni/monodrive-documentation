@@ -1,38 +1,40 @@
 # monoDrive Docs
 
-### Getting Started
+## Getting Started
 
 - Clone project
 
+```bash
+$ git clone git@github.com:monoDriveIO/documentation.git
+```
+
 - Create python environment 
 
-    *Supports Python versions 2.7.9+, 3.4, 3.5, 3.6, 3.7, and pypy.*
+```bash
+$ conda create --name monodrive-documentation environment.yml
+$ conda activate monodrive-documentation
+```
 
 - Docs are created using [mkdocs](https://www.mkdocs.org) with the theme [*ivory*](https://github.com/daizutabi/mkdocs-ivory)
-
-```bash 
-    pip install mkdocs
-    pip install mkdocs-ivory
-```
 
 - Run in development on [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 ```bash
-    mkdocs serve
+(monodrive-documentation) $ mkdocs serve
 ```
 
 <p>&nbsp;</p>
 
 
-### Build
+## Build
 
-- Login/create user to [readthedocs](https://readthedocs.org/) *through github preferably for easy access to monodrive*
+- Login/create user to [readthedocs](https://readthedocs.org/) *preferably through github for easy access to monodrive*
 
-- Get access to be a maintainer through someone who is already a maintainer. (like me, Katie)
+- Get access to be a maintainer through someone who is already a maintainer. (like me, [Katie](katie@monodrive.io))
 
 - After having access, click on >> My Projects >> monoDrive
 
-- Select *latest* and Build Version.
+- Select **latest** and Build Version.
 
 <p>&nbsp;</p>
 

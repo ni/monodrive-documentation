@@ -4,7 +4,9 @@
 
 - Clone project
 
-- Create python environment *Supports Python versions 2.7.9+, 3.4, 3.5, 3.6, 3.7, and pypy.*
+- Create python environment 
+
+    *Supports Python versions 2.7.9+, 3.4, 3.5, 3.6, 3.7, and pypy.*
 
 - Docs are created using [mkdocs](https://www.mkdocs.org) with the theme [*ivory*](https://github.com/daizutabi/mkdocs-ivory)
 

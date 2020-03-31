@@ -91,19 +91,19 @@ To center an image, wrap in a div with the class img_container like in the examp
 
         <img class="sm_img" src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
 
-    <img class="sm_img" src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
+    <img width=200px src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
 
  - lg_img { width: 400px }
 
         <img class="lg_img" src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
 
-    <img class="lg_img" src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
+    <img width=400px src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
 
  - wide_img { width: 90% }
 
         <img class="wide_img" src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
 
-    <img class="wide_img" src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
+    <img width=90% src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
 
 Add custom image sizes in [extra.css](https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/css/extra.css)
 

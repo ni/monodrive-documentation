@@ -36,6 +36,18 @@ Configures the material properties for the elements in the simulation such as th
 
 ### Sensor Configuration
 
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__camerac.png"/>
+</p>
+
+To change the configuration of any sensor, double-click on the sensor subVI and make the changes you need. 
+Make sure you save the configuration as default value so that is persistent the next time you open your application.
+
+<div class="img_container">
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/sensor_file.png"/>
+</div>
+
+
 ### Sensor Output
 
 ### Add Sensors

@@ -11,7 +11,7 @@
 4. Install the monoDrive Client from the VI Package Manager. *Make sure you run the VI Package Manager as Administrator.*
 
 <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/LV_client/quick_start_img/prereq.png"/>
+    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/prereq.png"/>
 </div>
 
 <p>&nbsp;</p>
@@ -25,6 +25,10 @@
 
 3. Move to one side of your screen
 
+<div class="img_container">
+    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/runVehicleAI.png"/>
+</div>
+
 <p>&nbsp;</p>
 
 ## Open the LabVIEW Client
@@ -32,6 +36,10 @@
 1. Navigate to the monoDriveClient folder, you can find it on your NI Examples, typically on:
 
 *C:\Program Files\National Instruments\LabVIEW 2019\examples\monoDrive\monoDriveClient* 
+
+<div class="img_container">
+    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/openLabview1.png"/>
+</div>
 
 You can also find the examples on the NI example Finder.
 

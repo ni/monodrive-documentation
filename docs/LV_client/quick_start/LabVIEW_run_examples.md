@@ -14,6 +14,10 @@
 
 6. Select a different position to start if desired.
 
+<div class="img_container">
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/CL_example.png"/>
+</div>
+
 <p>&nbsp;</p>
 
 
@@ -27,6 +31,10 @@
 3. Use the browser button to find other scenarios, you can find them typically on:
 
 *C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\trajectories*
+
+<div class="img_container">
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/replay_example.png"/>
+</div>
 
 <p>&nbsp;</p>
 
@@ -45,8 +53,11 @@
 5. Use the browser button to find other scenarios, you can find them typically on:
 *C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\trajectories*
 
-<p>&nbsp;</p>
+<div class="img_container">
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/replay_controls.png"/>
+</div>
 
+<p>&nbsp;</p>
 
 
 
@@ -61,6 +72,10 @@
 4. Use the browser button to find other scenarios, you can find them typically on:
 *C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\trajectories*
 
+<div class="img_container">
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/hil_example.png"/>
+</div>
+
 
 <p>&nbsp;</p>
 
@@ -72,6 +87,9 @@
 
 3. On the block diagram is explained how to replace 
 
+<div class="img_container">
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/multi_vehicle.png"/>
+</div>
 
 <p>&nbsp;</p>
 
@@ -83,6 +101,9 @@
 
 3. You will see the ego vehicle moving on the right-lane of the Highway Track.
 
+<div class="img_container">
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/lane_follow.png"/>
+</div>
 
 <p>&nbsp;</p>
 
@@ -95,6 +116,10 @@
 3. You will see the ego vehicle following the trajectory defined on the Car-to-Car-Stationary.json file.
 
 4. On the Block Dia
+
+<div class="img_container">
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/radar.png"/>
+</div>
 
 
 For technical support contact us at <b>support@monodrive.io</b>

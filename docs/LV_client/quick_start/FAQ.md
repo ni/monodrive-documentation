@@ -7,7 +7,7 @@
 2. I get this pop-up when I ran the simulator
 
     <div class="img_container">
-        <img class='sm_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/faq.png"/>
+        <img class='sm_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/faq.png"/>
     </div>
 
     - The simulator is not running. Go to your VehicleAI directory and double click on the VehicleAI.exe, then try again.**

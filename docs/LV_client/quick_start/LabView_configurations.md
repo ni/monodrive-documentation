@@ -46,7 +46,7 @@ To change the configuration of any sensor, double-click on the sensor subVI and 
 Make sure you save the configuration as default value so that is persistent the next time you open your application.
 
 <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/sensor_file.png"/>
+    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/sensor_file.png"/>
 </div>
 
    **NOTE:**
@@ -284,11 +284,11 @@ Make sure you save the configuration as default value so that is persistent the 
 Double-click on each sensor to look at the output of each sensor while running.
 
 <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/output1.png"/>
+    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/output1.png"/>
 </div>
 
 <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/output2.png"/>
+    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/output2.png"/>
 </div>
 
 <p>&nbsp;</p>
@@ -299,7 +299,7 @@ The easiest way to add a new sensor to your application is to create a copy of t
 Then grab and drop the second sensor into your application and connect appropriately.
 
 <div class="img_container">
-    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/add_sensor.png"/>
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/add_sensor.png"/>
 </div>
 
 <p>&nbsp;</p>
@@ -455,7 +455,7 @@ If an error occurred during the execution, the error cluster will give you infor
 
 
 <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/error.png"/>
+    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/error.png"/>
 </div>
 
 <p>&nbsp;</p>

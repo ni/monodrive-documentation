@@ -1,36 +1,40 @@
 # monoDrive Docs
 
-### Getting Started
+## Getting Started
 
 - Clone project
 
-- Create python environment *Supports Python versions 2.7.9+, 3.4, 3.5, 3.6, 3.7, and pypy.*
+```bash
+$ git clone git@github.com:monoDriveIO/documentation.git
+```
+
+- Create python environment 
+
+```bash
+$ conda create --name monodrive-documentation environment.yml
+$ conda activate monodrive-documentation
+```
 
 - Docs are created using [mkdocs](https://www.mkdocs.org) with the theme [*ivory*](https://github.com/daizutabi/mkdocs-ivory)
-
-```bash 
-    pip install mkdocs
-    pip install mkdocs-ivory
-```
 
 - Run in development on [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 ```bash
-    mkdocs serve
+(monodrive-documentation) $ mkdocs serve
 ```
 
 <p>&nbsp;</p>
 
 
-### Build
+## Build
 
-- Login/create user to [readthedocs](https://readthedocs.org/) *through github preferably for easy access to monodrive*
+- Login/create user to [readthedocs](https://readthedocs.org/) *preferably through github for easy access to monodrive*
 
-- Get access to be a maintainer through someone who is already a maintainer. (like me, Katie)
+- Get access to be a maintainer through someone who is already a maintainer. (like me, [Katie](katie@monodrive.io))
 
 - After having access, click on >> My Projects >> monoDrive
 
-- Select *latest* and Build Version.
+- Select **latest** and Build Version.
 
 <p>&nbsp;</p>
 
@@ -62,8 +66,8 @@ Repeat the same title twice, once for the overall section, and one for the basic
 
 ## Additional Header Example Information
 
-Headers need to go in order, so for instance, resist going from a h2 ## to an h4 #### for any reason. This could break the side panel. 
-Any sub-sections that get to h4 or smaller will not be included in the side panel. This probably indicates that you need to break down your information into more manageable chunks for the user. 
+Headers need to go in order, so for instance, resist going from a h2 ## to an h4 ####. This might break the styling of the side panel. 
+Any sub-sections that get to h4 or smaller will not be included in the side panel, and will show the same as h3 ###. This probably indicates a need to break down the information into more manageable chunks for the user. 
 
 ### Sub-Header is Seen and Clickable in Side Panel
 
@@ -85,25 +89,25 @@ To center an image, wrap in a div with the class img_container like in the examp
 
         <img class="thumbnail" src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
 
-    <img class="thumbnail" src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
+    <img width=50px src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
 
  - sm_img { width: 200px }
 
         <img class="sm_img" src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
 
-    <img class="sm_img" src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
+    <img width=200px src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
 
  - lg_img { width: 400px }
 
         <img class="lg_img" src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
 
-    <img class="lg_img" src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
+    <img width=400px src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
 
  - wide_img { width: 90% }
 
         <img class="wide_img" src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
 
-    <img class="wide_img" src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
+    <img width=90% src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
 
 Add custom image sizes in [extra.css](https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/css/extra.css)
 

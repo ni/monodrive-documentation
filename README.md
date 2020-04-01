@@ -109,7 +109,7 @@ To center an image, wrap in a div with the class img_container like in the examp
 
     <img width=90% src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
 
-Add custom image sizes in [extra.css](https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/css/extra.css)
+Add custom image sizes in [extra.css](https://github.com/monoDriveIO/documentation/raw/master/docs/css/extra.css)
 
 <p>&nbsp;</p>
 

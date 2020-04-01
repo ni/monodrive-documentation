@@ -15,7 +15,7 @@
 6. Select a different position to start if desired.
 
 <div class="img_container">
-    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/CL_example.png"/>
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/CL_example.png"/>
 </div>
 
 <p>&nbsp;</p>
@@ -30,10 +30,10 @@
 
 3. Use the browser button to find other scenarios, you can find them typically on:
 
-*C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\trajectories*
+    *C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\trajectories*
 
 <div class="img_container">
-    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/replay_example.png"/>
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/replay_example.png"/>
 </div>
 
 <p>&nbsp;</p>
@@ -54,7 +54,7 @@
 *C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\trajectories*
 
 <div class="img_container">
-    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/replay_controls.png"/>
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/replay_controls.png"/>
 </div>
 
 <p>&nbsp;</p>
@@ -73,7 +73,7 @@
 *C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\trajectories*
 
 <div class="img_container">
-    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/hil_example.png"/>
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/hil_example.png"/>
 </div>
 
 
@@ -88,7 +88,7 @@
 3. On the block diagram is explained how to replace 
 
 <div class="img_container">
-    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/multi_vehicle.png"/>
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/multi_vehicle.png"/>
 </div>
 
 <p>&nbsp;</p>
@@ -103,7 +103,7 @@ This example is in experimental stage.
 3. You will see the ego vehicle moving on the right-lane of the Highway Track.
 
 <div class="img_container">
-    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/lane_follow.png"/>
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/lane_follow.png"/>
 </div>
 
 <p>&nbsp;</p>
@@ -120,7 +120,7 @@ This example is in experimental stage.
 4. On the Block Dia
 
 <div class="img_container">
-    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/links_and_giffs/docs/LV_client/quick_start_img/radar.png"/>
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/radar.png"/>
 </div>
 
 

@@ -9,13 +9,13 @@
 
 ## Setup
 
-1. Download LabVIEW 2019 (64 bit) 
+1. Download LabVIEW 2018 (32 bit) from this [website](http://www.ni.com/download/labview-development-system-2018/7406/en/).
 
-2. Install Unreal Engine from [here](https://www.unrealengine.com/en-US/).
+2. Download VeloView from this [website](https://www.paraview.org/download/).
 
-3. Download the monoDrive Simulator from [here](https://www.monodrive.io/register).
+3. Download the monoDrive Simulator from [here](https://lumen.ni.com/nicif/US/GB_EVALTLKTLVMONODRIVE/content.xhtml).
 
-4. Install the monoDrive Client from the VI Package Manager. *Make sure you run the VI Package Manager as Administrator.*
+4. Download the monoDrive Client from the VIPM (installed with LabVIEW). Look for *monoDrive* on the VIPM browser.
 
 
     **NOTE:**
@@ -79,4 +79,3 @@ This example demonstrates how to use LabVIEW as a client for the monoDrive Simul
 
 For technical support contact us at <b>support@monodrive.io</b>
 <p>&nbsp;</p>
-

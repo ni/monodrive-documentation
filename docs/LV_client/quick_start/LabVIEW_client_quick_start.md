@@ -44,9 +44,7 @@
 
 3. Go to your VehicleAI_Editor directory and find VehicleAI.uproject
 
-4. Double-click on VehicleAI.exe
-
-5. Move to one side of your screen
+4. Double-click on VehicleAI.uproject
 
     **NOTE** 
     To edit project files, right click and select Generate Visual Studio project files. Once done creating files, double-click on VehicleAI.sIn.

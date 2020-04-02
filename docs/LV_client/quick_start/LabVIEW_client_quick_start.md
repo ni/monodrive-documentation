@@ -19,7 +19,7 @@
 
 ## Run the VehicleAI Simulator
 
-1. Run the simulator : Go to your VehicleAI directory and find VehicleAI.exe
+1. Go to your VehicleAI directory and find VehicleAI.exe
 
 2. Double-click on VehicleAI.exe
 
@@ -36,7 +36,7 @@
 
 1. Download Visual Studio from [here](https://visualstudio.microsoft.com/)
 
-2. Run the simulator : Open VehicleAI_Editor zip file and extract all files
+2. Open VehicleAI_Editor zip file and extract all files
 
     <div class="img_container">
     <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/sensor_editor_extract.png"/>

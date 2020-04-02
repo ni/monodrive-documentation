@@ -26,17 +26,15 @@ pages:
         - Viewport: Viewport.md
 
 - LabVIEW_Client: 
-  - Quick Start 2019 Version: 
+  - Quick Start: 
     - Setup: 'LV_client/quick_start/LabVIEW_client_quick_start.md'
     - Run Examples: 'LV_client/quick_start/LabVIEW_run_examples.md'
     - Configuration Examples: 'LV_client/quick_start/LabView_configurations.md'
     - Scenario Editor: Scenario_editor.md
     - FAQ: 'LV_client/quick_start/FAQ.md'
-
-  - Quick Start 2018 Version: 
-    - Setup: 'LabVIEW_client.md'
-    - Examples: 'LV_client/monoDrive_Simulator_Interface_Example.md'
-
+  # - Quick Start 2018 Version: 
+  #   - Setup: 'LabVIEW_client.md'
+  #   - Examples: 'LV_client/monoDrive_Simulator_Interface_Example.md'
   - LabVIEW Detailed Help:
     - 'Controls':
         - 'monoDrive.ctl': 'LV_client/structures/monoDrive.md'

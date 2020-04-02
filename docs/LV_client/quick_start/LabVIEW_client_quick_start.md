@@ -59,13 +59,13 @@
 
 2. The client provides the following examples:
 
-    - [mono_closed_loop_example.vi](/LV_client/quick_start/LabVIEW_run_examples/#closed-loop-example)
-    - [mono_replay_example.vi](/LV_client/quick_start/LabVIEW_run_examples/#replay-example)
-    - [mono_replay_controls_example.vi](/LV_client/quick_start/LabVIEW_run_examples/#replay-controls)
-    - [mono_multi_vehicle_pose_update_example.vi](/LV_client/quick_start/LabVIEW_run_examples/#multi-vehicle-pose-update-example)
-    - [mono_hil_example.vi](/LV_client/quick_start/LabVIEW_run_examples/#hil-example)
-    - [mono_lane_follower_cpp_dll.vi](/LV_client/quick_start/LabVIEW_run_examples/#lane-follower-example)
-    - [mono_radar_with_kalman_filter_cpp_dll.vi](/LV_client/quick_start/LabVIEW_run_examples/#radar-with-kalman-filter-example)
+    - mono_closed_loop_example.vi
+    - mono_replay_example.vi
+    - mono_replay_controls_example.vi
+    - mono_multi_vehicle_pose_update_example.vi
+    - mono_hil_example.vi
+    - mono_lane_follower_cpp_dll.vi
+    - mono_radar_with_kalman_filter_cpp_dll.vi
 
 3. Double-click on the VI to open the example.
 

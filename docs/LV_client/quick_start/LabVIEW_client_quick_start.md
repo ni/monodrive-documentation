@@ -39,7 +39,7 @@
 2. Run the simulator : Open VehicleAI_Editor zip file and extract all files
 
     <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/editor_quick_start/docs/LV_client/quick_start_img/sensor_editor_extract.png"/>
+    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/sensor_editor_extract.png"/>
     </div>
 
 3. Go to your VehicleAI_Editor directory and find VehicleAI.uproject

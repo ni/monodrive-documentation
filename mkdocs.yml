@@ -30,6 +30,7 @@ pages:
     - Setup: 'LV_client/quick_start/LabVIEW_client_quick_start.md'
     - Run Examples: 'LV_client/quick_start/LabVIEW_run_examples.md'
     - Configuration Examples: 'LV_client/quick_start/LabView_configurations.md'
+    - Scenario Editor: Scenario_editor.md
     - FAQ: 'LV_client/quick_start/FAQ.md'
 
   - Quick Start 2018 Version: 

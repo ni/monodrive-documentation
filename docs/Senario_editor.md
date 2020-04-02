@@ -30,3 +30,11 @@
     <div class="img_container">
     <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/editor_quick_start/docs/LV_client/quick_start_img/vehicle-sIn.png"/>
     </div>
+
+## Compile and Run
+
+1. Play Simulator
+
+    <div class="img_container">
+    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/editor_quick_start/docs/LV_client/quick_start_img/play.png"/>
+    </div>

@@ -4,7 +4,7 @@
 
 1. Download LabVIEW 2019 (64 bit) 
 
-2. Install Unreal Engine from [here](https://www.unrealengine.com/en-US/).
+2. Install Unreal Engine **4.23** from [here](https://www.unrealengine.com/en-US/).
 
 3. Download the monoDrive Simulator or monoDrive Simulator Editor from [here](https://www.monodrive.io/register).
 
@@ -37,7 +37,7 @@ Quick start instructions and details on how to generate project files in the Veh
 
 1. Download Visual Studio from [here](https://visualstudio.microsoft.com/).
 
-    - You'll want to make sure that you have the following options enable, if you do not have Unreal Engine already installed there is an option to install it here.
+    - You'll want to make sure that you have the following options enable, if you do not have Unreal Engine **4.23** already installed there is an option to install it here.
 
     <div class="img_container">
     <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/c++.png"/>

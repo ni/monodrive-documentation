@@ -7,7 +7,7 @@
     - You'll want to make sure that you have the following options enable, if you do not have Unreal Engine already installed there is an option to install it here.
 
     <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/c++.png"/>
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/c++.png"/>
     </div>
 
     *For more information, check [here](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html)*
@@ -49,5 +49,9 @@
     <div class="img_container">
     <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/play.png"/>
     </div>
+
+    <p>&nbsp;</p>
+
+    Go back to [LabVIEW Setup](LabVIEW_client_quick_start.md)
 
     <p>&nbsp;</p>

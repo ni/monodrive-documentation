@@ -2,9 +2,11 @@
 
 ## Getting Started
 
-1. Download Visual Studio from [here](https://visualstudio.microsoft.com/)
+1. Install Unreal Engine **4.23** from [here](https://www.unrealengine.com/en-US/).
 
-    - You'll want to make sure that you have the following options enable, if you do not have Unreal Engine **4.23** already installed there is an option to install it here.
+2. Download Visual Studio from [here](https://visualstudio.microsoft.com/)
+
+    - You'll want to make sure that you have the following options enable.
 
     <div class="img_container">
     <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/c++.png"/>
@@ -13,15 +15,15 @@
     *For more information, check [here](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html)*
 
 
-2. Download the monoDrive Simulator Editor from [here](https://www.monodrive.io/register).
+3. Download the monoDrive Simulator Editor from [here](https://www.monodrive.io/register).
 
-3. Open VehicleAI_Editor zip file and extract all files
+4. Open VehicleAI_Editor zip file and extract all files
 
     <div class="img_container">
     <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/sensor_editor_extract.png"/>
     </div>
 
-3. Go to your VehicleAI_Editor directory and find VehicleAI.uproject
+5. Go to your VehicleAI_Editor directory and find VehicleAI.uproject
 
     **NOTE** 
     You can run the simulator by opening VehicleAI.uproject

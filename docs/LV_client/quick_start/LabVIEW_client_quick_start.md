@@ -37,7 +37,7 @@ Quick start instructions and details on how to generate project files in the Veh
 
 1. Download Visual Studio from [here](https://visualstudio.microsoft.com/).
 
-    - You'll want to make sure that you have the following options enable, if you do not have Unreal Engine **4.23** already installed there is an option to install it here.
+    - You'll want to make sure that you have the following options enable.
 
     <div class="img_container">
     <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/c++.png"/>

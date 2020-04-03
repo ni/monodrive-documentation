@@ -33,8 +33,17 @@
 
 
 ## Run the VehicleAI Simulator Editor
+Quick start instructions and details on how to generate project files in the VehicleAI Simulator Editor can be found in [scenario editor](Scenario_editor.md).
 
-1. Download Visual Studio from [here](https://visualstudio.microsoft.com/)
+1. Download Visual Studio from [here](https://visualstudio.microsoft.com/).
+
+    - You'll want to make sure that you have the following options enable, if you do not have Unreal Engine already installed there is an option to install it here.
+
+    <div class="img_container">
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/c++.png"/>
+    </div>
+
+    *For more information, check [here](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html)*
 
 2. Open VehicleAI_Editor zip file and extract all files
 
@@ -45,9 +54,6 @@
 3. Go to your VehicleAI_Editor directory and find VehicleAI.uproject
 
 4. Double-click on VehicleAI.uproject
-
-    **NOTE** 
-    To edit project files, right click and select Generate Visual Studio project files. Once done creating files, double-click on VehicleAI.sIn.
 
 <p>&nbsp;</p>
 

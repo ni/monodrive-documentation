@@ -9,7 +9,7 @@ pages:
 - monoDrive :
   - Home: 
     - monoDrive: index.md
-  - Scenario Editor: LV_client/quick_start/Scenario_editor.md
+  - Scenario Editor: Scenario_editor.md
   - Configuration:
     - System: Configuration.md
     - Simulator : Simulator-Configuration.md

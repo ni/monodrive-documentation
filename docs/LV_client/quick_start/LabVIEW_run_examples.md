@@ -2,6 +2,8 @@
 
 ### Closed Loop Example
 
+
+
 1. Click on the arrow on the top-left corner to start the client.
 
 2. Move the car using the Steering and Throttle controls.

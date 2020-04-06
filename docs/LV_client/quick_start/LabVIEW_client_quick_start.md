@@ -6,9 +6,19 @@
 
 2. Install Unreal Engine **4.23** from [here](https://www.unrealengine.com/en-US/).
 
-3. Download the monoDrive Simulator or monoDrive Simulator Editor from [here](https://www.monodrive.io/register).
+    - In Epic Games Launcher, go to Marketplace >> Browse. Search and download VehicleSim Dynamics, this is a free plugin. From Epic Games website, you may sign-in and download from [here](https://www.unrealengine.com/marketplace/en-US/product/carsim-vehicle-dynamics).
 
-4. Install the monoDrive Client from the VI Package Manager. *Make sure you run the VI Package Manager as Administrator.*
+3. Download NVIDIA CUDA Toolkit 10.2 from [here](https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64).
+    - Choose your OS/ Version and how to install
+    - Example:
+         - Operating System: Windows
+         - Architecture: x84_64
+         - Version: 10
+         - Installer Type: exe(local)
+
+4. Download the monoDrive Simulator or monoDrive Simulator Editor from [here](https://www.monodrive.io/register).
+
+5. Install the monoDrive Client from the VI Package Manager. *Make sure you run the VI Package Manager as Administrator.*
 
 <div class="img_container">
     <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/prereq.png"/>
@@ -33,7 +43,7 @@
 
 
 ## Run the VehicleAI Simulator Editor
-Quick start instructions and details on how to generate project files in the VehicleAI Simulator Editor can be found in [scenario editor](Scenario_editor.md).
+Quick start instructions and details on how to generate project files in the VehicleAI Simulator Editor can be found in [scenario editor](../../Scenario_editor.md).
 
 1. Download Visual Studio from [here](https://visualstudio.microsoft.com/).
 

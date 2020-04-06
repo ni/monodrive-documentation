@@ -2,9 +2,7 @@
 
 ### Closed Loop Example
 
-
-
-1. Click on the arrow on the top-left corner to start the client.
+1. Click on the arrow on the top&#x2011;left corner to start the client.
 
 2. Move the car using the Steering and Throttle controls.
 
@@ -117,7 +115,7 @@ This example is in experimental stage.
 
 2. Click on the arrow on the top-left corner to runt the client.
 
-3. You will see the ego vehicle following the trajectory defined on the Car-to-Car-Stationary.json file.
+3. You will see the ego vehicle following the trajectory defined on the Car&#x2011;to&#x2011;Car&#x2011;Stationary.json file.
 
 4. On the Block Dia
 

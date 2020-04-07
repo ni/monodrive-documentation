@@ -9,7 +9,10 @@ pages:
 - monoDrive :
   - Home: 
     - monoDrive: index.md
-  - Scenario Editor: Scenario_editor.md
+  - Scenario Editor: 
+    - Getting Started: scenario_editor/quick_start.md
+    - Generating Scenarios: scenario_editor/scenarios.md
+    - Road network: scenario_editor/roads.md
   - Configuration:
     - System: monoDrive_home/Configuration.md
     - Simulator : monoDrive_home/Simulator-Configuration.md

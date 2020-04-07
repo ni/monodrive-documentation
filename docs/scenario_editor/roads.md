@@ -1,40 +1,32 @@
-## Roads
+## Creating the Road Network
 
-1. Install Unreal Engine **4.23** from [here](https://www.unrealengine.com/en-US/).
+### Roads
+The monoDrive Scenario Editor provides a tool for creating road networks that vehicles in the simulation
+can drive on. 
 
-    - In Epic Games Launcher, go to Marketplace >> Browse. Search and download VehicleSim Dynamics, this is a free plugin. From Epic Games website, you may sign-in and download from [here](https://www.unrealengine.com/marketplace/en-US/product/carsim-vehicle-dynamics).
+To add a road to a map, use the __Actor Place Mode__ in the editor, and search for "monoDrive Road". Then simply drag and drop it into the scene.<br>
+<img class='sm_img' src="https://github.com/monoDriveIO/documentation/raw/lane_tool/WikiPhotos/scenario_editor/roads/monoDrive_road_tool.PNG"/>
 
-2. Download NVIDIA CUDA Toolkit 10.2 from [here](https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64).
-    - Choose your OS/ Version and how to install
-    - Example:
-         - Operating System: Windows
-         - Architecture: x84_64
-         - Version: 10
-         - Installer Type: exe(local)
+Roads are defined by a _reference line_ that represents the basic geometry of the road. Lanes can be added to a road in both the forward and reverse directions, and the lanes follow the path of the reference line. 
 
-3. Download Visual Studio from [here](https://visualstudio.microsoft.com/)
+A forward lane begins at the location where the road is placed, and ends at the last spline point in the reference line. Similarly, reverse lanes begin at the last spline point and end at the location where the road was placed in the scene.
 
-    - You'll want to make sure that you have the following options enable.
+In the figure below, the blue line is the road's reference line. The blue dots are spline points along the road's reference line.
 
-    <div class="img_container">
-    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/c++.png"/>
-    </div>
+<img class='sm_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/scenario_editor/roads/reference_line.PNG"/>
 
-    *For more information, check [here](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html)*
+A road can have any number of forward and reverse lanes.
 
+To add lanes, select the road in the editor, and click "Add Forward (right) Lane", or "Add Reverse (left) Lane" from the "Actions" section in the details pane. There are also buttons to remove lanes, as needed.
 
-4. Download the monoDrive Simulator Editor from [here](https://www.monodrive.io/register).
+<img class='sm_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/scenario_editor/roads/road_actions.PNG"/>
 
-5. Open VehicleAI_Editor zip file and extract all files
+Roads can be connected to other roads as predecessors or successors. A road may only have a single predecessor and successor. However, a given lane can have any number of links to other roads' lanes.
 
-    <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/sensor_editor_extract.png"/>
-    </div>
+The "Attach Road at Start/End" will create a new road at the specified location with the same number of lanes as the selected road, and will automatically link the lanes from each road to each other. The "Detach Road at Start/End" buttons will unlink the lanes from two connected roads, and remove the predecessor/successor link between them.
 
-6. Go to your VehicleAI_Editor directory and find VehicleAI.uproject
+### Lanes
 
-    **NOTE** 
-    You can run the simulator by opening VehicleAI.uproject
-
-<p>&nbsp;</p>
-
+<img class='sm_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/scenario_editor/roads/road_properties.PNG"/>
+<img class='sm_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/scenario_editor/roads/monoDrive_road_tool.PNG"/>
+<img class='sm_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/scenario_editor/roads/monoDrive_road_tool.PNG"/>

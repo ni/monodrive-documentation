@@ -1,4 +1,6 @@
-# monoDrive Client Examples
+# LabView Client Examples
+
+## monoDrive Client Examples
 
 After installing the monoDrive Client from the VI package manager, several
 pre-built examples will be available through the "Help" -> "Find Examples" 
@@ -8,7 +10,7 @@ described here.
 For all of these examples, you will need to have either the monoDrive Simulator
 running or the monoDrive Scene Editor open and in "Play" mode.
 
-## Closed Loop Example
+### Closed Loop Example
 
 The Closed Loop example (`mono_closed_loop_example.vi`) allows the user to 
 control the vehicle's steering, throttle, brakes, and simulation weather in 
@@ -48,7 +50,7 @@ steering.
 * **Apply brakes using the Brake control.** This will apply 100% of the brakes 
 to the vehicle and stop it.
 
-## Replay Example
+### Replay Example
 
 The Replay Example (`mono_replay_example.vi`) allows a user to select a 
 monoDrive Trajectory File and play it back in simulation. Many of the controls 
@@ -71,7 +73,7 @@ To run the example, **Click on the "Run" arrow on the top-left corner
 to start the client.** The playback will begin and the current trajectory steps
 will be shown in the "Current trajectory" indicator.
 
-## Replay Controls
+### Replay Controls
 
 The Replay Controls Example (`mono_replay_controls_example.vi`) adds extra
 controls to the the Replay Example. This example demonstrates how the replay
@@ -189,7 +191,7 @@ steering.
 * **Apply brakes using the Brake control.** This will apply 100% of the brakes 
 to the vehicle and stop it.
 
-## Radar with Kalman Filter Example 
+### Radar with Kalman Filter Example 
 
 The Radar with Kalman Filtering Example 
 (`mono_radar_with_kalman_filter_cpp_dll.vi`) demonstrates the use of a Kalman 

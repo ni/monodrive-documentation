@@ -15,7 +15,7 @@ control the vehicle's steering, throttle, brakes, and simulation weather in
 real time. 
 
 <div class="img_container">
-    <img class='wide_img' src="imgs/CL_example.png" />
+    <img class='wide_img' src="../imgs/CL_example.png" />
 </div>
 
 Prior to running the example, the user can:
@@ -55,7 +55,7 @@ monoDrive Trajectory File and play it back in simulation. Many of the controls
 and dialogs are similar to the the Closed Loop Example. 
 
 <div class="img_container">
-    <img class='wide_img' src="imgs/replay_example.png"/>
+    <img class='wide_img' src="../imgs/replay_example.png"/>
 </div>
 
 Prior to running this example, the user can: 
@@ -79,7 +79,7 @@ of a monoDrive Simulator trajectory file can be stepped forward and backward
 so the user may observe or modify the simulation during replay more easily.
 
 <div class="img_container">
-    <img class='wide_img' src="imgs/replay_controls.png"/>
+    <img class='wide_img' src="../imgs/replay_controls.png"/>
 </div>
 
 Similar to the Replay Example, ensure the map and trajectory file are properly 
@@ -108,7 +108,7 @@ hardware inputs or software to trigger the movement. The "EGO Pose Controls" are
 provided as an example and intended to be replaced by the user's own code.
 
 <div class="img_container">
-    <img class='wide_img' src="imgs/hil_example.png"/>
+    <img class='wide_img' src="../imgs/hil_example.png"/>
 </div>
 
 Similar to the Replay Example, ensure the map and trajectory file are properly 
@@ -128,7 +128,7 @@ to the simulator. Additionally, it allows the user to change the values in
 the trajectory file for every vehicle in scene.
 
 <div class="img_container">
-    <img class='wide_img' src="imgs/multi_vehicle.png"/>
+    <img class='wide_img' src="../imgs/multi_vehicle.png"/>
 </div>
 
 Prior to running this example, the user can: 
@@ -166,7 +166,7 @@ example is intended to be used with the monoDrive Simulator's "Highway Track"
 map, but can be used in other maps.
 
 <div class="img_container">
-    <img class='wide_img' src="imgs/lane_follow.png"/>
+    <img class='wide_img' src="../imgs/lane_follow.png"/>
 </div>
 
 Similar to the Closed Loop Example, ensure the map and trajectory file are 
@@ -199,7 +199,7 @@ Simulator's "Highway Track" map and the "Car-to-Car-Rear-Stationary.json"
 trajectory.
 
 <div class="img_container">
-    <img class='wide_img' src="imgs/radar.png"/>
+    <img class='wide_img' src="../imgs/radar.png"/>
 </div>
 
 Similar to the Replay Example, ensure the map and trajectory file are properly 

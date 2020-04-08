@@ -30,7 +30,7 @@ $ conda activate monodrive-documentation
 
 - Login/create user to [readthedocs](https://readthedocs.org/) *preferably through github for easy access to monodrive*
 
-- Get access to be a maintainer through someone who is already a maintainer. (like me, [Katie](katie@monodrive.io))
+- Get access to be a maintainer through someone who is already a maintainer. (like me, [Katie](mailto://katie@monodrive.io))
 
 - After having access, click on >> My Projects >> monoDrive
 

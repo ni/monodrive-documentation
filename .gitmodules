@@ -1,0 +1,3 @@
+[submodule "client_source/simulator-python-client"]
+	path = client_source/simulator-python-client
+	url = git@github.com:monoDriveIO/simulator-python-client.git

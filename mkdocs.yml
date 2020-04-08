@@ -24,6 +24,7 @@ pages:
         - State Sensor: State-sensor.md
         - Ultrasonic: Ultrasonic.md
         - Viewport: Viewport.md
+        - Weather Overview: Weather.md
 
 - LabVIEW_Client: 
   - Quick Start: 

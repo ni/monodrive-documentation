@@ -5,14 +5,20 @@
 - Clone project
 
 ```bash
-$ git clone git@github.com:monoDriveIO/documentation.git
+$ git clone git@github.com:monoDriveIO/documentation.git --recursive
 ```
 
 - Create python environment 
 
 ```bash
-$ conda create --name monodrive-documentation environment.yml
+$ conda env create -f environment.yml
 $ conda activate monodrive-documentation
+```
+
+- Ensure that the automated documentation is built and installed
+
+```bash
+$ build_docs.sh
 ```
 
 - Docs are created using [mkdocs](https://www.mkdocs.org) with the theme [*ivory*](https://github.com/daizutabi/mkdocs-ivory)
@@ -21,6 +27,12 @@ $ conda activate monodrive-documentation
 
 ```bash
 (monodrive-documentation) $ mkdocs serve
+```
+
+- Alternatively, to the `build_docs.sh` has an option to build and then serve for updated automated documentation:
+
+```bash
+(monodrive-documentation) $ ./build_docs.sh -s
 ```
 
 <p>&nbsp;</p>

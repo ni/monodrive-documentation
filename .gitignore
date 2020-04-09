@@ -106,3 +106,4 @@ examples/variances.xlsx
 examples/client_logs.log.*
 monodrive/sensors/RadarMethod.py
 site/
+docs/python_client/

@@ -22,7 +22,7 @@ real time.
 
 Prior to running the example, the user can:
 
-* **Select the weather profile by changing selected weather profile using th 
+* **Select the weather profile by changing the selected weather profile 
 Weather Profile Control.** There are various permutations of weather available 
 in the monoDrive Simulator. 
 
@@ -30,7 +30,7 @@ in the monoDrive Simulator.
 monoDrive simulator will switch to this map prior to beginning the simulation.
 
 * **Select a different position using the Start Position Control.** monoDrive 
-maps come with various different start positions around the map. The number in 
+maps come with different start positions around the map. The number in 
 this box corresponds with the number on the map displayed on the bottom right.
 
 To run the example, **Click on the "Run" arrow on the top-left corner 

@@ -85,11 +85,18 @@ Provides radar stream.
 
 
 ### Raw Output Data Format
-
-- **Ranges:** A array with the distances to targets.
-- **Angle of Arrival:** The angle where the targets are detected.
-- **Velocities:** The velocity of the moving and stationary targets.
-- **RCS:** Radar cross-section detected by the radar. 
+- **gt_target_list:**
+    - **Ranges:** A array with the distances to targets.
+    - **Angle of Arrival:** The angle where the targets are detected.
+    - **Velocities:** The velocity of the moving and stationary targets.
+    - **RCS:** Radar cross-section detected by the radar. 
+    - **target id:** List of the labels for each target detected
+- **target_list:**
+    - **Ranges:** A array with the distances to targets.
+    - **Angle of Arrival:** The angle where the targets are detected.
+    - **Velocities:** The velocity of the moving and stationary targets.
+    - **RCS:** Radar cross-section detected by the radar. 
+    - **target id:** List of labels for each target detected. It can be zero, one or more labels assigned to each target.
 <p>&nbsp;</p>
 
 

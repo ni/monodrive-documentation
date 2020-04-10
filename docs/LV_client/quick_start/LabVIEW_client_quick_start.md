@@ -6,7 +6,8 @@
 
 2. Install Unreal Engine **4.23** from [here](https://www.unrealengine.com/en-US/).
 
-    - In Epic Games Launcher, go to Marketplace >> Browse. Search and download VehicleSim Dynamics, this is a free plugin. From Epic Games website, you may sign-in and download from [here](https://www.unrealengine.com/marketplace/en-US/product/carsim-vehicle-dynamics).
+    - In Epic Games Launcher, and select Marketplace >> Browse. Search for "VehicleSim Dynamics" and download this free plugin. 
+    - Alternatively, from Epic Games website, sign-in and download the plugin [here](https://www.unrealengine.com/marketplace/en-US/product/carsim-vehicle-dynamics).
 
 3. Download NVIDIA CUDA Toolkit 10.2 from [here](https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64).
     - Choose your OS/ Version and how to install
@@ -111,4 +112,3 @@ Quick start instructions and details on how to generate project files in the Veh
 
 For technical support contact us at <b>support@monodrive.io</b>
 <p>&nbsp;</p>
-

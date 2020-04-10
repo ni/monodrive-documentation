@@ -7,15 +7,16 @@ Provides radar stream.
 [
     {
   "type": "Radar",
-   "gpu_number":0,
+  "gpu_number":0,
   "listen_port": 8302,
-"send_radar_cube": false,
+  "send_radar_cube": false,
   "paint_targets": false,
   "target_paint_lifetime": 0.5,
+  "nearest_target_label_radius": 50.0,
   "location": {
-    "x": 290.0,
+    "x": 245.0,
     "y": 0.0,
-    "z": 80.0
+    "z": 60.0
   },
   "rotation": {
     "pitch": 0.0,
@@ -45,8 +46,8 @@ Provides radar stream.
   "sbr": {
     "long_range_scan_distance": 60.0,
     "short_range_scan_distance": 30.0,
-    "long_range_fov": 60.0,
-    "short_range_fov": 30.0,
+    "long_range_fov": 30.0,
+    "short_range_fov": 60.0,
     "elevation_fov": 10.0,
     "ray_division_y": 10.0,
     "ray_division_z":10.0,
@@ -68,6 +69,7 @@ Provides radar stream.
 - **gpu_number:** Select the specific GPU number(0-N) where each radar sensor will run.
 - **send_radar_cube:** Enable to obtain the radar cube from the simulator. 
 - **paint_targets:** Tool to draw a box around the targets detected.
+- **nearest_target_label_radius:** Radius of the sphere used to obtain the ground truth label for targets.
 - **target_paint_lifetime:** Specify how long a painted target box will be rendered for in the engine, in seconds.
 - **location:** Modify the x,y,z position of the radar in the car.
 - **rotation:** Modify the yaw,pitch and roll of the radar.

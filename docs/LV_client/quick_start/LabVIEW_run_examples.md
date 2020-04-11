@@ -2,6 +2,11 @@
 
 ## monoDrive Client Examples
 
+### Closed Loop Example
+
+1. Click on the arrow on the top&#x2011;left corner to start the client.
+>>>>>>> master
+
 After installing the monoDrive Client from the VI package manager, several
 pre-built examples will be available through the "Help" -> "Find Examples" 
 dialog in LabView. The `ni_monoDrive.lvproj` contains references to all the VIs 
@@ -184,9 +189,6 @@ the throttle the car will use.
 
 * **Change the direction of travel using Direction control.** This will switch 
 the vehicle between forward and reverse.
-
-* **Steer the vehicle with the Steering Control** This controls the angle of 
-steering.
 
 * **Apply brakes using the Brake control.** This will apply 100% of the brakes 
 to the vehicle and stop it.

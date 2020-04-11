@@ -1,11 +1,6 @@
 # LabView Client Examples
 
-## monoDrive Client Examples
-
-### Closed Loop Example
-
-1. Click on the arrow on the top&#x2011;left corner to start the client.
->>>>>>> master
+## monoDrive LabView Client Examples
 
 After installing the monoDrive Client from the VI package manager, several
 pre-built examples will be available through the "Help" -> "Find Examples" 

@@ -18,7 +18,7 @@
 1. Download the monoDrive Simulator or monoDrive Simulator Editor from [here](https://www.monodrive.io/register).
 
     <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/sensor_editor_extract.png"/>
+    <img class='lg_img' src="../LV_client/quick_start/imgs/sensor_editor_extract.png"/>
     </div>
 
 1. Go to your VehicleAI_Editor directory and find VehicleAI.uproject
@@ -33,13 +33,13 @@
 1. Generate Visual Studio project files by right clicking on VehicleAI.uproject in the VehicleAI directory. 
 
     <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/generate_project_files.png"/>
+    <img class='lg_img' src="../LV_client/quick_start/imgs/generate_project_files.png"/>
     </div>
 
 2. Double-click on VehicleAI.sIn to open the Simulator.
 
     <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/vehicle-sIn.png"/>
+    <img class='lg_img' src="../LV_client/quick_start/imgs/vehicle-sIn.png"/>
     </div>
 
 ## Run
@@ -47,7 +47,7 @@
 1. Play Simulator
 
     <div class="img_container">
-    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/play.png"/>
+    <img class='wide_img' src="../LV_client/quick_start/imgs/play.png"/>
     </div>
 
     <p>&nbsp;</p>

@@ -455,7 +455,7 @@ If an error occurred during the execution, the error cluster will give you infor
 
 
 <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/error.png"/>
+    <img class='lg_img' src="../imgs/error.png"/>
 </div>
 
 <p>&nbsp;</p>

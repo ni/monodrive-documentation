@@ -22,7 +22,7 @@
 1. **Open the VI Package Manger as Administrator** and install the monoDrive Client.
 
 <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/prereq.png"/>
+    <img class='lg_img' src="../imgs/prereq.png"/>
 </div>
 
 <p>&nbsp;</p>
@@ -37,7 +37,7 @@
 3. Move to one side of your screen
 
 <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/runVehicleAI.png"/>
+    <img class='lg_img' src="../imgs/runVehicleAI.png"/>
 </div>
 
 <p>&nbsp;</p>
@@ -57,7 +57,7 @@ Quick start instructions and details on how to generate project files in the Veh
 2. Open VehicleAI_Editor zip file and extract all files
 
     <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/sensor_editor_extract.png"/>
+    <img class='lg_img' src="../imgs/sensor_editor_extract.png"/>
     </div>
 
 3. Go to your VehicleAI_Editor directory and find VehicleAI.uproject
@@ -82,11 +82,11 @@ Quick start instructions and details on how to generate project files in the Veh
 
 
     <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/find_examples.png"/>
+    <img class='lg_img' src="../imgs/find_examples.png"/>
     </div>
 
     <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/find_examples2.png"/>
+    <img class='lg_img' src="../imgs/find_examples2.png"/>
     </div>
 
 

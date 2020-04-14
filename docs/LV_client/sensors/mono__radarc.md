@@ -29,7 +29,7 @@ Configure and reads the stream data for the Radar sensor and outputs a cluster w
 |1D Array SGL | ranges  | meters |
 |1D Array SGL  | aoa_list | degrees |
 |1D Array SGL | velocities | m/s |
-|1D Array String | target_ids |  |
+|1D Array String | target_ids | Ground truth annotation |
 
 **Cluster - gt_target_list**  
 

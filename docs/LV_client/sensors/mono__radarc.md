@@ -24,7 +24,7 @@ Configure and reads the stream data for the Radar sensor and outputs a cluster w
 
 **Cluster - target_list**  
 
-| Type  | Name   | Units   |
+| Type  | Name   | Units/Description   |
 | ------------ | ------------ |------------ |
 |1D Array SGL | ranges  | meters |
 |1D Array SGL  | aoa_list | degrees |
@@ -33,7 +33,7 @@ Configure and reads the stream data for the Radar sensor and outputs a cluster w
 
 **Cluster - gt_target_list**  
 
-| Type  | Name   | Units   |
+| Type  | Name   | Units/Description   |
 | ------------ | ------------ |------------ |
 |1D Array SGL | ranges  | meters |
 |1D Array SGL  | aoa_list | degrees |

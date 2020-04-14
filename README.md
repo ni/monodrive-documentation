@@ -11,7 +11,7 @@ $ git clone git@github.com:monoDriveIO/documentation.git
 - Create python environment 
 
 ```bash
-$ conda create --name monodrive-documentation environment.yml
+$ conda env create -f environment.yml
 $ conda activate monodrive-documentation
 ```
 

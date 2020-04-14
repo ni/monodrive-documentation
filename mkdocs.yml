@@ -1,7 +1,7 @@
 site_name: monoDrive Simulator
 repo_url: https://github.com/monodriveio/client
 docs_dir: docs
-theme: 
+theme:
   name: 'ivory'
   navigation_depth: 6
 
@@ -9,28 +9,28 @@ pages:
 - monoDrive :
   - Home: 
     - monoDrive: index.md
+  - Scenario Editor: Scenario_editor.md
   - Configuration:
-    - System: Configuration.md
-    - Simulator : Simulator-Configuration.md
-    - Vehicle : Vehicle-Configuration.md
+    - System: monoDrive_home/Configuration.md
+    - Simulator : monoDrive_home/Simulator-Configuration.md
+    - Vehicle : monoDrive_home/Vehicle-Configuration.md
     - Sensor Configurations:
-        - Common: Common.md
-        - Camera: Camera.md
-        - GPS: GPS.md
-        - IMU: IMU.md
-        - Lidar: Lidar.md
-        - Radar: Radar.md
-        - RPM: RPM.md
-        - State Sensor: State-sensor.md
-        - Ultrasonic: Ultrasonic.md
-        - Viewport: Viewport.md
+        - Common: monoDrive_home/Common.md
+        - Camera: monoDrive_home/Camera.md
+        - GPS: monoDrive_home/GPS.md
+        - IMU: monoDrive_home/IMU.md
+        - Lidar: monoDrive_home/Lidar.md
+        - Radar: monoDrive_home/Radar.md
+        - RPM: monoDrive_home/RPM.md
+        - State Sensor: monoDrive_home/State-sensor.md
+        - Ultrasonic: monoDrive_home/Ultrasonic.md
+        - Viewport: monoDrive_home/Viewport.md
 
 - LabVIEW_Client: 
   - Quick Start: 
     - Setup: LV_client/quick_start/LabVIEW_client_quick_start.md
     - Run Examples: LV_client/quick_start/LabVIEW_run_examples.md
     - Configuration Examples: LV_client/quick_start/LabView_configurations.md
-    - Scenario Editor: LV_client/quick_start/Scenario_editor.md
     - FAQ: LV_client/quick_start/FAQ.md
   # - Quick Start 2018 Version: 
   #   - Setup: LabVIEW_client.md

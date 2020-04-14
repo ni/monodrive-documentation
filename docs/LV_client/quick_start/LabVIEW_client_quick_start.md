@@ -4,14 +4,25 @@
 
 1. Download LabVIEW 2019 (64 bit) 
 
-2. Install Unreal Engine **4.23** from [here](https://www.unrealengine.com/en-US/).
+1. Install Unreal Engine **4.23** from [here](https://www.unrealengine.com/en-US/).
 
-3. Download the monoDrive Simulator or monoDrive Simulator Editor from [here](https://www.monodrive.io/register).
+    - In Epic Games Launcher, and select Marketplace >> Browse. Search for "VehicleSim Dynamics" and download this free plugin. 
+    - Alternatively, from Epic Games website, sign-in and download the plugin [here](https://www.unrealengine.com/marketplace/en-US/product/carsim-vehicle-dynamics).
 
-4. Install the monoDrive Client from the VI Package Manager. *Make sure you run the VI Package Manager as Administrator.*
+1. Download NVIDIA CUDA Toolkit 10.2 from [here](https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64).
+    - Choose OS/ Version and how to install
+    - Example:
+         - Operating System: Windows
+         - Architecture: x84_64
+         - Version: 10
+         - Installer Type: exe(local)
+
+1. Download the monoDrive Simulator or monoDrive Simulator Editor from [here](https://www.monodrive.io/register).
+
+1. **Open the VI Package Manger as Administrator** and install the monoDrive Client.
 
 <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/prereq.png"/>
+    <img class='lg_img' src="../imgs/prereq.png"/>
 </div>
 
 <p>&nbsp;</p>
@@ -26,29 +37,27 @@
 3. Move to one side of your screen
 
 <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/runVehicleAI.png"/>
+    <img class='lg_img' src="../imgs/runVehicleAI.png"/>
 </div>
 
 <p>&nbsp;</p>
 
 
 ## Run the VehicleAI Simulator Editor
-Quick start instructions and details on how to generate project files in the VehicleAI Simulator Editor can be found in [scenario editor](Scenario_editor.md).
+Quick start instructions and details on how to generate project files in the VehicleAI Simulator Editor can be found in [scenario editor](../../Scenario_editor.md).
 
 1. Download Visual Studio from [here](https://visualstudio.microsoft.com/).
 
-    - You'll want to make sure that you have the following options enable, if you do not have Unreal Engine **4.23** already installed there is an option to install it here.
-
-    <div class="img_container">
-    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/c++.png"/>
-    </div>
+    - Make sure the following options enabled:
+        - Workloads: Game development with C++
+            - Options: C++ Profiling Tools
 
     *For more information, check [here](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html)*
 
 2. Open VehicleAI_Editor zip file and extract all files
 
     <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/sensor_editor_extract.png"/>
+    <img class='lg_img' src="../imgs/sensor_editor_extract.png"/>
     </div>
 
 3. Go to your VehicleAI_Editor directory and find VehicleAI.uproject
@@ -73,11 +82,11 @@ Quick start instructions and details on how to generate project files in the Veh
 
 
     <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/find_examples.png"/>
+    <img class='lg_img' src="../imgs/find_examples.png"/>
     </div>
 
     <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/find_examples2.png"/>
+    <img class='lg_img' src="../imgs/find_examples2.png"/>
     </div>
 
 
@@ -101,4 +110,3 @@ Quick start instructions and details on how to generate project files in the Veh
 
 For technical support contact us at <b>support@monodrive.io</b>
 <p>&nbsp;</p>
-

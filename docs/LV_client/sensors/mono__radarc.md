@@ -45,7 +45,7 @@ Configure and reads the stream data for the Radar sensor and outputs a cluster w
 
 ## Front Panel for mono_radar.vi 
 <div class="img_container">
-    <img class='wide_img' src="../../../WikiPhotos/LV_client/sensors/mono__radarc_FP.png" />
+    <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/v1.10.1/WikiPhotos/LV_client/sensors/mono__radarc_FP.png" />
 </div>	</div>
 
 <p>&nbsp;</p>

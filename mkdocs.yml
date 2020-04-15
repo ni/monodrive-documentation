@@ -125,6 +125,9 @@ pages:
         - mono_kf_update.vi: LV_client/shared_libraries/mono__kf__update.md
         - mono_kf_init.vi: LV_client/shared_libraries/mono_kf_init.md
         
+- Real-to-Virtual:
+  - quickstart: r2v/quick_start.md
+  - detailed description: r2v/detailed_guide.md
 extra_css:
     - css/extra.css        
         

@@ -12,7 +12,7 @@ The monoDrive Scene Editor extends the monoDrive Simulator and allows the user t
 
     <p>&nbsp;</p>
 
-1. Ensure you have the latest NVIDIA drivers for your CUDA-enabled graphics card.
+1. Ensure you have the latest NVIDIA drivers for your [CUDA-enabled](https://en.wikipedia.org/wiki/CUDA) graphics card.
 
     <div class="img_container">
         <img class='lg_img' src="../easier_device_driver_update.png"/>

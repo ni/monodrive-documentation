@@ -8,15 +8,23 @@ The monoDrive Scene Editor extends the monoDrive Simulator and allows the user t
 1. Install Unreal Engine **4.23** from [here](https://www.unrealengine.com/en-US/).
 
     - In Epic Games Launcher, and select Marketplace >> Browse. Search for "VehicleSim Dynamics" and download this free plugin. 
-    - Alternatively, from Epic Games website, sign-in and download the plugin [here](https://www.unrealengine.com/marketplace/en-US/product/carsim-vehicle-dynamics).
+        - Alternatively, from Epic Games website, sign-in and download the plugin [here](https://www.unrealengine.com/marketplace/en-US/product/carsim-vehicle-dynamics).
 
-1. Download NVIDIA CUDA Toolkit 10.2 from [here](https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64).
-    - Choose OS/ Version and how to install
-    - Example:
-         - Operating System: Windows
-         - Architecture: x84_64
-         - Version: 10
-         - Installer Type: exe(local)
+    <p>&nbsp;</p>
+
+1. Ensure you have the latest NVIDIA drivers for your CUDA-enabled graphics card.
+
+    <div class="img_container">
+        <img class='lg_img' src="../easier_device_driver_update.png"/>
+    </div>
+
+    **NOTE**
+    Even if not prompted by the system, a restart is recommended to ensure the new drivers are correctly detected prior to running any simulations.
+
+    **NOTE**
+    In case the driver cannot be updated using the above method, please visit http://www.nvidia.com/Download/index.aspx to download the [latest driver](https://www.nvidia.comnvidia.com).
+
+    <p>&nbsp;</p>
 
 1. Download the monoDrive Simulator Editor from [here](https://www.monodrive.io/register).
 

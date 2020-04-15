@@ -128,6 +128,8 @@ pages:
   - Tutorials:
       - Setup a LabVIEW client: LV_client/tutorials/Setup.md
       - Add new sensors : LV_client/tutorials/AddSensors.md
+      - Visualize LiDAR data : LV_client/tutorials/Lidar.md
+
 extra_css:
     - css/extra.css        
         

@@ -1,5 +1,8 @@
 # Scenario Editor
 
+The monoDrive Scene Editor extends the monoDrive Simulator and allows the user to control any of the thousands of features available in the monoDrive simulation environments. With the Scene Editor, users are able to generate custom scenarios leveraging the monoDrive lane and vehicle AIs. Custom simulator maps, vehicle parameters, and driving behaviors can be generated in the Scene Editor all which can be used to test AV algorithms using any one of the monoDrive clients.
+
+
 ## Getting Started
 
 1. Install Unreal Engine **4.23** from [here](https://www.unrealengine.com/en-US/).
@@ -15,7 +18,7 @@
          - Version: 10
          - Installer Type: exe(local)
 
-1. Download the monoDrive Simulator or monoDrive Simulator Editor from [here](https://www.monodrive.io/register).
+1. Download the monoDrive Simulator Editor from [here](https://www.monodrive.io/register).
 
     <div class="img_container">
     <img class='lg_img' src="../LV_client/quick_start/imgs/sensor_editor_extract.png"/>

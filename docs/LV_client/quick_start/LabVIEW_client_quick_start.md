@@ -2,22 +2,19 @@
 
 ## Prerequisites 
 
-1. Download LabVIEW 2019 (64 bit) 
+1. Download LabVIEW 2019 (64 bit) *approximately 1 hour to download*
 
-1. Install Unreal Engine **4.23** from [here](https://www.unrealengine.com/en-US/).
+1. Open/Download monoDrive Simulator or monoDrive Simulator Scene Editor
 
-    - In Epic Games Launcher, and select Marketplace >> Browse. Search for "VehicleSim Dynamics" and download this free plugin. 
-    - Alternatively, from Epic Games website, sign-in and download the plugin [here](https://www.unrealengine.com/marketplace/en-US/product/carsim-vehicle-dynamics).
+    **monoDrive Simulator** 
 
-1. Download NVIDIA CUDA Toolkit 10.2 from [here](https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64).
-    - Choose OS/ Version and how to install
-    - Example:
-         - Operating System: Windows
-         - Architecture: x84_64
-         - Version: 10
-         - Installer Type: exe(local)
+    - Powerful tool for testing AV algorithms using Open Source monoDrive Clients or monoDrive Simulator API. Installation instructions [here](../../Simulator.md).
 
-1. Download the monoDrive Simulator or monoDrive Simulator Editor from [here](https://www.monodrive.io/register).
+    **OR monoDrive Simulator Scene Editor**
+
+    - Take AV algorithm testing to the next level by using the rich Scene Editor tool for creating custom simulations and environments. Installation instructions [here](../../Scenario_editor.md).
+    <p>&nbsp;</p>
+
 
 1. **Open the VI Package Manger as Administrator** and install the monoDrive Client.
 

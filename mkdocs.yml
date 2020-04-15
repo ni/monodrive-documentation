@@ -6,25 +6,24 @@ theme:
   navigation_depth: 6
 
 pages:
-- monoDrive :
-  - Home: 
-    - monoDrive: index.md
-  - Scenario Editor: Scenario_editor.md
-  - Configuration:
-    - System: monoDrive_home/Configuration.md
-    - Simulator : monoDrive_home/Simulator-Configuration.md
-    - Vehicle : monoDrive_home/Vehicle-Configuration.md
-    - Sensor Configurations:
-        - Common: monoDrive_home/Common.md
-        - Camera: monoDrive_home/Camera.md
-        - GPS: monoDrive_home/GPS.md
-        - IMU: monoDrive_home/IMU.md
-        - Lidar: monoDrive_home/Lidar.md
-        - Radar: monoDrive_home/Radar.md
-        - RPM: monoDrive_home/RPM.md
-        - State Sensor: monoDrive_home/State-sensor.md
-        - Ultrasonic: monoDrive_home/Ultrasonic.md
-        - Viewport: monoDrive_home/Viewport.md
+- monoDrive : index.md
+- Simulator : Simulator.md
+- Scenario Editor: Scenario_editor.md
+- Configuration:
+  - System: monoDrive_home/Configuration.md
+  - Simulator : monoDrive_home/Simulator-Configuration.md
+  - Vehicle : monoDrive_home/Vehicle-Configuration.md
+  - Sensor Configurations:
+      - Common: monoDrive_home/Common.md
+      - Camera: monoDrive_home/Camera.md
+      - GPS: monoDrive_home/GPS.md
+      - IMU: monoDrive_home/IMU.md
+      - Lidar: monoDrive_home/Lidar.md
+      - Radar: monoDrive_home/Radar.md
+      - RPM: monoDrive_home/RPM.md
+      - State Sensor: monoDrive_home/State-sensor.md
+      - Ultrasonic: monoDrive_home/Ultrasonic.md
+      - Viewport: monoDrive_home/Viewport.md
 
 - LabVIEW_Client: 
   - Quick Start: 

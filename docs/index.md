@@ -1,15 +1,20 @@
-<img class="sm_img" src= https://github.com/monoDriveIO/client/raw/master/WikiPhotos/monoDriveLogo.png alt="monoDrive"/>
+# monoDrive 
 
-# Autonomous Vehicle Simulator
 ## [Download Monodrive](https://lumen.ni.com/nicif/US/GB_EVALTLKTLVMONODRIVE/content.xhtml)
+
 
 ## Making Autonomous Vehicles Drive Safe
 Generation of realistic scenarios and resulting sensor information for perception and planning system validation.
 
 - Low latency networked vehicle control
+
 - Parameterized vehicle dynamics models with run time physics modification
+
 - Fast scenario regeneration, with super realtime replay
+
 - Parameterized and accurate real time sensor emulation
+
+<p>&nbsp;</p>
 
 ## How It Works
 monodrive’s platform is designed to automate scenario test generation for planning testing. 

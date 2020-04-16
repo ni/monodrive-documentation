@@ -77,7 +77,7 @@ the LiDAR is in the desired position (normally full tilt 20 degrees), tighten
 the allen screws back down to secure the LiDAR.
 
 <div class="img_container">
-    <img class='wide_img' src="../imgs/real_to_virtual_hardware_close_up.png"/>
+    <img class='lg_img' src="../imgs/real_to_virtual_hardware_close_up.png"/>
 </div>
 
 Prior to data collection, it is important to calibrate the GNSS located on or 
@@ -101,11 +101,13 @@ be found in the directory selected in the data logging application. This binary
 data includes all sensor stream data for Camera, LiDar, and GNSS.
 
 <div class="img_container">
-    <img class='lg_img' src="../imgs/data_logger_main_tab.png"/>
+    <img class='wide_img' src="../imgs/data_logger_main_tab.png"/>
 </div>
 
+<div>&nbsp;</div>
+
 <div class="img_container">
-    <img class='lg_img' src="../imgs/data_logger_config_tab.png"/>
+    <img class='wide_img' src="../imgs/data_logger_config_tab.png"/>
 </div>
 
 
@@ -117,26 +119,41 @@ allow the GNSS to get acclimatized to the environment.
 
 #### Hardware Prerequisites:
 * Connect the Ladybug Camera’s USB cable to a USB 3.0 port on the recording laptop
+
 * Connect the GNSS USB cable from the R2V system’s data collection electrical box to a USB port on the recording computer.
+
 * Connect an Ethernet cable to the R2V ethernet port on the data collection computer.
+
 * On the data collection computer, make sure the Ethernet port connected to the R2V system is on a local IP of **192.168.1.200**
 
 #### Data Logger Recording:
-1. Open the r2v.lvprj file on the R2V folder
-1. Double-click on the main.vi
+1. Open the **r2v.lvprj** file on the R2V folder
+
+1. Double-click on the **main.vi**
+
 1. Click on the arrow to run the main.vi
+
 1. Select the path where the logs are going to be stored using the “Directory 
 to Log” control: 
-    1. The program will create the following directory structure to store your data:
-`<Chosen Directory>/YYMMDD/HH_MM_SS/binary/`
+    a. The program will create the following directory structure to store your data:
+
+        <Chosen Directory>/YYMMDD/HH_MM_SS/binary/
+
 1. Click on the configuration window and make sure the values are still valid for your setup (i.e. the tilt for lidar, the location of the GNSS, etc) 
-1. When ready to boot the sensor suite, hit the button Configure. It is a good idea to ensure everything is working during this step by observing the data values on all the indicators.
+
+1. When ready to boot the sensor suite, hit the button **Configure**. It is a good idea to ensure everything is working during this step by observing the data values on all the indicators.
+
 1. When ready to record R2V data, click the button Record.
-**NOTE:** By default there is a 5 second delay after you hit record to allow the sensors to initialize prior to recording.
+
+    **NOTE:** By default there is a 5 second delay after you hit record to allow the sensors to initialize prior to recording.
+
 1. When ready to stop recording data, click the button Stop Rec.
+
 1. The system will wait for you to hit the button Configure and Record. 
+
 1. When you are ready to finish collecting data, click the EXIT button, this will disconnect the GNSS and close the open connections.
-**NOTE:** If the the LabView “Stop” button is pressed instead of the R2V EXIT button, the entire application will need to be restarted in order to record again.
+
+    **NOTE:** If the the LabView “Stop” button is pressed instead of the R2V EXIT button, the entire application will need to be restarted in order to record again.
 
 ### KITTI Formatted Data
 The KITTI format is leveraged by the monoDrive R2V software to provide an industry accepted data format. This format is used widely in industry and academia to process image, LiDAR, and GNSS data for various Simultaneous Localization and Mapping (SLAM) algorithms and other computer vision work. For more information on the format itself, see the author’s website at http://www.cvlibs.net/datasets/kitti/index.php.

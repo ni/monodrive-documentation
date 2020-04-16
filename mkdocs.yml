@@ -126,7 +126,8 @@ pages:
         - mono_kf_init.vi: LV_client/shared_libraries/mono_kf_init.md
         
 - Real-to-Virtual:
-  - quickstart: r2v/quick_start.md
+  - data collection quick start: r2v/data_collection_quick_start.md
+  - data processing quick start: r2v/data_processing_quick_start.md
   - detailed description: r2v/detailed_guide.md
 extra_css:
     - css/extra.css        

@@ -2,7 +2,7 @@
 
 ## Prerequisites 
 
-1. Download LabVIEW 2019 (64 bit) *approximately 1 hour to download*
+1. Register and Download [LabVIEW 2019 (64 bit)](https://www.ni.com/en-us/support/downloads/software-products/download.labview.html#329483) *approximately 1 hour to download*
 
 1. Open/Download monoDrive Simulator or monoDrive Simulator Scene Editor
 

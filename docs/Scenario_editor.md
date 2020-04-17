@@ -43,9 +43,7 @@ The monoDrive Scene Editor extends the monoDrive Simulator and allows the user t
 
 1. Download the monoDrive Simulator Editor [here](https://www.monodrive.io/register) and extract all files. 
 
-    <div class="img_container">
-    <img class='lg_img' src="../LV_client/quick_start/imgs/sensor_editor_extract.png"/>
-    </div>
+    <p>&nbsp;</p>
 
 1. Go to your VehicleAI_Editor directory and find VehicleAI.uproject
 

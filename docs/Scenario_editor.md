@@ -14,11 +14,16 @@ The monoDrive Scene Editor extends the monoDrive Simulator and allows the user t
 
     <p>&nbsp;</p>
 
-1. Ensure you have the latest NVIDIA drivers for your [CUDA-enabled](https://developer.nvidia.com/cuda-gpus) graphics card.
+1. Ensure you have the latest NVIDIA drivers for your [CUDA-enabled](https://developer.nvidia.com/cuda-gpus) graphics card. 
 
     <div class="img_container">
-        <img class='lg_img' src="../easier_device_driver_update.png"/>
+    <img class='sm_img' src="../nvidia_driver2.png"/>
     </div>
+
+    <div class="img_container">
+    <img class='wide_img' src="../nvidia_driver1.png"/>
+    </div>
+    <p>&nbsp;</p>
 
     **NOTE**
     Even if not prompted by the system, a restart is recommended to ensure the new drivers are correctly detected prior to running any simulations.

@@ -138,3 +138,19 @@ output in [Google Earth](https://www.google.com/earth/versions/#download-pro):
 <div class="img_container">
     <img class='lg_img' src="../imgs/google_earth_gnss_output.png"/>
 </div>
+
+### Parsing Data Into KITTI Format
+
+For use in the monoDrive Real-to-Virtual data processing pipeline, the collected
+data needs to be converted to the 
+[KITTI format](http://www.cvlibs.net/datasets/kitti/index.php). The `monodrive_to_kitti.py` script in the monoDrive Mapping Toolkit allows users
+to parse the collected binary data into KITTI:
+
+```
+$ conda activate mapping_toolkit
+(mapping_toolkit)
+$ python monodrive_to_kitti.py --input /path/to/data/binary --output /path/to/data/kitti --crop
+```
+
+When complete, the data will be moved to the `kitti` directory under the same 
+data collection directory.

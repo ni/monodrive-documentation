@@ -130,7 +130,7 @@
 ### Configuration Tags
 
 - **server_ip**: The ip address of the computer running the simulator. If both simulator and client are running on the same computer use localhost as the ip addresses (127.0.0.1).
-- **map**:
+- **map**: The name of the map to load.
 - **server_port**: the TCP port for the simulator, typically 8999.
 - **simulation_mode**: 
 - **ego_config**: Specifies the model and color of the Ego vehicle. The `body`'s `type` specifier allows you to provide a path the model BluePrint for the Ego Vehicle and the `color` specifies the vehicle's color. If `ego_config` is omitted from the file, then a random vehicle and color will be chosen.

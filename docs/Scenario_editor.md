@@ -1,18 +1,20 @@
 # Scenario Editor
 
-The monoDrive Scene Editor extends the monoDrive Simulator and allows the user to control any of the thousands of features available in the monoDrive simulation environments. With the Scene Editor, users are able to generate custom scenarios leveraging the monoDrive lane and vehicle AIs. Custom simulator maps, vehicle parameters, and driving behaviors can be generated in the Scene Editor all which can be used to test AV algorithms using any one of the monoDrive clients.
+The monoDrive Scene Editor extends the monoDrive Simulator and allows the user to control any of the thousands of features available in the monoDrive simulation environments. With the Scene Editor, users are able to generate custom scenarios leveraging the monoDrive lane and vehicle AIs. Custom simulator maps, vehicle parameters, and driving behaviors can be generated in the Scene Editor all of which can be used to test AV algorithms using any one of the monoDrive clients.
 
 
 ## Getting Started
 
 1. Install Unreal Engine **4.23** from [here](https://www.unrealengine.com/en-US/).
 
-    - In Epic Games Launcher, and select Marketplace >> Browse. Search for "VehicleSim Dynamics" and download this free plugin. 
-        - Alternatively, from Epic Games website, sign-in and download the plugin [here](https://www.unrealengine.com/marketplace/en-US/product/carsim-vehicle-dynamics).
+    <p>&nbsp;</p>
+
+1. In Epic Games Launcher, and select Marketplace >> Browse. Search for "VehicleSim Dynamics" and download this free plugin. 
+    - Alternatively, from Epic Games website, sign-in and download the plugin [here](https://www.unrealengine.com/marketplace/en-US/product/carsim-vehicle-dynamics).
 
     <p>&nbsp;</p>
 
-1. Ensure you have the latest NVIDIA drivers for your [CUDA-enabled](https://en.wikipedia.org/wiki/CUDA) graphics card.
+1. Ensure you have the latest NVIDIA drivers for your [CUDA-enabled](https://developer.nvidia.com/cuda-gpus) graphics card.
 
     <div class="img_container">
         <img class='lg_img' src="../easier_device_driver_update.png"/>
@@ -22,11 +24,24 @@ The monoDrive Scene Editor extends the monoDrive Simulator and allows the user t
     Even if not prompted by the system, a restart is recommended to ensure the new drivers are correctly detected prior to running any simulations.
 
     **NOTE**
-    In case the driver cannot be updated using the above method, please visit http://www.nvidia.com/Download/index.aspx to download the [latest driver](https://www.nvidia.comnvidia.com).
+    In case the driver cannot be updated using the above method, please download the [latest driver here](http://www.nvidia.com/Download/index.aspx).
 
     <p>&nbsp;</p>
 
-1. Download the monoDrive Simulator Editor from [here](https://www.monodrive.io/register).
+1. Download Visual Studio from [here](https://visualstudio.microsoft.com/).
+
+    - Make sure the following options enabled:
+
+         - Workloads: Game development with C++
+
+            - Options: C++ Profiling Tools
+
+    *For more information, check [here](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html)*
+
+    <p>&nbsp;</p>
+
+
+1. Download the monoDrive Simulator Editor [here](https://www.monodrive.io/register) and extract all files. 
 
     <div class="img_container">
     <img class='lg_img' src="../LV_client/quick_start/imgs/sensor_editor_extract.png"/>

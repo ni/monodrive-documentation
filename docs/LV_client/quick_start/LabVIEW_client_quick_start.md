@@ -43,23 +43,10 @@
 ## Run the VehicleAI Simulator Editor
 Quick start instructions and details on how to generate project files in the VehicleAI Simulator Editor can be found in [scenario editor](../../Scenario_editor.md).
 
-1. Download Visual Studio from [here](https://visualstudio.microsoft.com/).
+1. Go to your VehicleAI_Editor directory and find VehicleAI.uproject
 
-    - Make sure the following options enabled:
-        - Workloads: Game development with C++
-            - Options: C++ Profiling Tools
 
-    *For more information, check [here](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html)*
-
-2. Open VehicleAI_Editor zip file and extract all files
-
-    <div class="img_container">
-    <img class='lg_img' src="../imgs/sensor_editor_extract.png"/>
-    </div>
-
-3. Go to your VehicleAI_Editor directory and find VehicleAI.uproject
-
-4. Double-click on VehicleAI.uproject
+1. Double-click on VehicleAI.uproject
 
 <p>&nbsp;</p>
 

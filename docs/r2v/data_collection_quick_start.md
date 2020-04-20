@@ -79,7 +79,7 @@ mapper tool must be  used to calibrate for the local magnetic bias. The
 to calibrate. 
 
 1. Open that Xsens Magnetic Field Mapper software
-1. Select "Write results to Motion Tracker non-volatile memory"
+1. Select "Use Motion Tracker"
 1. "Scan" for the connected Xsens device
 1. Once the device is found, click next "Start" to begin calibration
 1. Drive the vehicle in **two consecutive circles** then click "Process"
@@ -90,7 +90,7 @@ to calibrate.
 After calibration, **do not power off the hardware**. This will preserve all
 calibration parameters. To collect data:
 
-1. Click the "Run" arrow on the top-left of the monoDrive LabView data logger application. The data logger will connect to all sensors and ensure they are functioning as expected.
+1. Click the "Run" arrow on the top-left of the monoDrive LabVIEW data logger application. The data logger will connect to all sensors and ensure they are functioning as expected.
 1. Click "Configure" to configure the software the values in the configuration tab.
 1. The software is now connected and can display sensor outputs. In order to acclimate the GNSS to the magnetic field, drive around for approximately 5 minutes
 1. Once the IMU yaw and the Estimated Yaw are relatively close (~1-2 degrees), data collection can begin

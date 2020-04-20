@@ -63,8 +63,8 @@ packaged with the map should be a `replay.json` file that contains all detected
 Dynamic Actors in the scene. This file is a monoDrive Trajectory File that can
 be played back in the Scenario Editor using the "Replay Mode" of any of the 
 monoDrive clients. Below is a an image of the trajectory being played back using
-the monoDrive LabView Client. See the 
-[LabView Client Replay Example](../../LV_client/quick_start/LabVIEW_client_quick_start)
+the monoDrive LabVIEW Client. See the 
+[LabVIEW Client Replay Example](../../LV_client/quick_start/LabVIEW_client_quick_start)
 for more information about playing back Trajectory Files.
 
 <div class="img_container">

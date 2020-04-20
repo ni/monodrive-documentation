@@ -94,7 +94,7 @@ you should drive in 2 consecutive circles in either direction.
 
 After the sensor suite is connected and calibrated, the monoDrive R2V Data 
 Logger is used to collect binary stream data on a laptop computer. The data 
-logger, shown in Figure 3, is a LabView application which enables configuration 
+logger, shown in Figure 3, is a LabVIEW application which enables configuration 
 of sensor settings and view mission critical sensor data during a logging 
 session. After a logging session is complete, the binary sensor stream data can 
 be found in the directory selected in the data logging application. This binary 
@@ -153,7 +153,7 @@ to Log” control:
 
 1. When you are ready to finish collecting data, click the EXIT button, this will disconnect the GNSS and close the open connections.
 
-    **NOTE:** If the the LabView “Stop” button is pressed instead of the R2V EXIT button, the entire application will need to be restarted in order to record again.
+    **NOTE:** If the LabVIEW “Stop” button is pressed instead of the R2V EXIT button, the entire application will need to be restarted in order to record again.
 
 ### KITTI Formatted Data
 The KITTI format is leveraged by the monoDrive R2V software to provide an industry accepted data format. This format is used widely in industry and academia to process image, LiDAR, and GNSS data for various Simultaneous Localization and Mapping (SLAM) algorithms and other computer vision work. For more information on the format itself, see the author’s website at http://www.cvlibs.net/datasets/kitti/index.php.

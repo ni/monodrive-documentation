@@ -126,9 +126,10 @@ pages:
         - mono_kf_init.vi: LV_client/shared_libraries/mono_kf_init.md
         
 - Real-to-Virtual:
-  - data collection quick start: r2v/data_collection_quick_start.md
-  - data processing quick start: r2v/data_processing_quick_start.md
-  - detailed description: r2v/detailed_guide.md
+  - Data Collection Quick Start: r2v/data_collection_quick_start.md
+  - Data Processing Quick Start: r2v/data_processing_quick_start.md
+  - Detailed Description: r2v/detailed_guide.md
+  - Maps: r2v/r2v_maps.md
 extra_css:
     - css/extra.css        
         

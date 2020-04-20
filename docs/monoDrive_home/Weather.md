@@ -9,6 +9,10 @@ the simulator to configure the current weather conditions. Additionally, the
 monoDrive Scene Editor provides an interactive way of changing weather 
 conditions and saving them to configuration files.
 
+<p class="img_container">
+  <img class="wide_img" src="../img/vehicle_ai_weather.gif" />
+</p>
+
 ## Configuring Weather in monoDrive Scene Editor
 
 In the monoDrive Scene Editor, the "Weather" actor can be found in any one of

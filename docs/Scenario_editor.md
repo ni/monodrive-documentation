@@ -1,25 +1,54 @@
 # Scenario Editor
 
+The monoDrive Scene Editor extends the monoDrive Simulator and allows the user to control any of the thousands of features available in the monoDrive simulation environments. With the Scene Editor, users are able to generate custom scenarios leveraging the monoDrive lane and vehicle AIs. Custom simulator maps, vehicle parameters, and driving behaviors can be generated in the Scene Editor all of which can be used to test AV algorithms using any one of the monoDrive clients.
+
+
 ## Getting Started
 
 1. Install Unreal Engine **4.23** from [here](https://www.unrealengine.com/en-US/).
 
-    - In Epic Games Launcher, and select Marketplace >> Browse. Search for "VehicleSim Dynamics" and download this free plugin. 
+    <p>&nbsp;</p>
+
+1. In Epic Games Launcher, and select Marketplace >> Browse. Search for "VehicleSim Dynamics" and download this free plugin. 
     - Alternatively, from Epic Games website, sign-in and download the plugin [here](https://www.unrealengine.com/marketplace/en-US/product/carsim-vehicle-dynamics).
 
-1. Download NVIDIA CUDA Toolkit 10.2 from [here](https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64).
-    - Choose OS/ Version and how to install
-    - Example:
-         - Operating System: Windows
-         - Architecture: x84_64
-         - Version: 10
-         - Installer Type: exe(local)
+    <p>&nbsp;</p>
 
-1. Download the monoDrive Simulator or monoDrive Simulator Editor from [here](https://www.monodrive.io/register).
+1. Ensure you have the latest NVIDIA drivers for your [CUDA-enabled](https://developer.nvidia.com/cuda-gpus) graphics card. 
 
     <div class="img_container">
-    <img class='lg_img' src="../LV_client/quick_start/imgs/sensor_editor_extract.png"/>
+    <img class='sm_img' src="../nvidia_driver2.png"/>
     </div>
+
+    <div class="img_container">
+    <img class='wide_img' src="../nvidia_driver1.png"/>
+    </div>
+    <p>&nbsp;</p>
+
+    **NOTE**
+    Even if not prompted by the system, a restart is recommended to ensure the new drivers are correctly detected prior to running any simulations.
+
+    **NOTE**
+    In case the driver cannot be updated using the above method, please download the [latest driver here](http://www.nvidia.com/Download/index.aspx).
+
+    <p>&nbsp;</p>
+
+1. Download Visual Studio from [here](https://visualstudio.microsoft.com/).
+
+    - Make sure the following options enabled:
+
+         - Workloads: Game development with C++
+
+            - Options: C++ Profiling Tools
+
+    *For more information, check [here](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html)*
+
+    <p>&nbsp;</p>
+
+
+1. Download the monoDrive Simulator Editor [here](https://www.monodrive.io/register) and extract all files. 
+
+    <p>&nbsp;</p>
 
 1. Go to your VehicleAI_Editor directory and find VehicleAI.uproject
 

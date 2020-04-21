@@ -28,7 +28,7 @@ placed above the vehicle so all surroundings can be recorded.
 
 For the monoDrive Real-to-Virtual hardware, the original spherical camera data
 must be calibrated for proper field-of-view prior to parsing in order to crop
-out static objects. The orignal shows a good portion of the data collection 
+out static objects. The original shows a good portion of the data collection 
 vehicle:
 
 <div class="img_container">
@@ -36,7 +36,7 @@ vehicle:
 </div>
 
 The data collection software provides a tool to determine the optimal 
-field-of-view in both the horizontal and vertial dimensions. 
+field-of-view in both the horizontal and vertical dimensions. 
 
 > **TODO:** insert picture of calibration tool for images.
 

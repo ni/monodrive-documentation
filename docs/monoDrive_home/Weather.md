@@ -53,20 +53,14 @@ profile to.
 specfies the human readable name of the weather profile to save to.
 
 
-### Weather File Formats
+### Importing Weather in CARLA Format
 
-The monoDrive Weather settings are sent to the server from the client, but can
-also be read in from a `.ini` file located in the 
-`<VehicleAI Install Directory>\VehicleAI_Editor\Config\` directory. The default
-configuration file for the simulator is `CarlaWeather.ini` and comes with
-the shipped simulator. The `.ini` file should be used only with the  monoDrive
-Simulator, clients should use the contents of the `.json` file to send to the
-simulator during the initial connection.
-
-After pressing the "Save File Button" pictured above, two files can be found
-in the `Config` directory with the names specified in the 
-"Configuration File Name" field. In the `.ini` file, the saved profile can 
-be found under the specified "Profile Name" and appear as below:
+The monoDrive Weather can be easily imported from CARLA settings by putting 
+the desired profile into the 
+`<VehicleAI Install Directory>\VehicleAI_Editor\Config\CarlaWeather.ini` file.
+This file is used to load the initial weather profiles into the simulator so
+they can be edited in the weather settings. The contents of a profile in `.ini`
+should look similar to the following:
 
 ```ini
 [MyCoolNewProfile]
@@ -97,6 +91,19 @@ CameraPostProcessParameters.AutoExposureMinBrightness=0.27
 CameraPostProcessParameters.AutoExposureMaxBrightness=5
 CameraPostProcessParameters.AutoExposureBias=-3.5
 ```
+
+### Saving Weather Profiles
+
+The default configuration file for the simulator is `CarlaWeather.ini` and comes 
+with the shipped simulator. This file loads up several pre-determined weather 
+profiles for editing in the Scenario Editor. These profiles can be edited in 
+the Scenario Editor and saved out to a `.json` format that is usable in the
+monoDrive clients.
+
+After pressing the "Save File Button" pictured above, two files can be found
+in the `Config` directory with the names specified in the 
+"Configuration File Name" field. In the `.ini` file, the saved profile can 
+be found under the specified "Profile Name" and appear as below:
 
 In the `.json` file, the weather profile can be found in the JSON group where 
 the `id` field matches the "Profile Name":
@@ -154,22 +161,27 @@ the `id` field matches the "Profile Name":
 ```
 
 ## Using Weather in the LabView Client
+For the LabVIEW client, the weather profiles that are exported can be pasted 
+into the JSON `profiles` array located in the `mono_get_weather.vi` VI. 
 
 * [Getting the weather configuration:](../LV_client/weather/mono__get__weatherc.md)
 The LabView client stores all known weather profiles in this `.vi`. To add a new 
 profile, paste in the contents of the profile `.json` file here. 
-* [Sending weather information to the server:](../LV_client/weather/mono__weather__updatec.md) 
-This `.vi` allows you to send the weather json from the `mono__get__weatherc.vi` 
-to the server.
-* [Determine the weather profile by index:](../LV_client/weather/mono__weather__idc.md)
-This takes an index as input and produces the profile name of the weather as 
-output.
+
+After opening the VI's GUI: the weather profiles can be found on the left-hand
+side of the interface. Simply copy and paste your custom weather profile into 
+the array:
+
+<p class="img_container">
+  <img class="wide_img" src="../img/get_weather_vi.png" />
+</p>
+<p>&nbsp;</p>
 
 ## Using the Weather in the Python Client
 
-TODO
+TBD
 
 ## Using the Weather in the C++ Client
 
-TODO
+TBD
 

@@ -8,7 +8,7 @@ to create high-fidelity assets and maps usable in the Unreal Engine and the
 monoDrive Scenario Editor.
 
 <video width=100% autoplay loop>
-    <source src="../imgs/r2v_comparison.webm" type="video/mp4">
+    <source src="http://cdn.monodrive.io/readthedocs/r2v_comparison_converted.mp4" type="video/webm">
 </video>
 
 * Sensor fusion and machine learning algorithms construct 3D meshes from LiDAR and image data
@@ -16,7 +16,7 @@ monoDrive Scenario Editor.
 * monoDrive developed signal processing and machine learning algorithms enable static road art and dynamic vehicle placement in simulation
 
 <video width=100% autoplay loop>
-    <source src="../imgs/dynamic_actor_tracking.webm" type="video/mp4">
+    <source src="http://cdn.monodrive.io/readthedocs/dynamic_actor_tracking_converted.mp4" type="video/webm">
 </video>
 
 ## Data Products
@@ -53,5 +53,5 @@ original dynamic actors from the generated Trajectory File or create their own,
 new scenarios using the monoDrive Scenario Editor.
 
 <video width=100% autoplay loop>
-    <source src="../imgs/r2v_ue4_sim.webm" type="video/mp4">
+    <source src="http://cdn.monodrive.io/readthedocs/r2v_ue4_sim_converted.mp4" type="video/webm">
 </video>

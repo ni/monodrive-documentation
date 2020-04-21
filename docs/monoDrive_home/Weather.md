@@ -13,7 +13,7 @@ conditions and saving them to configuration files.
   <img class="wide_img" src="../img/vehicle_ai_weather.gif" />
 </p>
 
-## Configuring Weather in monoDrive Scene Editor
+## Adding Weather to a Map
 
 In the monoDrive Scene Editor, the "Weather" actor can be found in any one of
 the pre-made monoDrive Unreal Engine maps found in the `Content/Maps` directory.
@@ -24,6 +24,30 @@ the custom map and it should now appear in the "World Outliner".
 <p class="img_container">
   <img class="lg_img" src="../img/modes_weather_actor.png" />
 </p>
+
+The weather also references the wind actor and the fog actor. Simply add these
+two actors anywhere in the map the same as the weather actor.
+
+<p class="img_container">
+  <img class="lg_img" src="../img/wind_actor.png" />
+</p>
+
+<p>&nbsp;</p>
+
+<p class="img_container">
+  <img class="lg_img" src="../img/fog_actor.png" />
+</p>
+
+The final step to getting the weather functioning is to set the map's light 
+source to movable. This will allow the weather to control the lighting. Find the 
+"Light Source" in the "World Outliner" and in the "Details" window, set the 
+"Mobility" to movable as shown in  the image below:
+
+<p class="img_container">
+  <img class="lg_img" src="../img/movable_light_source.png" />
+</p>
+
+## Configuring Weather Profiles
 
 To find the Weather Actor in the map, first go to the "World Outliner" window
 and search for "weather" in the search box. The Weather Actor should appear as

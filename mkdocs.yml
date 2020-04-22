@@ -124,7 +124,12 @@ pages:
         - mono_init.vi: LV_client/shared_libraries/mono__initc.md
         - mono_kf_update.vi: LV_client/shared_libraries/mono__kf__update.md
         - mono_kf_init.vi: LV_client/shared_libraries/mono_kf_init.md
-        
+    
+  - Tutorials:
+      - Setup a LabVIEW client: LV_client/tutorials/Setup.md
+      - Add new sensors : LV_client/tutorials/AddSensors.md
+      - Visualize LiDAR data : LV_client/tutorials/Lidar.md
+
 extra_css:
     - css/extra.css        
         

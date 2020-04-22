@@ -124,12 +124,19 @@ pages:
         - mono_init.vi: LV_client/shared_libraries/mono__initc.md
         - mono_kf_update.vi: LV_client/shared_libraries/mono__kf__update.md
         - mono_kf_init.vi: LV_client/shared_libraries/mono_kf_init.md
-        
+ 
+    - Tutorials:
+      - Setup a LabVIEW client: LV_client/tutorials/Setup.md
+      - Add New Sensors : LV_client/tutorials/AddSensors.md
+      - Visualize LiDAR data : LV_client/tutorials/Lidar.md
+ 
 - Real-to-Virtual:
   - About: r2v/about.md
   - Data Collection Quick Start: r2v/data_collection_quick_start.md
   - Data Processing Quick Start: r2v/data_processing_quick_start.md
   - Maps: r2v/r2v_maps.md
+    
+
 extra_css:
     - css/extra.css        
         

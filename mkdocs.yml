@@ -6,17 +6,13 @@ theme:
   navigation_depth: 6
 
 pages:
-- monoDrive :
-  - Home: 
-    - monoDrive: index.md
-  - Scenario Editor: 
-    - Getting Started: scenario_editor/quick_start.md
-    - Generating Scenarios: scenario_editor/scenarios.md
-    - Road network: scenario_editor/roads.md
+- monoDrive : 
+  - About : index.md
+  - Simulator : Simulator.md
+  - Scenario Editor: Scenario_editor.md
   - Configuration:
     - System: monoDrive_home/Configuration.md
     - Simulator : monoDrive_home/Simulator-Configuration.md
-    - Vehicle : monoDrive_home/Vehicle-Configuration.md
     - Sensor Configurations:
         - Common: monoDrive_home/Common.md
         - Camera: monoDrive_home/Camera.md
@@ -28,6 +24,8 @@ pages:
         - State Sensor: monoDrive_home/State-sensor.md
         - Ultrasonic: monoDrive_home/Ultrasonic.md
         - Viewport: monoDrive_home/Viewport.md
+    - Vehicle : monoDrive_home/Vehicle-Configuration.md
+    - Weather: monoDrive_home/Weather.md
 
 - LabVIEW_Client: 
   - Quick Start: 

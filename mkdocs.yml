@@ -13,7 +13,6 @@ pages:
   - Configuration:
     - System: monoDrive_home/Configuration.md
     - Simulator : monoDrive_home/Simulator-Configuration.md
-    - Vehicle : monoDrive_home/Vehicle-Configuration.md
     - Sensor Configurations:
         - Common: monoDrive_home/Common.md
         - Camera: monoDrive_home/Camera.md
@@ -25,6 +24,8 @@ pages:
         - State Sensor: monoDrive_home/State-sensor.md
         - Ultrasonic: monoDrive_home/Ultrasonic.md
         - Viewport: monoDrive_home/Viewport.md
+    - Vehicle : monoDrive_home/Vehicle-Configuration.md
+    - Weather: monoDrive_home/Weather.md
 
 - LabVIEW_Client: 
   - Quick Start: 

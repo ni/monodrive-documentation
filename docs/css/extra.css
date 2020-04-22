@@ -36,6 +36,10 @@ button, input, aside {
     width: 50px;
 }
 
+.icon {
+    width: 40px;
+}
+
 .sm_img {
     width: 200px;
 }

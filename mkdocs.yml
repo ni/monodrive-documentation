@@ -49,15 +49,12 @@ pages:
     - C++ Examples: cpp_client/cpp_examples.md
     - ROS Examples: cpp_client/ros_examples.md
 
-  - LabVIEW_Client: 
+  - LabVIEW Client: 
     - Quick Start: 
       - Setup: LV_client/quick_start/LabVIEW_client_quick_start.md
       - Run Examples: LV_client/quick_start/LabVIEW_run_examples.md
       - Configuration Examples: LV_client/quick_start/LabView_configurations.md
       - FAQ: LV_client/quick_start/FAQ.md
-    # - Quick Start 2018 Version: 
-    #   - Setup: LabVIEW_client.md
-    #   - Examples: LV_client/monoDrive_Simulator_Interface_Example.md
     - LabVIEW Detailed Help:
       - Controls:
           - monoDrive.ctl: LV_client/structures/monoDrive.md
@@ -147,8 +144,11 @@ pages:
           - mono_init.vi: LV_client/shared_libraries/mono__initc.md
           - mono_kf_update.vi: LV_client/shared_libraries/mono__kf__update.md
           - mono_kf_init.vi: LV_client/shared_libraries/mono_kf_init.md
-      
 
+  - Python Client:
+    - Quick Start: python_client/quick_start.md
+    - Examples: python_client/examples.md
+        
 extra_css:
     - css/extra.css        
         

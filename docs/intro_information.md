@@ -1,4 +1,4 @@
-# Information
+# Introduction
 
 ## Making Autonomous Vehicles Drive Safe
 Generation of realistic scenarios and resulting sensor information for perception and planning system validation.
@@ -13,15 +13,6 @@ Generation of realistic scenarios and resulting sensor information for perceptio
 
 <p>&nbsp;</p>
 
-## How It Works
-monodrive’s platform is designed to automate scenario test generation for planning testing. 
-
-<div class='img_container'>
-    <img class="lg_img" src=https://static.wixstatic.com/media/1f1c9e_58512d3c803847989161a59ec21116a6~mv2.png/v1/fill/w_641,h_632,al_c/1f1c9e_58512d3c803847989161a59ec21116a6~mv2.png alt="monoDrive HowItWorks"/>
-</div>
-
-<p>&nbsp;</p>
-
 ## Products
 
 **[Simulator](Simulator.md)**
@@ -33,6 +24,17 @@ The monoDrive Simulator provides users with the ability to test AV algorithms in
 The monoDrive Scenario Editor extends the monoDrive Simulator and allows the user to control any of the thousands of features available in the monoDrive simulation environments. With the Scenario Editor, users are able to generate custom scenarios leveraging the monoDrive lane and vehicle AIs. Custom simulator maps, vehicle parameters, and driving behaviors can be generated in the Scenario Editor all of which can be used to test AV algorithms using any one of the monoDrive clients.
 
 **[Real to Virtual](r2v/about.md)**
+
 The monoDrive Real-to-Virtual hardware and software provide an end-to-end solution for collecting real-world data from cameras, LiDAR, and GNSS systems to create high-fidelity assets and maps usable in the Unreal Engine and the monoDrive Scenario Editor.
+
+<p>&nbsp;</p>
+
+## How It Works
+
+monoDrive’s platform is designed to automate scenario test generation for planning testing. 
+
+<div class='img_container'>
+    <img class="lg_img" src=https://static.wixstatic.com/media/1f1c9e_58512d3c803847989161a59ec21116a6~mv2.png/v1/fill/w_641,h_632,al_c/1f1c9e_58512d3c803847989161a59ec21116a6~mv2.png alt="monoDrive HowItWorks"/>
+</div>
 
 <p>&nbsp;</p>

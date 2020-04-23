@@ -8,9 +8,20 @@ theme:
 
 pages:
 - monoDrive: index.md
-- Information : intro_information.md
+- About monoDrive : intro_information.md
 - Getting Started : Getting_Started.md
 - Products : 
+  - High Fidelity Sensors: [
+    monoDrive_home/Common.md,
+    monoDrive_home/Camera.md,
+    monoDrive_home/GPS.md,
+    monoDrive_home/IMU.md,
+    monoDrive_home/Lidar.md,
+    monoDrive_home/Radar.md,
+    monoDrive_home/RPM.md,
+    monoDrive_home/State-sensor.md,
+    monoDrive_home/Ultrasonic.md,
+    monoDrive_home/Viewport.md]
   - Simulator : Simulator.md
   - Scenario Editor : [
       scenario_editor/scenarios.md, 
@@ -23,17 +34,6 @@ pages:
     - Maps: r2v/r2v_maps.md
 
 - Configurations :
-  - Sensors: [
-      monoDrive_home/Common.md,
-      monoDrive_home/Camera.md,
-      monoDrive_home/GPS.md,
-      monoDrive_home/IMU.md,
-      monoDrive_home/Lidar.md,
-      monoDrive_home/Radar.md,
-      monoDrive_home/RPM.md,
-      monoDrive_home/State-sensor.md,
-      monoDrive_home/Ultrasonic.md,
-      monoDrive_home/Viewport.md]
   - Vehicle : monoDrive_home/Vehicle-Configuration.md
   - Weather: monoDrive_home/Weather.md
   

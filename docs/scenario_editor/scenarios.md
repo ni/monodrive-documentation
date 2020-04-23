@@ -2,11 +2,11 @@
 
 ## monoDrive Scenario Creation
 
-The monoDrive Scene Editor allows user to create their own scenarios by 
+The monoDrive Scenario Editor allows user to create their own scenarios by 
 controlling various different aspects of AI vehicle behavior. By attaching
 the monoDrive State Sensor to a vehicle, users can save scenarios to monoDrive
 trajectory files that can then be used in the Replay modes of the monoDrive
-Simulator and Scene Editor.
+Simulator and Scenario Editor.
 
 ### Placing Vehicles in a Scene
 
@@ -20,7 +20,7 @@ and putting it on the desired lane of travel.
 the desired speeds of the vehicle (in miles per hour).
 1. In the "Details" window, search for the "Vehicle Behavior" group and set the
 desired vehicle behaviors for traffic laws.
-1. At the top of the Scene Editor hit the "Play" button. The vehicle should 
+1. At the top of the Scenario Editor hit the "Play" button. The vehicle should 
 begin to travel down the lane closest to its original placement. 
 1. Repeat this with multiple vehicles until the scene is populated as desired.
 
@@ -69,7 +69,7 @@ control during playback). To attach the state sensor:
 1. Setup the tagging system for the vehicle (see [tagging]()). Ensure that the selected vehicle contains the "ego" tag or the playback of the trajectory will not work.
 1. Go to the `StateSensor`'s Streamer group in the "Details" window and select "File Streamer Component" as the "Streamer Type"
 1. Under the "Streamer" section expand the "File Settings" and type in the name of the file to save the trajectory to.
-1. Hit "Play" at the top of the Scene Editor, the file set in the previous step should now be populated with all the desired tags.
+1. Hit "Play" at the top of the Scenario Editor, the file set in the previous step should now be populated with all the desired tags.
 
 #### Tagging System
 

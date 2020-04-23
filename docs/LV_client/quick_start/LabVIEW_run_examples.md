@@ -8,7 +8,7 @@ dialog in LabView. The `ni_monoDrive.lvproj` contains references to all the VIs
 described here.
 
 For all of these examples, you will need to have either the monoDrive Simulator
-running or the monoDrive Scene Editor open and in "Play" mode.
+running or the monoDrive Scenario Editor open and in "Play" mode.
 
 ### Closed Loop Example
 

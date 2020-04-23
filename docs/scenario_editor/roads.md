@@ -78,7 +78,7 @@ supports version 1.5 of the OpenDrive specification.
 
 To save and load lane networks, use the monoDrive `LaneExport` tool:
 
-* Navigate to the root `Content` folder in the Scene Editor. 
+* Navigate to the root `Content` folder in the Scenario Editor. 
 * Right-click the `LaneExport` tool and choose "Run Editor Utility Widget":
 
 <div class="img_container">

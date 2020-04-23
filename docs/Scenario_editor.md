@@ -1,6 +1,6 @@
 # Scenario Editor
 
-The monoDrive Scene Editor extends the monoDrive Simulator and allows the user to control any of the thousands of features available in the monoDrive simulation environments. With the Scene Editor, users are able to generate custom scenarios leveraging the monoDrive lane and vehicle AIs. Custom simulator maps, vehicle parameters, and driving behaviors can be generated in the Scene Editor all of which can be used to test AV algorithms using any one of the monoDrive clients.
+The monoDrive Scenario Editor extends the monoDrive Simulator and allows the user to control any of the thousands of features available in the monoDrive simulation environments. With the Scenario Editor, users are able to generate custom scenarios leveraging the monoDrive lane and vehicle AIs. Custom simulator maps, vehicle parameters, and driving behaviors can be generated in the Scenario Editor all of which can be used to test AV algorithms using any one of the monoDrive clients.
 
 
 ## Getting Started

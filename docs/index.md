@@ -13,7 +13,6 @@ monoDrive's Platform is available now: [Download Monodrive](https://lumen.ni.com
 
 ## Products
 
-
 [Simulator](Simulator.md) -- Test AV algorithms in one of several pre-made monoDrive Simulator levels. <br />
 [Scenario Editor](scenario_editor/scenarios.md) -- Create and control various different aspects of AI vehicle behavior.<br />
 [Real to Virtual](r2v/about.md) -- Collecting real-world data from cameras, LiDAR, and GNSS systems to create high-fidelity assets and maps usable in the Unreal Engine and the monoDrive Scenario Editor.
@@ -21,7 +20,7 @@ monoDrive's Platform is available now: [Download Monodrive](https://lumen.ni.com
 ## Configurations
 The monoDrive simulator is configured from the Client. Everything about the simulator can be configured, from the material properties, to these properties.
 
-[Sensors](monoDrive_home/Common.md) -- High-fidelity sensor emulation. <br />
+[Sensors](monoDrive_home/Common.md) <br />
 [Vehicles](monoDrive_home/Vehicle-Configuration.md) <br />
 [Weather](monoDrive_home/Weather.md)
 

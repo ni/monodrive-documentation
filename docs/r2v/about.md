@@ -47,7 +47,7 @@ the world.
 
 Combining the Real-to-Virtual road meshes, monoDrive GeoDatabase satellite 
 tiles, and static road art placement, the Real-to-Virtual system produces
-Unreal Engine maps that are usable in the monoDrive Simulator and Scene Editor.
+Unreal Engine maps that are usable in the monoDrive Simulator and Scenario Editor.
 The monoDrive clients can connect to the running simulator to replay the 
 original dynamic actors from the generated Trajectory File or create their own,
 new scenarios using the monoDrive Scenario Editor.

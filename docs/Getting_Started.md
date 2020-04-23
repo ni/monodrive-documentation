@@ -34,7 +34,7 @@
 
 <p>&nbsp;</p>
 
-## Scene Editor
+## Scenario Editor
 
 1. Download the monoDrive Simulator Editor from [here](https://www.monodrive.io/register) and extract all files. 
 

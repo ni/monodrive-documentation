@@ -6,7 +6,7 @@ The monoDrive Simulator supports dynamic weather conditions that change the
 visual and physical effects of the simulation. Pre-made weather profiles are
 available in all of the monoDrive client versions which can be sent to 
 the simulator to configure the current weather conditions. Additionally, the
-monoDrive Scene Editor provides an interactive way of changing weather 
+monoDrive Scenario Editor provides an interactive way of changing weather 
 conditions and saving them to configuration files.
 
 <p class="img_container">
@@ -16,7 +16,7 @@ conditions and saving them to configuration files.
 
 ## Adding Weather to a Map
 
-In the monoDrive Scene Editor, the "Weather" actor can be found in any one of
+In the monoDrive Scenario Editor, the "Weather" actor can be found in any one of
 the pre-made monoDrive Unreal Engine maps found in the `Content/Maps` directory.
 The Weather actor can be added to custom maps easily by searching for the Actor 
 in the "Modes" window as shown in the image below. Simply drag the actor into 

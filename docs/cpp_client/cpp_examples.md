@@ -114,11 +114,11 @@ example demonstrates:
 * Configuring and connecting to a running instance of the monoDrive Simulator
 * Configuring and connecting to a Camera sensor (as discussed above)
 * Configuring the Viewport Sensor for the camera on the simulator
-* Stepping the a monoDrive Trajectory File in Replay mode (as discussed above)
+* Stepping a monoDrive Trajectory File in Repaly mode (as discussed above)
 
 The Viewport Sensor in this example controls where the camera view will be 
 placed in the monoDrive Simulator or Scenario Editor. This sensor is not 
-sampled, but rather just configured and sent to the `sim0` instance:
+configured and sent to the `sim0` instance without needing to be sampled:
 
 ```cpp
 ViewportCameraConfig vp_config;

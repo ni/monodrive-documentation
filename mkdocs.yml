@@ -27,9 +27,9 @@ pages:
         - Viewport: monoDrive_home/Viewport.md
 
 - C++ Client:
-  - C++ Quick Start: cpp_client/quick_start.md
+  - C++ Quick Start: cpp_client/cpp_quick_start.md
   - ROS Quick Start: cpp_client/ros_quick_start.md
-  - C++ Examples: cpp_client/examples.md
+  - C++ Examples: cpp_client/cpp_examples.md
   - ROS Examples: cpp_client/ros_examples.md
 
 - LabVIEW_Client: 

@@ -3,27 +3,38 @@ repo_url: https://github.com/monodriveio/client
 docs_dir: docs
 theme:
   name: 'ivory'
-  navigation_depth: 6
+  navigation_depth: 1
   collapse_navigation: true
 
 pages:
 - monoDrive: index.md
 - Getting Started : Getting_Started.md
-- Simulator : monoDrive_home/Simulator-Configuration.md
-- Sensors: 
-  - Type : [
-    monoDrive_home/Common.md,
-    monoDrive_home/Camera.md,
-    monoDrive_home/GPS.md,
-    monoDrive_home/IMU.md,
-    monoDrive_home/Lidar.md,
-    monoDrive_home/Radar.md,
-    monoDrive_home/RPM.md,
-    monoDrive_home/State-sensor.md,
-    monoDrive_home/Ultrasonic.md,
-    monoDrive_home/Viewport.md]
-- Vehicle : monoDrive_home/Vehicle-Configuration.md
-- Weather: monoDrive_home/Weather.md
+- Configurations :
+  - Simulator : Simulator.md
+  - Sensors: [
+      monoDrive_home/Common.md,
+      monoDrive_home/Camera.md,
+      monoDrive_home/GPS.md,
+      monoDrive_home/IMU.md,
+      monoDrive_home/Lidar.md,
+      monoDrive_home/Radar.md,
+      monoDrive_home/RPM.md,
+      monoDrive_home/State-sensor.md,
+      monoDrive_home/Ultrasonic.md,
+      monoDrive_home/Viewport.md]
+  - Vehicle : monoDrive_home/Vehicle-Configuration.md
+  - Weather: monoDrive_home/Weather.md
+  
+- Tutorials:
+  - LabVIEW Tutorials: [LV_client/tutorials/Setup.md,
+    LV_client/tutorials/AddSensors.md,
+    LV_client/tutorials/Lidar.md]
+
+- Real-to-Virtual:
+  - About: r2v/about.md
+  - Data Collection Quick Start: r2v/data_collection_quick_start.md
+  - Data Processing Quick Start: r2v/data_processing_quick_start.md
+  - Maps: r2v/r2v_maps.md
 
 - LabVIEW_Client: 
   - Quick Start: 
@@ -123,17 +134,6 @@ pages:
         - mono_init.vi: LV_client/shared_libraries/mono__initc.md
         - mono_kf_update.vi: LV_client/shared_libraries/mono__kf__update.md
         - mono_kf_init.vi: LV_client/shared_libraries/mono_kf_init.md
- 
-    - Tutorials:
-      - Setup a LabVIEW client: LV_client/tutorials/Setup.md
-      - Add New Sensors : LV_client/tutorials/AddSensors.md
-      - Visualize LiDAR data : LV_client/tutorials/Lidar.md
- 
-- Real-to-Virtual:
-  - About: r2v/about.md
-  - Data Collection Quick Start: r2v/data_collection_quick_start.md
-  - Data Processing Quick Start: r2v/data_processing_quick_start.md
-  - Maps: r2v/r2v_maps.md
     
 
 extra_css:

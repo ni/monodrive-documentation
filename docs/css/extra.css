@@ -29,7 +29,7 @@ button, input, aside {
     font-family: "Roboto Slab","ff-tisa-web-pro","Georgia",Arial,sans-serif;
 }
 aside:hover {
-    width: 400px;
+    width: 305px;
     transition: width 2s, height 2s;
 }
 
@@ -89,7 +89,20 @@ aside {
     padding-left: 65px;
 }
 
+.toctree-l4>a.nav-item {
+    padding-left: 85px;
+}
+
 a.nav-item.current {
     color: #333;
     background: #eee;
+}
+
+.toctree-l2>.nav-item.section {
+    color: #999999;
+    padding-left: 45px  
+}
+
+.toctree-l2>.nav-item.section:hover {
+    background-color: #666666;
 }

@@ -17,6 +17,8 @@ A forward lane begins at the location where the road is placed, and ends at the 
 
 In the figure below, the blue line is the road's reference line. The blue dots are spline points along the road's reference line. Forward lanes are on the right side of the reference line, and reverse lanes on the left side.
 
+In addition, to get the _reference line_ facing the correct direction you road is going, press the 'e' key or tap the 'space bar' until the rotation tool is selected. Once this is done you may rotate the road to the direction you would like the cars to drive in.
+
 <div class="img_container">
 <img style="width: 100%" src="https://github.com/monoDriveIO/documentation/raw/lane_tool/WikiPhotos/scenario_editor/roads/reference_line.PNG"/>
 </div>
@@ -45,7 +47,7 @@ which is the area between two adjacent spline points. Lanes have several propert
 
 Lane segments also have several properties that can be edited as shown in the figure above.
 
-The start and end offset for a lane specify the spline point at which a lane starts or ends. This is useful when creating lane merge scenarios as in the picture below.
+The start and end offset for a lane specify the spline point at which a lane starts or ends. Depending on if you need to merge the start or end of the spline point, adjust the start or th end offset to a positive number, i.e. 2 as shown in the picture below. This is useful when creating lane merge scenarios.
 
 <div class="img_container">
 <img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/lane_tool/WikiPhotos/scenario_editor/roads/lane_offsets.PNG"/>
@@ -63,7 +65,7 @@ start or end of a lane, so keep that in mind when building out the roads. If you
 
 The red circle identifies the selected connection point for the road. The green circles identify existing connections. Possible connections are identified by the blue circles. Clicking on a connection creates the link between the two lanes.
 
-To unlink lanes, right click on the red selected connection point and select "Detach Lane"
+To unlink lanes, right click on the red selected connection point and select "Detach Lane".
 
 <div class="img_container">
 <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/lane_tool/WikiPhotos/scenario_editor/roads/disconnect_lane_menu.PNG"/>
@@ -110,4 +112,12 @@ After lanes are created inside of a map, they can be exported to file:
 - Set the orientation if there is a required orientation off set angle (yaw angle about z-axis)
 - Set the "Point Delta" field to the appropriate spacing between lane points (in centimeters)
 - Once all parameters are set, click the "Save" button and you data will be saved to specified file
+
+#### Demos
+
+To find more examples of the information above, follow the links below to our "__monoDrive Road Tool__" Demos:
+
+(Place Demos here once done.)
+
+#### 
 

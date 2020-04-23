@@ -28,7 +28,7 @@ files for "Closed Loop" control of the EGO vehicle.
 ### Subscribing to Sensors
 
 Once the client is connected to the `simulator` object, sensors can be 
-configured and a callback function connected to their output:
+configured and a callback function is connected to their output:
 
 ```python
 simulator.subscribe_to_sensor('Camera_8000', camera_on_update)
@@ -52,7 +52,8 @@ def camera_on_update(frame: CameraFrame):
 
 ### Sending Control Commands
 
-To send vehicle controls to the `simulator` object for moving the EGO vehicle:
+In order to send vehicle controls to the `simulator` object for moving the EGO 
+vehicle:
 
 ```python
 forward = 1
@@ -62,9 +63,9 @@ drive_mode = 1
 simulator.send_control(forward, right, brake, drive_mode)
 ``` 
 
-Here the `forward`, `right`, and `brake` amount floating point numbers between 
--1.0 and 1.0 to control the vehicle's movement. The `drive_mode` is set to `1`
-for closed loop control. Typically applications would want to control the 
+Here the `forward`, `right`, and `brake` values are floating point numbers 
+between -1.0 and 1.0 to control the vehicle's movement. The `drive_mode` is set 
+to `1` for closed loop control. Typically applications would want to control the 
 vehicle in a continuous loop while simulating.
 
 ### Stopping the Simulator
@@ -81,7 +82,7 @@ The example code in the `examples/camera_annotation.py` demonstrates how to
 connect to an instance of the monoDrive Simulator and:
 
 * Initiate "Replay" mode 
-* Subscribe to a Camera sensor's output and  process the annotations in the frame provided by the simulation
+* Subscribe to a Camera sensor's output and process the annotations in the frame provided by the simulation
 * Subscribe to a Semantic Camera sensor's output and display the camera data
 
 Here, the simulation is being "stepped" in Replay mode instead of direct control

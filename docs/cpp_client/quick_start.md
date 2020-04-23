@@ -10,7 +10,7 @@ clone the client from the monoDrive repository:
 $ git clone git@github.com:monoDriveIO/monodrive-client.git
 ```
 
-## Installation and Setup
+## Setup
 
 The monoDrive C++ Client is cross-platform and tested on both Windows 10 and 
 Ubuntu 18.04.
@@ -36,7 +36,7 @@ $ sudo apt-get install libboost-dev \
     libeigen3-dev
 ```
 
-### VSCode Setup and Build Instructions
+### VSCode Build Instructions
 
 On both Windows and Ubuntu, the C++ client can be compiled and installed in 
 Visual Studio Code:

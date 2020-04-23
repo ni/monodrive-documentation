@@ -13,7 +13,7 @@ $ git clone git@github.com:monoDriveIO/simulator-python-client.git
 ### Installation
 
 The monoDrive Python Client supports installation from git or locally with the 
-cloned repository. It is recommended that you do this inside of a virtual 
+cloned repository. It is recommended to install the client inside of a virtual 
 environment such as `conda` (see instructions below), but this is not necessary. 
 
 Install from Git repository:
@@ -28,7 +28,7 @@ or for https:
 $ pip install git+https://github.com/monoDriveIO/simulator-python-client.git#egg=monodrive
 ```
 
-If you want to install from your local repository:
+or, to install from a local repository:
 
 ```bash
 $ cd /path/to/repo/simulator-python-client
@@ -67,12 +67,12 @@ $ conda activate monodrive-python
 ```
 ### Troubleshooting
 
-- If the simulator is running on another machine, you will need to update the
-host information in `examples/configuration/simulator.json`
+- If the simulator is running on another machine, the host information in 
+`examples/configuration/simulator.json` will need to be updated
 
 ```json
 "simulator_ip": <IP OF SIMULATOR MACHINE>
 ```
 
-- On running the script, you should see that the client is successfully 
-connected to the simulator and begins replaying the trajectory file.
+- On running the script, the client is successfully connected if the simulator i
+begins replaying the trajectory file.

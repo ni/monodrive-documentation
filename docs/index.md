@@ -1,24 +1,16 @@
-# About monoDrive 
+# monoDrive Documentation
 
-## [Download Monodrive](https://lumen.ni.com/nicif/US/GB_EVALTLKTLVMONODRIVE/content.xhtml)
+Welcome to the monoDrive's documentation.
 
+This home page contains an index with a brief description of the different sections in the documentation. Feel free to read in whatever order preferred. In any case, here are a few suggestions for newcomers.
 
-## Making Autonomous Vehicles Drive Safe
-Generation of realistic scenarios and resulting sensor information for perception and planning system validation.
+[Download Monodrive](https://lumen.ni.com/nicif/US/GB_EVALTLKTLVMONODRIVE/content.xhtml)
 
-- Low latency networked vehicle control
+Install, Start, API links
 
-- Parameterized vehicle dynamics models with run time physics modification
+Maybe add this here: 
 
-- Fast scenario regeneration, with super realtime replay
+<img class="sm_img" src= "../monodrive_name_logo.png" alt="monoDrive"/>
 
-- Parameterized and accurate real time sensor emulation
+The monoDrive simulator is configured from the Client. Everything about the simulator can be configured, from the material properties, to the vehicle properties, to the sensor properties. Read more about the configurations for the [simulator](Simulator-Configuration.md), [vehicle](Vehicle-Configuration.md), and [sensors](Common.md).
 
-<p>&nbsp;</p>
-
-## How It Works
-monodrive’s platform is designed to automate scenario test generation for planning testing. 
-
-<div class='img_container'>
-    <img class="lg_img" src=https://static.wixstatic.com/media/1f1c9e_58512d3c803847989161a59ec21116a6~mv2.png/v1/fill/w_641,h_632,al_c/1f1c9e_58512d3c803847989161a59ec21116a6~mv2.png alt="monoDrive HowItWorks"/>
-</div>

@@ -37,31 +37,3 @@
     You can run the simulator by opening VehicleAI.uproject
 
 <p>&nbsp;</p>
-
-## Generate Project Files
-
-1. Generate Visual Studio project files by right clicking on VehicleAI.uproject in the VehicleAI directory. 
-
-    <div class="img_container">
-    <img class='lg_img' src="../../LV_client/quick_start/imgs/generate_project_files.png"/>
-    </div>
-
-2. Double-click on VehicleAI.sIn to open the Simulator.
-
-    <div class="img_container">
-    <img class='lg_img' src="../../LV_client/quick_start/imgs/vehicle-sIn.png"/>
-    </div>
-
-## Run
-
-1. Play Simulator
-
-    <div class="img_container">
-    <img class='wide_img' src="../../LV_client/quick_start/imgs/play.png"/>
-    </div>
-
-    <p>&nbsp;</p>
-
-    Go to [LabVIEW Setup](LV_client/quick_start/LabVIEW_client_quick_start.md)
-
-    <p>&nbsp;</p>

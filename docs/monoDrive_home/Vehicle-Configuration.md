@@ -1,4 +1,4 @@
-# Vehicle Configuration
+# Vehicles
 
 ## Vehicle
 ```

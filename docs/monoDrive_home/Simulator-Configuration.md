@@ -1,4 +1,4 @@
-# Simulator Configuration
+# Simulator
 
 ## Simulator
 ```

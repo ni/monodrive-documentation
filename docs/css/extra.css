@@ -104,3 +104,10 @@ a.nav-item.current {
 .toctree-l2>.nav-item.section:hover {
     background-color: #666666;
 }
+
+code {
+    background-color: #F8F8F8;
+    padding-left: 2px;
+    padding-right: 2px;
+    font-size: 13px;
+}

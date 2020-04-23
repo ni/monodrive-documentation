@@ -3,134 +3,152 @@ repo_url: https://github.com/monodriveio/client
 docs_dir: docs
 theme:
   name: 'ivory'
-  navigation_depth: 6
+  navigation_depth: 1
+  collapse_navigation: true
 
 pages:
-- monoDrive : 
-  - About : index.md
+- monoDrive: index.md
+- Information : intro_information.md
+- Getting Started : Getting_Started.md
+- Products : 
   - Simulator : Simulator.md
-  - Scenario Editor: Scenario_editor.md
-  - Configuration:
-    - System: monoDrive_home/Configuration.md
-    - Simulator : monoDrive_home/Simulator-Configuration.md
-    - Vehicle : monoDrive_home/Vehicle-Configuration.md
-    - Sensor Configurations:
-        - Common: monoDrive_home/Common.md
-        - Camera: monoDrive_home/Camera.md
-        - GPS: monoDrive_home/GPS.md
-        - IMU: monoDrive_home/IMU.md
-        - Lidar: monoDrive_home/Lidar.md
-        - Radar: monoDrive_home/Radar.md
-        - RPM: monoDrive_home/RPM.md
-        - State Sensor: monoDrive_home/State-sensor.md
-        - Ultrasonic: monoDrive_home/Ultrasonic.md
-        - Viewport: monoDrive_home/Viewport.md
+  - Scenario Editor : [
+      scenario_editor/scenarios.md, 
+      scenario_editor/roads.md
+    ]
+  - Real-to-Virtual:
+    - About: r2v/about.md
+    - Data Collection Quick Start: r2v/data_collection_quick_start.md
+    - Data Processing Quick Start: r2v/data_processing_quick_start.md
+    - Maps: r2v/r2v_maps.md
 
-- C++ Client:
-  - C++ Quick Start: cpp_client/cpp_quick_start.md
-  - ROS Quick Start: cpp_client/ros_quick_start.md
-  - C++ Examples: cpp_client/cpp_examples.md
-  - ROS Examples: cpp_client/ros_examples.md
+- Configurations :
+  - Sensors: [
+      monoDrive_home/Common.md,
+      monoDrive_home/Camera.md,
+      monoDrive_home/GPS.md,
+      monoDrive_home/IMU.md,
+      monoDrive_home/Lidar.md,
+      monoDrive_home/Radar.md,
+      monoDrive_home/RPM.md,
+      monoDrive_home/State-sensor.md,
+      monoDrive_home/Ultrasonic.md,
+      monoDrive_home/Viewport.md]
+  - Vehicle : monoDrive_home/Vehicle-Configuration.md
+  - Weather: monoDrive_home/Weather.md
+  
+- Tutorials:
+  - LabVIEW Tutorials: [LV_client/tutorials/Setup.md,
+    LV_client/tutorials/AddSensors.md,
+    LV_client/tutorials/Lidar.md]
 
-- LabVIEW_Client: 
-  - Quick Start: 
-    - Setup: LV_client/quick_start/LabVIEW_client_quick_start.md
-    - Run Examples: LV_client/quick_start/LabVIEW_run_examples.md
-    - Configuration Examples: LV_client/quick_start/LabView_configurations.md
-    - FAQ: LV_client/quick_start/FAQ.md
-  # - Quick Start 2018 Version: 
-  #   - Setup: LabVIEW_client.md
-  #   - Examples: LV_client/monoDrive_Simulator_Interface_Example.md
-  - LabVIEW Detailed Help:
-    - Controls:
-        - monoDrive.ctl: LV_client/structures/monoDrive.md
-    - Sensors:
-        - mono_camera.vi: LV_client/sensors/mono__camerac.md
-        - mono_depth_camera.vi: LV_client/sensors/mono__depth__camerac.md
-        - mono_semantic_camera.vi: LV_client/sensors/mono__semantic__camerac.md
-        - mono_camera_grayscale.vi: LV_client/sensors/mono__camera__grayscalec.md
-        - mono_gps.vi: LV_client/sensors/mono__gpsc.md
-        - mono_imu.vi: LV_client/sensors/mono__imuc.md
-        - mono_lidar.vi: LV_client/sensors/mono__lidarc.md
-        - mono_semantic_lidar.vi: LV_client/sensors/mono__semantic__lidarc.md
-        - mono_radar.vi: LV_client/sensors/mono__radarc.md
-        - mono_radar_ground_truth.vi: LV_client/sensors/mono__radar__ground__truthc.md
-        - mono_rpm.vi: LV_client/sensors/mono__rpmc.md
-        - mono_state_sensor.vi: LV_client/sensors/mono__state__sensorc.md
-        - mono_ultrasonic.vi: LV_client/sensors/mono__ultrasonic.md
-        - mono_ncap_sensor.vi: LV_client/sensors/mono__ncap__sensorc.md
-        - mono_viewport.vi: LV_client/sensors/mono__viewportc.md
-    - Weather:
-        - mono_get_weather.vi: LV_client/weather/mono__get__weatherc.md
-        - mono_weather_update.vi: LV_client/weather/mono__weather__updatec.md
-        - mono_weather_id.vi: LV_client/weather/mono__weather__idc.md
-    - Tools:
-        - mono_GrayScaleToSimulink.vi: LV_client/tools/mono__GrayScaleToSimulinkc.md
-        - mono_matlab_plot_radar.vi: LV_client/tools/mono__matlab__plot__radarc.md
-        - mono_radar_data_cube_plotter.vi : LV_client/tools/mono__radar__data__cube__plotterc.md
-        - mono_radar_plots_with_KF.vi : LV_client/tools/mono__radar__plots__with__KFc.md
-        - mono_radar_plots.vi : LV_client/tools/mono__radar__plotsc.md
-        - mono_save_camera_images.vi : LV_client/tools/mono__save__camera__imagesc.md
-        - mono_simulink_image.vi: LV_client/tools/mono__simulink__imagec.md
-        - mono_start_closed_loop.vi : LV_client/tools/mono__start__closed__loopc.md
-        - mono_start_hil.vi : LV_client/tools/mono__start__hilc.md
-        - mono_start_lane_follower.vi : LV_client/tools/mono__start__lane__followerc.md
-        - mono_start_replay.vi : LV_client/tools/mono__start__replayc.md
-        - monoDrive.vi: LV_client/tools/monoDrivegblc.md
-        - monoDrive.vi: LV_client/tools/monoDrivegblc.md
-        - mono_create_replay.vi: LV_client/tools/mono__create__replayc.md
-    - Simulator:
-        - mono_check_config_mode.vi: LV_client/simulator/mono__check__config__modec.md
-        - mono_connect.vi: LV_client/simulator/mono__connectc.md
-        - mono_header.vi: LV_client/simulator/mono__headerc.md
-        - mono_send_command.vi: LV_client/simulator/mono__send__commandc.md
-        - mono_send_step.vi: LV_client/simulator/mono__send__stepc.md
-        - mono_init.vi: LV_client/simulator/monoDrive_lvlib_mono__initc.md
-        - mono_check_simulator_version.vi: LV_client/simulator/mono__check__simulator__versionc.md
-    - Utilities:
-        - mono_build_json.vi: LV_client/utilities/mono__build__jsonc.md
-        - mono_calculate_orientation_xyz.vi : LV_client/utilities/mono__calculate__orientation__xyzc.md
-        - mono_check_simulator.vi: LV_client/utilities/mono__check__simulatorc.md
-        - mono_config_directory_paths.vi: LV_client/utilities/mono__config__directory__pathsc.md
-        - mono_convert_polar_to_rectangular.vi: LV_client/utilities/mono__convert__polar__to__rectangularc.md
-        - mono_draw_lanes_coord.vi: LV_client/utilities/mono__draw__lanes__coordc.md
-        - mono_draw_spawn_positions.vi : LV_client/utilities/mono__draw__spawn__positionsc.md
-        - mono_Error_Fork_Stacker.vi: LV_client/utilities/mono__Error__Fork__Stackerc.md
-        - mono_fit_map.vi : LV_client/utilities/mono__fit__mapc.md
-        - mono_generate_frame.vi : LV_client/utilities/mono__generate__framec.md        
-        - mono_get_aoa_by_index.vi : LV_client/utilities/mono__get__aoa__by__indexc.md
-        - mono_get_config_path.vi : LV_client/utilities/mono__get__config__pathc.md
-        - mono_get_map.vi : LV_client/utilities/mono__get__mapc.md
-        - mono_get_no_points_lidar.vi: LV_client/utilities/mono__get__no__points__lidarc.md
-        - mono_get_number_trajectories.vi: LV_client/utilities/mono__get__number__trajectoriesc.md
-        - mono_get_start_points.vi: LV_client/utilities/mono__get__start__pointsc.md
-        - mono_get_stream_dimensions.vi : LV_client/utilities/mono__get__stream__dimensions.md
-        - mono_intensity_to_color.vi: LV_client/utilities/mono__intensity__to__colorc.md
-        - mono_lidar_packages.vi: LV_client/utilities/mono__lidar__packagesc.md
-        - mono_lidar_plot.vi: LV_client/utilities/mono__lidar__plotc.md
-        - mono_parse_lidar_configuration.vi: LV_client/utilities/mono__parse__lidar__configurationc.md
-        - mono_parse_lidar_raw_data.vi: LV_client/utilities/mono__parse__lidar__raw__datac.md
-        - mono_parse_map_data.vi : LV_client/utilities/mono__parse__map__datac.md
-        - mono_parse_start_pointsc : LV_client/utilities/mono__parse__start__pointsc.md
-        - mono_proccess_annotation_datac : LV_client/utilities/mono__proccess__annotation__datac.md
-        - mono_radar_flag.vi: LV_client/utilities/mono__radar__flagc.md
-        - mono_read_trajectory.vi: LV_client/utilities/mono__read__trajectoryc.md
-        - mono_remove_response_message.vi: LV_client/utilities/mono__remove__response__messagec.md
-        - mono_select_mapc : LV_client/utilities/mono__select__mapc.md
-        - mono_send_simulator_config.vi: LV_client/utilities/mono__send__simulator__configc.md
-        - mono_send_trajectory.vi: LV_client/utilities/mono__send__trajectoryc.md
-        - mono_send_vehicle_command.vi: LV_client/utilities/mono__send__vehicle__commandc.md
-        - mono_sensor_parser.vi: LV_client/utilities/mono__sensor__parserc.md
-        - mono_start_point.vi : LV_client/utilities/mono__start__pointc.md
-        - mono_velodyne_parse.vi: LV_client/utilities/mono__velodyne__parse.md
-        
-    - Shared Libraries:
-        - mono_control.vi: LV_client/shared_libraries/mono__control.md
-        - mono_control_vehicle.vi: LV_client/shared_libraries/mono__control__vehiclec.md
-        - mono_init.vi: LV_client/shared_libraries/mono__initc.md
-        - mono_kf_update.vi: LV_client/shared_libraries/mono__kf__update.md
-        - mono_kf_init.vi: LV_client/shared_libraries/mono_kf_init.md
-        
+- monoDrive Client : 
+  - C++ Client:
+    - C++ Quick Start: cpp_client/cpp_quick_start.md
+    - ROS Quick Start: cpp_client/ros_quick_start.md
+    - C++ Examples: cpp_client/cpp_examples.md
+    - ROS Examples: cpp_client/ros_examples.md
+
+  - LabVIEW_Client: 
+    - Quick Start: 
+      - Setup: LV_client/quick_start/LabVIEW_client_quick_start.md
+      - Run Examples: LV_client/quick_start/LabVIEW_run_examples.md
+      - Configuration Examples: LV_client/quick_start/LabView_configurations.md
+      - FAQ: LV_client/quick_start/FAQ.md
+    # - Quick Start 2018 Version: 
+    #   - Setup: LabVIEW_client.md
+    #   - Examples: LV_client/monoDrive_Simulator_Interface_Example.md
+    - LabVIEW Detailed Help:
+      - Controls:
+          - monoDrive.ctl: LV_client/structures/monoDrive.md
+      - Sensors:
+          - mono_camera.vi: LV_client/sensors/mono__camerac.md
+          - mono_depth_camera.vi: LV_client/sensors/mono__depth__camerac.md
+          - mono_semantic_camera.vi: LV_client/sensors/mono__semantic__camerac.md
+          - mono_camera_grayscale.vi: LV_client/sensors/mono__camera__grayscalec.md
+          - mono_gps.vi: LV_client/sensors/mono__gpsc.md
+          - mono_imu.vi: LV_client/sensors/mono__imuc.md
+          - mono_lidar.vi: LV_client/sensors/mono__lidarc.md
+          - mono_semantic_lidar.vi: LV_client/sensors/mono__semantic__lidarc.md
+          - mono_radar.vi: LV_client/sensors/mono__radarc.md
+          - mono_radar_ground_truth.vi: LV_client/sensors/mono__radar__ground__truthc.md
+          - mono_rpm.vi: LV_client/sensors/mono__rpmc.md
+          - mono_state_sensor.vi: LV_client/sensors/mono__state__sensorc.md
+          - mono_ultrasonic.vi: LV_client/sensors/mono__ultrasonic.md
+          - mono_ncap_sensor.vi: LV_client/sensors/mono__ncap__sensorc.md
+          - mono_viewport.vi: LV_client/sensors/mono__viewportc.md
+      - Weather:
+          - mono_get_weather.vi: LV_client/weather/mono__get__weatherc.md
+          - mono_weather_update.vi: LV_client/weather/mono__weather__updatec.md
+          - mono_weather_id.vi: LV_client/weather/mono__weather__idc.md
+      - Tools:
+          - mono_GrayScaleToSimulink.vi: LV_client/tools/mono__GrayScaleToSimulinkc.md
+          - mono_matlab_plot_radar.vi: LV_client/tools/mono__matlab__plot__radarc.md
+          - mono_radar_data_cube_plotter.vi : LV_client/tools/mono__radar__data__cube__plotterc.md
+          - mono_radar_plots_with_KF.vi : LV_client/tools/mono__radar__plots__with__KFc.md
+          - mono_radar_plots.vi : LV_client/tools/mono__radar__plotsc.md
+          - mono_save_camera_images.vi : LV_client/tools/mono__save__camera__imagesc.md
+          - mono_simulink_image.vi: LV_client/tools/mono__simulink__imagec.md
+          - mono_start_closed_loop.vi : LV_client/tools/mono__start__closed__loopc.md
+          - mono_start_hil.vi : LV_client/tools/mono__start__hilc.md
+          - mono_start_lane_follower.vi : LV_client/tools/mono__start__lane__followerc.md
+          - mono_start_replay.vi : LV_client/tools/mono__start__replayc.md
+          - monoDrive.vi: LV_client/tools/monoDrivegblc.md
+          - monoDrive.vi: LV_client/tools/monoDrivegblc.md
+          - mono_create_replay.vi: LV_client/tools/mono__create__replayc.md
+      - Simulator:
+          - mono_check_config_mode.vi: LV_client/simulator/mono__check__config__modec.md
+          - mono_connect.vi: LV_client/simulator/mono__connectc.md
+          - mono_header.vi: LV_client/simulator/mono__headerc.md
+          - mono_send_command.vi: LV_client/simulator/mono__send__commandc.md
+          - mono_send_step.vi: LV_client/simulator/mono__send__stepc.md
+          - mono_init.vi: LV_client/simulator/monoDrive_lvlib_mono__initc.md
+          - mono_check_simulator_version.vi: LV_client/simulator/mono__check__simulator__versionc.md
+      - Utilities:
+          - mono_build_json.vi: LV_client/utilities/mono__build__jsonc.md
+          - mono_calculate_orientation_xyz.vi : LV_client/utilities/mono__calculate__orientation__xyzc.md
+          - mono_check_simulator.vi: LV_client/utilities/mono__check__simulatorc.md
+          - mono_config_directory_paths.vi: LV_client/utilities/mono__config__directory__pathsc.md
+          - mono_convert_polar_to_rectangular.vi: LV_client/utilities/mono__convert__polar__to__rectangularc.md
+          - mono_draw_lanes_coord.vi: LV_client/utilities/mono__draw__lanes__coordc.md
+          - mono_draw_spawn_positions.vi : LV_client/utilities/mono__draw__spawn__positionsc.md
+          - mono_Error_Fork_Stacker.vi: LV_client/utilities/mono__Error__Fork__Stackerc.md
+          - mono_fit_map.vi : LV_client/utilities/mono__fit__mapc.md
+          - mono_generate_frame.vi : LV_client/utilities/mono__generate__framec.md        
+          - mono_get_aoa_by_index.vi : LV_client/utilities/mono__get__aoa__by__indexc.md
+          - mono_get_config_path.vi : LV_client/utilities/mono__get__config__pathc.md
+          - mono_get_map.vi : LV_client/utilities/mono__get__mapc.md
+          - mono_get_no_points_lidar.vi: LV_client/utilities/mono__get__no__points__lidarc.md
+          - mono_get_number_trajectories.vi: LV_client/utilities/mono__get__number__trajectoriesc.md
+          - mono_get_start_points.vi: LV_client/utilities/mono__get__start__pointsc.md
+          - mono_get_stream_dimensions.vi : LV_client/utilities/mono__get__stream__dimensions.md
+          - mono_intensity_to_color.vi: LV_client/utilities/mono__intensity__to__colorc.md
+          - mono_lidar_packages.vi: LV_client/utilities/mono__lidar__packagesc.md
+          - mono_lidar_plot.vi: LV_client/utilities/mono__lidar__plotc.md
+          - mono_parse_lidar_configuration.vi: LV_client/utilities/mono__parse__lidar__configurationc.md
+          - mono_parse_lidar_raw_data.vi: LV_client/utilities/mono__parse__lidar__raw__datac.md
+          - mono_parse_map_data.vi : LV_client/utilities/mono__parse__map__datac.md
+          - mono_parse_start_pointsc : LV_client/utilities/mono__parse__start__pointsc.md
+          - mono_proccess_annotation_datac : LV_client/utilities/mono__proccess__annotation__datac.md
+          - mono_radar_flag.vi: LV_client/utilities/mono__radar__flagc.md
+          - mono_read_trajectory.vi: LV_client/utilities/mono__read__trajectoryc.md
+          - mono_remove_response_message.vi: LV_client/utilities/mono__remove__response__messagec.md
+          - mono_select_mapc : LV_client/utilities/mono__select__mapc.md
+          - mono_send_simulator_config.vi: LV_client/utilities/mono__send__simulator__configc.md
+          - mono_send_trajectory.vi: LV_client/utilities/mono__send__trajectoryc.md
+          - mono_send_vehicle_command.vi: LV_client/utilities/mono__send__vehicle__commandc.md
+          - mono_sensor_parser.vi: LV_client/utilities/mono__sensor__parserc.md
+          - mono_start_point.vi : LV_client/utilities/mono__start__pointc.md
+          - mono_velodyne_parse.vi: LV_client/utilities/mono__velodyne__parse.md
+          
+      - Shared Libraries:
+          - mono_control.vi: LV_client/shared_libraries/mono__control.md
+          - mono_control_vehicle.vi: LV_client/shared_libraries/mono__control__vehiclec.md
+          - mono_init.vi: LV_client/shared_libraries/mono__initc.md
+          - mono_kf_update.vi: LV_client/shared_libraries/mono__kf__update.md
+          - mono_kf_init.vi: LV_client/shared_libraries/mono_kf_init.md
+      
+
 extra_css:
     - css/extra.css        
         

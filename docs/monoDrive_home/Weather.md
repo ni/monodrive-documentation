@@ -12,6 +12,7 @@ conditions and saving them to configuration files.
 <p class="img_container">
   <img class="wide_img" src="../img/vehicle_ai_weather.gif" />
 </p>
+<p>&nbsp;</p>
 
 ## Adding Weather to a Map
 
@@ -46,6 +47,7 @@ source to movable. This will allow the weather to control the lighting. Find the
 <p class="img_container">
   <img class="lg_img" src="../img/movable_light_source.png" />
 </p>
+<p>&nbsp;</p>
 
 ## Configuring Weather Profiles
 
@@ -74,8 +76,9 @@ file will be saved for use with the simulator and client.
 * **Configuration File Name:** The name of the `.ini` file to save the current
 profile to. 
 * **Profile Name:** Located in the Name field under the Weather settings,
-specfies the human readable name of the weather profile to save to.
+specifies the human readable name of the weather profile to save to.
 
+<p>&nbsp;</p>
 
 ### Importing Weather in CARLA Format
 
@@ -115,6 +118,7 @@ CameraPostProcessParameters.AutoExposureMinBrightness=0.27
 CameraPostProcessParameters.AutoExposureMaxBrightness=5
 CameraPostProcessParameters.AutoExposureBias=-3.5
 ```
+<p>&nbsp;</p>
 
 ### Saving Weather Profiles
 
@@ -183,6 +187,7 @@ the `id` field matches the "Profile Name":
       }
 }
 ```
+<p>&nbsp;</p>
 
 ## Using Weather in the LabView Client
 For the LabVIEW client, the weather profiles that are exported can be pasted 

@@ -15,6 +15,11 @@ The sensor's orientation can be modified in the "yaw", "pitch" and "roll" axis.
 
 ## Depth Camera
 Provides a grayscale camera stream with different intensity depending on the distance to the objects.
+
+<div class="img_container">
+    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_depth.png"/>
+</div>
+
 ```
 [
   {
@@ -40,14 +45,16 @@ Provides a grayscale camera stream with different intensity depending on the dis
 ]
 ```
 
-<div class="img_container">
-    <img class='lg_img'src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_depth.png"/>
-</div>
 <p>&nbsp;</p>
 
 
 ## Grayscale Camera
 Provides a grayscale camera stream.
+
+<p class="img_container">
+  <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_grayscale.png"  height="400" />
+</p>
+
 ```
 [
   {
@@ -81,14 +88,18 @@ Provides a grayscale camera stream.
 
 ]
 ```
-<p class="img_container">
-  <img class='lg_img'src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_grayscale.png"  height="400" />
-</p>
+
 <p>&nbsp;</p>
 
 
 ## RGB Camera
 Provides a RGBA camera stream with optional bounding boxes for dynamic objects in the scene.
+
+
+<p class="img_container">
+  <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camerasensor.PNG"  height="400" />
+</p>
+
 ```
 [
    {
@@ -120,14 +131,17 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
   }
 ]
 ```
-<p class="img_container">
-  <img class='lg_img'src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camerasensor.PNG"  height="400" />
-</p>
+
 <p>&nbsp;</p>
 
 
 ## Semantic Camera
 Provides a grayscale camera stream.
+
+<p class="img_container">
+  <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/semanticcamerasensor.PNG"  height="400" />
+</p>
+
 ```
 [
   {
@@ -160,9 +174,7 @@ Provides a grayscale camera stream.
 
 ]
 ```
-<p class="img_container">
-  <img class='lg_img'src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/semanticcamerasensor.PNG"  height="400" />
-</p>
+
 <p>&nbsp;</p>
 
 

@@ -3,28 +3,43 @@ repo_url: https://github.com/monodriveio/client
 docs_dir: docs
 theme:
   name: 'ivory'
-  navigation_depth: 6
+  navigation_depth: 1
+  collapse_navigation: true
 
 pages:
-- monoDrive : 
-  - About : index.md
+- monoDrive: index.md
+- Information : intro_information.md
+- Getting Started : Getting_Started.md
+- Configurations :
   - Simulator : Simulator.md
-  - Scenario Editor: Scenario_editor.md
-  - Configuration:
-    - System: monoDrive_home/Configuration.md
-    - Simulator : monoDrive_home/Simulator-Configuration.md
-    - Vehicle : monoDrive_home/Vehicle-Configuration.md
-    - Sensor Configurations:
-        - Common: monoDrive_home/Common.md
-        - Camera: monoDrive_home/Camera.md
-        - GPS: monoDrive_home/GPS.md
-        - IMU: monoDrive_home/IMU.md
-        - Lidar: monoDrive_home/Lidar.md
-        - Radar: monoDrive_home/Radar.md
-        - RPM: monoDrive_home/RPM.md
-        - State Sensor: monoDrive_home/State-sensor.md
-        - Ultrasonic: monoDrive_home/Ultrasonic.md
-        - Viewport: monoDrive_home/Viewport.md
+  - Scenario Editor : [
+      scenario_editor/scenarios.md, 
+      scenario_editor/roads.md
+    ]
+  - Sensors: [
+      monoDrive_home/Common.md,
+      monoDrive_home/Camera.md,
+      monoDrive_home/GPS.md,
+      monoDrive_home/IMU.md,
+      monoDrive_home/Lidar.md,
+      monoDrive_home/Radar.md,
+      monoDrive_home/RPM.md,
+      monoDrive_home/State-sensor.md,
+      monoDrive_home/Ultrasonic.md,
+      monoDrive_home/Viewport.md]
+  - Vehicle : monoDrive_home/Vehicle-Configuration.md
+  - Weather: monoDrive_home/Weather.md
+  
+- Tutorials:
+  - LabVIEW Tutorials: [LV_client/tutorials/Setup.md,
+    LV_client/tutorials/AddSensors.md,
+    LV_client/tutorials/Lidar.md]
+
+- Real-to-Virtual:
+  - About: r2v/about.md
+  - Data Collection Quick Start: r2v/data_collection_quick_start.md
+  - Data Processing Quick Start: r2v/data_processing_quick_start.md
+  - Maps: r2v/r2v_maps.md
 
 - monoDrive Clients:
   - LabVIEW Client: 

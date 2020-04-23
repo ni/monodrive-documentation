@@ -26,6 +26,12 @@ pages:
         - Ultrasonic: monoDrive_home/Ultrasonic.md
         - Viewport: monoDrive_home/Viewport.md
 
+- C++ Client:
+  - C++ Quick Start: cpp_client/quick_start.md
+  - ROS Quick Start: cpp_client/ros_quick_start.md
+  - C++ Examples: cpp_client/examples.md
+  - ROS Examples: cpp_client/ros_examples.md
+
 - LabVIEW_Client: 
   - Quick Start: 
     - Setup: LV_client/quick_start/LabVIEW_client_quick_start.md

@@ -10,12 +10,19 @@ pages:
 - monoDrive: index.md
 - Information : intro_information.md
 - Getting Started : Getting_Started.md
-- Configurations :
+- Products : 
   - Simulator : Simulator.md
   - Scenario Editor : [
       scenario_editor/scenarios.md, 
       scenario_editor/roads.md
     ]
+  - Real-to-Virtual:
+    - About: r2v/about.md
+    - Data Collection Quick Start: r2v/data_collection_quick_start.md
+    - Data Processing Quick Start: r2v/data_processing_quick_start.md
+    - Maps: r2v/r2v_maps.md
+
+- Configurations :
   - Sensors: [
       monoDrive_home/Common.md,
       monoDrive_home/Camera.md,
@@ -34,12 +41,6 @@ pages:
   - LabVIEW Tutorials: [LV_client/tutorials/Setup.md,
     LV_client/tutorials/AddSensors.md,
     LV_client/tutorials/Lidar.md]
-
-- Real-to-Virtual:
-  - About: r2v/about.md
-  - Data Collection Quick Start: r2v/data_collection_quick_start.md
-  - Data Processing Quick Start: r2v/data_processing_quick_start.md
-  - Maps: r2v/r2v_maps.md
 
 - monoDrive Clients:
   - LabVIEW Client: 

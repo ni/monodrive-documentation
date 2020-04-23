@@ -56,8 +56,8 @@ Then follow the instructions above, to install the `monodrive` package with `pip
 
 The `examples` directory in the monoDrive Python Client repository contains 
 several examples for connecting to a running instance of the 
-[monoDrive Simulator](../../Simulator.md) or 
-[Scenario Editor](../../Scenario_editor.md) and working with the simulation 
+[monoDrive Simulator](../Simulator.md) or 
+[Scenario Editor](../Scenario_editor.md) and working with the simulation 
 environment. To run an example, first ensure that the monoDrive Simulator is 
 running or the monoDrive Scenario Editor is running and in "Play" mode.
 

@@ -6,6 +6,12 @@ This home page contains an index with a brief description of the different secti
 
 monoDrive's Platform is available now: [Download Monodrive](https://lumen.ni.com/nicif/US/GB_EVALTLKTLVMONODRIVE/content.xhtml)
 
+<div class="img_container">
+<img class='md_img' src="./monodrive_simulator.png"/>
+<div class="space"></div>
+<img class='md_img' src="./monodrive_scenario_editor.png"/>
+</div>
+
 ## Getting Started
 
 [Introduction](intro_information.md) -- Making autonomous vehicles drive safe<br />
@@ -27,11 +33,11 @@ The monoDrive simulator is configured from the Client. Everything about the simu
 ## Build monoDrive
 
 [LabVIEW Client](LV_client/quick_start/LabVIEW_client_quick_start.md) <br />
-Python Client - TBA <br />
-C++ Client - TBA
+[Python Client](python_client/quick_start.md) <br />
+[C++ Client](cpp_client/cpp_quick_start.md)
 
 ## Tutorials
 
-Coming Soon
+[LabVIEW](LV_client/tutorials/Setup.md) <br />
 
 

@@ -8,7 +8,7 @@ for creating road networks that vehicles in the simulation can drive on.
 To add a road to a map, use the __Actor Place Mode__ in the editor, and search for "monoDrive Road". Then simply drag and drop it into the scene.
 
 <div class="img_container">
-  <img style="width: 100%" src="https://github.com/monoDriveIO/documentation/raw/lane_tool/WikiPhotos/scenario_editor/roads/place_road.gif"/>
+  <img style="width: 100%" src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/scenario_editor/roads/place_road.gif"/>
 </div>
 
 Roads are defined by a _reference line_ that represents the basic geometry of the road. Lanes can be added to a road in both the forward and reverse directions, and the lanes follow the path of the reference line. 
@@ -20,7 +20,7 @@ In the figure below, the blue line is the road's reference line. The blue dots a
 In addition, to get the _reference line_ facing the correct direction you road is going, press the 'e' key or tap the 'space bar' until the rotation tool is selected. Once this is done you may rotate the road to the direction you would like the cars to drive in.
 
 <div class="img_container">
-<img style="width: 100%" src="https://github.com/monoDriveIO/documentation/raw/lane_tool/WikiPhotos/scenario_editor/roads/reference_line.PNG"/>
+<img style="width: 100%" src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/scenario_editor/roads/reference_line.PNG"/>
 </div>
 
 A road can have any number of forward and reverse lanes.
@@ -28,7 +28,7 @@ A road can have any number of forward and reverse lanes.
 To add lanes, select the road in the editor, and click "Add Forward (right) Lane", or "Add Reverse (left) Lane" from the "Actions" section in the details pane. There are also buttons to remove lanes, as needed.
 
 <div class="img_container">
-<img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/lane_tool/WikiPhotos/scenario_editor/roads/road_actions.PNG"/>
+<img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/scenario_editor/roads/road_actions.PNG"/>
 </div>
 
 Roads can be connected to other roads as predecessors or successors. A road may only have a single predecessor and successor. However, a given lane can have any number of links to other roads' lanes.
@@ -42,7 +42,7 @@ As mentioned above, lanes can either be forward lanes (they begin where the road
 which is the area between two adjacent spline points. Lanes have several properties that can be edited from the details pane:
 
 <div class="img_container">
-<img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/lane_tool/WikiPhotos/scenario_editor/roads/lane_properties.PNG"/>
+<img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/scenario_editor/roads/lane_properties.PNG"/>
 </div>
 
 Lane segments also have several properties that can be edited as shown in the figure above.
@@ -50,7 +50,7 @@ Lane segments also have several properties that can be edited as shown in the fi
 The start and end offset for a lane specify the spline point at which a lane starts or ends. Depending on if you need to merge the start or end of the spline point, adjust the start or th end offset to a positive number, i.e. 2 as shown in the picture below. This is useful when creating lane merge scenarios.
 
 <div class="img_container">
-<img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/lane_tool/WikiPhotos/scenario_editor/roads/lane_offsets.PNG"/>
+<img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/scenario_editor/roads/lane_offsets.PNG"/>
 </div>
 
 When a road is connected to another road as a successor or a predecessor, all available lanes on the predecessor are connected to those in the successor. This is done from left to right for forward lanes, 
@@ -60,7 +60,7 @@ Lanes can be connected to any number of other lanes by selecting the point of co
 start or end of a lane, so keep that in mind when building out the roads. If you're needing to connect a lane to the middle of some existing road, split that road into two roads so the connection can be at the start/end of a road.
 
 <div class="img_container">
-<img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/lane_tool/WikiPhotos/scenario_editor/roads/connecting_lanes.gif"/>
+<img class='wide_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/scenario_editor/roads/connecting_lanes.gif"/>
 </div>
 
 The red circle identifies the selected connection point for the road. The green circles identify existing connections. Possible connections are identified by the blue circles. Clicking on a connection creates the link between the two lanes.
@@ -68,7 +68,7 @@ The red circle identifies the selected connection point for the road. The green 
 To unlink lanes, right click on the red selected connection point and select "Detach Lane".
 
 <div class="img_container">
-<img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/lane_tool/WikiPhotos/scenario_editor/roads/disconnect_lane_menu.PNG"/>
+<img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/scenario_editor/roads/disconnect_lane_menu.PNG"/>
 </div>
 
 <p>&nbsp;</p>

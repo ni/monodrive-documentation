@@ -1,18 +1,17 @@
-# monoDrive Controls
+# monoDrive.ctl
 
-## monoDrive.ctl
-<p>
+<p class="img_container">
 <img class="thumbnail" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/structures/monoDrivectlc.png"/>
 </p>
 
-### Description 
+## Description 
 The monoDrive control, contains configuration parameters and variables to be used and updated by the client.
 
-### Structure
+## Structure
 
 **Config (Cluster):** Configuration parameters for Trajectory and Weather.
 
-<p>
+<p class="img_container">
 <img class="thumbnail" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/structures/configctlc.png"/>
 </p>
 
@@ -30,11 +29,11 @@ The monoDrive control, contains configuration parameters and variables to be use
   | ------------ | ------------ |
   |String  | id|
 
-<p>&nbsp;</p>
+<p class="img_container">&nbsp;</p>
 
 **Connections (Cluster):** Configuration parameters for the Simulator.
 
-<p>
+<p class="img_container">
 <img class="thumbnail" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/structures/connectionsctlc.png"/>
 </p>
 

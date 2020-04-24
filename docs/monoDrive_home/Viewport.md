@@ -1,4 +1,4 @@
-# Viewport Sensor
+# Viewport
 
 ## Viewport
 The monoDrive Viewport sensor allows you to configure the information displayed on your screen.

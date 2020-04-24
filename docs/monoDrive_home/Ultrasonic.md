@@ -1,4 +1,4 @@
-# Ultrasonic Sensor
+# Ultrasonic
 
 ## Ultrasonic
 Provides ultrasonic stream.

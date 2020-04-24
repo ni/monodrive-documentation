@@ -2,31 +2,42 @@
 
 The monoDrive Simulator provides users with the ability to test AV algorithms in one of several pre-made monoDrive Simulator levels. The Open Source monoDrive clients provide an API and examples for connecting to the Simulator for simulating traffic scenarios and replaying monoDrive trajectory files. The clients allow users to configure and test any number of configurations of monoDrive high-fidelity sensors.
 
-## Getting Started
+## Almono Highway Exit
 
-1. Install Unreal Engine **4.23** from [here](https://www.unrealengine.com/en-US/).
+<video width=650px autoplay loop>
+    <source src="http://cdn.monodrive.io/readthedocs/highway_exit_trajectory.mp4" type="video/webm">
+</video>
 
-    <p>&nbsp;</p>
+<p>&nbsp;</p>
 
-1. In Epic Games Launcher, and select Marketplace >> Browse. Search for "VehicleSim Dynamics" and download this free plugin. 
-    - Alternatively, from Epic Games website, sign-in and download the plugin [here](https://www.unrealengine.com/marketplace/en-US/product/carsim-vehicle-dynamics).
+## Almono Sudden Stop
 
-    <p>&nbsp;</p>
+<video width=650px autoplay loop>
+    <source src="http://cdn.monodrive.io/readthedocs/sudden_stop_trajectory.mp4" type="video/webm">
+</video>
 
-1. Ensure you have the latest NVIDIA drivers for your [CUDA-enabled](https://developer.nvidia.com/cuda-gpus) graphics card.
+<p>&nbsp;</p>
 
-    <div class="img_container">
-        <img class='lg_img' src="../easier_device_driver_update.png"/>
-    </div>
+## Straightaway Highway
 
-    **NOTE**
-    Even if not prompted by the system, a restart is recommended to ensure the new drivers are correctly detected prior to running any simulations.
+<video width=650px autoplay loop>
+    <source src="http://cdn.monodrive.io/readthedocs/straight_highway.mp4" type="video/webm">
+</video>
 
-    **NOTE**
-    In case the driver cannot be updated using the above method, please visit http://www.nvidia.com/Download/index.aspx to download the [latest driver](https://www.nvidia.comnvidia.com).
-    
-    <p>&nbsp;</p>
+<p>&nbsp;</p>
 
-1. Download the monoDrive Simulator from [here](https://www.monodrive.io/register).
+## Almono Traffic Circle
+
+<video width=650px autoplay loop>
+    <source src="http://cdn.monodrive.io/readthedocs/traffic_circle.mp4" type="video/webm">
+</video>
+
+<p>&nbsp;</p>
+
+## Straightaway Lane Change
+
+<video width=650px autoplay loop>
+    <source src="http://cdn.monodrive.io/readthedocs/highway_lane_change.mp4" type="video/webm">
+</video>
 
 <p>&nbsp;</p>

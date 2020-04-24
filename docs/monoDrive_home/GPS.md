@@ -1,4 +1,4 @@
-# GPS Sensor  
+# GPS
 
 ## GPS
 Provides GPS stream

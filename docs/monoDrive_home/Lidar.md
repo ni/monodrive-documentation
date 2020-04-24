@@ -1,4 +1,4 @@
-# LiDAR Sensor
+# LiDAR
 
 The configuration for a LiDAR sensor is modeled after the Velodyne LiDAR. Currently we only support **16 and 32 laser**.
 

@@ -4,15 +4,15 @@
 
 1. Register and Download [LabVIEW 2019 (64 bit)](https://www.ni.com/en-us/support/downloads/software-products/download.labview.html#329483) *approximately 1 hour to download*
 
-1. Open/Download monoDrive Simulator or monoDrive Simulator Scene Editor
+1. Open/Download monoDrive Simulator or monoDrive Simulator Scenario Editor [here](../../Getting_Started.md).
 
     **monoDrive Simulator** 
 
-    - Powerful tool for testing AV algorithms using Open Source monoDrive Clients or monoDrive Simulator API. Installation instructions [here](../../Simulator.md).
+    - Powerful tool for testing AV algorithms using Open Source monoDrive Clients or monoDrive Simulator API. 
 
-    **OR monoDrive Simulator Scene Editor**
+    **monoDrive Simulator Scenario Editor**
 
-    - Take AV algorithm testing to the next level by using the rich Scene Editor tool for creating custom simulations and environments. Installation instructions [here](../../Scenario_editor.md).
+    - Take AV algorithm testing to the next level by using the rich Scenario Editor tool for creating custom simulations and environments.
     <p>&nbsp;</p>
 
 
@@ -41,7 +41,7 @@
 
 
 ## Run the VehicleAI Simulator Editor
-Quick start instructions and details on how to generate project files in the VehicleAI Simulator Editor can be found in [scenario editor](../../Scenario_editor.md).
+Quick start instructions and details on how to generate project files in the VehicleAI Simulator Editor can be found in [Getting Started Guide](../../Getting_Started.md).
 
 1. Go to your VehicleAI_Editor directory and find VehicleAI.uproject
 

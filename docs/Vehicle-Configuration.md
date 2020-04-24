@@ -5,12 +5,7 @@
 {
   "vehicle_dynamics": "physx",
   "body": {
-    "color": [
-      255,
-      255,
-      255,
-      255
-    ],
+    "color": "Carpaint_White.Carpaint_White",
     "type": "/Game/Vehicles_Vol1/VehicleBlueprints/SUV_monoDrive_01.uasset.SUV_monoDrive_01.uasset_C"
   },
   "angular_velocity": [

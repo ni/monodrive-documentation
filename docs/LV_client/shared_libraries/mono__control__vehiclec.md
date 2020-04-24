@@ -1,7 +1,7 @@
 ## mono_control_vehicle.vi
 <p class="img_container">
 
-<img class="lg_img" src="https://github.com/monoDriveIO/documentation/blob/master/WikiPhotos/LV_client/shared_libraries/mono__control__vehiclec.png" />
+<img class="lg_img" src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/shared_libraries/mono__control__vehiclec.png" />
 </p>
 
 ### Description 

@@ -56,7 +56,7 @@ pages:
       - Run Examples: LV_client/quick_start/LabVIEW_run_examples.md
       - Configuration Examples: LV_client/quick_start/LabView_configurations.md
       - FAQ: LV_client/quick_start/FAQ.md
-    - LabVIEW Information:
+    - LabVIEW Detailed Help:
       - Controls:
           - monoDrive.ctl: LV_client/structures/monoDrive.md
       - Sensors:

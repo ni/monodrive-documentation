@@ -72,18 +72,39 @@ Using the monoDrive vehicles you have access to the Mechanical Setup to control 
 </p>
 <p>&nbsp;</p>
 
+## Vehicle Axis and Rotations
+### Axis
+The vehicle axis are defined as follows:   
+**X:** Point to front of the car.   
+**Y:** Point to the left of the car.   
+**Z:** Point to up of the car.   
+
+<p class="img_container">
+  <img class="wide_img" src="../img/axis.gif" />
+</p>
+<p>&nbsp;</p>
+
+### Rotation
+**Yaw:** Rotation around the Z axis.   
+**Pitch:** Rotation around the Y axis.  
+**Roll:** Rotation around the X axis.   
+<p class="img_container">
+  <img class="wide_img" src="../img/ypr.gif" />
+</p>
+<p>&nbsp;</p>
+
 ## Initial Conditions
 When configuring the ego vehicle using the C++ client or the Python client. You can assign the initial conditions for the ego vehicle:   
 
-**position**: Initial position on the map on the x,y,z axis.
-```
+**position**: Initial position on the map on the x,y,z axis.   
+```json
 "position": [
-    0.0,
-    0.0,
-    0.0
+  0.0,
+  0.0,
+  0.0
   ]
-``` 
-**orientation**: On quaternion form.   
+```   
+**orientation**: On quaternion form (euler angles) with respect to the vehicle axis.   
 ```
 "orientation": [
     0.0,
@@ -92,13 +113,13 @@ When configuring the ego vehicle using the C++ client or the Python client. You 
     1.0
   ]
 ```    
-You can provide the orientation in **yaw**, **pitch** and **roll** form (degrees) using the following notation.   
+You can provide the orientation in **yaw**, **pitch** and **roll** form (degrees) with respect to the vehicle axis, using the following notation.   
 ```
-  "orientation": {
-    "yaw":0.0,
-    "pitch":0.0,
-    "roll":0.0
-  }
+"orientation": {
+  "yaw":0.0,
+  "pitch":0.0,
+  "roll":0.0
+}
 ```    
 **velocity**: Linear velocity on cm/second.
 ```
@@ -110,11 +131,11 @@ You can provide the orientation in **yaw**, **pitch** and **roll** form (degrees
 ```
 **angular_velocity**: Angular velocity in x, y and z axis. Expressed on radians/s.   
 ```
-  "angular_velocity": [
-    0.0,
-    0.0,
-    0.0
-  ]
+"angular_velocity": [
+  0.0,
+  0.0,
+  0.0
+]
 ```     
 ## Vehicle Configuration
 The following configuration is an example of how to create a `vehicle.json` to use with the C++ client and the Python client. 

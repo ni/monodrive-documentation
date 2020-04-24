@@ -1,4 +1,5 @@
-# RPM Sensor
+# RPM 
+
 The monoDrive sensor give you information on the Revolutions per second on the specified wheel. You can obtain information of the four wheels on the car (0-3). 
 
 ## RPM

@@ -1,4 +1,4 @@
-# IMU Sensor
+# IMU
 
 ## IMU
 Provides IMU stream

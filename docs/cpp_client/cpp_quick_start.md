@@ -1,6 +1,6 @@
 # C++ Quick Start
 
-## monoDrive C++ Client Quick Start
+## Introduction
 
 The monoDrive C++ Client is Open Source Software for connecting to and 
 configuring the monoDrive Simulator and Scenario Editor. To get started, 

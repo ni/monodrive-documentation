@@ -1,4 +1,4 @@
-## Multi-Camera Sensor
+## Multi-Camera
 
 The configuration for a multi camera sensor that streams all of the cameras in the `camera_ids` array through a single UDP port into one rendered image.
 

@@ -1,4 +1,4 @@
-# Common Sensor
+# Common
 
 ## Parameter Format
 

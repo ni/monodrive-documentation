@@ -1,7 +1,7 @@
 ## mono_create_replay.vi
-<p align="center">
-<img src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/mono__create__replayc.png" 
-width="400"  />
+
+<p class="img_container">
+<img class="md_img" src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/LV_client/tools/mono__create__replayc.png"   />
 </p>
 
 ### Description 

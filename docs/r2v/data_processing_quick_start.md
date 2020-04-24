@@ -1,6 +1,6 @@
-# Data Processing Quick Start
+# Data Processing
 
-## monoDrive Real-to-Virtual Data Processing Quick Start Guide
+## Quick Start Guide
 
 This guide helps users become familiar with the monoDrive Real-to-Virtual data
 processing pipeline. The software uses several Docker images developed at
@@ -149,3 +149,4 @@ With the calibration completed and the values entered into the
 ```bash
 $ run_pipeline.sh --workspace /path/to/data/collection
 ```
+<p>&nbsp;</p>

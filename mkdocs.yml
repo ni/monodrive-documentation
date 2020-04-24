@@ -8,7 +8,7 @@ theme:
 
 pages:
 - monoDrive: index.md
-- Information : intro_information.md
+- About monoDrive : intro_information.md
 - Getting Started : Getting_Started.md
 - Products : 
   - Simulator : Simulator.md
@@ -24,16 +24,17 @@ pages:
 
 - Configurations :
   - Sensors: [
-      monoDrive_home/Common.md,
-      monoDrive_home/Camera.md,
-      monoDrive_home/GPS.md,
-      monoDrive_home/IMU.md,
-      monoDrive_home/Lidar.md,
-      monoDrive_home/Radar.md,
-      monoDrive_home/RPM.md,
-      monoDrive_home/State-sensor.md,
-      monoDrive_home/Ultrasonic.md,
-      monoDrive_home/Viewport.md]
+    monoDrive_home/Common.md,
+    monoDrive_home/Camera.md,
+    monoDrive_home/GPS.md,
+    monoDrive_home/IMU.md,
+    monoDrive_home/Lidar.md,
+    monoDrive_home/Radar.md,
+    monoDrive_home/RPM.md,
+    monoDrive_home/State-sensor.md,
+    monoDrive_home/Ultrasonic.md,
+    monoDrive_home/Viewport.md]
+  - Simulator : monoDrive_home/Simulator-Configuration.md
   - Vehicle : monoDrive_home/Vehicle-Configuration.md
   - Weather: monoDrive_home/Weather.md
   

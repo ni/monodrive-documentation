@@ -1,4 +1,4 @@
-# Camera Sensor
+# Camera
 
 The monoDrive camera sensor supports four types of image output:
 

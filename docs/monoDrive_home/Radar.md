@@ -1,4 +1,4 @@
-# Radar Sensor
+# Radar
 
 ## Radar
 Provides radar stream.

@@ -1,6 +1,6 @@
-# Quick Start
+# Python Quick Start
 
-## monoDrive Python Client Quick Start
+## Guide
 
 The monoDrive Python Client is Open Source Software for connecting to and 
 configuring the monoDrive Simulator and Scenario Editor. To get started, 
@@ -57,7 +57,7 @@ Then follow the instructions above, to install the `monodrive` package with `pip
 The `examples` directory in the monoDrive Python Client repository contains 
 several examples for connecting to a running instance of the 
 [monoDrive Simulator](../Simulator.md) or 
-[Scenario Editor](../Scenario_editor.md) and working with the simulation 
+[Scenario Editor](../scenario_editor/scenarios.md) and working with the simulation 
 environment. To run an example, first ensure that the monoDrive Simulator is 
 running or the monoDrive Scenario Editor is running and in "Play" mode.
 

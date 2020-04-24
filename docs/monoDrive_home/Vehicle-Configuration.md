@@ -10,7 +10,7 @@ The monoDrive Simulator allows you to customize multiple visual and dynamic sett
 **Current Blueprints available**   
 On the monoDrive Editor look for the Content Browser, from the folders select Vehicles. You will find the current models available.
 
-When selecting a model programmatically (i.e. using any client) you can assign the model to use for the ego vehicle to be random from the vehicle blueprints, you can find it usually on your Editor folder under:  
+When selecting a model programmatically (i.e. using any client) you can assign the model to use for the ego vehicle to be random from the vehicle blueprints, you can find it on your Editor folder under:  
 `Config/ConfigRandomVehicleSettings.ini`   
 
 ```
@@ -57,14 +57,15 @@ When selecting a color programmatically (i.e. using any client) you can assign t
     "type": "/Game/Vehicles/crossover_monoDrive_01.crossover_monoDrive_01_C"
   }
 ```
-## Follower PID
+## PID Speed Controllers
+### Follower PID
 Each vehicle has a pre-defined PID parameters to control how closely and accurate follow others vehicles. You can tune this parameters.
 
-## Speed Maintain PID
+### Speed Maintain PID
 Each vehicle has a pre-defined PID parameters to control how closely and accurate maintains the desired speed.
 
 ## Vehicle Dynamics
-Using the monoDrive vehicles you have access to the Mechanical Setup to control the drivetrain type (4WD,FDW,RDW,etc), the maximum RPM and damping, and the transmission's type, as well of the gear ratio if not automatic transmission.
+Using the monoDrive vehicles you have access to the Mechanical Setup to control the drivetrain type (4WD,FDW,RDW,etc), the maximum RPM and damping, the transmission's type, as well of the gear ratio if not automatic transmission, you can also set suspension settings and more.
 
 <p class="img_container">
   <img class="wide_img" src="../img/mechanical_setup.gif" />
@@ -74,15 +75,15 @@ Using the monoDrive vehicles you have access to the Mechanical Setup to control 
 ## Initial Conditions
 When configuring the ego vehicle using the C++ client or the Python client. You can assign the initial conditions for the ego vehicle:   
 
-- **angular_velocity**: Angular velocity in x, y and z. Expressed on radians/s.   
+**position**: Initial position on the map on the x,y,z axis.
 ```
-  "angular_velocity": [
+"position": [
     0.0,
     0.0,
     0.0
   ]
-```   
-- **orientation**: On quaternion form.   
+``` 
+**orientation**: On quaternion form.   
 ```
 "orientation": [
     0.0,
@@ -90,24 +91,16 @@ When configuring the ego vehicle using the C++ client or the Python client. You 
     0.0,
     1.0
   ]
-```   
-You can provide the orientation in yaw, pitch and roll form (degrees) using the following notation.   
+```    
+You can provide the orientation in **yaw**, **pitch** and **roll** form (degrees) using the following notation.   
 ```
-  "orientation": [
+  "orientation": {
     "yaw":0.0,
     "pitch":0.0,
     "roll":0.0
   }
 ```    
-- **position**: Initial position on the map on the x,y,z axis.
-```
-"position": [
-    0.0,
-    0.0,
-    0.0
-  ]
-```   
-- **velocity**: Linear velocity on cm/second.
+**velocity**: Linear velocity on cm/second.
 ```
 "velocity": [
     0.0,
@@ -115,6 +108,14 @@ You can provide the orientation in yaw, pitch and roll form (degrees) using the 
     0.0
   ]
 ```
+**angular_velocity**: Angular velocity in x, y and z axis. Expressed on radians/s.   
+```
+  "angular_velocity": [
+    0.0,
+    0.0,
+    0.0
+  ]
+```     
 ## Vehicle Configuration
 The following configuration is an example of how to create a `vehicle.json` to use with the C++ client and the Python client. 
 
@@ -183,4 +184,4 @@ The following configuration is an example of how to create a `vehicle.json` to u
 
 ### Configuration Tags
 - **vehicle_dynamics**: Physics engine to use to perform vehicle dynamics.
-- **tags**: Describe the vehicle for classification or filtering purposes. Usually *["vehicle","dynamic","ego"]*. 
+- **tags**: Describe the vehicle for classification or filtering purposes.

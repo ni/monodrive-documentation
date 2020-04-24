@@ -2,10 +2,11 @@
 The monoDrive Simulator allows you to customize multiple visual and dynamic settings on the ego vehicle.
 
 ## Change the vehicle's model
-<p class="img_container">
-  <img class="wide_img" src="../img/vehicle_body.gif" />
-</p>
-<p>&nbsp;</p>
+<div class="img_container">
+    <video width=650px autoplay loop>
+        <source src="http://cdn.monodrive.io/readthedocs/vehicles.mp4" type="video/webm">
+    </video>
+</div> 
 
 **Current Blueprints available**   
 On the monoDrive Editor look for the Content Browser, from the folders select Vehicles. You will find the current models available.
@@ -28,10 +29,11 @@ VehicleBlueprint=Blueprint'/Game/Vehicles/compact_monoDrive_01.compact_monoDrive
 **Note:** If you want to add your own vehicle model, add the path to the blueprint to this file.  
 
 ## Change the vehicle's color
-<p class="img_container">
-  <img class="wide_img" src="../img/vehicle.gif" />
-</p>
-<p>&nbsp;</p>
+<div class="img_container">
+    <video width=650px autoplay loop>
+        <source src="http://cdn.monodrive.io/readthedocs/vehicle_color.mp4" type="video/webm">
+    </video>
+</div> 
 
 **Current colors available**   
 On the monoDrive Editor look for the Content Browser. From the folders select Vehicles and then select CarPaint, you will find the current colors availables for any car.
@@ -67,31 +69,34 @@ Each vehicle has a pre-defined PID parameters to control how closely and accurat
 ## Vehicle Dynamics
 Using the monoDrive vehicles you have access to the Mechanical Setup to control the drivetrain type (4WD,FDW,RDW,etc), the maximum RPM and damping, the transmission's type, as well of the gear ratio if not automatic transmission, you can also set suspension settings and more.
 
-<p class="img_container">
-  <img class="wide_img" src="../img/mechanical_setup.gif" />
-</p>
-<p>&nbsp;</p>
+<div class="img_container">
+    <video width=650px autoplay loop>
+        <source src="http://cdn.monodrive.io/readthedocs/vehicle_mechanical.mp4" type="video/webm">
+    </video>
+</div> 
 
 ## Vehicle Axis and Rotations
 ### Axis
 The vehicle axis are defined as follows:   
-**X:** Point to front of the car.   
-**Y:** Point to the left of the car.   
-**Z:** Point to up of the car.   
+**X:** Points to the front of the car.   
+**Y:** Points to the left of the car.   
+**Z:** Points to the top of the car.   
 
-<p class="img_container">
-  <img class="wide_img" src="../img/axis.gif" />
-</p>
-<p>&nbsp;</p>
+<div class="img_container">
+    <video width=650px autoplay loop>
+        <source src="http://cdn.monodrive.io/readthedocs/axis.mp4" type="video/webm">
+    </video>
+</div>   
 
 ### Rotation
 **Yaw:** Rotation around the Z axis.   
 **Pitch:** Rotation around the Y axis.  
 **Roll:** Rotation around the X axis.   
-<p class="img_container">
-  <img class="wide_img" src="../img/ypr.gif" />
-</p>
-<p>&nbsp;</p>
+<div class="img_container">
+    <video width=650px autoplay loop>
+        <source src="http://cdn.monodrive.io/readthedocs/ypr.mp4" type="video/webm">
+    </video>
+</div> 
 
 ## Initial Conditions
 When configuring the ego vehicle using the C++ client or the Python client. You can assign the initial conditions for the ego vehicle:   

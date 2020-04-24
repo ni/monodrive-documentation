@@ -71,6 +71,50 @@ Using the monoDrive vehicles you have access to the Mechanical Setup to control 
 </p>
 <p>&nbsp;</p>
 
+## Initial Conditions
+When configuring the ego vehicle using the C++ client or the Python client. You can assign the initial conditions for the ego vehicle:   
+
+- **angular_velocity**: Angular velocity in x, y and z. Expressed on radians/s.   
+```
+  "angular_velocity": [
+    0.0,
+    0.0,
+    0.0
+  ]
+```   
+- **orientation**: On quaternion form.   
+```
+"orientation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ]
+```   
+You can provide the orientation in yaw, pitch and roll form (degrees) using the following notation.   
+```
+  "orientation": [
+    "yaw":0.0,
+    "pitch":0.0,
+    "roll":0.0
+  }
+```    
+- **position**: Initial position on the map on the x,y,z axis.
+```
+"position": [
+    0.0,
+    0.0,
+    0.0
+  ]
+```   
+- **velocity**: Linear velocity on cm/second.
+```
+"velocity": [
+    0.0,
+    0.0,
+    0.0
+  ]
+```
 ## Vehicle Configuration
 The following configuration is an example of how to create a `vehicle.json` to use with the C++ client and the Python client. 
 
@@ -139,18 +183,4 @@ The following configuration is an example of how to create a `vehicle.json` to u
 
 ### Configuration Tags
 - **vehicle_dynamics**: Physics engine to use to perform vehicle dynamics.
-- **body**: Visual settings. If not present, the simulator will assign one at random.   
-    - **color**: Path to the blueprint defining the color of the car to use.
-    - **type**: Path to the blueprint defining the model of the car to use.
-- **angular_velocity**: Set initial angular velocity on radians/s.
-- **orientation**: Initial orientation in quaternion form. You can provide the orientation in yaw, pitch and roll form(degrees) using the following notation.  
-  ```
-  "orientation": [
-    "yaw":0.0,
-    "pitch":0.0,
-    "roll":0.0
-  }
-  ```
-- **position**: Initial position on the map on the x,y,z axis.
 - **tags**: Describe the vehicle for classification or filtering purposes. Usually *["vehicle","dynamic","ego"]*. 
-- **velocity**: Linear velocity on cm/second.

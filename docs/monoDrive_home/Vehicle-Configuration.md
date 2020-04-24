@@ -105,7 +105,7 @@ When configuring the ego vehicle using the C++ client or the Python client. You 
   ]
 ```   
 **orientation**: On quaternion form (euler angles) with respect to the vehicle axis.   
-```
+```json
 "orientation": [
     0.0,
     0.0,
@@ -114,7 +114,7 @@ When configuring the ego vehicle using the C++ client or the Python client. You 
   ]
 ```    
 You can provide the orientation in **yaw**, **pitch** and **roll** form (degrees) with respect to the vehicle axis, using the following notation.   
-```
+```json
 "orientation": {
   "yaw":0.0,
   "pitch":0.0,
@@ -122,7 +122,7 @@ You can provide the orientation in **yaw**, **pitch** and **roll** form (degrees
 }
 ```    
 **velocity**: Linear velocity on cm/second.
-```
+```json
 "velocity": [
     0.0,
     0.0,
@@ -130,7 +130,7 @@ You can provide the orientation in **yaw**, **pitch** and **roll** form (degrees
   ]
 ```
 **angular_velocity**: Angular velocity in x, y and z axis. Expressed on radians/s.   
-```
+```json
 "angular_velocity": [
   0.0,
   0.0,
@@ -140,7 +140,7 @@ You can provide the orientation in **yaw**, **pitch** and **roll** form (degrees
 ## Vehicle Configuration
 The following configuration is an example of how to create a `vehicle.json` to use with the C++ client and the Python client. 
 
-```
+```json
 {
   "vehicle_dynamics": "physx",
   "body": {

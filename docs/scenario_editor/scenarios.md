@@ -54,9 +54,9 @@ relative to vehicle speed and control:
 * **Initial Speed:** This is the initial speed (in mph) the vehicle will start at.
 * **Delayed Started:** If greater than zero, the vehicle will wait this many seconds before starting to move.
 * **Show Vehicle Charts:** If ticked, then detailed plots of the vehicle's dynamics will be displayed.
-* **Debug Drawing:** If ticked, then detailed graphics of vehicle desired behavior will be dispalyed in the scene.
+* **Debug Drawing:** If ticked, then detailed graphics of vehicle desired behavior will be displayed in the scene.
 * **Search Forward Distance:** The distance (in cm) the vehicle will look ahead for other vehicles.
-* **Steer Forward Distance:** The distance (in cm) the vehicle will look ahead for cornerrs.
+* **Steer Forward Distance:** The distance (in cm) the vehicle will look ahead for corners.
 * **Rolling stop speed:** The speed (in mph), the vehicle will achieve when stopping for traffic laws.
 * **Distance to Stop Sign:** The distance (in cm) the vehicle will stop at when approaching a traffic control sign.
 * **Follower PID:** PID parameters of the vehicle when following another vehicle.
@@ -93,7 +93,7 @@ control during playback). To attach the state sensor:
 
 1. Select the State Sensor component from the list to attach it
 
-1. Click on the `StateSensor` component in the vehicle's hierachy in side of the "Details" window to bring up the settings for the sensor.
+1. Click on the `StateSensor` component in the vehicle's hierarchy in side of the "Details" window to bring up the settings for the sensor.
 
 1. Setup the tagging system for the vehicle (see "Tagging System" below). Ensure that the selected vehicle contains the "ego" tag or the playback of the trajectory will not work.
 
@@ -121,7 +121,7 @@ looking under the "Tags" array.
 For the state sensor there are two categories of tags:
 
 * **Desired Tags:** These are tags of elements of the scenario that will be recorded if they do not contain "Undesired Tags". Typically all "dynamic" tags should be recorded, but at a minimum the "ego" tag should be in this section.
-* **Undesired Tags:** These are tags of elements that will not be included in the trajectory. Typically users do not want to record elemnts that have the "static" tag.
+* **Undesired Tags:** These are tags of elements that will not be included in the trajectory. Typically users do not want to record elements that have the "static" tag.
 
 **NOTE:** You must have a vehicle with the tag "ego" when recording a trajectory 
 file or the trajectory cannot be replayed in the monoDrive Simulator.

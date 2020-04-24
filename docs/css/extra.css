@@ -91,6 +91,14 @@ aside {
     padding-left: 85px;
 }
 
+.toctree-l5>a.nav-item {
+    padding-left: 90px;
+}
+
+.toctree-l6>a.nav-item {
+    padding-left: 95px;
+}
+
 a.nav-item.current {
     color: #333;
     background: #eee;

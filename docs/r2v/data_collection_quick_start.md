@@ -1,6 +1,6 @@
-# Data Collection Quick Start
+# Data Collection
 
-## monoDrive Real-to-Virtual Data Collection Quick Start Guide
+## Quick Start Guide
 
 This guide helps users become familiar with the monoDrive Real-to-Virtual data
 collection process. The data collection needs to be conducted with the minimum:
@@ -17,14 +17,14 @@ transforms in a package that can be easily mounted to a roof mount:
     <img class='lg_img' src="../imgs/real_to_virtual_hardware_side_view.png"/>
 </div>
 
-### Sensor Installation and Calibration
+## Sensor Installation and Calibration
 
 The Real-to-Virtual system requires that sensors be placed so they can collect
 high-resolution data of the road in front of the vehicle for scene generation. 
 If dynamic actor detection is also required, a spherical camera sensor must be 
 placed above the vehicle so all surroundings can be recorded. 
 
-#### Ladybug Calibration 
+### Ladybug Calibration 
 
 For the monoDrive Real-to-Virtual hardware, the original spherical camera data
 must be calibrated for proper field-of-view prior to parsing in order to crop
@@ -71,7 +71,7 @@ When parsed, the above settings turn the image into a cropped version:
     <img class='wide_img' src="../imgs/kitti_data_cropped_image.png"/>
 </div>
 
-#### GNSS Calibration
+### GNSS Calibration
 
 In order to achieve an accurate heading from the Xsens GNSS, the magnetic field
 mapper tool must be  used to calibrate for the local magnetic bias. The 
@@ -85,7 +85,7 @@ to calibrate.
 1. Drive the vehicle in **two consecutive circles** then click "Process"
 1. If result state "Acceptable" or better, select "Write to selected devices"
 
-### Data Collection
+## Data Collection
 
 After calibration, **do not power off the hardware**. This will preserve all
 calibration parameters. To collect data:
@@ -101,7 +101,7 @@ calibration parameters. To collect data:
     <img class='wide_img' src="../imgs/data_logger_main_tab.png"/>
 </div>
 
-### Driving Tips
+## Driving Tips
 
 The monoDrive Real-to-Virtual data processing works best for certain driving
 conditions. In order to get the best results during data collection:
@@ -112,7 +112,7 @@ conditions. In order to get the best results during data collection:
 * The less traffic around during collection, the better the output of the scene generation will be
 * Try to limit data collection to a few minutes. While long runs will work, shorter and more frequent data collection will make processing easier
 
-### Verifying Data Collection Output
+## Verifying Data Collection Output
 
 Several data stream files will be saved by the monoDrive Real-to-Virtual data
 logger. By default the logger will save data in the folder specified in the UI 
@@ -139,7 +139,7 @@ output in [Google Earth](https://www.google.com/earth/versions/#download-pro):
     <img class='lg_img' src="../imgs/google_earth_gnss_output.png"/>
 </div>
 
-### Parsing Data Into KITTI Format
+## Parsing Data Into KITTI Format
 
 For use in the monoDrive Real-to-Virtual data processing pipeline, the collected
 data needs to be converted to the 
@@ -154,3 +154,5 @@ $ python monodrive_to_kitti.py --input /path/to/data/binary --output /path/to/da
 
 When complete, the data will be moved to the `kitti` directory under the same 
 data collection directory.
+
+<p>&nbsp;</p>

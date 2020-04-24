@@ -1,6 +1,6 @@
 # ROS Quick Start
 
-## Introduction
+## Guide
 
 The monoDrive ROS Client is part of the monoDrive C++ Client but uses the ROS 
 API for sending messages to and from the monoDrive Simulator or Scenario Editor.

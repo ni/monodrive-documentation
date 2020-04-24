@@ -34,7 +34,7 @@ pages:
     monoDrive_home/State-sensor.md,
     monoDrive_home/Ultrasonic.md,
     monoDrive_home/Viewport.md]
-  - Simulator : Simulator-Configuration.md
+  - Simulator : monoDrive_home/Simulator-Configuration.md
   - Vehicle : monoDrive_home/Vehicle-Configuration.md
   - Weather: monoDrive_home/Weather.md
   

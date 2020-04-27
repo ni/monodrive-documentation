@@ -94,7 +94,7 @@ The vehicle axis are defined as follows:
 
 <div class="img_container">
     <video width=650px height=340px muted controls autoplay loop>
-        <source src="http://cdn.monodrive.io/readthedocs/vehicles_ypr.mp4" type="video/mp4">
+        <source src="http://cdn.monodrive.io/readthedocs/vehicles_yaw_pitch_roll.mp4" type="video/mp4">
     </video>
 </div> 
 

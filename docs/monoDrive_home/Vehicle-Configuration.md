@@ -1,5 +1,6 @@
 # Vehicles
-The monoDrive Simulator provides users with the ability to customize color and the model for the ego vehicle as well as for the vehicles that interact with it on simulation. The user may specify the initial conditions for any car on the scene, i.e. initial pose and initial velocity.
+
+The monoDrive Simulator provides users with the ability to customize color and model for all vehicles in the simulation. The user may specify the initial conditions for any car in the scene, i.e. initial pose and initial velocity.
 
 ## Change the vehicle's model
 <div class="img_container">
@@ -9,7 +10,9 @@ The monoDrive Simulator provides users with the ability to customize color and t
 </div>
 
 **Current Blueprints available**   
-The current models available can be find in the  `Content Browser` under `Vehicles`
+
+The current models available can be find in  `Content Browser` folder under `Vehicles`.
+
 
 When selecting a model programmatically (i.e. using any client) the user can assign the model for the ego vehicle randomly from the vehicle blueprints. This can be found in the Editor folder:  
 `Config/ConfigRandomVehicleSettings.ini`   
@@ -54,6 +57,7 @@ Carpaint_White
 ```
 When selecting a color programmatically (i.e. using any client) the user can assign the color to use for the ego vehicle using the `vehicle.json` with the `body` tag. 
 ```
+
 "body": {
     "color": "Carpaint_White.Carpaint_White",
     "type": "/Game/Vehicles/crossover_monoDrive_01.crossover_monoDrive_01_C"
@@ -61,13 +65,13 @@ When selecting a color programmatically (i.e. using any client) the user can ass
 ```
 ## PID Speed Controllers
 ### Speed Maintain PID
-Each vehicle has a pre-defined PID parameters to control how closely and accurate maintains its own desired speed.   
+Each vehicle has a pre-defined PID parameters to control how closely and accurately it maintains a desired speed.   
 
 ### Follower PID
 Each vehicle has a pre-defined PID parameters to control how closely and accurate follow other vehicles. The user can tune these parameters.
 
 ## Vehicle Dynamics
-monoDrive Scenario Vehicles are built on PhysX vehicles which are customizable out of the box. All of the PhysX mechanical settings can be cusomized in the editor to match the user's vehicle such as the suspension, drivetrain type, transmission gearing, suspension parameters, and much more.
+monoDrive Scenario Vehicles are built on PhysX vehicles which are customizable out of the box. All of the PhysX mechanical settings can be customized in the editor to match the user's vehicle such as the suspension, drivetrain type, transmission gearing, suspension parameters, and much more.
 
 <div class="img_container">
     <video width=650px height=340px muted controls autoplay loop>
@@ -135,7 +139,9 @@ Alternatively, the user can provide Euler Angles, **yaw**, **pitch** and **roll*
     0.0
   ]
 ```
-**angular_velocity**: Angular velocity in x, y and z axis. Expressed in radians/s.   
+
+**angular_velocity**: Angular velocity on x, y and z axis. Expressed in radians/s.   
+
 ```json
 "angular_velocity": [
   0.0,

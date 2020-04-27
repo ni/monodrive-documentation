@@ -3,10 +3,11 @@ The monoDrive Simulator provides users with the ability to customize the color a
 
 ## Change the vehicle's model
 <div class="img_container">
-  <video width=650px height=480px muted controls autoplay loop>
+  <video width=650px height=440px muted controls autoplay loop>
     <source src="http://cdn.monodrive.io/readthedocs/vehicles.mp4" type="video/mp4">
   </video>
 </div>
+
 **Current Blueprints available**   
 On the monoDrive Editor look for the Content Browser, from the folders select Vehicles. You will find the current models available.
 
@@ -59,11 +60,12 @@ When selecting a color programmatically (i.e. using any client) you can assign t
   }
 ```
 ## PID Speed Controllers
+### Speed Maintain PID
+Each vehicle has a pre-defined PID parameters to control how closely and accurate maintains the desired speed.   
+
 ### Follower PID
 Each vehicle has a pre-defined PID parameters to control how closely and accurate follow others vehicles. You can tune this parameters.
 
-### Speed Maintain PID
-Each vehicle has a pre-defined PID parameters to control how closely and accurate maintains the desired speed.
 
 ## Vehicle Dynamics
 Using the monoDrive vehicles you have access to the Mechanical Setup to control the drivetrain type (4WD,FDW,RDW,etc), the maximum RPM and damping, the transmission's type, as well of the gear ratio if not automatic transmission, you can also set suspension settings and more.

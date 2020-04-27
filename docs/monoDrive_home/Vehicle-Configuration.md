@@ -1,4 +1,4 @@
-# Scenario Vehicle
+# Vehicles
 The monoDrive Simulator provides users with the ability to customize color and the model for the ego vehicle as well as for the vehicles that interact with it on simulation. The user may specify the initial conditions for any car on the scene, i.e. initial pose and initial velocity.
 
 ## Change the vehicle's model
@@ -9,7 +9,7 @@ The monoDrive Simulator provides users with the ability to customize color and t
 </div>
 
 **Current Blueprints available**   
-On the monoDrive Editor look for the `Content Browser`, from the folders select Vehicles. You will find the current models available.
+The current models available can be find on the  `Content Browser` under `Vehicles`
 
 When selecting a model programmatically (i.e. using any client) the user can assign the model for the ego vehicle randomly from the vehicle blueprints. This can be found in the Editor folder:  
 `Config/ConfigRandomVehicleSettings.ini`   
@@ -61,11 +61,10 @@ When selecting a color programmatically (i.e. using any client) the user can ass
 ```
 ## PID Speed Controllers
 ### Speed Maintain PID
-Each vehicle has a pre-defined PID parameters to control how closely and accurate maintains the desired speed.   
+Each vehicle has a pre-defined PID parameters to control how closely and accurate maintains its own desired speed.   
 
 ### Follower PID
-Each vehicle has a pre-defined PID parameters to control how closely and accurate follow others vehicles. You can tune this parameters.
-
+Each vehicle has a pre-defined PID parameters to control how closely and accurate follow other vehicles. The user can tune this parameters.
 
 ## Vehicle Dynamics
 monoDrive Scenario Vehicles are built on PhysX vehicles which are customizable out of the box. All of the PhysX mechanical settings can be cusomized in the editor to match the user's vehicle such as the suspension, drivetrain type, transmission gearing, suspension parameters, and much more.

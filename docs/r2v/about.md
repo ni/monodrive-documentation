@@ -7,9 +7,11 @@ solution for collecting real-world data from cameras, LiDAR, and GNSS systems
 to create high-fidelity assets and maps usable in the Unreal Engine and the 
 monoDrive Scenario Editor.
 
-<video width=650px autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/r2v_comparison_converted.mp4" type="video/webm">
-</video>
+<div class="img_container">
+    <video width=650px autoplay loop>
+        <source src="http://cdn.monodrive.io/readthedocs/r2v_comparison_converted.mp4" type="video/webm">
+    </video>
+</div>
 
 * Sensor fusion and machine learning algorithms construct 3D meshes from LiDAR and image data
 * monoDrive Direct Texturing enables high-fidelity texturing of meshes for realistic roads

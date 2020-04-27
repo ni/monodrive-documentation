@@ -9,7 +9,7 @@ The monoDrive Simulator provides users with the ability to customize color and t
 </div>
 
 **Current Blueprints available**   
-The current models available can be find on the  `Content Browser` under `Vehicles`
+The current models available can be find in the  `Content Browser` under `Vehicles`
 
 When selecting a model programmatically (i.e. using any client) the user can assign the model for the ego vehicle randomly from the vehicle blueprints. This can be found in the Editor folder:  
 `Config/ConfigRandomVehicleSettings.ini`   
@@ -110,7 +110,7 @@ When configuring the ego vehicle using the C++ client or the Python client. The 
   0.0
   ]
 ```   
-**orientation**: On quaternion form (euler angles) with respect to the vehicle axis.   
+**orientation**: Quaternion form.  
 ```json
 "orientation": [
     0.0,
@@ -119,7 +119,7 @@ When configuring the ego vehicle using the C++ client or the Python client. The 
     1.0
   ]
 ```    
-In addition, the user can provide **yaw**, **pitch** and **roll** form (in degrees) with respect to the vehicle axis, using the following notation.   
+Alternatively, the user can provide Euler Angles, **yaw**, **pitch** and **roll** (in degrees), using the following notation.   
 ```json
 "orientation": {
   "yaw":0.0,
@@ -127,7 +127,7 @@ In addition, the user can provide **yaw**, **pitch** and **roll** form (in degre
   "roll":0.0
 }
 ```    
-**velocity**: Linear velocity on cm/second.
+**velocity**: Linear velocity in cm/second.
 ```json
 "velocity": [
     0.0,
@@ -135,7 +135,7 @@ In addition, the user can provide **yaw**, **pitch** and **roll** form (in degre
     0.0
   ]
 ```
-**angular_velocity**: Angular velocity in x, y and z axis. Expressed on radians/s.   
+**angular_velocity**: Angular velocity in x, y and z axis. Expressed in radians/s.   
 ```json
 "angular_velocity": [
   0.0,

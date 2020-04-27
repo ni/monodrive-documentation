@@ -36,7 +36,7 @@ VehicleBlueprint=Blueprint'/Game/Vehicles/compact_monoDrive_01.compact_monoDrive
 </div> 
 
 **Current colors available**   
-From the Content Bowser under `Vehicles` and `CarPaint`, the user has control over the current colors available for all car models.
+From the `Content Bowser` under `Vehicles` and `CarPaint`, the user has control over the current colors available for all car models.
 
 ```
 Carpaint_BabyBlue
@@ -64,7 +64,7 @@ When selecting a color programmatically (i.e. using any client) the user can ass
 Each vehicle has a pre-defined PID parameters to control how closely and accurate maintains its own desired speed.   
 
 ### Follower PID
-Each vehicle has a pre-defined PID parameters to control how closely and accurate follow other vehicles. The user can tune this parameters.
+Each vehicle has a pre-defined PID parameters to control how closely and accurate follow other vehicles. The user can tune these parameters.
 
 ## Vehicle Dynamics
 monoDrive Scenario Vehicles are built on PhysX vehicles which are customizable out of the box. All of the PhysX mechanical settings can be cusomized in the editor to match the user's vehicle such as the suspension, drivetrain type, transmission gearing, suspension parameters, and much more.

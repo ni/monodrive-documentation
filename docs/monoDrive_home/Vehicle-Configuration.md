@@ -1,17 +1,17 @@
-# Scenario Vehicle
-The monoDrive Simulator allows you to customize multiple visual and dynamic settings on the ego vehicle.
+# Vehicles
+The monoDrive Simulator provides users with the ability to customize color and the model for the ego vehicle as well as for the vehicles that interact with it on simulation. The user may specify the initial conditions for any car on the scene, i.e. initial pose and initial velocity.
 
 ## Change the vehicle's model
 <div class="img_container">
-    <video width=650px autoplay loop>
-        <source src="http://cdn.monodrive.io/readthedocs/vehicles.mp4" type="video/webm">
-    </video>
-</div> 
+  <video width=650px height=440px muted controls autoplay loop>
+    <source src="http://cdn.monodrive.io/readthedocs/vehicles.mp4" type="video/mp4">
+  </video>
+</div>
 
 **Current Blueprints available**   
-On the monoDrive Editor look for the Content Browser, from the folders select Vehicles. You will find the current models available.
+The current models available can be find on the  `Content Browser` under `Vehicles`
 
-When selecting a model programmatically (i.e. using any client) you can assign the model to use for the ego vehicle to be random from the vehicle blueprints, you can find it on your Editor folder under:  
+When selecting a model programmatically (i.e. using any client) the user can assign the model for the ego vehicle randomly from the vehicle blueprints. This can be found in the Editor folder:  
 `Config/ConfigRandomVehicleSettings.ini`   
 
 ```
@@ -26,17 +26,17 @@ VehicleBlueprint=Blueprint'/Game/Vehicles/coupe_monoDrive_01.coupe_monoDrive_01_
 VehicleBlueprint=Blueprint'/Game/Vehicles/crossover_monoDrive_01.crossover_monoDrive_01_C'
 VehicleBlueprint=Blueprint'/Game/Vehicles/compact_monoDrive_01.compact_monoDrive_01_C'
 ```
-**Note:** If you want to add your own vehicle model, add the path to the blueprint to this file.  
+**Note:** To add a customized vehicle model, add the path to the blueprint in this file.
 
 ## Change the vehicle's color
 <div class="img_container">
-    <video width=650px autoplay loop>
-        <source src="http://cdn.monodrive.io/readthedocs/vehicle_color.mp4" type="video/webm">
+    <video width=650px height=340px muted controls autoplay loop>
+        <source src="http://cdn.monodrive.io/readthedocs/vehicle_color.mp4" type="video/mp4">
     </video>
 </div> 
 
 **Current colors available**   
-On the monoDrive Editor look for the Content Browser. From the folders select Vehicles and then select CarPaint, you will find the current colors availables for any car.
+From the `Content Bowser` under `Vehicles` and `CarPaint`, the user has control over the current colors available for all car models.
 
 ```
 Carpaint_BabyBlue
@@ -52,7 +52,7 @@ Carpaint_Red
 Carpaint_Silver
 Carpaint_White
 ```
-When selecting a color programmatically (i.e. using any client) you can assign the color to use for the ego vehicle using the `vehicle.json` with the `body` tag. 
+When selecting a color programmatically (i.e. using any client) the user can assign the color to use for the ego vehicle using the `vehicle.json` with the `body` tag. 
 ```
 "body": {
     "color": "Carpaint_White.Carpaint_White",
@@ -60,18 +60,18 @@ When selecting a color programmatically (i.e. using any client) you can assign t
   }
 ```
 ## PID Speed Controllers
-### Follower PID
-Each vehicle has a pre-defined PID parameters to control how closely and accurate follow others vehicles. You can tune this parameters.
-
 ### Speed Maintain PID
-Each vehicle has a pre-defined PID parameters to control how closely and accurate maintains the desired speed.
+Each vehicle has a pre-defined PID parameters to control how closely and accurate maintains its own desired speed.   
+
+### Follower PID
+Each vehicle has a pre-defined PID parameters to control how closely and accurate follow other vehicles. The user can tune these parameters.
 
 ## Vehicle Dynamics
-Using the monoDrive vehicles you have access to the Mechanical Setup to control the drivetrain type (4WD,FDW,RDW,etc), the maximum RPM and damping, the transmission's type, as well of the gear ratio if not automatic transmission, you can also set suspension settings and more.
+monoDrive Scenario Vehicles are built on PhysX vehicles which are customizable out of the box. All of the PhysX mechanical settings can be cusomized in the editor to match the user's vehicle such as the suspension, drivetrain type, transmission gearing, suspension parameters, and much more.
 
 <div class="img_container">
-    <video width=650px autoplay loop>
-        <source src="http://cdn.monodrive.io/readthedocs/vehicle_mechanical.mp4" type="video/webm">
+    <video width=650px height=340px muted controls autoplay loop>
+        <source src="http://cdn.monodrive.io/readthedocs/vehicle_mechanical.mp4" type="video/mp4">
     </video>
 </div> 
 
@@ -79,27 +79,28 @@ Using the monoDrive vehicles you have access to the Mechanical Setup to control 
 ### Axis
 The vehicle axis are defined as follows:   
 **X:** Points to the front of the car.   
-**Y:** Points to the left of the car.   
+**Y:** Points to the right of the car.   
 **Z:** Points to the top of the car.   
 
 <div class="img_container">
-    <video width=650px autoplay loop>
-        <source src="http://cdn.monodrive.io/readthedocs/axis.mp4" type="video/webm">
+    <video width=650px height=340px muted controls autoplay loop>
+        <source src="http://cdn.monodrive.io/readthedocs/axis.mp4" type="video/mp4">
     </video>
 </div>   
 
 ### Rotation
-**Yaw:** Rotation around the Z axis.   
-**Pitch:** Rotation around the Y axis.  
-**Roll:** Rotation around the X axis.   
+**Yaw:** Positive angle when rotating clockwise around the Z axis and negative counterclockwise.   
+**Pitch:** Negative angle when rotating clockwise around the Y axis and positive counterclockwise.   
+**Roll:** Positive angle when rotating clockwise around the X axis and negative counterclockwise.   
+
 <div class="img_container">
-    <video width=650px autoplay loop>
-        <source src="http://cdn.monodrive.io/readthedocs/ypr.mp4" type="video/webm">
+    <video width=650px height=340px muted controls autoplay loop>
+        <source src="http://cdn.monodrive.io/readthedocs/vehicles_yaw_pitch_roll.mp4" type="video/mp4">
     </video>
 </div> 
 
 ## Initial Conditions
-When configuring the ego vehicle using the C++ client or the Python client. You can assign the initial conditions for the ego vehicle:   
+When configuring the ego vehicle using the C++ client or the Python client. The user can assign the initial conditions for the ego vehicle:   
 
 **position**: Initial position on the map on the x,y,z axis.   
 ```json
@@ -118,7 +119,7 @@ When configuring the ego vehicle using the C++ client or the Python client. You 
     1.0
   ]
 ```    
-You can provide the orientation in **yaw**, **pitch** and **roll** form (degrees) with respect to the vehicle axis, using the following notation.   
+In addition, the user can provide **yaw**, **pitch** and **roll** form (in degrees) with respect to the vehicle axis, using the following notation.   
 ```json
 "orientation": {
   "yaw":0.0,

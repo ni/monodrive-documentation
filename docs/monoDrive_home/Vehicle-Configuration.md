@@ -1,5 +1,5 @@
 # Scenario Vehicle
-The monoDrive Simulator provides users with the ability to customize the color and model to use for the ego vehicle as well as for the vehicles that interact with it on simulation. The simulator also provides users with the ability to specify the initial conditions for any car on the scene, i.e. initial pose and initial velocity. 
+The monoDrive Simulator provides users with the ability to customize color and the model for the ego vehicle as well as for the vehicles that interact with it on simulation. The user may specify the initial conditions for any car on the scene, i.e. initial pose and initial velocity.
 
 ## Change the vehicle's model
 <div class="img_container">
@@ -9,9 +9,9 @@ The monoDrive Simulator provides users with the ability to customize the color a
 </div>
 
 **Current Blueprints available**   
-On the monoDrive Editor look for the Content Browser, from the folders select Vehicles. You will find the current models available.
+On the monoDrive Editor look for the `Content Browser`, from the folders select Vehicles. You will find the current models available.
 
-When selecting a model programmatically (i.e. using any client) you can assign the model to use for the ego vehicle to be random from the vehicle blueprints, you can find it on your Editor folder under:  
+When selecting a model programmatically (i.e. using any client) the user can assign the model for the ego vehicle randomly from the vehicle blueprints. This can be found in the Editor folder:  
 `Config/ConfigRandomVehicleSettings.ini`   
 
 ```
@@ -26,7 +26,7 @@ VehicleBlueprint=Blueprint'/Game/Vehicles/coupe_monoDrive_01.coupe_monoDrive_01_
 VehicleBlueprint=Blueprint'/Game/Vehicles/crossover_monoDrive_01.crossover_monoDrive_01_C'
 VehicleBlueprint=Blueprint'/Game/Vehicles/compact_monoDrive_01.compact_monoDrive_01_C'
 ```
-**Note:** If you want to add your own vehicle model, add the path to the blueprint to this file.  
+**Note:** To add a customized vehicle model, add the path to the blueprint in this file.
 
 ## Change the vehicle's color
 <div class="img_container">
@@ -36,7 +36,7 @@ VehicleBlueprint=Blueprint'/Game/Vehicles/compact_monoDrive_01.compact_monoDrive
 </div> 
 
 **Current colors available**   
-On the monoDrive Editor look for the Content Browser. From the folders select Vehicles and then select CarPaint, you will find the current colors availables for any car.
+From the Content Bowser under `Vehicles` and `CarPaint`, the user has control over the current colors available for all car models.
 
 ```
 Carpaint_BabyBlue
@@ -52,7 +52,7 @@ Carpaint_Red
 Carpaint_Silver
 Carpaint_White
 ```
-When selecting a color programmatically (i.e. using any client) you can assign the color to use for the ego vehicle using the `vehicle.json` with the `body` tag. 
+When selecting a color programmatically (i.e. using any client) the user can assign the color to use for the ego vehicle using the `vehicle.json` with the `body` tag. 
 ```
 "body": {
     "color": "Carpaint_White.Carpaint_White",
@@ -68,7 +68,7 @@ Each vehicle has a pre-defined PID parameters to control how closely and accurat
 
 
 ## Vehicle Dynamics
-monoDrive Scenario Vehicles are built on PhysX vehicles which are customizable out of the box. All of the PhysX mechanical settings can be cusomized in the editor to match your vehicle such as the suspension, drivetrain type, transmission gearing, suspension parameters, and much more.
+monoDrive Scenario Vehicles are built on PhysX vehicles which are customizable out of the box. All of the PhysX mechanical settings can be cusomized in the editor to match the user's vehicle such as the suspension, drivetrain type, transmission gearing, suspension parameters, and much more.
 
 <div class="img_container">
     <video width=650px height=340px muted controls autoplay loop>
@@ -101,7 +101,7 @@ The vehicle axis are defined as follows:
 </div> 
 
 ## Initial Conditions
-When configuring the ego vehicle using the C++ client or the Python client. You can assign the initial conditions for the ego vehicle:   
+When configuring the ego vehicle using the C++ client or the Python client. The user can assign the initial conditions for the ego vehicle:   
 
 **position**: Initial position on the map on the x,y,z axis.   
 ```json
@@ -120,7 +120,7 @@ When configuring the ego vehicle using the C++ client or the Python client. You 
     1.0
   ]
 ```    
-You can provide the orientation in **yaw**, **pitch** and **roll** form (degrees) with respect to the vehicle axis, using the following notation.   
+In addition, the user can provide **yaw**, **pitch** and **roll** form (in degrees) with respect to the vehicle axis, using the following notation.   
 ```json
 "orientation": {
   "yaw":0.0,

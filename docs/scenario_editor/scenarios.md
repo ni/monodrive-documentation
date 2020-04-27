@@ -8,9 +8,12 @@ the monoDrive State Sensor to a vehicle, users can save scenarios to monoDrive
 trajectory files that can then be used in the Replay modes of the monoDrive
 Simulator and Scenario Editor.
 
-<video width=650px autoplay loop>
+<div class="img_container">
+  <video width=650px height=480px muted autoplay loop>
     <source src="http://cdn.monodrive.io/readthedocs/scenario_editor_recording.mp4" type="video/mp4">
-</video>
+  </video>
+</div> 
+
 
 ### Placing Vehicles in a Scene
 

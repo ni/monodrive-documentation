@@ -7,17 +7,22 @@ solution for collecting real-world data from cameras, LiDAR, and GNSS systems
 to create high-fidelity assets and maps usable in the Unreal Engine and the 
 monoDrive Scenario Editor.
 
-<video width=650px autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/r2v_comparison_converted.mp4" type="video/webm">
-</video>
+<div class="img_container">
+  <video width=650px height=480px muted autoplay loop>
+    <source src="http://cdn.monodrive.io/readthedocs/r2v_comparison_converted.mp4" type="video/mp4">
+  </video>
+</div> 
 
 * Sensor fusion and machine learning algorithms construct 3D meshes from LiDAR and image data
 * monoDrive Direct Texturing enables high-fidelity texturing of meshes for realistic roads
 * monoDrive developed signal processing and machine learning algorithms enable static road art and dynamic vehicle placement in simulation
 
-<video width=650px autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/dynamic_actor_tracking_converted.mp4" type="video/webm">
-</video>
+<div class="img_container">
+  <video width=650px height=480px muted autoplay loop>
+    <source src="http://cdn.monodrive.io/readthedocs/dynamic_actor_tracking_converted.mp4" type="video/mp4">
+  </video>
+</div> 
+
 
 ## Data Products
 
@@ -52,6 +57,8 @@ The monoDrive clients can connect to the running simulator to replay the
 original dynamic actors from the generated Trajectory File or create their own,
 new scenarios using the monoDrive Scenario Editor.
 
-<video width=650px autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/r2v_ue4_sim_converted.mp4" type="video/webm">
-</video>
+<div class="img_container">
+  <video width=650px height=480px muted autoplay loop>
+    <source src="http://cdn.monodrive.io/readthedocs/r2v_ue4_sim_converted.mp4" type="video/mp4">
+  </video>
+</div> 

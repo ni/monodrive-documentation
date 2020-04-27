@@ -68,7 +68,7 @@ Each vehicle has a pre-defined PID parameters to control how closely and accurat
 
 
 ## Vehicle Dynamics
-Using the monoDrive vehicles you have access to the Mechanical Setup to control the drivetrain type (4WD,FDW,RDW,etc), the maximum RPM and damping, the transmission's type, as well of the gear ratio if not automatic transmission, you can also set suspension settings and more.
+monoDrive Scenario Vehicles are built on PhysX vehicles which are customizable out of the box. All of the PhysX mechanical settings can be cusomized in the editor to match your vehicle such as the suspension, drivetrain type, transmission gearing, suspension parameters, and much more.
 
 <div class="img_container">
     <video width=650px height=340px muted controls autoplay loop>

@@ -3,11 +3,10 @@ The monoDrive Simulator provides users with the ability to customize the color a
 
 ## Change the vehicle's model
 <div class="img_container">
-  <video width=650px height=480px muted autoplay loop>
+  <video width=650px height=480px muted controls autoplay loop>
     <source src="http://cdn.monodrive.io/readthedocs/vehicles.mp4" type="video/mp4">
   </video>
 </div>
-
 **Current Blueprints available**   
 On the monoDrive Editor look for the Content Browser, from the folders select Vehicles. You will find the current models available.
 
@@ -30,8 +29,8 @@ VehicleBlueprint=Blueprint'/Game/Vehicles/compact_monoDrive_01.compact_monoDrive
 
 ## Change the vehicle's color
 <div class="img_container">
-    <video width=650px height=480px muted autoplay loop>
-        <source src="http://cdn.monodrive.io/readthedocs/vehicle_color.mp4" type="video/webm">
+    <video width=650px height=340px muted controls autoplay loop>
+        <source src="http://cdn.monodrive.io/readthedocs/vehicle_color.mp4" type="video/mp4">
     </video>
 </div> 
 
@@ -70,8 +69,8 @@ Each vehicle has a pre-defined PID parameters to control how closely and accurat
 Using the monoDrive vehicles you have access to the Mechanical Setup to control the drivetrain type (4WD,FDW,RDW,etc), the maximum RPM and damping, the transmission's type, as well of the gear ratio if not automatic transmission, you can also set suspension settings and more.
 
 <div class="img_container">
-    <video width=650px height=480px muted autoplay loop>
-        <source src="http://cdn.monodrive.io/readthedocs/vehicle_mechanical.mp4" type="video/webm">
+    <video width=650px height=340px muted controls autoplay loop>
+        <source src="http://cdn.monodrive.io/readthedocs/vehicle_mechanical.mp4" type="video/mp4">
     </video>
 </div> 
 
@@ -83,18 +82,19 @@ The vehicle axis are defined as follows:
 **Z:** Points to the top of the car.   
 
 <div class="img_container">
-    <video width=650px height=480px muted autoplay loop>
-        <source src="http://cdn.monodrive.io/readthedocs/axis.mp4" type="video/webm">
+    <video width=650px height=340px muted controls autoplay loop>
+        <source src="http://cdn.monodrive.io/readthedocs/axis.mp4" type="video/mp4">
     </video>
 </div>   
 
 ### Rotation
-**Yaw:** Rotation around the Z axis.   
-**Pitch:** Rotation around the Y axis.  
-**Roll:** Rotation around the X axis.   
+**Yaw:** Positive angle when rotating clockwise around the Z axis and negative counterclockwise.   
+**Pitch:** Negative angle when rotating clockwise around the Y axis and positive counterclockwise.   
+**Roll:** Positive angle when rotating clockwise around the X axis and negative counterclockwise.   
+
 <div class="img_container">
-    <video width=650px height=480px muted autoplay loop>
-        <source src="http://cdn.monodrive.io/readthedocs/vehicles_ypr.mp4" type="video/webm">
+    <video width=650px height=340px muted controls autoplay loop>
+        <source src="http://cdn.monodrive.io/readthedocs/vehicles_ypr.mp4" type="video/mp4">
     </video>
 </div> 
 

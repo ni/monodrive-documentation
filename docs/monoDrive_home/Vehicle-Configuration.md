@@ -1,9 +1,4 @@
 # Vehicles
-<<<<<<< Updated upstream
-
-## Vehicle
-```
-=======
 
 The monoDrive Simulator provides users with the ability to customize color and model for all vehicles in the simulation. The user may specify the initial conditions for any car in the scene, i.e. initial pose and initial velocity.
 
@@ -61,6 +56,7 @@ Carpaint_White
 ```
 When selecting a color programmatically (i.e. using any client) the user can assign the color to use for the ego vehicle using the `vehicle.json` with the `body` tag. 
 ```
+
 "body": {
     "color": "Carpaint_White.Carpaint_White",
     "type": "/Game/Vehicles/crossover_monoDrive_01.crossover_monoDrive_01_C"
@@ -154,89 +150,68 @@ In addition, the user can provide **yaw**, **pitch** and **roll** form (in degre
 The following configuration is an example of how to create a `vehicle.json` to use with the C++ client and the Python client. 
 
 ```json
->>>>>>> Stashed changes
 {
-  "id": "laptop_test",
-  "server_ip": "127.0.0.1",
-  "server_port": 8998,
-  "client_ip": "127.0.0.1",
-  "lane_number": 0,
-  "position": 22000,
-  "spawning_rotation": {
-        "pitch":0.0,
-        "yaw":-90.0,
-        "roll":0.0
+  "vehicle_dynamics": "physx",
+  "body": {
+    "color": "Carpaint_White.Carpaint_White",
+    "type": "/Game/Vehicles/crossover_monoDrive_01.crossover_monoDrive_01_C"
   },
-  "mesh_path": "/Game/Vehicles_Vol1/Models/SUV/SUV_rigged.SUV_rigged",
-  "anim_path": "/Game/Vehicles_Vol1/Blueprints/SUV_AnimBP.SUV_AnimBP_C",
-  "wheels":[
-    {
-      "id": "FL_Wheel",
-      "wheel_number": 0,
-      "offset": {
-        "x":0.0,
-        "y":-12.0,
-        "z":0.0
-      },
-      "front": true
-    },
-    {
-      "id": "FR_Wheel",
-      "wheel_number": 1,
-      "offset": {
-        "x":0.0,
-        "y":12.0,
-        "z":0.0
-      },
-      "front": true
-    },
-    {
-      "id": "BL_Wheel",
-      "wheel_number": 2,
-      "offset": {
-        "x":0.0,
-        "y":-12.0,
-        "z":0.0
-      },
-      "front": false
-    },
-    {
-      "id": "BR_Wheel",
-      "wheel_number": 3,
-      "offset": {
-        "x":0.0,
-        "y":12.0,
-        "z":0.0
-      },
-      "front": false
-    }
+  "angular_velocity": [
+    0.0,
+    0.0,
+    0.0
   ],
-  "sensors": [
-        {
-      "type": "Lidar",
-      "id": "far_left",
-      "packet_size": 1472,
-      "listen_port": 8088,
-      "display_process": false,
-      "sensor_process": true,
-      "location": {
-        "x":-75.0,
-        "y":-25.0,
-        "z":350.0
-      },
-      "rotation": {
-        "pitch":0.0,
-        "yaw":0.0,
-        "roll":0.0
-      },
-      "max_distance": 8000.0,
-      "vertical_fov_angle": 30.0,
-      "horizontal_resolution": 0.4,
-      "fps": 10.0,
-      "n_lasers": 32,
-      "reset_angle": 0.0
+  "orientation": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "position": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "tags": [
+    "vehicle",
+    "dynamic",
+    "ego"
+  ],
+  "velocity": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "wheel_speed": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "wheels": [
+    {
+      "id": 1,
+      "orientation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "id": 2,
+      "orientation": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
     }
   ]
 }
 ```
 <p>&nbsp;</p>
+
+### Configuration Tags
+- **vehicle_dynamics**: Physics engine to use to perform vehicle dynamics.
+- **tags**: Describe the vehicle for classification or filtering purposes.

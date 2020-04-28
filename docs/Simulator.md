@@ -4,40 +4,50 @@ The monoDrive Simulator provides users with the ability to test AV algorithms in
 
 ## Almono Highway Exit
 
-<video width=650px autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/highway_exit_trajectory.mp4" type="video/webm">
-</video>
+<div class="img_container">
+  <video width=650px height=480px muted autoplay loop>
+    <source src="http://cdn.monodrive.io/readthedocs/highway_exit_trajectory.mp4" type="video/mp4">
+  </video>
+</div> 
 
 <p>&nbsp;</p>
 
 ## Almono Sudden Stop
 
-<video width=650px autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/sudden_stop_trajectory.mp4" type="video/webm">
-</video>
+<div class="img_container">
+  <video width=650px height=480px muted autoplay loop>
+    <source src="http://cdn.monodrive.io/readthedocs/sudden_stop_trajectory.mp4" type="video/mp4">
+  </video>
+</div> 
 
 <p>&nbsp;</p>
 
 ## Straightaway Highway
 
-<video width=650px autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/straight_highway.mp4" type="video/webm">
-</video>
+<div class="img_container">
+  <video width=650px height=480px muted autoplay loop>
+    <source src="http://cdn.monodrive.io/readthedocs/straight_highway.mp4" type="video/mp4">
+  </video>
+</div> 
 
 <p>&nbsp;</p>
 
 ## Almono Traffic Circle
 
-<video width=650px autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/traffic_circle.mp4" type="video/webm">
-</video>
+<div class="img_container">
+  <video width=650px height=480px muted autoplay loop>
+    <source src="http://cdn.monodrive.io/readthedocs/traffic_circle.mp4" type="video/mp4">
+  </video>
+</div> 
 
 <p>&nbsp;</p>
 
 ## Straightaway Lane Change
 
-<video width=650px autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/highway_lane_change.mp4" type="video/webm">
-</video>
+<div class="img_container">
+  <video width=650px height=480px muted autoplay loop>
+    <source src="http://cdn.monodrive.io/readthedocs/highway_lane_change.mp4" type="video/mp4">
+  </video>
+</div> 
 
 <p>&nbsp;</p>

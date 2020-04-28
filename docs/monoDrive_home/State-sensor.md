@@ -1,9 +1,10 @@
 # State
 
 ## State
-The state sensor can be attached anywhere in the scene (preferably on the EGO 
-vehicle) to record state information for actors with the `"desired_tags"` and
-not record information of actors with the `"undesired_tags"`.
+The state sensor is attached to the simulation output state information for 
+actors with the `"desired_tags"` and not record information of actors with the 
+`"undesired_tags"`. This information can be serialized to a monoDrive Trajectory 
+File and played back in Replay Mode.
 
 ## Configuration
 

@@ -19,7 +19,7 @@ Generation of realistic scenarios and resulting sensor information for perceptio
 
 The monoDrive Simulator provides users with the ability to test AV algorithms in one of several pre-made monoDrive Simulator levels. The Open Source monoDrive clients provide an API and examples for connecting to the Simulator for simulating traffic scenarios and replaying monoDrive trajectory files. The clients allow users to configure and test any number of configurations of monoDrive high-fidelity sensors.
 
-The weather system in the monoDrive simulator is based on [CARLA's](https://carla.org/) weather implementation. 
+The weather system in the monoDrive simulator is an extension of [CARLA's](https://carla.org/) weather implementation. 
 
 **[Scenario Editor](scenario_editor/scenarios.md)**
 

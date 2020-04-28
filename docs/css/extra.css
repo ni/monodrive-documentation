@@ -1,11 +1,14 @@
 main {
-    max-width: 800px;
+    width: '100%';
+    min-width: 800px;
+    max-width: 1000px;
     background-color: #ffffff;
     margin-left: -20px;
     padding-left: 20px;
     padding-top: 50px;
     padding-right: 20px;
     font-family: "Roboto Slab","ff-tisa-web-pro","Georgia",Arial,sans-serif;
+    font-size: 18px
 }
 
 @media all 
@@ -41,12 +44,24 @@ aside {
     justify-content: center;
 }
 
+.multi_img_container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%
+}
+
 .thumbnail {
     width: 50px;
 }
 
 .icon {
     width: 40px;
+}
+
+.logo_img {
+    height: 100px;
+    padding-right: 5px;
+    width: auto;
 }
 
 .sm_img {

@@ -1,6 +1,10 @@
 # State
 
 ## State
+The state sensor can be attached anywhere in the scene (preferably on the EGO 
+vehicle) to record state information for actors with the `"desired_tags"` and
+not record information of actors with the `"undesired_tags"`.
+
 ```
 [
  {
@@ -15,12 +19,12 @@
   "static"
   ]
 }
-
 ]
 ```
+
+
+
 <p>&nbsp;</p>
-
-
 
 ## Configuration
 

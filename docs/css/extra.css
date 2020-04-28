@@ -44,6 +44,12 @@ aside {
     justify-content: center;
 }
 
+.multi_img_container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%
+}
+
 .thumbnail {
     width: 50px;
 }

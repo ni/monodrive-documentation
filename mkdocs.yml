@@ -43,7 +43,8 @@ pages:
     LV_client/tutorials/AddSensors.md,
     LV_client/tutorials/Lidar.md]
 
-- monoDrive Client : 
+- monoDrive Clients: 
+  - Introduction: monodrive_clients.md
   - C++ Client:
     - C++ Quick Start: cpp_client/cpp_quick_start.md
     - ROS Quick Start: cpp_client/ros_quick_start.md

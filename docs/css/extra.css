@@ -59,7 +59,8 @@ aside {
 }
 
 .logo_img {
-    height: 200px;
+    height: 100px;
+    padding-right: 5px;
     width: auto;
 }
 

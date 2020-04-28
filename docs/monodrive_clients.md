@@ -3,7 +3,7 @@
 ## About Clients
 
 Working with the monoDrive Simulator and Scenario editor can be done directly 
-through TCP communications with any application that conforms to the monoDrive 
+through TCP/IP communications with any application that conforms to the monoDrive 
 API. However, monoDrive provides several reference implementations of clients
 in C++, LabVIEW, and Python.
 

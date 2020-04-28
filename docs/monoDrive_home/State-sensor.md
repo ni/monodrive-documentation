@@ -5,6 +5,8 @@ The state sensor can be attached anywhere in the scene (preferably on the EGO
 vehicle) to record state information for actors with the `"desired_tags"` and
 not record information of actors with the `"undesired_tags"`.
 
+## Configuration
+
 ```
 [
  {
@@ -23,16 +25,13 @@ not record information of actors with the `"undesired_tags"`.
 ]
 ```
 
-## Configuration
-
-### Configuration Tags
 - **desired_tags:** An array of actor tags to output with the state sensor. Any actor with these tags (and no tags in the `undesired_tags` array) will be output.
 - **undesired_tags:** An array of actor tags to exclude from output. Any actor with one of these tags will not be incluuded.
 - **debug_drawing:** If true, and `include_obb` is true, the oriented bounding boxes for each actor in the output will be drawn.
 - **include_obb:** If true, then oriented bounding box information will be included for every actor.
 
 
-### Raw Output Example
+## Raw Output Example
 ```
 {
     "frame": [
@@ -265,5 +264,3 @@ not record information of actors with the `"undesired_tags"`.
 - **wheel_input:** The percentatge of steering being applied to this actor's steering wheel from -1.0 to 1.0
 - **wheel_speed:** The angular velocity of each of this actor's wheels in radians/second. Index 0, 1, 2, 3 correspond to front-left, front-right, rear-left, rear-right respectively
 - **wheels:** Array of orientation information for each wheel as quaternions.
-
-<p>&nbsp;</p>

@@ -58,6 +58,11 @@ aside {
     width: 40px;
 }
 
+.logo_img {
+    height: 200px;
+    width: auto;
+}
+
 .sm_img {
     width: 200px;
 }

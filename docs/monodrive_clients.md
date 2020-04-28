@@ -15,7 +15,7 @@ in C++, LabVIEW, and Python.
 
 ### Accessing the monoDrive Clients
 
-The monoDrive Clients open source and available to all users of the monoDrive
+The monoDrive Clients are open source and available to all users of the monoDrive
 Simulator and Scenario Editor. For more information on the each monoDrive 
 client, see the quick start pages:
 

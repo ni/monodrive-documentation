@@ -1,6 +1,5 @@
 # State
 
-## State
 The state sensor is attached to the simulation output state information for 
 actors with the `"desired_tags"` and not record information of actors with the 
 `"undesired_tags"`. This information can be serialized to a monoDrive Trajectory 

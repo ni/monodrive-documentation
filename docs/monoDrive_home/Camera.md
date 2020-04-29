@@ -1,100 +1,17 @@
 # Camera
 
-The monoDrive camera sensor supports four types of image output:
+A monoDrive Camera Sensor can support four different image types:
 
-- Depth camera
-- Grayscale
-- RGB 
-- Semantic Segmentation
+- **RGB:** A three channel image of the scene
+- **Grayscale:** A single channel grayscale image of the scene.
+- **Semantic Segmentation:** Each object in the scene is semantically labeled by color
+- **Depth camera:** Provides a camera array where pixel values represent distance from the camera
 
-The image output support different sizes i.e. 512x512 pixels.  
-The location of the sensor can be modified in the "x", "y" and "z" axis with respect to the car.   
-The sensor's orientation can be modified in the "yaw", "pitch" and "roll" axis. 
-<p>&nbsp;</p>
-
-
-## Depth Camera
-Provides a grayscale camera stream with different intensity depending on the distance to the objects.
-
-<div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_depth.png"/>
-</div>
-
-```
-[
-  {
-     "type": "DepthCamera",
-      "listen_port": 8120,
-      "location": {
-       "x": -800.0,
-       "y": 0.0,
-       "z": 400.0
-     },
-     "rotation": {
-       "pitch": -15.0,
-       "yaw": 0.0,
-       "roll": 0.0
-     },
-     "stream_dimensions": {
-       "x": 512.0,
-       "y": 512.0
-     },
-    "fov": 60.0
- }
-
-]
-```
-
-<p>&nbsp;</p>
-
-
-## Grayscale Camera
-Provides a grayscale camera stream.
-
-<p class="img_container">
-  <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_grayscale.png"  height="400" />
-</p>
-
-```
-[
-  {
-     "type": "Camera",
-     "listen_port": 8120,
-     "location": {
-       "x": -800.0,
-       "y": 0.0,
-       "z": 400.0
-     },
-     "rotation": {
-       "pitch": -15.0,
-       "yaw": 0.0,
-       "roll": 0.0
-     },
-     "stream_dimensions": {
-       "x": 512.0,
-       "y": 512.0
-     },
-    "max_distance": 50000.0,
-    "dynamic_range":  50,
-    "fov": 60.0,
-    "focal_length": 9.0,
-    "fstop": 1.4,
-    "min_shutter":  0.000500,
-    "max_shutter":  0.001400,
-    "sensor_size":  9.07,
-   "channels" : "gray"
-
- }
-
-]
-```
-
-<p>&nbsp;</p>
-
+Image output size, instrinsic camera parameters, and various other settings can 
+be controlled through each camera's configuration.
 
 ## RGB Camera
 Provides a RGBA camera stream with optional bounding boxes for dynamic objects in the scene.
-
 
 <p class="img_container">
   <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camerasensor.PNG"  height="400" />
@@ -119,7 +36,6 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
       "x": 512.0,
       "y": 512.0
     },
-    "max_distance": 50000.0,
     "dynamic_range": 50,
     "fov": 60.0,
     "focal_length": 9.0,
@@ -127,16 +43,93 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
     "min_shutter": 0.000500,
     "max_shutter": 0.001400,
     "sensor_size": 9.07,
-    "channels": "rgba"
+    "channels": "rgba",
+    "debug_draw": false,
+    "annotation": false,
+    "include_tags": false,
+    "include_obb": false,
+    "cull_partial_frame": false,
+    "far_plane": 5000.0,
+    "desired_tags": [
+      "dynamic"
+    ]
   }
 ]
 ```
 
+- **stream_dimensions:** The size of the image in pixels
+    - **x:"** The width of the image in pixels
+    - **y:"** The height of the image in pixels
+- **dynamic_range:** Controls the gain of the camera. A higher value will result in a grainer image.
+- **fov:** Controls the horizontal angle of view of the camera. The vertical angle will be dynamically calculated based on `stream_dimensions`
+- **focal_length:** If `fov` is not set explicitly, this will be used to emulate the focal lenght of the lens, in millimeters. Used to calculate field-of-view.
+- **fstop:** Controls the exposure time of the camera, higher values will yield brighter images with greater motion blur.
+- **min_shutter:** Lower bound of the camera exposure time in seconds. Higher values give more motion blur.
+- **max_shutter:** Lower bound of the camera exposure time in seconds. Higher values give more motion blur.
+- **sensor_size:** If `fov` is not set explicitly, this will be used to emulate the size of the camera's image sensor, in millimeters. Used to calculate field-of-view.
+- **channels:** Used to determine type of image output. For RGB cameras, this should always be `rgba`.
+- **debug_draw:** If `true` and `annotation` is `true`, then bounding boxes will be displayed in the image for annotated objects.
+- **annotation:** If `true`, then annotation information will be provided in the output data.
+- **include_tags:** If `true`, then actor tag information will be included in annotations.
+- **include_obb:** If `true`, then actor oriented bounding box information will be included in annotations.
+- **cull_partial_frame:** If `true`, then actors that are only partially in frame will be removed from annotations.
+- **far_plane:** The maximum distance, in centimeters, to annotate actors in the scene.
+- **desired_tags:** If this array is not empty, then only actors with the tags specified here will be included in annotations.
+
+## Grayscale Camera
+Provides a grayscale camera stream with optional bounding boxes for dynamic objects in the scene.
+
+<p class="img_container">
+  <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_grayscale.png"  height="400" />
+</p>
+
+```
+[
+  {
+     "type": "Camera",
+     "listen_port": 8120,
+     "location": {
+       "x": -800.0,
+       "y": 0.0,
+       "z": 400.0
+     },
+     "rotation": {
+       "pitch": -15.0,
+       "yaw": 0.0,
+       "roll": 0.0
+     },
+     "stream_dimensions": {
+       "x": 512.0,
+       "y": 512.0
+     },
+    "dynamic_range":  50,
+    "fov": 60.0,
+    "focal_length": 9.0,
+    "fstop": 1.4,
+    "min_shutter":  0.000500,
+    "max_shutter":  0.001400,
+    "sensor_size":  9.07,
+    "channels" : "gray",
+    "debug_draw": false,
+    "annotation": false,
+    "include_tags": false,
+    "include_obb": false,
+    "cull_partial_frame": false,
+    "far_plane": 5000.0,
+    "desired_tags": [
+      "dynamic"
+    ]
+ }
+]
+```
+All values are the same as the RGB camera except: 
+
+- **channels:** Used to determine type of image output. For RGB cameras, this should always be `grayscale`.
+
 <p>&nbsp;</p>
 
-
 ## Semantic Camera
-Provides a grayscale camera stream.
+Provides a grayscale camera stream where pixel values represent the semantic category of the rendered actor.
 
 <p class="img_container">
   <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/semanticcamerasensor.PNG"  height="400" />
@@ -161,27 +154,108 @@ Provides a grayscale camera stream.
        "x": 512.0,
        "y": 512.0
      },
-    "max_distance": 50000.0,
-    "dynamic_range":  50,
     "fov": 60.0,
     "focal_length": 9.0,
-    "fstop": 1.4,
-    "min_shutter":  0.000500,
-    "max_shutter":  0.001400,
     "sensor_size":  9.07,
-   "channels" : "rgba"
+    "channels" : "gray",
+    "debug_draw": false,
+    "annotation": false,
+    "include_tags": false,
+    "include_obb": false,
+    "cull_partial_frame": false,
+    "far_plane": 5000.0,
+    "desired_tags": [
+      "dynamic"
+    ]
  }
-
 ]
 ```
 
-<p>&nbsp;</p>
+The configuration values are the same as RGB. The following table shows the 
+semantic definition for each pixel value:
+
+| Asset |	Grayscale Pixel Value | 
+| ----- | --------------------- |
+| ego vehicle	| 2 |
+| car |	3 | 
+| motorcycle |	4 |
+| bus |	6 |
+| truck |	8 |
+| fence/guardrail |	5 |
+| traffic light |	10 |
+| person |	11 |
+| bicycle |	12 |
+| building (shipping containers) |	15 |
+| traffic signs |	20 |
+| lane markers |	70 |
+| terrain |	80 |
+| foliage |	85 |
+| gravel |	100 |
+| power lines |	110 |
+| pylons |	115 |
+| sky |	141 |
+| street light/pole |	153 |
+| road |	175 |
+| sidewalk |	190 |
+| road art |	193 |
 
 
-## Configuration
+## Depth Camera
+Provides an unsigned 32-bit floating point array where the pixel values 
+represent the distance from the camera in centimeters.
+
+<div class="img_container">
+    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_depth.png"/>
+</div>
+
+```
+[
+  {
+     "type": "DepthCamera",
+      "listen_port": 8120,
+      "location": {
+       "x": -800.0,
+       "y": 0.0,
+       "z": 400.0
+     },
+     "rotation": {
+       "pitch": -15.0,
+       "yaw": 0.0,
+       "roll": 0.0
+     },
+     "stream_dimensions": {
+       "x": 512.0,
+       "y": 512.0
+     },
+    "fov": 60.0,
+    "debug_draw": false,
+    "annotation": false,
+    "include_tags": false,
+    "include_obb": false,
+    "cull_partial_frame": false,
+    "far_plane": 5000.0,
+    "desired_tags": [
+      "dynamic"
+    ]
+ }
+]
+```
+
+These configuration values are the as the RGB camera. Note that the output format
+of the image is an array the size of the `stream_dimensions` containing 32-bit
+floating point numbers representing depth in centimeters.
+
+## Raw Output
+
+- **time_stamp:** 32-bit integer timestamp representing milliseconds since Sunday.
+- **game_time:** 32-bit floating point number representing the current game time of simulator.
+- **Annotation:** JSON string with information of the classified objects from the scene, the 2D bounding box, the 3D oriented bounding box, the tag name, etc.
+- **image:** An array that is the shape of `stream_dimensions` with a depth 1 for grayscale images and 4 for RGB images. See the "Depth Camera" description for information about the output format for this sensor.
 
 ### Annotation
-All cameras support the annotation feature. The annotation feature will give you bounding boxes for all the dynamic objects in the scene. Add the following json tags to any camera configuration.
+All cameras support the annotation feature. The annotation feature will give 
+you bounding boxes for all the dynamic objects in the scene. Add the following 
+JSON tags to any camera configuration.
 ```
 "annotation": {
     "desired_tags": [
@@ -191,46 +265,6 @@ All cameras support the annotation feature. The annotation feature will give you
     "include_tags": true
 }
 ```
-<p>&nbsp;</p>
-
-
-### Configuration Tags
-
-- **stream_dimensions**: The dimensions of which the stream will stream over TCP. These dimensions are set in a dictionary with keys x and y with float values.
-- **dynamic_range**: The dynamic range of the camera in decibels.
-- **fov**: (optional) If set this will override the angle of view calculated from the sensor size and lens focal length.
-- **focal_length**: The focal length of the lens in millimeters.
-- **fstop**: The f-stop value for the lens in stops.
-- **min_shutter**: The minimum shutter speed, in seconds, for dynamic exposure.
-- **max_shutter**: The maximum shutter speed, in seconds, for dynamic exposure.
-- **sensor_size**: The size of the camera sensor in millimeters.
-- **channels**: The output color of the camera, needs to be "rgba" or "grayscale".
-- **desired_tags**: Tags of objects to be classified. Refer to the table below to obtain supported tags.
-
-| Object  | Tag Name   |
-| ------------ | ------------ |
-|car  | car, vehicle |
-|motorcycle | motorcycle, vehicle  |
-|bus | bus, vehicle |
-|person |  person, vru|
-|bicycle | bicycle, vru |
-|traffic signs | traffic_sign, tcd|
-
-- **far_plane**: The maximum distance will be consider for annotation on the X axis of the camera. 
-- **include_tags**: Flag to include the tags of the objects classified. 
-- **include_obb**: Flag to include a 3D object-oriented bounding box in the output.
-- **cull_partial_frame**: If set to true an object only partially visible in the camera frame will be toss out that annotation. 
-<p>&nbsp;</p>
-
-
-### Raw Output Data Format
-
-- **time_stamp (int):** Timestamp representing milliseconds since Sunday.
-- **game_time (float):** Current game time of simulator, this value will be more prominent.
-- **Annotation (string):** Return information of the classified objects from the scene, the 2D bounding box, the 3D oriented bounding box, the tag name, etc.
-- **image (List<List<float<float>>>):** A 3D list that represents a single image following the format of **stream_dimensions_x** x **stream_dimensions_y** x 4
-<p>&nbsp;</p>
-
 
 ### Camera Configuration Examples
 

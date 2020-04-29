@@ -29,7 +29,7 @@ axis, as well as the angular velocity in the same axis. The location and
 orientation of the sensor can be modified in the "x", "y" and "z" axis with 
 respect to the origin of the EGO vehicle.
 
-### Raw Output Data Format 
+## Raw Output
 
 The total sensor output is 48 bytes, where the first 12 bytes correspond to the 
 monoDrive sensor header and the remaining 36 conform to the 3DM-GX2 Data 

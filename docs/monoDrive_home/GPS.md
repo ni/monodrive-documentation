@@ -27,7 +27,7 @@ on the GPS anchor set for the current map.
 The GPS sensor provides the location information from the sensor's location. 
 The location and orientation are relative to the EGO vehicle's origin. 
 
-### Raw Output Data Format
+## Raw Output
 
 The total sensor output is 78 bytes, where the first 12 bytes correspond to the 
 monoDrive sensor header and the remaining 66 conform to the Swift Navigation 

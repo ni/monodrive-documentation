@@ -1,7 +1,7 @@
 # State
 
-The state sensor is attached to the simulation output state information for 
-actors with the `"desired_tags"` and not record information of actors with the 
+The state sensor is created during a simulation to  output state information for 
+actors with the `"desired_tags"` and cull out information of actors with the 
 `"undesired_tags"`. This information can be serialized to a monoDrive Trajectory 
 File and played back in Replay Mode.
 
@@ -248,6 +248,7 @@ File and played back in Replay Mode.
 }
 ```
 
+- **frame:** An array of all actors' state information for a single simulation step
 - **angular_velocity:** The angular velocity of the actor in radians/second
 - **brake_input:** The amount of brake being applied to the actor in floating point percentage 0 - 1.0
 - **name:** The name of the actor in the scene

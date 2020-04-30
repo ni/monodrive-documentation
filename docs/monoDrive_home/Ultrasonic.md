@@ -48,14 +48,14 @@ Provides range to closest from a single ultrasonic sensor.
     - **debug_scan:** If set to true, the scan lines will be drawn.
     - **debug_rescan:** If set to true, the scan lines will be drawn only when there is an object enters the **scan_distance**.
 
-## Raw Output Data Format
+## Raw Output
 ```
 {
-  "ranges": []
+  "ranges": [10.0]
 }
 ```
 
-**ranges:** Arrray containing distance, in centimeters, to the closest object in front of the sensor.
+**ranges:** Array containing distance, in centimeters, to the closest object in front of the sensor. A value of -1 indicates no return from the sensor.
 
 ### Configuration Examples  
 

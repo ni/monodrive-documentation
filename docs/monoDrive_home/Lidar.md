@@ -48,7 +48,7 @@ There are 12 data blocks, each block is **100 bytes** and there are **4 bytes**
 for the timestamp and **2 bytes** called factory bytes. The number of packets 
 for a revolution depends on the **horizontal revolution**.  
 
-## Visualize LiDAR output
+### Visualizing LiDAR Output
 
 The output of the LiDAR can be streamed over UDP (enabled by default with the 
 [monoDrive LabVIEW client](../../LV_client/quick_start/LabVIEW_client_quick_start)). 

@@ -26,7 +26,7 @@ Provides wheel revolutions per minute (RPM) information for the EGO vehicle.
 
 **wheelNumber:** The number of the wheel to sample RPM values for. 0, 1, 2, 3 represent the front-left, front-right, rear-left, rear-right wheels respectively.
 
-## Raw Output Data Format
+## Raw Output
 
 The total sensor output is 20 bytes, where the first 12 bytes correspond to the 
 monoDrive sensor header and the remaining 8 provide RPM information for the 

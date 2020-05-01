@@ -14,7 +14,12 @@ conditions and saving them to configuration files.
     <source src="http://cdn.monodrive.io/readthedocs/scenario_editor_weather_change_converted.mp4" type="video/mp4">
   </video>
 </div> 
-<p>&nbsp;</p>
+
+<div class="img_container">
+  <video width=650px muted autoplay loop>
+    <source src="http://cdn.monodrive.io/readthedocs/weather_change_almono_converted.mp4" type="video/mp4">
+  </video>
+</div> 
 
 ## Adding Weather to a Map
 

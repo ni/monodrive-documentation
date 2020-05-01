@@ -3,11 +3,11 @@
 A monoDrive Camera Sensor can support four different image types:
 
 - **RGB:** A three channel image of the scene
-- **Grayscale:** A single channel grayscale image of the scene.
+- **Grayscale:** A single channel grayscale image of the scene
 - **Semantic Segmentation:** Each object in the scene is semantically labeled by color
 - **Depth camera:** Provides a camera array where pixel values represent distance from the camera
 
-Image output size, instrinsic camera parameters, and various other settings can 
+Image output size, intrinsic camera parameters, and various other settings can 
 be controlled through each camera's configuration.
 
 ## RGB Camera
@@ -62,19 +62,19 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
     - **y:"** The height of the image in pixels
 - **dynamic_range:** Controls the gain of the camera. A higher value will result in a grainer image.
 - **fov:** Controls the horizontal angle of view of the camera. The vertical angle will be dynamically calculated based on `stream_dimensions`
-- **focal_length:** If `fov` is not set explicitly, this will be used to emulate the focal lenght of the lens, in millimeters. Used to calculate field-of-view.
-- **fstop:** Controls the exposure time of the camera, higher values will yield brighter images with greater motion blur.
-- **min_shutter:** Lower bound of the camera exposure time in seconds. Higher values give more motion blur.
-- **max_shutter:** Lower bound of the camera exposure time in seconds. Higher values give more motion blur.
-- **sensor_size:** If `fov` is not set explicitly, this will be used to emulate the size of the camera's image sensor, in millimeters. Used to calculate field-of-view.
+- **focal_length:** If `fov` is not set explicitly, this will be used to emulate the focal length of the lens in millimeters. Used to calculate field-of-view.
+- **fstop:** Controls the exposure time of the camera, higher values will yield brighter images with more motion blur.
+- **min_shutter:** Lower bound of the camera's exposure time in seconds. Higher values will have more motion blur.
+- **max_shutter:** Upper bound of the camera's exposure time in seconds. Higher values will have more motion blur.
+- **sensor_size:** If `fov` is not set explicitly, this will be used to emulate the size of the camera's image sensor in millimeters. Used to calculate field-of-view.
 - **channels:** Used to determine type of image output. For RGB cameras, this should always be `rgba`.
-- **debug_draw:** If `true` and `annotation` is `true`, then bounding boxes will be displayed in the image for annotated objects.
-- **annotation:** If `true`, then annotation information will be provided in the output data.
-- **include_tags:** If `true`, then actor tag information will be included in annotations.
-- **include_obb:** If `true`, then actor oriented bounding box information will be included in annotations.
-- **cull_partial_frame:** If `true`, then actors that are only partially in frame will be removed from annotations.
-- **far_plane:** The maximum distance, in centimeters, to annotate actors in the scene.
-- **desired_tags:** If this array is not empty, then only actors with the tags specified here will be included in annotations.
+- **debug_draw:** If `true` and `annotation` is `true`, the bounding boxes will be displayed in the image for annotated objects.
+- **annotation:** If `true`, the annotation information will be provided in the output data.
+- **include_tags:** If `true`, the actor tag information will be included in annotations.
+- **include_obb:** If `true`, the actor oriented bounding box information will be included in annotations.
+- **cull_partial_frame:** If `true`, the actors that are only partially in frame will be removed from annotations.
+- **far_plane:** The maximum distance in centimeters to annotate actors in the scene.
+- **desired_tags:** If this array is not empty, the only actors with the tags specified here will be included in annotations.
 
 ## Grayscale Camera
 Provides a grayscale camera stream with optional bounding boxes for dynamic objects in the scene.
@@ -124,7 +124,7 @@ Provides a grayscale camera stream with optional bounding boxes for dynamic obje
 ```
 All values are the same as the RGB camera except: 
 
-- **channels:** Used to determine type of image output. For RGB cameras, this should always be `grayscale`.
+- **channels:** Used to determine the type of image output. For RGB cameras, this should always be `grayscale`.
 
 <p>&nbsp;</p>
 
@@ -241,15 +241,15 @@ represent the distance from the camera in centimeters.
 ]
 ```
 
-These configuration values are the as the RGB camera. Note that the output format
-of the image is an array the size of the `stream_dimensions` containing 32-bit
-floating point numbers representing depth in centimeters.
+These configuration values are the same as the RGB camera. Note that the output 
+format of the image is an array the same size as `stream_dimensions` containing 
+32-bit floating point numbers representing depth in centimeters.
 
 ## Raw Output
 
 - **time_stamp:** 32-bit integer timestamp representing milliseconds since Sunday.
 - **game_time:** 32-bit floating point number representing the current game time of simulator.
-- **Annotation:** JSON string with information of the classified objects from the scene, the 2D bounding box, the 3D oriented bounding box, the tag name, etc.
+- **annotation:** JSON string with information of the classified objects from the scene, the 2D bounding box, the 3D oriented bounding box, the tag name, etc.
 - **image:** An array that is the shape of `stream_dimensions` with a depth 1 for grayscale images and 4 for RGB images. See the "Depth Camera" description for information about the output format for this sensor.
 
 ### Annotation

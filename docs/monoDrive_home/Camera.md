@@ -247,24 +247,134 @@ format of the image is an array the same size as `stream_dimensions` containing
 
 ## Raw Output
 
-- **time_stamp:** 32-bit integer timestamp representing milliseconds since Sunday.
-- **game_time:** 32-bit floating point number representing the current game time of simulator.
-- **annotation:** JSON string with information of the classified objects from the scene, the 2D bounding box, the 3D oriented bounding box, the tag name, etc.
-- **image:** An array that is the shape of `stream_dimensions` with a depth 1 for grayscale images and 4 for RGB images. See the "Depth Camera" description for information about the output format for this sensor.
+The total sensor output will be 12 bytes for the monoDrive sensor header plus 
+the total number of bytes for the image defined as:
+
+```bash
+  Stream Dimension Width (x)  x  Stream Dimension Height (y)  x  4
+```
+
+for RGB images and 
+
+```bash
+  Stream Dimension Width (x)  x  Stream Dimension Height (y)
+```
+
+for grayscale images. See the "Depth Camera" description for information about 
+the output format for this sensor.
 
 ### Annotation
-All cameras support the annotation feature. The annotation feature will give 
-you bounding boxes for all the dynamic objects in the scene. Add the following 
-JSON tags to any camera configuration.
+
 ```
-"annotation": {
-    "desired_tags": [
-    "traffic_sign", "vehicle"
-    ],
-    "far_plane": 10000.0,
-    "include_tags": true
-}
+[
+    {
+        "2d_bounding_boxes": [
+            {
+                "2d_bounding_box": [
+                    158.12020874023438,
+                    191.5050811767578,
+                    261.953125,
+                    272.0334167480469
+                ],
+                "name": "Body"
+            }
+        ],
+        "name": "sedan_monoDrive_02_HD4_128",
+        "oriented_bounding_box": [
+            {
+                "center": [
+                    7072.78662109375,
+                    -1290.6829833984375,
+                    -172.56475830078125
+                ],
+                "extents": [
+                    509.5,
+                    184.18313598632812,
+                    148.64846801757812
+                ],
+                "name": "Body",
+                "orientation": [
+                    -2.768632839433849e-06,
+                    -0.00046827553887851536,
+                    -0.9241809248924255,
+                    0.381954550743103
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        ],
+        "tags": [
+            "vehicle",
+            "static",
+            "car"
+        ]
+    },
+    {
+        "2d_bounding_boxes": [
+            {
+                "2d_bounding_box": [
+                    189.89840698242188,
+                    203.3860321044922,
+                    260.5026550292969,
+                    267.6765441894531
+                ],
+                "name": "Body"
+            }
+        ],
+        "name": "subcompact_monoDrive_01_HD_32",
+        "oriented_bounding_box": [
+            {
+                "center": [
+                    9515.275390625,
+                    -1273.10546875,
+                    -172.4475555419922
+                ],
+                "extents": [
+                    253.14500427246094,
+                    144.71368408203125,
+                    148.70858764648438
+                ],
+                "name": "Body",
+                "orientation": [
+                    8.400806109420955e-06,
+                    -0.0004682083672378212,
+                    -0.9330278635025024,
+                    0.3598036468029022
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            }
+        ],
+        "tags": [
+            "vehicle",
+            "static",
+            "car"
+        ]
+    },
+]
 ```
+
+Annotation data comes in an additional JSON message on the same port as the 
+camera image data. Each element in the JSON array represents a single annotation 
+for a dynamic actor.
+
+- **2d_bounding_boxes:** Array of JSON bounding boxes for an actor
+    - **2d_bounding_box:** Array containing the top-left x, top-left y, bottom-right x, bottom-right y coordinates in the image plane for the bounding box of this actor's section
+    - **name:** The name of the actor's section this bounding box surrounds
+- **name:** The name of the actor for these bounding boxes
+- **oriented_bounding_box:** An array containing JSON for each 3D bounding box for the actor's sections
+    - **center:** The x, y, and z center of the bounding box in centimeters from the EGO vehicle
+    - **extents:** The x, y, and z radius in centimeters from the center of the bounding box
+    - **name:** The name of the actor's section this bounding box surrounds
+    - **orientation:** The rotation of the bounding box about the center as a quaternion
+    - **scale:** The scale coefficients for this bounding box
+- **tags:** An array of tags assigned to this actor
 
 ### Camera Configuration Examples
 

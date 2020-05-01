@@ -35,15 +35,15 @@ Provides range to closest from a single ultrasonic sensor.
 }
 ```
 
-- **fc:** The sampling frequency of the sensor. [hz]
+- **fc:** The sampling frequency of the sensor in hertz.
 - **pwm_factor:** The coefficient to the sampling frequency for pulse width modulation.
 - **max_ultrasonic_returns:** The maximum number of returns from the shooting bouncing ray cast. Lower numbers will increase performance.
 - **sbr:** JSON object specifying shooting bouncing ray parameters for the sensor.
-    - **scan_distance:** The maximum distance the sensor will detect objects [meters]
-    - **azimuth_fov:** The angle in the x-y plane to detect objects [degrees].
-    - **elevation_fov:** The angle in the y-z plane to detect objects [degrees]
-    - **ray_division_y:** The density of the return per cm [ray/cm].
-    - **ray_division_z:** The density of the return per cm [ray/cm].
+    - **scan_distance:** The maximum distance the sensor will detect objects in meters.
+    - **azimuth_fov:** The angle in the x-y plane to detect objects in degrees.
+    - **elevation_fov:** The angle in the y-z plane to detect objects in degrees.
+    - **ray_division_y:** The density of the return per centimeter in rays per centimeter.
+    - **ray_division_z:** The density of the return per centimeter in rays per centimeter.
     - **debug_frustum:** If set to true, the frustum area will be drawn.
     - **debug_scan:** If set to true, the scan lines will be drawn.
     - **debug_rescan:** If set to true, the scan lines will be drawn only when there is an object enters the **scan_distance**.
@@ -55,7 +55,7 @@ Provides range to closest from a single ultrasonic sensor.
 }
 ```
 
-**ranges:** Array containing distance, in centimeters, to the closest object in front of the sensor. A value of -1 indicates no return from the sensor.
+**ranges:** Array containing distance in centimeters to the closest object in front of the sensor. A value of -1 indicates no return from the sensor.
 
 ### Configuration Examples  
 

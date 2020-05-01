@@ -26,9 +26,9 @@ File and played back in Replay Mode.
 ```
 
 - **desired_tags:** An array of actor tags to output with the state sensor. Any actor with these tags (and no tags in the `undesired_tags` array) will be output.
-- **undesired_tags:** An array of actor tags to exclude from output. Any actor with one of these tags will not be incluuded.
+- **undesired_tags:** An array of actor tags to exclude from output. Any actor with one of these tags will not be included.
 - **debug_drawing:** If true, and `include_obb` is true, the oriented bounding boxes for each actor in the output will be drawn.
-- **include_obb:** If true, then oriented bounding box information will be included for every actor.
+- **include_obb:** If true, the oriented bounding box information will be included for every actor.
 
 
 ## Raw Output 
@@ -256,13 +256,13 @@ File and played back in Replay Mode.
 - **orientation:** The rotation of the actor as a quaternion
 - **oriented_bounding_box:** The bounding box of the actor in the scene
     - **center:** The location of the center of the box in centimeters relative to the origin
-    - **extents:** The extents of the box from the center, in centimeters
+    - **extents:** The extents of the box from the center in centimeters
     - **name:** The name of the object this box is bounding
 		- **orientation:** The rotation of the box as a quaternion
 		- **scale:** The scale of this box as a coefficient
 - **position:** The position of this actor in the scene in centimeters relative to the origin
 - **tags:** The actor tags of this actor
 - **velocity:** The current velocity of the actor in centimeters/second
-- **wheel_input:** The percentatge of steering being applied to this actor's steering wheel from -1.0 to 1.0
+- **wheel_input:** The percentage of steering being applied to this actor's steering wheel from -1.0 to 1.0
 - **wheel_speed:** The angular velocity of each of this actor's wheels in radians/second. Index 0, 1, 2, 3 correspond to front-left, front-right, rear-left, rear-right respectively
 - **wheels:** Array of orientation information for each wheel as quaternions.

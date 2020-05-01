@@ -9,9 +9,11 @@ the simulator to configure the current weather conditions. Additionally, the
 monoDrive Scenario Editor provides an interactive way of changing weather 
 conditions and saving them to configuration files.
 
-<p class="img_container">
-  <img class="wide_img" src="../img/vehicle_ai_weather.gif" />
-</p>
+<div class="img_container">
+  <video width=650px height=480px muted autoplay loop>
+    <source src="http://cdn.monodrive.io/readthedocs/scenario_editor_weather_change_converted.mp4" type="video/mp4">
+  </video>
+</div> 
 <p>&nbsp;</p>
 
 ## Adding Weather to a Map
@@ -208,9 +210,36 @@ the array:
 
 ## Using the Weather in the Python Client
 
-TBD
+The [monoDrive Python Client](../../python_client/quick_start) reads weather 
+settings from input JSON files and sends them to the simulator. In the following 
+example, simply place the desired weather configuration into the file 
+`config/weather.json` and construct the simulator:
+
+```python
+ # Construct simulator from file
+simulator = Simulator.from_file(
+    config='./config/simulator_closed_loop.json',
+    trajectory='./trajectories/Closed_Loop.json',
+    sensors='./config/all_sensors.json',
+    weather='./config/weather.json',
+    ego='./config/vehicle.json',
+)
+```
 
 ## Using the Weather in the C++ Client
 
-TBD
+The [monoDrive C++ Client](../../cpp_client/cpp_quick_start) reads weather 
+settings from input JSON files and sens them to the simulator. In the following
+example, simply place the desired weather configuration into the file
+`config/weather.json` and construct the simulator:
 
+```c++
+//Read JSON files in cpp_client/config directory
+Configuration config(
+    "config/simulator.json",
+    "config/vehicle.json",
+    "config/weather.json",
+    "config/scenario.json"
+);
+Simulator& sim = Simulator::getInstance(config, "127.0.0.1", 8999);
+```

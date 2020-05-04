@@ -234,7 +234,7 @@ simulator = Simulator.from_file(
 ## Using the Weather in the C++ Client
 
 The [monoDrive C++ Client](../../cpp_client/cpp_quick_start) reads weather 
-settings from input JSON files and sens them to the simulator. In the following
+settings from input JSON files and sends them to the simulator. In the following
 example, simply place the desired weather configuration into the file
 `config/weather.json` and construct the simulator:
 

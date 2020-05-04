@@ -1,7 +1,7 @@
 # Viewport
 
-The Viewport sensor allows configuration of the camera that is displayed in the 
-monoDrive Simulator or Scenario Editor. 
+The Viewport sensor allows a client to configure the camera that is displayed in 
+the monoDrive Simulator or Scenario Editor. 
 
 ## Configuration
 

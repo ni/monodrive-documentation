@@ -1,6 +1,6 @@
 # Ultrasonic
 
-Provides range to closest from a single ultrasonic sensor.
+Provides range to closest object from a single ultrasonic sensor.
 
 ## Configuration 
 

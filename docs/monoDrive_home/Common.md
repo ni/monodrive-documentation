@@ -26,7 +26,7 @@ configuration documentation.
 
 - **type:** The values of type can be: `Camera`, `Lidar`, `IMU`, etc. depending on what type of sensor being configured.
 - **listen_port:** The TCP or UDP port used by the simulator to transmit sensor data.
-- **location:**: The location of the sensor, in centimeters, relative to the EGO vehicle's origin to place a sensor.
+- **location:**: The location of the sensor in centimeters relative to the EGO vehicle's origin to place a sensor.
     - **x:** The x position
     - **y:** The y position
     - **z:** The z position

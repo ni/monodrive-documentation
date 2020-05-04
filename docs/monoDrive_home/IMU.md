@@ -1,6 +1,6 @@
 # IMU
 
-Provides inertial measurements EGO vehicle relative to the sensor's location.
+Provides inertial measurements for the EGO vehicle relative to the sensor's location.
 
 ## Configuration
 

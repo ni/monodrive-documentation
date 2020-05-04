@@ -146,7 +146,8 @@ pages:
           - mono_init.vi: LV_client/shared_libraries/mono__initc.md
           - mono_kf_update.vi: LV_client/shared_libraries/mono__kf__update.md
           - mono_kf_init.vi: LV_client/shared_libraries/mono_kf_init.md
-
+      - Wheel:
+          - Wheel Integration: LV_client/wheel/wheel_integration.md
   - Python Client:
     - Quick Start: python_client/quick_start.md
     - Examples: python_client/examples.md

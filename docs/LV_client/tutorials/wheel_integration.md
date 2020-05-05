@@ -12,7 +12,7 @@
 1. Open the **mono_closed_loop_example_wheel.vi** or the **mono_replay_example_wheel.vi** 
 1. Run the selected VI.
 
-## Closed Loop with Wheel Block Diagram
+## Closed Loop with Wheel 
 <div class="img_container">
   <video width=650px height=440px muted controls autoplay loop>
     <source src="http://cdn.monodrive.io/readthedocs/closed-loop.mp4" type="video/mp4">
@@ -20,7 +20,7 @@
 </div>
 
 
-## Replay with Wheel Block Diagram
+## Replay with Wheel
 <div class="img_container">
   <video width=650px height=440px muted controls autoplay loop>
     <source src="http://cdn.monodrive.io/readthedocs/replay.mp4" type="video/mp4">

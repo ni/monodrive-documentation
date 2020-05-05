@@ -9,7 +9,7 @@
 
 ## Closed Loop with Wheel Block Diagram
 <div class="img_container">
-    <img class="lg_img" src="https://github.com/monoDriveIO/documentation/raw/wheel-integration/docs/tutorials/closed_loop_connections.png"/>
+    <img class="lg_img" src="https://github.com/monoDriveIO/documentation/raw/wheel_integration/docs/LV_client/tutorials/closed_loop_connections.png"/>
 </div>
 
 ### Demo
@@ -22,7 +22,7 @@
 
 ## Replay with Wheel Block Diagram
 <div class="img_container">
-    <img class="lg_img" src="https://github.com/monoDriveIO/documentation/raw/wheel-integration/docs/tutorials/replay_connections.png"/>
+    <img class="lg_img" src="https://github.com/monoDriveIO/documentation/raw/wheel_integration/docs/LV_client/tutorials/replay_connections.png"/>
 </div>
 
 ### Demo

@@ -208,7 +208,7 @@ The RADAR data cube contains the complex values for each element in the
 The data contains a binary array that is 
 
 ```bash
-    Number of Sweeps  x  Number of Samples per Sweep  x  Number of Elements
+    Number of Sweeps  *  Number of Samples per Sweep  *  Number of Elements
 ```
 
 in size. Each value in the array is two 32-bit floating point numbers 

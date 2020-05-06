@@ -58,8 +58,8 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
 ```
 
 - **stream_dimensions:** The size of the image in pixels
-    - **x:"** The width of the image in pixels
-    - **y:"** The height of the image in pixels
+    - **x:** The width of the image in pixels
+    - **y:** The height of the image in pixels
 - **dynamic_range:** Controls the gain of the camera. A higher value will result in a grainer image.
 - **fov:** Controls the horizontal angle of view of the camera. The vertical angle will be dynamically calculated based on `stream_dimensions`
 - **focal_length:** If `fov` is not set explicitly, this will be used to emulate the focal length of the lens in millimeters. Used to calculate field-of-view.
@@ -124,7 +124,7 @@ Provides a grayscale camera stream with optional bounding boxes for dynamic obje
 ```
 All values are the same as the RGB camera except: 
 
-- **channels:** Used to determine the type of image output. For RGB cameras, this should always be `grayscale`.
+- **channels:** Used to determine the type of image output. For grayscale cameras, this should always be `gray`.
 
 <p>&nbsp;</p>
 
@@ -251,13 +251,13 @@ The total sensor output will be 12 bytes for the monoDrive sensor header plus
 the total number of bytes for the image defined as:
 
 ```bash
-  Stream Dimension Width (x)  x  Stream Dimension Height (y)  x  4
+  Stream Dimension Width (x)  *  Stream Dimension Height (y)  *  4
 ```
 
 for RGB images and 
 
 ```bash
-  Stream Dimension Width (x)  x  Stream Dimension Height (y)
+  Stream Dimension Width (x)  *  Stream Dimension Height (y)
 ```
 
 for grayscale images. See the "Depth Camera" description for information about 

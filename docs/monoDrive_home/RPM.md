@@ -1,9 +1,9 @@
 # RPM 
 
-The monoDrive sensor give you information on the Revolutions per second on the specified wheel. You can obtain information of the four wheels on the car (0-3). 
+Provides wheel revolutions per minute (RPM) information for the EGO vehicle.
 
-## RPM
-Provides RPM stream
+## Configuration
+
 ```
 [
 {
@@ -23,15 +23,17 @@ Provides RPM stream
 }
 ]
 ```
-<p>&nbsp;</p>
 
-## Configuration
+**wheelNumber:** The number of the wheel to sample RPM values for. 0, 1, 2, 3 represent the front-left, front-right, rear-left, rear-right wheels respectively.
 
-### Raw Output Data Format
+## Raw Output
+
+The total sensor output is 20 bytes, where the first 12 bytes correspond to the 
+monoDrive sensor header and the remaining 8 provide RPM information for the 
+wheel. The following table specifies the output format for the wheel binary 
+data:
 
 | Byte   | Description |
 | ------------ | ------------ |
-|Bytes 0-4  | The wheel number for the RPM sensor. |
-|Bytes 4-8 | The wheel speed in RPM for the specific RPM sensor.  |
-
-<p>&nbsp;</p>
+|Bytes 0-3 | 32-bit integer representing the wheel number for the RPM sensor. |
+|Bytes 4-7 | 32-bit floating point representing the wheel speed in RPM for the specific RPM sensor.  |

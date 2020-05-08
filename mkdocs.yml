@@ -22,7 +22,8 @@ pages:
     - Data Processing Quick Start: r2v/data_processing_quick_start.md
     - Maps: r2v/r2v_maps.md
 
-- Configurations :
+- Simulator API :
+  - Introduction: monoDrive_home/API.md
   - Sensors: [
     monoDrive_home/Common.md,
     monoDrive_home/Camera.md,

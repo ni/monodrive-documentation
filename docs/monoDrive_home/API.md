@@ -6,8 +6,9 @@ can be completely controlled by sending and receiving messages through TCP/IP
 from any application that implements the API. 
 
 monoDrive provides several example client applications in 
-[C++](../cpp_client/cpp_quick_start), [Python](../python_client/quick_start), 
-and [LabVIEW](../LV_client/quick_start/LabVIEW_client_quick_start) that 
+[C++](../../cpp_client/cpp_quick_start), 
+[Python](../../python_client/quick_start), and 
+[LabVIEW](../../LV_client/quick_start/LabVIEW_client_quick_start) that 
 implement the monoDrive API. For more information on the Open Source monoDrive
 clients, check out the overview [here](../../monodrive_clients).
 
@@ -98,6 +99,6 @@ following fields:
 }
 ```
 
-- **type:** A string that describes the type of message being sent. 
+- **type:** A string that describes the type of message being sent. This will be the type specified by the message that elicited this response.
 - **reference:** An integer defining the unique ID from this message. 
 - **message:** The actual JSON containing all the additional meta-data for the message type.

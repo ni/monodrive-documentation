@@ -1,13 +1,19 @@
-# Wheel integration
+# Wheel Integration
+The monoDrive LabVIEW client enables users to plug-in a **G920 for Xbox One and PC**  wheel in the simulation. MonoDrive's client provides two examples for use with a wheel the **mono_closed_loop_example_wheel.vi** and **mono_replay_example_wheel.vi**.
 
-## Pre-requisites
-1. The **mono_closed_loop_example_wheel.vi** and the **mono_replay_example_wheel.vi** use the **G920 for Xbox One and PC**, more information [here](https://www.logitechg.com/en-us/products/driving/driving-force-racing-wheel.html).
-1. Install the Logitech G HUB to obtain the latest drivers for the wheel from [here](https://www.logitechg.com/en-us/innovation/g-hub.html)
+**mono_closed_loop_example_wheel.vi**   
+This example allows the user to drive the ego car using the wheel providing a better driving experience.
+
+**mono_replay_example_wheel.vi**   
+This example allows the user to move the wheel based on the steering angle calculated from the ego vehicle's yaw.
+
+## Prerequisites
+1. Ensure you have the latest drivers for the wheel from [Logitech G HUB](https://www.logitechg.com/en-us/innovation/g-hub.html)
 1. Download the Logitech Steering Wheel SDK from [here](https://www.logitechg.com/en-us/innovation/developer-lab.html)
 1. Create a LabVIEW library using the **LogitechSteeringWheelEnginesWrapper.dll** using the Import Shared Library Wizard, you can find a tutorial on how to do this [here](http://zone.ni.com/reference/en-XX/help/371361R-01/lvhowto/example_import_shared_library/).
-1. Install the **Maker Hub Interface for Xbox One Controller** using the VIPM.
+1. Install the **Maker Hub Interface for Xbox One Controller** using the VI Package Manager.
 
-## How to run
+## How To Run
 1. Connect the wheel to the computer. 
 1. Open the **mono_closed_loop_example_wheel.vi** or the **mono_replay_example_wheel.vi** 
 1. Run the selected VI.
@@ -28,4 +34,5 @@
 </div>
 
 
+More information about the **G920 for Xbox One and PC** wheel [here](https://www.logitechg.com/en-us/products/driving/driving-force-racing-wheel.html).
 <p>&nbsp;</p>

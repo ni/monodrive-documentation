@@ -1,12 +1,23 @@
 # Wheel Integration
 The monoDrive LabVIEW client enables users to plug-in a **G920 for Xbox One and PC** wheel in the simulation. MonoDrive's client provides two examples for use with a wheel.   
 
-**mono_closed_loop_example_wheel.vi**   
+## **mono_closed_loop_example_wheel.vi**   
 This example allows the user to drive the ego car using the wheel providing a better driving experience.
 
-**mono_replay_example_wheel.vi**   
+<div class="img_container">
+  <video width=650px height=440px muted controls autoplay loop>
+    <source src="http://cdn.monodrive.io/readthedocs/closed-loop.mp4" type="video/mp4">
+  </video>
+</div>
+
+## **mono_replay_example_wheel.vi**   
 This example allows the user to move the wheel based on the steering angle calculated from the ego vehicle's yaw.
 
+<div class="img_container">
+  <video width=650px height=440px muted controls autoplay loop>
+    <source src="http://cdn.monodrive.io/readthedocs/replay.mp4" type="video/mp4">
+  </video>
+</div>
 ## Prerequisites
 1. Ensure you have the latest drivers for the wheel from [Logitech G HUB](https://www.logitechg.com/en-us/innovation/g-hub.html)   
 
@@ -18,23 +29,10 @@ This example allows the user to move the wheel based on the steering angle calcu
 
 ## How To Run
 1. Connect the wheel to the computer. 
+
 1. Open the **mono_closed_loop_example_wheel.vi** or the **mono_replay_example_wheel.vi** 
+
 1. Run the selected VI.
-
-## Closed Loop with Wheel 
-<div class="img_container">
-  <video width=650px height=440px muted controls autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/closed-loop.mp4" type="video/mp4">
-  </video>
-</div>
-
-
-## Replay with Wheel
-<div class="img_container">
-  <video width=650px height=440px muted controls autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/replay.mp4" type="video/mp4">
-  </video>
-</div>
 
 
 More information about the **G920 for Xbox One and PC** wheel [here](https://www.logitechg.com/en-us/products/driving/driving-force-racing-wheel.html).

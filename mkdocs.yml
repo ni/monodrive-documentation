@@ -41,7 +41,14 @@ pages:
 - Tutorials:
   - LabVIEW Tutorials: [LV_client/tutorials/Setup.md,
     LV_client/tutorials/AddSensors.md,
-    LV_client/tutorials/Lidar.md, LV_client/tutorials/wheel_integration.md]
+    LV_client/tutorials/Sensor_Palette.md,
+    LV_client/tutorials/Lidar.md, 
+    LV_client/tutorials/Simulator_configuration.md,
+    LV_client/tutorials/Loading_Maps.md,
+    LV_client/tutorials/Weather.md,
+    LV_client/tutorials/Remote_Connection.md,
+    LV_client/tutorials/wheel_integration.md 
+    ]
 
 - monoDrive Clients: 
   - Introduction: monodrive_clients.md

@@ -2,8 +2,7 @@
 
 Learn to add sensors to the main application using the sensor palette installed with the LabVIEW Client.   
 
-
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-
+<div class="img_container">
 <iframe width="700" height="400" src="https://www.youtube.com/embed/1lrvxPKHrDw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
+<p>&nbsp;</p>

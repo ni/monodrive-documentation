@@ -1,6 +1,7 @@
 ## Setup a LabVIEW Client
 This tutorial demonstrates the process of installing and running monoDrive in a LabVIEW environment. 
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-    <iframe width="750" height="400" src="https://www.youtube.com/embed/Rel7UoIuEMU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="img_container">
+<iframe width="750" height="400" src="https://www.youtube.com/embed/Rel7UoIuEMU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
+<p>&nbsp;</p>

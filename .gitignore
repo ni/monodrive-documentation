@@ -105,3 +105,4 @@ examples/window_settings.json
 examples/variances.xlsx
 examples/client_logs.log.*
 monodrive/sensors/RadarMethod.py
+site/

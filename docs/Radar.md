@@ -1,20 +1,22 @@
-## Radar Sensor
+# Radar Sensor
 
-The configuration for a radar sensor.
+## Radar
+Provides radar stream.
 
 ```
 [
     {
   "type": "Radar",
   "gpu_number":0,
-  "listen_port": 8301,
+  "listen_port": 8302,
   "send_radar_cube": false,
   "paint_targets": false,
   "target_paint_lifetime": 0.5,
+  "nearest_target_label_radius": 50.0,
   "location": {
-    "x": 250.0,
+    "x": 245.0,
     "y": 0.0,
-    "z": 50.0
+    "z": 60.0
   },
   "rotation": {
     "pitch": 0.0,
@@ -27,7 +29,7 @@ The configuration for a radar sensor.
   "num_sweeps": 32,
   "sweep_time" : 0.0000069,
   "bandwidth" : 250000000,
-  "max_targets": 250,
+  "max_radar_returns": 500,
   "elements": 8,
   "transmitter": {
     "peak_power": 5.0,
@@ -42,12 +44,13 @@ The configuration for a radar sensor.
     "gain": 10.0
   },
   "sbr": {
-    "long_range_scan_distance": 150.0,
-    "short_range_scan_distance": 60.0,
-    "long_range_fov": 20.0,
+    "long_range_scan_distance": 60.0,
+    "short_range_scan_distance": 30.0,
+    "long_range_fov": 30.0,
     "short_range_fov": 60.0,
     "elevation_fov": 10.0,
-    "rescan_density": 2.0,
+    "ray_division_y": 10.0,
+    "ray_division_z":10.0,
     "debug_frustum": false,
     "debug_scan": false,
     "debug_rescan": false
@@ -55,9 +58,18 @@ The configuration for a radar sensor.
 }
 ]
 ```
+<p>&nbsp;</p>
+
+
+
+## Configuration
+
+### Configuration Tags
+
 - **gpu_number:** Select the specific GPU number(0-N) where each radar sensor will run.
 - **send_radar_cube:** Enable to obtain the radar cube from the simulator. 
 - **paint_targets:** Tool to draw a box around the targets detected.
+- **nearest_target_label_radius:** Radius of the sphere used to obtain the ground truth label for targets.
 - **target_paint_lifetime:** Specify how long a painted target box will be rendered for in the engine, in seconds.
 - **location:** Modify the x,y,z position of the radar in the car.
 - **rotation:** Modify the yaw,pitch and roll of the radar.
@@ -68,37 +80,58 @@ The configuration for a radar sensor.
 - **elevation_fov:** Pitch for the field of view (angle).
 - **debug_frustum:** Enable to visualize the FOV and distance for long and short range radar. 
 - **debug_scan:** Enable to visualize the targets detected while scanning. 
+<p>&nbsp;</p>
 
-### Sensor configuration examples
-
-#### Paint target enable
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/radar_paint_target.jpg" />
-</p>
-
-#### Change on short and long range FOV with debug_frustum enable 
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/frustrum_fov.jpg" />
-</p>
-
-#### Change on short and long range distance with debug_frustum enable 
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/frustum_distance.jpg" />
-</p>
-
-#### Change elavation fov with debug_frustum enable 
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/elevation.jpg" />
-</p>
-
-#### debug_scan enable 
-<p align="center">
-<img src="https://github.com/monoDriveIO/client/raw/sensor_update/WikiPhotos/LV_client/sensors/configuration/radar/debug_scan.jpg" />
-</p>
 
 
 ### Raw Output Data Format
+- **gt_target_list:**
+    - **Ranges:** A array with the distances to targets.
+    - **Angle of Arrival:** The angle where the targets are detected.
+    - **Velocities:** The velocity of the moving and stationary targets.
+    - **RCS:** Radar cross-section detected by the radar. 
+    - **target id:** List of the labels for each target detected
+- **target_list:**
+    - **Ranges:** A array with the distances to targets.
+    - **Angle of Arrival:** The angle where the targets are detected.
+    - **Velocities:** The velocity of the moving and stationary targets.
+    - **RCS:** Radar cross-section detected by the radar. 
+    - **target id:** List of labels for each target detected. It can be zero, one or more labels assigned to each target.
+<p>&nbsp;</p>
 
-- **0...NumberOfSweeps as i:**
-  - **Bytes 8i-4+8i:** Real bits represented as a float in single precision IEEE-754 format.
-  - **Bytes 4+8i-8+8i:** Imaginary bits represented as a float in single precision IEEE-754 format.
+
+
+### Sensor Configuration Examples
+
+#### Paint Target Enable Example
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/radar_paint_target.jpg" />
+</p>
+<p>&nbsp;</p>
+
+
+#### Change on Short and Long Range FOV Example (with debug_frustum enable)
+<p class="img_container">
+<img class="wide_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/frustrum_fov.jpg" />
+</p>
+<p>&nbsp;</p>
+
+
+#### Change Short and Long Range Distance Example (with debug_frustum enable)
+<p class="img_container">
+<img class="wide_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/frustum_distance.jpg" />
+</p>
+<p>&nbsp;</p>
+
+
+#### Change Elevation FOV Example (with debug_frustum enable)
+<p class="img_container">
+<img class="wide_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/elevation.jpg" />
+</p>
+<p>&nbsp;</p>
+
+
+#### debug_scan Enable Example
+<p class="img_container">
+<img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/radar/debug_scan.jpg" />
+</p>

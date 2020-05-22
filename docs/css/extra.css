@@ -1,0 +1,140 @@
+main {
+    width: '100%';
+    min-width: 800px;
+    max-width: 1000px;
+    background-color: #ffffff;
+    margin-left: -20px;
+    padding-left: 20px;
+    padding-top: 50px;
+    padding-right: 20px;
+    font-family: "Roboto Slab","ff-tisa-web-pro","Georgia",Arial,sans-serif;
+    font-size: 18px
+}
+
+@media all 
+    and (min-width: 600px) 
+    and (max-width: 1200px) {
+        main {
+            max-width: 100%;
+            padding-left: 40px;
+        }
+}
+
+body {
+    background-color: #EFEFEF;
+    color: #404040;
+    font-family: "Roboto Slab","ff-tisa-web-pro","Georgia",Arial,sans-serif;
+}
+
+button, input, aside {
+    font-family: "Roboto Slab","ff-tisa-web-pro","Georgia",Arial,sans-serif;
+}
+aside:hover {
+    width: 305px;
+    transition: width 2s, height 2s;
+}
+
+aside {
+    transition: width 2s, height 2s;
+}
+
+.img_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.multi_img_container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%
+}
+
+.thumbnail {
+    width: 50px;
+}
+
+.icon {
+    width: 40px;
+}
+
+.logo_img {
+    height: 100px;
+    padding-right: 5px;
+    width: auto;
+}
+
+.sm_img {
+    width: 200px;
+}
+
+.md_img {
+    width: 300px;
+}
+
+.lg_img {
+    width: 400px;
+}
+
+.semiwide_img {
+    width: 60%;
+}
+
+.wide_img {
+    width: 90%;
+}
+
+.center {
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+
+.toctree-l1>a.nav-item {
+    color: white
+}
+
+.toctree-l2>a.nav-item {
+    padding-left: 45px;
+}
+
+.toctree-l3>a.nav-item {
+    padding-left: 65px;
+}
+
+.toctree-l4>a.nav-item {
+    padding-left: 85px;
+}
+
+.toctree-l5>a.nav-item {
+    padding-left: 90px;
+}
+
+.toctree-l6>a.nav-item {
+    padding-left: 95px;
+}
+
+a.nav-item.current {
+    color: #333;
+    background: #eee;
+}
+
+.toctree-l2>.nav-item.section {
+    color: #999999;
+    padding-left: 45px  
+}
+
+.toctree-l2>.nav-item.section:hover {
+    background-color: #666666;
+}
+
+code {
+    background-color: #F8F8F8;
+    padding-left: 2px;
+    padding-right: 2px;
+    font-size: 13px;
+}
+
+.space {
+    padding: 30px
+}

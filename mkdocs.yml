@@ -11,7 +11,8 @@ pages:
 - About monoDrive : intro_information.md
 - Getting Started : Getting_Started.md
 - Products : 
-  - Simulator : Simulator.md
+  - Simulator : [Simulator.md, 
+      scenario-dashboard.md]
   - Scenario Editor : [
       scenario_editor/scenarios.md, 
       scenario_editor/roads.md

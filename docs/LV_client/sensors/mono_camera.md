@@ -12,9 +12,6 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
-- **Camera configuration:**  Configuration for a RGB camera.
- 
-
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs

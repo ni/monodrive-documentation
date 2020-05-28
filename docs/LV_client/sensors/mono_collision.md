@@ -16,11 +16,13 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Outputs
 
-- **Collision sensor sample:**   
+- **Collision sensor sample:**  Sample from collision sensor. 
+ 
 
-- **NCAP sensor configuration:**   
+- **Collision sensor configuration:**  Configuration used for sensor collision.
+ 
 
-- **data:**   
+- **Accumulative sensor sample:**   
 
 - **:**   
 

@@ -16,31 +16,57 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Outputs
 
-- **IMU Sample:**   
+- **IMU Sample:**  Cluster with the processed data for the IMU sensor.   
 
-- **packetSize:**   
+| Type  | Name   |
+| --------- | ------------ |
+|U8  | packetSize |s
+|SGL | accel_x  |
+|SGL | accel_x  |
+|SGL | accel_z |
+|SGL | angle_rate_x |
+|SGL | angle_rate_y  |
+|SGL | angle_rate_z  |
+|U32 | timer |
+|U16 | checksum|
+|I32 | timeWeek  |
+--- 
 
-- **accel_x:**   
+- **packetSize:**  Start Byte
+ 
 
-- **accel_y:**   
+- **accel_x:**  x acceleration
+ 
 
-- **accel_z:**   
+- **accel_y:**  y acceleration
+ 
 
-- **angle_rate_x:**   
+- **accel_z:**  z acceleration
+ 
 
-- **angle_rate_y:**   
+- **angle_rate_x:**  x angular velocity
+ 
 
-- **angle_rate_z:**   
+- **angle_rate_y:**  y angular velocity 
+ 
 
-- **timer:**   
+- **angle_rate_z:**  z angular velocity 
+ 
 
-- **checksum:**   
+- **timer:**  Time in seconds since the system power-up.
+ 
 
-- **timeWeek:**   
+- **checksum:**  Checksum
+ 
 
-- **Raw data:**   
+- **timeWeek:**  Time of the week
+ 
 
-- **IMU configuration:**   
+- **Raw data:**  Output with out parsing  from the simulator.
+ 
+
+- **IMU configuration:**  Configuration used to setup the IMU sensors.
+ 
 
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

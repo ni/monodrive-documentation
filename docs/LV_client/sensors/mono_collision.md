@@ -4,7 +4,7 @@
 <img class="lg_img" src="../mono_collision.png"/>
 </p>
 
-# Description
+### Description
 
 Get the state sensor information of the vehicle. Returns the pose of the vehicles around the EGO vehicle.
 
@@ -27,4 +27,4 @@ For technical support contact us at <b>support@monodrive.io</b>
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>
-;</p>
+/p>

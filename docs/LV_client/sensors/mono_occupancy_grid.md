@@ -1,10 +1,10 @@
 # mono_occupancy_grid.vi
 
 <p class="img_container">
-<img class="lg_img" src="C:\Users\graci\monodrive\documentation\docs\LV_client\sensors\mono_occupancy_grid.png"/>
+<img class="lg_img" src="../mono_occupancy_grid.png"/>
 </p>
 
-# Description
+### Description
 
 Configures and reads the stream data for an occupancy grid sensor and outputs a picture of the size specified on the  configuration.
 
@@ -28,6 +28,9 @@ the sensor configuration.
  
 
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+
+<p>&nbsp;</p>
+n the event of errors from other VIs. 
 
 <p>&nbsp;</p>
 ;</p>

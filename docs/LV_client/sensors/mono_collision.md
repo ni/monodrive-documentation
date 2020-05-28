@@ -1,7 +1,7 @@
 # mono_collision.vi
 
 <p class="img_container">
-<img class="lg_img" src="C:\Users\graci\monodrive\documentation\docs\LV_client\sensors\mono_collision.png"/>
+<img class="lg_img" src="../mono_collision.png"/>
 </p>
 
 # Description

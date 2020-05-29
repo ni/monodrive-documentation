@@ -24,7 +24,8 @@ specified in the sensor configuration.
 width*height
  
 
-- **pixel:**   
+- **pixel:**  Pixel value
+ 
 
 - **Camera configuration:**  Settings used to configure the Grayscale camera.
  

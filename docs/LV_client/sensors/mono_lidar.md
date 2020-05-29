@@ -16,9 +16,11 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Outputs
 
-- **Raw data:**   
+- **Raw data:**  Array of data with the unparsed data from the simulator
+ 
 
-- **data out:**   
+- **raw packet:**  Unparsed data from the simulator
+ 
 
 - **Lidar Configuration:**  Configuration used to setup LiDAR sensor
  

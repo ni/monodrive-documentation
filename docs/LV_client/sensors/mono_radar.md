@@ -6,7 +6,7 @@
 
 ### Description
 
-Configure and reads the stream data for the Radar sensor and outputs a outputs a cluster with three 1D arrays for Ranges, aoas and velocities.
+Configure and reads the stream data for the Radar sensor.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 

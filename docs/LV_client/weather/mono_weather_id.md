@@ -1,6 +1,7 @@
-## mono_weather_id.vi
+# mono_weather_id.vi
+
 <p class="img_container">
-<img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/weather/mono__weather__idc.png"/>
+<img class="lg_img" src="../mono_weather_id.png"/>
 </p>
 
 ### Description 
@@ -9,17 +10,24 @@ Obtains the weather id name selected by the user.
 ### Inputs
 
 - **monoConfig in(Cluster):** Refer to monoConfig cluster definition.
-- **Array in (Reference):** Reference of the array with the weather configuration .
-- **TestStand (Boolean):** True if the VI is running from TestStand.
+
+- **Weather Profile Ref (Reference):** Reference of the array with the weather configuration .
+
+- **External Weather Control (Bool):** True to change the weather profile using TestStand or other external tool.
+
 - **Weather Index (Int):** Index selected by TestStand to configure weather.
+
 - **error in (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 
 ### Outputs
 
 - **Weather profiles(Cluster):** Refer to monoConfig cluster definition.
+
 - **monoConfig out(Cluster):** Refer to monoConfig cluster.
-- **id:** Name of the weather configuration.
+
+- **id:** Name of the weather profile chosen.
+
 - **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 <p>&nbsp;</p>

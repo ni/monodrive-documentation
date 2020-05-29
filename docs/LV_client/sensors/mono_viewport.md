@@ -6,7 +6,7 @@
 
 ### Description
 
-Reads the stream data for a camera sensor and returns a picture with the format specified in the stream dimensions.
+Configures the camera on the viewport
 
 For technical support contact us at <b>support@monodrive.io</b> 
 

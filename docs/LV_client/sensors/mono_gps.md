@@ -19,9 +19,35 @@ For technical support contact us at <b>support@monodrive.io</b>
 - **Raw data:**  Raw data output form server. 
  
 
-- **GPS Configuration:**   
+- **GPS Configuration:**  Settings to configure a GPS sensor
+ 
 
-- **GPS Sample:**   
+- **GPS Sample:**  Provides GPS coordinates for the sensor's location. The
+coordinates are based on the GPS anchor set for the current
+map      
+
+| Type  | Name   |
+| --------- | ------------ |
+|U8  | preamble |
+|U16 | MSG_POS_LLH  |
+|U16 | sensor_id  |
+|U8  | payload_length |
+|DBL | latitude |
+|DBL | longitude  |
+|DBL | elevation  |
+|SGL | WorldLocation_x |
+|SGL | WorldLocation_y|
+|SGL | forward_x  |
+|SGL | forward_y   |
+|SGL | forward_z   |
+|SGL | ego_yaw  |
+|SGL | ego_speed |
+|U16 | horizontal_acceleration  |
+|U16 | vertical_acceleration  |
+|U8  | satellites  |
+|U8  | mode   |
+|U16 | CRC  |
+--- 
 
 - **latitude:**  Llatitude of ego vehicle on the map
  

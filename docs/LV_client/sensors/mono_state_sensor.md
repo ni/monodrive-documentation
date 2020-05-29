@@ -16,9 +16,16 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Outputs
 
-- **State sensor sample:**   
+- **State sensor sample:**  State sensor sample. Includes state information for actors
+with the "desired_tags" and cull out information of actors
+with the "undesired_tags"
+ 
 
-- **State sensor configuration:**   
+- **State sensor configuration:**  Settings used to configure a State sensor
+ 
+
+- **Raw data:**  Unparsed data from simulator
+ 
 
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

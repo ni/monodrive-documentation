@@ -18,13 +18,17 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Outputs
 
-- **Raw data:**   
+- **Raw data:**  Array of data with the unparsed data from the simulator
+ 
 
-- **data out:**   
+- **data out:**  raw data packet
+ 
 
-- **Lidar Configuration:**   
+- **Lidar Configuration:**  Configuration used to setup a semantic LiDAR sensor
+ 
 
-- **time_zero:**   
+- **Timestamp at zero azimuth:**  Timestamp at zero azimuth
+ 
 
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

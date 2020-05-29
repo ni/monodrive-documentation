@@ -20,9 +20,11 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 - **data out:**   
 
-- **Lidar Configuration:**   
+- **Lidar Configuration:**  Configuration used to setup LiDAR sensor
+ 
 
-- **time_zero:**   
+- **Timestamp at zero azimuth:**  Timestamp at zero azimuth
+ 
 
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

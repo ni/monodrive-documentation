@@ -16,45 +16,87 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Outputs
 
-- **Radar Data Cube:**   
+- **Radar Data Cube:**  Only send if, **send_cube** is set to true on the **Radar
+configuration**. Raw data for a cube of dimensions M (number
+of array antenna inputs) by L (number of range bins in fast
+time) by N (number of pulse in CPI in slow time).
+ 
 
-- **Radar configuration:**   
+- **Radar configuration:**  Settings to configure a Radar sensor
+ 
 
-- **Radar:**   
+- **Radar Sample:**  Radar sample contains information for the targets detected
+by radar and ground truth information as well.
+ 
 
-- **Number of targets:**   
+- **Number of targets:**  Number of targets detected by the radar sensor.
+ 
 
-- **target_list:**   
+- **target_list:**  Objetcs detected by radar.  An array of clusters with the
+following structure.   
 
-- **Cluster:**   
+| Type  | Name   | Units/Description   |
+| --------- | ------------ |------------ |
+| SGL  | aoa | degrees |
+|SGL | range  | meters |
+|SGL | rcs | m^2 |
+|SGL | velocity | m/s |
+|1D Array String | target_ids | Ground truth annotation |
+--- 
 
-- **aoa:**   
+- **Target:**  Target detect by radar
+ 
 
-- **range:**   
+- **aoa:**  Angle of arrival
+ 
 
-- **rcs:**   
+- **range:**  Distance to the target
+ 
 
-- **velocity:**   
+- **rcs:**  Radar cross-section 
+ 
 
-- **target_ids:**   
+- **velocity:**  Velocity of the target detected
+ 
 
-- **String:**   
+- **target_ids:**  Possible ground truth label
+ 
 
-- **gt_targets:**   
+- **target_id:**  Ground truth label
+ 
 
-- **Cluster:**   
+- **gt_targets:**  Ground truth information for objects on the scene. An array
+of clusters with the following structure.      
 
-- **aoa:**   
+| Type  | Name   | Units/Description   |
+| --------- | ------------ |------------ |
+| SGL  | aoa | degrees |
+|SGL | range  | meters |
+|SGL | rcs | m^2 |
+|SGL | velocity | m/s |
+|1D Array String | target_ids | Ground truth annotation |   
+--- 
 
-- **range:**   
+- **Target:**  Target detect by ground truth radar
+ 
 
-- **rcs:**   
+- **aoa:**  Angle of arrival
+ 
 
-- **velocity:**   
+- **range:**  Distance to the target
+ 
 
-- **target_ids:**   
+- **rcs:**  Radar cross-section 
+ 
 
-- **String:**   
+- **velocity:**  Velocity of the target detected
+ 
+
+- **target_ids:**  Ground truth label
+ 
+
+- **target_id:**  Ground truth label
+ 
 
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

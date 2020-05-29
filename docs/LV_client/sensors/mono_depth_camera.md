@@ -20,7 +20,8 @@ For technical support contact us at <b>support@monodrive.io</b>
 - **Raw data:**  Array with pixel values for image. Size is equal to w*h
  
 
-- **pixel:**   
+- **pixel:**  Pixel value
+ 
 
 - **Camera configuration:**  Settings to configure sensor.
  

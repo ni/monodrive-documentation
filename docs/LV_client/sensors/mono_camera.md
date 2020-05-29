@@ -20,13 +20,14 @@ For technical support contact us at <b>support@monodrive.io</b>
 the sensor configuration.
  
 
-- **Raw data:**  Array with pixel values for image. Size is equal to w*h*4
+- **Raw data:**  Array with pixel values for image. Size is equal to
+width*height*4
  
 
 - **pixel:**  Pixel value
  
 
-- **Camera configuration:**  Settings to configure sensor.
+- **Camera configuration:**  Settings to configure a RGB camera
  
 
 - **Annotation Data:**  Annotation data for all objects classified on the image

@@ -73,6 +73,7 @@ pages:
           - mono_depth_camera.vi: LV_client/sensors/mono_depth_camera.md
           - mono_semantic_camera.vi: LV_client/sensors/mono_semantic_camera.md
           - mono_camera_grayscale.vi: LV_client/sensors/mono_camera_grayscale.md
+          - mono_occupancy_grid.vi: LV_client/sensors/mono_occupancy_grid.md
           - mono_gps.vi: LV_client/sensors/mono_gps.md
           - mono_imu.vi: LV_client/sensors/mono_imu.md
           - mono_lidar.vi: LV_client/sensors/mono_lidar.md

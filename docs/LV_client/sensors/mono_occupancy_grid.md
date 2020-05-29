@@ -20,11 +20,13 @@ For technical support contact us at <b>support@monodrive.io</b>
 the sensor configuration.
  
 
-- **Raw Data:**   
+- **Raw Data:**  An array of pixels with size width*height 
+ 
 
-- **pixel:**   
+- **pixel:**  Pixel value
+ 
 
-- **Occupancy Grid Configuration:**  Settings to configure sensor.
+- **Occupancy Grid Configuration:**  Settings to configure a Occupancy Grid sensor
  
 
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 

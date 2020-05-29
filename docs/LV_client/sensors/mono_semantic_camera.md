@@ -23,9 +23,10 @@ the sensor configuration.
 - **Raw data:**  Array with pixel values for image. Size is equal to w*h
  
 
-- **pixel:**   
+- **pixel:**  Pixel value
+ 
 
-- **Camera configuration:**  Settings to configure sensor.
+- **Camera configuration:**  Settings to configure a semantic camera
  
 
 - **Annotation data:**  Annotation data for all objects classified on the image

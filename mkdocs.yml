@@ -104,13 +104,13 @@ pages:
           - monoDrive.vi: LV_client/tools/monoDrivegblc.md
           - mono_create_replay.vi: LV_client/tools/mono__create__replayc.md
       - Simulator:
-          - mono_check_config_mode.vi: LV_client/simulator/mono__check__config__modec.md
-          - mono_connect.vi: LV_client/simulator/mono__connectc.md
-          - mono_header.vi: LV_client/simulator/mono__headerc.md
-          - mono_send_command.vi: LV_client/simulator/mono__send__commandc.md
-          - mono_send_step.vi: LV_client/simulator/mono__send__stepc.md
-          - mono_init.vi: LV_client/simulator/monoDrive_lvlib_mono__initc.md
-          - mono_check_simulator_version.vi: LV_client/simulator/mono__check__simulator__versionc.md
+          - mono_check_config_mode.vi: LV_client/simulator/mono_check_config_mode.md
+          - mono_connect.vi: LV_client/simulator/mono_connect.md
+          - mono_header.vi: LV_client/simulator/mono_header.md
+          - mono_send_command.vi: LV_client/simulator/mono_send_command.md
+          - mono_send_step.vi: LV_client/simulator/mono_send_step.md
+          - mono_init.vi: LV_client/simulator/mono_init.md
+          - mono_check_simulator_version.vi: LV_client/simulator/mono_check_simulator_version.md
       - Utilities:
           - mono_build_json.vi: LV_client/utilities/mono__build__jsonc.md
           - mono_calculate_orientation_xyz.vi : LV_client/utilities/mono__calculate__orientation__xyzc.md

@@ -66,6 +66,14 @@ pages:
       - Configuration Examples: LV_client/quick_start/LabView_configurations.md
       - FAQ: LV_client/quick_start/FAQ.md
     - LabVIEW Detailed Help:
+      - Examples:
+          - mono1_pilot_example.vi: LV_client/examples/mono1_pilot_example.md
+          - mono2_scenario_example.vi: LV_client/examples/mono2_scenario_example.md
+          - mono3_replay_example.vi: LV_client/examples/mono3_replay_example.md
+          - mono4_hil_example.vi: LV_client/examples/mono4_hil_example.md
+          - mono5_radar_example.vi: LV_client/examples/mono5_radar_example.md
+          - mono6_pilot_example_fixed_time.vi: LV_client/examples/mono6_pilot_example_fixed_time.md
+
       - Controls:
           - monoDrive.ctl: LV_client/structures/monoDrive.md
       - Sensors:

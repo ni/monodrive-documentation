@@ -12,8 +12,8 @@ This example shows how to run the monoDrive client  to configure the monoDrive s
 
 - **Trajectory Configuration:**  Selected a valid scenario file in JSON. Use the browse
 button to select a new file. User can find
-HighWayExitReplay.json under the monoDrive folder under the
-trajectories folder
+**HighWayExitReplay.json** under the monoDrive folder under
+the trajectories folder
  
 
 - **Select a map:**  Select the map to load on the Simulator

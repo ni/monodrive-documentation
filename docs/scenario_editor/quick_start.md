@@ -23,7 +23,7 @@
     *For more information, check [here](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html)*
 
 
-4. Download the monoDrive Simulator Editor from [here](https://www.monodrive.io/register).
+4. Download the monoDrive Scenario Editor from [here](https://www.monodrive.io/register).
 
 5. Open VehicleAI_Editor zip file and extract all files
 

@@ -40,8 +40,8 @@
 <p>&nbsp;</p>
 
 
-## Run the VehicleAI Simulator Editor
-Quick start instructions and details on how to generate project files in the VehicleAI Simulator Editor can be found in [Getting Started Guide](../../Getting_Started.md).
+## Run the VehicleAI Scenario Editor
+Quick start instructions and details on how to generate project files in the VehicleAI Scenario Editor can be found in [Getting Started Guide](../../Getting_Started.md).
 
 1. Go to your VehicleAI_Editor directory and find VehicleAI.uproject
 

@@ -36,7 +36,7 @@
 
 ## Scenario Editor
 
-1. Download the monoDrive Simulator Editor from [here](https://www.monodrive.io/register) and extract all files. 
+1. Download the monoDrive Scenario Editor from [here](https://www.monodrive.io/register) and extract all files. 
 
 1. Download Visual Studio from [here](https://visualstudio.microsoft.com/).
 

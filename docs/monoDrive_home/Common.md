@@ -1,40 +1,36 @@
 # Common
 
-## Parameter Format
+Every monoDrive sensor shares the following format for common sensor properties. 
+For additional parameters descriptions of specific sensors, see the sensor's 
+configuration documentation.
 
-Every sensor follows the following format as the base for what you can do with a sensor. The individual sensor pages will explain their own parameters in addition to these base parameters. 
-
-```
+```json
 {
-      "type": string,
-      "id": string,
-      "packet_size": int,
-      "listen_port": int,
-      "display_process": bool,
-      "sensor_process": bool,
-      "location": {
-        "x": float,
-        "y": float,
-        "z": float
-      },
-      "rotation": {
-        "pitch": float,
-        "yaw": float,
-        "roll": float
-      },
-      "fps": float
+  "type": string,
+  "id": string,
+  "listen_port": int,
+  "location": {
+    "x": float,
+    "y": float,
+    "z": float
+  },
+  "rotation": {
+    "pitch": float,
+    "yaw": float,
+    "roll": float
+  }
 }
 ```
 
 ## Configuration
 
-- **type**: The values of type can be: `MultiCamera`, `Camera`, `Semantic`, `Lidar`, `IMU`, `GPS`, `RPM`, `Radar`, `Waypoint`, or `BoundingBox` depending on what type of sensor you are trying to set up.
-- **listen_port**: The TCP or UDP port that the simulator must send the data through for that sensor to get the data to the client.
-- **location**: The relative location for which the sensor will be placed on the vehicle.
-  - *x*: The x position.
-  - *y*: The y position.
-  - *z*: The z position.
-- **rotation**: The relative rotation the sensor will have on the vehicle.
-  - *pitch*: The pitch.
-  - *yaw*: The yaw.
-  - *roll*: The roll.
+- **type:** The values of type can be: `Camera`, `Lidar`, `IMU`, etc. depending on what type of sensor being configured.
+- **listen_port:** The TCP or UDP port used by the simulator to transmit sensor data.
+- **location:**: The location of the sensor in centimeters relative to the EGO vehicle's origin to place a sensor.
+    - **x:** The x position
+    - **y:** The y position
+    - **z:** The z position
+- **rotation**: The rotation of the sensor, in degrees, relative to the orientation of the EGO vehicle.
+    - **pitch:** The pitch angle
+    - **yaw:** The yaw angle
+    - **roll:** The roll angle

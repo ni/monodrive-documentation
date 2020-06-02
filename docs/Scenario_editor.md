@@ -46,7 +46,7 @@ The monoDrive Scenario Editor extends the monoDrive Simulator and allows the use
     <p>&nbsp;</p>
 
 
-1. Download the monoDrive Simulator Editor [here](https://www.monodrive.io/register) and extract all files. 
+1. Download the monoDrive Scenario Editor [here](https://www.monodrive.io/register) and extract all files. 
 
     <p>&nbsp;</p>
 

@@ -113,6 +113,7 @@ pages:
           - mono_start_replay.vi: LV_client/tools/mono_start_replay.md
           - mono_start_scenario.vi: LV_client/tools/mono_start_scenario.md
           - monoDrive.vi: LV_client/tools/monoDrive.md
+          - mono_test_FPS_by_sensor.vi: LV_client/tools/mono_test_FPS_by_sensor.md
 
       - Simulator:
           - mono_check_config_mode.vi: LV_client/simulator/mono_check_config_mode.md

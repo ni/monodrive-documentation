@@ -6,13 +6,13 @@
 
 ### Description
 
-Configures and reads the stream data for a grayscale camera sensor and outputs a picture of the size specified on the Camera configuration.
+Configures and reads the stream data for a Grayscale Camera sensor and outputs a picture of the size specified on the Camera configuration.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 
 ### Inputs
 
-- **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
@@ -33,6 +33,6 @@ width*height
 - **Annotation data:**  Annotation data for all objects classified on the image. 
  
 
-- **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>

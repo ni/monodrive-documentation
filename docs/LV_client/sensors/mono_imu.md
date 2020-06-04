@@ -6,13 +6,13 @@
 
 ### Description
 
-Reads and process the data stream for the IMU senso. Outputs the IMU data in a cluster.
+Reads and process the data stream for the IMU sensor. Outputs the IMU data in a cluster.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 
 ### Inputs
 
-- **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
@@ -68,6 +68,6 @@ For technical support contact us at <b>support@monodrive.io</b>
 - **IMU configuration:**  Configuration used to setup the IMU sensors.
  
 
-- **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>

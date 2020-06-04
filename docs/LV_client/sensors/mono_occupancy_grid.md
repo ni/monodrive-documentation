@@ -6,13 +6,13 @@
 
 ### Description
 
-Configures and reads the stream data for an occupancy grid sensor and outputs a picture of the size specified on the  configuration.
+Configures and reads the stream data for an Occupancy Grid sensor and outputs a picture of the size specified on the  configuration.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 
 ### Inputs
 
-- **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
@@ -29,6 +29,6 @@ the sensor configuration.
 - **Occupancy Grid Configuration:**  Settings to configure a Occupancy Grid sensor
  
 
-- **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>

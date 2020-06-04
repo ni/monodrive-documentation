@@ -20,8 +20,8 @@ For technical support contact us at <b>support@monodrive.io</b>
 the sensor configuration.
  
 
-- **Raw data:**  Array with pixel values for image. Size is equal to
-width*height*4
+- **Raw data:**  Array with pixel values for image. Size is equal to width x
+height x 4
  
 
 - **pixel:**  Pixel value
@@ -36,3 +36,4 @@ width*height*4
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>
+bsp;</p>

@@ -20,7 +20,7 @@ For technical support contact us at <b>support@monodrive.io</b>
 the sensor configuration.
  
 
-- **Raw Data:**  An array of pixels with size width*height 
+- **Raw Data:**  An array of pixels with size width x height
  
 
 - **pixel:**  Pixel value

@@ -1,10 +1,10 @@
-# LabView Client Examples
+# LabVIEW Client Examples
 
-## monoDrive LabView Client Examples
+## monoDrive LabVIEW Client Examples
 
 After installing the monoDrive Client from the VI package manager, several
 pre-built examples will be available through the "Help" -> "Find Examples" 
-dialog in LabView. The `ni_monoDrive.lvproj` contains references to all the VIs 
+dialog in LabVIEW. The `ni_monoDrive.lvproj` contains references to all the VIs 
 described here.
 
 For all of these examples, you will need to have either the monoDrive Simulator

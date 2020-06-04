@@ -22,7 +22,7 @@ For technical support contact us at <b>support@monodrive.io</b>
 ### Outputs
 - **Trajectory Configuration:**  Trajectory (replay) read from the input file
 
-- **Weather Profiles:** Array with the weather profiles obtained by the weather configuration.
+- **Weather Profiles:** Array of the weather profiles obtained by the weather configuration.
 
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

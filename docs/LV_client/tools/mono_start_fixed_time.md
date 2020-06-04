@@ -26,7 +26,7 @@ vehicle on the map
 
 ### Outputs
 
-- **Weather Profiles:**  Array with the weather profiles obtained by the weather
+- **Weather Profiles:**  Array of the weather profiles obtained by the weather
 configuration.
  
 

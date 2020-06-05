@@ -5,10 +5,11 @@
 </p>
 
 ### Description 
-Validate the license statud for the monoDrive Software (Windows only).
+Module to initialize the monoDrive simulator. This VI must be run before other simulator configuration/vehicle commands are run.
+
 
 ### Inputs
-- **Simulator configuration (String):** A JSON string with the properties for simulator connection, material propertities, etc.
+- **Simulator configuration (String):** A JSON string with the properties for simulator connection, material properties, etc.
 
 - **error in (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
 

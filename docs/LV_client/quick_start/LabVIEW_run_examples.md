@@ -15,7 +15,7 @@ running or the monoDrive Scenario Editor open and in "Play" mode.
 Description
 
 <div class="img_container">
-    <img class="wide_img" src="" />
+    <img class="wide_img" src="../imgs/mono1_image.png" />
 </div>
 
 Instructions
@@ -25,7 +25,7 @@ Instructions
 Description
 
 <div class="img_container">
-    <img class="wide_img" src="" />
+    <img class="wide_img" src="../imgs/mono2_image.png" />
 </div>
 
 Instructions
@@ -35,7 +35,7 @@ Instructions
 Description
 
 <div class="img_container">
-    <img class="wide_img" src="" />
+    <img class="wide_img" src="../imgs/mono3_image.png" />
 </div>
 
 Instructions
@@ -45,7 +45,7 @@ Instructions
 Description
 
 <div class="img_container">
-    <img class="wide_img" src="" />
+    <img class="wide_img" src="../imgs/mono4_image.png" />
 </div>
 
 Instructions
@@ -55,7 +55,7 @@ Instructions
 Description
 
 <div class="img_container">
-    <img class="wide_img" src="" />
+    <img class="wide_img" src="../imgs/mono5_image.png" />
 </div>
 
 Instructions
@@ -65,7 +65,7 @@ Instructions
 Description
 
 <div class="img_container">
-    <img class="wide_img" src="" />
+    <img class="wide_img" src="../imgs/mono6_image.png" />
 </div>
 
 Instructions

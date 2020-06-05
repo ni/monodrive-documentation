@@ -26,9 +26,9 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 - **Vehicle  Start Position:**  Select a position from the pre-defined initial position to
 spawn the ego vehicle.   
-    - Selenct **-1** to spawn the vehicle on the position of
+    - Select **-1** to spawn the vehicle on the position of
 the camera.    
-     - Select **0** to spawn the vehicke on the position
+     - Select **0** to spawn the vehicle on the position
 specified on the Closed_loop.json file
  
 
@@ -52,3 +52,4 @@ the simulator
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>
+

@@ -102,8 +102,6 @@ pages:
           - mono_matlab_radar_plot.vi: LV_client/tools/mono_matlab_radar_plot.md
           - mono_plot_radar_target_by_name.vi: LV_client/tools/mono_plot_radar_target_by_name.md
           - mono_radar_data_cube_plotter.vi: LV_client/tools/mono_radar_data_cube_plotter.md
-          - mono_radar_plots.vi: LV_client/tools/mono_radar_plots.md
-          - mono_radar_plots_with_KF.vi: LV_client/tools/mono_radar_plots_with_KF.md
           - mono_save_camera_images.vi: LV_client/tools/mono_save_camera_images.md
           - mono_start_closed_loop.vi: LV_client/tools/mono_start_closed_loop.md
           - mono_start_fixed_time.vi: LV_client/tools/mono_start_fixed_time.md

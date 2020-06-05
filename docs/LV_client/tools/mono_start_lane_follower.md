@@ -12,41 +12,17 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
-- **Weather ref:**   
+- **Weather ref:**  Reference to the Weather Profile Array
 
-- **Select a map:**   
+- **Select a map:**  Select a map to load on Simulator.
 
-- **Vehicle  Start Position:**   
+- **Vehicle  Start Position:**  Select one of the pre-defined positions to spawn the ego vehicle on the map
 
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
-- **Weather Profiles:**   
-
-- **Cluster:**   
-
-- **id:**   
-
-- **SunPolarAngle:**   
-
-- **SunAzimuthAngle:**   
-
-- **SunBrightness:**   
-
-- **SunDirectionalLightIntensity:**   
-
-- **SunDirectionalLightColor:**   
-
-- **R:**   
-
-- **G:**   
-
-- **B:**   
-
-- **A:**   
-
-- **Sun:**  irectLightIntensity 
+- **Weather Profiles:**  Array of the weather profiles obtained by the weather configuration.
 
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

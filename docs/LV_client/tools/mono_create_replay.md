@@ -11,20 +11,20 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
-- **Frames:**  An array with all the State Sensor frames
+- **Frames:**  Array with all the State Sensor frames
  
 
-- **State Sensor Frame:**  One frame on reported by the State Sensor
+- **State Sensor Frame:**  One frame reported by the State Sensor
  
 
-- **Path to save:**  Path to save the replay file generated from the state sensor
-samples
+- **Path to save:**  Path to save the replay file generated using the State
+sensor samples
  
 
-- **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
-- **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>

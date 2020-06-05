@@ -6,7 +6,7 @@
 
 ### Description
 
-Use to calculate the FFT of the radar cube.
+Use to calculate the Fast Fourier transform (FFT) of the radar cube.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 
@@ -18,7 +18,7 @@ For technical support contact us at <b>support@monodrive.io</b>
 - **FFT size:**  The length of the FFT you want to perform.
  
 
-- **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
@@ -31,7 +31,6 @@ For technical support contact us at <b>support@monodrive.io</b>
 - **Fast Channel FFT:**  Fast Channel FFT.
  
 
-- **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>
-&nbsp;</p>

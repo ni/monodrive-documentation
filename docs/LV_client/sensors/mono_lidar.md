@@ -22,7 +22,7 @@ For technical support contact us at <b>support@monodrive.io</b>
 - **raw packet:**  Unparsed data from the simulator
  
 
-- **Lidar Configuration:**  Configuration used to setup LiDAR sensor
+- **LiDAR Configuration:**  Configuration used to setup LiDAR sensor
  
 
 - **Timestamp at zero azimuth:**  Timestamp at zero azimuth

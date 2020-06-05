@@ -49,7 +49,7 @@ map
 |U16 | CRC  |
 --- 
 
-- **latitude:**  Llatitude of ego vehicle on the map
+- **latitude:**  Latitude of ego vehicle on the map
  
 
 - **longitude:**  Longitude of ego vehicle on map.
@@ -76,9 +76,10 @@ map
 - **ego_yaw:**  Yaw for the ego vehicle with respect to the Z axis.
  
 
-- **ego_speed:**  ego's speed measured on m/s
+- **ego_speed:**  Ego's speed measured on m/s
  
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>
+

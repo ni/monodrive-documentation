@@ -32,7 +32,7 @@ by radar and ground truth information as well.
 - **Number of targets:**  Number of targets detected by the radar sensor.
  
 
-- **target_list:**  Objetcs detected by radar.  An array of clusters with the
+- **target_list:**  Objects detected by radar.  An array of clusters with the
 following structure.   
 
 | Type  | Name   | Units/Description   |

@@ -6,7 +6,7 @@
 
 ### Description
 
-Configures and sample the Ultrasonic sensor according to the configuration setting. Provides range to closest object from a single Ultrasonic sensor.
+Configures and samples the ultrasonic sensor according to the configuration settings. Provides range from the closest object to a single ultrasonic sensor.
 
 For technical support contact us at <b>support@monodrive.io</b>
  

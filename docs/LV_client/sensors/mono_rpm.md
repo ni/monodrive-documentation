@@ -19,17 +19,18 @@ For technical support contact us at <b>support@monodrive.io</b>
 - **RPM Sample:**  Include the RPM information for the specified wheel 
  
 
-- **wheel_number:**  Wheel number to sample values can be 0, 1, 2, 3 represent
-the front-left, front-right, rear-left, rear-right wheels
-respectively.
+- **wheel_number:**  Wheel numbers 0,1,2,3 correspond to the the front-left,
+front-right, rear-left, rear-right wheels respectively.
  
 
 - **wheel_RPM:**  Revolutions per minute for the wheel
  
 
-- **RPM configuration:**   
+- **RPM configuration:**  Settings to configure a RPM sensor
+ 
 
-- **Raw data:**   
+- **Raw data:**  Raw data output from the server.
+ 
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

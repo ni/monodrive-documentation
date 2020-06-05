@@ -35,22 +35,22 @@ For technical support contact us at <b>support@monodrive.io</b>
 - **packetSize:**  Start Byte
  
 
-- **accel_x:**  x acceleration
+- **accel_x:**  The  acceleration in the x direction 
  
 
-- **accel_y:**  y acceleration
+- **accel_y:**  The  acceleration in the y direction 
  
 
-- **accel_z:**  z acceleration
+- **accel_z:**  The  acceleration in the z direction 
  
 
-- **angle_rate_x:**  x angular velocity
+- **angle_rate_x:**  The angular velocity in th xdirection 
  
 
-- **angle_rate_y:**  y angular velocity 
+- **angle_rate_y:**  The angular velocity in th y direction 
  
 
-- **angle_rate_z:**  z angular velocity 
+- **angle_rate_z:**  The angular velocity in th z direction 
  
 
 - **timer:**  Time in seconds since the system power-up.

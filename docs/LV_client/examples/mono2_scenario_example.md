@@ -30,7 +30,7 @@ For technical support contact us at <b>support@monodrive.io</b>
 - **Scenario Configuration:**  Selected a valid scenario file in JSON. Use the browse
 button to select a new file.    
 User can find **scenario_config_multi_vehicle.json**  under
-the monoDrive folder under the **trajectory** folder
+the monoDrive folder under the **scenarios** folder
  
 
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 

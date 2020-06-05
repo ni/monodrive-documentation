@@ -29,7 +29,7 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 Type  | Name   |
 | --------- | ------------ |
-|U32  | lenght |
+|U32  | length |
 |SGL | game_time  |
 |U32 | time_stamp |
 --- 

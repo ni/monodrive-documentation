@@ -156,6 +156,11 @@ pages:
           - mono_sensor_parser.vi: LV_client/utilities/mono__sensor__parserc.md
           - mono_start_point.vi : LV_client/utilities/mono__start__pointc.md
           - mono_velodyne_parse.vi: LV_client/utilities/mono__velodyne__parse.md
+          - mono_calculate_average.vi: LV_client/utilities/mono_calculate_average.md
+          - mono_send_fixed_step_command.vi: LV_client/utilities/mono_send_fixed_step_command.md
+          - mono_send_pilot_config.vi: LV_client/utilities/mono_send_pilot_config.md
+          - mono_send_scenario_config.vi: LV_client/utilities/mono_send_scenario_config.md
+
           
       - Shared Libraries:
           - mono_control.vi: LV_client/shared_libraries/mono__control.md

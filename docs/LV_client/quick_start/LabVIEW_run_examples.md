@@ -12,43 +12,142 @@ running or the monoDrive Scenario Editor open and in "Play" mode.
 
 ### Pilot Example
 
-Description
+The Pilot Example, *mono1_pilot_example.vi*, enables users to control the vehicle's steering, throttle, brakes, starting position, and weather simulation in real time. 
+
+*This is a free driving scenario with one car only.*
 
 <div class="img_container">
     <img class="wide_img" src="../imgs/mono1_image.png" />
 </div>
 
-Instructions
+Prior to running the example, the user will be able to:
+
+* **Select and change the weather profile** by changing the Weather Profile Control. There are various permutations of weather available in the monoDrive Simulator. 
+
+* **Select the map** by using the Map Selection Drop-Down. When running, the monoDrive simulator will switch to this map prior to beginning the simulation.
+
+* **Select a different vehicle start position** using the Start Position Control. Each of monoDrive's
+maps are built with starting position. The number in this box corresponds with the number on the map display in the bottom right corner of the VI window.
+
+* **For modifications** to this example, use the closed_loop.json file which can be found in the installation directory under: 
+
+    `C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\scenarios`
+
+
+To run the example, **Click on the "Run" arrow on the top-left corner to start the client.** This will connect the client to the simulator. Errors during the connection will appear in the "Error" dialog on the right. Once connected, the following actions are available through the GUI:
+
+* **Move the car** using the Throttle Slider. This control shows the percentage of 
+the throttle the vehicle will be using.
+
+* **Change the direction** using Direction Control. Switch 
+between moving the vehicle forward or reverse.
+
+* **Steer the vehicle** with the Steering Control. This controls the angle of 
+turning.
+
+* **Apply brakes** using the Brake control. This will apply 100% of the brakes 
+to the vehicle and will stop the vehicle.
+
+**Configuration information:** [mono1_pilot_example.vi](../../examples/mono1_pilot_example)
+
+<p>&nbsp;</p>
 
 ### Scenario Example
 
-Description
+The Scenario Example, mono2_scenario_example.vi, enables users to control the vehicle's steering, throttle, brakes, starting position, and weather simulation in real time. 
+
+*This is a set position multi-vehicle scenario*
 
 <div class="img_container">
     <img class="wide_img" src="../imgs/mono2_image.png" />
 </div>
 
-Instructions
+Prior to running the example, the user will be able to:
+
+* **Select and change the weather profile** by changing the Weather Profile Control. There are various permutations of weather available in the monoDrive Simulator. 
+
+* **Select the map** by using the Map Selection Drop-Down. When running, the monoDrive simulator will switch to this map prior to beginning the simulation.
+
+* **For modifications** to this example, use the closed_loop.json file which can be found in the installation directory under: 
+
+    `C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\scenarios`
+
+
+To run the example, **Click on the "Run" arrow on the top-left corner to start the client.** This will connect the client to the simulator. Errors during the connection will appear in the "Error" dialog on the right. Once connected, the following actions are available through the GUI:
+
+* **Move the car** using the Throttle Slider. This control shows the percentage of 
+the throttle the vehicle will be using.
+
+* **Change the direction** using Direction Control. Switch 
+between moving the vehicle forward or reverse.
+
+* **Steer the vehicle** with the Steering Control. This controls the angle of 
+turning.
+
+* **Apply brakes** using the Brake control. This will apply 100% of the brakes 
+to the vehicle and will stop the vehicle.
+
+**Configuration information:** [mono2_scenario_example.vi](../../examples/mono2_scenario_example)
+
+<p>&nbsp;</p>
 
 ### Replay Example
 
-Description
+The Replay Example, *mono_replay_example.vi*, enables users to select a 
+monoDrive Trajectory File and play it back in simulation. Many of the controls 
+and dialogs are similar to those in the Closed Loop Example. 
 
 <div class="img_container">
     <img class="wide_img" src="../imgs/mono3_image.png" />
 </div>
 
-Instructions
+Prior to running the example, the user will be able to:
+
+* **Select and change the weather profile** by changing the Weather Profile Control. There are various permutations of weather available in the monoDrive Simulator. 
+
+* **Select the map** by using the Map Selection Drop-Down. When running, the monoDrive simulator will switch to this map prior to beginning the simulation.
+
+* **Select the trajectory file** by using the Trajectory File Selection dialog. 
+Successfully connecting the client, this trajectory will be sent to the simulator and immediately begin playing. To change the trajectory file, click the 
+"Browse" button the right-hand side of the dialog. Pre-configured trajectories 
+can be found in the installation directory under: 
+`C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\trajectories`
+
+To run the example, **Click on the "Run" arrow on the top-left corner to start the client.** The playback will begin and the current trajectory steps will be shown in the "Current trajectory" indicator.
+
+**Configuration information:** [mono3_replay_example.vi](../../examples/mono3_replay_example)
+
+<p>&nbsp;</p>
+
 
 ### HIL Example
 
-Description
+The HIL (Hardware-in-the-loop) Example, *mono4_hil_example.vi*, is very similar
+to the Replay Example, except during the replay, it enables users to control the "ego" vehicle. All vehicles will be positioned in provided time steps in the simulation. To trigger the movement, users will need to provide specific direct hardware inputs or software in order to move the ego vehicle. The "EGO Pose Controls" are provided as an example and intended to be replaced by the user's own code.
 
 <div class="img_container">
     <img class="wide_img" src="../imgs/mono4_image.png" />
 </div>
 
-Instructions
+Prior to running the example, the user will be able to:
+
+* **Select and change the weather profile** by changing the Weather Profile Control. There are various permutations of weather available in the monoDrive Simulator. 
+
+* **Select the map** by using the Map Selection Drop-Down. When running, the monoDrive simulator will switch to this map prior to beginning the simulation.
+
+* **Select the trajectory file** by using the Trajectory File Selection dialog. 
+Successfully connecting the client, this trajectory will be sent to the simulator and immediately begin playing. To change the trajectory file, click the 
+"Browse" button the right-hand side of the dialog. Pre-configured trajectories 
+can be found in the installation directory under: 
+`C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\trajectories`
+
+* **Control the EGO vehicle position with the EGO Pose Controls.** The changes 
+made to this control will immediately take effect on the EGO position and 
+kinematics.
+
+**Configuration information:** [mono4_hil_example.vi](../../examples/mono4_hil_example)
+
+<p>&nbsp;</p>
 
 ### Radar Example
 
@@ -92,45 +191,43 @@ Instructions
 
 
 
-### Closed Loop Example
 
-The Closed Loop example (`mono_closed_loop_example.vi`) allows the user to 
-control the vehicle's steering, throttle, brakes, and simulation weather in 
-real time. 
+
+
+
+
+
+### Multi Vehicle Pose Update Example
+
+Similar to the Replay Example, the Mutli-Vehicle Pose Update Example 
+(`mono_multi_vehilce_pose_update_example.vi`) plays back a replay when connected 
+to the simulator. Additionally, it allows the user to change the values in
+the trajectory file for every vehicle in scene.
 
 <div class="img_container">
-    <img class='wide_img' src="../imgs/CL_example.png" />
+    <img class='wide_img' src="../imgs/multi_vehicle.png"/>
 </div>
 
-Prior to running the example, the user can:
+Prior to running this example, the user can: 
 
-* **Select the weather profile by changing the selected weather profile 
-Weather Profile Control.** There are various permutations of weather available 
-in the monoDrive Simulator. 
+* **Select the frame to change values for using the Frame Selection.** This 
+toggles the frame step in the simulation to change values for.
 
-* **Select the map by using the Map Selection Drop-down.** When ran, the 
-monoDrive simulator will switch to this map prior to beginning the simulation.
+* **Change the vehicle to change values for using the Vehicle Selection.** 
+This requires the user to type in the vehicle name of interest into the dialog 
+to change the values for.
 
-* **Select a different position using the Start Position Control.** monoDrive 
-maps come with different start positions around the map. The number in 
-this box corresponds with the number on the map displayed on the bottom right.
+* **Change the vehicle kinematics using the Vehicle Controls.** Similar to the 
+HIL example, this will change the kinematics of the vehicle currently selected 
+in the Vehicle Selection.
 
-To run the example, **Click on the "Run" arrow on the top-left corner 
-to start the client.** This will connect the client to the simulator. If there 
-is an error during the connection it will appear in the "Error" dialog on the 
-right. Once connected, the following actions are available through the GUI:
+Similar to the Replay Example, ensure the map and trajectory file are properly 
+selected prior to running the client. To run the example, **Click on the "Run" 
+arrow on the top-left corner to start the client.** The playback will begin by
+executing the first frame of the modified trajectory.
 
-* **Move the car using the Throttle Slider.** This controls the percentage of 
-the throttle the car will use.
 
-* **Change the direction of travel using Direction control.** This will switch 
-the vehicle between forward and reverse.
 
-* **Steer the vehicle with the Steering Control** This controls the angle of 
-steering.
-
-* **Apply brakes using the Brake control.** This will apply 100% of the brakes 
-to the vehicle and stop it.
 
 ### Replay Example
 
@@ -181,57 +278,7 @@ the previous step in the simulation until the beginning of trajectory file.
 the trajectory will be advanced forward in time until the end of the trajectory 
 file or until the toggle is turned off.
 
-### HIL Example
 
-The HIL (Hardware-in-the-loop) Example (`mono_hil_example.vi`) is very similar
-to the Replay Example, but it allows the user to control the "ego" vehicle
-during the replay. Like the replay example, all vehicles in the simulation
-are positioned as expected at each timestep, but the user is expected to provide
-inputs in order to move the ego vehicle. This can be done through direct 
-hardware inputs or software to trigger the movement. The "EGO Pose Controls" are
-provided as an example and intended to be replaced by the user's own code.
-
-<div class="img_container">
-    <img class='wide_img' src="../imgs/hil_example.png"/>
-</div>
-
-Similar to the Replay Example, ensure the map and trajectory file are properly 
-selected prior to running the client. To run the example, **Click on the "Run" 
-arrow on the top-left corner to start the client.** The playback will begin by
-executing the first frame of the trajectory. The user can now:
-
-* **Control the EGO vehicle position with the EGO Pose Controls.** The changes 
-made to this control will immediately take effect on the EGO position and 
-kinematics.
-
-### Multi Vehicle Pose Update Example
-
-Similar to the Replay Example, the Mutli-Vehicle Pose Update Example 
-(`mono_multi_vehilce_pose_update_example.vi`) plays back a replay when connected 
-to the simulator. Additionally, it allows the user to change the values in
-the trajectory file for every vehicle in scene.
-
-<div class="img_container">
-    <img class='wide_img' src="../imgs/multi_vehicle.png"/>
-</div>
-
-Prior to running this example, the user can: 
-
-* **Select the frame to change values for using the Frame Selection.** This 
-toggles the frame step in the simulation to change values for.
-
-* **Change the vehicle to change values for using the Vehicle Selection.** 
-This requires the user to type in the vehicle name of interest into the dialog 
-to change the values for.
-
-* **Change the vehicle kinematics using the Vehicle Controls.** Similar to the 
-HIL example, this will change the kinematics of the vehicle currently selected 
-in the Vehicle Selection.
-
-Similar to the Replay Example, ensure the map and trajectory file are properly 
-selected prior to running the client. To run the example, **Click on the "Run" 
-arrow on the top-left corner to start the client.** The playback will begin by
-executing the first frame of the modified trajectory.
 
 ## Experimental Examples
 

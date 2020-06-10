@@ -16,7 +16,7 @@ The Pilot Example, *mono1_pilot_example.vi*, enables users to control the vehicl
 *This is a free driving scenario with one car only.*
 
 <div class="img_container">
-    <img class="wide_img" src="../imgs/mono1_image.png" />
+    <img class="wide_img" src="../imgs/mono1.png" />
 </div>
 
 Prior to running the example, the user will be able to:
@@ -38,13 +38,13 @@ To run the example, **Click on the "Run" arrow on the top-left corner to start t
 * **Move the car** using the Throttle Slider. This control shows the percentage of 
 the throttle the vehicle will be using.
 
-* **Change the direction** using Direction Control. Switch 
+* **Change the direction** using Direction Button. Switch 
 between moving the vehicle forward or reverse.
 
 * **Steer the vehicle** with the Steering Control. This controls the angle of 
 turning.
 
-* **Apply brakes** using the Brake control. This will apply 100% of the brakes 
+* **Apply brakes** using the Brake Button. This will apply 100% of the brakes 
 to the vehicle and will stop the vehicle.
 
 **Configuration information:** [mono1_pilot_example.vi](../../examples/mono1_pilot_example)
@@ -58,7 +58,7 @@ The Scenario Example, mono2_scenario_example.vi, enables users to control the ve
 *This is a set position multi-vehicle scenario*
 
 <div class="img_container">
-    <img class="wide_img" src="../imgs/mono2_image.png" />
+    <img class="wide_img" src="../imgs/mono2.png" />
 </div>
 
 Prior to running the example, the user will be able to:
@@ -77,13 +77,13 @@ To run the example, **Click on the "Run" arrow on the top-left corner to start t
 * **Move the car** using the Throttle Slider. This control shows the percentage of 
 the throttle the vehicle will be using.
 
-* **Change the direction** using Direction Control. Switch 
+* **Change the direction** using Direction Button. Switch 
 between moving the vehicle forward or reverse.
 
 * **Steer the vehicle** with the Steering Control. This controls the angle of 
 turning.
 
-* **Apply brakes** using the Brake control. This will apply 100% of the brakes 
+* **Apply brakes** using the Brake Button. This will apply 100% of the brakes 
 to the vehicle and will stop the vehicle.
 
 **Configuration information:** [mono2_scenario_example.vi](../../examples/mono2_scenario_example)
@@ -95,7 +95,7 @@ to the vehicle and will stop the vehicle.
 The Replay Example, *mono_replay_example.vi*, enables users to select and run a monoDrive Trajectory File from beginning to the end. This example does not have the ability to stop at certain point, but is available in the Radar Example. Many of the controls and dialogs are similar to those in the Pilot and Scenario Example. 
 
 <div class="img_container">
-    <img class="wide_img" src="../imgs/mono3_image.png" />
+    <img class="wide_img" src="../imgs/mono3.png" />
 </div>
 
 Prior to running the example, the user will be able to:
@@ -122,7 +122,7 @@ To run the example, **Click on the "Run" arrow on the top-left corner to start t
 The HIL (Hardware-in-the-loop) Example, *mono4_hil_example.vi*, enables users to control the "ego" vehicle. All vehicles will be positioned in provided time steps in the simulation. To trigger the movement, users will need to provide specific direct hardware inputs or software in order to move the ego vehicle. The "EGO Pose Controls" are provided as an example and intended to be replaced by the user's own code.
 
 <div class="img_container">
-    <img class="wide_img" src="../imgs/mono4_image.png" />
+    <img class="wide_img" src="../imgs/mono4.png" />
 </div>
 
 Prior to running the example, the user will be able to:
@@ -150,7 +150,7 @@ will immediately take effect on the EGO position and kinematics.
 The Radar Example, *mono5_radar_example.vi*, enables users to select and run a monoDrive Trajectory File from beginning to the end. The difference between Radar Example and Replay Example, is that this example has the ability to stop at any point during the simulation so that a user may observe or modify the simulation more easily. This is especially helpful when testing a radar sensor.
 
 <div class="img_container">
-    <img class="wide_img" src="../imgs/mono5_image.png" />
+    <img class="wide_img" src="../imgs/mono5.png" />
 </div>
 
 Prior to running the example, the user will be able to:
@@ -180,11 +180,11 @@ To stop the simulation at a specific point or to go through the scenario frame-b
 
 ### Pilot Example with Fixed Time
 
-The Pilot Example with fixed time, *mono6_pilot_example_fixed.vi*, enables users to control the vehicle's steering, throttle, brakes, starting position, and weather simulation with fixed time frames. 
+The Pilot Example with fixed time, *mono6_pilot_example_fixed_time.vi*, enables users to control the vehicle's steering, throttle, brakes, starting position, and weather simulation with fixed time frames. 
 
 
 <div class="img_container">
-    <img class="wide_img" src="../imgs/mono6_image.png" />
+    <img class="wide_img" src="../imgs/mono6.png" />
 </div>
 
 Prior to running the example, the user will be able to:
@@ -205,16 +205,16 @@ To run the example, **Click on the "Run" arrow on the top-left corner to start t
 * **Move the car** using the Throttle Slider. This control shows the percentage of 
 the throttle the vehicle will be using.
 
-* **Change the direction** using Direction Control. Switch 
+* **Change the direction** using Direction Button. Switch 
 between moving the vehicle forward or reverse.
 
 * **Steer the vehicle** with the Steering Control. This controls the angle of 
 turning.
 
-* **Apply brakes** using the Brake control. This will apply 100% of the brakes 
+* **Apply brakes** using the Brake Button. This will apply 100% of the brakes 
 to the vehicle and will stop the vehicle.
 
-**Configuration information:** [mono6_pilot_example_fixed.vi](../../examples/mono6_pilot_example_fixed)
+**Configuration information:** [mono6_pilot_example_fixed_time.vi](../../examples/mono6_pilot_example_fixed)
 
 <p>&nbsp;</p>
 
@@ -232,7 +232,7 @@ Follow the `README.md` located in the `experimental` folder prior to running the
 The Lane Follower Example, *mono_lane_follower_cpp_dll.vi*, demonstrates a vehicle's ability to follow a lane using a Kalman filter. This example is intended to be used with the monoDrive Simulator's "Highway Track" map, but can be used with other maps.
 
 <div class="img_container">
-    <img class='wide_img' src="../imgs/lane_follow.png"/>
+    <img class='wide_img' src="../imgs/lane_follower.png"/>
 </div>
 
 Ensure the map and trajectory file are properly selected prior to running the client. To run the example, click on the "Run" arrow on the top-left corner to start the client. The playback will begin by
@@ -242,20 +242,21 @@ executing the first frame of the modified trajectory.
 
 * **Move the car** using the Throttle Slider. This control shows the percentage of the throttle the vehicle will be using.
 
-* **Change the direction** using Direction Control. Switch between moving the vehicle forward or reverse.
+* **Change the direction** using Direction Button. Switch between moving the vehicle forward or reverse.
 
-* **Apply brakes** using the Brake control. This will apply 100% of the brakes to the vehicle and will stop the vehicle.
+* **Apply brakes** using the Brake Button. This will apply 100% of the brakes to the vehicle and will stop the vehicle.
 
 <p>&nbsp;</p>
 
 ### Radar with Kalman Filter Example 
 
-The Radar with Kalman Filtering Example, *mono_radar_with_kalman_filter_cpp_dll.vi*, demonstrates the use of a Kalman. Filtered to apply the EGO vehicle's brakes during an Automatic Emergency Braking 
-(AEB) scenario. This example is intended to be used with the monoDrive Simulator's "Highway Track" map and the "Car-to-Car-Rear-Stationary.json" trajectory.
+The Radar with Kalman Filtering Example, *mono_radar_with_kalman_filter_cpp_dll.vi*, demonstrates the use of a Kalman, filtered to apply the EGO vehicle's brakes during an Automatic Emergency Braking (AEB) scenario. This example is intended to be used with the monoDrive Simulator's "Highway Track" map and the "Car-to-Car-Rear-Stationary.json" trajectory.
 
 <div class="img_container">
-    <img class='wide_img' src="../imgs/radar.png"/>
+    <img class='wide_img' src="../imgs/kalman.png"/>
 </div>
 
 Ensure the map and trajectory file are properly selected prior to running the client. To run the example, click on the "Run" arrow on the top-left corner to start the client. The playback will begin by
 executing the first frame of the modified trajectory. As the vehicle approaches the stationary vehicle in front of it, the brakes will be dynamically applied by the Kalman filtering algorithm.
+
+<p>&nbsp;</p>

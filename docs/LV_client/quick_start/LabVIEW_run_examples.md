@@ -3,12 +3,11 @@
 ## monoDrive LabView Client Examples
 
 After installing the monoDrive Client from the VI package manager, several
-pre-built examples will be available through the "Help" -> "Find Examples" 
-dialog in LabView. The `ni_monoDrive.lvproj` contains references to all the VIs 
-described here.
+pre-built examples are available through the "Help" -> "Find Examples" 
+dialog in LabVIEW. The NI monoDrive Project file, *ni_monoDrive.lvproj*, contains references to all the VI examples described below.
 
-For all of these examples, you will need to have either the monoDrive Simulator
-running or the monoDrive Scenario Editor open and in "Play" mode.
+For all of these examples, you will need to have either run the monoDrive Simulator
+or monoDrive Scenario Editor open and in "Play" mode.
 
 ### Pilot Example
 
@@ -222,84 +221,63 @@ to the vehicle and will stop the vehicle.
 
 ## Experimental Examples
 
-These example is currently in the *experimental* stage and can be found at:
+These examples are in the *experimental* stage and can be found at:
 `C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\experimental\`
 
 Follow the `README.md` located in the `experimental` folder prior to running these examples in order to compile and install the necessary DLLs.
 
-### Multi-Vehicle Pose Update Example
+### Traffic Control Example
 
-Similar to the Replay Example, the Multi-Vehicle Pose Update Example, mono_multi_vehicle_pose_update_example.vi, plays back a replay when connected 
-to the simulator. Additionally, it allows the user to change the values in
-the trajectory file for every vehicle in scene.
+Similar to the Replay Example, the Traffic Control Example, *mono_traffic_control_example.vi*, enables users to make changes to every vehicle in scene using a trajectory file.
 
 <div class="img_container">
     <img class='wide_img' src="../imgs/multi_vehicle.png"/>
 </div>
 
-Prior to running this example, the user can: 
+Prior to running the example, the user will be able to:
 
-* **Select the frame to change values for using the Frame Selection.** This 
-toggles the frame step in the simulation to change values for.
+* **Select a specific frame** using the Frame Selection.** 
 
-* **Change the vehicle to change values for using the Vehicle Selection.** 
-This requires the user to type in the vehicle name of interest into the dialog 
-to change the values for.
+* **Change the vehicle** using the Vehicle Selection. Input uses typed in vehicle names.
 
-* **Change the vehicle kinematics using the Vehicle Controls.** Similar to the 
-HIL example, this will change the kinematics of the vehicle currently selected 
-in the Vehicle Selection.
+* **Change the vehicle kinematics** using the Vehicle Controls. This will change the kinematics of the vehicle currently selected in the Vehicle Selection.
 
 Similar to the Replay Example, ensure the map and trajectory file are properly 
-selected prior to running the client. To run the example, **Click on the "Run" 
-arrow on the top-left corner to start the client.** The playback will begin by
+selected prior to running the client. To run the example, click on the "Run" 
+arrow on the top-left corner to start the client. The playback will begin by
 executing the first frame of the modified trajectory.
 
+<p>&nbsp;</p>
 
 ### Lane Follower Example 
 
-The Lane Follower Example (`mono_lane_follower_cpp_dll.vi`) demonstrates the
-use of a Kalman filter on a vehicle's ability to stay in and follow a lane. This
-example is intended to be used with the monoDrive Simulator's "Highway Track" 
-map, but can be used in other maps.
+The Lane Follower Example, *mono_lane_follower_cpp_dll.vi*, demonstrates a vehicle's ability to follow a lane using a Kalman filter. This example is intended to be used with the monoDrive Simulator's "Highway Track" map, but can be used with other maps.
 
 <div class="img_container">
     <img class='wide_img' src="../imgs/lane_follow.png"/>
 </div>
 
-Similar to the Closed Loop Example, ensure the map and trajectory file are 
-properly selected prior to running the client. To run the example, **Click on 
-the "Run" arrow on the top-left corner to start the client.** The playback will 
-begin by executing the first frame of the trajectory. The user can now:
+Ensure the map and trajectory file are properly selected prior to running the client. To run the example, click on the "Run" arrow on the top-left corner to start the client. The playback will begin by
+executing the first frame of the modified trajectory.
 
-* **NOTE: The Steering Control is disabled in this example.** This is because it 
-is being controlled by the Kalman filtering algorithm.
+* **NOTE: The Steering Control is disabled in this example.** This is part of being controlled by a Kalman filtering algorithm.
 
-* **Move the car using the Throttle Slider.** This controls the percentage of 
-the throttle the car will use.
+* **Move the car** using the Throttle Slider. This control shows the percentage of the throttle the vehicle will be using.
 
-* **Change the direction of travel using Direction control.** This will switch 
-the vehicle between forward and reverse.
+* **Change the direction** using Direction Control. Switch between moving the vehicle forward or reverse.
 
-* **Apply brakes using the Brake control.** This will apply 100% of the brakes 
-to the vehicle and stop it.
+* **Apply brakes** using the Brake control. This will apply 100% of the brakes to the vehicle and will stop the vehicle.
+
+<p>&nbsp;</p>
 
 ### Radar with Kalman Filter Example 
 
-The Radar with Kalman Filtering Example, mono_radar_with_kalman_filter_cpp_dll.vi, demonstrates the use of a Kalman.
-
-Filter to apply the EGO vehicle's brakes during an Automatic Emergency Braking 
-(AEB) scenario. This example is intended to be used with the monoDrive 
-Simulator's "Highway Track" map and the "Car-to-Car-Rear-Stationary.json" 
-trajectory.
+The Radar with Kalman Filtering Example, *mono_radar_with_kalman_filter_cpp_dll.vi*, demonstrates the use of a Kalman. Filtered to apply the EGO vehicle's brakes during an Automatic Emergency Braking 
+(AEB) scenario. This example is intended to be used with the monoDrive Simulator's "Highway Track" map and the "Car-to-Car-Rear-Stationary.json" trajectory.
 
 <div class="img_container">
     <img class='wide_img' src="../imgs/radar.png"/>
 </div>
 
-Similar to the Replay Example, ensure the map and trajectory file are properly 
-selected prior to running the client. To run the example, **Click on the "Run" 
-arrow on the top-left corner to start the client.** The playback will begin by
-executing the first frame of the trajectory. As the vehicle approaches the
-stationary vehicle in front of it, the brakes will be dynamically applied by
-the Kalman filtering algorithm.
+Ensure the map and trajectory file are properly selected prior to running the client. To run the example, click on the "Run" arrow on the top-left corner to start the client. The playback will begin by
+executing the first frame of the modified trajectory. As the vehicle approaches the stationary vehicle in front of it, the brakes will be dynamically applied by the Kalman filtering algorithm.

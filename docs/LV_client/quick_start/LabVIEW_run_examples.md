@@ -226,30 +226,6 @@ These examples are in the *experimental* stage and can be found at:
 
 Follow the `README.md` located in the `experimental` folder prior to running these examples in order to compile and install the necessary DLLs.
 
-### Traffic Control Example
-
-Similar to the Replay Example, the Traffic Control Example, *mono_traffic_control_example.vi*, enables users to make changes to every vehicle in scene using a trajectory file.
-
-<div class="img_container">
-    <img class='wide_img' src="../imgs/multi_vehicle.png"/>
-</div>
-
-Prior to running the example, the user will be able to:
-
-* **Select a specific frame** using the Frame Selection.
-
-* **Select velocity, tags, position, orientation and angular velocity of the Traffic Vehicle** using Traffic Vehicle Settings.
-
-* **Change the vehicle** using the Vehicle Selection. Input uses typed in vehicle names.
-
-* **Change the wheel settings** using the Vehicle Wheel Controls. This will change the wheel settings for the currently selected vehicle in the Vehicle Selection.
-
-Similar to the Replay Example, ensure the map and trajectory file are properly 
-selected prior to running the client. To run the example, click on the "Run" 
-arrow on the top-left corner to start the client. The playback will begin by
-executing the first frame of the modified trajectory.
-
-<p>&nbsp;</p>
 
 ### Lane Follower Example 
 

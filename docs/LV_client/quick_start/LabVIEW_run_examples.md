@@ -1,7 +1,5 @@
 # LabView Client Examples
 
-## monoDrive LabView Client Examples
-
 After installing the monoDrive Client from the VI package manager, several
 pre-built examples are available through the "Help" -> "Find Examples" 
 dialog in LabVIEW. The NI monoDrive Project file, *ni_monoDrive.lvproj*, contains references to all the VI examples described below.
@@ -9,7 +7,7 @@ dialog in LabVIEW. The NI monoDrive Project file, *ni_monoDrive.lvproj*, contain
 For all of these examples, you will need to have either run the monoDrive Simulator
 or monoDrive Scenario Editor open and in "Play" mode.
 
-### Pilot Example
+## Pilot Example
 
 The Pilot Example, *mono1_pilot_example.vi*, enables users to control the vehicle's steering, throttle, brakes, starting position, and weather simulation in real time. 
 
@@ -51,7 +49,7 @@ to the vehicle and will stop the vehicle.
 
 <p>&nbsp;</p>
 
-### Scenario Example
+## Scenario Example
 
 The Scenario Example, mono2_scenario_example.vi, enables users to control the vehicle's steering, throttle, brakes, starting position, and weather simulation in real time. 
 
@@ -90,7 +88,7 @@ to the vehicle and will stop the vehicle.
 
 <p>&nbsp;</p>
 
-### Replay Example
+## Replay Example
 
 The Replay Example, *mono_replay_example.vi*, enables users to select and run a monoDrive Trajectory File from beginning to the end. This example does not have the ability to stop at certain point, but is available in the Radar Example. Many of the controls and dialogs are similar to those in the Pilot and Scenario Example. 
 
@@ -117,7 +115,7 @@ To run the example, **Click on the "Run" arrow on the top-left corner to start t
 <p>&nbsp;</p>
 
 
-### HIL Example
+## HIL Example
 
 The HIL (Hardware-in-the-loop) Example, *mono4_hil_example.vi*, enables users to control the "ego" vehicle. All vehicles will be positioned in provided time steps in the simulation. To trigger the movement, users will need to provide specific direct hardware inputs or software in order to move the ego vehicle. The "EGO Pose Controls" are provided as an example and intended to be replaced by the user's own code.
 
@@ -145,7 +143,7 @@ will immediately take effect on the EGO position and kinematics.
 
 <p>&nbsp;</p>
 
-### Radar Example
+## Radar Example
 
 The Radar Example, *mono5_radar_example.vi*, enables users to select and run a monoDrive Trajectory File from beginning to the end. The difference between Radar Example and Replay Example, is that this example has the ability to stop at any point during the simulation so that a user may observe or modify the simulation more easily. This is especially helpful when testing a radar sensor.
 
@@ -178,7 +176,7 @@ To stop the simulation at a specific point or to go through the scenario frame-b
 
 <p>&nbsp;</p>
 
-### Pilot Example with Fixed Time
+## Pilot Example with Fixed Time
 
 The Pilot Example with fixed time, *mono6_pilot_example_fixed_time.vi*, enables users to control the vehicle's steering, throttle, brakes, starting position, and weather simulation with fixed time frames. 
 

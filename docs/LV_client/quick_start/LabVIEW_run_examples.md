@@ -53,7 +53,7 @@ to the vehicle and will stop the vehicle.
 
 The Scenario Example, mono2_scenario_example.vi, enables users to control the vehicle's steering, throttle, brakes, starting position, and weather simulation in real time. 
 
-*This is a set position multi-vehicle scenario*
+*This is a free driving scenario with other vehicles spawning on specified positions and in autopilot mode from the scenario file.*
 
 <div class="img_container">
     <img class="wide_img" src="../imgs/mono2.png" />
@@ -65,7 +65,7 @@ Prior to running the example, the user will be able to:
 
 * **Select the map** by using the Map Selection Drop-Down. When running, the monoDrive simulator will switch to this map prior to beginning the simulation.
 
-* **For modifications** to this example, use the scenario_config_multi_vehicle.json file which can be found in the installation directory under: 
+* **For modifications** to this example, use the scenario_example.json file which can be found in the installation directory under: 
 
     `C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\scenarios`
 
@@ -90,7 +90,7 @@ to the vehicle and will stop the vehicle.
 
 ## Replay Example
 
-The Replay Example, *mono_replay_example.vi*, enables users to select and run a monoDrive Trajectory File from beginning to the end. This example does not have the ability to stop at certain point, but is available in the Radar Example. Many of the controls and dialogs are similar to those in the Pilot and Scenario Example. 
+The Replay Example, *mono_replay_example.vi*, enables users to select and run a monoDrive Trajectory File from beginning to the end. This example does not have the ability to stop at certain point, but is available in the Radar Example. 
 
 <div class="img_container">
     <img class="wide_img" src="../imgs/mono3.png" />
@@ -106,9 +106,10 @@ Prior to running the example, the user will be able to:
 Successfully connecting the client, this trajectory will be sent to the simulator and immediately begin playing. To change the trajectory file, click the 
 "Browse" button the right-hand side of the dialog. Pre-configured trajectories 
 can be found in the installation directory under: 
+
 `C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\trajectories`
 
-To run the example, **Click on the "Run" arrow on the top-left corner to start the client.** The playback will begin and the current trajectory steps will be shown in the "Current trajectory" indicator.
+To run the example, **Click on the "Run" arrow on the top-left corner to start the client.** The playback will begin and the current frame steps will be shown in the "Current Frame" indicator.
 
 **Configuration information:** [mono3_replay_example.vi](../../examples/mono3_replay_example)
 
@@ -164,7 +165,7 @@ can be found in the installation directory under:
 
 `C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\trajectories`
 
-To run the example, **Click on the "Run" arrow on the top-left corner to start the client.** The playback will begin and the current trajectory steps will be shown in the "Current trajectory" indicator.
+To run the example, **Click on the "Run" arrow on the top-left corner to start the client.** The playback will begin and the current frame steps will be shown in the "Current Frame" indicator.
 
 To stop the simulation at a specific point or to go through the scenario frame-by-frame, **use the Autoplay Toggle**. When this toggle is on, the trajectory will be advanced through the simulation without stopping like the Replay Example. When switched off the simulation will stop, use the "Next" button or the "Previous" button to control the frame.
 
@@ -178,7 +179,7 @@ To stop the simulation at a specific point or to go through the scenario frame-b
 
 ## Pilot Example with Fixed Time
 
-The Pilot Example with fixed time, *mono6_pilot_example_fixed_time.vi*, enables users to control the vehicle's steering, throttle, brakes, starting position, and weather simulation with fixed time frames. 
+The Pilot Example with fixed time, *mono6_pilot_example_fixed_time.vi*, enables users to control the vehicle's steering, throttle, brakes, starting position, and weather simulation with fixed time step. 
 
 
 <div class="img_container">
@@ -227,7 +228,7 @@ Follow the `README.md` located in the `experimental` folder prior to running the
 
 ### Lane Follower Example 
 
-The Lane Follower Example, *mono_lane_follower_cpp_dll.vi*, demonstrates a vehicle's ability to follow a lane using a Kalman filter. This example is intended to be used with the monoDrive Simulator's "Highway Track" map, but can be used with other maps.
+The Lane Follower Example, *mono_lane_follower_cpp_dll.vi*, demonstrates a vehicle's ability to follow a lane using a compiled C++ DLL. This algorithm uses GeoJson map and state sensor information to follow a second lane on the map.
 
 <div class="img_container">
     <img class='wide_img' src="../imgs/lane_follower.png"/>
@@ -236,7 +237,7 @@ The Lane Follower Example, *mono_lane_follower_cpp_dll.vi*, demonstrates a vehic
 Ensure the map and trajectory file are properly selected prior to running the client. To run the example, click on the "Run" arrow on the top-left corner to start the client. The playback will begin by
 executing the first frame of the modified trajectory.
 
-* **NOTE: The Steering Control is disabled in this example.** This is part of being controlled by a Kalman filtering algorithm.
+* **NOTE: The Steering Control is disabled in this example.** The steering value is being calculated by the C++ compiled DLL.
 
 * **Move the car** using the Throttle Slider. This control shows the percentage of the throttle the vehicle will be using.
 
@@ -248,7 +249,7 @@ executing the first frame of the modified trajectory.
 
 ### Radar with Kalman Filter Example 
 
-The Radar with Kalman Filtering Example, *mono_radar_with_kalman_filter_cpp_dll.vi*, demonstrates the use of a Kalman, filtered to apply the EGO vehicle's brakes during an Automatic Emergency Braking (AEB) scenario. This example is intended to be used with the monoDrive Simulator's "Highway Track" map and the "Car-to-Car-Rear-Stationary.json" trajectory.
+The Radar with Kalman Filtering Example, *mono_radar_with_kalman_filter_cpp_dll.vi*, demonstrates a compiled C++ DLL with implementation of a Kalman Filter. The Kalman Filter applies to the AoA from monoDrive's Radar sensor when the EGO vehicle brakes during an Automatic Emergency Braking (AEB) scenario. This example is intended to be used with the monoDrive Simulator's "Highway Track" map and the "Car-to-Car-Rear-Stationary.json" trajectory.
 
 <div class="img_container">
     <img class='wide_img' src="../imgs/kalman.png"/>

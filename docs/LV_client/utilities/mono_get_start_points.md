@@ -1,12 +1,12 @@
-# mono_send_scenario_config.vi
+# mono_get_start_points.vi
 
 <p class="img_container">
-<img class="lg_img" src="../mono_send_scenario_config.png"/>
+<img class="lg_img" src="../mono_get_start_points.png"/>
 </p>
 
 ### Description
 
-Configure the trajectory EGO and other cars in the scene will follow  by given a path to JSON file.
+Send the GetStartPoints command to obtain the starting points for the map.s
 
 For technical support contact us at <b>support@monodrive.io</b> 
 
@@ -100,20 +100,30 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 - **Map Geojson:**   
 
-- **Scenario configuration:**   
+- **Starting Points:**   
+
+- **locations:**   
+
+- **Numeric:**  rol 
+
+- **type:**   
+
+- **String:**   
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>
-X:**   
+p Geojson:**   
 
-- **#2.3.4.4:Scale Y:**   
+- **Starting Points:**   
 
-- **#2.3.5:Map:**   
+- **#3.1:locations:**   
 
-- **#2.3.6:Map Geojson:**   
+- **#3.1.1:Numeric:**  rol 
 
-- **Scenario configuration:**   
+- **#3.3:type:**   
+
+- **#3.3.1:String:**   
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

@@ -1,7 +1,7 @@
-# mono_send_scenario_config.vi
+# mono_send_trajectory.vi
 
 <p class="img_container">
-<img class="lg_img" src="../mono_send_scenario_config.png"/>
+<img class="lg_img" src="../mono_send_trajectory.png"/>
 </p>
 
 ### Description
@@ -100,12 +100,12 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 - **Map Geojson:**   
 
-- **Scenario configuration:**   
+- **Trajectory configuration:**   
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>
-X:**   
+**   
 
 - **#2.3.4.4:Scale Y:**   
 
@@ -113,7 +113,7 @@ X:**
 
 - **#2.3.6:Map Geojson:**   
 
-- **Scenario configuration:**   
+- **Trajectory configuration:**   
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

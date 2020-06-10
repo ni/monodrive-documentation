@@ -1,16 +1,18 @@
-# mono_send_scenario_config.vi
+# mono_get_map.vi
 
 <p class="img_container">
-<img class="lg_img" src="../mono_send_scenario_config.png"/>
+<img class="lg_img" src="../mono_get_map.png"/>
 </p>
 
 ### Description
 
-Configure the trajectory EGO and other cars in the scene will follow  by given a path to JSON file.
+Send the GetMap command to obtain the map data on geojson or array format.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 
 ### Inputs
+
+- **message:**   
 
 - **monoDrive in:**   
 
@@ -100,20 +102,18 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 - **Map Geojson:**   
 
-- **Scenario configuration:**   
-
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>
-X:**   
+2:min_X:**   
+
+- **#2.3.4.3:Scale X:**   
 
 - **#2.3.4.4:Scale Y:**   
 
 - **#2.3.5:Map:**   
 
 - **#2.3.6:Map Geojson:**   
-
-- **Scenario configuration:**   
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

@@ -1,7 +1,7 @@
-# mono_send_scenario_config.vi
+# mono_send_pilot_scenario.vi
 
 <p class="img_container">
-<img class="lg_img" src="../mono_send_scenario_config.png"/>
+<img class="lg_img" src="../mono_send_pilot_scenario.png"/>
 </p>
 
 ### Description

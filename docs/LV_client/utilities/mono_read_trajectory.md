@@ -1,13 +1,12 @@
-# mono_send_scenario_config.vi
+# mono_read_trajectory.vi
 
 <p class="img_container">
-<img class="lg_img" src="../mono_send_scenario_config.png"/>
+<img class="lg_img" src="../mono_read_trajectory.png"/>
 </p>
 
 ### Description
 
-Configure the trajectory EGO and other cars in the scene will follow  by given a path to JSON file.
-
+Read a trajectory string and modify the EGO pose with values given by the user.
 For technical support contact us at <b>support@monodrive.io</b> 
 
 ### Inputs
@@ -60,61 +59,9 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Outputs
 
-- **y:**   
-
-- **Numeric:**  rol 
-
-- **StartPosition:**   
-
-- **start_points:**   
-
-- **locations:**   
-
-- **Numeric:**  rol 
-
-- **type:**   
-
-- **String:**   
-
-- **StartRotation:**   
-
-- **Numeric:**  rol 
-
-- **Draw Map Size:**   
-
-- **Width:**   
-
-- **Height:**   
-
-- **DrawArea:**   
-
-- **min_Y:**   
-
-- **min_X:**   
-
-- **Scale X:**   
-
-- **Scale Y:**   
-
-- **Map:**   
-
-- **Map Geojson:**   
-
-- **Scenario configuration:**   
-
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>
-X:**   
-
-- **#2.3.4.4:Scale Y:**   
-
-- **#2.3.5:Map:**   
-
-- **#2.3.6:Map Geojson:**   
-
-- **Scenario configuration:**   
-
-- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
+ation wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>

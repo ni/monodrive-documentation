@@ -236,11 +236,13 @@ Similar to the Replay Example, the Traffic Control Example, *mono_traffic_contro
 
 Prior to running the example, the user will be able to:
 
-* **Select a specific frame** using the Frame Selection.** 
+* **Select a specific frame** using the Frame Selection.
+
+* **Select velocity, tags, position, orientation and angular velocity of the Traffic Vehicle** using Traffic Vehicle Settings.
 
 * **Change the vehicle** using the Vehicle Selection. Input uses typed in vehicle names.
 
-* **Change the vehicle kinematics** using the Vehicle Controls. This will change the kinematics of the vehicle currently selected in the Vehicle Selection.
+* **Change the wheel settings** using the Vehicle Wheel Controls. This will change the wheel settings for the currently selected vehicle in the Vehicle Selection.
 
 Similar to the Replay Example, ensure the map and trajectory file are properly 
 selected prior to running the client. To run the example, click on the "Run" 

@@ -12,16 +12,21 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
+- **Config_Path:**  Path to the configuration file
+ 
+
+- **Base_path:**  Base path to build an absolute path if a relative path is
+given
+ 
+
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
+- **Config_path_out:**  Absolute or relative path to read a scenario file or
+trajectory file
+ 
+
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
-
-<p>&nbsp;</p>
-led VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
-
-<p>&nbsp;</p>
-e if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>

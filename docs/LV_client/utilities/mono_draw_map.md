@@ -1,7 +1,7 @@
-# mono_start_point.vi
+# mono_draw_map.vi
 
 <p class="img_container">
-<img class="lg_img" src="../mono_start_point.png"/>
+<img class="lg_img" src="../mono_draw_map.png"/>
 </p>
 
 ### Description
@@ -11,6 +11,9 @@ Query the start points from the map.
 For technical support contact us at <b>support@monodrive.io</b> 
 
 ### Inputs
+
+- **monoDrive in (Cluster):** See description at [**monoDrive.ctl**](../structures/monoDrive.md). 
+
 
 - **Vehicle Start Position:**  The index on the stat position options to use to spawn the
 vehicle
@@ -31,7 +34,6 @@ vehicle
    "format": "point_array"
 }
 ``` 
- 
 
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

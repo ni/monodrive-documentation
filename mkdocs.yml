@@ -143,7 +143,7 @@ pages:
           - mono_lidar_packages.vi: LV_client/utilities/mono_lidar_packages.md
           - mono_lidar_plot.vi: LV_client/utilities/mono_lidar_plot.md
           - mono_parse_lidar_configuration.vi: LV_client/utilities/mono_parse_lidar_configuration.md
-          - mono_parse_lidar_raw_data.vi: LV_client/utilities/mono_parse_lidar_raw_data.md
+          - mono_obtain_timestamp.vi: LV_client/utilities/mono_obtain_timestamp.md
           - mono_parse_map_data.vi: LV_client/utilities/mono_parse_map_data.md
           - mono_parse_simulator_config.vi: LV_client/utilities/mono_parse_simulator_config.md
           - mono_parse_simulator_version.vi: LV_client/utilities/mono_parse_simulator_version.md

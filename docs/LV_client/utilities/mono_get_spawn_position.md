@@ -12,8 +12,6 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
-- **monoDrive in (Cluster):** See description at [**monoDrive.ctl**](../structures/monoDrive.md). 
-
 - **Starting Points:**  Pre-built points on the map where the ego vehicle can be
 spawn. Cluster with the following structure:    
    
@@ -23,8 +21,9 @@ spawn. Cluster with the following structure:
 |rotations | DBL 2D Array  | yaw, pitch, roll|
 |type | string  | PlayerStartPIE (camera) or PlayerStart |
  
-
 - **Vehicle Start Position:** Index to select the spawn position and rotation for the ego vehicle
+
+- **monoDrive in (Cluster):** See description at [**monoDrive.ctl**](../structures/monoDrive.md). 
 
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

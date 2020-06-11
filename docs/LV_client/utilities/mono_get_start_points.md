@@ -27,6 +27,7 @@ spawn. Cluster with the following structure:
 |rotations | DBL 2D Array  | yaw, pitch, roll|
 |type | string  | PlayerStartPIE (camera) or PlayerStart |
  
+- **monoDrive out (Cluster):** See description at [**monoDrive.ctl**](../structures/monoDrive.md). 
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

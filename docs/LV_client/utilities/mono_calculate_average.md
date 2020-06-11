@@ -12,16 +12,17 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
+- **Values to average:**  Array of values for one specific target, these can values
+can be Aoa, range or velocity
+ 
+
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
+- **Average:**  Average for the given array
+ 
+
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
-
-<p>&nbsp;</p>
- can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
-
-<p>&nbsp;</p>
-vent of errors from other VIs. 
 
 <p>&nbsp;</p>

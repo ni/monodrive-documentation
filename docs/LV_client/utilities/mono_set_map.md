@@ -12,7 +12,7 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
-- **Simulator Configuration in:**   
+- **Simulator Configuration in:**  Simulator configuration (JSON format) 
 
 - **Map:**  Name of the map on the simulator configuration
  

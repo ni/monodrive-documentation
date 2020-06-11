@@ -6,11 +6,11 @@
 
 ### Description
 
-Sends a command to the monoDrive Simulator to control the movement of ego vehicle.
- Parameters:
-  -- forward_amount: a value between -1.0 and 1.0 that determines the amount of throttle to apply
-  -- right_amount: a value between -1.0 and 1.0 that determines the steering position (-1 is left, +1 is right)
+Sends a set of commands to the monoDrive Simulator to control the movement of ego vehicle.    
 
+    - ClosedLoopStepCommand_ID
+    - SampleSensorsCommand_ID
+    - EgoControl_ID
 
 
 For technical support contact us at <b>support@monodrive.io</b> 

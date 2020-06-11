@@ -10,14 +10,20 @@ Replace the start position and pose of the ego vehicle using the information fro
 
 ### Inputs
 
-- **Start rotation:**  Rotation information (yaw,pitch, roll) for the start point
-- **Vehicles in:** List of the vehicles in the scenario.
+- **Vehicles in:**  A list with all the vehicles
+ 
+
+- **Start location:**  Coordinates (x,y,z) for the start position
+ 
+
+- **Vehicle settings:**  Settings all vehicles have, ie. body color, body type, etc
+ 
 
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
-- **Vehicles out:**  List of the vehicles including the modified ego vehicle
+- **Vehicles out:**  The list of the vehicles including the modified ego vehicle
  
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 

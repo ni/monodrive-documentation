@@ -23,10 +23,11 @@ closed loop mode
 
 ### Outputs
 
+- **monoDrive out (Cluster):** See description at [**monoDrive.ctl**](../structures/monoDrive.md).  
+
 - **Scenario configuration:**  Scenario read (JSON)  from the Scenario Configuration path
  
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>
-;</p>

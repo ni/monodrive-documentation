@@ -53,7 +53,7 @@ to the vehicle and will stop the vehicle.
 
 The Scenario Example, mono2_scenario_example.vi, enables users to control the vehicle's steering, throttle, brakes, starting position, and weather simulation in real time. 
 
-*This is a free driving scenario with other vehicles spawning on specified positions and in autopilot mode from the scenario file.*
+*This is a free driving scenario with other vehicles spawning on specified positions in autopilot mode*
 
 <div class="img_container">
     <img class="wide_img" src="../imgs/mono2.png" />
@@ -220,10 +220,11 @@ to the vehicle and will stop the vehicle.
 
 ## Experimental Examples
 
-These examples are in the *experimental* stage and can be found at:
+Experimental examples show one of many ways to integrate custom code into the simulator. These examples are in the *experimental* stage and can be found at:
+
 `C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\experimental\`
 
-Follow the `README.md` located in the `experimental` folder prior to running these examples in order to compile and install the necessary DLLs.
+Follow the `README.md` located in the `experimental` folder prior to running these examples in order to compile and install the necessary DLLs. 
 
 
 ### Lane Follower Example 
@@ -234,8 +235,7 @@ The Lane Follower Example, *mono_lane_follower_cpp_dll.vi*, demonstrates a vehic
     <img class='wide_img' src="../imgs/lane_follower.png"/>
 </div>
 
-Ensure the map and trajectory file are properly selected prior to running the client. To run the example, click on the "Run" arrow on the top-left corner to start the client. The playback will begin by
-executing the first frame of the modified trajectory.
+Ensure the map and trajectory file are properly selected prior to running the client. To run the example, click on the "Run" arrow on the top-left corner to start the client. The playback will begin by executing the first frame of the modified trajectory.
 
 * **NOTE: The Steering Control is disabled in this example.** The steering value is being calculated by the C++ compiled DLL.
 
@@ -249,7 +249,7 @@ executing the first frame of the modified trajectory.
 
 ### Radar with Kalman Filter Example 
 
-The Radar with Kalman Filtering Example, *mono_radar_with_kalman_filter_cpp_dll.vi*, demonstrates a compiled C++ DLL with implementation of a Kalman Filter. The Kalman Filter applies to the AoA from monoDrive's Radar sensor when the EGO vehicle brakes during an Automatic Emergency Braking (AEB) scenario. This example is intended to be used with the monoDrive Simulator's "Highway Track" map and the "Car-to-Car-Rear-Stationary.json" trajectory.
+The Radar with Kalman Filtering Example, *mono_radar_with_kalman_filter_cpp_dll.vi*, demonstrates a compiled C++ DLL with implementation of a Kalman Filter. The Kalman Filter applies to the Angle of Arrival from monoDrive's Radar sensor when the EGO vehicle brakes during an Automatic Emergency Braking (AEB) scenario. This example is intended to be used with the monoDrive Simulator's "Highway Track" map and the "Car-to-Car-Rear-Stationary.json" trajectory.
 
 <div class="img_container">
     <img class='wide_img' src="../imgs/kalman.png"/>

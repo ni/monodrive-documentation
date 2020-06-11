@@ -162,7 +162,7 @@ pages:
           - mono_send_vehicle_command.vi: LV_client/utilities/mono_send_vehicle_command.md
           - mono_sensor_parser.vi: LV_client/utilities/mono_sensor_parser.md
           - mono_set_map.vi: LV_client/utilities/mono_set_map.md
-          - mono_start_point.vi: LV_client/utilities/mono_start_point.md
+          - mono_draw_map.vi: LV_client/utilities/mono_draw_map.md
           - mono_velodyne_parse.vi: LV_client/utilities/mono_velodyne_parse.md
 
       - Shared Libraries:

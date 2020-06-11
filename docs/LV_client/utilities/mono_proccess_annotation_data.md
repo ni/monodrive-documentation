@@ -12,11 +12,20 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
+- **Annotation Data:**  Annotation string obtain from the server when annotation is
+configured for he sensor
+ 
+
+- **Image in:**  Camera output image
+ 
+
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
-- **Image out:**   
+- **Annotation data:**  Array of clusters containing the parsed data from the
+annotation 
+ 
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

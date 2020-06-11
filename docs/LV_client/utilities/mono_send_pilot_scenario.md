@@ -6,13 +6,16 @@
 
 ### Description
 
-Configure the trajectory EGO and other cars in the scene will follow  by given a path to JSON file.
+Reads an scenario file (JSON) and sends it to the server.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 
 ### Inputs
 
-- **Scenario Configuration:**  Path to the scenario file to use to run the simulaion on
+- **monoDrive in (Cluster):** See description at [**monoDrive.ctl**](../structures/monoDrive.md).  
+
+
+- **Scenario configuration:**  Path to the scenario file to use to run the simulation on
 closed loop mode
  
 
@@ -20,8 +23,10 @@ closed loop mode
 
 ### Outputs
 
-- **monoDrive out (Cluster):** See description at [**monoDrive.ctl**](../structures/monoDrive.md). 
+- **Scenario configuration:**  Scenario read (JSON)  from the Scenario Configuration path
+ 
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>
+;</p>

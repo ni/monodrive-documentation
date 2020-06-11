@@ -150,8 +150,7 @@ pages:
           - mono_parse_start_points.vi: LV_client/utilities/mono_parse_start_points.md
           - mono_proccess_annotation_data.vi: LV_client/utilities/mono_proccess_annotation_data.md
           - mono_read_file.vi: LV_client/utilities/mono_read_file.md
-          - mono_read_trajectory.vi: LV_client/utilities/mono_read_trajectory.md
-          - mono_remove_response_message.vi: LV_client/utilities/mono_remove_response_message.md
+          - mono_read_trajectory.vi: LV_client/utilities/mono_read_trajectory_frame.md
           - mono_replace_ego_spawn_position.vi: LV_client/utilities/mono_replace_ego_spawn_position.md
           - mono_scale_map.vi: LV_client/utilities/mono_scale_map.md
           - mono_send_fixed_step_command.vi: LV_client/utilities/mono_send_fixed_step_command.md

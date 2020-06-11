@@ -12,9 +12,25 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
+- **Sensor configuration:**  Sensor configuration on JSON format
+ 
+
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
+
+- **Port out:**  Number obtained from the configuration. This is the port
+number to open a TCP connection 
+ 
+
+- **Stream dimensions:**  Width and height for the output image from any camera
+sensor, values obtained from the configuration
+ 
+
+- **include_annotation:**  True if the *include_annotation* tag was found and set to
+true on the  sensor configuration (only applies to camera
+sensors)
+ 
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

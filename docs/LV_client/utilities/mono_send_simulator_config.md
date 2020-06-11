@@ -12,11 +12,19 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
-- **Simulator Configuration:**   
+- **monoDrive in (Cluster):** See description at [**monoDrive.ctl**](../structures/monoDrive.md).  
 
-- **Running mode:**   
+- **Simulator Configuration:**  Simulator configuration (JSON string) 
+ 
+- **Running mode:**  Configure the running mode for the simulator:    
 
-- **Select a map:**   
+    - 0 - Closed_loop
+    - 1 - Replay
+    - 2 - Replay_step
+ 
+
+- **Select a map:**  Select the map to load on the Simulator
+ 
 
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

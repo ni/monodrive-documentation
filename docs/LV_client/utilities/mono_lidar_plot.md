@@ -12,9 +12,23 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
+- **LiDAR Data:**  Data for each point on the point cloud. Including:    
+    - Azimuth (degrees)
+    - Vertical Angle (degrees)
+    - Distance (cm)
+    - Intensity (0-255)
+    - Vertical Offset (cm)
+ 
+
+- **Number points:**   
+
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
+
+- **LiDAR points:**   
+
+- **Intensity:**   
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

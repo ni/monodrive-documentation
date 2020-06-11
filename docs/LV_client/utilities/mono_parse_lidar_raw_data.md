@@ -11,9 +11,18 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
+- **LiDAR raw data:**  Raw data form LiDAR sensor
+ 
+
+- **Bit offset (1200):**  Bit offset where the timestamp information is located on the
+LiDAR stream
+ 
+
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
+
+- **Timestamp (us):**   
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

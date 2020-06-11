@@ -1,209 +1,261 @@
 # LabVIEW Client Examples
 
-## monoDrive LabVIEW Client Examples
-
 After installing the monoDrive Client from the VI package manager, several
-pre-built examples will be available through the "Help" -> "Find Examples" 
-dialog in LabVIEW. The `ni_monoDrive.lvproj` contains references to all the VIs 
-described here.
+pre-built examples are available through the "Help" -> "Find Examples" 
+dialog in LabVIEW. The NI monoDrive Project file, *ni_monoDrive.lvproj*, contains references to all the VI examples described below.
 
-For all of these examples, you will need to have either the monoDrive Simulator
-running or the monoDrive Scenario Editor open and in "Play" mode.
+For all of these examples, you will need to have either run the monoDrive Simulator
+or monoDrive Scenario Editor open and in "Play" mode.
 
-### Closed Loop Example
+## Pilot Example
 
-The Closed Loop example (`mono_closed_loop_example.vi`) allows the user to 
-control the vehicle's steering, throttle, brakes, and simulation weather in 
-real time. 
+The Pilot Example, *mono1_pilot_example.vi*, enables users to control the vehicle's steering, throttle, brakes, starting position, and weather simulation in real time. 
 
-<div class="img_container">
-    <img class='wide_img' src="../imgs/CL_example.png" />
-</div>
-
-Prior to running the example, the user can:
-
-* **Select the weather profile by changing the selected weather profile 
-Weather Profile Control.** There are various permutations of weather available 
-in the monoDrive Simulator. 
-
-* **Select the map by using the Map Selection Drop-down.** When ran, the 
-monoDrive simulator will switch to this map prior to beginning the simulation.
-
-* **Select a different position using the Start Position Control.** monoDrive 
-maps come with different start positions around the map. The number in 
-this box corresponds with the number on the map displayed on the bottom right.
-
-To run the example, **Click on the "Run" arrow on the top-left corner 
-to start the client.** This will connect the client to the simulator. If there 
-is an error during the connection it will appear in the "Error" dialog on the 
-right. Once connected, the following actions are available through the GUI:
-
-* **Move the car using the Throttle Slider.** This controls the percentage of 
-the throttle the car will use.
-
-* **Change the direction of travel using Direction control.** This will switch 
-the vehicle between forward and reverse.
-
-* **Steer the vehicle with the Steering Control** This controls the angle of 
-steering.
-
-* **Apply brakes using the Brake control.** This will apply 100% of the brakes 
-to the vehicle and stop it.
-
-### Replay Example
-
-The Replay Example (`mono_replay_example.vi`) allows a user to select a 
-monoDrive Trajectory File and play it back in simulation. Many of the controls 
-and dialogs are similar to the the Closed Loop Example. 
+*This is a free driving scenario with one car only.*
 
 <div class="img_container">
-    <img class='wide_img' src="../imgs/replay_example.png"/>
+    <img class="wide_img" src="../imgs/mono1.png" />
 </div>
 
-Prior to running this example, the user can: 
+Prior to running the example, the user will be able to:
 
-* **Select the trajectory file by using the Trajectory File Selection dialog.** 
-This trajectory will be sent to the simulator and immediately begin playing on 
-successfully connecting the client. To change the trajectory file, click the 
+* **Select and change the weather profile** by changing the Weather Profile Control. There are various permutations of weather available in the monoDrive Simulator. 
+
+* **Select the map** by using the Map Selection Drop-Down. When running, the monoDrive simulator will switch to this map prior to beginning the simulation.
+
+* **Select a different vehicle start position** using the Start Position Control. Each of monoDrive's
+maps are built with starting position. The number in this box corresponds with the number on the map display in the bottom right corner of the VI window.
+
+* **For modifications** to this example, use the pilot_example.json file which can be found in the installation directory under: 
+
+    `C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\scenarios`
+
+
+To run the example, **Click on the "Run" arrow on the top-left corner to start the client.** This will connect the client to the simulator. Errors during the connection will appear in the "Error" dialog on the right. Once connected, the following actions are available through the GUI:
+
+* **Move the car** using the Throttle Slider. This control shows the percentage of 
+the throttle the vehicle will be using.
+
+* **Change the direction** using Direction Button. Switch 
+between moving the vehicle forward or reverse.
+
+* **Steer the vehicle** with the Steering Control. This controls the angle of 
+turning.
+
+* **Apply brakes** using the Brake Button. This will apply 100% of the brakes 
+to the vehicle and will stop the vehicle.
+
+**Configuration information:** [mono1_pilot_example.vi](../../examples/mono1_pilot_example)
+
+<p>&nbsp;</p>
+
+## Scenario Example
+
+The Scenario Example, mono2_scenario_example.vi, enables users to control the vehicle's steering, throttle, brakes, starting position, and weather simulation in real time. 
+
+*This is a free driving scenario with other vehicles spawning on specified positions in autopilot mode*
+
+<div class="img_container">
+    <img class="wide_img" src="../imgs/mono2.png" />
+</div>
+
+Prior to running the example, the user will be able to:
+
+* **Select and change the weather profile** by changing the Weather Profile Control. There are various permutations of weather available in the monoDrive Simulator. 
+
+* **Select the map** by using the Map Selection Drop-Down. When running, the monoDrive simulator will switch to this map prior to beginning the simulation.
+
+* **For modifications** to this example, use the scenario_example.json file which can be found in the installation directory under: 
+
+    `C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\scenarios`
+
+
+To run the example, **Click on the "Run" arrow on the top-left corner to start the client.** This will connect the client to the simulator. Errors during the connection will appear in the "Error" dialog on the right. Once connected, the following actions are available through the GUI:
+
+* **Move the car** using the Throttle Slider. This control shows the percentage of 
+the throttle the vehicle will be using.
+
+* **Change the direction** using Direction Button. Switch 
+between moving the vehicle forward or reverse.
+
+* **Steer the vehicle** with the Steering Control. This controls the angle of 
+turning.
+
+* **Apply brakes** using the Brake Button. This will apply 100% of the brakes 
+to the vehicle and will stop the vehicle.
+
+**Configuration information:** [mono2_scenario_example.vi](../../examples/mono2_scenario_example)
+
+<p>&nbsp;</p>
+
+## Replay Example
+
+The Replay Example, *mono_replay_example.vi*, enables users to select and run a monoDrive Trajectory File from beginning to the end. This example does not have the ability to stop at certain point, but is available in the Radar Example. 
+
+<div class="img_container">
+    <img class="wide_img" src="../imgs/mono3.png" />
+</div>
+
+Prior to running the example, the user will be able to:
+
+* **Select and change the weather profile** by changing the Weather Profile Control. There are various permutations of weather available in the monoDrive Simulator. 
+
+* **Select the map** by using the Map Selection Drop-Down. When running, the monoDrive simulator will switch to this map prior to beginning the simulation.
+
+* **Select the trajectory file** by using the Trajectory File Selection dialog. 
+Successfully connecting the client, this trajectory will be sent to the simulator and immediately begin playing. To change the trajectory file, click the 
 "Browse" button the right-hand side of the dialog. Pre-configured trajectories 
 can be found in the installation directory under: 
+
 `C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\trajectories`
 
-To run the example, **Click on the "Run" arrow on the top-left corner 
-to start the client.** The playback will begin and the current trajectory steps
-will be shown in the "Current trajectory" indicator.
+To run the example, **Click on the "Run" arrow on the top-left corner to start the client.** The playback will begin and the current frame steps will be shown in the "Current Frame" indicator.
 
-### Replay Controls
+**Configuration information:** [mono3_replay_example.vi](../../examples/mono3_replay_example)
 
-The Replay Controls Example (`mono_replay_controls_example.vi`) adds extra
-controls to the the Replay Example. This example demonstrates how the replay
-of a monoDrive Simulator trajectory file can be stepped forward and backward
-so the user may observe or modify the simulation during replay more easily.
+<p>&nbsp;</p>
 
-<div class="img_container">
-    <img class='wide_img' src="../imgs/replay_controls.png"/>
-</div>
 
-Similar to the Replay Example, ensure the map and trajectory file are properly 
-selected prior to running the client. To run the example, **Click on the "Run" 
-arrow on the top-left corner to start the client.** The playback will begin by
-executing the first frame of the trajectory. The user can now:
+## HIL Example
 
-* **Click the "Next" button in the Replay Step Controls.** This will advance the 
-simulation by one step forward until the end of the trajectory file.
-
-* **Click the "Previous" button in the Replay Step Controls.** This will go to
-the previous step in the simulation until the beginning of trajectory file.
-
-* **Click the Autoplay Toggle on (up) or off (down).** When this toggle is on, 
-the trajectory will be advanced forward in time until the end of the trajectory 
-file or until the toggle is turned off.
-
-### HIL Example
-
-The HIL (Hardware-in-the-loop) Example (`mono_hil_example.vi`) is very similar
-to the Replay Example, but it allows the user to control the "ego" vehicle
-during the replay. Like the replay example, all vehicles in the simulation
-are positioned as expected at each timestep, but the user is expected to provide
-inputs in order to move the ego vehicle. This can be done through direct 
-hardware inputs or software to trigger the movement. The "EGO Pose Controls" are
-provided as an example and intended to be replaced by the user's own code.
+The HIL (Hardware-in-the-loop) Example, *mono4_hil_example.vi*, enables users to control the "ego" vehicle. All vehicles will be positioned in provided time steps in the simulation. To trigger the movement, users will need to provide specific direct hardware inputs or software in order to move the ego vehicle. The "EGO Pose Controls" are provided as an example and intended to be replaced by the user's own code.
 
 <div class="img_container">
-    <img class='wide_img' src="../imgs/hil_example.png"/>
+    <img class="wide_img" src="../imgs/mono4.png" />
 </div>
 
-Similar to the Replay Example, ensure the map and trajectory file are properly 
-selected prior to running the client. To run the example, **Click on the "Run" 
-arrow on the top-left corner to start the client.** The playback will begin by
-executing the first frame of the trajectory. The user can now:
+Prior to running the example, the user will be able to:
 
-* **Control the EGO vehicle position with the EGO Pose Controls.** The changes 
-made to this control will immediately take effect on the EGO position and 
-kinematics.
+* **Select and change the weather profile** by changing the Weather Profile Control. There are various permutations of weather available in the monoDrive Simulator. 
 
-### Multi Vehicle Pose Update Example
+* **Select the map** by using the Map Selection Drop-Down. When running, the monoDrive simulator will switch to this map prior to beginning the simulation.
 
-Similar to the Replay Example, the Mutli-Vehicle Pose Update Example 
-(`mono_multi_vehilce_pose_update_example.vi`) plays back a replay when connected 
-to the simulator. Additionally, it allows the user to change the values in
-the trajectory file for every vehicle in scene.
+* **Select the trajectory file** by using the Trajectory File Selection dialog. 
+Successfully connecting the client, this trajectory will be sent to the simulator and immediately begin playing. To change the trajectory file, click the 
+"Browse" button the right-hand side of the dialog. Pre-configured trajectories 
+can be found in the installation directory under: 
+
+`C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\trajectories`
+
+* **Control the EGO vehicle position** with the EGO Pose Controls. The changes 
+will immediately take effect on the EGO position and kinematics.
+
+**Configuration information:** [mono4_hil_example.vi](../../examples/mono4_hil_example)
+
+<p>&nbsp;</p>
+
+## Radar Example
+
+The Radar Example, *mono5_radar_example.vi*, enables users to select and run a monoDrive Trajectory File from beginning to the end. The difference between Radar Example and Replay Example, is that this example has the ability to stop at any point during the simulation so that a user may observe or modify the simulation more easily. This is especially helpful when testing a radar sensor.
 
 <div class="img_container">
-    <img class='wide_img' src="../imgs/multi_vehicle.png"/>
+    <img class="wide_img" src="../imgs/mono5.png" />
 </div>
 
-Prior to running this example, the user can: 
+Prior to running the example, the user will be able to:
 
-* **Select the frame to change values for using the Frame Selection.** This 
-toggles the frame step in the simulation to change values for.
+* **Select and change the weather profile** by changing the Weather Profile Control. There are various permutations of weather available in the monoDrive Simulator. 
 
-* **Change the vehicle to change values for using the Vehicle Selection.** 
-This requires the user to type in the vehicle name of interest into the dialog 
-to change the values for.
+* **Select the map** by using the Map Selection Drop-Down. When running, the monoDrive simulator will switch to this map prior to beginning the simulation.
 
-* **Change the vehicle kinematics using the Vehicle Controls.** Similar to the 
-HIL example, this will change the kinematics of the vehicle currently selected 
-in the Vehicle Selection.
+* **Select the trajectory file** by using the Trajectory File Selection dialog. 
+Successfully connecting the client, this trajectory will be sent to the simulator and immediately begin playing. To change the trajectory file, click the 
+"Browse" button the right-hand side of the dialog. Pre-configured trajectories 
+can be found in the installation directory under: 
 
-Similar to the Replay Example, ensure the map and trajectory file are properly 
-selected prior to running the client. To run the example, **Click on the "Run" 
-arrow on the top-left corner to start the client.** The playback will begin by
-executing the first frame of the modified trajectory.
+`C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\trajectories`
+
+To run the example, **Click on the "Run" arrow on the top-left corner to start the client.** The playback will begin and the current frame steps will be shown in the "Current Frame" indicator.
+
+To stop the simulation at a specific point or to go through the scenario frame-by-frame, **use the Autoplay Toggle**. When this toggle is on, the trajectory will be advanced through the simulation without stopping like the Replay Example. When switched off the simulation will stop, use the "Next" button or the "Previous" button to control the frame.
+
+* **"Next" button** will advance the simulation forward one step towards the end of the trajectory file.
+
+* **"Previous" button** will return to the previous step towards the beginning of the trajectory file.
+
+**Configuration information:** [mono5_radar_example.vi](../../examples/mono5_radar_example)
+
+<p>&nbsp;</p>
+
+## Pilot Example with Fixed Time
+
+The Pilot Example with fixed time, *mono6_pilot_example_fixed_time.vi*, enables users to control the vehicle's steering, throttle, brakes, starting position, and weather simulation with fixed time step. 
+
+
+<div class="img_container">
+    <img class="wide_img" src="../imgs/mono6.png" />
+</div>
+
+Prior to running the example, the user will be able to:
+
+* **Select and change the weather profile** by changing the Weather Profile Control. There are various permutations of weather available in the monoDrive Simulator. 
+
+* **Select the map** by using the Map Selection Drop-Down. When running, the monoDrive simulator will switch to this map prior to beginning the simulation.
+
+* **Select a different vehicle start position** using the Start Position Control. Each of monoDrive's
+maps are built with starting position. The number in this box corresponds with the number on the map display in the bottom right corner of the VI window.
+
+* **For modifications** to this example, use the pilot_example.json file which can be found in the installation directory under: 
+
+    `C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\scenarios`
+
+To run the example, **Click on the "Run" arrow on the top-left corner to start the client.** This will connect the client to the simulator. Errors during the connection will appear in the "Error" dialog on the right. Once connected, the following actions are available through the GUI:
+
+* **Move the car** using the Throttle Slider. This control shows the percentage of 
+the throttle the vehicle will be using.
+
+* **Change the direction** using Direction Button. Switch 
+between moving the vehicle forward or reverse.
+
+* **Steer the vehicle** with the Steering Control. This controls the angle of 
+turning.
+
+* **Apply brakes** using the Brake Button. This will apply 100% of the brakes 
+to the vehicle and will stop the vehicle.
+
+**Configuration information:** [mono6_pilot_example_fixed_time.vi](../../examples/mono6_pilot_example_fixed)
+
+<p>&nbsp;</p>
+
 
 ## Experimental Examples
 
-These example is currently in the *experimental* stage and can be found here:
+Experimental examples show one of many ways to integrate custom code into the LabVIEW client. These examples are in the *experimental* stage and can be found at:
+
 `C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\experimental\`
 
-You will need to follow the `README.md` located in the `expermintal` folder 
-prior to running these examples in order to compile and install the necessary 
-DLLs.
+Follow the `README.md` located in the `experimental` folder prior to running these examples in order to compile and install the necessary DLLs. 
+
 
 ### Lane Follower Example 
 
-The Lane Follower Example (`mono_lane_follower_cpp_dll.vi`) demonstrates the
-use of a Kalman filter on a vehicle's ability to stay in and follow a lane. This
-example is intended to be used with the monoDrive Simulator's "Highway Track" 
-map, but can be used in other maps.
+The Lane Follower Example, *mono_lane_follower_cpp_dll.vi*, demonstrates a vehicle's ability to follow a lane using a compiled C++ DLL. This algorithm uses GeoJson map and state sensor information to follow a second lane on the map.
 
 <div class="img_container">
-    <img class='wide_img' src="../imgs/lane_follow.png"/>
+    <img class='wide_img' src="../imgs/lane_follower.png"/>
 </div>
 
-Similar to the Closed Loop Example, ensure the map and trajectory file are 
-properly selected prior to running the client. To run the example, **Click on 
-the "Run" arrow on the top-left corner to start the client.** The playback will 
-begin by executing the first frame of the trajectory. The user can now:
+Ensure the map and trajectory file are properly selected prior to running the client. To run the example, click on the "Run" arrow on the top-left corner to start the client. The playback will begin by executing the first frame of the modified trajectory.
 
-* **NOTE: The Steering Control is disabled in this example.** This is because it 
-is being controlled by the Kalman filtering algorithm.
+* **NOTE: The Steering Control is disabled in this example.** The steering value is being calculated by the C++ compiled DLL.
 
-* **Move the car using the Throttle Slider.** This controls the percentage of 
-the throttle the car will use.
+* **Move the car** using the Throttle Slider. This control shows the percentage of the throttle the vehicle will be using.
 
-* **Change the direction of travel using Direction control.** This will switch 
-the vehicle between forward and reverse.
+* **Change the direction** using Direction Button. Switch between moving the vehicle forward or reverse.
 
-* **Apply brakes using the Brake control.** This will apply 100% of the brakes 
-to the vehicle and stop it.
+* **Apply brakes** using the Brake Button. This will apply 100% of the brakes to the vehicle and will stop the vehicle.
+
+<p>&nbsp;</p>
 
 ### Radar with Kalman Filter Example 
 
-The Radar with Kalman Filtering Example 
-(`mono_radar_with_kalman_filter_cpp_dll.vi`) demonstrates the use of a Kalman 
-Filter to apply the EGO vehicle's brakes during an Automatic Emergency Braking 
-(AEB) scenario. This example is intended to be used with the monoDrive 
-Simulator's "Highway Track" map and the "Car-to-Car-Rear-Stationary.json" 
-trajectory.
+The Radar with Kalman Filtering Example, *mono_radar_with_kalman_filter_cpp_dll.vi*, demonstrates a compiled C++ DLL with implementation of a Kalman Filter. The Kalman Filter applies to the Angle of Arrival from monoDrive's Radar sensor when the EGO vehicle brakes during an Automatic Emergency Braking (AEB) scenario. This example is intended to be used with the monoDrive Simulator's "Highway Track" map and the "Car-to-Car-Rear-Stationary.json" trajectory.
 
 <div class="img_container">
-    <img class='wide_img' src="../imgs/radar.png"/>
+    <img class='wide_img' src="../imgs/kalman.png"/>
 </div>
 
-Similar to the Replay Example, ensure the map and trajectory file are properly 
-selected prior to running the client. To run the example, **Click on the "Run" 
-arrow on the top-left corner to start the client.** The playback will begin by
-executing the first frame of the trajectory. As the vehicle approaches the
-stationary vehicle in front of it, the brakes will be dynamically applied by
-the Kalman filtering algorithm.
+Ensure the map and trajectory file are properly selected prior to running the client. To run the example, click on the "Run" arrow on the top-left corner to start the client. The playback will begin by
+executing the first frame of the modified trajectory. As the vehicle approaches the stationary vehicle in front of it, the brakes will be dynamically applied by the Kalman filtering algorithm.
+
+<p>&nbsp;</p>

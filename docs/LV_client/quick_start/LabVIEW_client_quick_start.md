@@ -4,19 +4,18 @@
 
 1. Register and Download [LabVIEW 2019 (64 bit)](https://www.ni.com/en-us/support/downloads/software-products/download.labview.html#329483) *approximately 1 hour to download*
 
-1. Open/Download monoDrive Simulator or monoDrive Simulator Scenario Editor [here](../../Getting_Started.md).
+1. Open the monoDrive Simulator or monoDrive Simulator Scenario Editor or download [here](../../Getting_Started.md).
 
-    **monoDrive Simulator** 
+    monoDrive Simulator
 
     - Powerful tool for testing AV algorithms using Open Source monoDrive Clients or monoDrive Simulator API. 
 
-    **monoDrive Simulator Scenario Editor**
+    monoDrive Simulator Scenario Editor
 
     - Take AV algorithm testing to the next level by using the rich Scenario Editor tool for creating custom simulations and environments.
-    <p>&nbsp;</p>
 
 
-1. **Open the VI Package Manger as Administrator** and install the monoDrive Client.
+1. Open the VI Package Manager as Administrator and install the monoDrive Client.
 
 <div class="img_container">
     <img class='lg_img' src="../imgs/prereq.png"/>

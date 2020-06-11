@@ -123,7 +123,7 @@ pages:
       - Utilities:
           - mono_build_json.vi: LV_client/utilities/mono_build_json.md
           - mono_build_version_msg.vi: LV_client/utilities/mono_build_version_msg.md
-          - mono_calculate_average_aoa.vi: LV_client/utilities/mono_calculate_average_aoa.md
+          - mono_calculate_average.vi: LV_client/utilities/mono_calculate_average.md
           - mono_calculate_orientation_xyz.vi: LV_client/utilities/mono_calculate_orientation_xyz.md
           - mono_check_path.vi: LV_client/utilities/mono_check_path.md
           - mono_check_simulator.vi: LV_client/utilities/mono_check_simulator.md
@@ -131,8 +131,8 @@ pages:
           - mono_draw_lanes_coord.vi: LV_client/utilities/mono_draw_lanes_coord.md
           - mono_draw_spawn_positions.vi: LV_client/utilities/mono_draw_spawn_positions.md
           - mono_Error_Fork_Stacker.vi: LV_client/utilities/mono_Error_Fork_Stacker.md
+          - mono_filter_average_by_target.vi: LV_client/utilities/mono_filter_average_by_target.md
           - mono_generate_frame.vi: LV_client/utilities/mono_generate_frame.md
-          - mono_get_aoa_by_index.vi: LV_client/utilities/mono_get_aoa_by_index.md
           - mono_get_map.vi: LV_client/utilities/mono_get_map.md
           - mono_get_number_frames.vi: LV_client/utilities/mono_get_number_frames.md
           - mono_get_number_points_lidar.vi: LV_client/utilities/mono_get_number_points_lidar.md
@@ -165,6 +165,7 @@ pages:
           - mono_set_map.vi: LV_client/utilities/mono_set_map.md
           - mono_start_point.vi: LV_client/utilities/mono_start_point.md
           - mono_velodyne_parse.vi: LV_client/utilities/mono_velodyne_parse.md
+
       - Shared Libraries:
           - mono_control.vi: LV_client/shared_libraries/mono__control.md
           - mono_control_vehicle.vi: LV_client/shared_libraries/mono__control__vehiclec.md

@@ -11,57 +11,16 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
-- **monoDrive in:**   
+- **trajectory_number:**   
 
-- **Config:**   
-
-- **Trajectory:**   
-
-- **Number of frames:**   
-
-- **Frame number:**   
-
-- **Trajectory:**   
-
-- **Weather:**   
-
-- **id:**   
-
-- **Connections:**   
-
-- **Simulator Connection:**   
-
-- **server_ip:**   
-
-- **Port:**   
-
-- **Map:**   
-
-- **lanes:**   
-
-- **x:**   
-
-- **Numeric:**  rol 
-
-- **z:**   
-
-- **Numeric:**  rol 
-
-- **rotations:**   
-
-- **Numeric:**  rol 
-
-- **StartLocation:**   
-
-- **Numeric:**  rol 
+- **EGO pose:**   
 
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
-- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **Trajectory string out:**   
 
-<p>&nbsp;</p>
-ation wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>

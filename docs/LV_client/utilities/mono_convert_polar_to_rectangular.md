@@ -12,33 +12,19 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
-- **Laser Packet:**   
-
-- **Rotational Angle (degrees):**   
-
-- **Vertical Angle (degrees):**   
-
-- **Distance (cm):**   
-
-- **Intensity (0-255):**   
-
-- **Vertical Offset (cm):**   
-
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
-- **Cartesian Coordinates:**   
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
-- **X:**   
-
-- **Y:**   
-
-- **Z:**   
+<p>&nbsp;</p>
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>
-rors from other VIs. 
+assed in the event of errors from other VIs. 
+
+<p>&nbsp;</p>
 
 <p>&nbsp;</p>

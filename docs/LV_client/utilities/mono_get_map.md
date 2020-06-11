@@ -12,109 +12,33 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
-- **message:**   
+- **message:**  Message for the **GetMap** server command.    
+**"format"** can take values: "point_array" or "geojson"   
+**"coordinates"** can take values : "world" or "gis"
+```
+{		"gis_anchor": {
+			"x": 40.410262,
+			"y": -79.948172,
+			"z": 1
+		},
+		"orientation": -16.5,
+		"point_delta": 100.0,
+		"coordinates": "world",
+   "format": "point_array"
+}
+``` 
+ 
 
-- **monoDrive in:**   
-
-- **Config:**   
-
-- **Trajectory:**   
-
-- **Number of frames:**   
-
-- **Frame number:**   
-
-- **Trajectory:**   
-
-- **Weather:**   
-
-- **id:**   
-
-- **Connections:**   
-
-- **Simulator Connection:**   
-
-- **server_ip:**   
-
-- **Port:**   
-
-- **Map:**   
-
-- **lanes:**   
-
-- **x:**   
-
-- **Numeric:**  rol 
-
-- **z:**   
-
-- **Numeric:**  rol 
-
-- **rotations:**   
-
-- **Numeric:**  rol 
-
-- **StartLocation:**   
-
-- **Numeric:**  rol 
+- **monoDrive in (Cluster):** See description at [**monoDrive.ctl**](../structures/monoDrive.md). 
 
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
-- **y:**   
-
-- **Numeric:**  rol 
-
-- **StartPosition:**   
-
-- **start_points:**   
-
-- **locations:**   
-
-- **Numeric:**  rol 
-
-- **type:**   
-
-- **String:**   
-
-- **StartRotation:**   
-
-- **Numeric:**  rol 
-
-- **Draw Map Size:**   
-
-- **Width:**   
-
-- **Height:**   
-
-- **DrawArea:**   
-
-- **min_Y:**   
-
-- **min_X:**   
-
-- **Scale X:**   
-
-- **Scale Y:**   
-
-- **Map:**   
-
-- **Map Geojson:**   
+- **monoDrive out (Cluster):** See description at [**monoDrive.ctl**](../structures/monoDrive.md). 
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>
-2:min_X:**   
 
-- **#2.3.4.3:Scale X:**   
-
-- **#2.3.4.4:Scale Y:**   
-
-- **#2.3.5:Map:**   
-
-- **#2.3.6:Map Geojson:**   
-
-- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
-
-<p>&nbsp;</p>
+;</p>

@@ -12,15 +12,18 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
-- **horizontal_resolution:**   
+- **Horizontal_resolution:**  Horizontal resolution in degrees (0.1 - 0.8)
+ 
 
-- **NoLasers:**   
+- **Number lasers:**  Number of lasers (16 or 32 lasers only) 
+ 
 
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
-- **No.points:**   
+- **Number points:**  Number of point per point cloud
+ 
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

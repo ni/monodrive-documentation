@@ -20,25 +20,14 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
-- **Message:**  Valid message for the **Command_ID** sent
- 
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
-- **Command_ID:**  Valid monoDrive API command to send to the server:    
+### Outputs
 
-| Valid commands  |
-|  | 
-|Status_ID   |
-|SimulatorConfig_ID |
-|EgoVehicleConfig_ID |
-|StreamData_ID   |
-|WaypointUpdate_ID    |
-|ScenarioInit_ID  |
-|ScenarioConfig_ID   |
-|MapCommand_ID  |
-|UpdateActorCommand_ID  | 
-|StartAllSensorsCommand_ID   | 
-|StopAllSensorsCommand_ID   | 
-|DetachSensorCommand_ID   | 
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
+
+<p>&nbsp;</p>
+ | 
 |AttachSensorCommand_ID   |
 |SpawnActorCommand_ID   |
 |REPLAY_ConfigureSensorsCommand_ID  |
@@ -51,22 +40,13 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Outputs
 
-- **JSON Out:**  Valid JSON formatted string to send to the server with the
-following structure:    
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
-```json
-    {
-        "type": string,
-        "success": bool,
-        "reference": int,
-        "message": JSON
-    }
+<p>&nbsp;</p>
+
 ```
  
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>
-&nbsp;</p>
->
-</p>

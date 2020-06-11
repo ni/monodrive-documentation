@@ -12,53 +12,22 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
-- **Frames:**   
+- **Frames:**  Trajectory frames on array format
+ 
 
-- **game_time:**   
-
-- **time:**   
-
-- **frame:**   
-
-- **velocity:**   
-
-- **tags:**   
-
-- **position:**   
-
-- **orientation:**   
-
-- **angular_velocity:**   
-
-- **name:**   
-
-- **wheel_speed:**   
-
-- **wheels:**   
-
-- **id:**   
-
-- **orientation:**   
-
-- **Send frame number:**   
+- **Frame number:**  Frame number to obtain from the *Frames* array
+ 
 
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
-- **frame:**   
+- **Frame:**  JSON string representation for the frame obtained from the
+*Frames* array and the *Frame number*
+ 
 
-- **Done:**   
-
-- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
-
-<p>&nbsp;</p>
-s. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
-
-<p>&nbsp;</p>
-ame:**   
-
-- **Done:**   
+- **Done:**  True when all the frames have been sent
+ 
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

@@ -12,108 +12,15 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
-- **monoDrive in:**   
-
-- **Config:**   
-
-- **Trajectory:**   
-
-- **Number of frames:**   
-
-- **Frame number:**   
-
-- **Trajectory:**   
-
-- **Weather:**   
-
-- **id:**   
-
-- **Connections:**   
-
-- **Simulator Connection:**   
-
-- **server_ip:**   
-
-- **Port:**   
-
-- **Map:**   
-
-- **lanes:**   
-
-- **x:**   
-
-- **Numeric:**  rol 
-
-- **z:**   
-
-- **Numeric:**  rol 
-
-- **rotations:**   
-
-- **Numeric:**  rol 
-
-- **StartLocation:**   
-
-- **Numeric:**  rol 
+- **Scenario Configuration:**  Path to the scenario file to use to run the simulaion on
+closed loop mode
+ 
 
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
-- **y:**   
-
-- **Numeric:**  rol 
-
-- **StartPosition:**   
-
-- **start_points:**   
-
-- **locations:**   
-
-- **Numeric:**  rol 
-
-- **type:**   
-
-- **String:**   
-
-- **StartRotation:**   
-
-- **Numeric:**  rol 
-
-- **Draw Map Size:**   
-
-- **Width:**   
-
-- **Height:**   
-
-- **DrawArea:**   
-
-- **min_Y:**   
-
-- **min_X:**   
-
-- **Scale X:**   
-
-- **Scale Y:**   
-
-- **Map:**   
-
-- **Map Geojson:**   
-
-- **Scenario configuration:**   
-
-- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
-
-<p>&nbsp;</p>
-X:**   
-
-- **#2.3.4.4:Scale Y:**   
-
-- **#2.3.5:Map:**   
-
-- **#2.3.6:Map Geojson:**   
-
-- **Scenario configuration:**   
+- **monoDrive out (Cluster):** See description at [**monoDrive.ctl**](../structures/monoDrive.md). 
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

@@ -78,13 +78,14 @@ Quick start instructions and details on how to generate project files in the Veh
 
 2. The client provides the following examples:
 
-    - mono_closed_loop_example.vi
-    - mono_replay_example.vi
-    - mono_replay_controls_example.vi
+    - mono1_pilot_example.vi
+    - mono2_scenario_example.vi
+    - mono3_replay_example.vi
+    - mono4_hil_example.vi
+    - mono5_radar_example.vi
+    - mono6_pilot_example_fixed_time
+    - mono_replay_all_sensors.vi
     - mono_multi_vehicle_pose_update_example.vi
-    - mono_hil_example.vi
-    - mono_lane_follower_cpp_dll.vi
-    - mono_radar_with_kalman_filter_cpp_dll.vi
 
 3. Double-click on the VI to open the example.
 

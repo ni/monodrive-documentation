@@ -6,13 +6,13 @@
 
 ### Description
 
-Reads the stream data for a RGB camera sensor and returns a picture with the format specified in the stream dimensions.
+Reads the stream data for a RGB Camera sensor and returns a picture with the format specified in the stream dimensions.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 
 ### Inputs
 
-- **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
@@ -20,8 +20,8 @@ For technical support contact us at <b>support@monodrive.io</b>
 the sensor configuration.
  
 
-- **Raw data:**  Array with pixel values for image. Size is equal to
-width*height*4
+- **Raw data:**  Array with pixel values for image. Size is equal to width x
+height x 4
  
 
 - **pixel:**  Pixel value
@@ -33,6 +33,7 @@ width*height*4
 - **Annotation Data:**  Annotation data for all objects classified on the image
  
 
-- **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>
+bsp;</p>

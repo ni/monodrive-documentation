@@ -6,13 +6,13 @@
 
 ### Description
 
-Configure and sample the collision sensor. Outputs information on the Time to collision, among other relevant information to detect a collision with vehicles or objects with the tag "vt" 
+Configure and sample the Collision sensor. Outputs information on the Time to collision, among other relevant information to detect a collision with vehicles or objects with the tag "vt" 
 
 For technical support contact us at <b>support@monodrive.io</b> 
 
 ### Inputs
 
-- **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
@@ -29,6 +29,6 @@ frame
 - **sample:**  Collision information for one frame
  
 
-- **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>

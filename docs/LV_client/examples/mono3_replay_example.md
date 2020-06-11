@@ -12,30 +12,20 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
-- **Trajectory Configuration:**  Selected a valid scenario file in JSON. Use the browse
-button to select a new file.
-User can find __HighWayExitReplay.json__ under the monoDrive
-folder under the __trajectories__ folder
+- **Trajectory Configuration:**  Select a valid scenario JSON file. To change, use the browse
+button to select a new file. User can find an example by
+navigating to the monoDrive folder >> trajectories folder >>
+HighWayExitReplay.json
  
 
 - **Select a map:**  Select the map to load on the Simulator
  
 
-- **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
 - **Number of trajectories:**  Number of frames found on the Trajectory read
- 
-
-- **Status:**  error in can accept error information wired from VIs
-previously called. Use this information to decide if any
-functionality should be bypassed in the event of errors from
-other VIs.
-
-Right-click the error in control on the front panel and
-select Explain Error or Explain Warning from the shortcut
-menu for more information about the error.
  
 
 - **Camera:**  Shows the camera sensor output
@@ -44,9 +34,6 @@ menu for more information about the error.
 - **fps:**  Frames per Second at which the client is running 
  
 
-- **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
-
-<p>&nbsp;</p>
- other VIs. 
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>

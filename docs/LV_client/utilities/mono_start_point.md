@@ -1,0 +1,27 @@
+# mono_start_point.vi
+
+<p class="img_container">
+<img class="lg_img" src="../mono_start_point.png"/>
+</p>
+
+### Description
+
+Query the start points from the map.
+
+For technical support contact us at <b>support@monodrive.io</b> 
+
+### Inputs
+
+- **Vehicle Start Position:**   
+
+- **message:**   
+
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
+
+### Outputs
+
+- **monoDrive out (Cluster):** See description at [**monoDrive.ctl**](../structures/monoDrive.md). 
+
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
+
+<p>&nbsp;</p>

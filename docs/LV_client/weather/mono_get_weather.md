@@ -9,7 +9,7 @@ Obtains the weather configuration  from a file and populates a cluster with the 
 
 ### Inputs
 
-- **monoDrive in (Cluster):** See description at **monoDrive.ctl**.
+- **monoDrive in (Cluster):** See description at [**monoDrive.ctl**](../structures/monoDrive.md).
 
 - **Weather Profile Ref (Reference):** Reference to the Weather Profile array Indicator.
 

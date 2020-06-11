@@ -6,7 +6,7 @@
 
 ### Description
 
-Parse data from sensor into a cluster, given a connection ID.
+Parse data from sensor into a cluster given a connection ID.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 
@@ -15,9 +15,12 @@ For technical support contact us at <b>support@monodrive.io</b>
 - **TCP Network Connection in:**  TCP connection where data is being sent
  
 
-- **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
+
+- **TCP Network Connection out:**  TCP connection where data is being sent
+ 
 
 - **Sensor sample:**  Data sent from the simulator follow the same structure
  
@@ -26,28 +29,28 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 Type  | Name   |
 | --------- | ------------ |
-|U32  | lenght |
+|U32  | length |
 |SGL | game_time  |
 |U32 | time_stamp |
 --- 
 
-- **length:**  Lenght of the data being sent over TCP
+- **length:**  Length of the data being sent over TCP
  
 
-- **time_stamp:**  Time in milisenconds according to the OS where the simulator
-is running
+- **time_stamp:**  Time in milliseconds. 
  
 
-- **game_time:**  Time since the client connected to the simulator in
-milliseconds 
+- **game_time:**   
+
+- **frame_count:**  Frame number when this sample was taken
  
 
 - **data out:**  Data sent over TCP
  
 
-- **TCP Network Connection out:**  TCP connection where data is being sent
- 
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
-- **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+<p>&nbsp;</p>
+ errors from other VIs. 
 
 <p>&nbsp;</p>

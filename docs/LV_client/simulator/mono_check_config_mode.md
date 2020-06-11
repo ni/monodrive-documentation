@@ -6,7 +6,7 @@
 
 ### Description
 
-Build a string using the simulator configuration and the running mode chosen by the user.
+Builds a string using the simulator configuration and using a running mode chosen by the user.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 
@@ -22,7 +22,7 @@ For technical support contact us at <b>support@monodrive.io</b>
     - 2 - Replay_step
  
 
-- **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
@@ -30,6 +30,6 @@ For technical support contact us at <b>support@monodrive.io</b>
 and the Running mode selected.
  
 
-- **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>

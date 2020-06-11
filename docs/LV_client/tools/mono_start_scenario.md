@@ -12,41 +12,18 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
-- **Weather ref:**   
+- **Weather Profile Ref:**   Reference to the Weather Profile Array 
 
-- **Select a map:**   
+- **Select a map:** Select a map to load on Simulator.  
 
-- **Scenario Configuration:**   
+- **Scenario Configuration:** Path to the a scenario file (JSON format) previously recorded using the monoDrive scenario tool.  
 
 - **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
-- **Weather Profiles:**   
+- **Weather Profiles:**  Array of the weather profiles obtained by the weather configuration. 
 
-- **Cluster:**   
-
-- **id:**   
-
-- **SunPolarAngle:**   
-
-- **SunAzimuthAngle:**   
-
-- **SunBrightness:**   
-
-- **SunDirectionalLightIntensity:**   
-
-- **SunDirectionalLightColor:**   
-
-- **R:**   
-
-- **G:**   
-
-- **B:**   
-
-- **A:**   
-
-- **Sun:**  irectLightIntensity 
 
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

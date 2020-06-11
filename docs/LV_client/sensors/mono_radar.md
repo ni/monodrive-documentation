@@ -8,11 +8,11 @@
 
 Configure and reads the stream data for the Radar sensor.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>support@monodrive.io</b>s 
 
 ### Inputs
 
-- **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
@@ -32,7 +32,7 @@ by radar and ground truth information as well.
 - **Number of targets:**  Number of targets detected by the radar sensor.
  
 
-- **target_list:**  Objetcs detected by radar.  An array of clusters with the
+- **target_list:**  Objects detected by radar.  An array of clusters with the
 following structure.   
 
 | Type  | Name   | Units/Description   |
@@ -98,6 +98,6 @@ of clusters with the following structure.
 - **target_id:**  Ground truth label
  
 
-- **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>

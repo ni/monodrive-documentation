@@ -26,7 +26,7 @@ vehicle on the map
 
 ### Outputs
 
-- **Weather Profiles:**  Array with the weather profiles obtained by the weather
+- **Weather Profiles:**  Array of the weather profiles obtained by the weather
 configuration.
 
 - **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 

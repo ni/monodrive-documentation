@@ -1,4 +1,4 @@
-# LabView Client Examples
+# LabVIEW Client Examples
 
 After installing the monoDrive Client from the VI package manager, several
 pre-built examples are available through the "Help" -> "Find Examples" 

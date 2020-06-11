@@ -15,36 +15,35 @@ For technical support contact us at <b>support@monodrive.io</b>
 - **TCP Network Connection in:**  TCP connection where data is being sent
  
 
-- **JSON Command:**  Command in JSON format to send to the simulator with the
-following format.    
+- **JSON Command:**  Command in JSON format.
 
-```
-{
-      "type": string,
-      "success": bool,
-      "reference": int,
-      "message": JSON,
-}
-``` 
+    ```
+        {
+          "type": string,
+          "success": bool,
+          "reference": int,
+          "message": JSON,
+        }
+    ``` 
  
 
 - **Timeout ms (25000):**  Maximum time to wait for a response back from the simulator
  
 
-- **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
 - **Response:**  Response from the simulator to the message sent.
  
 
-- **Success:**  True if the response from the server was succesful to the
+- **Success:**  True if the response from the server was successful to the
 command sent. 
  
 
 - **TCP Network Connection Out:**  TCP connection where data is being sent
  
 
-- **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>

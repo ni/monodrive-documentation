@@ -220,7 +220,7 @@ to the vehicle and will stop the vehicle.
 
 ## Experimental Examples
 
-Experimental examples show one of many ways to integrate custom code into the simulator. These examples are in the *experimental* stage and can be found at:
+Experimental examples show one of many ways to integrate custom code into the LabVIEW client. These examples are in the *experimental* stage and can be found at:
 
 `C:\Program Files\National Instruments\LabVIEW 2019\vi.lib\monoDrive\monoDriveClient\labview\experimental\`
 

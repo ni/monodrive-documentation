@@ -15,8 +15,8 @@ For technical support contact us at support@monodrive.io
 
 
 ### Outputs
-- **DLL path out(Path:** Path to the Release or Debug DLL.  .
-- **inti:** return value if executed successfully .
+- **DLL path out(Path:** Path to the Release or Debug DLL.
+- **inti:** return value if executed successfully.
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 <p>&nbsp;</p>

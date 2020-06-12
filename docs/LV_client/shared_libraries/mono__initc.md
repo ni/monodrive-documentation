@@ -11,7 +11,7 @@ For technical support contact us at support@monodrive.io
 
 ### Inputs
 - **DLL path in:** Path to the Release or Debug DLL.
-- **map_json:** The map string on JSON format.
+- **map_json:** The map string in JSON format.
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 

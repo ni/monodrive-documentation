@@ -5,7 +5,7 @@ pre-built examples are available through the "Help" -> "Find Examples"
 dialog in LabVIEW. The NI monoDrive Project file, *ni_monoDrive.lvproj*, contains references to all the VI examples described below.
 
 For all of these examples, you will need to have either run the monoDrive Simulator
-or monoDrive Scenario Editor open and in "Play" mode.
+or monoDrive Scenario Editor.
 
 ## Pilot Example
 

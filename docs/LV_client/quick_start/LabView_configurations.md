@@ -46,7 +46,7 @@ To change the configuration of any sensor, double-click on the sensor subVI and 
 Make sure you save the configuration as default value so that is persistent the next time you open your application.
 
 <div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/docs/LV_client/quick_start_img/sensor_file.png"/>
+    <img class='lg_img' src="../imgs/sensor_file.png"/>
 </div>
 
    **NOTE:**

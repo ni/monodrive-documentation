@@ -35,7 +35,7 @@ specified on the Closed_loop.json file
 - **Select a map:**  Select the map to load on the Simulator
  
 
-- **error in (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
@@ -49,6 +49,6 @@ select Explain Error or Explain Warning from the shortcut
 menu for more information about the error.
  
 
-- **error out (Error Cluster):** can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs. 
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>

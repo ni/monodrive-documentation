@@ -11,7 +11,6 @@ Tool generates a plot to compare AoA, Range and Velocity between the GT targets 
 ### Inputs
 
 - **Radar Sample:**  Refer to the **radarSample.ctl** description 
- 
 
 - **Number of targets:**  Number of targets detected by Radar
 
@@ -43,7 +42,6 @@ clusters with the following structure.
 - **target_ids:**  One or more possible labels for the object detected
  
 
-
 - **gt_targets:**  **gt_targets**:  Array of clusters with Ground truth
 information, each cluster has the following format.   
 
@@ -56,23 +54,7 @@ information, each cluster has the following format.
 |1D Array String | target_ids | Ground truth annotation |
 --- 
 
-
-- **aoa:**  Angle of arrival
  
-
-- **range:**  Distance to the target
- 
-
-- **rcs:**  Radar cross-section 
- 
-
-- **velocity:**  Velocity of the target detected
- 
-
-- **target_ids:**  Ground truth label
- 
-
-
 - **Name of target:**  Target name of tracking and generating plots. This target
 name will be used to generate the AoA, Range and Velocity
 plots that compare the Ground Truth information and the

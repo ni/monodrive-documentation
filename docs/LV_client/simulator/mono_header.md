@@ -37,10 +37,10 @@ Type  | Name   |
 - **length:**  Length of the data being sent over TCP
  
 
-- **time_stamp:**  Time in milliseconds. 
+- **time_stamp:**  Time in milliseconds
  
 
-- **game_time:**   
+- **game_time:**  Time since the simulation started
 
 - **frame_count:**  Frame number when this sample was taken
  

@@ -20,7 +20,7 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Outputs
 
-- **Pased LIDAR Data:**  List of points obtained from parsing the Raw LiDAR data
+- **Parsed LIDAR Data:**  List of points obtained from parsing the raw LiDAR data
  
 
 - **Timestamps:**  List of timestamps obtained from the raw LiDAR data

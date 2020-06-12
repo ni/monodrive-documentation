@@ -12,8 +12,7 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
-- **Starting Points:**  Pre-built points on the map where the ego vehicle can be
-spawn. Cluster with the following structure:    
+- **Starting Points:**  Pre-built points on the map where the ego vehicle spawns. Cluster with the following structure:    
    
  Name  | Type  | Description  |
 |  |  |  |

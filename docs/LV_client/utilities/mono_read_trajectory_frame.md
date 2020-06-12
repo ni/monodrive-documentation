@@ -6,8 +6,8 @@
 
 ### Description
 
-Modify the EGO pose with values given by the user on one frame of the given trajectory file
-For technical support contact us at <b>support@monodrive.io</b> 
+Modify the EGO pose with values given by the user on one frame of the given trajectory file. 
+For technical support contact us at support@monodrive.io
 
 ### Inputs
 - **monoDrive in (Cluster):** See description at [**monoDrive.ctl**](../structures/monoDrive.md). 

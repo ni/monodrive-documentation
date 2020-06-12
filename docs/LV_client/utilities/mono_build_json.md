@@ -6,7 +6,7 @@
 
 ### Description
 
-Builds a JSON message to send via TCP with format:   
+Builds a JSON message to send via TCP with the following format:   
 ```json
     {
         "type": string,

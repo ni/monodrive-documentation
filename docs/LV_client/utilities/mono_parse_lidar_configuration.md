@@ -6,7 +6,7 @@
 
 ### Description
 
-Calculates the number of packets an the number of points in a lidar stream based on the horizontal resolution.
+Calculates the number of packets and the number of points in a LiDAR stream based on the horizontal resolution.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 

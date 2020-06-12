@@ -6,7 +6,7 @@
 
 ### Description
 
-Send the GetStartPoints command to obtain the starting points for the map.s
+Send the GetStartPoints command to obtain the starting points for the map
 
 For technical support contact us at <b>support@monodrive.io</b> 
 

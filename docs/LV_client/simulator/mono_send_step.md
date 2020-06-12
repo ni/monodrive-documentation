@@ -6,7 +6,7 @@
 
 ### Description
 
-Send the command to step the simulationfor any given amount. Specify the desired amount in the message string.
+Send the command to step the simulation for any given amount. Specify the desired amount in the message string.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 

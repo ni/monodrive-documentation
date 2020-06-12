@@ -6,7 +6,7 @@
 
 ### Description
 
-Configure the trajectory EGO and other cars in the scene will follow  by given a path to JSON file.
+Reads a trajectory file and sends it to the server.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 

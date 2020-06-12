@@ -6,7 +6,7 @@
 
 ### Description
 
-Send the GetMap command to obtain the map data on geojson or array format.
+Send the GetMap command to obtain the map data in GeoJSON or array format.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 

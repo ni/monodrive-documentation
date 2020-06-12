@@ -1,12 +1,12 @@
 # monoDrive.vi
 
 <p class="img_container">
-<img class="lg_img" src="../monoDrive.png"/>
+<img class="thumbnail" src="../monoDrive.png"/>
 </p>
 
 ### Description
 
-This is a Global variable shared among all the sensors during the configuration phase. Contains the monoDrive.ctl
+This is a Global variable shared among all the sensors during the configuration phase. Contains the [**monoDrive.ctl**](../structures/monoDrive.md).
 
 For technical support contact us at <b>support@monodrive.io</b> 
 

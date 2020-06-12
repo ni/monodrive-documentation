@@ -6,7 +6,7 @@
 
 ### Description
 
-Parse the starting point information and generate a cluster with the coordinates of each point and the type.  If a point is PIE type will be move to the top of the list. The PIE point is the camera position.
+Parse the starting point information and generate a cluster with the coordinates of each point and the type. If a point is PIE type, it will be move to the top of the list. The PIE point is the camera position.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 

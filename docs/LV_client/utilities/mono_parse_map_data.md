@@ -6,7 +6,7 @@
 
 ### Description
 
-Parse the map information depending on if this is in array format or geojson format.
+Parse the map information depending on if this is in array format or GeoJSON format.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 
@@ -16,7 +16,7 @@ For technical support contact us at <b>support@monodrive.io</b>
  
 
 - **Array?:**  True if the **Map** contains the map information in array
-format. False indicates the  **Map** is in Geojson format
+format. False indicates the  **Map** is in GeoJSON format
  
 
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
@@ -27,7 +27,8 @@ format. False indicates the  **Map** is in Geojson format
     - x coordinates
     - y coordinates
     - z coordinates 
-- **Map Geojson:**  Post processed Geojson map, remove extra quotes added on the
+
+- **Map GeoJSON:**  Post processed GeoJSON map, remove extra quotes added on the
 serialization.
  
 

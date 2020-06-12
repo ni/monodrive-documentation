@@ -18,7 +18,7 @@ For technical support contact us at <b>support@monodrive.io</b>
 - **location x:**  The ego location on the x axis
  
 
-- **Map.DrawArea:**  Information on the map available area
+- **Map.DrawArea:**  Information on the map's available area
  
 
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 

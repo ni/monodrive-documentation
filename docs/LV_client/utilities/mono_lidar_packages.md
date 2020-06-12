@@ -6,7 +6,7 @@
 
 ### Description
 
-Calculate how many packages to send thu UDP based on the lidar configuration.
+Calculate how many packages to send thu UDP based on the LiDAR configuration.
 For technical support contact us at <b>support@monodrive.io</b> 
 
 ### Inputs

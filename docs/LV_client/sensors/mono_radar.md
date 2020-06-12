@@ -6,7 +6,7 @@
 
 ### Description
 
-Configure and reads the stream data for the Radar sensor.
+Configure and reads the data stream for the Radar sensor.
 
 For technical support contact us at <b>support@monodrive.io</b>s 
 

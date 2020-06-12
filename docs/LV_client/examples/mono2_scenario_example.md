@@ -6,7 +6,7 @@
 
 ### Description
 
-This example shows how to use the monoDrive client to configure the monoDrive simulator in closed loop mode with all the sensors.
+This example shows how to use the monoDrive client to configure the monoDrive simulator in Closed loop mode with all the sensors.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 
@@ -27,10 +27,7 @@ For technical support contact us at <b>support@monodrive.io</b>
 - **Select a map:**  Select the map to load on the Simulator
  
 
-- **Scenario Configuration:**  Selected a valid scenario file in JSON. Use the browse
-button to select a new file.    
-User can find **scenario_config_multi_vehicle.json**  under
-the monoDrive folder under the **scenarios** folder
+- **Scenario Configuration:**  Select a valid replay file. To change, use the browse button to select a new file. User can find an example by navigating to the monoDrive folder >> trajectories folder >> HighWayExitReplay.json.
  
 
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 

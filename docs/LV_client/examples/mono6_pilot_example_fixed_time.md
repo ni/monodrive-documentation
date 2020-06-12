@@ -24,7 +24,12 @@ For technical support contact us at <b>support@monodrive.io</b>
 - **Direction:**  Move the car forward or backward (move forward by default )
  
 
-- **Vehicle  Start Position:**   
+- **Vehicle  Start Position:**  Select a position from the pre-defined initial position to
+spawn the ego vehicle.   
+    - Select **-1** to spawn the vehicle on the position of
+the camera.    
+     - Select **0** to spawn the vehicle on the position
+specified on the Closed_loop.json file
 
 - **Select a map:**  Select the map to load on the Simulator
  

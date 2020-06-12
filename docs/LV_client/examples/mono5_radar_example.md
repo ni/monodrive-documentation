@@ -10,10 +10,7 @@ This example shows how to run the monoDrive client  to configure the monoDrive s
 
 ### Inputs
 
-- **Trajectory Configuration:**  Selected a valid scenario file in JSON. Use the browse
-button to select a new file. User can find
-**HighWayExitReplay.json** under the monoDrive folder under
-the trajectories folder
+- **Trajectory Configuration:**  Select a valid replay file. To change, use the browse button to select a new file. User can find an example by navigating to the monoDrive folder >> trajectories folder >> HighWayExitReplay.json.
  
 
 - **Select a map:**  Select the map to load on the Simulator
@@ -26,7 +23,7 @@ the trajectories folder
 - **Camera:**  Shows the camera sensor output
  
 
-- **Number of frames:**  umber of frames found on the Trajectory read
+- **Number of frames:**  Number of frames found on the Trajectory read
  
 
 - **fps:**  Frames per Second at which the client is running

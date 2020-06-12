@@ -17,16 +17,16 @@ Obtains the weather configuration  from a file and populates a cluster with the 
 
 - **Weather Index:** Weather index to be changed by the automation tool like TestStand.
 
-- **error in (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 
 ### Outputs
-- **monoDrive out (Cluster):** See description at **monoDrive.ctl**.
+- **monoDrive out (Cluster):** See description at [**monoDrive.ctl**](../structures/monoDrive.md).
 
 - **id:** Name of the weather profile chosen.
 
 - **weather profiles :** Cluster with all the weather profiles.
 
-- **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 <p>&nbsp;</p>

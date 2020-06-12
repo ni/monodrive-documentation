@@ -11,14 +11,9 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
-- **Trajectory Configuration:**  Selected a valid scenario file in JSON. Use the browse
-button to select a new file. User can find
-HighWayExitReplay.json under the monoDrive folder under the
-trajectories folder
- 
+- **Trajectory Configuration:**  Select a valid replay file. To change, use the browse button to select a new file. User can find an example by navigating to the monoDrive folder >> trajectories folder >> HighWayExitReplay.json.
 
 - **Select a map:**  Select the map to load on the Simulator
- 
 
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 

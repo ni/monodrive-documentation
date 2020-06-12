@@ -6,7 +6,7 @@
 
 ### Description
 
-Configure and reads the data stream data for the GPS sensor.
+Configure and reads the data stream for the GPS sensor.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 
@@ -16,7 +16,7 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Outputs
 
-- **Raw data:**  Raw data output form server. 
+- **Raw data:**  Raw data output from server. 
  
 
 - **GPS Configuration:**  Settings to configure a GPS sensor

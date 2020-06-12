@@ -6,7 +6,7 @@
 
 ### Description
 
-Configures and reads the stream data for a Depth Camera sensor and outputs a picture of the size specified on the Camera configuration.
+Configures and reads the data stream for a Depth Camera sensor and outputs a picture of the specified size on the Camera configuration.
 
 For technical support contact us at <b>support@monodrive.io</b>
  

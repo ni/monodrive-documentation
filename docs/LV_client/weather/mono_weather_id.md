@@ -17,7 +17,7 @@ Obtains the weather id name selected by the user.
 
 - **Weather Index (Int):** Index selected by TestStand to configure weather.
 
-- **error in (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 
 ### Outputs
@@ -28,6 +28,6 @@ Obtains the weather id name selected by the user.
 
 - **id:** Name of the weather profile chosen.
 
-- **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 <p>&nbsp;</p>

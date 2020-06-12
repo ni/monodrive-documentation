@@ -6,7 +6,7 @@
 
 ### Description
 
-Configure and process the data stream for LiDAR sensor. This VI also forward the raw data to port 2368 through TCP to be visualized by VeloView.
+Configure and process the data stream for LiDAR sensor. This VI forwards the raw data to port 2368 through TCP to be visualized by VeloView.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 

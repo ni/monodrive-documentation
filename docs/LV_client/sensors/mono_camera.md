@@ -6,7 +6,7 @@
 
 ### Description
 
-Reads the stream data for a RGB Camera sensor and returns a picture with the format specified in the stream dimensions.
+Configures and reads the data stream for a RGB Camera sensor and outputs a picture with the specified format in the stream dimensions.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 
@@ -36,4 +36,3 @@ height x 4
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 <p>&nbsp;</p>
-bsp;</p>

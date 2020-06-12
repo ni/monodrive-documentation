@@ -6,7 +6,7 @@
 
 ### Description
 
-Configures and reads the stream data for an Occupancy Grid sensor and outputs a picture of the size specified on the  configuration.
+Configures and reads the data stream for an Occupancy Grid sensor and outputs a picture of the specified size on the configuration.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 

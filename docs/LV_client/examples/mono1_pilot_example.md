@@ -6,7 +6,7 @@
 
 ### Description
 
-This example shows how to use the monoDrive client to configure the monoDrive simulator in closed loop mode with all the sensors.
+This example shows how to use the monoDrive client to configure the monoDrive simulator in Closed loop mode with all the sensors.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 

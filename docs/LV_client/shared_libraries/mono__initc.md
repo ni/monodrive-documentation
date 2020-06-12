@@ -7,6 +7,8 @@
 ### Description 
 Initialized a `LaneFollower` object on the DLL.
 
+For technical support contact us at support@monodrive.io
+
 ### Inputs
 - **DLL path in:** Path to the Release or Debug DLL.
 - **map_json:** The map string on JSON format.

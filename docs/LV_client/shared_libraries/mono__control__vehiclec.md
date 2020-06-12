@@ -5,7 +5,9 @@
 </p>
 
 ### Description 
-Call the `control_vehicle`. Given json frame, calculates the steering value.
+Given a frame from the State sensor, calculates the correct steering value to maintain the vehicle on the second lane.
+
+For technical support contact us at support@monodrive.io
 
 ### Inputs
 - **DLL path in(Path):** Path to the Release or Debug DLL .

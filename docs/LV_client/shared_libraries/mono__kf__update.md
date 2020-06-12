@@ -7,6 +7,8 @@
 ### Description 
 Call the function `Update` from the DLL.
 
+For technical support contact us at support@monodrive.io
+
 ### Inputs
 - **aoa:** AoA value from the radar output.
 - **dt:** Delta time between samples.

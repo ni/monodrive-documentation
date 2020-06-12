@@ -5,8 +5,9 @@
 </p>
 
 ### Description 
-Given a State sensor sample (one frame), initialized the `LaneFollower` DLL and calculate the steering angle to mantain the car on the lane
-on the left.
+Given a State sensor sample (one frame), initialized the LaneFollower DLL and calculate the steering angle to maintain the car in the left lane. 
+
+For technical support contact us at support@monodrive.io
 
 ### Inputs
 - **State Sensor sample(String):** The output of the state sensor. Corresponding to one frame of the simulation.

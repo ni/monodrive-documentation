@@ -2,18 +2,16 @@
 
 ## Prerequisites 
 
-1. Install Unreal Engine **4.23** from [here](https://www.unrealengine.com/en-US/).
-
+1. Install Unreal Engine **4.24** from [here](https://www.unrealengine.com/en-US/).
 
 1. In Epic Games Launcher, and select Marketplace >> Browse. Search for "VehicleSim Dynamics" and download this free plugin. 
     - Alternatively, from Epic Games website, sign-in and download the plugin [here](https://www.unrealengine.com/marketplace/en-US/product/carsim-vehicle-dynamics).
-
 
 1. Ensure you have the latest NVIDIA drivers for your [CUDA-enabled](https://developer.nvidia.com/cuda-gpus) graphics card.
 
 	<div class="img_container">
     <img class='sm_img' src="../nvidia_driver2.png"/>
-	<img class='semiwide_img' src="../nvidia_driver1.png"/>
+	<img class='semiwide_img' src="../imgs/nvidia_driver1.png"/>
     </div>
 
     **NOTE**
@@ -22,11 +20,11 @@
     **NOTE**
     In case the driver cannot be updated using the above method, please visit http://www.nvidia.com/Download/index.aspx to download the [latest driver](http://www.nvidia.com/Download/index.aspx).
     
-
 <p>&nbsp;</p>
+
 <hr width="70%"/>
-<p>&nbsp;</p>
 
+<p>&nbsp;</p>
 
 ## Simulator 
 

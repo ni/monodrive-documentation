@@ -31,7 +31,6 @@ The monoDrive Real-to-Virtual hardware and software provide an end-to-end soluti
 
 <p>&nbsp;</p>
 
-
 ## How It Works
 
 monoDrive’s platform is designed to automate scenario test generation for planning testing. 
@@ -39,8 +38,5 @@ monoDrive’s platform is designed to automate scenario test generation for plan
 <div class='img_container'>
     <img class="lg_img" src=https://static.wixstatic.com/media/1f1c9e_58512d3c803847989161a59ec21116a6~mv2.png/v1/fill/w_641,h_632,al_c/1f1c9e_58512d3c803847989161a59ec21116a6~mv2.png alt="monoDrive HowItWorks"/>
 </div>
-
-
-
 
 <p>&nbsp;</p>

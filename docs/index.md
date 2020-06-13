@@ -4,12 +4,12 @@ Welcome to monoDrive's documentation.
 
 This home page contains an index with a brief description of the different sections in the documentation. Feel free to read in whatever order preferred.
 
-monoDrive's Platform is available now: [Download Monodrive](https://lumen.ni.com/nicif/US/GB_EVALTLKTLVMONODRIVE/content.xhtml)
+monoDrive's Platform is available now: [Download monoDrive](https://lumen.ni.com/nicif/US/GB_EVALTLKTLVMONODRIVE/content.xhtml)
 
 <div class="img_container">
-<img class='md_img' src="./monodrive_simulator.png"/>
+<img class='md_img' src="./imgs/monodrive_simulator.png"/>
 <div class="space"></div>
-<img class='md_img' src="./monodrive_scenario_editor.png"/>
+<img class='md_img' src="./imgs/monodrive_scenario_editor.png"/>
 </div>
 
 ## Getting Started
@@ -39,5 +39,3 @@ The monoDrive simulator is configured from the Client. Everything about the simu
 ## Tutorials
 
 [LabVIEW](LV_client/tutorials/Setup.md) <br />
-
-

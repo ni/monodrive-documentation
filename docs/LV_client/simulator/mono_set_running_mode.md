@@ -1,7 +1,7 @@
 # mono_check_config_mode.vi
 
 <p class="img_container">
-<img class="lg_img" src="../mono_check_config_mode.png"/>
+<img class="lg_img" src="../mono_set_running_mode.png"/>
 </p>
 
 ### Description

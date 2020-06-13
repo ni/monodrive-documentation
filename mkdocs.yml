@@ -102,7 +102,6 @@ pages:
           - mono_plot_radar_target_by_name.vi: LV_client/tools/mono_plot_radar_target_by_name.md
           - mono_radar_data_cube_plotter.vi: LV_client/tools/mono_radar_data_cube_plotter.md
           - mono_save_camera_images.vi: LV_client/tools/mono_save_camera_images.md
-          - mono_start_closed_loop.vi: LV_client/tools/mono_start_closed_loop.md
           - mono_start_fixed_time.vi: LV_client/tools/mono_start_fixed_time.md
           - mono_start_hil.vi: LV_client/tools/mono_start_hil.md
           - mono_start_lane_follower.vi: LV_client/tools/mono_start_lane_follower.md
@@ -113,7 +112,7 @@ pages:
           - mono_test_FPS_by_sensor.vi: LV_client/tools/mono_test_FPS_by_sensor.md
 
       - Simulator:
-          - mono_check_config_mode.vi: LV_client/simulator/mono_check_config_mode.md
+          - mono_set_running_mode.vi: LV_client/simulator/mono_set_running_mode.md
           - mono_connect.vi: LV_client/simulator/mono_connect.md
           - mono_header.vi: LV_client/simulator/mono_header.md
           - mono_send_command.vi: LV_client/simulator/mono_send_command.md

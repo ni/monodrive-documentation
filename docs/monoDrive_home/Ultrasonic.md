@@ -51,8 +51,10 @@ Provides range to closest object from a single ultrasonic sensor.
 ## Raw Output
 ```
 {
-  "ranges": [10.0]
-}
+  "targets":[
+      {"range":300.0}
+    ]
+} 
 ```
 
 **ranges:** Array containing distance in centimeters to the closest object in front of the sensor. A value of -1 indicates no return from the sensor.

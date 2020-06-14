@@ -51,7 +51,7 @@ simulator:
 | EgoVehicleConfig_ID | Configure the ego vehicle |
 | EgoControl_ID | Control the ego vehicle |
 | MapCommand_ID | Control the map |
-| ScenarioConfig_ID | Configur the scenario |
+| ScenarioConfig_ID | Configure the scenario |
 | ScenarioInit_ID | Initializing the scenario |
 | WaypointUpdate_ID | Update the current waypoint. |
 | StreamData_ID | Control the data stream |
@@ -69,13 +69,17 @@ simulator:
 | REPLAY_StepSimulationCommand_ID | Replay the current step in the simulation |
 | REPLAY_StateStepSimulationCommand_ID | Replay the current state in the simulation |
 | GetMap | Get the currently loaded map information | 
+| GetStartPoints_ID |  |
+| SpawnVehicleCommand_ID |  |
+| ClosedLoopConfigCommand_ID |  |
+| ClosedLoopStepCommand_ID |  |
 
 
 ## Receiving a Message
 
 The monoDrive Simulator will send messages out over the simulator port 
 (default `8999`) from either localhost or the IP address of the simulator if 
-running in a networked mode. If a `listenport` is specified in the message, 
+running in a networked mode. If a `listen_port` is specified in the message, 
 (e.g. a sensor that should stream data over a specified port), the message will
 be sent to the specified port.
 

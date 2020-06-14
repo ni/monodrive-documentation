@@ -102,7 +102,7 @@ control during playback). To attach the state sensor:
 
 1. Go to the `StateSensor`'s Streamer group in the "Details" window and select "File Streamer Component" as the "Streamer Type"
 
-1. Under the "Streamer" section expand the "File Settings" and type in the name of the file to save the trajectory to.
+1. Under the "Streamer" section expand the "File Settings" and type in the name of the file to save the trajectory. If there is a file with the same name, it will be overwritten with the new file. 
 
     <div class="img_container">
       <img class='lg_img' src="../imgs/state_sensor_streamer_type.png"/>

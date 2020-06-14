@@ -69,10 +69,10 @@ simulator:
 | REPLAY_StepSimulationCommand_ID | Replay the current step in the simulation |
 | REPLAY_StateStepSimulationCommand_ID | Replay the current state in the simulation |
 | GetMap | Get the currently loaded map information | 
-| GetStartPoints_ID |  |
-| SpawnVehicleCommand_ID |  |
-| ClosedLoopConfigCommand_ID |  |
-| ClosedLoopStepCommand_ID |  |
+| GetStartPoints_ID | Get possible start positions for the ego vehicle on the map |
+| SpawnVehicleCommand_ID | Spawns the ego vehicle on closed loop |
+| ClosedLoopConfigCommand_ID | Configure the simulator on closed loop mode |
+| ClosedLoopStepCommand_ID | Send the amount of time the simulator should move forward  |
 
 
 ## Receiving a Message

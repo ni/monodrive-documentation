@@ -25,7 +25,7 @@ on the GPS anchor set for the current map.
 ```
 
 The GPS sensor provides the location information from the sensor's location. 
-The location and orientation are relative to the EGO vehicle's origin. 
+The location and orientation are relative to the ego vehicle's origin. 
 
 ## Raw Output
 

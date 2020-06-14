@@ -3,7 +3,7 @@
 ## monoDrive C++ Client Examples
 
 The monoDrive C++ Client comes with examples for connecting to the monoDrive 
-Simulator or Scenario Editor and controlling the EGO vehicle in both Replay and 
+Simulator or Scenario Editor and controlling the ego vehicle in both Replay and 
 Closed Loop modes. The examples can be found in the `cpp-client/cpp-examples` 
 directory in the `monodive-client` repo.
 
@@ -90,9 +90,9 @@ function:
 } // for
 ```
 
-### Controlling the EGO Vehicle
+### Controlling the ego vehicle
 
-As an alternative to Replay mode, a closed loop control over the EGO vehicle can 
+As an alternative to Replay mode, a closed loop control over the ego vehicle can 
 be done by sending control commands to the simulator, here the vehicle is 
 requested to move forward with 50% throttle:
 
@@ -107,7 +107,7 @@ simulator.send_command(ApiMessage(123, EgoControl_ID, true,
 
 ## Replay Example
 
-A full example of controlling the EGO vehicle in Replay mode can be found in 
+A full example of controlling the ego vehicle in Replay mode can be found in 
 `monodrive-client/cpp-client/cpp-examples/replay/replay_example.cpp`. This 
 example demonstrates:
 
@@ -129,7 +129,7 @@ Sensor(vp_config).configure();
 
 ## Lane Follower Example
 
-An example of controlling the EGO vehicle in a closed loop mode can be found in 
+An example of controlling the ego vehicle in a closed loop mode can be found in 
 the Lane Follower example provided in 
 `monodrive-client/cpp-client/cpp-examples/replay/replay_example.cpp`. This 
 example demonstrates:
@@ -137,10 +137,10 @@ example demonstrates:
 * Configuring and connecting to a running instance of the monoDrive Simulator
 * Configuring and connecting to a Camera sensor (as discussed above)
 * Configuring the Viewport Sensor for the camera on the simulator (as discussed in the Replay Example)
-* Configuring and connecting a State Sensor sensor to get state information from the EGO vehicle
-* Issuing control commands to the simulator to keep the EGO vehicle within a lane
+* Configuring and connecting a State Sensor sensor to get state information from the ego vehicle
+* Issuing control commands to the simulator to keep the ego vehicle within a lane
 
-In this example, the State Sensor information is used to stream EGO vehicle 
+In this example, the State Sensor information is used to stream ego vehicle 
 state information back to the client:
 
 ```cpp
@@ -161,7 +161,7 @@ lanes can be read in as follows:
 lanespline = LaneSpline("cpp-examples/lane_follower/Straightaway5k.json");
 ```
 
-To issue vehicle control commands for keeping the EGO vehicle within its current 
+To issue vehicle control commands for keeping the ego vehicle within its current 
 lane, first grab the vehicle information from the state sensor
 
 ```cpp

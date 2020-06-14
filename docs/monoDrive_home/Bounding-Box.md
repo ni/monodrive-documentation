@@ -36,17 +36,17 @@ See [base sensor](Common.md) for examples on how to get the sensor. All data tha
 
 - **time_stamp (int):** Timestamp representing milliseconds since Sunday.
 - **game_time (float):** Current game time of simulator, this value will be more prominent.
-- **distances (List<float<float>>):** Distances of targets from the Ego vehicle location.
-- **angles (List<float<float>>):** Angles of targets relative to Ego vehicle's forward direction
-- **x_points (List<float<float>>):** X points of targets relative to Ego vehicle's location
-- **y_points (List<float<float>>):** Y points of targets relative to Ego vehicle's location
+- **distances (List<float<float>>):** Distances of targets from the ego vehicle location.
+- **angles (List<float<float>>):** Angles of targets relative to ego vehicle's forward direction
+- **x_points (List<float<float>>):** X points of targets relative to ego vehicle's location
+- **y_points (List<float<float>>):** Y points of targets relative to ego vehicle's location
 - **x_bounds (List<float<float>>):** Bounds of targets in the x direction, target widths
 - **y_bounds (List<float<float>>):** Bounds of targets in the y direction, target lengths
-- **box_rotations(List<float<float>>):** Rotation of targets relative to the Ego vehicle's rotation.
-- **velocities (List<float<float>>):** Velocities of targets relative to the Ego Vehicle's speed
-- **radar_distances (List<float<float>>):** Distances of targets from the Ego vehicle location that are in the Radar's FOV.
-- **radar_angles (List<float<float>>):** Angles of targets relative to Ego vehicle's forward direction that are in the Radar's FOV
-- **radar_velocities (List<float<float>>):** Velocities of targets relative to the Ego Vehicle's speed that are in the Radar's FOV.
+- **box_rotations(List<float<float>>):** Rotation of targets relative to the ego vehicle's rotation.
+- **velocities (List<float<float>>):** Velocities of targets relative to the ego vehicle's speed
+- **radar_distances (List<float<float>>):** Distances of targets from the ego vehicle location that are in the Radar's FOV.
+- **radar_angles (List<float<float>>):** Angles of targets relative to ego vehicle's forward direction that are in the Radar's FOV
+- **radar_velocities (List<float<float>>):** Velocities of targets relative to the ego vehicle's speed that are in the Radar's FOV.
 
 ### Raw Output Data Format Parsed in `BoundingBox.digest_frame()`
 

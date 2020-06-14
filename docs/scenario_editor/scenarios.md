@@ -83,10 +83,10 @@ obeying (or not) traffic laws:
 ### Using the State Sensor to Record
 
 In order to save all vehicles in a single simulation, a monoDrive State Sensor
-should be placed on the Ego Vehicle (i.e. the vehicle the simulation will 
+should be placed on the ego vehicle (i.e. the vehicle the simulation will 
 control during playback). To attach the state sensor:
 
-1. Click on the vehicle to designate as the Ego Vehicle
+1. Click on the vehicle to designate as the ego vehicle
 
 1. In the vehicle's "Details" window, click the "Add Component" button at the top and search for "State Sensor"
 

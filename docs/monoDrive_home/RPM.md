@@ -1,6 +1,6 @@
 # RPM 
 
-Provides wheel revolutions per minute (RPM) information for the EGO vehicle.
+Provides wheel revolutions per minute (RPM) information for the ego vehicle.
 
 ## Configuration
 

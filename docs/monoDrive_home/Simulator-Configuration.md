@@ -134,14 +134,14 @@
 - **map**: The name of the map to load.
 - **server_port**: the TCP port for the simulator, typically 8999.
 - **simulation_mode**: Closed loop (0), replay(1) or hil(2).
-- **ego_config**: Specifies the model and color of the Ego vehicle. The `body`'s `type` specifier allows you to provide a path the model BluePrint for the Ego Vehicle and the `color` specifies the vehicle's color. If `ego_config` is omitted from the file, then a random vehicle and color will be chosen.
+- **ego_config**: Specifies the model and color of the ego vehicle. The `body`'s `type` specifier allows you to provide a path the model BluePrint for the ego vehicle and the `color` specifies the vehicle's color. If `ego_config` is omitted from the file, then a random vehicle and color will be chosen.
 - **traffic_configuration**: The behavior of other vehicles on simulation. 
   - **max_vehicles**: Maximum number of vehicles spawn in the map.
   - **min_desired_speed**: Specify the maximum amount the speed of any vehicle can be **reduced** from the speed limit of the road.  Units on km per hour.
   - **max_desired_speed**: Specify the maximum amount the speed of any vehicle can be **increased** from the speed limit of the road. Units on km per hour.
   - **swarm_traffic"**: Set to *True* if you want to control the distance where other vehicles can spawn as well as when they can disappear from the map.
-  - **spawn_leash_distance**: If **swarm_traffic** enabled. Specify the maximum distance a car can be from the Ego vehicle before it gets destroyed. Units on centimeters.
-  - **min_spawn_range**: If **swarm_traffic** enabled. Specify the minimum distance where a car can be spawn from the Ego vehicle. Units on centimeters.
+  - **spawn_leash_distance**: If **swarm_traffic** enabled. Specify the maximum distance a car can be from the ego vehicle before it gets destroyed. Units on centimeters.
+  - **min_spawn_range**: If **swarm_traffic** enabled. Specify the minimum distance where a car can be spawn from the ego vehicle. Units on centimeters.
   - **vertical_offset**: Specify the distance from the road a car is being spawn on the Z direction.
   - **overtake_slower_vehicles**: Set to *True* if you want to allow cars at a faster speed to overtake cars moving slower. 
 - **phys_materials**: Specify the physical material properties for the specular exponent (10-100), specular reflection coefficient (0.0-1.0), diffuse reflection coefficient (0.0-1.0), dielectric constant (0.10-10,000+), and roughness (0.0-1.0).

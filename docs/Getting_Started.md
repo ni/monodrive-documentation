@@ -4,8 +4,6 @@
 
 1. Install Unreal Engine **4.24** from [here](https://www.unrealengine.com/en-US/).
 
-1. Download CarSim or VehicleSim Dynamics, a free plugin from Epic Games Launcher. From the Epic Games Launcher, select Marketplace >> Browse; search for "VehicleSim Dynamics." This can also be found from Epic Games website, sign-in and download the plugin [here](https://www.unrealengine.com/marketplace/en-US/product/carsim-vehicle-dynamics).
-
 1. Ensure you have the latest NVIDIA drivers for your [CUDA-enabled](https://developer.nvidia.com/cuda-gpus) graphics card.
 
 	<div class="img_container">
@@ -16,9 +14,8 @@
     **NOTE**
     Even if not prompted by the system, a restart is recommended to ensure the new drivers are correctly detected prior to running any simulations.
 
-    **NOTE**
     In case the driver cannot be updated using the above method, please visit http://www.nvidia.com/Download/index.aspx to download the [latest driver](http://www.nvidia.com/Download/index.aspx).
-    
+
 <p>&nbsp;</p>
 
 <hr width="70%"/>
@@ -48,6 +45,8 @@ Generation of project files is not a requirement to run the Simulator, but it en
             - Options: C++ Profiling Tools
 
     *For more information, check [here](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html)*
+
+1. The CarSim or VehicleSim Dynamics, a free plugin from Epic Games Launcher, is optional for users to download. This will replace PhysX vehicles with CarSim Vehicles. To download, from the Epic Games Launcher, select Marketplace >> Browse; search for "VehicleSim Dynamics." This can also be found from Epic Games website, sign-in and download the plugin [here](https://www.unrealengine.com/marketplace/en-US/product/carsim-vehicle-dynamics).
 
 1. Generate Visual Studio project files by right clicking on VehicleAI.uproject in the VehicleAI directory. 
 

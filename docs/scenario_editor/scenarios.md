@@ -1,6 +1,4 @@
-# Creating Scenarios
-
-## monoDrive Scenario Creation
+# Scenario Creation
 
 The monoDrive Scenario Editor allows user to create their own scenarios by 
 controlling various different aspects of AI vehicle behavior. By attaching
@@ -15,7 +13,7 @@ Simulator and Scenario Editor.
 </div> 
 
 
-### Placing Vehicles in a Scene
+## Placing Vehicles in a Scene
 
 The first step in creating a scenario is setting up the monoDrive vehicles in 
 the desired scene and applying driving properties to each. To place a vehicle:
@@ -48,7 +46,7 @@ begin to travel down the lane closest to its original placement.
 
 1. Repeat this with multiple vehicles until the scene is populated as desired.
 
-#### Detailed Vehicle Behavior Settings
+## Detailed Vehicle Behavior Settings
 
 The "Vehicle Settings" section of a vehicle's details contains several settings
 relative to vehicle speed and control:
@@ -79,8 +77,25 @@ obeying (or not) traffic laws:
 * **Destroy on Collision:** If set, then the vehicle will be removed from the simulation if it collides with an object.
 * **Snap to Lane:** If set, then the vehicle will travel down the closest lane when spawned.
 
+## Scenario Tool Widget
 
-### Using the State Sensor to Record
+This tool enables users to save trajectory files for Replay mode and scenario files for Closed loop mode. The Scenario Tool Widget can be found in the Content Folder.
+
+  <div class="img_container">
+    <img class='lg_img' src="../imgs/scenario_tool_widget.png"/>
+  </div>
+
+The output path will save the file to a path on the computer, and the input path will load the Scenario or Trajectory file. 
+
+  <div class="img_container">
+    <img class='lg_img' src="../imgs/export_tool.png"/>
+  </div>
+
+
+
+
+
+## Using the State Sensor to Record a Trajectory File
 
 In order to save all vehicles in a single simulation, a monoDrive State Sensor
 should be placed on the ego vehicle (i.e. the vehicle the simulation will 
@@ -117,7 +132,7 @@ control during playback). To attach the state sensor:
 
 1. Hit "Play" at the top of the Scenario Editor, the file set in the previous step should now be populated with all the desired tags.
 
-#### Tagging System
+### Tagging System
 
 The monoDrive State Sensor uses the Simulator's tagging system to record the 
 desired actors for a trajectory file. The tags for each actor can be seen by 

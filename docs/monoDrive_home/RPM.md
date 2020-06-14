@@ -28,10 +28,8 @@ Provides wheel revolutions per minute (RPM) information for the ego vehicle.
 
 ## Raw Output
 
-The total sensor output is 20 bytes, where the first 12 bytes correspond to the 
-monoDrive sensor header and the remaining 8 provide RPM information for the 
-wheel. The following table specifies the output format for the wheel binary 
-data:
+The total sensor output is 20 bytes, where the first 16 bytes correspond to the monoDrive sensor header and the remaining 4 provide RPM information for the wheel. The following table specifies the output format for the wheel binary data:
+
 
 | Byte   | Description |
 | ------------ | ------------ |

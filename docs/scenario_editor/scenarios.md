@@ -102,12 +102,17 @@ control during playback). To attach the state sensor:
 
 1. Go to the `StateSensor`'s Streamer group in the "Details" window and select "File Streamer Component" as the "Streamer Type"
 
-1. On the Sampling Control select 20 hz to save the state sensor data at this rate
-
 1. Under the "Streamer" section expand the "File Settings" and type in the name of the file to save the trajectory. If there is a file with the same name, it will be overwritten with the new file. 
 
     <div class="img_container">
       <img class='lg_img' src="../imgs/state_sensor_streamer_type.png"/>
+    </div>
+
+1. On the Sampling Control select 20 hz rate to save the state sensor data.
+
+
+    <div class="img_container">
+      <img class='lg_img' src="../imgs/streamer.png"/>
     </div>
 
 1. Hit "Play" at the top of the Scenario Editor, the file set in the previous step should now be populated with all the desired tags.

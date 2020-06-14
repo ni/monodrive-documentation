@@ -102,6 +102,8 @@ control during playback). To attach the state sensor:
 
 1. Go to the `StateSensor`'s Streamer group in the "Details" window and select "File Streamer Component" as the "Streamer Type"
 
+1. On the Sampling Control select 20 hz to save the state sensor data at this rate
+
 1. Under the "Streamer" section expand the "File Settings" and type in the name of the file to save the trajectory. If there is a file with the same name, it will be overwritten with the new file. 
 
     <div class="img_container">
@@ -123,7 +125,6 @@ looking under the "Tags" array.
 
 For the state sensor there are two categories of tags:
 
-* **Desired Tags:** These are tags of elements of the scenario that will be recorded if they do not contain "Undesired Tags". Typically all "dynamic" tags should be recorded, but at a minimum the "ego" tag should be in this section.
 * **Undesired Tags:** These are tags of elements that will not be included in the trajectory. Typically users do not want to record elements that have the "static" tag.
 
 **NOTE:** You must have a vehicle with the tag "ego" when recording a trajectory 

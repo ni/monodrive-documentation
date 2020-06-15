@@ -1,0 +1,11 @@
+name: monodrive-documentation
+channels:
+  - defaults
+dependencies:
+  - pip
+  - setuptools
+  - pip:
+    - mkdocs
+    - mkdocs-ivory
+prefix: 
+

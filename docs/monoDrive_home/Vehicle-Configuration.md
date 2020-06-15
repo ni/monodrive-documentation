@@ -58,7 +58,8 @@ Carpaint_White
 
 ### Closed Loop Mode
 
-When selecting a color programmatically (i.e. using any client) in Closed loop mode, the user can assign a color for the ego vehicle using the `simulator.json` in the `body` tag. 
+When selecting a color programmatically (i.e. using any client) in Closed loop mode, the user can assign a color for the ego vehicle using the scenario file.
+
 ```
 
 "body": {
@@ -69,7 +70,7 @@ When selecting a color programmatically (i.e. using any client) in Closed loop m
 
 ### Replay Mode
 
-When selecting a color programmatically (i.e. using any client) in Replay mode, the user can assign a color for the ego vehicle using the scenario file.
+When selecting a color programmatically (i.e. using any client) in Replay mode, the user can assign a color for the ego vehicle using the `simulator.json` in the `body` tag. 
 
 ```
 "vehicles": [

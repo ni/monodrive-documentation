@@ -8,6 +8,12 @@
    "map":"Almono",
    "server_port":8999,
    "simulation_mode":2,
+   "ego_config": {	   
+		"body": {	     
+			"type": "/Game/Vehicles/crossover_monoDrive_01.crossover_monoDrive_01_C",
+			"color": "Carpaint_White.Carpaint_White"
+		}
+	},
    "traffic_configuration":{
       "max_vehicles":20,
       "min_desired_speed":-20.0,

@@ -165,42 +165,43 @@ To issue vehicle control commands for keeping the ego vehicle within its current
 lane, first grab the vehicle information from the state sensor
 
 ```cpp
-void control_vehicle(Simulator& simulator, Sensor &sensor){
-    std::string json_string(reinterpret_cast<char*>(
-        sensor.recvBuffer.data()), sensor.recvBuffer.size());
-    nlohmann::json frames = json::parse(json_string);
-
-    nlohmann::json vehicle_frame;
-    nlohmann::json stop_sign_frame;
-    for(auto& f : frames["frame"]){
-        for(auto& tag : f["tags"]){
+EgoControlConfig planning(DataFrame* dataFrame){
+    auto& frame = *static_cast<StateFrame*>(dataFrame);
+    std::cout << "sample, game, wall " << frame.sample_count << " " << frame.game_time << " " << frame.wall_time << std::endl;
+    VehicleState* vehicle_frame = nullptr;
+    for(auto& vehicle : frame.vehicles){
+        for(auto& tag : vehicle.state.tags){
             if(tag == "ego"){
-                vehicle_frame = f;
+                vehicle_frame = &vehicle;
                 break;
             }
         }
     }
-
+    if(vehicle_frame == nullptr){
+        std::cout << "No ego vehicle in frame." << std::endl;
+        return EgoControlConfig();
+    }
     Eigen::VectorXd position(3);
-    position << vehicle_frame["position"][0].get<double>(),
-        vehicle_frame["position"][1].get<double>(),
-        vehicle_frame["position"][2].get<double>();
+    position << vehicle_frame->state.odometry.pose.position.x,
+        vehicle_frame->state.odometry.pose.position.y,
+        vehicle_frame->state.odometry.pose.position.z;
     Eigen::Quaternion<double> orientation(
-        vehicle_frame["orientation"][3].get<float>(),
-        vehicle_frame["orientation"][0].get<float>(),
-        vehicle_frame["orientation"][1].get<float>(),
-        vehicle_frame["orientation"][2].get<float>());
+        vehicle_frame->state.odometry.pose.orientation.w,
+        vehicle_frame->state.odometry.pose.orientation.x,
+        vehicle_frame->state.odometry.pose.orientation.y,
+        vehicle_frame->state.odometry.pose.orientation.z
+    );
 ```
 
 Now compute the vehicle's current distance from the lane and steer the vehicle 
 towards the correct position:
 
 ```cpp
-    auto nearestIndex = lanespline.GetNearestPoint("road_0", "lane_2", position);
+  auto nearestIndex = lanespline.GetNearestPoint("road_0", "lane_2", position);
     auto& lane_points = lanespline.spline_map["road_0"]["lane_2"];
     int nextPointIndex = nearestIndex;
     if(nearestIndex >= lane_points.size()-4){
-        nextPointIndex = lane_points.size()-1;
+        nextPointIndex = (int)lane_points.size() - 1;
     }
     else{
         nextPointIndex += 3;
@@ -211,8 +212,13 @@ towards the correct position:
     auto nextPoint = lane_points[nextPointIndex];
     Eigen::VectorXd dirToNextPoint = nextPoint - position;
     dirToNextPoint.normalize();
-
     double angle = -dirToNextPoint.head<3>().cross(forwardVector.head<3>())[2];
+    EgoControlConfig egoControl;
+    egoControl.forward_amount = 0.75;
+    egoControl.brake_amount = 0.0;
+    egoControl.drive_mode = 1;
+    egoControl.right_amount = (float)angle;
+    return egoControl;
 ```    
 
 Finally, create the new control command to the vehicle and send it:

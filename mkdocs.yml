@@ -30,6 +30,7 @@ pages:
     monoDrive_home/GPS.md,
     monoDrive_home/IMU.md,
     monoDrive_home/Lidar.md,
+    monoDrive_home/OccupancyGrid.md,
     monoDrive_home/Radar.md,
     monoDrive_home/RPM.md,
     monoDrive_home/State-sensor.md,

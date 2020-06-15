@@ -196,12 +196,12 @@ the `id` field matches the "Profile Name":
 ```
 <p>&nbsp;</p>
 
-## Using Weather in the LabView Client
+## Using Weather in the LabVIEW Client
 For the LabVIEW client, the weather profiles that are exported can be pasted 
 into the JSON `profiles` array located in the `mono_get_weather.vi` VI. 
 
 * [Getting the weather configuration:](../LV_client/weather/mono__get__weatherc.md)
-The LabView client stores all known weather profiles in this `.vi`. To add a new 
+The LabVIEW client stores all known weather profiles in this `.vi`. To add a new 
 profile, paste in the contents of the profile `.json` file here. 
 
 After opening the VI's GUI: the weather profiles can be found on the left-hand

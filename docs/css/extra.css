@@ -7,7 +7,6 @@ main {
     padding-left: 20px;
     padding-top: 50px;
     padding-right: 20px;
-    font-family: "Roboto Slab","ff-tisa-web-pro","Georgia",Arial,sans-serif;
     font-size: 18px
 }
 
@@ -23,12 +22,8 @@ main {
 body {
     background-color: #EFEFEF;
     color: #404040;
-    font-family: "Roboto Slab","ff-tisa-web-pro","Georgia",Arial,sans-serif;
 }
 
-button, input, aside {
-    font-family: "Roboto Slab","ff-tisa-web-pro","Georgia",Arial,sans-serif;
-}
 aside:hover {
     width: 305px;
     transition: width 2s, height 2s;
@@ -99,19 +94,19 @@ aside {
 }
 
 .toctree-l3>a.nav-item {
-    padding-left: 65px;
+    padding-left: 55px;
 }
 
 .toctree-l4>a.nav-item {
-    padding-left: 85px;
+    padding-left: 65px;
 }
 
 .toctree-l5>a.nav-item {
-    padding-left: 90px;
+    padding-left: 75px;
 }
 
 .toctree-l6>a.nav-item {
-    padding-left: 95px;
+    padding-left: 85px;
 }
 
 a.nav-item.current {

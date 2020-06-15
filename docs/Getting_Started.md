@@ -46,7 +46,7 @@ Generation of project files is not a requirement to run the Simulator, but it en
 
     *For more information, check [here](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html)*
 
-1. The CarSim or VehicleSim Dynamics, a free plugin from Epic Games Launcher, is optional for users to download. This will replace PhysX vehicles with CarSim Vehicles. To download, from the Epic Games Launcher, select Marketplace >> Browse; search for "VehicleSim Dynamics." This can also be found from Epic Games website, sign-in and download the plugin [here](https://www.unrealengine.com/marketplace/en-US/product/carsim-vehicle-dynamics).
+1. (Optional) For CarSim or VehicleSim Dynamics support, download CarSim from the Epic Games Launcher, select Marketplace >> Browse; search for "VehicleSim Dynamics." This can also be found from Epic Games website, sign-in and download the plugin [here](https://www.unrealengine.com/marketplace/en-US/product/carsim-vehicle-dynamics).
 
 1. Generate Visual Studio project files by right clicking on VehicleAI.uproject in the VehicleAI directory. 
 

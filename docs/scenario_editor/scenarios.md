@@ -1,17 +1,13 @@
 # Scenario Creation
 
-The monoDrive Scenario Editor allows user to create their own scenarios by 
-controlling various different aspects of AI vehicle behavior. By attaching
-the monoDrive State Sensor to a vehicle, users can save scenarios to monoDrive
-trajectory files that can then be used in the Replay modes of the monoDrive
-Simulator and Scenario Editor.
+The monoDrive Scenario Editor allows users to create their own scenarios by 
+controlling various different aspects of AI vehicle behavior. There are two types of files that can be created: the trajectory file for Replay Mode and the scenario file for Closed loop mode. 
 
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
     <source src="http://cdn.monodrive.io/readthedocs/scenario_editor_recording.mp4" type="video/mp4">
   </video>
 </div> 
-
 
 ## Placing Vehicles in a Scene
 
@@ -77,85 +73,18 @@ obeying (or not) traffic laws:
 * **Destroy on Collision:** If set, then the vehicle will be removed from the simulation if it collides with an object.
 * **Snap to Lane:** If set, then the vehicle will travel down the closest lane when spawned.
 
-## Scenario Tool Widget
+## Tagging System
 
-The Scenario Widget generates new Trajectory files for Replay mode and/or new Scenario files for Closed loop Mode. These files can be connected to the running simulator to replay dynamic actors for testing and review. The tool can be found under the Content Folder.
-
-  <div class="img_container">
-    <img class='lg_img' src="../imgs/scenario_tool_widget.png"/>
-  </div>
-
-Selecting "Save" underneath the Output path will write the scene's current configuration file to the path indicated in the text field. This will overwrite any paths that have the same name. Input path will load the configuration from the path given in the input path text field.
-
-  <div class="img_container">
-    <img class='lg_img' src="../imgs/export_tool.png"/>
-  </div>
-
-
-
-
-
-## Using the State Sensor to Record a Trajectory File
-
-In order to save all vehicles in a single simulation, a monoDrive State Sensor
-should be placed on the ego vehicle (i.e. the vehicle the simulation will 
-control during playback). To attach the state sensor:
-
-1. Click on the vehicle to designate as the ego vehicle
-
-1. In the vehicle's "Details" window, click the "Add Component" button at the top and search for "State Sensor"
-
-    <div class="img_container">
-      <img class='wide_img' src="../imgs/ego_vehicle_state_sensor.png"/>
-    </div>
-
-1. Select the State Sensor component from the list to attach it
-
-1. Click on the `StateSensor` component in the vehicle's hierarchy in side of the "Details" window to bring up the settings for the sensor.
-
-1. Setup the tagging system for the vehicle (see "Tagging System" below). Ensure that the selected vehicle contains the "ego" tag or the playback of the trajectory will not work.
-
-1. Go to the `StateSensor`'s Streamer group in the "Details" window and select "File Streamer Component" as the "Streamer Type"
-
-1. Under the "Streamer" section expand the "File Settings" and type in the name of the file to save the trajectory. If there is a file with the same name, it will be overwritten with the new file. 
-
-    <div class="img_container">
-      <img class='lg_img' src="../imgs/state_sensor_streamer_type.png"/>
-    </div>
-
-1. On the Sampling Control select 20 hz rate to save the state sensor data.
-
-
-    <div class="img_container">
-      <img class='lg_img' src="../imgs/streamer.png"/>
-    </div>
-
-1. Hit "Play" at the top of the Scenario Editor, the file set in the previous step should now be populated with all the desired tags.
-
-### Tagging System
-
-The monoDrive State Sensor uses the Simulator's tagging system to record the 
-desired actors for a trajectory file. The tags for each actor can be seen by 
-clicking on the actor and scrolling down to the actor's "Actor" group and
-looking under the "Tags" array. 
+The Simulator's tagging system is used to specific attributes for desired actors in a recording. The tags for each actor can be seen by clicking on the actor and scrolling down to the actor's "Actor" group and looking under the "Tags" array. 
 
   <div class="img_container">
     <img class='lg_img' src="../imgs/vehicle_actor_tags.png"/>
   </div>
 
-For the state sensor there are two categories of tags:
+There are two categories of tags:
+
+* **Desired Tags:** These are tags of elements that will be included in the trajectory.
 
 * **Undesired Tags:** These are tags of elements that will not be included in the trajectory. Typically users do not want to record elements that have the "static" tag.
 
-**NOTE:** You must have a vehicle with the tag "ego" when recording a trajectory 
-file or the trajectory cannot be replayed in the monoDrive Simulator.
-
-### Replaying Trajectory Files
-
-The scene that was recorded can be played back using the "Replay" or "Replay 
-Step" modes of the monoDrive Simulator. For more information on these simulation
-modes see:
-
-* [LabView Client Examples](../../../LV_client/quick_start/LabVIEW_run_examples)
-* [Python Client Examples](../../../python_client/examples)
-* [C++ Client Replay Modes](../../../cpp_client/cpp_examples)
+**NOTE:** You must have a vehicle with the tag "ego," otherwise it cannot be used with the monoDrive client.

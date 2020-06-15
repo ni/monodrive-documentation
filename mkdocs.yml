@@ -13,7 +13,9 @@ pages:
 - Products : 
   - Simulator : Simulator.md
   - Scenario Editor : [
-      scenario_editor/scenarios.md, 
+      scenario_editor/scenarios.md,
+      scenario_editor/scenario_files.md,
+      scenario_editor/trajectory_files.md,
       scenario_editor/roads.md
     ]
   - Real-to-Virtual:

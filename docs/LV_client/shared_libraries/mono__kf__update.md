@@ -7,15 +7,17 @@
 ### Description 
 Call the function `Update` from the DLL.
 
+For technical support contact us at support@monodrive.io
+
 ### Inputs
-- **aoa:** Aoa value from the radar output.
+- **aoa:** AoA value from the radar output.
 - **dt:** Delta time between samples.
-- **error in (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 
 ### Outputs
 - **KF_dll_path :** Path to the Release or Debug DLL. .
-- **aoa_kf :** Aoa value from the Kalman Filter.
-- **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+- **aoa_kf :** AoA value from the Kalman Filter.
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 <p>&nbsp;</p>

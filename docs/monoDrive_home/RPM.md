@@ -1,26 +1,26 @@
 # RPM 
 
-Provides wheel revolutions per minute (RPM) information for the EGO vehicle.
+Provides wheel revolutions per minute (RPM) information for the ego vehicle.
 
 ## Configuration
 
 ```
 [
-{
-  "type": "RPM",
-  "listen_port": 8600,
-  "location": {
-    "x": 0,
-    "y": 0,
-    "z": 0
-  },
-  "rotation": {
-    "pitch": 0,
-    "yaw": 0,
-    "roll": 0
-  },
-  "wheelNumber": 3
-}
+  {
+    "type": "RPM",
+    "listen_port": 8600,
+    "location": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "rotation": {
+      "pitch": 0,
+      "yaw": 0,
+      "roll": 0
+    },
+    "wheelNumber": 3
+  }
 ]
 ```
 
@@ -28,10 +28,8 @@ Provides wheel revolutions per minute (RPM) information for the EGO vehicle.
 
 ## Raw Output
 
-The total sensor output is 20 bytes, where the first 12 bytes correspond to the 
-monoDrive sensor header and the remaining 8 provide RPM information for the 
-wheel. The following table specifies the output format for the wheel binary 
-data:
+The total sensor output is 24 bytes, where the first 16 bytes correspond to the monoDrive sensor header and the remaining 8 provide RPM information for the wheel. The following table specifies the output format for the wheel binary data:
+
 
 | Byte   | Description |
 | ------------ | ------------ |

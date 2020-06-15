@@ -44,10 +44,10 @@ See [base sensor](Common.md) for examples on how to get the sensor. All data tha
 - **game_time (float):** Current game time of simulator, this value will be more prominent.
 - **points_by_lane (List<List<float<float>>>):** A list of (x, Y) coordinates for each lane that are on the current road.
 - **current_lane (int):** Current lane of of ego vehicle, index to get current lane coordinates from __point_by_lane__.
-- **forward_vector (List<float<float>>):** Forward vector of the Ego vehicle.
-- **speed (float):** Speed in meters per second of the Ego vehicle.
-- **world_location (List<float<float>>):** World location of the Ego vehicle.
-- **rot_z (float):** Z/Yaw rotation of the Ego vehicle.
+- **forward_vector (List<float<float>>):** Forward vector of the ego vehicle.
+- **speed (float):** Speed in meters per second of the ego vehicle.
+- **world_location (List<float<float>>):** World location of the ego vehicle.
+- **rot_z (float):** Z/Yaw rotation of the ego vehicle.
 
 ### Raw Output Data Format Parsed in `Waypoint.digest_frame()`
 

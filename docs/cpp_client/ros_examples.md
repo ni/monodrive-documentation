@@ -4,7 +4,7 @@
 
 The monoDrive C++ Client comes with a simple example to connect the ROS client
 to a running instance of the monoDrive Simulator or Scenario Editor and 
-automatically steer the EGO vehicle for lane keeping. The example can be found
+automatically steer the ego vehicle for lane keeping. The example can be found
 in the `monodrive-client/cpp-client/ros-examples/` directory. 
 
 ### Building the Example
@@ -69,7 +69,7 @@ lanes can be read in as follows:
 lanespline = LaneSpline((configPath / "Straightaway5k.json").string());
 ```
 
-To issue vehicle control commands for keeping the EGO vehicle within its current 
+To issue vehicle control commands for keeping the ego vehicle within its current 
 lane, first grab the vehicle information from the state sensor
 
 ```cpp

@@ -756,7 +756,7 @@ in the **desired\_tags** list. It will ignore the objects in the
 GPS Sensor
 ----------
 
-The GPS sensor provides the location information from the EGO vehicle
+The GPS sensor provides the location information from the ego vehicle
 such as latitude and longitude.\
 The location of the sensor can be modified in the "x", "y" and "z" axis
 with respect to the car.\

@@ -369,7 +369,7 @@ for a dynamic actor.
     - **name:** The name of the actor's section this bounding box surrounds
 - **name:** The name of the actor for these bounding boxes
 - **oriented_bounding_box:** An array containing JSON for each 3D bounding box for the actor's sections
-    - **center:** The x, y, and z center of the bounding box in centimeters from the EGO vehicle
+    - **center:** The x, y, and z center of the bounding box in centimeters from the ego vehicle
     - **extents:** The x, y, and z radius in centimeters from the center of the bounding box
     - **name:** The name of the actor's section this bounding box surrounds
     - **orientation:** The rotation of the bounding box about the center as a quaternion

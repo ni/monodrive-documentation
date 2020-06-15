@@ -79,13 +79,13 @@ obeying (or not) traffic laws:
 
 ## Scenario Tool Widget
 
-This tool enables users to save trajectory files for Replay mode and scenario files for Closed loop mode. The Scenario Tool Widget can be found in the Content Folder.
+The Scenario Widget generates new Trajectory files for Replay mode and/or new Scenario files for Closed loop Mode. These files can be connected to the running simulator to replay dynamic actors for testing and review. The tool can be found under the Content Folder.
 
   <div class="img_container">
     <img class='lg_img' src="../imgs/scenario_tool_widget.png"/>
   </div>
 
-The output path will save the file to a path on the computer, and the input path will load the Scenario or Trajectory file. 
+Selecting "Save" underneath the Output path will write the scene's current configuration file to the path indicated in the text field. This will overwrite any paths that have the same name. Input path will load the configuration from the path given in the input path text field.
 
   <div class="img_container">
     <img class='lg_img' src="../imgs/export_tool.png"/>

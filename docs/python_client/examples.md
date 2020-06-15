@@ -23,7 +23,7 @@ simulator.start()
 ```
 
 Here the simulator is being created from several of the provided configuration 
-files for "Closed Loop" control of the EGO vehicle. 
+files for "Closed Loop" control of the ego vehicle. 
 
 ### Subscribing to Sensors
 
@@ -114,7 +114,7 @@ if camera_frame:
 The example in `examples/closed_loop.py` demonstrates how to connect to an 
 instance of the monoDrive Simulator and:
 
-* Control the EGO vehicle directly
+* Control the ego vehicle directly
 * Subscribe to several different sensors and define their callbacks
 * Process and display `Camera` sensor data
 * Process and display `LiDAR` sensor data

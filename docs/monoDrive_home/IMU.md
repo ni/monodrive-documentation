@@ -1,6 +1,6 @@
 # IMU
 
-Provides inertial measurements for the EGO vehicle relative to the sensor's location.
+Provides inertial measurements for the ego vehicle relative to the sensor's location.
 
 ## Configuration
 
@@ -24,10 +24,10 @@ Provides inertial measurements for the EGO vehicle relative to the sensor's loca
 ]
 ```
 
-The monoDrive IMU sensor reports the EGO vehicle's acceleration in x, y and z 
+The monoDrive IMU sensor reports the ego vehicle's acceleration in x, y and z 
 axis, as well as the angular velocity in the same axis. The location and 
 orientation of the sensor can be modified in the "x", "y" and "z" axis with 
-respect to the origin of the EGO vehicle.
+respect to the origin of the ego vehicle.
 
 ## Raw Output
 

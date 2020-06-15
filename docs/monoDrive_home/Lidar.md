@@ -29,7 +29,7 @@ commercial Velodyne LiDARs.
 ```
 
 - **max_distance:** The maximum distance in centimeters the LiDAR laser will travel.
-- **horizontal_resolution:** The horizontal angle in degrees the LiDAR must rotate before shooting out the next set of lasers. Usually from 0.1 to 0.8.
+- **horizontal_resolution:** The horizontal angle in degrees the LiDAR must rotate before shooting out the next set of lasers. Range from 0.1 to 0.4
 - **rpms:** The expected number of revolutions per minute for a full 360 degree sweep. Controls the expected time between laser lines.
 - **n_lasers:** The number of lasers the LiDAR sensor shoots out per sweep. This can be set to 16 (VLP-16), 32 (HDL-32).
 - **reset_angle:** The angle that indicates a full revolution (i.e. full 360 degree revolution will start at this reported angle).

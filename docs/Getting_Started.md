@@ -26,7 +26,7 @@
 
 1. Download the monoDrive Simulator from [here](https://www.monodrive.io/register) or the monoDrive Scenario Editor from [here](https://www.monodrive.io/register). 
 
-1. After downloading, extract all files to a common folder such as ~/monodrive/. In an email after downloading, copy the attached license.txt file inside the common folder the simulator version was downloaded (~/monodrive).
+1. After downloading, extract the archive to a common location like ~/monodrive/. If downloading for the first time, the user will receive an email with a license.txt file attachment. Copy the attached license.txt file to the extract location (~/monodrive/).
 
 1. To run the Simulator, go to your VehicleAI_Editor directory and double-click on VehicleAI.uproject.
 

@@ -1,8 +1,10 @@
 # LiDAR
 
-The configuration for a LiDAR sensor is modeled after the Velodyne LiDAR. Currently we only support **16 and 32 laser**.
+The monoDrive LiDAR sensor simulates Velodyne LiDARs in both 16 and 32 laser 
+variants. The output of the LiDAR matches the documented output of the 
+commercial Velodyne LiDARs.
 
-## LiDar
+## Configuration
 
 ```
 {
@@ -25,38 +27,37 @@ The configuration for a LiDAR sensor is modeled after the Velodyne LiDAR. Curren
   "reset_angle": 0.0
 }
 ```
-<p>&nbsp;</p>
 
+- **max_distance:** The maximum distance in centimeters the LiDAR laser will travel.
+- **horizontal_resolution:** The horizontal angle in degrees the LiDAR must rotate before shooting out the next set of lasers. Range from 0.1 to 0.4
+- **rpms:** The expected number of revolutions per minute for a full 360 degree sweep. Controls the expected time between laser lines.
+- **n_lasers:** The number of lasers the LiDAR sensor shoots out per sweep. This can be set to 16 (VLP-16), 32 (HDL-32).
+- **reset_angle:** The angle that indicates a full revolution (i.e. full 360 degree revolution will start at this reported angle).
 
-## Configuration
+## Raw Output
 
-### Configuration Tags
-The location of the sensor can be modified in the "x", "y" and "z" axis with respect to the car.   
-The sensor's orientation can be modified in the "yaw", "pitch" and "roll" axis.
+The output format of the **16 laser** LiDAR matches that of the 
+[Velodyne Puck Hi-Res](https://velodynelidar.com/products/puck-hi-res/) in 
+single return mode. The output of the **32 laser** LiDAR matches that of the 
+[Velodyne HDL-32E](https://velodynelidar.com/products/hdl-32e/) in single return 
+mode. Both of these models have a well documented format in their respective 
+product manuals.
 
-- **max_distance**: The maximum distance, in centimeters, the LiDAR laser will travel.
-- **horizontal_resolution**: The horizontal angle, in degrees, the LiDAR must rotate before shooting out the next set of lasers. Usually from 0.1 to 0.8.
-- **rpms**: The expected number of revolutions per minute for a full 360 degree sweep. Controls the expected time between laser lines.
-- **n_lasers**: The number of lasers the LiDAR sensor shoots out per sweep. This can be set to 16 (VLP-16), 32 (HDL-32).
-- **reset_angle**: The angle that indicates a full revolution (i.e. full 360 degree revolution will start at this reported angle).
-<p>&nbsp;</p>
-
-
-### Raw Output Data Format
 Each data packet from the LiDAR sensor contains **1206 bytes**.  
-There are 12 data blocks, each block is **100 bytes** and there are **4 bytes** for the timestamp and **2 bytes** called factory bytes. The number of packets for a revolution depends on the **horizontal revolution**.  
+There are 12 data blocks, each block is **100 bytes** and there are **4 bytes** 
+for the timestamp and **2 bytes** called factory bytes. The number of packets 
+for a revolution depends on the **horizontal revolution**.  
 
-- [VLP-16 Manual Download](http://velodynelidar.com/vlp-16.html)
-- [HDL-32E Manual Download](http://velodynelidar.com/hdl-32e.html)
+### Visualizing LiDAR Output
 
-<p>&nbsp;</p>
+The output of the LiDAR can be streamed over UDP (enabled by default with the 
+[monoDrive LabVIEW client](../../LV_client/quick_start/LabVIEW_client_quick_start)). 
+To visualize the output you will need to:
 
-
-## Visualize LiDAR output
-1. Download [VeloView](https://www.paraview.org/VeloView/). 
-2. Run VeloView
-3. Click `Sensor Stream`, and select the correct configuration (Puck Hi-Res or HDL-32). 
-3. Run the simulator and client normally when the stream data starts coming through VeloView will populate with the LiDAR data.
+1. Download and run [VeloView](https://www.paraview.org/VeloView/)
+1. Click `Sensor Stream`, and select the correct configuration (Puck Hi-Res or HDL-32).
+1. Run the monoDrive Simulator, configure the monoDrive LabVIEW client with a LiDAR
+1. When the LiDAR data starts streaming, VeloView will display the LiDAR points
 
 <p class="img_container">
   <img class="lg_img" src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/lidarsensor.PNG"/>

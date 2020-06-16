@@ -19,8 +19,8 @@ The monoDrive control, contains configuration parameters and variables to be use
 
   | Type  | Name   |
   | ------------ | ------------ |
-  |I32  | Number of trajectories |
-  |I32 | Trajectory Number  |
+  |I32  | Number of frames |
+  |I32 | Frame Number  |
   |String | Trajectory  |
 
   - Weather

@@ -1,7 +1,9 @@
 # GPS
 
-## GPS
-Provides GPS stream
+Provides GPS coordinates for the sensor's location. The coordinates are based
+on the GPS anchor set for the current map.
+
+## Configuration 
 
 ```
 [
@@ -21,21 +23,17 @@ Provides GPS stream
   }
 ]
 ```
-<p>&nbsp;</p>
 
+The GPS sensor provides the location information from the sensor's location. 
+The location and orientation are relative to the ego vehicle's origin. 
 
+## Raw Output
 
-## Configuration
-
-### Configuration Tags
-The GPS sensor provides the location information from the EGO vehicle such as latitude and longitude.  
-The location of the sensor can be modified in the "x", "y" and "z" axis with respect to the car.    
-The sensor's orientation can be modified in the "yaw", "pitch" and "roll" axis.
-
-### Raw Output Data Format
-
-The sensor output has 78 bytes, where 12 bytes correspond to the header of the message and 66 correspond to data from the sensor.  
-Following the data format found [here](https://github.com/swift-nav/libsbp/raw/master/docs/sbp.pdf).
+The total sensor output is 78 bytes, where the first 12 bytes correspond to the 
+monoDrive sensor header and the remaining 66 conform to the Swift Navigation 
+Binary Protocol. The format for the Swift Protocol can be found 
+[here](https://github.com/swift-nav/libsbp/raw/master/docs/sbp.pdf). Below
+is a table of each element in the message:
 
 | Type  | Name   |
 | ------------ | ------------ |

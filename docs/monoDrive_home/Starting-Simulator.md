@@ -32,14 +32,14 @@
         ```
 2. Simulator: Each sensor will sample it's data and send it to the client.
 
-3. Sensor: Each sensor in the client will digest this data from the simulator and put the parsed data into both `q_display` and `q_data`. `q_display` is used for displaying the sensor's data in a graph, `q_data` is used in the Vehicle class to assist the Ego vehicle in driving.
+3. Sensor: Each sensor in the client will digest this data from the simulator and put the parsed data into both `q_display` and `q_data`. `q_display` is used for displaying the sensor's data in a graph, `q_data` is used in the Vehicle class to assist the ego vehicle in driving.
     ```
             for sensor in ego_vehicle.sensors:
                 data = sensor.get_message()
                 # do something interesting with the data
     ```
 
-4. Vehicle: The `SimpleVehicle` class implements `drive(sensors)` to use the sensors' data to calculate control values for the Ego vehicle. These control values are sent to the simulator to control the vehicle.
+4. Vehicle: The `SimpleVehicle` class implements `drive(sensors)` to use the sensors' data to calculate control values for the ego vehicle. These control values are sent to the simulator to control the vehicle.
 
 The JSON format the simulator expects to control the ego vehicle.
 

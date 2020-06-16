@@ -7,15 +7,17 @@
 ### Description 
 Initialized a `LaneFollower` object on the DLL.
 
+For technical support contact us at support@monodrive.io
+
 ### Inputs
 - **DLL path in:** Path to the Release or Debug DLL.
-- **map_json:** The map string on JSON format.
-- **error in (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+- **map_json:** The map string in JSON format.
+- **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 
 ### Outputs
 - **DLL path in:** Path to the Release or Debug DLL.
-- **return:** Return value if executed succesfully.
-- **error out (Error Cluster):** Can accept error information wired from VIs previously called. Use this information to decide if any functionality should be bypassed in the event of errors from other VIs.
+- **return:** Return value if executed successfully.
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs.
 
 <p>&nbsp;</p>

@@ -55,7 +55,11 @@ Carpaint_Red
 Carpaint_Silver
 Carpaint_White
 ```
-When selecting a color programmatically (i.e. using any client) the user can assign the color to use for the ego vehicle using the `vehicle.json` with the `body` tag. 
+
+### Closed Loop Mode
+
+When selecting a color programmatically (i.e. using any client) in Closed loop mode, the user can assign a color for the ego vehicle using the scenario file.
+
 ```
 
 "body": {
@@ -63,6 +67,19 @@ When selecting a color programmatically (i.e. using any client) the user can ass
     "type": "/Game/Vehicles/crossover_monoDrive_01.crossover_monoDrive_01_C"
   }
 ```
+
+### Replay Mode
+
+When selecting a color programmatically (i.e. using any client) in Replay mode, the user can assign a color for the ego vehicle using the `simulator.json` in the `body` tag. 
+
+```
+"vehicles": [
+    {
+      "body_color": "Carpaint_White",
+      "class_path": "/Game/Vehicles/subcompact_monoDrive_01.subcompact_monoDrive_01_C",
+      "delayed_start": 0.0,
+```
+
 ## PID Speed Controllers
 ### Speed Maintain PID
 Each vehicle has a pre-defined PID parameters to control how closely and accurately it maintains a desired speed.   
@@ -149,72 +166,3 @@ Alternatively, the user can provide Euler Angles, **yaw**, **pitch** and **roll*
   0.0
 ]
 ```     
-## Vehicle Configuration
-The following configuration is an example of how to create a `vehicle.json` to use with the C++ client and the Python client. 
-
-```json
-{
-  "vehicle_dynamics": "physx",
-  "body": {
-    "color": "Carpaint_White.Carpaint_White",
-    "type": "/Game/Vehicles/crossover_monoDrive_01.crossover_monoDrive_01_C"
-  },
-  "angular_velocity": [
-    0.0,
-    0.0,
-    0.0
-  ],
-  "orientation": [
-    0.0,
-    0.0,
-    0.0,
-    1.0
-  ],
-  "position": [
-    0.0,
-    0.0,
-    0.0
-  ],
-  "tags": [
-    "vehicle",
-    "dynamic",
-    "ego"
-  ],
-  "velocity": [
-    0.0,
-    0.0,
-    0.0
-  ],
-  "wheel_speed": [
-    0.0,
-    0.0,
-    0.0,
-    0.0
-  ],
-  "wheels": [
-    {
-      "id": 1,
-      "orientation": [
-        0.0,
-        0.0,
-        0.0,
-        1.0
-      ]
-    },
-    {
-      "id": 2,
-      "orientation": [
-        0.0,
-        0.0,
-        0.0,
-        1.0
-      ]
-    }
-  ]
-}
-```
-<p>&nbsp;</p>
-
-### Configuration Tags
-- **vehicle_dynamics**: Physics engine to use to perform vehicle dynamics.
-- **tags**: Describe the vehicle for classification or filtering purposes.

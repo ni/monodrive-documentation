@@ -13,7 +13,7 @@
 
 2. Download VeloView from this [website](https://www.paraview.org/download/).
 
-3. Download the monoDrive Simulator from [here](https://lumen.ni.com/nicif/US/GB_EVALTLKTLVMONODRIVE/content.xhtml).
+3. Download the monoDrive Simulator from [here](https://www.monodrive.io/register).
 
 4. Download the monoDrive Client from the VIPM (installed with LabVIEW). Look for *monoDrive* on the VIPM browser.
 
@@ -32,7 +32,7 @@ This example demonstrates how to use LabVIEW as a client for the monoDrive Simul
 
 ### Instructions:
 
-1. Make sure you download the monoDrive Simulator from [monoDrive](https://lumen.ni.com/nicif/US/GB_EVALTLKTLVMONODRIVE/content.xhtml)
+1. Make sure you download the monoDrive Simulator from [monoDrive](https://www.monodrive.io/register)
 
 2. Run the **VehicleAI.exe**
 <p>&nbsp;</p>

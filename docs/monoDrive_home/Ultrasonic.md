@@ -49,6 +49,7 @@ Provides range to closest object from a single ultrasonic sensor.
     - **debug_rescan:** If set to true, the scan lines will be drawn only when there is an object enters the **scan_distance**.
 
 ## Raw Output
+
 ```
 {
   "targets":[
@@ -58,6 +59,17 @@ Provides range to closest object from a single ultrasonic sensor.
 ```
 
 **ranges:** Array containing distance in centimeters to the closest object in front of the sensor. A value of -1 indicates no return from the sensor.
+
+<!-- 
+### Output 
+
+Consists of two messages, or one if the above is false: 
+
+1. If the above is set to true, then the first message will be the processed target data as already described in the RTD documentation
+
+2. (This is the one that isn't in the RTD yet) This message is always sent and contains the raw ultrasonic waveform data. The format for the waveform data is an array of 32-bit floating point numbers that is the length of the requested number of samples. -->
+
+
 
 ### Configuration Examples  
 

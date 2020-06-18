@@ -1,35 +1,33 @@
 # LiDAR
 
-The monoDrive LiDAR sensor simulates Velodyne LiDARs in both 16 and 32 laser 
-variants. The output of the LiDAR matches the documented output of the 
-commercial Velodyne LiDARs.
+The monoDrive LiDAR sensor simulates Velodyne LiDARs in both 16 and 32 laser variants. The output of the LiDAR matches the documented output of commercial Velodyne LiDARs.
 
 ## Configuration
 
-```
+``` json
 {
   "type": "Lidar",
-  "listen_port": 8200,
+  "horizontal_resolution": 0.400000005960464,
+  "listen_port": 0,
   "location": {
-    "x":-75.0,
-    "y":-25.0,
-    "z":350.0
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
   },
-  "rotation": {
-    "pitch":0.0,
-    "yaw":0.0,
-    "roll":0.0
+    "rotation": {
+      "pitch": 0.0,
+      "roll": 0.0,
+      "yaw": 0.0
   },
   "max_distance": 8000.0,
-  "horizontal_resolution": 0.8,
-  "rpms": 300.0,
   "n_lasers": 16,
-  "reset_angle": 0.0
+  "reset_angle": 0.0,
+  "rpms": 300.0
 }
 ```
 
 - **max_distance:** The maximum distance in centimeters the LiDAR laser will travel.
-- **horizontal_resolution:** The horizontal angle in degrees the LiDAR must rotate before shooting out the next set of lasers. Range from 0.1 to 0.4
+- **horizontal_resolution:** The horizontal angle in degrees the LiDAR must rotate before shooting out the next set of lasers. Range from 0.1 to 0.4.
 - **rpms:** The expected number of revolutions per minute for a full 360 degree sweep. Controls the expected time between laser lines.
 - **n_lasers:** The number of lasers the LiDAR sensor shoots out per sweep. This can be set to 16 (VLP-16), 32 (HDL-32).
 - **reset_angle:** The angle that indicates a full revolution (i.e. full 360 degree revolution will start at this reported angle).

@@ -1,27 +1,27 @@
 # IMU
 
+The IMU, inertial measurement unit, is a system that monitors the dynamic changes in the movements of a vehicle. In monoDrive's Simulator, the IMU provides inertial measurements for the ego vehicle relative to the sensor's location.
+
 Provides inertial measurements for the ego vehicle relative to the sensor's location.
 
 ## Configuration
 
-```
-[
-  {
+```json
+{
     "type": "IMU",
-    "listen_port": 8500,
+    "description": "",
+    "listen_port": 0,
     "location": {
-      "x":-75.0,
-      "y":-25.0,
-      "z":245.0
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
     },
     "rotation": {
-      "pitch":0.0,
-      "yaw":0.0,
-      "roll":0.0
+      "pitch": 0.0,
+      "roll": 0.0,
+      "yaw": 0.0
     }
-  }
-
-]
+}
 ```
 
 The monoDrive IMU sensor reports the ego vehicle's acceleration in x, y and z 
@@ -33,7 +33,7 @@ respect to the origin of the ego vehicle.
 
 The total sensor output is 48 bytes, where the first 12 bytes correspond to the 
 monoDrive sensor header and the remaining 36 conform to the 3DM-GX2 Data 
-Communications Protocol. The format for the protocal can be found 
+Communications Protocol. The format for the protocol can be found 
 [here](http://files.microstrain.com/dcp/Inertia-Link-3DM-GX2-data-communications-protocol.pdf). 
 Below is a table of each element in the message:
 

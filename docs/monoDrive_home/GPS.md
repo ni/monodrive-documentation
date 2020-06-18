@@ -6,22 +6,21 @@ on the GPS anchor set for the current map.
 ## Configuration 
 
 ```
-[
-   {
-    "type": "GPS",
-    "listen_port": 8400,
-    "location": {
-      "x": -75.0,
-      "y": -25.0,
-      "z": 245.0
-    },
-    "rotation": {
+{
+  "type": "GPS",
+  "description": "",
+  "listen_port": 0,
+  "location": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+  },
+  "rotation": {
       "pitch": 0.0,
-      "yaw": 0.0,
-      "roll": 0.0
-    }
+      "roll": 0.0,
+      "yaw": 0.0
   }
-]
+}
 ```
 
 The GPS sensor provides the location information from the sensor's location. 

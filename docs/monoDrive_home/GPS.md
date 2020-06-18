@@ -1,14 +1,12 @@
 # GPS
 
-Provides GPS coordinates for the sensor's location. The coordinates are based
-on the GPS anchor set for the current map.
+The GPS coordinates are based on the GPS anchor set for the current map. The location and orientation are relative to the ego vehicle's origin.
 
 ## Configuration 
 
 ```
 {
   "type": "GPS",
-  "description": "",
   "listen_port": 0,
   "location": {
       "x": 0.0,
@@ -22,9 +20,6 @@ on the GPS anchor set for the current map.
   }
 }
 ```
-
-The GPS sensor provides the location information from the sensor's location. 
-The location and orientation are relative to the ego vehicle's origin. 
 
 ## Raw Output
 
@@ -57,4 +52,3 @@ is a table of each element in the message:
 |Bytes 64-66 | CRC  |
 
 <p>&nbsp;</p>
-

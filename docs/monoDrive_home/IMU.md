@@ -1,15 +1,15 @@
 # IMU
 
-The IMU, inertial measurement unit, is a system that monitors the dynamic changes in the movements of a vehicle. In monoDrive's Simulator, the IMU provides inertial measurements for the ego vehicle relative to the sensor's location.
-
-Provides inertial measurements for the ego vehicle relative to the sensor's location.
+The monoDrive IMU sensor reports the ego vehicle's acceleration in x, y and z 
+axis, as well as the angular velocity in the same axis. The location and 
+orientation of the sensor can be modified in the "x", "y" and "z" axis with 
+respect to the origin of the ego vehicle.
 
 ## Configuration
 
 ```json
 {
     "type": "IMU",
-    "description": "",
     "listen_port": 0,
     "location": {
         "x": 0.0,
@@ -23,11 +23,6 @@ Provides inertial measurements for the ego vehicle relative to the sensor's loca
     }
 }
 ```
-
-The monoDrive IMU sensor reports the ego vehicle's acceleration in x, y and z 
-axis, as well as the angular velocity in the same axis. The location and 
-orientation of the sensor can be modified in the "x", "y" and "z" axis with 
-respect to the origin of the ego vehicle.
 
 ## Raw Output
 
@@ -49,3 +44,5 @@ Below is a table of each element in the message:
 |Bytes 25-29 | Timestamp as indicated in the above link |
 |Bytes 29-31 | Checksum |
 |Byte 31-35| Time of week |
+
+<p>&nbsp;</p>

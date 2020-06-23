@@ -1,6 +1,18 @@
 # Simulator 
 
-The monoDrive Simulator is a powerful simulation software featuring high-fidelity sensor models, realistic driving scenarios, and diverse environments. The Open Source monoDrive clients provide an API and examples for connecting to the Simulator for simulating traffic scenarios and replaying monoDrive trajectory files. The clients enables users to configure and test any number of configurations of monoDrive high-fidelity sensors. See video examples below of the simulation. 
+The monoDrive Simulator is a powerful simulation software featuring high-fidelity sensor models, realistic driving scenarios, and diverse environments. The Open Source monoDrive clients provide an API and examples for connecting to the Simulator for simulating traffic scenarios and replaying monoDrive trajectory files. The clients enable users to configure and test any number of configurations of monoDrive high-fidelity sensors. For more information on the each monoDrive client, see the quick start pages: [C++ Client](../cpp_client/cpp_quick_start), [LabVIEW Client](../LV_client/quick_start/LabVIEW_client_quick_start), and [Python Client](../python_client/quick_start).
+
+The Simulator offers four modes for robust testing: 
+
+- *Closed Loop*, actively control the system based on sensor and vehicle feedback.
+
+- *Replay*, executes a fixed sequence with controlled vehicle positions without any feedback.
+
+- *HIL*, hardware in the loop, enables users to connect hardware for perception and control and integrate them into various pieces of a closed loop or replay simulation.
+
+- *Closed Loop with Fixed Step*, enables a user to control the time delta between simulation steps regardless of the wall clock time.
+
+Below are some examples of the monoDrive Simulator using Replay mode:
 
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>

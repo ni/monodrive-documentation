@@ -4,7 +4,7 @@
 
 The monoDrive C++ Client comes with examples for connecting to the monoDrive 
 Simulator or Scenario Editor and controlling the ego vehicle in both Replay and 
-Closed Loop modes. The examples can be found in the `cpp-client/cpp-examples` 
+Closed Loop modes. The examples can be found in the `examples/cpp` 
 directory in the `monodive-client` repo.
 
 ### Connecting to the Simulator
@@ -16,20 +16,23 @@ in "Play" mode, read in configuration values and create an instance of a
 ```cpp
 //Read JSON files in cpp_client/config directory
 Configuration config(
-    "simulator-cpp-client/config/simulator.json",
-    "simulator-cpp-client/config/vehicle.json",
-    "simulator-cpp-client/config/weather.json",
-    "simulator-cpp-client/config/scenario.json"
+    "examples/config/simulator.json",
+    "examples/config/weather.json",
+    "examples/config/scenario.json"
 );
 // Default simulator port is 8999
-Simulator& simulator = Simulator::getInstance(config, "127.0.0.1", 8999);
+Simulator& sim0 = Simulator::getInstance(config, "127.0.0.1", 8999);
+
+if (!sim0.configure())
+{
+    return -1;
+}
 ```
 
 ### Creating Sensors
 
 Each sensor has a configuration `struct` that must be setup either by reading in 
-a JSON configuration file or assigning values to the `struct` directly. Here, 
-an example of constructing a camera sensor from JSON should be:
+a JSON configuration file or by creating a configuration object and assigning the appropriate values. For instance, constructing a camera sensor should look like:
 
 ```cpp
 // Read the JSON from file
@@ -45,20 +48,25 @@ camera_config.from_json(file);
 Alternatively, the `struct` can be setup directly in the code:
 
 ```cpp
-CameraConfig camera_config;
-camera_config.server_ip = ip;
-camera_config.listen_port = 8100;
-camera_config.location.z = 200;
-camera_config.rotation.pitch = -5;
-camera_config.resolution = CameraConfig::Resolution(1024,1024);
+// define desired sensors
+    std::vector<std::shared_ptr<Sensor>> sensors;
+
+    CameraConfig fc_config;
+    fc_config.server_ip = sim0.getServerIp();
+    fc_config.server_port = sim0.getServerPort();
+    fc_config.listen_port = 8100;
+    fc_config.location.z = 225;
+    fc_config.rotation.pitch = -5;
+    fc_config.resolution = Resolution(1920,1080);
+    fc_config.annotation.include_annotation = true;
+    fc_config.annotation.desired_tags = {"traffic_sign"};
 ```
 
 After the sensor's configuration is created, all that needs to be done is 
 configure the sensor:
 
 ```cpp
-Sensor camera(CameraConfig);
-camera.configure();
+sensors.push_back(std::make_shared<Sensor>(std::make_unique<CameraConfig>(fc_config)));
 ```
 
 ### Stepping in Replay Mode
@@ -108,13 +116,13 @@ simulator.send_command(ApiMessage(123, EgoControl_ID, true,
 ## Replay Example
 
 A full example of controlling the ego vehicle in Replay mode can be found in 
-`monodrive-client/cpp-client/cpp-examples/replay/replay_example.cpp`. This 
+`monodrive-client/examples/cpp/replay/replay.cpp`. This 
 example demonstrates:
 
 * Configuring and connecting to a running instance of the monoDrive Simulator
 * Configuring and connecting to a Camera sensor (as discussed above)
 * Configuring the Viewport Sensor for the camera on the simulator
-* Stepping a monoDrive Trajectory File in Repaly mode (as discussed above)
+* Stepping a monoDrive Trajectory File in Replay mode (as discussed above)
 
 The Viewport Sensor in this example controls where the camera view will be 
 placed in the monoDrive Simulator or Scenario Editor. This sensor is not 
@@ -122,16 +130,19 @@ configured and sent to the `sim0` instance without needing to be sampled:
 
 ```cpp
 ViewportCameraConfig vp_config;
-vp_config.server_ip = ip;
-vp_config.location.z = 200;
-Sensor(vp_config).configure();
+vp_config.server_ip = server0_ip;
+vp_config.location.x = -750;
+vp_config.location.z = 400;
+Sensor(std::make_unique<ViewportCameraConfig>(vp_config)).configure();
 ```
 
-## Lane Follower Example
+## Lane Follower Examples
+
+### Fixed Step
 
 An example of controlling the ego vehicle in a closed loop mode can be found in 
 the Lane Follower example provided in 
-`monodrive-client/cpp-client/cpp-examples/replay/replay_example.cpp`. This 
+`monodrive-client/examples/cpp/lane_follower/fixed_step.cpp`. This 
 example demonstrates:
 
 * Configuring and connecting to a running instance of the monoDrive Simulator
@@ -145,12 +156,13 @@ state information back to the client:
 
 ```cpp
 StateConfig state_config;
-state_config.desired_tags = {"vehicle", "ego"};
-state_config.server_ip = ip;
+state_config.desired_tags = {"ego"};
+state_config.server_ip = sim0.getServerIp();
+state_config.server_port = sim0.getServerPort();
 state_config.listen_port = 8101;
 state_config.debug_drawing = true;
 state_config.undesired_tags = {""};
-sensors.emplace_back(state_config);
+sensors.push_back(std::make_shared<Sensor>(std::make_unique<StateConfig>(state_config)));
 ```
 
 This example uses the GeoJSON lanes from the monoDrive `Straightaway5k` map in 
@@ -158,7 +170,7 @@ order to calculate the distance of the ego vehicle to the current lane. The
 lanes can be read in as follows:
 
 ```cpp
-lanespline = LaneSpline("cpp-examples/lane_follower/Straightaway5k.json");
+LaneSpline lanespline = LaneSpline(std::string("examples/cpp/lane_follower/Straightaway5k.json"));
 ```
 
 To issue vehicle control commands for keeping the ego vehicle within its current 
@@ -167,7 +179,7 @@ lane, first grab the vehicle information from the state sensor
 ```cpp
 EgoControlConfig planning(DataFrame* dataFrame){
     auto& frame = *static_cast<StateFrame*>(dataFrame);
-    std::cout << "sample, game, wall " << frame.sample_count << " " << frame.game_time << " " << frame.wall_time << std::endl;
+
     VehicleState* vehicle_frame = nullptr;
     for(auto& vehicle : frame.vehicles){
         for(auto& tag : vehicle.state.tags){
@@ -181,6 +193,7 @@ EgoControlConfig planning(DataFrame* dataFrame){
         std::cout << "No ego vehicle in frame." << std::endl;
         return EgoControlConfig();
     }
+
     Eigen::VectorXd position(3);
     position << vehicle_frame->state.odometry.pose.position.x,
         vehicle_frame->state.odometry.pose.position.y,
@@ -191,6 +204,7 @@ EgoControlConfig planning(DataFrame* dataFrame){
         vehicle_frame->state.odometry.pose.orientation.y,
         vehicle_frame->state.odometry.pose.orientation.z
     );
+}
 ```
 
 Now compute the vehicle's current distance from the lane and steer the vehicle 
@@ -212,13 +226,16 @@ towards the correct position:
     auto nextPoint = lane_points[nextPointIndex];
     Eigen::VectorXd dirToNextPoint = nextPoint - position;
     dirToNextPoint.normalize();
+
     double angle = -dirToNextPoint.head<3>().cross(forwardVector.head<3>())[2];
+
     EgoControlConfig egoControl;
     egoControl.forward_amount = 0.75;
     egoControl.brake_amount = 0.0;
     egoControl.drive_mode = 1;
     egoControl.right_amount = (float)angle;
     return egoControl;
+}
 ```    
 
 Finally, create the new control command to the vehicle and send it:

@@ -1,0 +1,5 @@
+# About Scenario Editor
+
+The monoDrive Scenario Editor extends the monoDrive Simulator and allows the user to control any of the thousands of features available in the monoDrive simulation environments through Unreal Engine. With the Scenario Editor, users are able to generate custom scenarios leveraging the monoDrive lane and vehicle AIs. Custom simulator maps, vehicle parameters, and driving behaviors can be generated in the Scenario Editor all of which can be used to test AV algorithms using any one of the monoDrive clients. 
+
+The monoDrive Scenario Editor allows users to create their own scenarios by controlling various different aspects of AI vehicle behavior. There are two types of files that can be created: the trajectory file for Replay Mode and the scenario file for Closed loop mode. To understand how to create either of these files, read [Scenario Creation](../scenarios) first.

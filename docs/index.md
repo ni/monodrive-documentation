@@ -26,7 +26,7 @@ monoDrive's Platform is available now: [Download monoDrive v.1.11](https://www.m
 [Real to Virtual](r2v/about.md) -- Collecting real-world data from cameras, LiDAR, and GNSS systems to create high-fidelity assets and maps usable in the Unreal Engine and the monoDrive Scenario Editor.
 
 ## Configurations
-The monoDrive simulator is configured from the Client. Everything about the simulator can be configured, from the material properties, to these properties.
+The monoDrive simulator is configured from a client. Everything about the simulator can be configured, from the material properties, to these properties.
 
 [Sensors](monoDrive_home/Common.md) <br />
 [Vehicles](monoDrive_home/Vehicle-Configuration.md) <br />

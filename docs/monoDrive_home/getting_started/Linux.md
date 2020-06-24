@@ -17,12 +17,16 @@
 
 Generation of project files is not a requirement to run the Simulator, but it enables users to make changes to the open source from monoDrive as well as run the debugger.
 
-1. Download Visual Studio Code from [here](https://code.visualstudio.com/).
+1. Download [Visual Studio Code](https://code.visualstudio.com/).
 
 1. Generate Visual Studio project files
 
     `/usr/local/monodrive/UnrealEngine/GenerateProjectFiles.sh -project="/usr/local/monodrive/VehicleAI_Editor/Simulator/VehicleAI.uproject" -game -engine -makefiles`
 
-1. After the files are generated, there will be a Visual Studio workspace file to work with the project. Select the VehicleAIEditor_Development as the launch for debugging.
+1. After the file are generated, there will be a Visual Studio Code Workspace file in 
+
+    `/usr/local/monodrive/VehicleAI_Editor/VehicleAI.workspace`
+
+    The Workspace file can also be opened by starting Visual Studio Code and selecting "File -> Open Workspace..."
 
 <p>&nbsp;</p>

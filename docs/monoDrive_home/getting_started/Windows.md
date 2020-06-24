@@ -6,8 +6,6 @@
  1. If downloading for the first time, you will receive an email with a license.txt file attachment. Copy the attached license.txt file to the extracted location "C:/monodrive/VehicleAI/license.txt".
  1. Run the simulator by launching "C:/monodrive/VehicleAI/VehicleAI.exe".
 
-<p>&nbsp;</p>
-
 ## Scenario Editor
 
   1. Extract the archive to a common location like "C:/monodrive".

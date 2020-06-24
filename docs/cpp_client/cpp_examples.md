@@ -129,21 +129,19 @@ placed in the monoDrive Simulator or Scenario Editor. This sensor is not
 configured and sent to the `sim0` instance without needing to be sampled:
 
 ```cpp
-ViewportCameraConfig vp_config;
-vp_config.server_ip = server0_ip;
-vp_config.location.x = -750;
-vp_config.location.z = 400;
-Sensor(std::make_unique<ViewportCameraConfig>(vp_config)).configure();
+    ViewportCameraConfig vp_config;
+    vp_config.server_ip = sim0.getServerIp();
+    vp_config.server_port = sim0.getServerPort();
+    vp_config.location.z = 200;
+    vp_config.resolution = Resolution(256,256);
+    Sensor(std::make_unique<ViewportCameraConfig>(vp_config)).configure();
 ```
 
 ## Lane Follower Examples
 
-### Fixed Step
-
-An example of controlling the ego vehicle in a closed loop mode can be found in 
+Two examples of controlling the ego vehicle in a closed loop mode can be found in 
 the Lane Follower example provided in 
-`monodrive-client/examples/cpp/lane_follower/fixed_step.cpp`. This 
-example demonstrates:
+`monodrive-client/examples/cpp/lane_follower/`. These examples demonstrate:
 
 * Configuring and connecting to a running instance of the monoDrive Simulator
 * Configuring and connecting to a Camera sensor (as discussed above)
@@ -151,7 +149,7 @@ example demonstrates:
 * Configuring and connecting a State Sensor sensor to get state information from the ego vehicle
 * Issuing control commands to the simulator to keep the ego vehicle within a lane
 
-In this example, the State Sensor information is used to stream ego vehicle 
+The State Sensor information is used to stream ego vehicle 
 state information back to the client:
 
 ```cpp
@@ -165,7 +163,7 @@ state_config.undesired_tags = {""};
 sensors.push_back(std::make_shared<Sensor>(std::make_unique<StateConfig>(state_config)));
 ```
 
-This example uses the GeoJSON lanes from the monoDrive `Straightaway5k` map in 
+These examples use the GeoJSON lanes from the monoDrive `Straightaway5k` map in 
 order to calculate the distance of the ego vehicle to the current lane. The 
 lanes can be read in as follows:
 
@@ -241,12 +239,10 @@ towards the correct position:
 Finally, create the new control command to the vehicle and send it:
 
 ```cpp
-    nlohmann::json msg;
-    msg["forward_amount"] = 0.75f;
-    msg["brake_amount"] = 0.0f;
-    msg["drive_mode"] = 1;
-    msg["right_amount"] = angle;
-
-    simulator.send_command(ApiMessage(777, EgoControl_ID, true, msg));
+    sim0.sendCommand(ApiMessage(777, EgoControl_ID, true, egoControl.dump()));
 }
 ```
+
+The *Fixed Step Example*, `monodrive-client/examples/cpp/lane_follower/fixed_step.cpp`, contains a fixed amount of time between each step of the simulation physics in order to allow slow perception algorithms to keep up.
+
+The *Real Time Example*, `monodrive-client/examples/cpp/lane_follower/real_time.cpp`, enables the simulation physics to go as fast as they can. 

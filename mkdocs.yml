@@ -9,7 +9,11 @@ theme:
 pages:
 - monoDrive: index.md
 - About monoDrive : intro_information.md
-- Getting Started : Getting_Started.md
+- Getting Started : [
+  monoDrive_home/getting_started/Getting_Started.md,
+  monoDrive_home/getting_started/Windows.md,
+  monoDrive_home/getting_started/Linux.md
+]
 - Products : 
   - Simulator : Simulator.md
   - Scenario Editor : [

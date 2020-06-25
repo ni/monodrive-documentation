@@ -168,7 +168,9 @@ Provides a grayscale camera stream where pixel values represent the semantic cat
   "stream_dimensions": {
       "x": 512,
       "y": 512
-  }
+  },
+  "debug_draw": false,
+  "annotation": false,
 }
 
 ```

@@ -23,7 +23,7 @@ The GPS coordinates are based on the GPS anchor set for the current map. The loc
 
 ## Raw Output
 
-The total sensor output is 78 bytes, where the first 12 bytes correspond to the 
+The total sensor output is 82 bytes, where the first 16 bytes correspond to the 
 monoDrive sensor header and the remaining 66 conform to the Swift Navigation 
 Binary Protocol. The format for the Swift Protocol can be found 
 [here](https://github.com/swift-nav/libsbp/raw/master/docs/sbp.pdf). Below

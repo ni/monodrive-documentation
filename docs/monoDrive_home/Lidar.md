@@ -8,7 +8,7 @@ The monoDrive LiDAR sensor simulates Velodyne LiDARs in both 16 and 32 laser var
 {
   "type": "Lidar",
   "horizontal_resolution": 0.400000005960464,
-  "listen_port": 0,
+  "listen_port": 8200,
   "location": {
       "x": 0.0,
       "y": 0.0,

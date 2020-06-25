@@ -14,10 +14,10 @@ monoDrive's Platform is available now: [Download monoDrive v.1.11](https://www.m
 <img class='md_img' src="./imgs/monodrive_scenario_editor.png"/>
 </div>
 
-## Getting Started
+## About monoDrive
 
 [Introduction](intro_information.md) -- Making autonomous vehicles drive safe<br />
-[Quick Start](Getting_Started.md) -- Get monoDrive's Platform
+[Getting Started](Getting_Started.md) -- Get monoDrive's Platform
 
 ## Products
 
@@ -25,7 +25,7 @@ monoDrive's Platform is available now: [Download monoDrive v.1.11](https://www.m
 [Scenario Editor](scenario_editor/scenarios.md) -- Create and control various different aspects of AI vehicle behavior.<br />
 [Real to Virtual](r2v/about.md) -- Collecting real-world data from cameras, LiDAR, and GNSS systems to create high-fidelity assets and maps usable in the Unreal Engine and the monoDrive Scenario Editor.
 
-## Configurations
+## Simulator API
 The monoDrive simulator is configured from a client. Everything about the simulator can be configured, from the material properties, to these properties.
 
 [Sensors](monoDrive_home/Common.md) <br />

@@ -12,7 +12,10 @@ The Simulator offers four modes for robust testing:
 
 - *Closed Loop with Fixed Step*, enables a user to control the time delta between simulation steps regardless of the wall clock time.
 
-Below are some examples of the monoDrive Simulator using Replay mode:
+## Starting in the Simulator
+
+Through a monoDrive Client, users may control specific vehicle behavior. Below are three demonstrations of the starting map in Replay mode. The first example, comes from the pilot example in our LabVIEW Client. The second and third examples show vehicle behaviors for two different set-ups in the map. 
+
 
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
@@ -28,13 +31,17 @@ Below are some examples of the monoDrive Simulator using Replay mode:
 
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/straight_highway.mp4" type="video/mp4">
+    <source src="http://cdn.monodrive.io/readthedocs/traffic_circle.mp4" type="video/mp4">
   </video>
 </div> 
 
+### Straight Highway
+
+These are two examples of the Simulator on the Straight Highway Map. The first demonstrating a car following the right lane, and the second displaying a quick lane change.
+
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/traffic_circle.mp4" type="video/mp4">
+    <source src="http://cdn.monodrive.io/readthedocs/straight_highway.mp4" type="video/mp4">
   </video>
 </div> 
 

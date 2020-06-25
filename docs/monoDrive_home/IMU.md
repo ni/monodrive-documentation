@@ -10,7 +10,7 @@ respect to the origin of the ego vehicle.
 ```json
 {
     "type": "IMU",
-    "listen_port": 0,
+    "listen_port": 8500,
     "location": {
         "x": 0.0,
         "y": 0.0,

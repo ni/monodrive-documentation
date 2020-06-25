@@ -4,10 +4,10 @@ The GPS coordinates are based on the GPS anchor set for the current map. The loc
 
 ## Configuration 
 
-```
+``` json
 {
   "type": "GPS",
-  "listen_port": 0,
+  "listen_port": 8400,
   "location": {
       "x": 0.0,
       "y": 0.0,

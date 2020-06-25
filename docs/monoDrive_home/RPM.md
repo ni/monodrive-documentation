@@ -7,7 +7,7 @@ Provides wheel revolutions per minute (RPM) information for the ego vehicle.
 ``` json
 {
     "type": "RPM",
-    "listen_port": 0,
+    "listen_port": 8600,
     "location": {
         "x": 0.0,
         "y": 0.0,

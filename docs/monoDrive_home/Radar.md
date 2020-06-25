@@ -14,7 +14,7 @@ processed to produce the list.
     "fc": 77000000000.0,
     "fs": 50000000.0,
     "gpu_number": 0,
-    "listen_port": 0,
+    "listen_port": 8302,
     "location": {
         "x": 0.0,
         "y": 0.0,

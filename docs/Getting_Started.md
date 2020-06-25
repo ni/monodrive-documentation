@@ -3,8 +3,8 @@
 1. Ensure you have the latest NVIDIA drivers for your [CUDA-enabled](https://developer.nvidia.com/cuda-gpus) graphics card.
 
 	<div class="img_container">
-    <img class='sm_img' src="../../../imgs/nvidia_driver2.png"/>
-	<img class='semiwide_img' src="../../../imgs/nvidia_driver1.png"/>
+    <img class='sm_img' src="../imgs/nvidia_driver2.png"/>
+	<img class='semiwide_img' src="../imgs/nvidia_driver1.png"/>
     </div>
 
     **NOTE**

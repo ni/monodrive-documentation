@@ -52,6 +52,10 @@ Generation of project files is not a requirement to run the Simulator, but it en
 
     <p>&nbsp;</p>
 
-    Go to [LabVIEW Setup](LV_client/quick_start/LabVIEW_client_quick_start.md)
+    Go to [LabVIEW Client Setup](../../LV_client/quick_start/LabVIEW_client_quick_start.md)
+    
+    Go to [C++ Client Setup](../../cpp_client/cpp_quick_start.md)
 
+    Go to [Python Client Setup](../../python_client/quick_start.md)
+    
     <p>&nbsp;</p>

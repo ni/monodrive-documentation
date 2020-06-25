@@ -10,7 +10,6 @@ processed to produce the list.
 {
     "type": "Radar",
     "bandwidth": 250000000,
-    "description": "",
     "elements": 8,
     "fc": 77000000000.0,
     "fs": 50000000.0,

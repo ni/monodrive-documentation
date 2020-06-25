@@ -14,7 +14,7 @@ The Simulator offers four modes for robust testing:
 
 ## Starting in the Simulator
 
-Through a monoDrive Client, users may control specific vehicle behavior. Below are three demonstrations of the starting map in Replay mode. The first example, comes from the pilot example in our LabVIEW Client. The second and third examples show vehicle behaviors for two different set-ups in the map. 
+Through a monoDrive Client, users may control specific vehicle behavior. Below are three demonstrations of the Almono map in Replay mode. These examples show vehicle behaviors for three different set-ups in the map. 
 
 
 <div class="img_container">

@@ -243,6 +243,15 @@ represent the distance from the camera in centimeters.
   "fov": 60.0,
   "debug_draw": false,
   "annotation": false,
+  "annotation": {
+        "cull_partial_frame": false,
+        "debug_draw": false,
+        "desired_tags": [],
+        "far_plane": 10000.0,
+        "include_annotation": false,
+        "include_obb": false,
+        "include_tags": false
+    },
   "include_tags": false,
   "include_obb": false,
   "cull_partial_frame": false,
@@ -284,7 +293,7 @@ the output format for this sensor.
 
 ### Annotation
 
-```
+``` json
 [
     {
         "2d_bounding_boxes": [

@@ -3,7 +3,7 @@
 ### Simulator Configuration
 Configures the material properties for the elements in the simulation such as the road, concrete, steel ,etc. Also configures the maximum number of cars on the road and the rate at which they are spawn. 
 
-```
+```json
 {
   "id": "simulator_test",
   "server_ip": "127.0.0.1",

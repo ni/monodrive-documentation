@@ -67,6 +67,10 @@ configure the sensor:
 
 ```cpp
 sensors.push_back(std::make_shared<Sensor>(std::make_unique<CameraConfig>(fc_config)));
+for (auto& sensor : sensors)
+{
+    sensor->configure();
+}
 ```
 
 ### Stepping in Replay Mode

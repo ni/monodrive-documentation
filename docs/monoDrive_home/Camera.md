@@ -151,19 +151,14 @@ Provides a grayscale camera stream where pixel values represent the semantic cat
   "type": "SemanticCamera",
   "channel_depth": 1,
   "channels": "gray",
-  "dynamic_range": 50.0,
   "focal_length": 9.0,
   "fov": 60.0,
-  "fstop": 1.39999997615814,
-  "listen_port": 0,
+  "listen_port": 8051,
   "location": {
       "x": 0.0,
       "y": 0.0,
       "z": 0.0
   },
-  "max_distance": 50000.0,
-  "max_shutter": 0.00139999995008111,
-  "min_shutter": 0.000500000023748726,
   "rotation": {
       "pitch": 0.0,
       "roll": 0.0,

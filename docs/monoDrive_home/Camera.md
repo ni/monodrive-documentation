@@ -147,37 +147,35 @@ Provides a grayscale camera stream where pixel values represent the semantic cat
 <div class="wide_img">
 
 ``` json
-  {
-     "type": "SemanticCamera",
-     "listen_port": 8051,
-     "location": {
-       "x": -800.0,
-       "y": 0.0,
-       "z": 400.0
-     },
-     "rotation": {
-       "pitch": -15.0,
-       "yaw": 0.0,
-       "roll": 0.0
-     },
-     "stream_dimensions": {
-       "x": 512.0,
-       "y": 512.0
-     },
-    "fov": 60.0,
-    "focal_length": 9.0,
-    "sensor_size":  9.07,
-    "channels" : "gray",
-    "debug_draw": false,
-    "annotation": false,
-    "include_tags": false,
-    "include_obb": false,
-    "cull_partial_frame": false,
-    "far_plane": 5000.0,
-    "desired_tags": [
-      "dynamic"
-    ]
- }
+{
+  "type": "SemanticCamera",
+  "channel_depth": 1,
+  "channels": "gray",
+  "dynamic_range": 50.0,
+  "focal_length": 9.0,
+  "fov": 60.0,
+  "fstop": 1.39999997615814,
+  "listen_port": 0,
+  "location": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+  },
+  "max_distance": 50000.0,
+  "max_shutter": 0.00139999995008111,
+  "min_shutter": 0.000500000023748726,
+  "rotation": {
+      "pitch": 0.0,
+      "roll": 0.0,
+      "yaw": 0.0
+  },
+  "sensor_size": 9.06999969482422,
+  "stream_dimensions": {
+      "x": 512,
+      "y": 512
+  }
+}
+
 ```
 
 </div>

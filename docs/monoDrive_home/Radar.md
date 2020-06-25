@@ -8,6 +8,7 @@ processed to produce the list.
 
 ```json
 {
+    "type": "Radar",
     "bandwidth": 250000000,
     "description": "",
     "elements": 8,
@@ -31,14 +32,6 @@ processed to produce the list.
         "nb": 74000000.0,
         "nf": 10.0,
         "noise_temp": 290.0
-    },
-    "ros": {
-        "advertise": true,
-        "message_type": "",
-        "publish_to_ros": false,
-        "queue_size": 1,
-        "send_tf": false,
-        "topic": ""
     },
     "rotation": {
         "pitch": 0.0,
@@ -64,9 +57,7 @@ processed to produce the list.
         "aperture": 0.000859,
         "gain": 13.5,
         "peak_power": 5.0
-    },
-    "type": "Radar",
-    "wait_for_fresh_frame": true
+    }
 }
 ```
 

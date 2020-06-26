@@ -42,7 +42,7 @@ Below is a table of each element in the message:
 |Bytes 18-21 | y angular velocity bits represented as a float in single precision IEEE-754 format |
 |Bytes 22-25 | z angular velocity bits represented as a float in single precision IEEE-754 format |
 |Bytes 26-29 | Timestamp as indicated in the above link |
-|Bytes 20-31 | Checksum |
+|Bytes 30-31 | Checksum |
 |Byte 32-35| Time of week |
 
 <p>&nbsp;</p>

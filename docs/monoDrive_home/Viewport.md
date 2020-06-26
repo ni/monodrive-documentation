@@ -18,7 +18,7 @@ the monoDrive Simulator or Scenario Editor.
       "pitch": 0.0,
       "roll": 0.0,
       "yaw": 0.0
-  },
+  }
 }
 ```
 

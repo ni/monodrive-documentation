@@ -19,39 +19,40 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
 ``` json
    {
     "type": "Camera",
-    "listen_port": 8000,
-    "location": {
-      "x": 0.0,
-      "y": 0.0,
-      "z": 250.0
+    "annotation": {
+        "cull_partial_frame": false,
+        "debug_draw": false,
+        "desired_tags": [],
+        "far_plane": 10000.0,
+        "include_annotation": false,
+        "include_obb": false,
+        "include_tags": false
     },
-    "rotation": {
-      "pitch": 0.0,
-      "yaw": 0.0,
-      "roll": 0.0
-    },
-    "stream_dimensions": {
-      "x": 512.0,
-      "y": 512.0
-    },
-    "dynamic_range": 50,
-    "fov": 60.0,
+    "channel_depth": 1,
+    "channels": "bgra",
+    "dynamic_range": 50.0,
     "focal_length": 9.0,
-    "fstop": 1.4,
-    "min_shutter": 0.000500,
-    "max_shutter": 0.001400,
-    "sensor_size": 9.07,
-    "channels": "rgba",
-    "debug_draw": false,
-    "annotation": false,
-    "include_tags": false,
-    "include_obb": false,
-    "cull_partial_frame": false,
-    "far_plane": 5000.0,
-    "desired_tags": [
-      "dynamic"
-    ]
-  }
+    "fov": 60.0,
+    "fstop": 1.39999997615814,
+    "listen_port": 8120,
+    "location": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "max_shutter": 0.00139999995008111,
+    "min_shutter": 0.000500000023748726,
+    "rotation": {
+        "pitch": 0.0,
+        "roll": 0.0,
+        "yaw": 0.0
+    },
+    "sensor_size": 9.06999969482422,
+    "stream_dimensions": {
+        "x": 512,
+        "y": 512
+    }
+}
 ```
 </div>
 
@@ -89,41 +90,42 @@ Provides a grayscale camera stream with optional bounding boxes for dynamic obje
 <div class="wide_img">
 
 ``` json
-  {
-     "type": "Camera",
-     "listen_port": 8120,
-     "location": {
-       "x": -800.0,
-       "y": 0.0,
-       "z": 400.0
-     },
-     "rotation": {
-       "pitch": -15.0,
-       "yaw": 0.0,
-       "roll": 0.0
-     },
-     "stream_dimensions": {
-       "x": 512.0,
-       "y": 512.0
-     },
-    "dynamic_range":  50,
-    "fov": 60.0,
+   {
+    "type": "Camera",
+    "annotation": {
+        "cull_partial_frame": false,
+        "debug_draw": false,
+        "desired_tags": [],
+        "far_plane": 10000.0,
+        "include_annotation": false,
+        "include_obb": false,
+        "include_tags": false
+    },
+    "channel_depth": 1,
+    "channels": "gray",
+    "dynamic_range": 50.0,
     "focal_length": 9.0,
-    "fstop": 1.4,
-    "min_shutter":  0.000500,
-    "max_shutter":  0.001400,
-    "sensor_size":  9.07,
-    "channels" : "gray",
-    "debug_draw": false,
-    "annotation": false,
-    "include_tags": false,
-    "include_obb": false,
-    "cull_partial_frame": false,
-    "far_plane": 5000.0,
-    "desired_tags": [
-      "dynamic"
-    ]
- }
+    "fov": 60.0,
+    "fstop": 1.39999997615814,
+    "listen_port": 8120,
+    "location": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "max_shutter": 0.00139999995008111,
+    "min_shutter": 0.000500000023748726,
+    "rotation": {
+        "pitch": 0.0,
+        "roll": 0.0,
+        "yaw": 0.0
+    },
+    "sensor_size": 9.06999969482422,
+    "stream_dimensions": {
+        "x": 512,
+        "y": 512
+    }
+}
 ```
 
 </div>
@@ -149,6 +151,15 @@ Provides a grayscale camera stream where pixel values represent the semantic cat
 ``` json
 {
   "type": "SemanticCamera",
+  "annotation": {
+    "cull_partial_frame": false,
+    "debug_draw": false,
+    "desired_tags": [],
+    "far_plane": 10000.0,
+    "include_annotation": false,
+    "include_obb": false,
+    "include_tags": false
+  },
   "channel_depth": 1,
   "channels": "gray",
   "focal_length": 9.0,
@@ -169,8 +180,7 @@ Provides a grayscale camera stream where pixel values represent the semantic cat
       "x": 512,
       "y": 512
   },
-  "debug_draw": false,
-  "annotation": false,
+  "debug_draw": false
 }
 
 ```
@@ -222,6 +232,15 @@ represent the distance from the camera in centimeters.
 ```json
 {
     "type": "DepthCamera",
+    "annotation": {
+      "cull_partial_frame": false,
+      "debug_draw": false,
+      "desired_tags": [],
+      "far_plane": 10000.0,
+      "include_annotation": false,
+      "include_obb": false,
+      "include_tags": false
+    },
     "listen_port": 8120,
     "location": {
       "x": -800.0,
@@ -238,24 +257,7 @@ represent the distance from the camera in centimeters.
       "y": 512.0
     },
   "fov": 60.0,
-  "debug_draw": false,
-  "annotation": false,
-  "annotation": {
-        "cull_partial_frame": false,
-        "debug_draw": false,
-        "desired_tags": [],
-        "far_plane": 10000.0,
-        "include_annotation": false,
-        "include_obb": false,
-        "include_tags": false
-    },
-  "include_tags": false,
-  "include_obb": false,
-  "cull_partial_frame": false,
-  "far_plane": 5000.0,
-  "desired_tags": [
-    "dynamic"
-  ]
+  "debug_draw": false
  }
 ```
 </div>

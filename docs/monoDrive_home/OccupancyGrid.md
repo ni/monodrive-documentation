@@ -17,7 +17,7 @@ by the input JSON configuration.
 ``` json
 {
 	"type": "OccupancyGrid",
-	"listen_port": 0,
+	"listen_port": 8100,
 	"location": {
 		"x": 0.0,
 		"y": 0.0,

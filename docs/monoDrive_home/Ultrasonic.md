@@ -8,7 +8,7 @@ Provides range to closest object from a single ultrasonic sensor.
 [
    {
   "type": "Ultrasonic",
-  "listen_port": 0,
+  "listen_port": 8977,
   "location": {
     "x": 130.0,
     "y": 0.0,

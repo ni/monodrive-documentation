@@ -3,7 +3,7 @@
 ### Simulator Configuration
 Configures the material properties for the elements in the simulation such as the road, concrete, steel ,etc. Also configures the maximum number of cars on the road and the rate at which they are spawn. 
 
-```
+```json
 {
   "id": "simulator_test",
   "server_ip": "127.0.0.1",
@@ -94,7 +94,7 @@ Make sure you save the configuration as default value so that is persistent the 
 <img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__gpsc.png"/>
 </p>
 
-```
+```json
 {
   "type": "GPS",
   "id": "5",
@@ -124,7 +124,7 @@ Make sure you save the configuration as default value so that is persistent the 
 <img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__lidarc.png"/>
 </p>
 
-```
+```json
 {
   "type": "Lidar",
   "id": "0",
@@ -158,7 +158,7 @@ Make sure you save the configuration as default value so that is persistent the 
 <img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__radarc.png"/>
 </p>
 
-```
+```json
 {
   "type": "Radar",
   "id": "2",
@@ -221,7 +221,7 @@ Make sure you save the configuration as default value so that is persistent the 
 <img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__rpmc.png"/>
 </p>
 
-```
+```json
 {
   "type": "RPM",
   "id": "0",
@@ -250,7 +250,7 @@ Make sure you save the configuration as default value so that is persistent the 
 <img class="lg_img" src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/mono__imuc.png"/>
 </p>
 
-```
+```json
 {
   "type": "IMU",
   "id": "0",
@@ -318,7 +318,7 @@ The client ships with some sample trajectory files, usually under
 <p>&nbsp;</p>
 
 
-```
+```json
 [
    {
        "frame": [
@@ -390,7 +390,7 @@ The client ships with some sample trajectory files, usually under
 
 ### Weather Configuration 
 
-```
+```json
 {
  "set_profile": "CloudySunset",
  "profiles": [
@@ -447,7 +447,6 @@ The client ships with some sample trajectory files, usually under
 
 
 <p>&nbsp;</p>
-
 
 
 ### Errors

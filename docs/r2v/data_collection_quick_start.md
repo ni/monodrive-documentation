@@ -143,7 +143,7 @@ output in [Google Earth](https://www.google.com/earth/versions/#download-pro):
 
 For use in the monoDrive Real-to-Virtual data processing pipeline, the collected
 data needs to be converted to the 
-[KITTI format](http://www.cvlibs.net/datasets/kitti/index.php). The `monodrive_to_kitti.py` script in the monoDrive Mapping Toolkit allows users
+[KITTI format](https://www.cvlibs.net/datasets/kitti/index.php). The `monodrive_to_kitti.py` script in the monoDrive Mapping Toolkit allows users
 to parse the collected binary data into KITTI:
 
 ```

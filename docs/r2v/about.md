@@ -9,7 +9,7 @@ monoDrive Scenario Editor.
 
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/r2v_comparison_converted.mp4" type="video/mp4">
+    <source src="https://cdn.monodrive.io/readthedocs/r2v_comparison_converted.mp4" type="video/mp4">
   </video>
 </div> 
 
@@ -19,7 +19,7 @@ monoDrive Scenario Editor.
 
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/dynamic_actor_tracking_converted.mp4" type="video/mp4">
+    <source src="https://cdn.monodrive.io/readthedocs/dynamic_actor_tracking_converted.mp4" type="video/mp4">
   </video>
 </div> 
 
@@ -59,6 +59,6 @@ new scenarios using the monoDrive Scenario Editor.
 
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/r2v_ue4_sim_converted.mp4" type="video/mp4">
+    <source src="https://cdn.monodrive.io/readthedocs/r2v_ue4_sim_converted.mp4" type="video/mp4">
   </video>
 </div> 

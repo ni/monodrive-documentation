@@ -7,7 +7,7 @@ configuring the monoDrive Simulator and Scenario Editor. To get started,
 clone the client from the monoDrive repository:
 
 ```bash
-$ git clone git@github.com:monoDriveIO/simulator-python-client.git 
+$ git clone git@github.com:monoDriveIO/monodrive-python-client.git 
 ```
 
 ### Installation
@@ -19,19 +19,19 @@ environment such as `conda` (see instructions below), but this is not necessary.
 Install from Git repository:
 
 ```bash
-$ pip install git+ssh://git@github.com/monoDriveIO/simulator-python-client.git#egg=monodrive
+$ pip install git+ssh://git@github.com/monoDriveIO/monodrive-python-client.git#egg=monodrive
 ```
 
 or for https:
 
 ```bash
-$ pip install git+https://github.com/monoDriveIO/simulator-python-client.git#egg=monodrive
+$ pip install git+https://github.com/monoDriveIO/monodrive-python-client.git#egg=monodrive
 ```
 
 or, to install from a local repository:
 
 ```bash
-$ cd /path/to/repo/simulator-python-client
+$ cd /path/to/repo/monodrive-python-client
 $ pip install -e .
 ```
 

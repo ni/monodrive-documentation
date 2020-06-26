@@ -13,49 +13,54 @@ be controlled through each camera's configuration.
 ## RGB Camera
 Provides a RGBA camera stream with optional bounding boxes for dynamic objects in the scene.
 
-<p class="img_container">
-  <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camerasensor.PNG"  height="400" />
-</p>
+<div class ='flex'>
+<div class="wide_img">
 
-```
-[
+``` json
    {
     "type": "Camera",
-    "listen_port": 8000,
-    "location": {
-      "x": 0.0,
-      "y": 0.0,
-      "z": 250.0
+    "annotation": {
+        "cull_partial_frame": false,
+        "debug_draw": false,
+        "desired_tags": [],
+        "far_plane": 10000.0,
+        "include_annotation": false,
+        "include_obb": false,
+        "include_tags": false
     },
-    "rotation": {
-      "pitch": 0.0,
-      "yaw": 0.0,
-      "roll": 0.0
-    },
-    "stream_dimensions": {
-      "x": 512.0,
-      "y": 512.0
-    },
-    "dynamic_range": 50,
-    "fov": 60.0,
+    "channel_depth": 1,
+    "channels": "bgra",
+    "dynamic_range": 50.0,
     "focal_length": 9.0,
-    "fstop": 1.4,
-    "min_shutter": 0.000500,
-    "max_shutter": 0.001400,
-    "sensor_size": 9.07,
-    "channels": "rgba",
-    "debug_draw": false,
-    "annotation": false,
-    "include_tags": false,
-    "include_obb": false,
-    "cull_partial_frame": false,
-    "far_plane": 5000.0,
-    "desired_tags": [
-      "dynamic"
-    ]
-  }
-]
+    "fov": 60.0,
+    "fstop": 1.39999997615814,
+    "listen_port": 8120,
+    "location": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "max_shutter": 0.00139999995008111,
+    "min_shutter": 0.000500000023748726,
+    "rotation": {
+        "pitch": 0.0,
+        "roll": 0.0,
+        "yaw": 0.0
+    },
+    "sensor_size": 9.06999969482422,
+    "stream_dimensions": {
+        "x": 512,
+        "y": 512
+    }
+}
 ```
+</div>
+
+<p class="img_container">
+  <img class='half_screen_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camerasensor.PNG"  height="400" />
+</p>
+
+</div>
 
 - **stream_dimensions:** The size of the image in pixels
     - **x:** The width of the image in pixels
@@ -77,51 +82,60 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
 - **desired_tags:** If this array is not empty, the only actors with the tags specified here will be included in annotations.
 
 ## Grayscale Camera
+
 Provides a grayscale camera stream with optional bounding boxes for dynamic objects in the scene.
 
+
+<div class ='flex'>
+<div class="wide_img">
+
+``` json
+   {
+    "type": "Camera",
+    "annotation": {
+        "cull_partial_frame": false,
+        "debug_draw": false,
+        "desired_tags": [],
+        "far_plane": 10000.0,
+        "include_annotation": false,
+        "include_obb": false,
+        "include_tags": false
+    },
+    "channel_depth": 1,
+    "channels": "gray",
+    "dynamic_range": 50.0,
+    "focal_length": 9.0,
+    "fov": 60.0,
+    "fstop": 1.39999997615814,
+    "listen_port": 8120,
+    "location": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "max_shutter": 0.00139999995008111,
+    "min_shutter": 0.000500000023748726,
+    "rotation": {
+        "pitch": 0.0,
+        "roll": 0.0,
+        "yaw": 0.0
+    },
+    "sensor_size": 9.06999969482422,
+    "stream_dimensions": {
+        "x": 512,
+        "y": 512
+    }
+}
+```
+
+</div>
+
 <p class="img_container">
-  <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_grayscale.png"  height="400" />
+  <img class='half_screen_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_grayscale.png"  height="400" />
 </p>
 
-```
-[
-  {
-     "type": "Camera",
-     "listen_port": 8120,
-     "location": {
-       "x": -800.0,
-       "y": 0.0,
-       "z": 400.0
-     },
-     "rotation": {
-       "pitch": -15.0,
-       "yaw": 0.0,
-       "roll": 0.0
-     },
-     "stream_dimensions": {
-       "x": 512.0,
-       "y": 512.0
-     },
-    "dynamic_range":  50,
-    "fov": 60.0,
-    "focal_length": 9.0,
-    "fstop": 1.4,
-    "min_shutter":  0.000500,
-    "max_shutter":  0.001400,
-    "sensor_size":  9.07,
-    "channels" : "gray",
-    "debug_draw": false,
-    "annotation": false,
-    "include_tags": false,
-    "include_obb": false,
-    "cull_partial_frame": false,
-    "far_plane": 5000.0,
-    "desired_tags": [
-      "dynamic"
-    ]
- }
-]
-```
+</div>
+
 All values are the same as the RGB camera except: 
 
 - **channels:** Used to determine the type of image output. For grayscale cameras, this should always be `gray`.
@@ -131,45 +145,53 @@ All values are the same as the RGB camera except:
 ## Semantic Camera
 Provides a grayscale camera stream where pixel values represent the semantic category of the rendered actor.
 
-<p class="img_container">
-  <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/semanticcamerasensor.PNG"  height="400" />
-</p>
+<div class ='flex'>
+<div class="wide_img">
+
+``` json
+{
+  "type": "SemanticCamera",
+  "annotation": {
+    "cull_partial_frame": false,
+    "debug_draw": false,
+    "desired_tags": [],
+    "far_plane": 10000.0,
+    "include_annotation": false,
+    "include_obb": false,
+    "include_tags": false
+  },
+  "channel_depth": 1,
+  "channels": "gray",
+  "focal_length": 9.0,
+  "fov": 60.0,
+  "listen_port": 8051,
+  "location": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+  },
+  "rotation": {
+      "pitch": 0.0,
+      "roll": 0.0,
+      "yaw": 0.0
+  },
+  "sensor_size": 9.06999969482422,
+  "stream_dimensions": {
+      "x": 512,
+      "y": 512
+  },
+  "debug_draw": false
+}
 
 ```
-[
-  {
-     "type": "SemanticCamera",
-     "listen_port": 8051,
-     "location": {
-       "x": -800.0,
-       "y": 0.0,
-       "z": 400.0
-     },
-     "rotation": {
-       "pitch": -15.0,
-       "yaw": 0.0,
-       "roll": 0.0
-     },
-     "stream_dimensions": {
-       "x": 512.0,
-       "y": 512.0
-     },
-    "fov": 60.0,
-    "focal_length": 9.0,
-    "sensor_size":  9.07,
-    "channels" : "gray",
-    "debug_draw": false,
-    "annotation": false,
-    "include_tags": false,
-    "include_obb": false,
-    "cull_partial_frame": false,
-    "far_plane": 5000.0,
-    "desired_tags": [
-      "dynamic"
-    ]
- }
-]
-```
+
+</div>
+
+<p class="img_container">
+  <img class='half_screen_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/semanticcamerasensor.PNG"  height="400" />
+</p>
+
+</div>
 
 The configuration values are the same as RGB. The following table shows the 
 semantic definition for each pixel value:
@@ -204,42 +226,47 @@ semantic definition for each pixel value:
 Provides an unsigned 32-bit floating point array where the pixel values 
 represent the distance from the camera in centimeters.
 
-<div class="img_container">
-    <img class='lg_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_depth.png"/>
+<div class ='flex'>
+<div class="wide_img">
+
+```json
+{
+    "type": "DepthCamera",
+    "annotation": {
+      "cull_partial_frame": false,
+      "debug_draw": false,
+      "desired_tags": [],
+      "far_plane": 10000.0,
+      "include_annotation": false,
+      "include_obb": false,
+      "include_tags": false
+    },
+    "listen_port": 8120,
+    "location": {
+      "x": -800.0,
+      "y": 0.0,
+      "z": 400.0
+    },
+    "rotation": {
+      "pitch": -15.0,
+      "yaw": 0.0,
+      "roll": 0.0
+    },
+    "stream_dimensions": {
+      "x": 512.0,
+      "y": 512.0
+    },
+  "fov": 60.0,
+  "debug_draw": false
+ }
+```
 </div>
 
-```
-[
-  {
-     "type": "DepthCamera",
-      "listen_port": 8120,
-      "location": {
-       "x": -800.0,
-       "y": 0.0,
-       "z": 400.0
-     },
-     "rotation": {
-       "pitch": -15.0,
-       "yaw": 0.0,
-       "roll": 0.0
-     },
-     "stream_dimensions": {
-       "x": 512.0,
-       "y": 512.0
-     },
-    "fov": 60.0,
-    "debug_draw": false,
-    "annotation": false,
-    "include_tags": false,
-    "include_obb": false,
-    "cull_partial_frame": false,
-    "far_plane": 5000.0,
-    "desired_tags": [
-      "dynamic"
-    ]
- }
-]
-```
+  <div class="img_container">
+      <img class='half_screen_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_depth.png"/>
+  </div>
+  
+</div>
 
 These configuration values are the same as the RGB camera. Note that the output 
 format of the image is an array the same size as `stream_dimensions` containing 
@@ -265,7 +292,7 @@ the output format for this sensor.
 
 ### Annotation
 
-```
+``` json
 [
     {
         "2d_bounding_boxes": [

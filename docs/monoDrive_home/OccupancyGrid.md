@@ -14,7 +14,7 @@ by the input JSON configuration.
 
 ## Configuration
 
-```
+``` json
 {
 	"type": "OccupancyGrid",
 	"listen_port": 8100,
@@ -29,8 +29,8 @@ by the input JSON configuration.
 		"yaw": 0.0
 	},
 	"stream_dimensions": {
-		"x": 1024,
-		"y": 576
+		"x": 512,
+        "y": 512
 	},
 	"follow_pitch": false,
 	"follow_roll": false,

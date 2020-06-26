@@ -5,23 +5,21 @@ the monoDrive Simulator or Scenario Editor.
 
 ## Configuration
 
-```
-[
-  {
-    "type": "ViewportCamera",
-    "location": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 250.0
-      },
-      "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-      },
-      "fov": 60.0,
+``` json
+{
+  "type": "ViewportCamera",
+  "fov": 60.0,
+  "location": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+  },
+  "rotation": {
+      "pitch": 0.0,
+      "roll": 0.0,
+      "yaw": 0.0
   }
-]
+}
 ```
 
 **fov:** Sets the horizontal angle of view of the viewport camera.

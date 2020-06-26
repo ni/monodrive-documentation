@@ -4,7 +4,7 @@ Provides range to closest object from a single ultrasonic sensor.
 
 ## Configuration 
 
-```
+``` json
 [
    {
   "type": "Ultrasonic",
@@ -22,16 +22,17 @@ Provides range to closest object from a single ultrasonic sensor.
   "fc": 40000.0,
   "pwm_factor": 2.5,
   "max_ultrasonic_returns": 93,
-   "sbr": {
-   "scan_distance":4.0,
-   "azimuth_fov":30.0,
-   "elevation_fov": 0.50,
-    "ray_division_y": 5.0,
-    "ray_division_z": 5.0,
-    "debug_frustum": false,
-    "debug_scan": false,
-    "debug_rescan": false
-  }
+  "sbr": {
+      "azimuth_fov": 30.0,
+      "debug_frustum": false,
+      "debug_rescan": false,
+      "debug_scan": false,
+      "elevation_fov": 0.5,
+      "ray_division_y": 5.0,
+      "ray_division_z": 5.0,
+      "scan_distance": 4.0
+  },
+  "send_processed_data": true,
 }
 ```
 
@@ -49,15 +50,23 @@ Provides range to closest object from a single ultrasonic sensor.
     - **debug_rescan:** If set to true, the scan lines will be drawn only when there is an object enters the **scan_distance**.
 
 ## Raw Output
-```
+
+Will return the raw ultrasonic waveform data. The format for the waveform data is an array of 32-bit floating point numbers that is the length of the requested number of samples. 
+
+Optionally, if **send_processed_data** is true, the processed target data will be returned.
+
+``` json
 {
   "targets":[
-      {"range":300.0}
+      {
+        "range": 300.0
+      }
     ]
 } 
 ```
 
 **ranges:** Array containing distance in centimeters to the closest object in front of the sensor. A value of -1 indicates no return from the sensor.
+
 
 ### Configuration Examples  
 

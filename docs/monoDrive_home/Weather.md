@@ -11,13 +11,13 @@ conditions and saving them to configuration files.
 
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/scenario_editor_weather_change_converted.mp4" type="video/mp4">
+    <source src="https://cdn.monodrive.io/readthedocs/scenario_editor_weather_change_converted.mp4" type="video/mp4">
   </video>
 </div> 
 
 <div class="img_container">
   <video width=650px muted autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/weather_change_almono_converted.mp4" type="video/mp4">
+    <source src="https://cdn.monodrive.io/readthedocs/weather_change_almono_converted.mp4" type="video/mp4">
   </video>
 </div> 
 
@@ -198,7 +198,7 @@ the `id` field matches the "Profile Name":
 
 ## Using Weather in the LabVIEW Client
 For the LabVIEW client, the weather profiles that are exported can be pasted 
-into the weather configuration (string control) located in the [mono_get_weather.vi](../LV_client/weather/mono__get__weatherc.md). 
+into the weather configuration (string control) located in the [mono_get_weather.vi](../LV_client/weather/mono_get_weather.md). 
 
 After opening the VI's GUI: the weather profiles can be found on the right-hand
 side of the interface. Simply copy and paste your custom JSON weather profile:

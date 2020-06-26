@@ -2,9 +2,11 @@
 
 Welcome to monoDrive's documentation.
 
-This home page contains an index with a brief description of the different sections in the documentation. Feel free to read in whatever order preferred.
+This home page contains an index with a brief description of the different sections in the documentation. 
 
-monoDrive's Platform is available now: [Download monoDrive](https://lumen.ni.com/nicif/US/GB_EVALTLKTLVMONODRIVE/content.xhtml)
+The documentation reflects the newest version of the monoDrive Simulation and Scenario Editor v1.11 with Unreal Engine 4.24. We are excited to share our new features including a [Scenario Tool Widget](scenario_editor/scenarios.md) to easily save scenario files to run in Closed Loop mode, updates to the [monoDrive Road Network](scenario_editor/roads.md), enhanced streaming, a new mode-Closed Loop Fixed Time Step, and a new sensor- the monoDrive [occupancy grid sensor]().
+
+monoDrive's Platform is available now: [Download monoDrive v.1.11](https://www.monodrive.io/register)
 
 <div class="img_container">
 <img class='md_img' src="./imgs/monodrive_simulator.png"/>
@@ -12,10 +14,10 @@ monoDrive's Platform is available now: [Download monoDrive](https://lumen.ni.com
 <img class='md_img' src="./imgs/monodrive_scenario_editor.png"/>
 </div>
 
-## Getting Started
+## About monoDrive
 
 [Introduction](intro_information.md) -- Making autonomous vehicles drive safe<br />
-[Quick Start](Getting_Started.md) -- Get monoDrive's Platform
+[Getting Started](Getting_Started.md) -- Get monoDrive's Platform
 
 ## Products
 
@@ -23,8 +25,8 @@ monoDrive's Platform is available now: [Download monoDrive](https://lumen.ni.com
 [Scenario Editor](scenario_editor/scenarios.md) -- Create and control various different aspects of AI vehicle behavior.<br />
 [Real to Virtual](r2v/about.md) -- Collecting real-world data from cameras, LiDAR, and GNSS systems to create high-fidelity assets and maps usable in the Unreal Engine and the monoDrive Scenario Editor.
 
-## Configurations
-The monoDrive simulator is configured from the Client. Everything about the simulator can be configured, from the material properties, to these properties.
+## Simulator API
+The monoDrive simulator is configured from a client. Everything about the simulator can be configured, from the material properties, to these properties.
 
 [Sensors](monoDrive_home/Common.md) <br />
 [Vehicles](monoDrive_home/Vehicle-Configuration.md) <br />

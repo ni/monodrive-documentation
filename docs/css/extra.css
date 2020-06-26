@@ -133,3 +133,13 @@ code {
 .space {
     padding: 30px
 }
+
+.flex {
+    display: flex;
+    align-content: center;
+}
+
+.half_screen_img {
+    height: 400px;
+    width: auto
+}

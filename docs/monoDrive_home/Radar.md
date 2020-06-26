@@ -6,59 +6,58 @@ processed to produce the list.
 
 ## Configuration
 
-```
-[
-  {
+```json
+{
     "type": "Radar",
+    "bandwidth": 250000000,
+    "elements": 8,
+    "fc": 77000000000.0,
+    "fs": 50000000.0,
+    "gpu_number": 0,
     "listen_port": 8302,
     "location": {
-      "x": 290.0,
-      "y": 0.0,
-      "z": 80.0
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "max_radar_returns": 500,
+    "nearest_target_label_radius": 50.0,
+    "num_samples_per_sweep": 345,
+    "num_sweeps": 32,
+    "paint_targets": false,
+    "receiver": {
+        "aperture": 0.000798,
+        "gain": 10.0,
+        "nb": 74000000.0,
+        "nf": 10.0,
+        "noise_temp": 290.0
     },
     "rotation": {
-      "pitch": 0.0,
-      "yaw": 0.0,
-      "roll": 0.0
-    },
-    "gpu_number":0,
-    "send_radar_cube": false,
-    "paint_targets": false,
-    "target_paint_lifetime": 0.5,
-    "nearest_target_paint_radius": 50.0,
-    "num_samples_per_sweep":345,
-    "fs": 50000000,
-    "fc": 77000000000.0,
-    "num_sweeps": 32,
-    "sweep_time" : 0.0000069,
-    "bandwidth" : 250000000,
-    "max_radar_returns": 500,
-    "elements": 8,
-    "transmitter": {
-      "aperture": 0.000859,
-      "gain": 13.50
-    },
-    "receiver": {
-      "aperture": 0.000798,
-      "noise_temp": 290.0,
-      "gain": 10.0
+        "pitch": 0.0,
+        "roll": 0.0,
+        "yaw": 0.0
     },
     "sbr": {
-      "long_range_scan_distance": 60.0,
-      "short_range_scan_distance": 30.0,
-      "long_range_fov": 60.0,
-      "short_range_fov": 30.0,
-      "elevation_fov": 10.0,
-      "ray_division_y": 10.0,
-      "ray_division_z": 10.0,
-      "noise_ray_division_y": 200.0,
-      "noise_ray_division_z": 200.0,
-      "debug_frustum": false,
-      "debug_scan": false,
-      "debug_rescan": false
+        "debug_frustum": false,
+        "debug_rescan": false,
+        "debug_scan": false,
+        "elevation_fov": 10.0,
+        "long_range_fov": 30.0,
+        "long_range_scan_distance": 60.0,
+        "ray_division_y": 10.0,
+        "ray_division_z": 10.0,
+        "short_range_fov": 60.0,
+        "short_range_scan_distance": 30.0
+    },
+    "send_radar_cube": false,
+    "sweep_time": 6.9e-06,
+    "target_paint_lifetime": 0.5,
+    "transmitter": {
+        "aperture": 0.000859,
+        "gain": 13.5,
+        "peak_power": 5.0
     }
-  }
-]
+}
 ```
 
 - **gpu_number:** Specifies the specific GPU number(0-N) that will process the Radar data.

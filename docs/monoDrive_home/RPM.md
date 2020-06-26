@@ -4,24 +4,22 @@ Provides wheel revolutions per minute (RPM) information for the ego vehicle.
 
 ## Configuration
 
-```
-[
-  {
+``` json
+{
     "type": "RPM",
     "listen_port": 8600,
     "location": {
-      "x": 0,
-      "y": 0,
-      "z": 0
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
     },
     "rotation": {
-      "pitch": 0,
-      "yaw": 0,
-      "roll": 0
+        "pitch": 0.0,
+        "roll": 0.0,
+        "yaw": 0.0
     },
-    "wheelNumber": 3
-  }
-]
+    "wheelNumber": 0
+}
 ```
 
 **wheelNumber:** The number of the wheel to sample RPM values for. 0, 1, 2, 3 represent the front-left, front-right, rear-left, rear-right wheels respectively.

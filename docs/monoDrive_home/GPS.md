@@ -31,24 +31,24 @@ is a table of each element in the message:
 
 | Type  | Name   |
 | ------------ | ------------ |
-|Byte 0-1  | preamble |
-|Bytes 1-3 | MSG_POS_LLH  |
-|Byte 5-6 | Hash of the sensor id  |
-|Byte 5-6  |  Length of the payload |
-|Bytes 6-14 | Latitude bits represented as a double in double precision IEEE-754 format. |
-|Bytes 14-22 | Longitude bits represented as a double in double precision IEEE-754 format  |
-|Bytes 22-30 | Elevation bits represented as a double in double precision IEEE-754 format  |
-|Bytes 30-38 | WorldLocation_x |
-|Bytes 38-46 | WorldLocation_y|
-|Bytes 36-40 | forward_x   |
-|Bytes 40-44 | forward_y   |
-|Bytes 44-48 | forward_z   |
-|Bytes 48-52 | ego_yaw  |
-|Bytes 52-56 | ego_speed |
-|Bytes 56-58 | horizontal_acceleration  |
-|Bytes 58-60 | vertical_acceleration  |
-|Bytes 60-62  | Number of satellites used for signal  |
-|Bytes 62-64  | Fixed more status|
-|Bytes 64-66 | CRC  |
+|Byte 1  | preamble |
+|Bytes 2-3 | MSG_POS_LLH  |
+|Byte 4-5 | Hash of the sensor id  |
+|Byte 6  |  Length of the payload |
+|Bytes 7-14 | Latitude bits represented as a double in double precision IEEE-754 format. |
+|Bytes 15-22 | Longitude bits represented as a double in double precision IEEE-754 format  |
+|Bytes 23-30 | Elevation bits represented as a double in double precision IEEE-754 format  |
+|Bytes 31-34 | WorldLocation_x |
+|Bytes 35-38 | WorldLocation_y|
+|Bytes 39-42 | forward_x   |
+|Bytes 43-46 | forward_y   |
+|Bytes 47-50 | forward_z   |
+|Bytes 51-54 | ego_yaw  |
+|Bytes 55-58 | ego_speed |
+|Bytes 59-60 | horizontal_acceleration  |
+|Bytes 61-62 | vertical_acceleration  |
+|Bytes 63-64  | Number of satellites used for signal  |
+|Bytes 65  | Fixed more status|
+|Bytes 66 | CRC  |
 
 <p>&nbsp;</p>

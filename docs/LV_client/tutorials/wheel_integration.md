@@ -6,7 +6,7 @@ This example allows the user to drive the ego car using the wheel providing a be
 
 <div class="img_container">
   <video width=650px height=440px muted controls autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/closed-loop.mp4" type="video/mp4">
+    <source src="https://cdn.monodrive.io/readthedocs/closed-loop.mp4" type="video/mp4">
   </video>
 </div>
 
@@ -15,7 +15,7 @@ This example allows the user to move the wheel based on the steering angle calcu
 
 <div class="img_container">
   <video width=650px height=440px muted controls autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/replay.mp4" type="video/mp4">
+    <source src="https://cdn.monodrive.io/readthedocs/replay.mp4" type="video/mp4">
   </video>
 </div>
 ## Prerequisites
@@ -23,7 +23,7 @@ This example allows the user to move the wheel based on the steering angle calcu
 
 1. Download the Logitech Steering Wheel SDK from [here](https://www.logitechg.com/en-us/innovation/developer-lab.html)    
 
-1. Create a LabVIEW library using the **LogitechSteeringWheelEnginesWrapper.dll** using the Import Shared Library Wizard, you can find a tutorial on how to do this [here](http://zone.ni.com/reference/en-XX/help/371361R-01/lvhowto/example_import_shared_library/).    
+1. Create a LabVIEW library using the **LogitechSteeringWheelEnginesWrapper.dll** using the Import Shared Library Wizard, you can find a tutorial on how to do this [here](https://zone.ni.com/reference/en-XX/help/371361R-01/lvhowto/example_import_shared_library/).    
 
 1. Install the **Maker Hub Interface for Xbox One Controller** using the VI Package Manager.   
 

@@ -5,7 +5,7 @@ The monoDrive Simulator provides users with the ability to customize color and m
 ## Change the vehicle's model
 <div class="img_container">
   <video width=650px height=440px muted controls autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/vehicles.mp4" type="video/mp4">
+    <source src="https://cdn.monodrive.io/readthedocs/vehicles.mp4" type="video/mp4">
   </video>
 </div>
 
@@ -34,7 +34,7 @@ VehicleBlueprint=Blueprint'/Game/Vehicles/compact_monoDrive_01.compact_monoDrive
 ## Change the vehicle's color
 <div class="img_container">
     <video width=650px height=340px muted controls autoplay loop>
-        <source src="http://cdn.monodrive.io/readthedocs/vehicle_color.mp4" type="video/mp4">
+        <source src="https://cdn.monodrive.io/readthedocs/vehicle_color.mp4" type="video/mp4">
     </video>
 </div> 
 
@@ -92,7 +92,7 @@ monoDrive Scenario Vehicles are built on PhysX vehicles which are customizable o
 
 <div class="img_container">
     <video width=650px height=340px muted controls autoplay loop>
-        <source src="http://cdn.monodrive.io/readthedocs/vehicle_mechanical.mp4" type="video/mp4">
+        <source src="https://cdn.monodrive.io/readthedocs/vehicle_mechanical.mp4" type="video/mp4">
     </video>
 </div> 
 
@@ -105,7 +105,7 @@ The vehicle axis are defined as follows:
 
 <div class="img_container">
     <video width=650px height=340px muted controls autoplay loop>
-        <source src="http://cdn.monodrive.io/readthedocs/axis.mp4" type="video/mp4">
+        <source src="https://cdn.monodrive.io/readthedocs/axis.mp4" type="video/mp4">
     </video>
 </div>   
 
@@ -116,7 +116,7 @@ The vehicle axis are defined as follows:
 
 <div class="img_container">
     <video width=650px height=340px muted controls autoplay loop>
-        <source src="http://cdn.monodrive.io/readthedocs/vehicles_yaw_pitch_roll.mp4" type="video/mp4">
+        <source src="https://cdn.monodrive.io/readthedocs/vehicles_yaw_pitch_roll.mp4" type="video/mp4">
     </video>
 </div> 
 

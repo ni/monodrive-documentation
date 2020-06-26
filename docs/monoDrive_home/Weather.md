@@ -11,13 +11,13 @@ conditions and saving them to configuration files.
 
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/scenario_editor_weather_change_converted.mp4" type="video/mp4">
+    <source src="https://cdn.monodrive.io/readthedocs/scenario_editor_weather_change_converted.mp4" type="video/mp4">
   </video>
 </div> 
 
 <div class="img_container">
   <video width=650px muted autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/weather_change_almono_converted.mp4" type="video/mp4">
+    <source src="https://cdn.monodrive.io/readthedocs/weather_change_almono_converted.mp4" type="video/mp4">
   </video>
 </div> 
 

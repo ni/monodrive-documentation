@@ -10,7 +10,7 @@
     **NOTE**
     Even if not prompted by the system, a restart is recommended to ensure the new drivers are correctly detected prior to running any simulations.
 
-    In case the driver cannot be updated using the above method, please visit http://www.nvidia.com/Download/index.aspx to download the [latest driver](http://www.nvidia.com/Download/index.aspx).
+    In case the driver cannot be updated using the above method, please visit https://www.nvidia.com/Download/index.aspx to download the [latest driver](https://www.nvidia.com/Download/index.aspx).
 
 <p>&nbsp;</p>
 

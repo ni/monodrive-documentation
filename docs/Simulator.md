@@ -19,19 +19,19 @@ Through a monoDrive Client, users may control specific vehicle behavior. Below a
 
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/highway_exit_trajectory.mp4" type="video/mp4">
+    <source src="https://cdn.monodrive.io/readthedocs/highway_exit_trajectory.mp4" type="video/mp4">
   </video>
 </div> 
 
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/sudden_stop_trajectory.mp4" type="video/mp4">
+    <source src="https://cdn.monodrive.io/readthedocs/sudden_stop_trajectory.mp4" type="video/mp4">
   </video>
 </div> 
 
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/traffic_circle.mp4" type="video/mp4">
+    <source src="https://cdn.monodrive.io/readthedocs/traffic_circle.mp4" type="video/mp4">
   </video>
 </div> 
 
@@ -41,13 +41,13 @@ These are two examples of the Simulator on the Straight Highway Map. The first d
 
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/straight_highway.mp4" type="video/mp4">
+    <source src="https://cdn.monodrive.io/readthedocs/straight_highway.mp4" type="video/mp4">
   </video>
 </div> 
 
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
-    <source src="http://cdn.monodrive.io/readthedocs/highway_lane_change.mp4" type="video/mp4">
+    <source src="https://cdn.monodrive.io/readthedocs/highway_lane_change.mp4" type="video/mp4">
   </video>
 </div> 
 

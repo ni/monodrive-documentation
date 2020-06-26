@@ -21,7 +21,8 @@ nav:
       scenario_editor/scenarios.md,
       scenario_editor/scenario_files.md,
       scenario_editor/trajectory_files.md,
-      scenario_editor/roads.md
+      scenario_editor/roads.md,
+      scenario_editor/vehicle_models.md
     ]
   - Real-to-Virtual:
     - About: r2v/about.md

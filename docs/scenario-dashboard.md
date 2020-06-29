@@ -1,10 +1,13 @@
-# Batch Generator Dashboard
+# Batch Scenario Manager
 
 monoDrive's Batch Generator Dashboard provides the client with visuals of custom configurations and result viewing for better testing.  The monoDrive simulator is configured from the Client. Everything about the simulator can be configured, from the material properties, to the vehicle properties, to the sensor properties. The dashboard is designed to step through each configuration with pre-built and customizable properties. Once all configurations are made, deploy and run every combination of the properties selected in the simulation. Results show the status of the test after it has run, and keeps different batches organized for review. The Dashboard can be used as a local app on your computer or through a cloud deployment.
+
 
 ## Configurable Selections
 
 ### Vehicles & Sensors
+
+Select a vehicle from monoDrive's vehicle models. For each vehicle selected, an user is provided with a default "all sensors" configuration or an option to create a new sensor configuration through the sensor editor tool.
 
   <div class="img_container">
     <img class='wide_img' src="../imgs/dashboard_vehicles.png"/>
@@ -14,17 +17,25 @@ monoDrive's Batch Generator Dashboard provides the client with visuals of custom
     <img class='wide_img' src="../imgs/dashboard_sensors.png"/>
   </div>
 
+#### Sensor Editor
+
+The Sensor editor tool enables the user to import a JSON sensor configuration file or build a sensor configuration by adding and moving sensors on the vehicle model. Users are able to alter the position and location for every sensors. Many sensors offer further alterations depending on the sensor type such as image height, image width, and field of view.
+
   <div class="img_container">
     <img class='wide_img' src="../imgs/dashboard_sensor_editor.png"/>
   </div>
 
 ### UUT & Scenarios
 
+In the Local monoDrive Batch Scenario Manager Application, users will run and configure an UUT to use when running tests. In the Cloud version, users will be able to direct the application to the file directory of configured UUT files to run the simulation. There are many different scenarios to choose from in both Replay and Closed loop Modes. 
+
   <div class="img_container">
     <img class='wide_img' src="../imgs/dashboard_scenarios.png"/>
   </div>
 
 ### Weather
+
+The monoDrive Batch Scenario Manager offers many pre-build weather profiles and an option for customizing a new weather profile. The weather configuration provides light color changes and the angle of the sun. User will also be able to alter the amount of rain on the roads, amount of wind, wind angle, and rain fall in a scene. 
 
   <div class="img_container">
     <img class='wide_img' src="../imgs/dashboard_weather.png"/>
@@ -34,6 +45,10 @@ monoDrive's Batch Generator Dashboard provides the client with visuals of custom
     <img class='wide_img' src="../imgs/dashboard_custom_weather.png"/>
   </div>
 
+## Viewing Results
+
+After all selections are made, the batch scenario manager will either send the permutations to the simulator running locally through the Local Application or through a Cloud Deployment which will run a job process through Docker. The Results will show tests that have passed and failed, and some 
+
 ## Requirements
 
  - [monoDrive Scenario Editor v.1.11](https://www.monodrive.io/register)
@@ -42,7 +57,7 @@ monoDrive's Batch Generator Dashboard provides the client with visuals of custom
  - [Python Client](../python_client/quick_start)
  - Python for UUT
 
-## Getting Started
+## Running
 
   1. Download monoDrive Batch Generator Dashboard. *For access [contact us](https://www.monodrive.io/contact).*
 

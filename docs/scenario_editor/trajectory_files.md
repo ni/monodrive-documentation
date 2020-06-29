@@ -46,6 +46,6 @@ The scene that was recorded can be played back using the "Replay" or "Replay
 Step" modes of the monoDrive Simulator. For more information on these simulation
 modes see:
 
-* [LabView Client Examples](../../../LV_client/quick_start/LabVIEW_run_examples)
-* [Python Client Examples](../../../python_client/examples)
-* [C++ Client Replay Modes](../../../cpp_client/cpp_examples)
+* [LabView Client Examples](../../LV_client/quick_start/LabVIEW_run_examples)
+* [Python Client Examples](../../python_client/examples)
+* [C++ Client Replay Modes](../../cpp_client/cpp_examples)

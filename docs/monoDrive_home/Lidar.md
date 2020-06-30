@@ -4,6 +4,8 @@ The monoDrive LiDAR sensor simulates Velodyne LiDARs in both 16 and 32 laser var
 
 ## Configuration
 
+### LiDAR
+
 ``` json
 {
   "type": "Lidar",
@@ -15,6 +17,30 @@ The monoDrive LiDAR sensor simulates Velodyne LiDARs in both 16 and 32 laser var
       "z": 0.0
   },
     "rotation": {
+      "pitch": 0.0,
+      "roll": 0.0,
+      "yaw": 0.0
+  },
+  "max_distance": 8000.0,
+  "n_lasers": 16,
+  "reset_angle": 0.0,
+  "rpms": 300.0
+}
+```
+
+### Semantic LiDAR
+
+``` json
+{
+  "type": "SemanticLidar",
+  "horizontal_resolution": 0.400000005960464,
+  "listen_port": 8210,
+  "location": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+  },
+  "rotation": {
       "pitch": 0.0,
       "roll": 0.0,
       "yaw": 0.0
@@ -45,6 +71,7 @@ Each data packet from the LiDAR sensor contains **1206 bytes**.
 There are 12 data blocks, each block is **100 bytes** and there are **4 bytes** 
 for the timestamp and **2 bytes** called factory bytes. The number of packets 
 for a revolution depends on the **horizontal revolution**.  
+
 
 ### Visualizing LiDAR Output
 

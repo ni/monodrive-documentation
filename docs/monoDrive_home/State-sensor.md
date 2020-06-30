@@ -7,20 +7,25 @@ File and played back in Replay Mode.
 
 ## Configuration
 
-```
+``` json
 [
  {
-    "type": "State",
-    "listen_port": 8700,
-    "packet_size": 1472,
-    "desired_tags": [
-      "vehicle"
-    ],
-    "undesired_tags": [
-      "static"
-    ]
-    "debug_drawing": false,
-		"include_obb": true
+   "type": "State",
+   "listen_port": 8700,
+   "rotation": {
+      "pitch": 0.0,
+      "roll": 0.0,
+      "yaw": 0.0
+   },
+      "location": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+   },
+   "desired_tags": [],
+   "undesired_tags": [],
+   "debug_drawing": false,
+   "include_obb": false
 }
 ]
 ```
@@ -33,7 +38,7 @@ File and played back in Replay Mode.
 
 ## Raw Output 
 
-```
+``` json
 {
    "frame":{
       "objects":[

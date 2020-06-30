@@ -4,18 +4,26 @@
 ## Configuration
 
 ``` json
-[
- {
+{
     "type": "Collision",
-    "listen_port": 8800,
-    "desired_tags": [
-      "vt"
+    "undesired_tags": [
+        "static"
     ],
-  "undesired_tags": [
-  "static"
-  ]
+    "desired_tags": [
+        "vt"
+    ],
+    "listen_port": 8800,
+    "location": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "rotation": {
+        "pitch": 0.0,
+        "roll": 0.0,
+        "yaw": 0.0
+    }
 }
-]
 ```
 
 ## Raw Output

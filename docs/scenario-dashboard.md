@@ -2,6 +2,8 @@
 
 monoDrive's Batch Generator Dashboard provides the client with visuals of custom configurations and result viewing for better testing.  The monoDrive simulator is configured from the Client. Everything about the simulator can be configured, from the material properties, to the vehicle properties, to the sensor properties. The dashboard is designed to step through each configuration with pre-built and customizable properties. Once all configurations are made, deploy and run every combination of the properties selected in the simulation. Results show the status of the test after it has run, and keeps different batches organized for review. The Dashboard can be used as a local app on your computer or through a cloud deployment.
 
+For viewing the full process see [Batch Generator Dashboard Tutorial](https://www.youtube.com/watch?v=U1x_GU60LPg).
+
 
 ## Configurable Selections
 
@@ -27,7 +29,7 @@ The Sensor editor tool enables the user to import a JSON sensor configuration fi
 
 ### UUT & Scenarios
 
-In the Local monoDrive Batch Scenario Manager Application, users will run and configure an UUT to use when running tests. In the Cloud version, users will be able to direct the application to the file directory of configured UUT files to run the simulation. There are many different scenarios to choose from in both Replay and Closed loop Modes. 
+In the Local monoDrive Batch Scenario Manager Application, users will run and configure an UUT to use when running tests. In the Cloud version, users will be able to direct the application to the file directory of configured UUT files to run the simulation or use one of the prebuilt UUTs. There are many different scenarios to choose from in both Replay and Closed loop Modes. 
 
   <div class="img_container">
     <img class='wide_img' src="../imgs/dashboard_scenarios.png"/>
@@ -35,7 +37,7 @@ In the Local monoDrive Batch Scenario Manager Application, users will run and co
 
 ### Weather
 
-The monoDrive Batch Scenario Manager offers many pre-build weather profiles and an option for customizing a new weather profile. The weather configuration provides light color changes and the angle of the sun. User will also be able to alter the amount of rain on the roads, amount of wind, wind angle, and rain fall in a scene. 
+The monoDrive Batch Scenario Manager offers many pre-build weather profiles and an option for customizing a new weather profile. The weather configuration provides customizable changes such as the angle of the sun, the amount of rain on the roads, amount of wind, wind angle, and rain fall in a scene. 
 
   <div class="img_container">
     <img class='wide_img' src="../imgs/dashboard_weather.png"/>
@@ -47,7 +49,11 @@ The monoDrive Batch Scenario Manager offers many pre-build weather profiles and 
 
 ## Viewing Results
 
-After all selections are made, the batch scenario manager will either send the permutations to the simulator running locally through the Local Application or through a Cloud Deployment which will run a job process through Docker. The Results will show tests that have passed and failed, and some 
+After all selections are made, the batch scenario manager will either send the permutations to the simulator running locally through the Local Application or through a Cloud Deployment which will run a job process. The Dashboard will keep track of all batch runs for viewing past tests, and the Results will show tests that have passed and failed. Inside each individual test, the user can find more detailed information for further testing.
+
+  <div class="img_container">
+    <img class='wide_img' src="../imgs/dashboard_results.png"/>
+  </div>
 
 ## Requirements
 
@@ -67,9 +73,9 @@ After all selections are made, the batch scenario manager will either send the p
     <img class='wide_img' src="../imgs/dashboard_extract.jpeg"/>
   </div>
 
-  1. On Windows, run monodrive.dashboard.exe. On Linux, run monodrive.dashboard.tar.gz
+  1. On Windows, run monodrive.dashboard.exe. On Linux, run monodrive-dashboard.
  
-  1. Saves results from the Unit Under Test (UUT) in the same directory that user specifies in app setup. 
+  1. Save results from the Unit Under Test (UUT) in the same directory that user specifies in app setup. 
 
   <div class="img_container">
     <img class='wide_img' src="../imgs/dashboard_store.jpeg"/>
@@ -79,14 +85,12 @@ After all selections are made, the batch scenario manager will either send the p
  
   1. Run UUT *See below for configuring UUT*
  
-  1. Make selections and run batch. 
+  1. Make selections in the monoDrive Scenario Batch Manager and run batch. 
 
   1. Refresh results and/or view later to see results after tests have run. 
 
 ## Configuring UUT
-
-
-
- For more details see [Batch Generator Dashboard Tutorial](https://www.youtube.com/watch?v=U1x_GU60LPg)
+  
+  For an example of a UUT example, check out this [github uut example repo](https://github.com/monoDriveIO/uut_examples)
 
  <p>&nbsp;</p>

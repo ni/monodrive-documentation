@@ -1,6 +1,6 @@
 # Collision
 
-Provides information about a collision for the ego vehicle.
+Provides collision information between the ego vehicle and objects specified by the `desired_tags`. 
 
 ## Configuration
 

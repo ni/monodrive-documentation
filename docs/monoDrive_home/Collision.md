@@ -1,5 +1,6 @@
 # Collision
 
+Provides information about a collision for the ego vehicle.
 
 ## Configuration
 

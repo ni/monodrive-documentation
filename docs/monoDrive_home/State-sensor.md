@@ -510,12 +510,12 @@ File and played back in Replay Mode.
 ```
 
 - **frame:** An array of all actors' state information for a single simulation step
-- **objects**
+- **objects** An array of object actors' in the scene
    - **name:** The name of the actor in the scene
-   - **odometry**
+   - **odometry** 
       - **angular_velocity:** The angular velocity of the actor in radians/second
-      - **linear_velocity:**
-      - **pose:**
+      - **linear_velocity:** The linear velocity of the actor in radians/second
+      - **pose:** Determines the position and orientation of the actor
          - **orientation:** The rotation of the actor as a quaternion
          - **position:** The position of this actor in the scene in centimeters relative to the origin
    - **oriented_bounding_box:** The bounding box of the actor in the scene
@@ -530,8 +530,8 @@ File and played back in Replay Mode.
       - **name:** The name of the actor in the scene
       - **odometry**
          - **angular_velocity:** The angular velocity of the actor in radians/second
-         - **linear_velocity:**
-         - **pose:**
+         - **linear_velocity:** The linear velocity of the actor in radians/second
+         - **pose:** Determines the position and orientation of the vehicle actor
             - **orientation:** The rotation of the actor as a quaternion
             - **position:** The position of this actor in the scene in centimeters relative to the origin
       - **oriented_bounding_box:** The bounding box of the actor in the scene
@@ -543,7 +543,7 @@ File and played back in Replay Mode.
       - **tags:** The actor tags of this actor
       - **wheels:** Array of orientation information for each wheel as quaternions.
          - **id:**
-         - **pose:**
+         - **pose:** Determines the position and orientation of the wheel actor
             - **orientation:** The rotation of the wheels as a quaternion
             - **position:** The position of the wheels in the scene in centimeters relative to the origin
          - **speed:** The angular velocity of each of this actor's wheels in radians/second. Index 0, 1, 2, 3 correspond to front-left, front-right, rear-left, rear-right respectively

@@ -514,7 +514,7 @@ File and played back in Replay Mode.
    - **name:** The name of the actor in the scene
    - **odometry** 
       - **angular_velocity:** The angular velocity of the actor in radians/second
-      - **linear_velocity:** The linear velocity of the actor in radians/second
+      - **linear_velocity:** The linear velocity of the actor in centimeter/second
       - **pose:** Determines the position and orientation of the actor
          - **orientation:** The rotation of the actor as a quaternion
          - **position:** The position of this actor in the scene in centimeters relative to the origin
@@ -525,12 +525,12 @@ File and played back in Replay Mode.
       - **orientation:** The rotation of the box as a quaternion
       - **scale:** The scale of this box as a coefficient
    - **tags:** The actor tags of this actor
-- **vehicles**
+- **vehicles** An array of vehicle actors' in the scene
    - **state**
       - **name:** The name of the actor in the scene
       - **odometry**
          - **angular_velocity:** The angular velocity of the actor in radians/second
-         - **linear_velocity:** The linear velocity of the actor in radians/second
+         - **linear_velocity:** The linear velocity of the actor in centimeter/second
          - **pose:** Determines the position and orientation of the vehicle actor
             - **orientation:** The rotation of the actor as a quaternion
             - **position:** The position of this actor in the scene in centimeters relative to the origin
@@ -548,5 +548,5 @@ File and played back in Replay Mode.
             - **position:** The position of the wheels in the scene in centimeters relative to the origin
          - **speed:** The angular velocity of each of this actor's wheels in radians/second. Index 0, 1, 2, 3 correspond to front-left, front-right, rear-left, rear-right respectively
 - **game_time** Time since the simulation started
-- **sample_count**
+- **sample_count** Sample number since the sensor started streaming
 - **time** The time in UTC seconds when this sample was acquired

@@ -2,127 +2,124 @@
  
 ## Simulator Configuration
 
-```
+``` json
 {
-   "server_ip":"127.0.0.1",
-   "map":"Almono",
-   "server_port":8999,
-   "simulation_mode":2,
-   "ego_config": {	   
-		"body": {	     
-			"type": "/Game/Vehicles/crossover_monoDrive_01.crossover_monoDrive_01_C",
-			"color": "Carpaint_White.Carpaint_White"
-		}
-	},
-   "traffic_configuration":{
-      "max_vehicles":20,
-      "min_desired_speed":-20.0,
-      "max_desired_speed":10.0,
-      "swarm_traffic":true,
-      "spawn_leash_distance":15000,
-      "min_spawn_range":2000,
-      "vertical_offset":25,
-      "overtake_slower_vehicles":true
-   },
-   "phys_materials":{
-      "Aluminum":{
-         "specular_exponent":15.0,
-         "specular_coefficient":0.95,
-         "diffuse_coefficient":0.26,
-         "dielectric_constant":10.0,
-         "roughness":0.15
+   "client_ip": "127.0.0.1",
+   "client_settings": {
+      "gui": {
+         "fps": 1.0
       },
-      "Asphalt":{
-         "specular_exponent":1.0,
-         "specular_coefficient":0.03,
-         "diffuse_coefficient":0.65,
-         "dielectric_constant":7.0,
-         "roughness":0.65
+      "logger": {
+         "control": "info",
+         "network": "info",
+         "scenario": "info",
+         "sensor": "debug",
+         "simulator": "info",
+         "vehicle": "info"
       },
-      "Concrete":{
-         "specular_exponent":0.0,
-         "specular_coefficient":0.1,
-         "diffuse_coefficient":0.65,
-         "dielectric_constant":7.0,
-         "roughness":0.0
-      },
-      "Glass":{
-         "specular_exponent":80.0,
-         "specular_coefficient":0.80,
-         "diffuse_coefficient":0.15,
-         "dielectric_constant":4.0,
-         "roughness":0.10
-      },
-      "Gravel":{
-         "specular_exponent":10.0,
-         "specular_coefficient":0.1,
-         "diffuse_coefficient":0.95,
-         "dielectric_constant":7.0,
-         "roughness":0.48
-      },
-      "LandScape":{
-         "specular_exponent":10.0,
-         "specular_coefficient":0.50,
-         "diffuse_coefficient":0.50,
-         "dielectric_constant":10.0,
-         "roughness":0.60
-      },
-      "Plastic":{
-         "specular_exponent":25.0,
-         "specular_coefficient":0.40,
-         "diffuse_coefficient":0.60,
-         "dielectric_constant":2.8,
-         "roughness":0.09
-      },
-      "ReflectiveMaterial":{
-         "specular_exponent":10.0,
-         "specular_coefficient":0.5,
-         "diffuse_coefficient":0.5,
-         "dielectric_constant":1.0,
-         "roughness":1.0
-      },
-      "Road":{
-         "specular_exponent":1.0,
-         "specular_coefficient":0.1,
-         "diffuse_coefficient":0.65,
-         "dielectric_constant":7.0,
-         "roughness":0.65
-      },
-      "RoadPaint":{
-         "specular_exponent":10.0,
-         "specular_coefficient":10.0,
-         "diffuse_coefficient":2.0,
-         "dielectric_constant":7.0,
-         "roughness":1.0
-      },
-      "Steel":{
-         "specular_exponent":26.0,
-         "specular_coefficient":1.0,
-         "diffuse_coefficient":0.33,
-         "dielectric_constant":0.0,
-         "roughness":0.23
-      },
-      "Tire":{
-         "specular_exponent":25.0,
-         "specular_coefficient":0.40,
-         "diffuse_coefficient":0.60,
-         "dielectric_constant":2.8,
-         "roughness":0.15
-      },
-      "Tree":{
-         "specular_exponent":10.0,
-         "specular_coefficient":0.05,
-         "diffuse_coefficient":0.97,
-         "dielectric_constant":10.0,
-         "roughness":0.60
-      },
-      "Wheel":{
-         "specular_exponent":92.0,
-         "specular_coefficient":0.95,
-         "diffuse_coefficient":0.06,
-         "dielectric_constant":10.0,
-         "roughness":0.15
+      "map": {
+         "gis_anchor": {
+               "x": 0,
+               "y": 0,
+               "z": 0
+         },
+         "point_delta": 100.0
       }
+   },
+   "ego_config": {
+      "body": {
+         "color": "CarPaint_White.CarPaint_White",
+         "type": "Blueprint'/Game/Vehicles/crossover_monoDrive_01.crossover_monoDrive_01_C'"
+      },
+      "vehicle_dynamics": "physx"
+   },
+   "id": "simulator_test",
+   "map": "Almono",
+   "phys_materials": {
+      "Aluminum": {
+         "dielectric_constant": 10.0,
+         "diffuse_coefficient": 0.26,
+         "roughness": 0.15,
+         "specular_coefficient": 0.95,
+         "specular_exponent": 15.0
+      },
+      "Asphalt": {
+         "dielectric_constant": 7.0,
+         "diffuse_coefficient": 0.65,
+         "roughness": 0.65,
+         "specular_coefficient": 0.03,
+         "specular_exponent": 1.0
+      },
+      "Concrete": {
+         "dielectric_constant": 7.0,
+         "diffuse_coefficient": 0.65,
+         "roughness": 0.0,
+         "specular_coefficient": 0.1,
+         "specular_exponent": 0.0
+      },
+      "Glass": {
+         "dielectric_constant": 4.0,
+         "diffuse_coefficient": 0.15,
+         "roughness": 0.1,
+         "specular_coefficient": 0.8,
+         "specular_exponent": 80.0
+      },
+      "LandScape": {
+         "dielectric_constant": 10.0,
+         "diffuse_coefficient": 0.5,
+         "roughness": 0.6,
+         "specular_coefficient": 0.5,
+         "specular_exponent": 10.0
+      },
+      "Plastic": {
+         "dielectric_constant": 2.8,
+         "diffuse_coefficient": 0.6,
+         "roughness": 0.09,
+         "specular_coefficient": 0.4,
+         "specular_exponent": 25.0
+      },
+      "Road": {
+         "dielectric_constant": 7.0,
+         "diffuse_coefficient": 0.65,
+         "roughness": 0.65,
+         "specular_coefficient": 0.1,
+         "specular_exponent": 1.0
+      },
+      "Steel": {
+         "dielectric_constant": 0.0,
+         "diffuse_coefficient": 0.33,
+         "roughness": 0.23,
+         "specular_coefficient": 1.0,
+         "specular_exponent": 26.0
+      },
+      "Tire": {
+         "dielectric_constant": 2.8,
+         "diffuse_coefficient": 0.6,
+         "roughness": 0.15,
+         "specular_coefficient": 0.4,
+         "specular_exponent": 25.0
+      },
+      "Tree": {
+         "dielectric_constant": 10.0,
+         "diffuse_coefficient": 0.97,
+         "roughness": 0.6,
+         "specular_coefficient": 0.05,
+         "specular_exponent": 10.0
+      },
+      "Wheel": {
+         "dielectric_constant": 10.0,
+         "diffuse_coefficient": 0.06,
+         "roughness": 0.15,
+         "specular_coefficient": 0.95,
+         "specular_exponent": 92.0
+      }
+   },
+   "server_ip": "127.0.0.1",
+   "server_port": 8999,
+   "simulation_mode": 1,
+   "traffic_configuration": {
+      "max_vehicles": 10,
+      "spawn_rate": 0.25
    }
 }
 ```
@@ -130,7 +127,7 @@
 
 ### Configuration Tags
 
-- **server_ip**: The ip address of the computer running the simulator. If both simulator and client are running on the same computer use localhost as the ip address (127.0.0.1).
+- **client_ip**: The ip address of the computer running the simulator. If both simulator and client are running on the same computer use localhost as the ip address (127.0.0.1).
 - **map**: The name of the map to load.
 - **server_port**: the TCP port for the simulator, typically 8999.
 - **simulation_mode**: Closed loop (0), replay(1) or hil(2).

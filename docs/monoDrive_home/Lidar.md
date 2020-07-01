@@ -2,6 +2,9 @@
 
 The monoDrive LiDAR sensor simulates Velodyne LiDARs in both 16 and 32 laser variants. The output of the LiDAR matches the documented output of commercial Velodyne LiDARs.
 
+<div class ='flex'>
+<div class="wide_img">
+
 ``` json
 {
   "type": "Lidar",
@@ -24,6 +27,14 @@ The monoDrive LiDAR sensor simulates Velodyne LiDARs in both 16 and 32 laser var
 }
 ```
 
+</div>
+
+<p class="img_container">
+  <img class="half_screen_img" src="../img/lidar.png" />
+</p>
+
+</div>
+
 - **max_distance:** The maximum distance in centimeters the LiDAR laser will travel.
 - **horizontal_resolution:** The horizontal angle in degrees the LiDAR must rotate before shooting out the next set of lasers. Range from 0.1 to 0.4.
 - **rpms:** The expected number of revolutions per minute for a full 360 degree sweep. Controls the expected time between laser lines.
@@ -31,6 +42,10 @@ The monoDrive LiDAR sensor simulates Velodyne LiDARs in both 16 and 32 laser var
 - **reset_angle:** The angle that indicates a full revolution (i.e. full 360 degree revolution will start at this reported angle).
 
 ## Semantic LiDAR
+
+
+<div class ='flex'>
+<div class="wide_img">
 
 ``` json
 {
@@ -53,6 +68,14 @@ The monoDrive LiDAR sensor simulates Velodyne LiDARs in both 16 and 32 laser var
   "rpms": 300.0
 }
 ```
+
+</div>
+
+<p class="img_container">
+  <img class="half_screen_img" src="../img/semantic_lidar.png" />
+</p>
+
+</div>
 
 The configuration values are the same as LiDAR. The following table shows the 
 semantic definition for each pixel value:
@@ -108,6 +131,4 @@ To visualize the output you will need to:
 1. Run the monoDrive Simulator, configure the monoDrive LabVIEW client with a LiDAR
 1. When the LiDAR data starts streaming, VeloView will display the LiDAR points
 
-<p class="img_container">
-  <img class="lg_img" src="https://github.com/monoDriveIO/Client/raw/master/WikiPhotos/lidarsensor.PNG"/>
-</p>  
+<p>&nbsp;</p>

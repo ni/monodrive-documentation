@@ -1,12 +1,34 @@
 # CarSim
 
-The monoDrive Simulator is run with physx car physics, but can be run with CarSim for more optimal car physics. 
+By default, the monoDrive Simulator uses PhysX for vehicle dynamics. Alternatively, monoDrive also supports co-simulation with CarSim.
 
 ## Prerequisites
 
-1. Build or Download the monoDrive Simulator with newest version of CarSim plugin.
-1. Install CarSim 
-    - for licensing on a new machine, we will need to reach out to CarSim
+- Windows 10
+- monoDrive Scenario Editor
+- monoDrive CarSim integration enabled
+    - Open `VehicleAI.uproject` with a text editor
+    - Enable the two required plugins
+    - Launch the editor and the integration will be built
+
+```json
+    {
+        "Name": "CarSim",
+        "Enabled": true,
+        "MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/2d712649ca864c80812da7b5252f5608"
+    },
+    {
+        "Name": "monoDriveVehiclesCarSim",
+        "Enabled": true
+    }
+```
+    
+- VehicleSim Dynamics plugin for Unreal Engine 4.24
+- CarSim 2020.0
+    - Minimum licenses:
+        - CarSim Browser and Graphical User Interface
+        - CarSim Solver for Windows
+
 
 ## Create CarSim model
 
@@ -18,9 +40,9 @@ The monoDrive Simulator is run with physx car physics, but can be run with CarSi
     - Category: monoDrive, Title: some title
 
 1. Give simulation control to UE4
-    - Uncheck 'Set driver controls here'
-    - Uncheck 'Set time step here'
-    - Uncheck 'Advanced settings'
+    - Unselect 'Set driver controls here'
+    - Unselect 'Set time step here'
+    - Unselect 'Advanced settings'
 
 1. Select vehicle
     - Click drop down under 'Simulated Test Specifications'
@@ -53,22 +75,21 @@ The monoDrive Simulator is run with physx car physics, but can be run with CarSi
 
 
 ## Configure the monoDrive simulator
-<!-- Open the Labview closed loop mode example
-Edit the simulator configuration
-Under 'ego_config' set:
-"vehicle_dynamics": "carsim"
- "sim_file": "C:\\Users\\you\\path\\to\\ue4simfile.sim" -->
+- Open up the closed loop scenario file with a text editor
+- Find the vehicle with the `ego` tag
+- Update the `class_path` to point at the CarSim vehicle and add a field to specify the `sim_file`. It should read:
+```json
+    "class_path": "/Game/CarSim/VS_Core/CarSimDemoVehicle.CarSimDemoVehicle_C",
+    "sim_file" : "C:\\Users\\you\\path\\to\\ue4simfile.sim",
+```
 
 ## Running
 1. Start the monoDrive Simulator
 
 1. Click 'Generate Files for this Run' from CarSim
 
-1. Run the configured closed loop example from Labview
+1. Run the configured closed loop example from LabVIEW
 
-1. When done, stop both the labview client and the simulator
+1. When done, stop both the LabVIEW client and the simulator
 
 1. Go back to CarSim and click 'Video + Plot' to see results
-
-
-

@@ -23,13 +23,34 @@ logger saves:
 
 * GNSS Data - Log files that can be played back in the 
 [MT Software Suite](https://content.xsens.com/mt-software-suite-download?hsCtaTracking=ca04936d-827e-43ef-a5e9-1797c4d9a297%7C1e7a3b81-a8f1-40af-8464-97db700b3dec)
+
+<div class="img_container">
+  <video width=650px height=480px muted autoplay loop>
+    <source src="https://cdn.monodrive.io/readthedocs/mt_software_suite.mp4" type="video/mp4">
+  </video>
+</div> 
+
 * Ladybug 5+ Camera Streams - These are `.pgr` stream files that contain all
 6 cameras on the Ladybug Camera that can be played back with the 
 [Ladybug SDK](https://www.flir.com/products/ladybug-sdk/)
+
+<div class="img_container">
+  <video width=650px height=480px muted autoplay loop>
+    <source src="https://cdn.monodrive.io/readthedocs/ladybug_cap_pro.mp4" type="video/mp4">
+  </video>
+</div> 
+
 * Binary LiDAR Data - This is a raw stream of the packets sent from the 
-Velodyne LiDAR. The monoDrive Real-to-Virtual Data Logger provides software to 
-play this data back so that it can be viewed in 
-[Veloview](https://www.paraview.org/veloview/).
+Velodyne LiDAR. The monoDrive Real-to-Virtual Data Logger provides utility 
+software in `utils/replay_lidar.vi` to play this data back so that it can be 
+viewed in [Veloview](https://www.paraview.org/veloview/).
+
+<div class="img_container">
+  <video width=650px height=480px muted autoplay loop>
+    <source src="https://cdn.monodrive.io/readthedocs/veloview_playback.mp4" type="video/mp4">
+  </video>
+</div> 
+
 * Configuration Files - These are text files produced by the Data Logger 
 software that contain orientation information for each sensor during parsing
 * Timestamp Files - These contain the timestamps for each data acquisition 
@@ -59,22 +80,11 @@ images is not consistent.
 images, but they have been temporally filtered to help carry classifications
 between consecutive images to improve overall performance.
 
-## Point Cloud Data
-
-The `cloud` directory will contain all assets associated with processing and 
-fusion of point cloud data using monoDrive's point cloud classification and 
-stitching algorithms.
-
-* There are several different paths formatted in the 
-[TUM format](https://vision.in.tum.de/data/datasets/rgbd-dataset/file_formats) 
-available in `.txt` files.
-* KML Files that can be loaded into Google Earth for viewing the GNSS paths.
-* A folder containing individual semantically colored point clouds created by
-fusing the LiDAR and camera image data.
-* A folder containing fully stitched clouds for each semantic label 
-(e.g. road, foliage, etc.)
-* The fully stitched clouds of all the data from the data set
-
+<div class="img_container">
+  <video width=750px height=580px muted autoplay loop>
+    <source src="https://cdn.monodrive.io/readthedocs/segmentation_comparison.mp4" type="video/mp4">
+  </video>
+</div>
 
 ## Redaction
 
@@ -86,6 +96,12 @@ vehicles by blurring them out in the imagery. This data set can help
 dramatically improve visual odometry algorithms that rely on determining ego
 motion from a forward facing camera. 
 
+<div class="img_container">
+  <video width=650px height=480px muted autoplay loop>
+    <source src="https://cdn.monodrive.io/readthedocs/redacted_vehicles.mp4" type="video/mp4">
+  </video>
+</div>
+
 ## SLAM
 
 monoDrive uses Simultaneous Localization And Mapping (SLAM) in order to 
@@ -93,6 +109,41 @@ supplment and improve the paths from the Real-to-Virtual hardware's GNSS. The
 `slam` directory contains the output paths from the visual odometry when run
 on the collected camera data. The output of the path is in the 
 [TUM format](https://vision.in.tum.de/data/datasets/rgbd-dataset/file_formats).
+
+
+## Point Cloud Data
+
+The `cloud` directory will contain all assets associated with processing and 
+fusion of point cloud data using monoDrive's point cloud classification and 
+stitching algorithms.
+
+* There are several different paths formatted in the 
+[TUM format](https://vision.in.tum.de/data/datasets/rgbd-dataset/file_formats) 
+available in `.txt` files.
+* KML Files that can be loaded into Google Earth for viewing the GNSS paths.
+<div class="img_container">
+    <img class='md_img' src="../imgs/full_gnss_path.png"/>
+</div>
+* A folder containing individual semantically colored point clouds created by
+fusing the LiDAR and camera image data.
+<div class="img_container">
+    <img class='md_img' src="../imgs/classified_cloud.png"/>
+</div>
+* A folder containing fully stitched clouds for each semantic label 
+(e.g. road, foliage, etc.)
+<div class="img_container">
+    <img class='md_img' src="../imgs/road_cloud.png"/>
+</div>
+<div class="img_container">
+    <img class='md_img' src="../imgs/foliage_cloud.png"/>
+</div>
+* The fully stitched clouds of all the data from the data set
+<div class="img_container">
+  <video width=650px height=480px muted autoplay loop>
+    <source src="https://cdn.monodrive.io/readthedocs/fully_stitched_semantic_cloud.mp4" type="video/mp4">
+  </video>
+</div> 
+
 
 ## Object Detection
 
@@ -141,6 +192,12 @@ objects throughout the data run. Tracking consists of identifying objects in
 the the detected objects JSON and predicting the motion between frames. If 
 multiple cameras are used and the proper geometry between cameras is known, then
 tracking will work across cameras.
+
+<div class="img_container">
+  <video width=850px height=480px muted autoplay loop>
+    <source src="https://cdn.monodrive.io/readthedocs/tracking_results.mp4" type="video/mp4">
+  </video>
+</div> 
 
 The JSON for the output of the tracking algorithms is similar to that of the 
 object detection but correlates the objects temporally. For a given object, 
@@ -223,3 +280,10 @@ The `mesh/tiles` directory contains the output from the monoDrive Direct Texture
 algorithm. Here, each mesh is organized into an individual tile `.obj` file that
 has been textured by project the imagery directly onto the mesh. When the
 tiles are combined, the entire data set can be seen as a whole.
+
+<div class="img_container">
+    <img class='lg_img' src="../imgs/final_textured_road_mesh.png"/>
+</div>
+<div class="img_container">
+    <img class='lg_img' src="../imgs/final_textured_road_mesh_closeup.png"/>
+</div>

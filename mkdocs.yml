@@ -23,12 +23,13 @@ nav:
       scenario_editor/trajectory_files.md,
       scenario_editor/roads.md
     ]
-  - Real-to-Virtual:
-    - About: r2v/about.md
-    - Data Collection Quick Start: r2v/data_collection_quick_start.md
-    - Data Processing Quick Start: r2v/data_processing_quick_start.md
-    - Maps: r2v/r2v_maps.md
-    - Data Processing Output: r2v/data_processing_output.md
+  - Real-to-Virtual: [
+    r2v/about.md,
+    r2v/data_collection_quick_start.md,
+    r2v/data_processing_quick_start.md,
+    r2v/data_processing_output.md,
+    r2v/r2v_maps.md
+  ]
 
 - Simulator API :
   - Introduction: monoDrive_home/API.md

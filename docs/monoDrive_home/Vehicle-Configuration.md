@@ -90,6 +90,8 @@ Each vehicle has a pre-defined PID parameters to control how closely and accurat
 ## Vehicle Dynamics
 monoDrive Scenario Vehicles are built on PhysX vehicles which are customizable out of the box. All of the PhysX mechanical settings can be customized in the editor to match the user's vehicle such as the suspension, drivetrain type, transmission gearing, suspension parameters, and much more.
 
+monoDrive also supports co-simulation with CarSim for vehicle dynamics. For more information, please see [CarSim tutorial](CarSim.md).
+
 <div class="img_container">
     <video width=650px height=340px muted controls autoplay loop>
         <source src="https://cdn.monodrive.io/readthedocs/vehicle_mechanical.mp4" type="video/mp4">

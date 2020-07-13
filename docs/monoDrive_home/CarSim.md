@@ -2,6 +2,12 @@
 
 By default, the monoDrive Simulator uses PhysX for vehicle dynamics. Alternatively, monoDrive also supports co-simulation with CarSim.
 
+<div class="img_container">
+  <video width=650px height=440px muted controls autoplay loop>
+    <source src="https://cdn.monodrive.io/readthedocs/monodrive_carsim_cosimulation.mp4" type="video/mp4">
+  </video>
+</div>
+
 ## Prerequisites
 
 ### monoDrive Simulator
@@ -90,13 +96,6 @@ By default, the monoDrive Simulator uses PhysX for vehicle dynamics. Alternative
 ```
 
 ## Running
-
-<div class="img_container">
-  <video width=650px height=440px muted controls autoplay loop>
-    <source src="https://cdn.monodrive.io/readthedocs/monodrive_carsim_cosimulation.mp4" type="video/mp4">
-  </video>
-</div>
-
 
 1. Start the monoDrive Simulator
 

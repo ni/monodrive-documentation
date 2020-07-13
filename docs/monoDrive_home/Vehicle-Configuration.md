@@ -96,6 +96,8 @@ monoDrive Scenario Vehicles are built on PhysX vehicles which are customizable o
     </video>
 </div> 
 
+monoDrive also supports co-simulation with CarSim for vehicle dynamics. For more information, please see [CarSim tutorial](CarSim.md).
+
 ## Vehicle Axis and Rotations
 ### Axis
 The vehicle axis are defined as follows:   

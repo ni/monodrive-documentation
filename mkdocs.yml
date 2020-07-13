@@ -49,6 +49,7 @@ nav:
   - Weather: monoDrive_home/Weather.md
   
 - Tutorials:
+  - Co-simulation Tutorials: [monoDrive_home/CarSim.md]
   - LabVIEW Tutorials: [LV_client/tutorials/Setup.md,
     LV_client/tutorials/AddSensors.md,
     LV_client/tutorials/Sensor_Palette.md,

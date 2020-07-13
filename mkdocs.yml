@@ -28,6 +28,7 @@ nav:
     - Data Collection Quick Start: r2v/data_collection_quick_start.md
     - Data Processing Quick Start: r2v/data_processing_quick_start.md
     - Maps: r2v/r2v_maps.md
+    - Data Processing Output: r2v/data_processing_output.md
 
 - Simulator API :
   - Introduction: monoDrive_home/API.md

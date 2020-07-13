@@ -14,13 +14,13 @@ To customize the suspension, wheel or tire properties, create a wheel class that
     <img class="wide_img" src="../img/wheel_config1.png" />
     </p>
 
-1. After sub-classing the wheel class, the wheel with settings can be customized. This includes all the suspension settings in PhysX, tire stiffness and friction properties, mass, collision geometry, and more.
+1. This includes all the PhysX suspension settings, tire stiffness, friction properties, mass, collision geometry, and more.
 
     <p class="img_container">
     <img class="wide_img" src="../img/wheel_config2.png" />
     </p>
 
-To set a custom tire configuration which contains the tires friction parameter (note that friction is also set on the materials in the environment and scaled by this number), right click in the Content Browser, and then select Miscellaneous -> Data Asset and search for TireConfig. This will create a custom tire configuration that can then be selected in the wheel blueprint. Note that the default value is 1 which means that all friction properties will be derived by the environment’s materials. Changing this property is only recommended for advanced users, the friction is multiplicative with the environment surface’s frictional value.
+To set a custom tire configuration that contains the tires friction parameter (NOTE: that friction is also set on the materials in the environment and scaled by this number), right click in the Content Browser, select Miscellaneous -> Data Asset, and search for TireConfig. This will create a custom tire configuration that can then be selected in the wheel blueprint. Note that the default value is 1 meaning all friction properties will be derived by the environment’s materials. The friction is multiplicative with the environment surface’s frictional value, so be cautious when changing this value because this combination can make the wheel and vehicle's physics unstable and unpredictable if not set correctly.
 
 <p class="img_container">
 <img class="wide_img" src="../img/wheel_config3.png" />

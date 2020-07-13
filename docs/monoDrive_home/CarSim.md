@@ -10,12 +10,14 @@ By default, the monoDrive Simulator uses PhysX for vehicle dynamics. Alternative
 
 ## Prerequisites
 
-### monoDrive Simulator
+**monoDrive Scenario Editor**
+
 - Windows 10
 - monoDrive Scenario Editor
 - monoDrive Client (C++, Python or LabVIEW)
 
-### monoDrive CarSim Integration Enabled
+**monoDrive CarSim Integration Enabled**
+
 - Open `VehicleAI.uproject` with a text editor
 - Enable the two required plugins
 
@@ -32,7 +34,8 @@ By default, the monoDrive Simulator uses PhysX for vehicle dynamics. Alternative
 ```
 - Launch the editor and the integration will be built
 
-### CarSim Prerequisites 
+**CarSim Prerequisites**
+
 - VehicleSim Dynamics plugin for Unreal Engine 4.24
 - CarSim 2020.0
     - Minimum licenses:
@@ -84,11 +87,13 @@ By default, the monoDrive Simulator uses PhysX for vehicle dynamics. Alternative
     - 'ue4simfile.sim' should appear in the working directory
 
 
-## Configure the monoDrive simulator
+## Configure the monoDrive Scenario
+
 1.  Open up the closed loop scenario file with a text editor
 
 1.  Find the vehicle with the `ego` tag
-    - Update the `class_path` to point at the CarSim vehicle and add a field to specify the `sim_file`. It should read:
+
+1. Update the `class_path` to point at the CarSim vehicle and add a field to specify the `sim_file`. It should read:
 
 ```json
     "class_path": "/Game/CarSim/VS_Core/CarSimDemoVehicle.CarSimDemoVehicle_C",

@@ -4,12 +4,14 @@ By default, the monoDrive Simulator uses PhysX for vehicle dynamics. Alternative
 
 ## Prerequisites
 
+### monoDrive Simulator
 - Windows 10
 - monoDrive Scenario Editor
-- monoDrive CarSim integration enabled
-    - Open `VehicleAI.uproject` with a text editor
-    - Enable the two required plugins
-    - Launch the editor and the integration will be built
+- monoDrive Client (C++, Python or LabVIEW)
+
+### monoDrive CarSim Integration Enabled
+- Open `VehicleAI.uproject` with a text editor
+- Enable the two required plugins
 
 ```json
     {
@@ -22,7 +24,9 @@ By default, the monoDrive Simulator uses PhysX for vehicle dynamics. Alternative
         "Enabled": true
     }
 ```
-    
+- Launch the editor and the integration will be built
+
+### CarSim Prerequisites 
 - VehicleSim Dynamics plugin for Unreal Engine 4.24
 - CarSim 2020.0
     - Minimum licenses:
@@ -75,15 +79,25 @@ By default, the monoDrive Simulator uses PhysX for vehicle dynamics. Alternative
 
 
 ## Configure the monoDrive simulator
-- Open up the closed loop scenario file with a text editor
-- Find the vehicle with the `ego` tag
-- Update the `class_path` to point at the CarSim vehicle and add a field to specify the `sim_file`. It should read:
+1.  Open up the closed loop scenario file with a text editor
+
+1.  Find the vehicle with the `ego` tag
+    - Update the `class_path` to point at the CarSim vehicle and add a field to specify the `sim_file`. It should read:
+
 ```json
     "class_path": "/Game/CarSim/VS_Core/CarSimDemoVehicle.CarSimDemoVehicle_C",
     "sim_file" : "C:\\Users\\you\\path\\to\\ue4simfile.sim",
 ```
 
 ## Running
+
+<div class="img_container">
+  <video width=650px height=440px muted controls autoplay loop>
+    <source src="https://cdn.monodrive.io/readthedocs/monodrive_carsim_cosimulation.mp4" type="video/mp4">
+  </video>
+</div>
+
+
 1. Start the monoDrive Simulator
 
 1. Click 'Generate Files for this Run' from CarSim

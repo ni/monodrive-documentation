@@ -44,23 +44,182 @@ is formatted into the
 is used by several different benchmarks and algorithms for testing various 
 vehicle perception stacks.
 
+## Segmentation
+
+The semantic segmentation of images is the first step in processing data from
+the monoDrive Real-to-Virtual system. The segmented data in the `segmentation` 
+folder contains grayscale images where each gray value represents a different
+class of object. Segmentation is to the pixel level and performed on a 
+frame-by-frame basis and smoothed temporally.
+
+* The `raw` folder contains the one shot segmentation processing
+which yields good results for segmentation where the temporal frequency between
+images is not consistent. 
+* The `output` directory contains the same segmentation
+images, but they have been temporally filtered to help carry classifications
+between consecutive images to improve overall performance.
+
 ## Point Cloud Data
 
-The point cloud directory contains:
+The `cloud` directory will contain all assets associated with processing and 
+fusion of point cloud data using monoDrive's point cloud classification and 
+stitching algorithms.
 
-* KML Files and txt files for path
-* Invidiually semantically colored point clouds
-* Stitched clouds for each semantic label
-* Fully stitched clouds
+* There are several different paths formatted in the 
+[TUM format](https://vision.in.tum.de/data/datasets/rgbd-dataset/file_formats) 
+available in `.txt` files.
+* KML Files that can be loaded into Google Earth for viewing the GNSS paths.
+* A folder containing individual semantically colored point clouds created by
+fusing the LiDAR and camera image data.
+* A folder containing fully stitched clouds for each semantic label 
+(e.g. road, foliage, etc.)
+* The fully stitched clouds of all the data from the data set
 
-## Segmentation
 
 ## Redaction
 
-## ORB SLAM
+Vehicle redaction is performed on the original camera data in order to improve 
+performance of various visual odometry algorithms that rely on static objects 
+in a scene for stable optical flow. The `redaction` folder contains images that
+leverage the semantic information from the monoDrive segmentation to remove
+vehicles by blurring them out in the imagery. This data set can help 
+dramatically improve visual odometry algorithms that rely on determining ego
+motion from a forward facing camera. 
+
+## SLAM
+
+monoDrive uses Simultaneous Localization And Mapping (SLAM) in order to 
+supplment and improve the paths from the Real-to-Virtual hardware's GNSS. The
+`slam` directory contains the output paths from the visual odometry when run
+on the collected camera data. The output of the path is in the 
+[TUM format](https://vision.in.tum.de/data/datasets/rgbd-dataset/file_formats).
 
 ## Object Detection
 
+The object detection pipeline process annotates the segmentation images and
+encodes them with 
+[Run-length Encoding (RLE) masks](https://en.wikipedia.org/wiki/Run-length_encoding). 
+This is a compact way of representing the objects within an image for training 
+and tracking. The JSON for the object annotations includes: 
+
+```json
+{
+    "_type": "ObjectAnnotation",
+    "class_label": 3,
+    "bbox": {
+        "_type": "BoundingBox",
+        "y": 197.0,
+        "x": 95.0,
+        "height": 11.0,
+        "width": 23.0
+    },
+    "mask": {
+        "_type": "RLEMask",
+        "size": [
+            422,
+            906
+        ],
+        "counts": [
+            9,
+            413,
+            9,
+            ...
+        ]
+    },
+    "score": 0.9819106459617615
+}
+```
+
+* `class_label`: The label from the segementation mask for this object
+* `bbox`: The bounding box in side of the original image
+* `mask`: THe RLE mask for the object in the image
+
 ## Tracking
 
+The `tracking` directory contains all of the tracking information for recognized
+objects throughout the data run. Tracking consists of identifying objects in
+the the detected objects JSON and predicting the motion between frames. If 
+multiple cameras are used and the proper geometry between cameras is known, then
+tracking will work across cameras.
+
+The JSON for the output of the tracking algorithms is similar to that of the 
+object detection but correlates the objects temporally. For a given object, 
+the tracking JSON looks like:
+
+```json
+{
+        "_type": "TrackedObject",
+        "class_label": 3,
+        "instance_label": 1006,
+        "path": [
+            {
+                "_type": "Frame",
+                "timestamp": 1593178665.992904,
+                "index": 0,
+                "views": []
+            },
+            {
+                "_type": "Frame",
+                "timestamp": 1593178666.093764,
+                "index": 1,
+                "views": [
+                    {
+                        "_type": "View",
+                        "camera": 0,
+                        "bbox": {
+                            "_type": "BoundingBox",
+                            "y": 210.0,
+                            "x": 428.0,
+                            "height": 9.0,
+                            "width": 16.0
+                        },
+                        "mask": {
+                            "_type": "RLEMask",
+                            "size": [
+                                422,
+                                906
+                            ],
+                            "counts": [
+                                180829,
+                                3,
+                                ...
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "_type": "Frame",
+                "timestamp": 1593178667.093764,
+                "index": 2,
+                ...
+```
+
+For a single tracked object, the JSON defines:
+
+* `class_label`: The label from the segmentation for this type of object
+* `instance_label`: The unique label for this particular object
+* `path`: The list of frames that 
+
+For a single frame, the JSON defines:
+
+* `timestamp`: The UTC timestamp for the time the frame was acquired
+* `index`: The index into the data set the frame was acquired
+* `views`: The array defines the frames and RLE Maks in the frame that the 
+object was tracked to
+ * `camera`: The index of the camera the image was taken from
+ * `bbox`: The bounding box within the frame of the object
+ * `mask`: The RLE encoded mask of the object to the pixel level
+
 # Mesh
+
+The mesh data generated by the Real-to-Virtual pipeline includes textured and
+untextured meshes of the different assets produced by the data processing. 
+The textured meshes that are generated from the stitched point cloud data can
+be found in the `mesh/mesh_parts` directory. These have been processed through
+several meshing algorithms for optimal triangulation for each type of object.
+
+The `mesh/tiles` directory contains the output from the monoDrive Direct Texture
+algorithm. Here, each mesh is organized into an individual tile `.obj` file that
+has been textured by project the imagery directly onto the mesh. When the
+tiles are combined, the entire data set can be seen as a whole.

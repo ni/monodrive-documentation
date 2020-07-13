@@ -45,7 +45,9 @@ nav:
     monoDrive_home/Ultrasonic.md,
     monoDrive_home/Viewport.md]
   - Simulator : monoDrive_home/Simulator-Configuration.md
-  - Vehicle : monoDrive_home/Vehicle-Configuration.md
+  - Vehicle : [
+    monoDrive_home/Vehicle-Configuration.md,
+    monoDrive_home/Vehicle-PhysX.md]
   - Weather: monoDrive_home/Weather.md
   
 - Tutorials:

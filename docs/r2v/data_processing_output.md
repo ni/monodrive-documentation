@@ -58,9 +58,9 @@ iteration.
 
 ## KITTI Formatted Data
 
-After parsing the monoDrive Real-to-Virtua binary data with the monoDrive 
-[mapping-toolkit](https://github.com/monoDriveIO/mapping-toolkit), the data
-is formatted into the 
+After parsing the monoDrive Real-to-Virtual binary data with the monoDrive 
+[mapping-toolkit](https://github.com/monoDriveIO/mapping-toolkit)(currently 
+only accessible by Real-to-Virtual customers), the data is formatted into the 
 [KITTI format](http://www.cvlibs.net/datasets/kitti/raw_data.php). This format
 is used by several different benchmarks and algorithms for testing various 
 vehicle perception stacks.
@@ -105,7 +105,7 @@ motion from a forward facing camera.
 ## SLAM
 
 monoDrive uses Simultaneous Localization And Mapping (SLAM) in order to 
-supplment and improve the paths from the Real-to-Virtual hardware's GNSS. The
+supplement and improve the paths from the Real-to-Virtual hardware's GNSS. The
 `slam` directory contains the output paths from the visual odometry when run
 on the collected camera data. The output of the path is in the 
 [TUM format](https://vision.in.tum.de/data/datasets/rgbd-dataset/file_formats).
@@ -181,7 +181,7 @@ and tracking. The JSON for the object annotations includes:
 }
 ```
 
-* `class_label`: The label from the segementation mask for this object
+* `class_label`: The label from the segmentation mask for this object
 * `bbox`: The bounding box in side of the original image
 * `mask`: THe RLE mask for the object in the image
 
@@ -189,7 +189,7 @@ and tracking. The JSON for the object annotations includes:
 
 The `tracking` directory contains all of the tracking information for recognized
 objects throughout the data run. Tracking consists of identifying objects in
-the the detected objects JSON and predicting the motion between frames. If 
+the detected objects JSON and predicting the motion between frames. If 
 multiple cameras are used and the proper geometry between cameras is known, then
 tracking will work across cameras.
 
@@ -256,13 +256,13 @@ For a single tracked object, the JSON defines:
 
 * `class_label`: The label from the segmentation for this type of object
 * `instance_label`: The unique label for this particular object
-* `path`: The list of frames that 
+* `path`: The list of frames that this object appeared in
 
 For a single frame, the JSON defines:
 
 * `timestamp`: The UTC timestamp for the time the frame was acquired
 * `index`: The index into the data set the frame was acquired
-* `views`: The array defines the frames and RLE Maks in the frame that the 
+* `views`: The array defines the frames and RLE Mask in the frame that the 
 object was tracked to
  * `camera`: The index of the camera the image was taken from
  * `bbox`: The bounding box within the frame of the object
@@ -278,7 +278,7 @@ several meshing algorithms for optimal triangulation for each type of object.
 
 The `mesh/tiles` directory contains the output from the monoDrive Direct Texture
 algorithm. Here, each mesh is organized into an individual tile `.obj` file that
-has been textured by project the imagery directly onto the mesh. When the
+has been textured by projecting the imagery directly onto the mesh. When the
 tiles are combined, the entire data set can be seen as a whole.
 
 <div class="img_container">

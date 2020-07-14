@@ -59,7 +59,7 @@ iteration.
 ## KITTI Formatted Data
 
 After parsing the monoDrive Real-to-Virtual binary data with the monoDrive 
-[mapping-toolkit](https://github.com/monoDriveIO/mapping-toolkit)(currently 
+[mapping-toolkit](https://github.com/monoDriveIO/mapping-toolkit) (currently 
 only accessible by Real-to-Virtual customers), the data is formatted into the 
 [KITTI format](http://www.cvlibs.net/datasets/kitti/raw_data.php). This format
 is used by several different benchmarks and algorithms for testing various 

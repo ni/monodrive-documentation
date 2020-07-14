@@ -190,27 +190,23 @@ The labels for the class correlate with the following table:
 
 | Classification  |	Label | 
 | ----- | --------------------- |
-| car |	3 | 
-| motorcycle |	4 |
-| bus |	6 |
-| truck |	8 |
-| fence/guardrail |	5 |
-| traffic light |	10 |
-| person |	11 |
-| bicycle |	12 |
-| building |	15 |
-| traffic signs |	20 |
-| lane markers |	70 |
-| terrain |	80 |
-| foliage |	85 |
-| gravel |	100 |
-| power lines |	110 |
-| pylons |	115 |
-| sky |	141 |
-| street light/pole |	153 |
-| road |	175 |
-| sidewalk |	190 |
-| road art |	193 |
+| No Label | 0 | 
+| Car |	3 | 
+| Motorcycle |	4 |
+| Bus |	6 |
+| Truck |	8 |
+| Fence / Guardrail |	5 |
+| Traffic Light |	10 |
+| Person |	11 |
+| Bicycle |	12 |
+| Building |	15 |
+| Traffic signs |	20 |
+| Terrain |	80 |
+| Foliage |	85 |
+| Sky |	141 |
+| Street Light / Pole |	153 |
+| Road |	175 |
+| Sidewalk |	190 |
 
 ## Tracking
 

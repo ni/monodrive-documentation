@@ -186,6 +186,28 @@ and tracking. The JSON for the object annotations includes:
 * `bbox`: The bounding box in side of the original image
 * `mask`: THe RLE mask for the object in the image
 
+The labels for the class correlate with the following table:
+
+| Classification  |	Label | 
+| ----- | --------------------- |
+| No Label | 0 | 
+| Car |	3 | 
+| Motorcycle |	4 |
+| Bus |	6 |
+| Truck |	8 |
+| Fence / Guardrail |	5 |
+| Traffic Light |	10 |
+| Person |	11 |
+| Bicycle |	12 |
+| Building |	15 |
+| Traffic signs |	20 |
+| Terrain |	80 |
+| Foliage |	85 |
+| Sky |	141 |
+| Street Light / Pole |	153 |
+| Road |	175 |
+| Sidewalk |	190 |
+
 ## Tracking
 
 The `tracking` directory contains all of the tracking information for recognized

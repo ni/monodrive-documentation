@@ -23,7 +23,6 @@ logger saves:
 
 * GNSS Data - Log files that can be played back in the 
 [MT Software Suite](https://content.xsens.com/mt-software-suite-download?hsCtaTracking=ca04936d-827e-43ef-a5e9-1797c4d9a297%7C1e7a3b81-a8f1-40af-8464-97db700b3dec)
-
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
     <source src="https://cdn.monodrive.io/readthedocs/mt_software_suite.mp4" type="video/mp4">
@@ -33,7 +32,6 @@ logger saves:
 * Ladybug 5+ Camera Streams - These are `.pgr` stream files that contain all
 6 cameras on the Ladybug Camera that can be played back with the 
 [Ladybug SDK](https://www.flir.com/products/ladybug-sdk/)
-
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
     <source src="https://cdn.monodrive.io/readthedocs/ladybug_cap_pro.mp4" type="video/mp4">
@@ -44,7 +42,6 @@ logger saves:
 Velodyne LiDAR. The monoDrive Real-to-Virtual Data Logger provides utility 
 software in `utils/replay_lidar.vi` to play this data back so that it can be 
 viewed in [Veloview](https://www.paraview.org/veloview/).
-
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
     <source src="https://cdn.monodrive.io/readthedocs/veloview_playback.mp4" type="video/mp4">
@@ -76,10 +73,10 @@ frame-by-frame basis and smoothed temporally.
 * The `raw` folder contains the one shot segmentation processing
 which yields good results for segmentation where the temporal frequency between
 images is not consistent. 
+
 * The `output` directory contains the same segmentation
 images, but they have been temporally filtered to help carry classifications
 between consecutive images to improve overall performance.
-
 <div class="img_container">
   <video width=750px height=580px muted autoplay loop>
     <source src="https://cdn.monodrive.io/readthedocs/segmentation_comparison.mp4" type="video/mp4">
@@ -95,7 +92,6 @@ leverage the semantic information from the monoDrive segmentation to remove
 vehicles by blurring them out in the imagery. This data set can help 
 dramatically improve visual odometry algorithms that rely on determining ego
 motion from a forward facing camera. 
-
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
     <source src="https://cdn.monodrive.io/readthedocs/redacted_vehicles.mp4" type="video/mp4">
@@ -121,29 +117,34 @@ stitching algorithms.
 [TUM format](https://vision.in.tum.de/data/datasets/rgbd-dataset/file_formats) 
 available in `.txt` files.
 * KML Files that can be loaded into Google Earth for viewing the GNSS paths.
+<p>&nbsp;</p>
 <div class="img_container">
-    <img class='md_img' src="../imgs/full_gnss_path.png"/>
+    <img class='lg_img' src="../imgs/full_gnss_path.png"/>
 </div>
+<p>&nbsp;</p>
 * A folder containing individual semantically colored point clouds created by
 fusing the LiDAR and camera image data.
+<p>&nbsp;</p>
 <div class="img_container">
-    <img class='md_img' src="../imgs/classified_cloud.png"/>
+    <img class='lg_img' src="../imgs/classified_cloud.png"/>
 </div>
+<p>&nbsp;</p>
 * A folder containing fully stitched clouds for each semantic label 
 (e.g. road, foliage, etc.)
+<p>&nbsp;</p>
 <div class="img_container">
-    <img class='md_img' src="../imgs/road_cloud.png"/>
+    <img class='lg_img' src="../imgs/road_cloud.png"/>
 </div>
 <div class="img_container">
-    <img class='md_img' src="../imgs/foliage_cloud.png"/>
+    <img class='lg_img' src="../imgs/foliage_cloud.png"/>
 </div>
+<p>&nbsp;</p>
 * The fully stitched clouds of all the data from the data set
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
     <source src="https://cdn.monodrive.io/readthedocs/fully_stitched_semantic_cloud.mp4" type="video/mp4">
   </video>
 </div> 
-
 
 ## Object Detection
 
@@ -192,7 +193,6 @@ objects throughout the data run. Tracking consists of identifying objects in
 the detected objects JSON and predicting the motion between frames. If 
 multiple cameras are used and the proper geometry between cameras is known, then
 tracking will work across cameras.
-
 <div class="img_container">
   <video width=850px height=480px muted autoplay loop>
     <source src="https://cdn.monodrive.io/readthedocs/tracking_results.mp4" type="video/mp4">
@@ -281,9 +281,11 @@ algorithm. Here, each mesh is organized into an individual tile `.obj` file that
 has been textured by projecting the imagery directly onto the mesh. When the
 tiles are combined, the entire data set can be seen as a whole.
 
+<p>&nbsp;</p>
 <div class="img_container">
     <img class='lg_img' src="../imgs/final_textured_road_mesh.png"/>
 </div>
 <div class="img_container">
     <img class='lg_img' src="../imgs/final_textured_road_mesh_closeup.png"/>
 </div>
+<p>&nbsp;</p>

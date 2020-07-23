@@ -25,7 +25,8 @@ Used to configure a simulator session. This command includes the settings associ
 ```json
 {
 	"id": (string) - used to manage configurations on the client side,
-	"server_ip": (string) - the ip or host of the running simulator. This is a client side setting and is ignored by the simulator,
+	"server_ip": (string) - the ip or host of the running simulator. 
+		This is a client side setting and is ignored by the simulator,
  	"server_port": (integer) - the port on which the simulator is listening for
 			connections. The default port is 8999 but this can be changed by
 			launching the simulator with the -port nnnn command line argument.
@@ -38,21 +39,35 @@ Used to configure a simulator session. This command includes the settings associ
         "specular_coefficient": (float) - the specular coefficient of the material,
 			"diffuse_coefficient": (float) - the diffuse coefficient of the material,
 			"dielectric_constant": (float) - the dielectric constant of the material,
-			"roughness": (float) - a value between 0.0 and 1.0  corresponding to the roughness of the material
+			"roughness": (float) - a value between 0.0 and 1.0 
+				corresponding to the roughness of the material
         }
 	},
 	"traffic_configuration": {
-        "max_vehicles": (integer) - the maximum number of traffic vehicles at any given time during this simulation run,
+		"max_vehicles": (integer) - the maximum number of traffic vehicles at any given time 
+			during this simulation run,
         "min_desired_speed": (float) - the minimum speed for traffic vehicles in cm/s,
         "max_desired_speed": (float) - the maximum speed for traffic vehicles in cm/s,
-        "spawn_leash_distance": (float) - distance from ego vehicle at which traffic vehicles are removed from the scene,
-        "min_spawn_range": (float) - the minimum distance from the ego vehicle at which to spawn new traffic vehicles,
-        "swarm_traffic": (boolean) - whether to spawn traffic vehicles as one large group or individually,
-        "vertical_offset": (float) - an offset to apply to the Z direction when spawning traffic vehicles,
-        "overtake_slower_vehicles": (float) - whether to overtake or follow vehicles with a slower desired speed
+		"spawn_leash_distance": (float) - distance from ego vehicle at which traffic vehicles 
+			are removed from the scene,
+		"min_spawn_range": (float) - the minimum distance from the ego vehicle at which 
+			to spawn new traffic vehicles,
+		"swarm_traffic": (boolean) - whether to spawn traffic vehicles as 
+			one large group or individually,
+		"vertical_offset": (float) - an offset to apply to the Z direction when 
+			spawning traffic vehicles,
+		"overtake_slower_vehicles": (float) - whether to overtake or follow vehicles with a 
+			slower desired speed
 	}
 }
 ```
+
+For more information on these values:
+
+ - [*specular exponent*](https://en.wikipedia.org/wiki/Specular_highlight)
+ - [*specular coefficient*](https://en.wikipedia.org/wiki/Specular_reflection)
+ - [*diffuse coefficient*](https://en.wikipedia.org/wiki/Mass_diffusivity)
+ - [*dielectric constant*](https://en.wikipedia.org/wiki/Relative_permittivity)
 
 **response**: (string)
 
@@ -146,13 +161,13 @@ Configures the weather used in the simulation run. The profiles parameter is opt
 
 
 ## Sensor Configuration
-Configures a sensor or set of sensors to use with the ego vehicle in the simulation run. The command can take a single sensor configuration, or an array of sensor configurations.
+Configures a sensor or set of sensors to use with the ego vehicle in the simulation run. The command can take a [single sensor configuration](Common.md), or an array of sensor configurations.
 
 **command ID**:  "REPLAY_ConfigureSensorsCommand_ID"
 
 **command data**:
 
-sensor_config or
+[sensor_config](Common.md)
 
 ```json
 [
@@ -166,13 +181,13 @@ sensor_config or
 
 
 ## Sensor Reconfiguration
-Reconfigures a previously configured sensor or set of sensors to use with the ego vehicle in the simulation run. The command takes a single sensor configuration.
+Reconfigures a previously configured sensor or set of sensors to use with the ego vehicle in the simulation run. The command takes a [single sensor configuration](Common.md).
 
 **command ID**:  "REPLAY_ReConfigureSensorCommand_ID"
 
 **command data**:
 
-sensor_config
+[sensor_config](Common.md)
 
 **response**: (string)
 
@@ -180,13 +195,13 @@ sensor_config
 
 
 ## Trajectory Configuration
-Configures the simulation trajectory. The trajectory file determines the initial state of the simulation for closed loop mode, and a series of frames for replay/replay step mode. The frames provide the location/state of all actors in the simulation as a given point.
+Configures the simulation [trajectory](../../scenario_editor/trajectory_files). The trajectory file determines the initial state of the simulation for closed loop mode, and a series of frames for replay/replay step mode. The frames provide the location/state of all actors in the simulation as a given point.
 
 **command ID**:  "REPLAY_ConfigureTrajectoryCommand_ID"
 
 **command data**:
 
-trajectory
+[trajectory](../../scenario_editor/trajectory_files)
 
 **response**: (string)
 
@@ -215,7 +230,7 @@ Sets the simulation frame to the provided frame.
 
 **command data**:
 
-A state_frame object
+[A state_frame object](../../scenario_editor/trajectory_files/#replaying-trajectory-files)
 
 **response**: (string)
 
@@ -271,7 +286,7 @@ Replaces the current road network with the supplied one.
 **command ID**:  "ImportMap"
 
 **command data**:
-A monoDrive GeoJSON map document
+A monoDrive [GeoJSON map document](../../scenario_editor/roads/#importing-and-exporting)
 
 **response**:(boolean)
 
@@ -304,12 +319,18 @@ Spawns the EGO vehicle using the supplied configuration. This command applies on
 	"wheel_speed": [(float), ...] - the wheel speed for each wheel
 }
 ```
+For more information on these values:
+
+ - [Vehicle body type & color](Vehicle-Configuration.md)
+ - [State sensor data](State-sensor.md)
+ - [List of Tags](State-sensor.md)
 
 **response**:  (string) 
 One of:
-- `Successfully spawned vehicle.`
-- `Spawn vehicle is only available in closed loop.`
-- `Failed to spawn vehicle.`
+
+ - `Successfully spawned vehicle.`
+ - `Spawn vehicle is only available in closed loop.`
+ - `Failed to spawn vehicle.`
 
 
 ## Closed Loop Configuration
@@ -318,12 +339,13 @@ Configures the closed loop simulation.
 **command ID**:  "ClosedLoopConfigCommand_ID"
 
 **command data**:
-A closed_loop configuration json
+A [closed_loop configuration](../../scenario_editor/scenario_files) json
 
 **response**: (string)
 One of
-- `Successfully configured scenario.`
-- `Failed to configure scenario. No actors spawned.`
+
+ - `Successfully configured scenario.`
+ - `Failed to configure scenario. No actors spawned.`
 
 
 ## Closed Loop Step

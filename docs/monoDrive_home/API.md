@@ -41,10 +41,17 @@ contain the following fields:
 - **message:** The actual JSON containing all the additional meta-data for the message type.
 
 
-### Message Types
+## Message Types
 
-The following message types are currently defined for sending messages to the 
-simulator:
+Used to configure a simulator session. This command includes the settings associated with the simulator session following the execution of the command and applies to all future sessions until the command is run again. The `pys_materials` settings affect the returns from lidar and radar sensors for the list of known materials in the scene.
+
+command ID: “SimulatorConfig_ID”
+command data: [Simulator Configuration](monodrive_home/Simulator-Configuration.md)
+
+response: (string)
+  - "simulator configuration mode = (0, 1, or 2)"  if the configure command was successful, or "invalid map specified" if an invalid map is requested
+
+The following message types are currently defined for sending messages to the simulator:
 
 | Message Type | Definition |
 | ------------ | ---------- | 

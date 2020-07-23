@@ -1,6 +1,6 @@
 # Simulator API Commands
 
-## Get Simulator Version Command
+## Get Simulator Version
 Retrieves the current version of the simulator and of the simulator API with the commands documented on this page.
 
 **command ID**:  "GetVersion"
@@ -15,7 +15,7 @@ Retrieves the current version of the simulator and of the simulator API with the
 `simulator_version: 1.12, api_version: 4.0`
 
 
-## Simulator Configuration Command
+## Simulator Configuration
 Used to configure a simulator session. This command includes the settings associated with the simulator session following the execution of the command and applies to all future sessions until the command is run again. The "pys_materials" settings affect the returns from lidar and radar sensors for the list of known materials in the scene.
 
 **command ID**: “SimulatorConfig_ID”
@@ -59,10 +59,11 @@ Used to configure a simulator session. This command includes the settings associ
 `simulator configuration mode = (0, 1, or 2)`  if the configure command was successful, or `invalid map specified` if an invalid map is requested
 
 
-## EGO Vehicle Control Command
+## EGO Vehicle Control
 Configures the ego vehicle used in the simulation run.
 
 **command ID**:  "EgoControl_ID"
+
 **command data**:
 ```json
 {
@@ -82,7 +83,7 @@ position. Positive values are to the right of center,
 `complete` if the control command was applied, or `no ego vehicle found` if the ego vehicle is not in the simulation.
 
 
-## Weather Configuration Command
+## Weather Configuration
 Configures the weather used in the simulation run. The profiles parameter is optional, and if present, the profiles are added or modified based on the supplied parameters for each profile.
 
 **command ID**:  "WeatherConfig"
@@ -144,7 +145,7 @@ Configures the weather used in the simulation run. The profiles parameter is opt
 `Weather configured to {profile_id}` if the weather was properly configured
 
 
-## Sensor Configuration Command
+## Sensor Configuration
 Configures a sensor or set of sensors to use with the ego vehicle in the simulation run. The command can take a single sensor configuration, or an array of sensor configurations.
 
 **command ID**:  "REPLAY_ConfigureSensorsCommand_ID"
@@ -164,7 +165,7 @@ sensor_config or
 `complete` if the sensor was properly configured
 
 
-## Sensor Reconfiguration Command
+## Sensor Reconfiguration
 Reconfigures a previously configured sensor or set of sensors to use with the ego vehicle in the simulation run. The command takes a single sensor configuration.
 
 **command ID**:  "REPLAY_ReConfigureSensorCommand_ID"
@@ -178,7 +179,7 @@ sensor_config
 `complete` if the sensor was properly reconfigured
 
 
-## Trajectory Configuration Command
+## Trajectory Configuration
 Configures the simulation trajectory. The trajectory file determines the initial state of the simulation for closed loop mode, and a series of frames for replay/replay step mode. The frames provide the location/state of all actors in the simulation as a given point.
 
 **command ID**:  "REPLAY_ConfigureTrajectoryCommand_ID"
@@ -192,7 +193,7 @@ trajectory
 `complete` if the trajectory was properly applied
 
 
-## Step the Simulation Command
+## Step the Simulation
 Steps the simulation (either forward or backward) by the specified number of frames using the previously configured trajectory.
 
 **command ID**:  "REPLAY_StepSimulationCommand_ID"
@@ -207,7 +208,7 @@ Steps the simulation (either forward or backward) by the specified number of fra
 
 `complete` if the simulation was advanced properly
 
-## State Step Simulation Command
+## State Step Simulation
 Sets the simulation frame to the provided frame.
 
 **command ID**:  "REPLAY_StateStepSimulationCommand_ID"
@@ -221,7 +222,7 @@ A state_frame object
 `complete` if the simulation was advanced properly
 
 
-## Get Start Points Command
+## Get Start Points
 Retrieves the set of starting locations for the current simulation map.
 
 **command ID**:  "GetStartPoints"
@@ -241,7 +242,7 @@ Retrieves the set of starting locations for the current simulation map.
 } 
 ```
 
-## Get Map Command
+## Get Map
 Retrieves the current road network in the requested format.
 
 **command ID**:  "GetMap"
@@ -264,7 +265,7 @@ Retrieves the current road network in the requested format.
 **response**: (json object, xml document, or json array, depending on requested format)
 
 
-## Import Map Command
+## Import Map
 Replaces the current road network with the supplied one.
 
 **command ID**:  "ImportMap"
@@ -277,7 +278,7 @@ A monoDrive GeoJSON map document
 `true` if the map was properly loaded, `false` otherwise
 
 
-## Spawn Ego Vehicle Command
+## Spawn Ego Vehicle
 Spawns the EGO vehicle using the supplied configuration. This command applies only to closed loop simulations.
 
 **command ID**:  "SpawnVehicleCommand_ID"
@@ -311,7 +312,7 @@ One of:
 - `Failed to spawn vehicle.`
 
 
-## Closed Loop Configuration Command
+## Closed Loop Configuration
 Configures the closed loop simulation.
 
 **command ID**:  "ClosedLoopConfigCommand_ID"
@@ -325,7 +326,7 @@ One of
 - `Failed to configure scenario. No actors spawned.`
 
 
-## Closed Loop Step Command
+## Closed Loop Step
 Steps the closed loop simulation.
 
 **command ID**:  "ClosedLoopStepCommand_ID"

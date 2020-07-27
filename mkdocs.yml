@@ -179,6 +179,9 @@ nav:
           - mono_velodyne_parse.vi: LV_client/utilities/mono_velodyne_parse.md
           - mono_replace_ego_pose.vi: LV_client/utilities/mono_replace_ego_pose.md
           - mono_replace_ego_pose_legacy.vi: LV_client/utilities/mono_replace_ego_pose_legacy.md
+          - mono_add_tcp_connection.vi: LV_client/utilities/mono_add_tcp_connection.md
+          - mono_close_tcp_connections.vi: LV_client/utilities/mono_close_tcp_connections.md
+          - mono_parse_depth_data.vi: LV_client/utilities/mono_parse_depth_data.md
 
       - Shared Libraries:
           - mono_control.vi: LV_client/shared_libraries/mono__control.md

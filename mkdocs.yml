@@ -182,6 +182,10 @@ nav:
           - mono_add_tcp_connection.vi: LV_client/utilities/mono_add_tcp_connection.md
           - mono_close_tcp_connections.vi: LV_client/utilities/mono_close_tcp_connections.md
           - mono_parse_depth_data.vi: LV_client/utilities/mono_parse_depth_data.md
+          - mono_calculate_image_indexes.vi: LV_client/utilities/mono_calculate_image_indexes.md
+          - mono_process_image_data.vi: LV_client/utilities/mono_process_image_data.md
+          - mono_radar_sample.vi: LV_client/utilities/mono_radar_sample.md
+
 
       - Shared Libraries:
           - mono_control.vi: LV_client/shared_libraries/mono__control.md

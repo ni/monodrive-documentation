@@ -30,7 +30,9 @@ The total sensor output is 51 bytes, where the first 16 bytes correspond to the
 monoDrive sensor header and the remaining 35 conform to the 3DM-GX2 Data 
 Communications Protocol. The format for the protocol can be found 
 [here](http://files.microstrain.com/dcp/Inertia-Link-3DM-GX2-data-communications-protocol.pdf). 
-Below is a table of each element in the message:
+Note that the simulator returns **acceleration** relative to the 
+**global coordinate frame** and **angular velocity** relative to the 
+**vehicle coordinate frame**. Below is a table of each element in the message:
 
 | Byte  | Description   |
 | ------------ | ------------ |

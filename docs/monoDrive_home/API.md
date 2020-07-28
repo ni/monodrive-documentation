@@ -45,31 +45,26 @@ contain the following fields:
 
 Used to configure a simulator session. This command includes the settings associated with the simulator session following the execution of the command and applies to all future sessions until the command is run again. The `pys_materials` settings affect the returns from lidar and radar sensors for the list of known materials in the scene.
 
-command ID: “SimulatorConfig_ID”
-command data: [Simulator Configuration](../Simulator-Configuration)
-
-response: (string)
-  - "simulator configuration mode = (0, 1, or 2)"  if the configure command was successful, or "invalid map specified" if an invalid map is requested
-
 The following message types are currently defined for sending messages to the simulator:
 
 | Message Type | Definition |
 | ------------ | ---------- | 
-| [GetVersion](../Simulator-Commands/#get-simulator-version) | Gets Current version |
-| [SimulatorConfig_ID](../Simulator-Commands/#simulator-configuration) | Configure the Simulator session |
-| [EgoControl_ID](../Simulator-Commands/#ego-vehicle-control) | Control the ego vehicle |
-| [WeatherConfig](../Simulator-Commands/#weather-configuration) | Configure the current weather in the scenario |
-| [REPLAY_ConfigureSensorsCommand_ID](../Simulator-Commands/#sensor-configuration) | Configure a sensor or set of sensors in a simulator run |
-| [REPLAY_ReConfigureSensorCommand_ID](../Simulator-Commands/#sensor-reconfiguration) | Reconfigure a sensor or set of sensors in a simulation run |
-| [REPLAY_ConfigureTrajectoryCommand_ID](../Simulator-Commands/#trajectory-configuration) | Configures the simulation trajectory |
-| [REPLAY_StepSimulationCommand_ID](../Simulator-Commands/#step-the-simulation) | Steps the simulation |
-| [REPLAY_StateStepSimulationCommand_ID](../Simulator-Commands/#state-step-simulation) | Steps the simulation |
-| [GetStartPoints](../Simulator-Commands/#get-start-points) | Retrieves the set of starting locations |
-| [GetMap](../Simulator-Commands/#get-map) | Get the currently loaded map information | 
-| [ImportMap](../Simulator-Commands/#import-map) | Replaces the current road network | 
-| [SpawnVehicleCommand_ID](../Simulator-Commands/#spawn-ego-vehicle) | Spawns the EGO vehicle | 
 | [ClosedLoopConfigCommand_ID](../Simulator-Commands/#closed-loop-configuration) | Configures the closed loop simulation | 
-| [ClosedLoopStepCommand_ID](../Simulator-Commands/#closed-loop-step) | Steps the closed loop simulation | 
+| [ClosedLoopStepCommand_ID](../Simulator-Commands/#closed-loop-step) | Steps the closed loop simulation |
+| [EgoControl_ID](../Simulator-Commands/#ego-vehicle-control) | Control the ego vehicle | 
+| [GetMap](../Simulator-Commands/#get-map) | Get the currently loaded map information | 
+| [GetStartPoints](../Simulator-Commands/#get-start-points) | Retrieves the set of starting locations |
+| [GetVersion](../Simulator-Commands/#get-simulator-version) | Gets Current version |
+| [ImportMap](../Simulator-Commands/#import-map) | Replaces the current road network |
+| [REPLAY_ConfigureSensorsCommand_ID](../Simulator-Commands/#sensor-configuration) | Configure a sensor or set of sensors in a simulator run |
+| [REPLAY_ConfigureTrajectoryCommand_ID](../Simulator-Commands/#trajectory-configuration) | Configures the simulation trajectory |
+| [REPLAY_ReConfigureSensorCommand_ID](../Simulator-Commands/#sensor-reconfiguration) | Reconfigure a sensor or set of sensors in a simulation run |
+| [REPLAY_StateStepSimulationCommand_ID](../Simulator-Commands/#state-step-simulation) | Steps the simulation |
+| [REPLAY_StepSimulationCommand_ID](../Simulator-Commands/#step-the-simulation) | Steps the simulation |
+| [SimulatorConfig_ID](../Simulator-Commands/#simulator-configuration) | Configure the Simulator session |
+| [SpawnVehicleCommand_ID](../Simulator-Commands/#spawn-ego-vehicle) | Spawns the EGO vehicle | 
+| [WeatherConfig](../Simulator-Commands/#weather-configuration) | Configure the current weather in the scenario | 
+
 
 
 ## Receiving a Message

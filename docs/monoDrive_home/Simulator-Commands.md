@@ -1,26 +1,213 @@
 # Simulator API Commands
 
+## Closed Loop Configuration
+Configures the closed loop simulation.
+
+**Command ID:  "ClosedLoopConfigCommand_ID"**
+
+**Command Data**:
+A [closed_loop configuration](../../scenario_editor/scenario_files) json
+
+**Response**: (string)
+One of
+
+ - `Successfully configured scenario.`
+ - `Failed to configure scenario. No actors spawned.`
+
+
+## Closed Loop Step
+Steps the closed loop simulation.
+
+**Command ID:  "ClosedLoopStepCommand_ID"**
+
+**Command Data**:
+```json
+{
+	"time_step": (float) - the fixed time step delta to step
+}
+```
+
+**Response**: (boolean)
+
+`true` if the map was properly loaded, `false` otherwise
+
+
+## EGO Vehicle Control
+Configures the ego vehicle used in the simulation run.
+
+**Command ID:  "EgoControl_ID"**
+
+**Command Data**:
+```json
+{
+	"forward_amount": (float) - value between 0.0 and 1.0 referring to the amount 
+of throttle to apply,
+	"right_amount": (float) - value between -1.0 and 1.0 referring to the wheel 
+position. Positive values are to the right of center,
+	"brake_amount": (float) - value between 0.0 and 1.0 referring to the amount
+				of braking to apply,
+	"drive_mode": (integer) - value indicating the drive mode: -1 = reverse, 
+0 = neutral, 1 = drive	
+}
+```
+
+**Response**: (string)
+
+`complete` if the control command was applied, or `no ego vehicle found` if the ego vehicle is not in the simulation.
+
+## Get Map
+Retrieves the current road network in the requested format.
+
+**Command ID:  "GetMap"**
+
+**Command Data**:
+```json
+{
+	"format":  "geojson" | "opendrive" | "point_array",
+	"coordinates": "world" | "gis", - UE4 world coordinates or GIS
+	"gis_anchor": { 		- the reference point to use for GIS coordinates
+		"x": (float) latitude, 
+		"y": (float) longitude, 
+		"z": (float) elevation
+	},
+	"orientation": (float) - rotation to apply,
+	"point_delta": (float) - distance between lane center points in centimeters
+}
+```
+
+**Response**: (json object, xml document, or json array, depending on requested format)
+
+## Get Start Points
+Retrieves the set of starting locations for the current simulation map.
+
+**Command ID:  "GetStartPoints"**
+
+**Command Data**:
+```json
+{
+}
+```
+
+**Response**: (json object)
+``` json
+{
+	"type": [ "PIE" | "startPlayer", ... ],
+	"locations": [ [x (float), y (float), z (float)],... ],
+	"Rotations": [ [yaw (float), pitch (float), roll (float)], ... ]
+} 
+```
+
 ## Get Simulator Version
 Retrieves the current version of the simulator and of the simulator API with the commands documented on this page.
 
-**command ID**:  "GetVersion"
+**Command ID:  "GetVersion"**
 
-**command data**:
+**Command Data**:
 ```json
 {	
 }
 ```
-**response**: (string)
+**Response**: (string)
 
 `simulator_version: 1.12, api_version: 4.0`
+
+
+## Import Map
+Replaces the current road network with the supplied one.
+
+**Command ID:  "ImportMap"**
+
+**Command Data**:
+A monoDrive [GeoJSON map document](../../scenario_editor/roads/#importing-and-exporting)
+
+**Response**:(boolean)
+
+`true` if the map was properly loaded, `false` otherwise
+
+## Sensor Configuration
+Configures a sensor or set of sensors to use with the ego vehicle in the simulation run. The command can take a [single sensor configuration](Common.md), or an array of sensor configurations.
+
+**Command ID:  "REPLAY_ConfigureSensorsCommand_ID"**
+
+**Command Data**:
+
+[sensor_config](Common.md)
+
+```json
+[
+	Sensor_config, ...
+]
+```
+
+**Response**: (string)
+
+`complete` if the sensor was properly configured
+
+
+## Trajectory Configuration
+Configures the simulation [trajectory](../../scenario_editor/trajectory_files). The trajectory file determines the initial state of the simulation for closed loop mode, and a series of frames for replay/replay step mode. The frames provide the location/state of all actors in the simulation as a given point.
+
+**Command ID:  "REPLAY_ConfigureTrajectoryCommand_ID"**
+
+**Command Data**:
+
+[trajectory](../../scenario_editor/trajectory_files)
+
+**Response**: (string)
+
+`complete` if the trajectory was properly applied
+
+
+## Sensor Reconfiguration
+Reconfigures a previously configured sensor or set of sensors to use with the ego vehicle in the simulation run. The command takes a [single sensor configuration](Common.md).
+
+**Command ID:  "REPLAY_ReConfigureSensorCommand_ID"**
+
+**Command Data**:
+
+[sensor_config](Common.md)
+
+**Response**: (string)
+
+`complete` if the sensor was properly reconfigured
+
+
+## State Step Simulation
+Sets the simulation frame to the provided frame.
+
+**Command ID:  "REPLAY_StateStepSimulationCommand_ID"**
+
+**Command Data**:
+
+[A state_frame object](../../scenario_editor/trajectory_files/#replaying-trajectory-files)
+
+**Response**: (string)
+
+`complete` if the simulation was advanced properly
+
+
+## Step the Simulation
+Steps the simulation (either forward or backward) by the specified number of frames using the previously configured trajectory.
+
+**Command ID:  "REPLAY_StepSimulationCommand_ID"**
+
+**Command Data**:
+```json
+{
+	amount: (integer) - the number of steps to advance the simulation by
+}
+```
+**Response**: (string)
+
+`complete` if the simulation was advanced properly
 
 
 ## Simulator Configuration
 Used to configure a simulator session. This command includes the settings associated with the simulator session following the execution of the command and applies to all future sessions until the command is run again. The "pys_materials" settings affect the returns from lidar and radar sensors for the list of known materials in the scene.
 
-**command ID**: “SimulatorConfig_ID”
+**Command ID: “SimulatorConfig_ID”**
 
-**command data**:
+**Command Data**:
 
 ```json
 {
@@ -69,41 +256,57 @@ For more information on these values:
  - [*diffuse coefficient*](https://en.wikipedia.org/wiki/Mass_diffusivity)
  - [*dielectric constant*](https://en.wikipedia.org/wiki/Relative_permittivity)
 
-**response**: (string)
+**Response**: (string)
 
 `simulator configuration mode = (0, 1, or 2)`  if the configure command was successful, or `invalid map specified` if an invalid map is requested
 
 
-## EGO Vehicle Control
-Configures the ego vehicle used in the simulation run.
+## Spawn Ego Vehicle
+Spawns the EGO vehicle using the supplied configuration. This command applies only to closed loop simulations.
 
-**command ID**:  "EgoControl_ID"
+**Command ID:  "SpawnVehicleCommand_ID"**
 
-**command data**:
+**Command Data**:
 ```json
 {
-	"forward_amount": (float) - value between 0.0 and 1.0 referring to the amount 
-of throttle to apply,
-	"right_amount": (float) - value between -1.0 and 1.0 referring to the wheel 
-position. Positive values are to the right of center,
-	"brake_amount": (float) - value between 0.0 and 1.0 referring to the amount
-				of braking to apply,
-	"drive_mode": (integer) - value indicating the drive mode: -1 = reverse, 
-0 = neutral, 1 = drive	
+	"vehicle_dynamics": "pysx" | "carsim", (default is PysX)
+	"body": {	- the requested color/type of the vehicle
+		"color": (string),
+		"type": (string)
+	},
+	"name": (string), - an id to use for this vehicle. This id will appear in state sensor data
+	"tags": [(string),...], - the list of tags to apply
+	"position": (FVector), - the initial position 
+	"orientation" : (FQuat or FRotator), - the initial orientation
+	"velocity": (FVector), - the initial velocity
+	"angular_velocity": (FVector) - the initial angular velocity,
+	"wheels": [ - array of wheel configuration options
+		"id": (integer), - the id of the wheel
+		"orientation": (FQuat), - the orientation
+	],
+	"wheel_speed": [(float), ...] - the wheel speed for each wheel
 }
 ```
+For more information on these values:
 
-**response**: (string)
+ - [Vehicle body type & color](Vehicle-Configuration.md)
+ - [State sensor data](State-sensor.md)
+ - [List of Tags](State-sensor.md)
 
-`complete` if the control command was applied, or `no ego vehicle found` if the ego vehicle is not in the simulation.
+**Response**:  (string) 
+One of:
+
+ - `Successfully spawned vehicle.`
+ - `Spawn vehicle is only available in closed loop.`
+ - `Failed to spawn vehicle.`
 
 
 ## Weather Configuration
 Configures the weather used in the simulation run. The profiles parameter is optional, and if present, the profiles are added or modified based on the supplied parameters for each profile.
 
-**command ID**:  "WeatherConfig"
+**Command ID:  "WeatherConfig"**
 
-**command data**:
+**Command Data**:
 ```json
 {
 	"set_profile": (string) - the ID of the weather profile to use,
@@ -152,214 +355,9 @@ Configures the weather used in the simulation run. The profiles parameter is opt
 }
 ```
 
-**response**: (string)
+**Response**: (string)
 
 `DynamicWeather is not available` if the weather actor is missing from the map
 `Weather configuration failed` if the weather profiles are invalid or mal-formed
 `Weather profile is invalid or missing` if the profile ID is not found
 `Weather configured to {profile_id}` if the weather was properly configured
-
-
-## Sensor Configuration
-Configures a sensor or set of sensors to use with the ego vehicle in the simulation run. The command can take a [single sensor configuration](Common.md), or an array of sensor configurations.
-
-**command ID**:  "REPLAY_ConfigureSensorsCommand_ID"
-
-**command data**:
-
-[sensor_config](Common.md)
-
-```json
-[
-	Sensor_config, ...
-]
-```
-
-**response**: (string)
-
-`complete` if the sensor was properly configured
-
-
-## Sensor Reconfiguration
-Reconfigures a previously configured sensor or set of sensors to use with the ego vehicle in the simulation run. The command takes a [single sensor configuration](Common.md).
-
-**command ID**:  "REPLAY_ReConfigureSensorCommand_ID"
-
-**command data**:
-
-[sensor_config](Common.md)
-
-**response**: (string)
-
-`complete` if the sensor was properly reconfigured
-
-
-## Trajectory Configuration
-Configures the simulation [trajectory](../../scenario_editor/trajectory_files). The trajectory file determines the initial state of the simulation for closed loop mode, and a series of frames for replay/replay step mode. The frames provide the location/state of all actors in the simulation as a given point.
-
-**command ID**:  "REPLAY_ConfigureTrajectoryCommand_ID"
-
-**command data**:
-
-[trajectory](../../scenario_editor/trajectory_files)
-
-**response**: (string)
-
-`complete` if the trajectory was properly applied
-
-
-## Step the Simulation
-Steps the simulation (either forward or backward) by the specified number of frames using the previously configured trajectory.
-
-**command ID**:  "REPLAY_StepSimulationCommand_ID"
-
-**command data**:
-```json
-{
-	amount: (integer) - the number of steps to advance the simulation by
-}
-```
-**response**: (string)
-
-`complete` if the simulation was advanced properly
-
-## State Step Simulation
-Sets the simulation frame to the provided frame.
-
-**command ID**:  "REPLAY_StateStepSimulationCommand_ID"
-
-**command data**:
-
-[A state_frame object](../../scenario_editor/trajectory_files/#replaying-trajectory-files)
-
-**response**: (string)
-
-`complete` if the simulation was advanced properly
-
-
-## Get Start Points
-Retrieves the set of starting locations for the current simulation map.
-
-**command ID**:  "GetStartPoints"
-
-**command data**:
-```json
-{
-}
-```
-
-**response**: (json object)
-``` json
-{
-	"type": [ "PIE" | "startPlayer", ... ],
-	"locations": [ [x (float), y (float), z (float)],... ],
-	"Rotations": [ [yaw (float), pitch (float), roll (float)], ... ]
-} 
-```
-
-## Get Map
-Retrieves the current road network in the requested format.
-
-**command ID**:  "GetMap"
-
-**command data**:
-```json
-{
-	"format":  "geojson" | "opendrive" | "point_array",
-	"coordinates": "world" | "gis", - UE4 world coordinates or GIS
-	"gis_anchor": { 		- the reference point to use for GIS coordinates
-		"x": (float) latitude, 
-		"y": (float) longitude, 
-		"z": (float) elevation
-	},
-	"orientation": (float) - rotation to apply,
-	"point_delta": (float) - distance between lane center points in centimeters
-}
-```
-
-**response**: (json object, xml document, or json array, depending on requested format)
-
-
-## Import Map
-Replaces the current road network with the supplied one.
-
-**command ID**:  "ImportMap"
-
-**command data**:
-A monoDrive [GeoJSON map document](../../scenario_editor/roads/#importing-and-exporting)
-
-**response**:(boolean)
-
-`true` if the map was properly loaded, `false` otherwise
-
-
-## Spawn Ego Vehicle
-Spawns the EGO vehicle using the supplied configuration. This command applies only to closed loop simulations.
-
-**command ID**:  "SpawnVehicleCommand_ID"
-
-**command data**:
-```json
-{
-	"vehicle_dynamics": "pysx" | "carsim", (default is PysX)
-	"body": {	- the requested color/type of the vehicle
-		"color": (string),
-		"type": (string)
-	},
-	"name": (string), - an id to use for this vehicle. This id will appear in state sensor data
-	"tags": [(string),...], - the list of tags to apply
-	"position": (FVector), - the initial position 
-	"orientation" : (FQuat or FRotator), - the initial orientation
-	"velocity": (FVector), - the initial velocity
-	"angular_velocity": (FVector) - the initial angular velocity,
-	"wheels": [ - array of wheel configuration options
-		"id": (integer), - the id of the wheel
-		"orientation": (FQuat), - the orientation
-	],
-	"wheel_speed": [(float), ...] - the wheel speed for each wheel
-}
-```
-For more information on these values:
-
- - [Vehicle body type & color](Vehicle-Configuration.md)
- - [State sensor data](State-sensor.md)
- - [List of Tags](State-sensor.md)
-
-**response**:  (string) 
-One of:
-
- - `Successfully spawned vehicle.`
- - `Spawn vehicle is only available in closed loop.`
- - `Failed to spawn vehicle.`
-
-
-## Closed Loop Configuration
-Configures the closed loop simulation.
-
-**command ID**:  "ClosedLoopConfigCommand_ID"
-
-**command data**:
-A [closed_loop configuration](../../scenario_editor/scenario_files) json
-
-**response**: (string)
-One of
-
- - `Successfully configured scenario.`
- - `Failed to configure scenario. No actors spawned.`
-
-
-## Closed Loop Step
-Steps the closed loop simulation.
-
-**command ID**:  "ClosedLoopStepCommand_ID"
-
-**command data**:
-```json
-{
-	"time_step": (float) - the fixed time step delta to step
-}
-```
-
-**response**: (boolean)
-
-`true` if the map was properly loaded, `false` otherwise

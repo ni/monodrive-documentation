@@ -106,6 +106,8 @@ nav:
           - mono_ultrasonic.vi: LV_client/sensors/mono_ultrasonic.md
           - mono_collision.vi: LV_client/sensors/mono_collision.md
           - mono_viewport.vi: LV_client/sensors/mono_viewport.md
+          - mono_fisheye_camera.vi: LV_client/sensors/mono_fisheye_camera.md
+
       - Weather:
           - mono_get_weather.vi: LV_client/weather/mono_get_weather.md
           - mono_weather_update.vi: LV_client/weather/mono_weather_update.md

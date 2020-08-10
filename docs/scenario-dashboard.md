@@ -1,6 +1,6 @@
 # Batch Scenario Manager
 
-monoDrive's Batch Generator Dashboard provides the client with visuals of custom configurations and result viewing for better testing.  The monoDrive simulator is configured from the Client. Everything about the simulator can be configured, from the material properties, to the vehicle properties, to the sensor properties. The dashboard is designed to step through each configuration with pre-built and customizable properties. Once all configurations are made, deploy and run every combination of the properties selected in the simulation. Results show the status of the test after it has run, and keeps different batches organized for review. The Dashboard can be used as a local app on your computer or through a cloud deployment. The monoDrive Cloud Solution distributes batch processing to handle high volumes of AV testing jobs through a Kubernetes native application with easy deployment to any private or public cloud.
+monoDrive's Batch Generator Dashboard provides the client with visuals of custom configurations and result viewing for better testing. Everything about the simulator can be configured, from the material properties, to the vehicle properties, and to the sensor properties. The dashboard is designed to step through each configuration with pre-built and customizable properties. Once all configurations are made, deploy and run every combination of the properties selected in the simulation. Results show the status of the test after it has run, and keeps different batches organized for review. The Dashboard can be used as a local app on your computer or through a cloud deployment. The monoDrive Cloud Solution distributes batch processing to handle high volumes of AV testing jobs through a Kubernetes native application with easy deployment to any private or public cloud.
 
 For viewing the full process on the local app see [Batch Scenario Dashboard Tutorial](https://www.youtube.com/watch?v=U1x_GU60LPg).
 
@@ -91,6 +91,6 @@ After all selections are made, the batch scenario manager will either send the p
 
 ## Configuring UUT
   
-  For an example of a UUT example, check out this [github uut example repo](https://github.com/monoDriveIO/uut_examples)
+  For an example of a UUT example, check out [Python Client UUT Examples](https://github.com/monoDriveIO/monodrive-python-client/tree/master/examples)
 
  <p>&nbsp;</p>

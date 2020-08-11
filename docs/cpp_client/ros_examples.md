@@ -52,6 +52,15 @@ To subscribe to simulator state sensor messages for vehicle feedback:
 state_sensor_sub = node_handle->subscribe(
     "/monodrive/state_sensor", 1, &state_sensor_callback)
 ```
+To subscribe to other simulator sensor messages:
+
+| Sensor | ROS Message Type |
+| ------------ | ---------- | 
+| Camera and Semantic Camera | "sensor_msgs/Image" |
+| IMU | "sensor_msgs/Imu" |
+| Lidar | "sensor_msgs/PointCloud2" |
+| State Sensor| "monodrive_msgs/StateSensor" |
+| Waypoint Sensor| "monodrive_msgs/WaypointSensor" |
 
 The state sensor call back can be as simple as:
 

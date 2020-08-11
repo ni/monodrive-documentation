@@ -36,6 +36,21 @@ To launch the monoDrive ROS example, open a terminal and create 3 tabs in the
 
         $ rosrun simulator_control node
 
+<<<<<<< Updated upstream
+=======
+### ROS Sensor Message Types
+
+The following sensor message types are supported:
+
+| Sensor | ROS Message Type |
+| ------------ | ---------- | 
+| Camera and Semantic Camera | sensor_msgs/Image |
+| IMU | sensor_msgs/Imu |
+| Lidar | sensor_msgs/PointCloud2 |
+| State Sensor| monodrive_msgs/StateSensor |
+| Waypoint Sensor| monodrive_msgs/WaypointSensor |
+
+>>>>>>> Stashed changes
 ## Example Description
 
 To create a vehicle control message for publishing to the simulator:

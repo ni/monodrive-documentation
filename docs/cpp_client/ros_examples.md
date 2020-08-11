@@ -42,11 +42,11 @@ The following sensor message types are supported:
 
 | Sensor | ROS Message Type |
 | ------------ | ---------- | 
-| Camera and Semantic Camera | "sensor_msgs/Image" |
-| IMU | "sensor_msgs/Imu" |
-| Lidar | "sensor_msgs/PointCloud2" |
-| State Sensor| "monodrive_msgs/StateSensor" |
-| Waypoint Sensor| "monodrive_msgs/WaypointSensor" |
+| Camera and Semantic Camera | sensor_msgs/Image |
+| IMU | sensor_msgs/Imu |
+| Lidar | sensor_msgs/PointCloud2 |
+| State Sensor| monodrive_msgs/StateSensor |
+| Waypoint Sensor| monodrive_msgs/WaypointSensor |
 
 ## Example Description
 

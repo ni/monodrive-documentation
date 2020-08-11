@@ -140,7 +140,7 @@
 - **map**: The name of the map to load.
 - **phys_materials**: Specify the physical material properties for the specular exponent (10-100), specular reflection coefficient (0.0-1.0), diffuse reflection coefficient (0.0-1.0), dielectric constant (0.10-10,000+), and roughness (0.0-1.0).
 - **server_port**: the TCP port for the simulator, typically 8999.
-- **simulation_mode**: Closed loop (0), replay(1) or hil(2).
+- **simulation_mode**: Closed loop (0), replay(1), hil(2), closed loop fixed time step mode(3).
 - **traffic_configuration**: The behavior of other vehicles on simulation. 
   - **max_vehicles**: Maximum number of vehicles spawn in the map.
   - **min_desired_speed**: Specify the maximum amount the speed of any vehicle can be **reduced** from the speed limit of the road.  Units on km per hour.

@@ -41,7 +41,7 @@ When using replay simulation mode, users can select multiple vehicle and sensor 
 Select a vehicle configuration from monoDrive's vehicle models or add a custom vehicle as the ego vehicle in the simulation. The custom vehicle requires the directory path to the vehicle asset and enables users to change the color of the vehicle. By default all monoDrive's vehicle models spawn with white paint; if an user would like to customize the color on a monoDrive vehicle asset, select "Add New Vehicle" and use the path to the monoDrive vehicle asset and change it's color.
 
 <div class="img_container" >
-  <div style="border:4px solid black">
+  <div style="border: 4px solid black">
   <video width=650px height=480px muted autoplay loop>
     <source src="https://cdn.monodrive.io/readthedocs/dashboard_vehicle_selection.mp4" type="video/mp4">
   </video>
@@ -116,7 +116,7 @@ After all selections are made, the batch scenario manager will either send the c
 
   1. Download monoDrive Batch Generator Dashboard. *For access [contact us](https://www.monodrive.io/contact).*
 
-  1. Extract all files
+  1. Extract all files from the downloaded monoDrive Dashboard file.
 
     <div class="img_container">
       <img class='lg_img' src="../imgs/dashboard_extract.jpeg"/>
@@ -124,7 +124,7 @@ After all selections are made, the batch scenario manager will either send the c
 
   1. On Windows, run monodrive.dashboard.exe. On Linux, run monodrive-dashboard.
  
-  1. Chose or create a directory to save configuration files and results from the Unit Under Test and the Batch Generator Dashboard. In the Unit Under Test Example provided, the user would send the same asset directory as set in the Batch Directory:
+  1. Chose or create a directory to save configuration files and results from the Unit Under Test and the Batch Generator Dashboard. In the Unit Under Test Example provided, the user would send the same asset directory as set in the Batch Directory.
 
     ``` python closed_loop_aebs.py --md_assets C:\Users\developer\Documents\BatchExample --md_loop ```
 
@@ -134,14 +134,13 @@ After all selections are made, the batch scenario manager will either send the c
       <img class='wide_img' src="../imgs/dashboard_directory.png"/>
     </div>
 
-  1. Open the Simulator or Scenario Editor
+  1. Open the Simulator or Scenario Editor.
 
     <div class="img_container">
       <img class='wide_img' src="../imgs/dashboard_simulator.png"/>
     </div>
   
-  
-  1. Open the Map used in the Unit Under Test, Play the Simulation
+  1. Open the Map used in the Unit Under Test and play the simulator.
 
     <div class="img_container">
       <video width=650px height=480px muted autoplay loop>
@@ -149,7 +148,7 @@ After all selections are made, the batch scenario manager will either send the c
       </video>
     </div> 
  
-  1. Run a [Unit Under Test](/scenario-dashboard/#configuring-unit-under-test)
+  1. Run a [Unit Under Test](/scenario-dashboard/#configuring-unit-under-test).
  
   1. Make configuration selections in the monoDrive Scenario Batch Manager.
 
@@ -164,6 +163,6 @@ After all selections are made, the batch scenario manager will either send the c
 
 ## Configuring Unit Under Test
   
-  For an example of a UUT example, check out [Python Client UUT Examples](https://github.com/monoDriveIO/monodrive-python-client/tree/master/examples)
+  For an example of a UUT example, check out [Python Client UUT Examples](https://github.com/monoDriveIO/monodrive-python-client/tree/master/examples).
 
  <p>&nbsp;</p>

@@ -12,7 +12,13 @@ The Batch Scenario Manager can be used as a local application on your computer o
  - [Python Client](../python_client/quick_start)
  - Python for UUT
  - monoDrive Batch Scenario Manager. *For access [contact us](https://www.monodrive.io/contact).*
-
+    
+    - Download monoDrive Batch Scenario Manager
+    - Extract all files from the downloaded monoDrive Dashboard file.
+    
+      <div class="img_container">
+        <img class='lg_img' src="../imgs/dashboard_extract.jpeg"/>
+      </div>
 
 ## Connecting your code
   
@@ -173,13 +179,7 @@ The monoDrive Batch Scenario Manager offers many pre-build weather profiles and 
 
 ### Local Batch Generator Dashboard
 
-  1. Extract all files from the downloaded monoDrive Dashboard file.
-
-    <div class="img_container">
-      <img class='lg_img' src="../imgs/dashboard_extract.jpeg"/>
-    </div>
-
-  1. Inside the downloaded folder for monoDrive Dashboard, double-clink or open monodrive.dashboard.exe on Windows or monodrive-dashboard on Linux.
+  1. Inside the downloaded folder for monoDrive Dashboard, double-click or open monodrive.dashboard.exe on Windows or monodrive-dashboard on Linux.
  
   1. Choose or create a directory to save configuration files and results from the Unit Under Test and the Batch Scenario Manager. In the Unit Under Test Example provided, the user would send the same asset directory as set in the Batch Scenario Manager.
 

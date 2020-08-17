@@ -1,15 +1,94 @@
 # Batch Scenario Manager
 
-monoDrive's Batch Generator Dashboard provides the client with visuals of custom configurations and result viewing for better testing. Everything about the simulator can be configured, from the material properties, to the vehicle properties, and to the sensor properties. The dashboard is designed to step through each configuration with pre-built and customizable properties. Once all configurations are made, deploy and run every combination of the properties selected in the simulation. Results show the status of the test after it has run, and keeps different batches organized for review. The Dashboard can be used as a local app on your computer or through a cloud deployment. The monoDrive Cloud Solution distributes batch processing to handle high volumes of AV testing jobs through a Kubernetes native application with easy deployment to any private or public cloud.
+monoDrive's Batch Scenario Manager provides the client with visuals of custom configurations and result viewing for better testing. The application is designed to step through each configuration with pre-built and customizable properties. Once all configurations are made, deploy and run every combination of the properties selected in the simulation. Results show the status of the test after it has run, and keeps different batches organized for review. 
 
-For viewing the full process on the local app see [Batch Scenario Dashboard Tutorial](https://www.youtube.com/watch?v=U1x_GU60LPg).
+The Batch Scenario Manager can be used as a local application on your computer or through a cloud deployment. The local application enables users to view the test running in the Simulator, while the monoDrive Cloud Solution distributes batch processing to handle high volumes of AV testing jobs. The Cloud Solution is handled through a Kubernetes native application with easy deployment to any private or public cloud.
+
+## Requirements
+
+ - [monoDrive Scenario Editor v.1.11](https://www.monodrive.io/register)
+    - [Windows Setup](../monoDrive_home/getting_started/Windows)
+    - [Linux Setup](../monoDrive_home/getting_started/Linux)
+ - [Python Client](../python_client/quick_start)
+ - Python for UUT
+ - monoDrive Batch Scenario Manager. *For access [contact us](https://www.monodrive.io/contact).*
+
+
+## Connecting your code
+  
+When connecting your code to run as a Unit Under Test (UUT), you will use the `jobs` module of the monoDrive client.
+This module handles all of the batch processing mechanics including job assignment, configuration,
+results storing, etc. It has been designed to allow for flexible execution across development,
+local batch processing, and cloud deployment.
+
+
+#### Entry point
+The main entry point is the `run_job` function. You will call this method as a wrapper around your
+own main function. Using this wrapper allows for continuous looped processing (when needed)
+and failure handling.
+
+```python
+from monodrive.jobs import run_job
+
+def main():
+    """main uut driver function"""
+    # ... your code here ...
+
+if __name__ == '__main__':
+    run_job(main, verbose=True)
+```
+
+#### Configuration
+To retrieve the configuration for the current job assignment, you will call the `get_simulator`
+function. Individual config file paths will be parsed from the CLI arguments and pre-loaded into
+the returned `Simulator` object.
+
+```python
+from monodrive.jobs import get_simulator
+
+def main():
+    """main uut driver function"""
+    # ...
+    simulator = get_simulator()
+    # ...
+```
+
+#### Results  
+Finally, at the end of main script, you will create a `Result` object and store it with the
+`set_result` function. These metrics are defined by the user as desired. They will be surfaced
+to the Batch Scenario Manager results page, but are not required for the batch processing to run properly.
+
+```python
+from monodrive.jobs import set_result, Result, ResultMetric
+
+def main():
+    """main uut driver function"""
+
+    # ...
+
+    result = Result()
+    result.pass_result = True
+    result.metrics.append(
+        ResultMetric(
+            name='max_lane_deviation',
+            score=0.123
+        )
+    )
+    set_result(result)
+```
+ 
+#### Example
+For a full working UUT, please check out this [collision avoidance](https://github.com/monoDriveIO/monodrive-python-client/tree/master/examples/collision_avoidance)
+use case, written in Python. This directory includes both a replay and closed loop mode example.
+
+*(C++ example coming soon)*
 
 
 ## Configurable Selections
 
-### Dashboard Menu
+### Batch Scenario Manager Menu
 
-The dashboard menu shows a summary of all the configurations that have been selected in the configuration selection process: vehicles and sensor configurations, scenario configurations, and weather configurations. On the bottom right corner of the dashboard menu, an user may use "Select Configurations" to make and/or edit selections.
+The Batch Scenario Manager Menu shows a summary of all the configurations that have been selected in the configuration selection process: vehicles and sensor configurations, scenario configurations, and weather configurations. On the bottom right corner of the menu, an user may use "Select Configurations" to make and/or edit selections.
 
   <div class="img_container">
     <img class='wide_img' src="../imgs/dashboard_starting_menu.png"/>
@@ -18,7 +97,7 @@ The dashboard menu shows a summary of all the configurations that have been sele
 
 ### Vehicles & Sensors
 
-When using closed loop simulation mode, the ego vehicle will be defined in the scenario file with the tag, `ego`. When making vehicle selections, select or add the vehicle that will be used in the closed loop scenario file. For example, this part of the `scenario_aebs.json` file in the UUT Python Example under [Configuring UUT](/scenario-dashboard/#configuring-unit-under-test).
+When using closed loop simulation mode, the ego vehicle will be defined in the scenario file with the tag, `ego`. When making vehicle selections, select or add the vehicle(s) that will be used in the closed loop scenario file. The vehicle's `class_path` and `body_color` will be automatically updated in the vehicle object tagged `ego`. For example, `scenario_aebs.json` file in the UUT Python Example under [Configuring UUT](/scenario-dashboard/#configuring-unit-under-test).
 
 ```json
 {
@@ -36,16 +115,12 @@ When using closed loop simulation mode, the ego vehicle will be defined in the s
       ...
 ```
 
-When using replay simulation mode, users can select multiple vehicle and sensor configurations to run. 
-
-Select a vehicle configuration from monoDrive's vehicle models or add a custom vehicle as the ego vehicle in the simulation. The custom vehicle requires the directory path to the vehicle asset and enables users to change the color of the vehicle. By default all monoDrive's vehicle models spawn with white paint; if an user would like to customize the color on a monoDrive vehicle asset, select "Add New Vehicle" and use the path to the monoDrive vehicle asset and change it's color.
+When using replay simulation mode, users can select multiple vehicle and sensor configurations to run. Select a vehicle configuration from monoDrive's vehicle models or add a custom vehicle as the ego vehicle in the simulation. The custom vehicle requires the directory path to the vehicle asset and enables users to change the color of the vehicle. By default all monoDrive's vehicle models spawn with white paint; if an user would like to customize the color on a monoDrive vehicle asset, select "Add New Vehicle" and use the path to the monoDrive vehicle asset and change it's color.
 
 <div class="img_container" >
-  <div style="border: 4px solid black">
   <video width=650px height=480px muted autoplay loop>
     <source src="https://cdn.monodrive.io/readthedocs/dashboard_vehicle_selection.mp4" type="video/mp4">
   </video>
-  </div>
 </div> 
 
 For each vehicle selected, a user is given an option to create a new sensor configuration through the sensor editor tool.
@@ -94,27 +169,9 @@ The monoDrive Batch Scenario Manager offers many pre-build weather profiles and 
     <img class='wide_img' src="../imgs/dashboard_custom_weather.png"/>
   </div>
 
-## Viewing Results
-
-After all selections are made, the batch scenario manager will either send the combinations to the simulator running locally through the Local Application or through a Cloud Deployment which will run a job process. The Dashboard will keep track of all batch runs for viewing past tests, and the Results will show tests that have passed and failed. Inside each individual test, the user can find more detailed information for further testing.
-
-  <div class="img_container">
-    <img class='wide_img' src="../imgs/dashboard_results.png"/>
-  </div>
-
-## Requirements
-
- - [monoDrive Scenario Editor v.1.11](https://www.monodrive.io/register)
-    - [Windows Setup](../monoDrive_home/getting_started/Windows)
-    - [Linux Setup](../monoDrive_home/getting_started/Linux)
- - [Python Client](../python_client/quick_start)
- - Python for UUT
-
 ## Running
 
 ### Local Batch Generator Dashboard
-
-  1. Download monoDrive Batch Generator Dashboard. *For access [contact us](https://www.monodrive.io/contact).*
 
   1. Extract all files from the downloaded monoDrive Dashboard file.
 
@@ -122,13 +179,13 @@ After all selections are made, the batch scenario manager will either send the c
       <img class='lg_img' src="../imgs/dashboard_extract.jpeg"/>
     </div>
 
-  1. On Windows, run monodrive.dashboard.exe. On Linux, run monodrive-dashboard.
+  1. Inside the downloaded folder for monoDrive Dashboard, double-clink or open monodrive.dashboard.exe on Windows or monodrive-dashboard on Linux.
  
-  1. Chose or create a directory to save configuration files and results from the Unit Under Test and the Batch Generator Dashboard. In the Unit Under Test Example provided, the user would send the same asset directory as set in the Batch Directory.
+  1. Choose or create a directory to save configuration files and results from the Unit Under Test and the Batch Scenario Manager. In the Unit Under Test Example provided, the user would send the same asset directory as set in the Batch Scenario Manager.
 
     ``` python closed_loop_aebs.py --md_assets C:\Users\developer\Documents\BatchExample --md_loop ```
 
-    Here is the same directory used upon opening the monoDrive Batch Generator Dashboard.
+    Here is the same directory used upon opening the monoDrive Batch Scenario Manager.
 
     <div class="img_container">
       <img class='wide_img' src="../imgs/dashboard_directory.png"/>
@@ -154,80 +211,18 @@ After all selections are made, the batch scenario manager will either send the c
 
   1. Run the Batch by selecting "Deploy and Run" on the Dashboard then confirming or making any needed edits to the simulator.json file.
 
-    - The batch will set a "READY" status to the Unit Under Test, which will run one of the configuration combinations made in the dashboard.
+    - The batch will set a "READY" status to the Unit Under Test, which will run one of the configuration combinations made in the Batch Scenario Manager.
 
-    - Once the test has completed or failed, it will send a status back to the dashboard and will save the result and update the results page for that Batch Run.
+    - Once the test has completed or failed, it will send a status back to the Batch Scenario Manager and will save the result and update the results page for that Batch Run.
 
     - Users can replay any tests or view the individual results data for information on the test.
 
+## Viewing Results
 
-## Connecting your code
-  
-When connecting your code to run as a UUT, you will use the `jobs` module of the monoDrive client.
-This module handles all of the batch processing mechanics including job assignment, configuration,
-results storing, etc. It has been designed to allow for flexible execution across development,
-local batch processing, and cloud deployment.
+After all selections are made, the Batch Scenario Manager will either send the combinations to the simulator running locally through the Local Application or through a Cloud Deployment which will run a job process. The Batch Scenario Manager will keep track of all batch runs for viewing past tests, and the Results will show tests that have passed and failed. Inside each individual test, the user can find more detailed information for further testing.
 
-
-#### Entry point
-The main entry point is the `run_job` function. You will call this method as a wrapper around your
-own main function. Using this wrapper allows for continuous looped processing (when needed)
-and failure handling.
-
-```python
-from monodrive.jobs import run_job
-
-def main():
-    """main uut driver function"""
-    # ... your code here ...
-
-if __name__ == '__main__':
-    run_job(main, verbose=True)
-```
-
-#### Configuration
-To retrieve the configuration for the current job assignment, you will call the `get_simulator`
-function. Individual config file paths will be parsed from the CLI arguments and pre-loaded into
-the returned `Simulator` object.
-
-```python
-from monodrive.jobs import get_simulator
-
-def main():
-    """main uut driver function"""
-    # ...
-    simulator = get_simulator()
-    # ...
-```
-
-#### Results  
-Finally, at the end of main script, you will create a `Result` object and store it with the
-`set_result` function. These metrics are defined by the user as desired. They will be surfaced
-to the dashboard results page, but are not required for the batch processing to run properly.
-
-```python
-from monodrive.jobs import set_result, Result, ResultMetric
-
-def main():
-    """main uut driver function"""
-
-    # ...
-
-    result = Result()
-    result.pass_result = True
-    result.metrics.append(
-        ResultMetric(
-            name='max_lane_deviation',
-            score=0.123
-        )
-    )
-    set_result(result)
-```
- 
-#### Example
-For a full working UUT, please check out this [collision avoidance](https://github.com/monoDriveIO/monodrive-python-client/tree/master/examples/collision_avoidance)
-use case, written in Python. This directory includes both a replay and closed loop mode example.
-
-*(C++ example coming soon)*
+  <div class="img_container">
+    <img class='wide_img' src="../imgs/dashboard_results.png"/>
+  </div>
 
  <p>&nbsp;</p>

@@ -161,8 +161,73 @@ After all selections are made, the batch scenario manager will either send the c
     - Users can replay any tests or view the individual results data for information on the test.
 
 
-## Configuring Unit Under Test
+## Connecting your code
   
-  For an example of a UUT example, check out [Python Client UUT Examples](https://github.com/monoDriveIO/monodrive-python-client/tree/master/examples).
+When connecting your code to run as a UUT, you will use the `jobs` module of the monoDrive client.
+This module handles all of the batch processing mechanics including job assignment, configuration,
+results storing, etc. It has been designed to allow for flexible execution across development,
+local batch processing, and cloud deployment.
+
+
+#### Entry point
+The main entry point is the `run_job` function. You will call this method as a wrapper around your
+own main function. Using this wrapper allows for continuous looped processing (when needed)
+and failure handling.
+
+```python
+from monodrive.jobs import run_job
+
+def main():
+    """main uut driver function"""
+    # ... your code here ...
+
+if __name__ == '__main__':
+    run_job(main, verbose=True)
+```
+
+#### Configuration
+To retrieve the configuration for the current job assignment, you will call the `get_simulator`
+function. Individual config file paths will be parsed from the CLI arguments and pre-loaded into
+the returned `Simulator` object.
+
+```python
+from monodrive.jobs import get_simulator
+
+def main():
+    """main uut driver function"""
+    # ...
+    simulator = get_simulator()
+    # ...
+```
+
+#### Results  
+Finally, at the end of main script, you will create a `Result` object and store it with the
+`set_result` function. These metrics are defined by the user as desired. They will be surfaced
+to the dashboard results page, but are not required for the batch processing to run properly.
+
+```python
+from monodrive.jobs import set_result, Result, ResultMetric
+
+def main():
+    """main uut driver function"""
+
+    # ...
+
+    result = Result()
+    result.pass_result = True
+    result.metrics.append(
+        ResultMetric(
+            name='max_lane_deviation',
+            score=0.123
+        )
+    )
+    set_result(result)
+```
+ 
+#### Example
+For a full working UUT, please check out this [collision avoidance](https://github.com/monoDriveIO/monodrive-python-client/tree/master/examples/collision_avoidance)
+use case, written in Python. This directory includes both a replay and closed loop mode example.
+
+*(C++ example coming soon)*
 
  <p>&nbsp;</p>

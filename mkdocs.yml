@@ -15,8 +15,7 @@ nav:
   monoDrive_home/getting_started/Linux.md
 ]
 - Products : 
-  - Simulator : [Simulator.md, 
-    scenario-dashboard.md]
+  - Simulator : Simulator.md
   - Scenario Editor : [
       scenario_editor/scenario_intro.md,
       scenario_editor/scenarios.md,
@@ -24,6 +23,7 @@ nav:
       scenario_editor/trajectory_files.md,
       scenario_editor/roads.md
     ]
+  - Batch Runner: scenario-dashboard.md
   - Real-to-Virtual:
     - About: r2v/about.md
     - Data Collection Quick Start: r2v/data_collection_quick_start.md

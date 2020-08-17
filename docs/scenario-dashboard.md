@@ -103,7 +103,7 @@ The Batch Scenario Manager Menu shows a summary of all the configurations that h
 
 ### Vehicles & Sensors
 
-When using closed loop simulation mode, the ego vehicle will be defined in the scenario file with the tag, `ego`. When making vehicle selections, select or add the vehicle(s) that will be used in the closed loop scenario file. The vehicle's `class_path` and `body_color` will be automatically updated in the vehicle object tagged `ego`. For example, `scenario_aebs.json` file in the UUT Python Example under [Configuring UUT](/scenario-dashboard/#configuring-unit-under-test).
+When using closed loop simulation mode, the ego vehicle will be defined in the scenario file with the tag, `ego`. When making vehicle selections, select or add the vehicle(s) that will be used in the closed loop scenario file. The vehicle's `class_path` and `body_color` will be automatically updated in the vehicle object tagged `ego`. For example, `scenario_aebs.json` file in the UUT Python Example under [Configuring UUT](/scenario-dashboard/#connecting-your-code).
 
 ```json
 {
@@ -161,7 +161,7 @@ For closed loop mode, the user can add as many scenario JSON files to run in the
 
 In the Cloud version, users will be able to direct the application to the file directory of configured UUT files to run the simulation.
 
-For details on writing a Unit Under Test and/or work with examples, see [Configuring UUT](/scenario-dashboard/#configuring-unit-under-test).
+For details on writing a Unit Under Test and/or work with examples, see [Configuring UUT](/scenario-dashboard/#connecting-your-code).
 
 ### Weather
 
@@ -205,7 +205,7 @@ The monoDrive Batch Scenario Manager offers many pre-build weather profiles and 
       </video>
     </div> 
  
-  1. Run a [Unit Under Test](/scenario-dashboard/#configuring-unit-under-test).
+  1. Run a [Unit Under Test](/scenario-dashboard/#connecting-your-code).
  
   1. Make configuration selections in the monoDrive Scenario Batch Manager.
 

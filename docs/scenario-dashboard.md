@@ -1,11 +1,12 @@
 # Batch Scenario Manager
 
 monoDrive's Batch Scenario Manager enables easy batch processing of AV testing jobs. 
-The Batch Scenario Manager provides the client with visuals of custom configurations and result
- viewing for better testing. 
- The application is designed to step through each configuration with pre-built and customizable
-  properties. 
-  Once all configurations are made, deploy and run every combination of the properties selected in the simulation. Results show the status of the test after it has run, and keeps different batches organized for review. 
+The Batch Scenario Manager provides the client with visuals of custom configurations 
+and result viewing for better testing. 
+The application is designed to step through each configuration with pre-built and customizable 
+properties. Once all configurations are made, deploy and run every combination of the properties 
+selected in the simulation. Results show the status of the test after it has run, and keeps 
+different batches organized for review. 
 
 ## Requirements
 
@@ -24,10 +25,10 @@ The Batch Scenario Manager provides the client with visuals of custom configurat
 
 ## Connecting your code
   
-When connecting your code to run as a Unit Under Test (UUT), you will use the `jobs` module of the monoDrive client.
-This module handles all of the batch processing mechanics including job assignment, configuration,
-results storing, etc. It has been designed to allow for flexible execution across development,
-local batch processing, and cloud deployment.
+When connecting your code to run as a Unit Under Test (UUT), you will use the `jobs` module of 
+the monoDrive client. This module handles all of the batch processing mechanics including job 
+assignment, configuration, results storing, etc. It has been designed to allow for flexible 
+execution across development, local batch processing, and cloud deployment.
 
 
 #### Entry point
@@ -64,7 +65,8 @@ def main():
 #### Results  
 Finally, at the end of main script, you will create a `Result` object and store it with the
 `set_result` function. These metrics are defined by the user as desired. They will be surfaced
-to the Batch Scenario Manager results page, but are not required for the batch processing to run properly.
+to the Batch Scenario Manager results page, but are not required for the batch processing to run 
+properly.
 
 ```python
 from monodrive.jobs import set_result, Result, ResultMetric
@@ -86,7 +88,8 @@ def main():
 ```
  
 #### Example
-For a full working UUT, please check out this [collision avoidance](https://github.com/monoDriveIO/monodrive-python-client/tree/master/examples/collision_avoidance)
+For a full working UUT, please check out this 
+[collision avoidance](https://github.com/monoDriveIO/monodrive-python-client/tree/master/examples/collision_avoidance)
 use case, written in Python. This directory includes both a replay and closed loop mode example.
 
 *(C++ example coming soon)*
@@ -94,7 +97,8 @@ use case, written in Python. This directory includes both a replay and closed lo
 
 ## Configurable Selections
 
-To get started with making configuration selections, follow instructions in [running](/scenario-dashboard/#running).
+To get started with making configuration selections, follow instructions in 
+[running](/scenario-dashboard/#running).
 
 ### Batch Scenario Manager Menu
 
@@ -110,7 +114,12 @@ use "Select Configurations" to make and/or edit selections.
 
 ### Vehicles & Sensors
 
-Users can select multiple vehicle and sensor configurations to run. Select a vehicle configuration from monoDrive's vehicle models or add a custom vehicle as the ego vehicle for the simulation. The custom vehicle requires the directory path to the vehicle asset and enables users to change the color of the vehicle. By default all monoDrive's vehicle models spawn with white paint; if a user would like to customize the color on a monoDrive vehicle asset, select "Add New Vehicle" and use the path to the monoDrive vehicle asset and change it's color.
+Users can select multiple vehicle and sensor configurations to run. Select a vehicle configuration 
+from monoDrive's vehicle models or add a custom vehicle as the ego vehicle for the simulation. 
+The custom vehicle requires the directory path to the vehicle asset and enables users to change the 
+color of the vehicle. By default all monoDrive's vehicle models spawn with white paint; if a user 
+would like to customize the color on a monoDrive vehicle asset, select "Add New Vehicle" and use 
+the path to the monoDrive vehicle asset and change it's color.
 
 <div class="img_container" >
   <video width=650px height=480px muted autoplay loop>
@@ -118,7 +127,8 @@ Users can select multiple vehicle and sensor configurations to run. Select a veh
   </video>
 </div> 
 
-For each vehicle selected, a user is given an option to create a new sensor configuration through the sensor editor tool.
+For each vehicle selected, a user is given an option to create a new sensor configuration through 
+the sensor editor tool.
 
   <div class="img_container">
     <img class='wide_img' src="../imgs/dashboard_sensors.png"/>
@@ -126,7 +136,13 @@ For each vehicle selected, a user is given an option to create a new sensor conf
 
 #### Sensor Editor
 
-The Sensor editor tool enables the user to import a JSON sensor configuration file or build a sensor configuration by adding and moving sensors on the vehicle model. Users are able to alter the position and location for every sensors. Many sensors offer further alterations depending on the sensor type such as image height, image width, and field of view. The "Import Config or Vehicle" Button enables users to import a vehicle model and also can import a sensor json file for easy uploading. After making all selections, the user needs to "Save Config" in the top left corner to save the configuration.
+The Sensor editor tool enables the user to import a JSON sensor configuration file or build a sensor 
+configuration by adding and moving sensors on the vehicle model. Users are able to alter the 
+position and location for every sensors. Many sensors offer further alterations depending on the 
+sensor type such as image height, image width, and field of view. The "Import Config or Vehicle" 
+Button enables users to import a vehicle model and also can import a sensor json file for easy 
+uploading. After making all selections, the user needs to "Save Config" in the top left corner to 
+save the configuration.
 
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
@@ -136,7 +152,9 @@ The Sensor editor tool enables the user to import a JSON sensor configuration fi
 
 ### Unit Under Test (UUT) & Scenarios
 
- In the monoDrive Batch Scenario Manager, users will be able to run and configure a Unit Under Test. The Unit Under Test will be configured for closed loop or replay mode. monoDrive has many pre-built trajectory files to run using the "Straight 5K" Map.
+ In the monoDrive Batch Scenario Manager, users will be able to run and configure a Unit Under Test. 
+ The Unit Under Test will be configured for closed loop or replay mode. monoDrive has many pre-built 
+ trajectory files to run using the "Straight 5K" Map.
 
   <div class="img_container">
     <img class='wide_img' src="../imgs/dashboard_scenarios.png"/>
@@ -148,11 +166,15 @@ For closed loop mode, the user can add as many scenario JSON files to run in the
     <img class='wide_img' src="../imgs/dashboard_closed_loop.png"/>
   </div>
 
-For details on writing a Unit Under Test and/or work with examples, see [Configuring UUT](/scenario-dashboard/#connecting-your-code).
+For details on writing a Unit Under Test and/or work with examples, see 
+[Configuring UUT](/scenario-dashboard/#connecting-your-code).
 
 ### Weather
 
-The monoDrive Batch Scenario Manager offers many pre-build weather profiles and an option for customizing a new weather profile. The weather configuration provides customizable changes such as the angle of the sun, the amount of rain on the roads, amount of wind, wind angle, and rain fall in a scene. 
+The monoDrive Batch Scenario Manager offers many pre-build weather profiles and an option for 
+customizing a new weather profile. The weather configuration provides customizable changes such as 
+the angle of the sun, the amount of rain on the roads, amount of wind, wind angle, and rain fall 
+in a scene. 
 
   <div class="img_container">
     <img class='wide_img' src="../imgs/dashboard_weather.png"/>
@@ -164,7 +186,8 @@ The monoDrive Batch Scenario Manager offers many pre-build weather profiles and 
 
 ## Running
 
-  1. Inside the downloaded folder for monoDrive Dashboard, double-click or open monodrive.dashboard.exe on Windows or monodrive-dashboard on Linux.
+  1. Inside the downloaded folder for monoDrive Dashboard, double-click or open 
+  monodrive.dashboard.exe on Windows or monodrive-dashboard on Linux.
 
   1. Open the Simulator or Scenario Editor.
 
@@ -174,7 +197,9 @@ The monoDrive Batch Scenario Manager offers many pre-build weather profiles and 
  
   1. Run a [Unit Under Test](/scenario-dashboard/#connecting-your-code).
 
-  1. Choose or create a directory to save configuration files and results from the Unit Under Test and the Batch Scenario Manager. In the Unit Under Test Example provided, the user would send the same asset directory as set in the Batch Scenario Manager.
+  1. Choose or create a directory to save configuration files and results from the Unit Under Test 
+  and the Batch Scenario Manager. In the Unit Under Test Example provided, the user would send the 
+  same asset directory as set in the Batch Scenario Manager.
 
   ``` python closed_loop_aebs.py --md_assets C:\Users\developer\Documents\BatchExample --md_loop ```
 
@@ -186,16 +211,21 @@ The monoDrive Batch Scenario Manager offers many pre-build weather profiles and 
  
   1. Make configuration selections in the monoDrive Scenario Batch Manager.
 
-  1. Run the Batch by selecting "Deploy and Run" on the Dashboard then confirming or making any needed edits to the simulator.json file.
+  1. Run the Batch by selecting "Deploy and Run" on the Dashboard then confirming or making any 
+  needed edits to the simulator.json file.
 
-    - The batch will set a "READY" status to the Unit Under Test, which will run one of the configuration combinations made in the Batch Scenario Manager.
+    - The batch will set a "READY" status to the Unit Under Test, which will run one of the 
+    configuration combinations made in the Batch Scenario Manager.
 
-    - When the test is finished it will send the status of the test to the Batch Scenario Manager to be saved.
+    - When the test is finished it will send the status of the test to the Batch Scenario Manager 
+    to be saved.
 
 
 ## Viewing Results
 
-After all selections are made, the Batch Scenario Manager will keep track of all batch runs for viewing past tests, and the Results will show tests that have passed and failed. Inside each individual test, the user can find more detailed information or replay a test for further testing.
+After all selections are made, the Batch Scenario Manager will keep track of all batch runs for 
+viewing past tests, and the Results will show tests that have passed and failed. Inside each 
+individual test, the user can find more detailed information or replay a test for further testing.
 
   <div class="img_container">
     <img class='wide_img' src="../imgs/dashboard_results.png"/>
@@ -203,7 +233,11 @@ After all selections are made, the Batch Scenario Manager will keep track of all
 
 ## Cloud Deployment
 
-The Batch Scenario Manager can be used as a local application on your computer or through a cloud deployment. The local application enables users to view the test running in the Simulator, while the monoDrive Cloud Solution distributes batch processing to handle high volumes of AV testing jobs. The Cloud Solution is handled through a Kubernetes native application with easy deployment to any private or public cloud.
+The Batch Scenario Manager can be used as a local application on your computer or through a 
+cloud deployment. The local application enables users to view the test running in the Simulator, 
+while the monoDrive Cloud Solution distributes batch processing to handle high volumes of AV testing 
+jobs. The Cloud Solution is handled through a Kubernetes native application with easy deployment 
+to any private or public cloud.
 
 For more information, [contact us](https://www.monodrive.io/contact).
 

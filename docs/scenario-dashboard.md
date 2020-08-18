@@ -110,25 +110,7 @@ use "Select Configurations" to make and/or edit selections.
 
 ### Vehicles & Sensors
 
-When using closed loop simulation mode, the ego vehicle will be defined in the scenario file with the tag, `ego`. When making vehicle selections, select or add the vehicle(s) that will be used in the closed loop scenario file. The vehicle's `class_path` and `body_color` will be automatically updated in the vehicle object tagged `ego`. For example, `scenario_aebs.json` file in the UUT Python Example under [Configuring UUT](/scenario-dashboard/#connecting-your-code).
-
-```json
-{
-  "trigger_boxes": [],
-  "vehicles": [
-    {
-      "body_color": "Carpaint_DarkGrey",
-      "class_path": "/Game/Vehicles/sedan_monoDrive_02.sedan_monoDrive_02_C",
-      "tags": [
-        "vehicle",
-        "dynamic",
-        "car",
-        "ego"
-      ],
-      ...
-```
-
-Users can select multiple vehicle and sensor configurations to run. Select a vehicle configuration from monoDrive's vehicle models or add a custom vehicle as the ego vehicle in the simulation. The custom vehicle requires the directory path to the vehicle asset and enables users to change the color of the vehicle. By default all monoDrive's vehicle models spawn with white paint; if a user would like to customize the color on a monoDrive vehicle asset, select "Add New Vehicle" and use the path to the monoDrive vehicle asset and change it's color.
+Users can select multiple vehicle and sensor configurations to run. Select a vehicle configuration from monoDrive's vehicle models or add a custom vehicle as the ego vehicle for the simulation. The custom vehicle requires the directory path to the vehicle asset and enables users to change the color of the vehicle. By default all monoDrive's vehicle models spawn with white paint; if a user would like to customize the color on a monoDrive vehicle asset, select "Add New Vehicle" and use the path to the monoDrive vehicle asset and change it's color.
 
 <div class="img_container" >
   <video width=650px height=480px muted autoplay loop>

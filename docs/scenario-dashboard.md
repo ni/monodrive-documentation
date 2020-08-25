@@ -1,7 +1,7 @@
 # Batch Scenario Manager
 
 monoDrive's Batch Scenario Manager allows for easy batch processing of AV testing jobs.
-The application is designed to step through visuals of customizable configurations for running a scenario. 
+The application provides visuals of customizable configurations for running a scenario. 
 Once all configurations are made, every combination of the properties selected for a scenario will run
 as a test in the simulator. After tests are done running, users will be able to view the status of 
 the results, and the manager will keep different batches organized for later review. 
@@ -20,6 +20,44 @@ the results, and the manager will keep different batches organized for later rev
       <div class="img_container">
       <img class='lg_img' src="../imgs/dashboard_extract.jpeg"/>
       </div>
+
+## Running
+
+  1. Inside the downloaded folder for monoDrive Dashboard, double-click or open 
+  monodrive.dashboard.exe on Windows or monodrive-dashboard on Linux.
+
+  1. When running for the first time, choose or create a directory to save configuration files 
+  and results from the Unit Under Test and the Batch Scenario Manager.
+
+    <div class="img_container">
+      <img class='wide_img' src="../imgs/dashboard_directory.png"/>
+    </div>
+ 
+  1. Make [configuration selections](../scenario-dashboard/#configurable-selections) 
+  in the monoDrive Scenario Batch Manager.
+
+  1. Run the Batch by selecting "Deploy and Run" on the Dashboard then confirming or making any 
+  needed edits to the simulator.json file.
+
+    - The batch will set a "READY" status for the Unit Under Test to begin once running.
+
+    - When the test is finished it will send the status of the test to the Batch Scenario Manager 
+    to be saved and viewed in results. See more about [viewing results](../scenario-dashboard/#viewing-results).
+
+  1. Open the Simulator or Scenario Editor.
+
+    <div class="img_container">
+      <img class='wide_img' src="../imgs/dashboard_simulator.png"/>
+    </div>
+
+  1. Play or run the Simulator in Unreal Engine.
+ 
+  1. Run a [Unit Under Test](../scenario-dashboard/#connecting-your-code). 
+  In the Unit Under Test Example provided, the user would use the same asset directory 
+  as set in the Batch Scenario Manager. For example, 
+
+    ``` python closed_loop_aebs.py --md_assets C:\Users\developer\Documents\BatchExample --md_loop ```
+
 
 ## Connecting your code
   
@@ -91,7 +129,6 @@ For a full working UUT, please check out this
 use case, written in Python. This directory includes both a replay and closed loop mode example.
 
 *(C++ example coming soon)*
-
 
 ## Configurable Selections
 
@@ -181,43 +218,6 @@ in a scene.
   <div class="img_container">
     <img class='wide_img' src="../imgs/dashboard_custom_weather.png"/>
   </div>
-
-## Running
-
-  1. Inside the downloaded folder for monoDrive Dashboard, double-click or open 
-  monodrive.dashboard.exe on Windows or monodrive-dashboard on Linux.
-
-  1. Open the Simulator or Scenario Editor.
-
-    <div class="img_container">
-      <img class='wide_img' src="../imgs/dashboard_simulator.png"/>
-    </div>
- 
-  1. Run a [Unit Under Test](../scenario-dashboard/#connecting-your-code).
-
-  1. Choose or create a directory to save configuration files and results from the Unit Under Test 
-  and the Batch Scenario Manager. In the Unit Under Test Example provided, the user would send the 
-  same asset directory as set in the Batch Scenario Manager.
-
-    ``` python closed_loop_aebs.py --md_assets C:\Users\developer\Documents\BatchExample --md_loop ```
-
-    Here is the same directory used upon opening the monoDrive Batch Scenario Manager.
-
-    <div class="img_container">
-      <img class='wide_img' src="../imgs/dashboard_directory.png"/>
-    </div>
- 
-  1. Make configuration selections in the monoDrive Scenario Batch Manager.
-
-  1. Run the Batch by selecting "Deploy and Run" on the Dashboard then confirming or making any 
-  needed edits to the simulator.json file.
-
-    - The batch will set a "READY" status to the Unit Under Test, which will run one of the 
-    configuration combinations made in the Batch Scenario Manager.
-
-    - When the test is finished it will send the status of the test to the Batch Scenario Manager 
-    to be saved.
-
 
 ## Viewing Results
 

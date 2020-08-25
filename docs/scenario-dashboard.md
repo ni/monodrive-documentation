@@ -1,12 +1,10 @@
 # Batch Scenario Manager
 
-monoDrive's Batch Scenario Manager enables easy batch processing of AV testing jobs. 
-The Batch Scenario Manager provides the client with visuals of custom configurations 
-and result viewing for better testing. 
-The application is designed to step through each configuration with pre-built and customizable 
-properties. Once all configurations are made, deploy and run every combination of the properties 
-selected in the simulation. Results show the status of the test after it has run, and keeps 
-different batches organized for review. 
+monoDrive's Batch Scenario Manager allows for easy batch processing of AV testing jobs.
+The application is designed to step through visuals of customizable configurations for running a scenario. 
+Once all configurations are made, every combination of the properties selected for a scenario will run
+as a test in the simulator. After tests are done running, users will be able to view the status of 
+the results, and the manager will keep different batches organized for later review. 
 
 ## Requirements
 
@@ -20,7 +18,7 @@ different batches organized for review.
     - Extract all files from the downloaded monoDrive Dashboard file.
     
       <div class="img_container">
-        <img class='lg_img' src="../imgs/dashboard_extract.jpeg"/>
+      <img class='lg_img' src="../imgs/dashboard_extract.jpeg"/>
       </div>
 
 ## Connecting your code
@@ -98,7 +96,7 @@ use case, written in Python. This directory includes both a replay and closed lo
 ## Configurable Selections
 
 To get started with making configuration selections, follow instructions in 
-[running](/scenario-dashboard/#running).
+[running](../scenario-dashboard/#running).
 
 ### Batch Scenario Manager Menu
 
@@ -167,7 +165,7 @@ For closed loop mode, the user can add as many scenario JSON files to run in the
   </div>
 
 For details on writing a Unit Under Test and/or work with examples, see 
-[Configuring UUT](/scenario-dashboard/#connecting-your-code).
+[Configuring UUT](../scenario-dashboard/#connecting-your-code).
 
 ### Weather
 
@@ -195,19 +193,19 @@ in a scene.
       <img class='wide_img' src="../imgs/dashboard_simulator.png"/>
     </div>
  
-  1. Run a [Unit Under Test](/scenario-dashboard/#connecting-your-code).
+  1. Run a [Unit Under Test](../scenario-dashboard/#connecting-your-code).
 
   1. Choose or create a directory to save configuration files and results from the Unit Under Test 
   and the Batch Scenario Manager. In the Unit Under Test Example provided, the user would send the 
   same asset directory as set in the Batch Scenario Manager.
 
-  ``` python closed_loop_aebs.py --md_assets C:\Users\developer\Documents\BatchExample --md_loop ```
+    ``` python closed_loop_aebs.py --md_assets C:\Users\developer\Documents\BatchExample --md_loop ```
 
-  Here is the same directory used upon opening the monoDrive Batch Scenario Manager.
+    Here is the same directory used upon opening the monoDrive Batch Scenario Manager.
 
-  <div class="img_container">
-    <img class='wide_img' src="../imgs/dashboard_directory.png"/>
-  </div>
+    <div class="img_container">
+      <img class='wide_img' src="../imgs/dashboard_directory.png"/>
+    </div>
  
   1. Make configuration selections in the monoDrive Scenario Batch Manager.
 

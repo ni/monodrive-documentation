@@ -89,7 +89,7 @@ There are two categories of tags:
 
 **NOTE:** You must have a vehicle with the tag "ego," otherwise it cannot be used with the monoDrive client.
 
-* [LabVIEW Client Examples](../../../LV_client/quick_start/LabVIEW_run_examples)
-* [Python Client Examples](../../../python_client/examples)
-* [C++ Client Replay Modes](../../../cpp_client/cpp_examples)
+* [LabVIEW Client Examples](../../LV_client/quick_start/LabVIEW_run_examples)
+* [Python Client Examples](../../python_client/examples)
+* [C++ Client Replay Modes](../../cpp_client/cpp_examples)
 

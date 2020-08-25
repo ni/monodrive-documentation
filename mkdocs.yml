@@ -23,18 +23,20 @@ nav:
       scenario_editor/trajectory_files.md,
       scenario_editor/roads.md
     ]
-  - Batch Runner: scenario-dashboard.md
-  - Real-to-Virtual:
-    - About: r2v/about.md
-    - Data Collection Quick Start: r2v/data_collection_quick_start.md
-    - Data Processing Quick Start: r2v/data_processing_quick_start.md
-    - Maps: r2v/r2v_maps.md
-
+  - Scenario Batch Manager: scenario-dashboard.md
+  - Real-to-Virtual: [
+    r2v/about.md,
+    r2v/data_collection_quick_start.md,
+    r2v/data_processing_quick_start.md,
+    r2v/data_processing_output.md,
+    r2v/r2v_maps.md
+  ]
 - Simulator API :
   - Introduction: monoDrive_home/API.md
   - Sensors: [
     monoDrive_home/Common.md,
     monoDrive_home/Camera.md,
+    monoDrive_home/Collision.md,
     monoDrive_home/GPS.md,
     monoDrive_home/IMU.md,
     monoDrive_home/Lidar.md,
@@ -45,10 +47,13 @@ nav:
     monoDrive_home/Ultrasonic.md,
     monoDrive_home/Viewport.md]
   - Simulator : monoDrive_home/Simulator-Configuration.md
-  - Vehicle : monoDrive_home/Vehicle-Configuration.md
+  - Vehicle : [
+    monoDrive_home/Vehicle-Configuration.md,
+    monoDrive_home/Vehicle-PhysX.md]
   - Weather: monoDrive_home/Weather.md
   
 - Tutorials:
+  - Co-simulation Tutorials: [monoDrive_home/CarSim.md]
   - LabVIEW Tutorials: [LV_client/tutorials/Setup.md,
     LV_client/tutorials/AddSensors.md,
     LV_client/tutorials/Sensor_Palette.md,

@@ -2,7 +2,7 @@
 
 By opening the Scenario Tool Widget, users can save scenarios to monoDrive scenario files that can then be used in the Closed loop modes of the monoDrive Simulator and Scenario Editor. New Scenario files can be sent to the running simulator to replay dynamic actors for testing and review. 
 
-The AI vehicle behavior details and tags that can be altered to create the scenario file can be found in [Scenario Creation](./scenarios)
+The AI vehicle behavior details and tags that can be altered to create the scenario file can be found in [Scenario Creation](../scenarios)
 
 ## Scenario Tool Widget
 

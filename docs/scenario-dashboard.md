@@ -6,6 +6,9 @@ Once all configurations are made, every combination of the properties selected f
 as a test in the simulator. After tests are done running, users will be able to view the status of 
 the results, and the manager will keep different batches organized for later review. 
 
+For viewing the full process, see 
+[Batch Scenario Dashboard Tutorial](https://www.youtube.com/watch?v=U1x_GU60LPg).
+
 ## Requirements
 
  - [monoDrive Simulator or Scenario Editor v.1.11](https://www.monodrive.io/register)
@@ -41,9 +44,6 @@ the results, and the manager will keep different batches organized for later rev
 
     - The batch will set a "READY" status for the Unit Under Test to begin once running.
 
-    - When the test is finished it will send the status of the test to the Batch Scenario Manager 
-    to be saved and viewed in results. See more about [viewing results](../scenario-dashboard/#viewing-results).
-
   1. Open the Simulator or Scenario Editor.
 
     <div class="img_container">
@@ -57,6 +57,10 @@ the results, and the manager will keep different batches organized for later rev
   as set in the Batch Scenario Manager. For example, 
 
     ``` python closed_loop_aebs.py --md_assets C:\Users\developer\Documents\BatchExample --md_loop ```
+
+  1. When the test is finished it will send the status of the test to the Batch Scenario Manager 
+  to be saved and viewed in results. 
+  See more about [viewing results](../scenario-dashboard/#viewing-results).
 
 
 ## Connecting your code

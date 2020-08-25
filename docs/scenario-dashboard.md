@@ -6,7 +6,7 @@ Once all configurations are made, every combination of the properties selected f
 as a test in the simulator. After tests are done running, users will be able to view the status of 
 the results, and the manager will keep different batches organized for later review. 
 
-For viewing the full process, see 
+For a full video demo, see
 [Batch Scenario Dashboard Tutorial](https://www.youtube.com/watch?v=U1x_GU60LPg).
 
 ## Requirements

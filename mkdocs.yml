@@ -23,6 +23,7 @@ nav:
       scenario_editor/trajectory_files.md,
       scenario_editor/roads.md
     ]
+  - Scenario Batch Manager: scenario-dashboard.md
   - Real-to-Virtual: [
     r2v/about.md,
     r2v/data_collection_quick_start.md,
@@ -30,7 +31,6 @@ nav:
     r2v/data_processing_output.md,
     r2v/r2v_maps.md
   ]
-
 - Simulator API :
   - Introduction: monoDrive_home/API.md
   - Sensors: [

@@ -13,6 +13,9 @@ By default, the monoDrive Simulator uses PhysX for vehicle dynamics. Alternative
 **monoDrive Scenario Editor**
 
 - Windows 10
+- Visual Studio build tools
+  - follow instructions from Unreal Engine [here](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html)
+  - make sure the recommended workloads are selected, including `.NET desktop development`
 - monoDrive Scenario Editor
 - monoDrive Client (C++, Python or LabVIEW)
 
@@ -61,9 +64,13 @@ By default, the monoDrive Simulator uses PhysX for vehicle dynamics. Alternative
     - Click drop down under 'Simulated Test Specifications'
         - Click 'Vehicles' → 'Vehicle: Assembly'
     - Select a model (e.g. 'D-Class, Sedan')
+    
+1. (optional) Update params 
+    - Under the selected vehicle, any parameters can be updated as desired
+    
 
 1. Visualization
-    - Under 'Run from Alternate Directory'
+    - Under 'Run Control'
         - select ERD 32-bit 
             - check 'Write all outputs'
     - Under the 'Video' button, open the drop down
@@ -72,14 +79,13 @@ By default, the monoDrive Simulator uses PhysX for vehicle dynamics. Alternative
     - Click the dropdown for 'More plots' and select a number
     - Populate these empty datasets with predefined plots
 
-1. (optional) Update params 
-    - Under the selected vehicle, any parameters can be updated as desired
 
 1. Generate simfile
-    - Under 'Run from Alternate Directory', open the drop down next to 'models' 
+    - Under 'Run Control', open the drop down next to 'Models' 
         - select 'Models: Transfer to Local Windows Directory'
+        - the title of this section should change to 'Run from Alternate Directory'
     - Under the dataset drop down, select 'UE4 simfile generator'
-        - Click 'Duplicate' to make a copy
+        - Open this dataset and click 'Duplicate' to make a copy
             - Update the working directory and other fields as desired
             - For example, set the directory to 'C:\Users\devin\dump\carsim'
     - Go back to the main dataset and select the copy for the simfile generator

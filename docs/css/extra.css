@@ -4,18 +4,29 @@ main {
     max-width: 1000px;
     background-color: #ffffff;
     margin-left: -20px;
-    padding-left: 20px;
-    padding-top: 50px;
-    padding-right: 20px;
+    /* padding-left: 20px; */
+    /* padding-top: 50px;
+    padding-right: 20px; */
     font-size: 18px
 }
 
 @media all 
-    and (min-width: 600px) 
-    and (max-width: 1200px) {
+    and (min-width: 770px) 
+    and (max-width: 1063px) {
         main {
             max-width: 100%;
+            min-width: 300px;
             padding-left: 40px;
+        }
+}
+
+@media all 
+    and (min-width: 100px) 
+    and (max-width: 768px) {
+        main {
+            max-width: 100%;
+            min-width: 300px;
+            margin-left: 0px;
         }
 }
 
@@ -24,13 +35,8 @@ body {
     color: #404040;
 }
 
-aside:hover {
+aside{
     width: 305px;
-    transition: width 2s, height 2s;
-}
-
-aside {
-    transition: width 2s, height 2s;
 }
 
 .img_container {

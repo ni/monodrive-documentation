@@ -18,6 +18,9 @@ body {
     and (max-width: 1240px) {
         .multi_img_container {
             flex-direction: column
+        };
+        .img_container {
+            flex-direction: column 
         }
 }
 

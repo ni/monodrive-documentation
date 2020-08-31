@@ -9,9 +9,9 @@ The documentation reflects the newest version of the monoDrive Simulation and Sc
 monoDrive's Platform is available now: [Download monoDrive v.1.11](https://www.monodrive.io/register)
 
 <div class="img_container">
-<img class='md_img' src="./imgs/monodrive_simulator.png"/>
-<div class="space"></div>
-<img class='md_img' src="./imgs/monodrive_scenario_editor.png"/>
+    <img class='md_img' src="./imgs/monodrive_simulator.png"/>
+    <div class="space"></div>
+    <img class='md_img' src="./imgs/monodrive_scenario_editor.png"/>
 </div>
 
 ## About monoDrive

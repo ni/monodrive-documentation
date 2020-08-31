@@ -13,7 +13,7 @@ be controlled through each camera's configuration.
 ## RGB Camera
 Provides a RGBA camera stream with optional bounding boxes for dynamic objects in the scene.
 
-<div class ='flex'>
+<div class ='multi_img_container'>
 <div class="wide_img">
 
 ``` json
@@ -86,7 +86,7 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
 Provides a grayscale camera stream with optional bounding boxes for dynamic objects in the scene.
 
 
-<div class ='flex'>
+<div class ='multi_img_container'>
 <div class="wide_img">
 
 ``` json
@@ -145,7 +145,7 @@ All values are the same as the RGB camera except:
 ## Semantic Camera
 Provides a grayscale camera stream where pixel values represent the semantic category of the rendered actor.
 
-<div class ='flex'>
+<div class ='multi_img_container'>
 <div class="wide_img">
 
 ``` json
@@ -226,7 +226,7 @@ semantic definition for each pixel value:
 Provides an unsigned 32-bit floating point array where the pixel values 
 represent the distance from the camera in centimeters.
 
-<div class ='flex'>
+<div class ='multi_img_container'>
 <div class="wide_img">
 
 ```json

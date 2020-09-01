@@ -2,7 +2,7 @@
 
 The monoDrive LiDAR sensor simulates Velodyne LiDARs in both 16 and 32 laser variants. The output of the LiDAR matches the documented output of commercial Velodyne LiDARs.
 
-<div class ='flex'>
+<div class ='multi_img_container'>
 <div class="wide_img">
 
 ``` json
@@ -44,7 +44,7 @@ The monoDrive LiDAR sensor simulates Velodyne LiDARs in both 16 and 32 laser var
 ## Semantic LiDAR
 
 
-<div class ='flex'>
+<div class ='multi_img_container'>
 <div class="wide_img">
 
 ``` json

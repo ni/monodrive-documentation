@@ -1,36 +1,5 @@
-main {
-    width: '100%';
-    min-width: 800px;
-    max-width: 1000px;
-    background-color: #ffffff;
-    margin-left: -20px;
-    padding-left: 20px;
-    padding-top: 50px;
-    padding-right: 20px;
-    font-size: 18px
-}
-
-@media all 
-    and (min-width: 600px) 
-    and (max-width: 1200px) {
-        main {
-            max-width: 100%;
-            padding-left: 40px;
-        }
-}
-
 body {
-    background-color: #EFEFEF;
     color: #404040;
-}
-
-aside:hover {
-    width: 305px;
-    transition: width 2s, height 2s;
-}
-
-aside {
-    transition: width 2s, height 2s;
 }
 
 .img_container {
@@ -43,6 +12,16 @@ aside {
     display: flex;
     justify-content: space-around;
     width: 100%
+}
+
+@media(min-width: 100px) 
+    and (max-width: 1240px) {
+        .multi_img_container {
+            flex-direction: column
+        };
+        .img_container {
+            flex-direction: column 
+        }
 }
 
 .thumbnail {

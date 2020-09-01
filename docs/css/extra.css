@@ -2,6 +2,10 @@ body {
     color: #404040;
 }
 
+main {
+    max-width: 800px;
+}
+
 .img_container {
     width: 100%;
     display: flex;

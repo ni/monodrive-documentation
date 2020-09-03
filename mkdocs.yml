@@ -126,6 +126,9 @@ nav:
           - mono_start_scenario.vi: LV_client/tools/mono_start_scenario.md
           - monoDrive.vi: LV_client/tools/monoDrive.md
           - mono_test_FPS_by_sensor.vi: LV_client/tools/mono_test_FPS_by_sensor.md
+          - mono_logger.vi: LV_client/tools/mono_logger.md
+          - mono_parse_binaries.vi: LV_client/tools/mono_parse_binaries.md
+
 
       - Simulator:
           - mono_set_running_mode.vi: LV_client/simulator/mono_set_running_mode.md

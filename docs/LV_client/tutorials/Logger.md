@@ -1,4 +1,5 @@
-# Mono_logger.vi
+# Logger and Parser
+## Mono_logger.vi
 User should connect the output of the sensor to the **Data** input of the mono_logger.vi as follows depending on the type of sensor:   
 
 |  Sensor  |  Connection  |   
@@ -32,12 +33,12 @@ This VI will produce a text file for:
    - Radar   
    - Camera annotation (if Annotation flag set to true)   
 
-## Example
+### Example
 <p class="img_container">
 <img class="lg_img" src="../logger.png"/>
 </p>
 
-# Mono_parse_binaries.vi
+## Mono_parse_binaries.vi
 
 This tool can help the user to visualize data from a binary file.
 

@@ -6,7 +6,7 @@
 
 ### Description
 
-Calculate the indexes of interes on the RGBA array to obtain a RGB array.
+Calculate the indexes of interest on the RGBA array to obtain a RGB array.
 
 For technical support contact us at **support@monodrive.io** 
 

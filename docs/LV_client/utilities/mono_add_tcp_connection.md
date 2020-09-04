@@ -6,7 +6,7 @@
 
 ### Description
 
-Add a TCP reference to the monoDrive global varible.
+Add a TCP reference to the monoDrive global variable.
 
 For technical support contact us at  **support@monodrive.io** 
 

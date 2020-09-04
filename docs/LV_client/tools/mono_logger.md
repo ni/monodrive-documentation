@@ -8,14 +8,16 @@
 
 This VI creates text files or binary files depending on the type of sensor.    
 
-- **Text files**:   
+**Text files**:    
+
    - Ultrasonic   
    - State Sensor   
    - Collision   
    - Radar   
    - Camera annotation (if Annotation flag set to true)   
    
-- **Binary files**:   
+**Binary files**:   
+
    - IMU   
    - LiDAR   
    - Camera   

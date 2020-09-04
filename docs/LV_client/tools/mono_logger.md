@@ -43,7 +43,7 @@ will assign the same name as the type of sensor.
  
 
 - **Annotation:**  True to create a text file to save the annotation data of
-the a Camera sensor.
+the Camera sensor.
  
 
 - **Annotation content:**  Annotation text to save into the annotation text file. 

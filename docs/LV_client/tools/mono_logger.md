@@ -7,19 +7,22 @@
 ### Description
 
 This VI creates text files or binary files depending on the type of sensor.    
-**Text file:**        
-    - State sensor    
-    - Ultrasonic    
-    - Collision    
-    - Radar    
- 
-**Binary files:**    
-    - IMU    
-    - GPS    
-    - RPM    
-    - LiDAR    
-    - Semantic LiDAR    
-    - Camera 
+
+- **Text files**:   
+   - Ultrasonic   
+   - State Sensor   
+   - Collision   
+   - Radar   
+   - Camera annotation (if Annotation flag set to true)   
+   
+- **Binary files**:   
+   - IMU   
+   - LiDAR   
+   - Camera   
+   - GPS   
+   - RPM   
+   - Radar Cube   
+  
 
 It also saves a text file for the camera annotation if the user set to True the annotation flag.  
 

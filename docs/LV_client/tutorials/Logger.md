@@ -1,5 +1,5 @@
 # Mono_logger.vi
-1. User should connect the output of the sensor to the **Data** input of the mono_logger.vi as follows depending on the type of sensor:   
+User should connect the output of the sensor to the **Data** input of the mono_logger.vi as follows depending on the type of sensor:   
 
 |  Sensor  |  Connection  |   
 |---|---|   
@@ -16,6 +16,7 @@
 
 
 This VI will produce a binary file for the following sensors:   
+
    - IMU   
    - LiDAR   
    - Camera   
@@ -23,7 +24,8 @@ This VI will produce a binary file for the following sensors:
    - RPM   
    - Radar Cube   
   
-This VI will produce a text file for:   
+This VI will produce a text file for: 
+
    - Ultrasonic   
    - State Sensor   
    - Collision   

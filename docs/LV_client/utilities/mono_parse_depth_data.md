@@ -22,7 +22,7 @@ For technical support contact us at **support@monodrive.io**
 
 ### Outputs
 
-- **Raw data:**  Data parsed into an array of double.
+- **Raw data:**  Data parsed into an array of doubles.
  
 - **Normalized data:** Data normalized between 0 and 255, corresponding to the depth information.
 

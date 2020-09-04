@@ -6,8 +6,8 @@
 
 ### Description
 
-Read and parse binary file according to the type of sensor. 
-This VI parse IMU, RPM , GPS, Camera and LiDAR binary files created with the mono_logger.vi 
+Read and parse a binary file according to the type of sensor.
+This VI parses IMU, RPM , GPS, Camera and LiDAR binary files created with the mono_logger.vi
 
 ### Inputs
 

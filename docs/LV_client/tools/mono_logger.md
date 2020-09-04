@@ -24,7 +24,7 @@ This VI creates text files or binary files depending on the type of sensor.
    - Radar Cube   
   
 
-It also saves a text file for the camera annotation if the user set to True the annotation flag.  
+It also saves a text file for the camera annotation if the user sets the annotation flag to True.
 
 ### Inputs
 

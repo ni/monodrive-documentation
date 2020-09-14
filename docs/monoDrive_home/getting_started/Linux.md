@@ -4,15 +4,24 @@
 
 ## Simulator
 
-  1. Extract the archive to a common location like "~/monodrive".
-  1. If downloading for the first time, you will receive an email with a license.txt file attachment. Copy the attached license.txt file to the extracted location "~/monodrive/VehicleAI/license.txt"
-  1. Run the simulator by navigating the "~/monodrive/VehicleAI" directory and running the shell script "VehicleAI.sh -opengl"
+1. Extract the archive to a common location like `~/monodrive`.
+1. If downloading for the first time, you will receive an email with a license.txt file attachment. Copy the attached license.txt file to the extracted location `~/monodrive/VehicleAI/license.txt`.
+1. Run the simulator by navigating the `~/monodrive/VehicleAI` directory and running the shell script `VehicleAI.sh -opengl`.
 
 ## Scenario Editor
 
-  1. The download will provide a shell script that will download and build Unreal Engine, OpenCV and the monoDrive Scenario Editor. To install just run `bash ./VehicleAI_Editor_installer_v1.11.sh`. You will be walked through the installation process by the script.
-  1. If downloading for the first time, you will receive an email with a license.txt file attachment. Copy the attached license.txt file to "/usr/local/monodrive/VehicleAI_Editor/license.txt"
-  1. The install script will put an alias in your .bashrc that allows you to start the simulator from a terminal with "monodrive_editor"
+1. Extract the archive to a common location like `~/monodrive`.
+1. If downloading for the first time, you will receive an email with a license.txt file attachment. Copy the attached license.txt file to the extracted location `~/monodrive/VehicleAI_Editor/license.txt`.
+1. Clone [Unreal Engine: branch 4.24](https://www.unrealengine.com/en-US/).
+1. Extract the Plugins.zip archive into the 4.24.3 Engine's Plugins directory. e.g. if the UE4.24 branch is cloned at `/usr/local/UE_4.24`, then extract the archive into `/usr/local/UE_4.24/Engine/Plugins`. The resulting directory structure should look as follows:
+<pre>
+  /usr/local/UE_4.24/Engine/Plugins/monoDrive
+    +-- monoDriveRadarSensor
+    +-- monoDriveLidarSensor
+    +-- ... (other monoDrive plugins)
+</pre>
+1. Right click on VehicleAI.uproject and select "Generate Project Files".
+1. Open VehicleAI.uproject. Note that the first time you open the project, UE4 will prompt you about missing modules that need to be rebuilt (VehicleAI and VehicleAIEditor). Select "Yes" to build the modules, then the project will open.
 
 
 ## Scenario Editor: Generating Project Files

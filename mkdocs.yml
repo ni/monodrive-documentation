@@ -128,6 +128,7 @@ nav:
           - mono_start_replay.vi: LV_client/tools/mono_start_replay.md
           - mono_start_scenario.vi: LV_client/tools/mono_start_scenario.md
           - mono_test_FPS_by_sensor.vi: LV_client/tools/mono_test_FPS_by_sensor.md
+          - mono_matlab_radar_plot.vi: LV_client/tools/mono_matlab_radar_plot.md
 
       - Simulator:
           - mono_check_simulator_version.vi: LV_client/simulator/mono_check_simulator_version.md
@@ -197,6 +198,7 @@ nav:
           - mono_init.vi: LV_client/shared_libraries/mono__initc.md
           - mono_kf_update.vi: LV_client/shared_libraries/mono__kf__update.md
           - mono_kf_init.vi: LV_client/shared_libraries/mono_kf_init.md
+          - mono_radar_plots_with_KF.vi: LV_client/shared_libraries/mono_radar_plots_with_KF.md
 
   - Python Client:
     - Quick Start: python_client/quick_start.md

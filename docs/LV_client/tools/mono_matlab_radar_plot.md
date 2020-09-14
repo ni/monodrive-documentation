@@ -6,7 +6,7 @@
 
 ### Description
 
-Process radar data cube and run a Matlab script to plot Radar data.
+Process Radar Data Cube and run a Matlab script to plot Radar data.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 

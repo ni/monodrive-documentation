@@ -4,9 +4,9 @@ Welcome to monoDrive's documentation.
 
 This home page contains an index with a brief description of the different sections in the documentation. 
 
-The documentation reflects the newest version of the monoDrive Simulation and Scenario Editor v1.11 with Unreal Engine 4.24. We are excited to share our new features including a [Scenario Tool Widget](scenario_editor/scenarios.md) to easily save scenario files to run in Closed Loop mode, updates to the [monoDrive Road Network](scenario_editor/roads.md), enhanced streaming, a new mode-Closed Loop Fixed Time Step, and a new sensor- the monoDrive [occupancy grid sensor]().
+The documentation reflects the newest version of the monoDrive Simulation and Scenario Editor with Unreal Engine 4.24.3. We are excited to share our new features including a [Scenario Tool Widget](scenario_editor/scenarios.md) to easily save scenario files to run in Closed Loop mode, updates to the [monoDrive Road Network](scenario_editor/roads.md), enhanced streaming, a new mode-Closed Loop Fixed Time Step, and a new sensor- the monoDrive [occupancy grid sensor]().
 
-monoDrive's Platform is available now: [Download monoDrive v.1.11](https://www.monodrive.io/register)
+monoDrive's Platform is available now: [Download monoDrive](https://www.monodrive.io/register)
 
 <div class="img_container">
     <img class='md_img' src="./imgs/monodrive_simulator.png"/>

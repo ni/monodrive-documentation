@@ -11,7 +11,7 @@ For a full video demo, see
 
 ## Requirements
 
- - [monoDrive Simulator or Scenario Editor v.1.11](https://www.monodrive.io/register)
+ - [monoDrive Simulator or Scenario Editor](https://www.monodrive.io/register)
     - [Windows Setup](../monoDrive_home/getting_started/Windows)
     - [Linux Setup](../monoDrive_home/getting_started/Linux)
  - [Python Client](../python_client/quick_start)

@@ -7,7 +7,7 @@
 ### Description
 
 Replace the pose for the ego vehicle on a specific frame and outputs the JSON corresponding to the frame with the new settings. 
-**This VI proccess frames on a format prior to the release 1.11**
+**This VI processes frames on a format prior to the 1.11 release**
 
 For technical support contact us at <b>support@monodrive.io</b> 
 

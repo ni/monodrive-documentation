@@ -14,8 +14,8 @@ By default, the monoDrive Simulator uses PhysX for vehicle dynamics. Alternative
 
 - Windows 10
 - Visual Studio build tools
-  - follow instructions from Unreal Engine [here](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html)
-  - make sure the recommended workloads are selected, including `.NET desktop development`
+    - follow instructions from Unreal Engine [here](https://docs.unrealengine.com/en-US/Programming/Development/VisualStudioSetup/index.html)
+    - make sure the recommended workloads are selected, including `.NET desktop development`
 - monoDrive Scenario Editor
 - monoDrive Client (C++, Python or LabVIEW)
 

@@ -1,5 +1,12 @@
 # Prerequisites 
 
+### Scenario Editor
+
+1. Install [Cuda Toolkit 10.2](https://developer.nvidia.com/cuda-10.2-download-archive)
+    - This should also install the latest NVIDIA Drivers for you.
+
+### Simulator
+
 1. Ensure you have the latest NVIDIA drivers for your [CUDA-enabled](https://developer.nvidia.com/cuda-gpus) graphics card.
 
 	<div class="img_container">

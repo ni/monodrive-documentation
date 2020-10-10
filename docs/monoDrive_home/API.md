@@ -41,38 +41,30 @@ contain the following fields:
 - **message:** The actual JSON containing all the additional meta-data for the message type.
 
 
-### Message Types
+## Message Types
 
-The following message types are currently defined for sending messages to the 
-simulator:
+Used to configure a simulator session. This command includes the settings associated with the simulator session following the execution of the command and applies to all future sessions until the command is run again. The `pys_materials` settings affect the returns from lidar and radar sensors for the list of known materials in the scene.
+
+The following message types are currently defined for sending messages to the simulator:
 
 | Message Type | Definition |
 | ------------ | ---------- | 
-| EgoVehicleConfig_ID | Configure the ego vehicle |
-| EgoControl_ID | Control the ego vehicle |
-| MapCommand_ID | Control the map |
-| ScenarioConfig_ID | Configure the scenario |
-| ScenarioInit_ID | Initializing the scenario |
-| WaypointUpdate_ID | Update the current waypoint. |
-| StreamData_ID | Control the data stream |
-| SpawnActorCommand_ID | Spawn a new actor in the current scenario |
-| UpdateActorCommand_ID | Update an existing actor in the current scenario |
-| AttachSensorCommand_ID | Attach a new sensor to the ego vehicle |
-| DetachSensorCommand_ID | Detach a sensor from the ego vehicle |
-| StopAllSensorsCommand_ID | Stop all the sensors on the ego vehicle |
-| StartAllSensorsCommand_ID | Start all the sensors on the ego vehicle |
-| ActivateLicense | Activate the server license |
-| WeatherConfig | Reconfigure a sensor while the simulator is running |
-| REPLAY_ReConfigureSensorCommand_ID | Configure the current weather in the scenario |
-| REPLAY_ConfigureSensorsCommand_ID | Replay the current sensor configuration |
-| REPLAY_ConfigureTrajectoryCommand_ID | Replay the current trajectory configuration |
-| REPLAY_StepSimulationCommand_ID | Replay the current step in the simulation |
-| REPLAY_StateStepSimulationCommand_ID | Replay the current state in the simulation |
-| GetMap | Get the currently loaded map information | 
-| GetStartPoints_ID | Get possible start positions for the ego vehicle on the map |
-| SpawnVehicleCommand_ID | Spawns the ego vehicle on closed loop |
-| ClosedLoopConfigCommand_ID | Configure the simulator on closed loop mode |
-| ClosedLoopStepCommand_ID | Send the amount of time the simulator should move forward  |
+| [ClosedLoopConfigCommand_ID](../Simulator-Commands/#closed-loop-configuration) | Configures the closed loop simulation | 
+| [ClosedLoopStepCommand_ID](../Simulator-Commands/#closed-loop-step) | Steps the closed loop simulation |
+| [EgoControl_ID](../Simulator-Commands/#ego-vehicle-control) | Control the ego vehicle | 
+| [GetMap](../Simulator-Commands/#get-map) | Get the currently loaded map information | 
+| [GetStartPoints](../Simulator-Commands/#get-start-points) | Retrieves the set of starting locations |
+| [GetVersion](../Simulator-Commands/#get-simulator-version) | Gets Current version |
+| [ImportMap](../Simulator-Commands/#import-map) | Replaces the current road network |
+| [REPLAY_ConfigureSensorsCommand_ID](../Simulator-Commands/#sensor-configuration) | Configure a sensor or set of sensors in a simulator run |
+| [REPLAY_ConfigureTrajectoryCommand_ID](../Simulator-Commands/#trajectory-configuration) | Configures the simulation trajectory |
+| [REPLAY_ReConfigureSensorCommand_ID](../Simulator-Commands/#sensor-reconfiguration) | Reconfigure a sensor or set of sensors in a simulation run |
+| [REPLAY_StateStepSimulationCommand_ID](../Simulator-Commands/#state-step-simulation) | Steps the simulation |
+| [REPLAY_StepSimulationCommand_ID](../Simulator-Commands/#step-the-simulation) | Steps the simulation |
+| [SimulatorConfig_ID](../Simulator-Commands/#simulator-configuration) | Configure the Simulator session |
+| [SpawnVehicleCommand_ID](../Simulator-Commands/#spawn-ego-vehicle) | Spawns the EGO vehicle | 
+| [WeatherConfig](../Simulator-Commands/#weather-configuration) | Configure the current weather in the scenario | 
+
 
 
 ## Receiving a Message

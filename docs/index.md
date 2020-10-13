@@ -26,8 +26,12 @@ monoDrive's Platform is available now: [Download monoDrive](https://www.monodriv
 [Real to Virtual](r2v/about.md) -- Collecting real-world data from cameras, LiDAR, and GNSS systems to create high-fidelity assets and maps usable in the Unreal Engine and the monoDrive Scenario Editor.
 
 ## Simulator API
+
+[Simulator API Commands](monoDrive_home/Simulator-Commands.md) <br />
+
 The monoDrive simulator is configured from a client. Everything about the simulator can be configured, from the material properties, to these properties.
 
+[Simulator](monoDrive_home/Simulator-Configuration.md) <br />
 [Sensors](monoDrive_home/Common.md) <br />
 [Vehicles](monoDrive_home/Vehicle-Configuration.md) <br />
 [Weather](monoDrive_home/Weather.md)
@@ -37,6 +41,11 @@ The monoDrive simulator is configured from a client. Everything about the simula
 [LabVIEW Client](LV_client/quick_start/LabVIEW_client_quick_start.md) <br />
 [Python Client](python_client/quick_start.md) <br />
 [C++ Client](cpp_client/cpp_quick_start.md)
+<!-- 
+## Instructions & How-tos
+
+[monoDrive How-to Documents]() -->
+
 
 ## Tutorials
 

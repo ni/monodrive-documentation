@@ -21,6 +21,7 @@ nav:
       scenario_editor/scenarios.md,
       scenario_editor/scenario_files.md,
       scenario_editor/trajectory_files.md,
+      scenario_editor/generation.md,
       scenario_editor/roads.md
     ]
   - Scenario Batch Manager: scenario-dashboard.md

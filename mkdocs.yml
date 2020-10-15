@@ -66,7 +66,11 @@ nav:
     LV_client/tutorials/wheel_integration.md,LV_client/tutorials/Logger.md 
     ]
   - Unreal Engine Tutorials: [
-    unreal_tutorials/AddVehicleModel.md
+    unreal_tutorials/MayaWheels.md,
+    unreal_tutorials/FoliagePainting.md,
+    unreal_tutorials/PlacingSigns.md,
+    unreal_tutorials/SingularMesh.md,
+    unreal_tutorials/SplineMesh.md,
   ]
 
 - monoDrive Clients: 

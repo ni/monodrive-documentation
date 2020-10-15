@@ -21,6 +21,7 @@ nav:
       scenario_editor/scenarios.md,
       scenario_editor/scenario_files.md,
       scenario_editor/trajectory_files.md,
+      scenario_editor/generation.md,
       scenario_editor/roads.md
     ]
   - Scenario Batch Manager: scenario-dashboard.md
@@ -33,6 +34,8 @@ nav:
   ]
 - Simulator API :
   - Introduction: monoDrive_home/API.md
+  - Simulator API Commands: monoDrive_home/Simulator-Commands.md
+  - Simulator : monoDrive_home/Simulator-Configuration.md
   - Sensors: [
     monoDrive_home/Common.md,
     monoDrive_home/Camera.md,
@@ -46,7 +49,6 @@ nav:
     monoDrive_home/State-sensor.md,
     monoDrive_home/Ultrasonic.md,
     monoDrive_home/Viewport.md]
-  - Simulator : monoDrive_home/Simulator-Configuration.md
   - Vehicle : [
     monoDrive_home/Vehicle-Configuration.md,
     monoDrive_home/Vehicle-PhysX.md]

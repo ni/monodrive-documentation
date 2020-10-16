@@ -32,7 +32,6 @@ Provides range to closest object from a single ultrasonic sensor.
       "ray_division_z": 5.0,
       "scan_distance": 4.0
   },
-  "send_processed_data": true,
 }
 ```
 
@@ -52,8 +51,6 @@ Provides range to closest object from a single ultrasonic sensor.
 ## Raw Output
 
 Will return the raw ultrasonic waveform data. The format for the waveform data is an array of 32-bit floating point numbers that is the length of the requested number of samples. 
-
-Optionally, if **send_processed_data** is true, the processed target data will be returned.
 
 ``` json
 {

@@ -3,7 +3,8 @@
 ### Scenario Editor
 
 1. Install [Cuda Toolkit 10.2](https://developer.nvidia.com/cuda-10.2-download-archive)
-    - If you have already updated to the most recent NVIDIA display drivers, you may want to customize this install under "Options", then "Custom". The next window will display installation options including "Driver Components", where you may uncheck to keep the driver version you currently have.
+    - During installation under "Options", "Express" will update or download the NVIDIA driver for this version of Cuda Toolkit. 
+    - (Optional) If you have already updated to the most recent NVIDIA display drivers, you may want to customize this install under "Options", then "Custom". The next window will display installation options including "Driver Components", where you may remove checks to keep the driver version you currently have.
 
 <div class ='img_container'>
 

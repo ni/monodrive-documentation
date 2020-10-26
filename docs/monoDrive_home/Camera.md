@@ -7,7 +7,7 @@ A monoDrive Camera Sensor can support six different image types:
 - **Semantic Segmentation:** Each object in the scene is semantically labeled by color
 - **Depth camera:** Provides a camera array where pixel values represent distance from the camera
 - **Equidistant:** 
-- **Scaramuzza model based:** 
+- **Poly1 Fisheye Camera:** Scaramuzza model Fisheye camera based.
 
 
 Image output size, intrinsic camera parameters, and various other settings can 

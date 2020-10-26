@@ -6,7 +6,7 @@
 
 ### Description
 
-Configures and reads the data stream for a Equidistant Fisheye Camera sensor and outputs a picture with the specified format in the stream dimensions.
+Configures and reads the data stream for an Equidistant Fisheye Camera sensor. Outputs a picture with the specified format in the stream dimensions.
 
 For technical support contact us at **support@monodrive.io** 
 

@@ -1,11 +1,14 @@
 # Camera
 
-A monoDrive Camera Sensor can support four different image types:
+A monoDrive Camera Sensor can support six different image types:
 
 - **RGB:** A three channel image of the scene
 - **Grayscale:** A single channel grayscale image of the scene
 - **Semantic Segmentation:** Each object in the scene is semantically labeled by color
 - **Depth camera:** Provides a camera array where pixel values represent distance from the camera
+- **Equidistant:** 
+- **Scaramuzza model based:** 
+
 
 Image output size, intrinsic camera parameters, and various other settings can 
 be controlled through each camera's configuration.
@@ -289,6 +292,168 @@ for RGB images and
 
 for grayscale images. See the "Depth Camera" description for information about 
 the output format for this sensor.
+
+
+## Equidistant Fisheye Camera
+
+<div class ='multi_img_container'>
+<div class="wide_img">
+
+``` json
+{
+    "type": "EquidistantFisheyeCamera",
+    "listen_port": 8100,
+    "description": "",
+	"location": {
+	    "x": 0.0,
+	    "y": 0.0,
+	    "z": 225.0
+    },
+    "rotation": {
+	    "pitch": 0.0,
+	    "roll": 0.0,
+	    "yaw": 0.0
+    },
+    "stream_dimensions": {
+	    "x": 512,
+	    "y": 512
+	},
+	"annotation": {
+		"cull_partial_frame": false,
+		"debug_draw": false,
+		"desired_tags": [],
+		"far_plane": 10000.0,
+		"include_annotation": false,
+		"include_obb": false,
+		"include_tags": false
+	},
+	"channel_depth": 1,
+	"channels": "bgra",
+	"dynamic_range": 50.0,
+	"enable_streaming": true,
+	"face_size": 1024,
+	"fisheye_pixel_diameter": 512,
+	"focal_length": 9.0,
+	"fov": 180.0,
+	"fstop": 1.399999976158142,
+	"max_distance": 50000.0,
+	"max_shutter": 0.00139999995008111,
+	"min_shutter": 0.0005000000237487257,
+	"sensor_size": 9.069999694824219,
+	"viewport": {
+		"enable_viewport": false,
+		"fullscreen": false,
+		 "monitor_name": "",
+		"monitor_number": 0,
+		 "window_offset": {
+			"x": 0,
+			"y": 0
+		},
+		"window_size": {
+			"x": 0,
+			"y": 0
+		}
+	},
+	"vignette_bias": 0.5,
+	"vignette_radius_start": 0.949999988079071,
+	"wait_for_fresh_frame": true
+}
+```
+</div>
+
+<p class="img_container">
+  <img class='half_screen_img' src="../img/equidistant.bmp"  height="400" />
+</p>
+
+</div>
+
+The configuration for a Equidistant Fisheye Camera requires some additional settings.   
+
+  - **vignette_bias:** Before the hard mechanical vignette at what point should the fade start normalized with respect to the diameter of the fisheye.     
+  - **vignette_radius_start:** in the transition to black at the start of the mechanical vignette start with this value of black before the linear fade.    
+  - **fisheye_pixel_diameter:** To obtain a bounded fisheye set the pixel diameter to the **smallest axis**, or to the measured real pixel diameter limit from the image. To obtain a diagonal bounded fisheye set the pixel diameter to the hypotenuse of the image. To obtain a fisheye that is greater than the image plane use the value from your model
+  - **face_size:** Increasing this number improves image quality and vice versa with diminishing returns with respect to the image resolution. `face_size` should be **smaller** than the largest resolution.   
+
+## Scaramuzza based Fisheye Camera 
+
+<div class ='multi_img_container'>
+<div class="wide_img">
+
+``` json
+{
+    "type": "Poly1FisheyeCamera",
+   	"listen_port": 8100,
+   	"description": "",  
+    "location": {
+        "x": 0.0,
+		"y": 0.0,
+		"z": 225.0
+	},
+    "stream_dimensions": {
+		"x": 512,
+		"y": 512
+	},
+    "rotation": {
+		"pitch": 0.0,
+		"roll": 0.0,
+		"yaw": 0.0
+	},
+    "viewport": {
+		"enable_viewport": false,
+		"fullscreen": false,
+		"monitor_name": "",
+		"monitor_number": 0,
+        "window_offset": {
+            "x": 0,
+            "y": 0
+        },
+		"window_size": {
+            "x": 0,
+			"y": 0
+		}
+	},
+	"a0": 349.1260070800781,
+	"a2": -0.0010999999940395355,
+	"a3": 1.1977999747614376e-06,
+	"a4": -1.5119000496000012e-09,
+	"channel_depth": 1,
+	"channels": "bgra",
+	"dynamic_range": 50.0,
+	"enable_streaming": true,
+	"face_size": 492,
+	"focal_length": 9.0,
+	"fov": 180.0,
+	"fstop": 1.399999976158142,
+	"max_distance": 50000.0,
+	"max_shutter": 0.00139999995008111,
+	"min_shutter": 0.0005000000237487257,
+	"sensor_size": 9.069999694824219,
+	"wait_for_fresh_frame": true,
+    "annotation": {
+        "cull_partial_frame": false,
+        "debug_draw": false,
+        "desired_tags": [],
+        "far_plane": 10000.0,
+        "include_annotation": false,
+        "include_obb": false,
+        "include_tags": false
+	}
+}
+```
+</div>
+
+<p class="img_container">
+  <img class='half_screen_img' src="../img/scaramuzza.bmp"  height="400" />
+</p>
+
+</div>
+
+The configuration for a Poly1 Fisheye Camera requires some additional settings.    
+
+- **"a0":**    
+- **"a2":**    
+- **"a3":**    
+- **"a4":**   
 
 ### Annotation
 

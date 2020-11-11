@@ -1,12 +1,12 @@
-# mono_fisheye_camera.vi
+# mono_fisheye_camera_poly1.vi
 
 <p class="img_container">
-<img class="lg_img" src="../mono_fisheye_camera.png"/>
+<img class="lg_img" src="../mono_fisheye_camera_poly1.png"/>
 </p>
 
 ### Description
 
-Configures and reads the data stream for a Fisheye Camera sensor and outputs a picture with the specified format in the stream dimensions.
+Configures and reads the data stream for a Fisheye Camera, this camera is based on Scaramuzza's model.
 
 For technical support contact us at **support@monodrive.io** 
 
@@ -24,7 +24,7 @@ the sensor configuration.
 height x 4
  
 
-- **Camera configuration:**  Settings to configure a RGB camera
+- **Camera configuration:**  Settings to configure the camera sensor
  
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 

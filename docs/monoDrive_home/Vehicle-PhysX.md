@@ -49,3 +49,20 @@ The Steering Curve enables the user to limit the vehicle’s maximum turn angle 
 <p class="img_container">
 <img class="wide_img" src="../img/steering_config.png" />
 </p>
+
+
+## Calibration with real world data
+
+Once the vehicle physics model has been configured, it can be compared and validated against
+real world data.
+
+For example, see the [speed curve C++ example](https://github.com/monoDriveIO/monodrive-client/tree/master/examples/cpp/lane_follower#lane-follower---speed-curve) which uses a PID controller to reproduce a target
+time series of speed values.
+
+Here is a comparison between the original (mock) data and the curve reproduced in simulation.
+
+<p class="img_container">
+<img class="wide_img" src="../img/speed_curve_reproduced.png" />
+</p>
+
+Based on results, the above vehicle physics settings can be iteratively updated to fine-tune and calibrate the model.

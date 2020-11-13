@@ -35,6 +35,7 @@ nav:
 - Simulator API :
   - Introduction: monoDrive_home/API.md
   - Simulator API Commands: monoDrive_home/Simulator-Commands.md
+  - Lighting API: monoDrive_home/Lighting API.md
   - Simulator : monoDrive_home/Simulator-Configuration.md
   - Sensors: [
     monoDrive_home/Common.md,

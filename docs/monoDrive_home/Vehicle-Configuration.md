@@ -2,7 +2,11 @@
 
 The monoDrive Simulator provides users with the ability to customize color and model for all vehicles in the simulation. The user may specify the initial conditions for any car in the scene, i.e. initial pose and initial velocity.
 
-## Change the vehicle's model
+## Add Vehicle Model
+
+[New Vehicle Model Reduction & Import/Export to UE4](https://docs.google.com/document/d/1CNKV6uH6LYNShUDCY0I2ScNnKuVzvCVtPHe4Pv_Hcs0/edit?usp=sharing) -- Instructions on reducing the Vehicle model, and how to import/export new vehicle models into Unreal Engine.
+
+## Change the Vehicle's Model
 <div class="img_container">
   <video width=650px height=440px muted controls autoplay loop>
     <source src="https://cdn.monodrive.io/readthedocs/vehicles.mp4" type="video/mp4">
@@ -18,20 +22,35 @@ When selecting a model programmatically (i.e. using any client) the user can ass
 `Config/ConfigRandomVehicleSettings.ini`   
 
 ```
-[VehicleBlueprints]
-VehicleBlueprint=Blueprint'/Game/Vehicles/sedan_monoDrive_01.sedan_monoDrive_01_C'
-VehicleBlueprint=Blueprint'/Game/Vehicles/sedan_monoDrive_02.sedan_monoDrive_02_C'
-VehicleBlueprint=Blueprint'/Game/Vehicles/SUV_monoDrive_01.SUV_monoDrive_01_C'
-VehicleBlueprint=Blueprint'/Game/Vehicles/truck_monoDrive_01.truck_monoDrive_01_C'
-VehicleBlueprint=Blueprint'/Game/Vehicles/subcompact_monoDrive_01.subcompact_monoDrive_01_C'
-VehicleBlueprint=Blueprint'/Game/Vehicles/minivan_monoDrive_01.minivan_monoDrive_01_C'
-VehicleBlueprint=Blueprint'/Game/Vehicles/coupe_monoDrive_01.coupe_monoDrive_01_C'
-VehicleBlueprint=Blueprint'/Game/Vehicles/crossover_monoDrive_01.crossover_monoDrive_01_C'
-VehicleBlueprint=Blueprint'/Game/Vehicles/compact_monoDrive_01.compact_monoDrive_01_C'
+[PhysXVehicles]
+PhysXVehicle=Blueprint'/Game/Vehicles/sedan_monoDrive_01.sedan_monoDrive_01_C'
+PhysXVehicle=Blueprint'/Game/Vehicles/sedan_monoDrive_02.sedan_monoDrive_02_C'
+PhysXVehicle=Blueprint'/Game/Vehicles/SUV_monoDrive_01.SUV_monoDrive_01_C'
+PhysXVehicle=Blueprint'/Game/Vehicles/truck_monoDrive_01.truck_monoDrive_01_C'
+PhysXVehicle=Blueprint'/Game/Vehicles/subcompact_monoDrive_01.subcompact_monoDrive_01_C'
+PhysXVehicle=Blueprint'/Game/Vehicles/minivan_monoDrive_01.minivan_monoDrive_01_C'
+PhysXVehicle=Blueprint'/Game/Vehicles/coupe_monoDrive_01.coupe_monoDrive_01_C'
+PhysXVehicle=Blueprint'/Game/Vehicles/crossover_monoDrive_01.crossover_monoDrive_01_C'
+PhysXVehicle=Blueprint'/Game/Vehicles/compact_monoDrive_01.compact_monoDrive_01_C'
+[Vehicles]
+[ReplayVehicles]
+ReplayVehicle=Blueprint'/Game/Vehicles/sedan_simple_01.sedan_simple_01_C'
+ReplayVehicle=Blueprint'/Game/Vehicles/sedan_simple_02.sedan_simple_02_C'
+ReplayVehicle=Blueprint'/Game/Vehicles/SUV_simple_01.SUV_simple_01_C'
+ReplayVehicle=Blueprint'/Game/Vehicles/truck_simple_01.truck_simple_01_C'
+ReplayVehicle=Blueprint'/Game/Vehicles/subcompact_simple_01.subcompact_simple_01_C'
+ReplayVehicle=Blueprint'/Game/Vehicles/minivan_simple_01.minivan_simple_01_C'
+ReplayVehicle=Blueprint'/Game/Vehicles/coupe_simple_01.coupe_simple_01_C'
+ReplayVehicle=Blueprint'/Game/Vehicles/crossover_simple_01.crossover_simple_01_C'
+ReplayVehicle=Blueprint'/Game/Vehicles/compact_simple_01.compact_simple_01_C'
 ```
-**Note:** To add a customized vehicle model, add the path to the blueprint in this file.
+**Note:** To add a new vehicle model, add the path to the blueprint in this file. 
+If adding a vehicle derived from AVehicle class add to the [Vehicles] list and if derived from 
+APhysXVehicle add to the [PhysXVehicles] list. If the vehicle is capable of replay add to the 
+[ReplayVehicles] list. If you do not wish for a specific vehicle to be chosen for random
+ spawning remove it from the lists.
 
-## Change the vehicle's color
+## Change the Vehicle's Color
 <div class="img_container">
     <video width=650px height=340px muted controls autoplay loop>
         <source src="https://cdn.monodrive.io/readthedocs/vehicle_color.mp4" type="video/mp4">

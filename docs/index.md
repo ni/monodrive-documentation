@@ -41,12 +41,13 @@ The monoDrive simulator is configured from a client. Everything about the simula
 [LabVIEW Client](LV_client/quick_start/LabVIEW_client_quick_start.md) <br />
 [Python Client](python_client/quick_start.md) <br />
 [C++ Client](cpp_client/cpp_quick_start.md)
-<!-- 
+
+
 ## Instructions & How-tos
 
-[monoDrive How-to Documents]() -->
-
+<a href="https://docs.google.com/document/d/1CNKV6uH6LYNShUDCY0I2ScNnKuVzvCVtPHe4Pv_Hcs0/edit?usp=sharing" target="_blank">New Vehicle Model Reduction & Import/Export to UE4</a>
 
 ## Tutorials
 
 [LabVIEW](LV_client/tutorials/Setup.md) <br />
+[Unreal Engine Tutorials](unreal_tutorials/MayaWheels.md) <br />

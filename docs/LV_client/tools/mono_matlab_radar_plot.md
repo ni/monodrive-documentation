@@ -6,16 +6,22 @@
 
 ### Description
 
-Process Radar Data Cube and run a Matlab script to plot Radar data.
+Process radar data cube and run a Matlab script to plot Radar cube data.
 
 For technical support contact us at <b>support@monodrive.io</b> 
 
 ### Inputs
 
-- **Radar data cube:**  Data cube from Radar ouput 
+- **Radar Data Cube:**  Only send if, **send_cube** is set to true on the **Radar
+configuration**. Raw data for a cube of dimensions M (number
+of array antenna inputs) by L (number of range bins in fast
+time) by N (number of pulse in CPI in slow time).
+
+- **Radar Sample:**  Radar sample contains information for the targets detected
+by radar and ground truth information as well.
  
 
-- **Radar data:**  Radar sample
+- **Radar configuration:**  Radar configuration (JSON)
  
 
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 

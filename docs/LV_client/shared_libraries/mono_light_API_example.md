@@ -6,7 +6,7 @@
 
 ### Description
 
-Enables users to control the vehicle's steering, throttle, brakes, starting position, and weather simulation as well . This example enables the user to configure and update the multiple settings for lights in the ego vehicle.
+Enables users to control the vehicle's steering, throttle, brakes, starting position, and weather simulation. This example enables the user to configure and update multiple settings for lights in the ego vehicle.
 
 *This is a free driving scenario with one car only*
 
@@ -20,7 +20,7 @@ For technical support contact us at <b>support@monodrive.io</b>
 - **Steering:**  While driving, move the vehicle right and left (-1 to 1)
  
 
-- **Brake:**  When pressed the vehicle stops (False by default)
+- **Brake:**  When pressed, the vehicle stops (False by default)
  
 
 - **Direction:**  Move the car forward or backward (move forward by default )

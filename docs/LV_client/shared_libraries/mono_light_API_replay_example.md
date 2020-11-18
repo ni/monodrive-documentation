@@ -6,7 +6,7 @@
 
 ### Description
 
-This example shows how to run the monoDrive client to configure the monoDrive simulator on Replay mode. This example also enables the user to configure and update the multiple settings for lights in the ego vehicle.
+This example shows how to run the monoDrive client to configure the monoDrive simulator on Replay mode. This example also enables the user to configure and update multiple settings for lights in the ego vehicle.
 
 
 For technical support contact us at <b>support@monodrive.io</b> 

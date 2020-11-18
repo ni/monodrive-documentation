@@ -12,6 +12,11 @@ main {
     justify-content: center;
 }
 
+.ue_videos {
+    width: 100%;
+    display: flex;
+}
+
 .multi_img_container {
     display: flex;
     justify-content: space-around;

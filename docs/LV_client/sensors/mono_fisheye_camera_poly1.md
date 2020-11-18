@@ -6,7 +6,7 @@
 
 ### Description
 
-Configures and reads the data stream for a Fisheye Camera, this camera is a scaramuzza model based. 
+Configures and reads the data stream for a Fisheye Camera, this camera is based on Scaramuzza's model.
 
 For technical support contact us at **support@monodrive.io** 
 
@@ -28,8 +28,5 @@ height x 4
  
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
-
-<p>&nbsp;</p>
-er VIs. 
 
 <p>&nbsp;</p>

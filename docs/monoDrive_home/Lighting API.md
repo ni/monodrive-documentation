@@ -11,48 +11,49 @@ Lights are composed of one or more `ULightObjects` grouped together into a `ULig
 The `VehicleLightsConfigCommand_ID` command configures a set of LED arrays and sets the initial state of each LED in the array:
 
 ```json
-  "actor_id": "",	// the id of the actor to attach the lights to
+{
+  "actor_id"	// the id of the actor to attach the lights to
   "lights": [
     {
-      "array_id": , // id of this light array, used for control
-      "position": , // x, y, z relative to actor center
-      "rotation":,  // yaw, pitch, roll relative to actor center
+      "array_id" // id of this light array, used for control
+      "position" // x, y, z relative to actor center
+      "rotation"// yaw, pitch, roll relative to actor center
       "lights": [
         // array of led configuration
         {
-    "led": 0, 	// led index in array
-    "position": 	// x,y,z relative to array
-    "rotation":	// yaw, pitch, roll relative to array
-    // backlight (UPointLightComponent) settings
-    "backlight_intensity"
-    "backlight_color"
-    "backlight_attenuation_radius"
-    "backlight_source_radius"
-    "backlight_soft_source_radius"
-    "backlight_source_length"
-    "backlight_temperature"
-    "backlight_indirect_lighting_intensity"
-    "backlight_volumetric_scattering_intensity"
+          "led": 0, 	// led index in array
+          "position": ,	// x,y,z relative to array
+          "rotation":	,// yaw, pitch, roll relative to array
+          // backlight (UPointLightComponent) settings
+          "backlight_intensity"
+          "backlight_color"
+          "backlight_attenuation_radius"
+          "backlight_source_radius"
+          "backlight_soft_source_radius"
+          "backlight_source_length"
+          "backlight_temperature"
+          "backlight_indirect_lighting_intensity"
+          "backlight_volumetric_scattering_intensity"
 
-    // spotlight (USpotLightComponent) settings
-    "inner_cone_angle"
-    "outer_cone_angle"
-    "intensity"
-    "color"
-    "attenuation_radius"
-    "temperature"
-    "source_radius"
-    "soft_source_radius"
-    "source_length"
-    "indirect_lighting_intensity"
-    "volumetric_scattering_intensity"
-    "ies_profile"
-          },
-   ...
-        ]
-},
-...
-    ]
+          // spotlight (USpotLightComponent) settings
+          "inner_cone_angle"
+          "outer_cone_angle"
+          "intensity"
+          "color"
+          "attenuation_radius"
+          "temperature"
+          "source_radius"
+          "soft_source_radius"
+          "source_length"
+          "indirect_lighting_intensity"
+          "volumetric_scattering_intensity"
+          "ies_profile"
+        },
+        ...
+      ]
+    },
+    ...
+  ]
 }
 ```
 

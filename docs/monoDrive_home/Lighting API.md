@@ -1,5 +1,13 @@
 # Lighting API 
 
+</div>
+
+<p class="img_container">
+  <img class="half_screen_img" src="../img/lights.png" />
+</p>
+
+</div>
+
 The monoDrive lights API allows users to create, configure and control lights in a simulation. A light configuration can be attached to an actor in the simulation and then controlled during the simulation by sending update commands. 
 
 The API provides two commands: the lights configuration command `VehicleLightsConfigCommand_ID` which is used to set up and configure the lights at the beginning of the simulation, and the lights update command `VehicleLightsUpdateCommand_ID` which is used to update the state of the lights (intensity, location, orientation, etc.) during the simulation.
@@ -161,15 +169,4 @@ This table shows good initial position for setting ligths for each monoDrive veh
 | SubCompact | X=95.000000, Y=-50.000000, Z=76.000000 | X=95.000000, Y=50.000000, Z=76.000000 |
 | SUV | X=190.000000, Y=-62.905998, Z=80.236000 | X=190.000000, Y=62.905998, Z=80.236000 |
 | Truck | X=252.341736, Y=-81.622002, Z=109.501999 | X=252.341736, Y=81.622002, Z=109.501999 |
-
-
-## Example
-
-</div>
-
-<p class="img_container">
-  <img class="half_screen_img" src="../img/lights.png" />
-</p>
-
-</div>
 

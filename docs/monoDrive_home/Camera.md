@@ -396,14 +396,22 @@ for a dynamic actor.
     - **name:** The name of the actor's section this bounding box surrounds
 - **name:** The name of the actor for these bounding boxes
 - **oriented_bounding_box:** An array containing JSON for each 3D bounding box for the actor's sections
-    - **center:** The x, y, and z center of the bounding box in centimeters from the ego vehicle
+    - **center:** The x, y, and z center of the bounding box in centimeters with respect to the camera.
     - **extents:** The x, y, and z radius in centimeters from the center of the bounding box
     - **name:** The name of the actor's section this bounding box surrounds
     - **orientation:** The rotation of the bounding box about the center as a quaternion
     - **scale:** The scale coefficients for this bounding box
-- **tags:** An array of tags assigned to this actor
+- **tags:** An array of tags assigned to this actor    
 
-### Camera Configuration Examples
+
+## Camera Coordinate Reference System
+<p class="img_container">
+<img class="lg_img" src="../img/camera_reference.png"/>
+</p>
+
+
+
+### Camera Configuration Examples   
 
 <p class="img_container">
   <img class='wide_img'src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/cull_partial_frame.png" />

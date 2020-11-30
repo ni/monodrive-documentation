@@ -1,5 +1,5 @@
 asn1crypto==0.24.0
-awscli==1.16.135
+awscli
 backcall==0.1.0
 certifi==2019.6.16
 cffi==1.12.3
@@ -42,7 +42,7 @@ pyrsistent==0.15.2
 PySocks==1.7.0
 python-dateutil==2.8.0
 pytz==2019.2
-PyYAML==5.1.2
+PyYAML
 pyzmq==19.0.0
 requests==2.22.0
 rsa==3.4.2

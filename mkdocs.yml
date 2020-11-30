@@ -35,6 +35,7 @@ nav:
 - Simulator API :
   - Introduction: monoDrive_home/API.md
   - Simulator API Commands: monoDrive_home/Simulator-Commands.md
+  - Lighting API: monoDrive_home/Lighting API.md
   - Simulator : monoDrive_home/Simulator-Configuration.md
   - Sensors: [
     monoDrive_home/Common.md,
@@ -111,6 +112,7 @@ nav:
           - mono_fisheye_camera_equidistant.vi: LV_client/sensors/mono_fisheye_equidistant_camera.md
           - mono_gps.vi: LV_client/sensors/mono_gps.md
           - mono_imu.vi: LV_client/sensors/mono_imu.md
+          - mono_led_array.vi: LV_client/sensors/mono_led_array.md
           - mono_lidar.vi: LV_client/sensors/mono_lidar.md
           - mono_occupancy_grid.vi: LV_client/sensors/mono_occupancy_grid.md
           - mono_radar.vi: LV_client/sensors/mono_radar.md
@@ -128,6 +130,7 @@ nav:
           - monoDrive.vi: LV_client/tools/monoDrive.md
           - mono_collision_plots.vi: LV_client/tools/mono_collision_plots.md
           - mono_create_replay.vi: LV_client/tools/mono_create_replay.md
+          - mono_generate_LED_configuration.vi: LV_client/tools/mono_generate_LED_configuration.md
           - mono_logger.vi: LV_client/tools/mono_logger.md
           - mono_matlab_radar_plot.vi: LV_client/tools/mono_matlab_radar_plot.md
           - mono_parse_binaries.vi: LV_client/tools/mono_parse_binaries.md
@@ -141,6 +144,7 @@ nav:
           - mono_start_replay.vi: LV_client/tools/mono_start_replay.md
           - mono_start_scenario.vi: LV_client/tools/mono_start_scenario.md
           - mono_test_FPS_by_sensor.vi: LV_client/tools/mono_test_FPS_by_sensor.md
+
 
       - Simulator:
           - mono_check_simulator_version.vi: LV_client/simulator/mono_check_simulator_version.md
@@ -210,7 +214,11 @@ nav:
           - mono_init.vi: LV_client/shared_libraries/mono__initc.md
           - mono_kf_update.vi: LV_client/shared_libraries/mono__kf__update.md
           - mono_kf_init.vi: LV_client/shared_libraries/mono_kf_init.md
+          - mono_lane_follower_lights.vi: LV_client/shared_libraries/mono_lane_follower_lights.md
+          - mono_light_API_example.vi: LV_client/shared_libraries/mono_light_API_example.md
+          - mono_light_API_replay_example.vi: LV_client/shared_libraries/mono_light_API_replay_example.md
           - mono_radar_plots_with_KF.vi: LV_client/shared_libraries/mono_radar_plots_with_KF.md
+
 
   - Python Client:
     - Quick Start: python_client/quick_start.md

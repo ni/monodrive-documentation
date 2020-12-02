@@ -1,5 +1,5 @@
 # mono_get_radar_config_params.vi
-Parses the configuration an obtain the following parameters:  elements, the number of sweeps  and  number of samples per sweep.
+Parses the configuration and obtains the following parameters:  elements, the number of sweeps  and  number of samples per sweep.
 
 <p class="img_container">
 <img class="lg_img" src="../mono_get_radar_config_params.png"/>

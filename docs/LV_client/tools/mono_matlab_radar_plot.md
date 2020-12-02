@@ -17,7 +17,7 @@ configuration**. Raw data for a cube of dimensions M (number
 of array antenna inputs) by L (number of range bins in fast
 time) by N (number of pulse in CPI in slow time).
 
-**NOTE:** If the Radar data cube is empty (**send_radar_cube** is set to false) the plot will be empty or won't show. 
+**NOTE:** If the Radar Data Cube is empty (**send_radar_cube** is set to false) the plot will be empty or won't show. 
 
 - **Radar Sample:**  Radar sample contains information for the targets detected
 by radar and ground truth information as well.

@@ -66,8 +66,7 @@ nav:
     LV_client/tutorials/Loading_Maps.md,
     LV_client/tutorials/Weather.md,
     LV_client/tutorials/Remote_Connection.md,
-    LV_client/tutorials/wheel_integration.md,LV_client/tutorials/Logger.md, 
-    LV_client/tutorials/Multi viewport.md
+    LV_client/tutorials/wheel_integration.md,LV_client/tutorials/Logger.md
     ]
   - Unreal Engine Tutorials: [
     unreal_tutorials/MayaWheels.md,

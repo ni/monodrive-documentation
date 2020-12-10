@@ -19,8 +19,8 @@
         +-- monoDriveRadarSensor
         +-- monoDriveLidarSensor
         +-- ... (other monoDrive plugins)
-</pre>         
-1. Open VehicleAI.uproject. Note that the first time you open the project, UE4 will prompt you about missing modules that need to be rebuilt (VehicleAI and VehicleAIEditor). Select "Yes" to build the modules, then the project will open.
+    </pre>         
+5. Open VehicleAI.uproject. Note that the first time you open the project, UE4 will prompt you about missing modules that need to be rebuilt (VehicleAI and VehicleAIEditor). Select "Yes" to build the modules, then the project will open.
 
 
 ## Scenario Editor: Generating Project Files (Optional)

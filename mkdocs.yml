@@ -49,7 +49,7 @@ nav:
     monoDrive_home/RPM.md,
     monoDrive_home/State-sensor.md,
     monoDrive_home/Ultrasonic.md,
-    monoDrive_home/Viewport.md]
+    monoDrive_home/Viewport.md, monoDrive_home/Waypoint-Sensor.md]
   - Vehicle : [
     monoDrive_home/Vehicle-Configuration.md,
     monoDrive_home/Vehicle-PhysX.md]
@@ -66,8 +66,7 @@ nav:
     LV_client/tutorials/Loading_Maps.md,
     LV_client/tutorials/Weather.md,
     LV_client/tutorials/Remote_Connection.md,
-    LV_client/tutorials/wheel_integration.md,LV_client/tutorials/Logger.md, 
-    LV_client/tutorials/Multi viewport.md
+    LV_client/tutorials/wheel_integration.md,LV_client/tutorials/Logger.md
     ]
   - Unreal Engine Tutorials: [
     unreal_tutorials/MayaWheels.md,
@@ -122,6 +121,7 @@ nav:
           - mono_state_sensor.vi: LV_client/sensors/mono_state_sensor.md
           - mono_ultrasonic.vi: LV_client/sensors/mono_ultrasonic.md
           - mono_viewport.vi: LV_client/sensors/mono_viewport.md
+          - mono_waypoint_sensor.vi: LV_client/sensors/mono_waypoint_sensor.md
       - Weather:
           - mono_get_weather.vi: LV_client/weather/mono_get_weather.md
           - mono_weather_update.vi: LV_client/weather/mono_weather_update.md

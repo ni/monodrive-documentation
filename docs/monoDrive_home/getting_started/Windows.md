@@ -5,26 +5,25 @@
 ## Simulator
 
 1. Extract the archive to a common location like `C:/monodrive`.
-1. If downloading for the first time, you will receive an email with a license.txt file attachment. Copy the attached license.txt file to the extracted location such as `C:/monodrive/VehicleAI/license.txt`.
+1. If downloading for the first time, you will need to download the license.txt file through your account on [monoDrive.io](https://www.monodrive.io/register), unless one has been provided directly from monoDrive. Copy the attached license.txt file to the extracted location `C:/monodrive/VehicleAI/license.txt`.
 1. Run the simulator by launching `C:/monodrive/VehicleAI/VehicleAI.exe`.
 
 ## Scenario Editor
 
 1. Extract the archive to a common location like `C:/monodrive`.
-1. If downloading for the first time, you will receive an email with a license.txt file attachment. Copy the attached license.txt file to the extracted location `C:/monodrive/VehicleAI_Editor/license.txt`.
+1. If downloading for the first time, you will need to download the license.txt file through your account on [monoDrive.io](https://www.monodrive.io/register), unless one has been provided directly from monoDrive. Copy the attached license.txt file to the extracted location `C:/monodrive/VehicleAI_Editor/license.txt`.
 1. Install [Unreal Engine 4.24.3](https://www.unrealengine.com/en-US/).
 1. Extract the Plugins.zip archive into the 4.24.3 Engine's Plugins directory. e.g. if UE4.24.3 is installed at `c:\Program Files\Unreal\UE_4.24.3`, then extract the archive into `c:\Program Files\Unreal\UE_4.24.3\Engine\Plugins`. The resulting directory structure should look as follows:
-<pre>
-    c:\Program Files\Unreal\UE_4.24.3\Engine\Plugins\monoDrive
-        +-- monoDriveRadarSensor
-        +-- monoDriveLidarSensor
-        +-- ... (other monoDrive plugins)
-</pre>         
-1. Right click on VehicleAI.uproject and select "Generate Project Files".
-1. Open VehicleAI.uproject. Note that the first time you open the project, UE4 will prompt you about missing modules that need to be rebuilt (VehicleAI and VehicleAIEditor). Select "Yes" to build the modules, then the project will open.
+    <pre>
+        c:\Program Files\Unreal\UE_4.24.3\Engine\Plugins\monoDrive
+            +-- monoDriveRadarSensor
+            +-- monoDriveLidarSensor
+            +-- ... (other monoDrive plugins)
+    </pre>         
+5. Open VehicleAI.uproject. Note that the first time you open the project, UE4 will prompt you about missing modules that need to be rebuilt (VehicleAI and VehicleAIEditor). Select "Yes" to build the modules, then the project will open.
 
 
-## Scenario Editor: Generating Project Files
+## Scenario Editor: Generating Project Files (Optional)
 
 Generation of project files is not a requirement to run the Simulator, but it enables users to make changes to the open source from monoDrive as well as run the debugger. To run the Simulator, go to your VehicleAI_Editor directory and double-click on VehicleAI.uproject.
 

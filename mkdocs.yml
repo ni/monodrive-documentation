@@ -175,6 +175,7 @@ nav:
           - mono_get_map.vi: LV_client/utilities/mono_get_map.md
           - mono_get_number_frames.vi: LV_client/utilities/mono_get_number_frames.md
           - mono_get_number_points_lidar.vi: LV_client/utilities/mono_get_number_points_lidar.md
+          - mono_get_radar_config_params.vi: LV_client/utilities/mono_get_radar_config_params.md
           - mono_get_spawn_position.vi: LV_client/utilities/mono_get_spawn_position.md
           - mono_get_start_points.vi: LV_client/utilities/mono_get_start_points.md
           - mono_get_stream_dimensions.vi: LV_client/utilities/mono_get_stream_dimensions.md
@@ -207,6 +208,7 @@ nav:
           - mono_sensor_parser.vi: LV_client/utilities/mono_sensor_parser.md
           - mono_set_map.vi: LV_client/utilities/mono_set_map.md
           - mono_velodyne_parse.vi: LV_client/utilities/mono_velodyne_parse.md
+
 
       - Shared Libraries:
           - mono_control.vi: LV_client/shared_libraries/mono__control.md

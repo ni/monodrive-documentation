@@ -85,14 +85,14 @@ To save and load lane networks, use the monoDrive `LaneExport` tool:
 * Right-click the `LaneExport` tool and choose "Run Editor Utility Widget":
 
 <div class="img_container">
-  <img class='wide_img' src="../imgs/lane_export_run_option.png"/>
+  <img class='wide_img' src="../imgs/lane_export_tool2.png"/>
 </div>
 
 * The `LaneExport` tool dialog should now appear (likely docked in the top-right 
 of your Editor window).
 
 <div class="img_container">
-  <img class='lg_img' src="../imgs/lane_export_tool.png"/>
+  <img class='wide_img' src="../imgs/lane_export_tool1.png"/>
 </div>
 
 <p>&nbsp;</p>

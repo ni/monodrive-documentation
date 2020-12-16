@@ -80,7 +80,7 @@ contains several settings relative to vehicle behavior for speed and control:
  
 	- **Changing Lanes** Whether the vehicle is in the middle of a lane change
  
-	- **Turn Pref** 
+	- **Turn Pref** At the next turn the vehicle will prefer to take this turn. This will reset to NONE after the following turn
 
 	- **Simple Speed Look Ahead** The number of centimeters to look ahead when performing simple speed control 
 	

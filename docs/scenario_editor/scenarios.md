@@ -44,34 +44,70 @@ begin to travel down the lane closest to its original placement.
 
 ## Detailed Vehicle Behavior Settings
 
-The "Vehicle Settings" section of a vehicle's details contains several settings
-relative to vehicle speed and control:
+The "Vehicle Settings" section of a vehicle's details contains controller settings
+and behavior settings. The first section, "Vehicle Controller Settings", 
+contains several settings relative to vehicle behavior for speed and control:
 
-* **Desired Speed:** This is the desired speed (in mph) the vehicle will attempt to achieve if it is not obeying the lane speed limits.
-* **Initial Speed:** This is the initial speed (in mph) the vehicle will start at.
-* **Delayed Started:** If greater than zero, the vehicle will wait this many seconds before starting to move.
-* **Show Vehicle Charts:** If ticked, then detailed plots of the vehicle's dynamics will be displayed.
-* **Debug Drawing:** If ticked, then detailed graphics of vehicle desired behavior will be displayed in the scene.
-* **Search Forward Distance:** The distance (in cm) the vehicle will look ahead for other vehicles.
-* **Steer Forward Distance:** The distance (in cm) the vehicle will look ahead for corners.
-* **Rolling stop speed:** The speed (in mph), the vehicle will achieve when stopping for traffic laws.
-* **Distance to Stop Sign:** The distance (in cm) the vehicle will stop at when approaching a traffic control sign.
-* **Follower PID:** PID parameters of the vehicle when following another vehicle.
-* **Speed Maintain PID:** PID parameters of the vehicle when maintaining a desired speed.
+-   **Desired Speed:**  The desired speed of this vehicle in miles per hour. When Obeying Speed Limits of roads this is a delta above or below the speed limit.
+	
+	-   **Initial Speed:**  The initial speed of this vehicle in miles per hour. When Obeying Speed Limits of roads this is a delta above or below the speed limit
+	
+	-   **Delayed Started:**  The number of seconds to wait before moving this vehicle.
+	- 
+	-   **Show Vehicle Charts:**  If set, then vehicle dynamics charts will be shown
+	
+	-   **Debug Drawing:**  If set, then debug vehicle information will be drawn in the editor
+	
+	-   **Search Forward Distance:**  The number of centimeters to look ahead when computing AI actions. If speeds are much higher than 70mph consider increasing.
+	
+	- **Search Backward Distance:** The number of centimeters to look backward when computing AI actions
+	
+	- **Lane Offset**  The number of centimeters to drive from the lane center, positive is right, negative is left
+	
+	-   **Steer Forward Distance:**  The range of centimeters to look ahead when performing steering AI actions, interpolated based on `steerForwardSpeedRange`
 
-The "Vehicle Behavior" section of a vehicle's details contains settings for 
+	- **Steer Forward Distance During Lane Change:** The range of centimeters to look ahead when performing steering AI actions during a lane change, interpolated based on `steerForwardSpeedRange`
+
+	- **Steer Forward Speed:** The range of speed (mph) used to LERP `steerForwardDistance`
+
+	-   **Rolling stop speed:** The speed to travel before continuing after a legal stop
+	
+	-   **Distance to Stop Sign:**  The number of centimeters to stop before a controlled intersection
+
+	-  **Spawn Offset** The offset to apply to the vehicle position prior to spawning
+
+	- ** Acceleration Constraints** The minimum and maximum acceleration of the vehicle used by AutoPilot. cm/s^2
+ 
+	- **Changing Lanes** Whether the vehicle is in the middle of a lane change
+ 
+	- **Turn Pref** 
+
+	- **Simple Speed Look Ahead** The number of centimeters to look ahead when performing simple speed control 
+	
+	- **Point PID** PID Controller settings for point control
+
+	- **Speed PID** PID Controller settings for speed control
+
+The "Vehicle Behavior Settings" section of a vehicle's settings contains options for 
 obeying (or not) traffic laws:
 
-* **Ignores Lane Change Boxes:** If set, then all lane change trigger boxes will be ignored by this vehicle.
-* **Ignore Other Vehicles:** If set, then the vehicle will not change behavior relative to collision with other vehicles.
-* **Overtake Slower Vehicles:** If set, then this vehicle will attempt to go around another vehicle if it is traveling slower.
-* **Obey Road Speed Limits:*: If set, then this vehicle will use the current lane's speed limit rather than the desired speed of the vehicle.
-* **Limit Speed in Curves:** If set, then this vehicle will attempt to achieve a speed such that it can successfully navigate a turn.
-* **Ignore Traffic Signals:** If set, then traffic lights will be ignored.
-* **Randomize Turn Preference:** If set, then the vehicle will randomly select a direction of travel at intersections, otherwise it will travel straight if possible.
-* **Start Safe:** If set, then the vehicle will attempt to spawn in a safe location (to avoid collisions)
-* **Destroy on Collision:** If set, then the vehicle will be removed from the simulation if it collides with an object.
-* **Snap to Lane:** If set, then the vehicle will travel down the closest lane when spawned.
+-   **Ignores Lane Change Boxes:**  If set, all lane change trigger boxes will be ignored
+
+-   **Ignore Other Vehicles:**  If set, all other vehicles will be ignored when computing AI actions
+
+-   **Ignore Traffic Signals:**  If set, this vehicle will ignore all traffic control devices
+
+-   **Obey Road Speed Limits:** If set, this vehicle will obey the speed limits of the road instead of its desired speed
+
+-   **Limit Speed in Curves:**  If set, this vehicle will attempt to slow down in order to properly corner in turns
+
+- **Initial Speed is Delta** If set, when vehicle is obeying speed limits, the initial velocity will be used as a delta above or below the speed limit. If vehicle is not obeying road speed limits this setting is ignored
+
+-   **Destroy on Collision:**  If set, this vehicle will despawn after colliding with another physics body
+
+-   **Snap to Lane:**  If set, this vehicle will search for the nearest lane and snap to it at spawn
+
+- **Trigger Sleep Time** A vehicle might hit a dynamic trigger box more than once as they are in motion, to avoid double triggering, behavior can only be modified by the same trigger component again after this many seconds
 
 ## Tagging System
 

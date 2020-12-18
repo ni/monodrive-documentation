@@ -12,10 +12,10 @@
 
 1. Extract the archive to a common location like `~/monodrive`.
 1. If downloading for the first time, you will receive an email with a license.txt file attachment. Copy the attached license.txt file to the extracted location `~/monodrive/VehicleAI_Editor/license.txt`.
-1. Clone [Unreal Engine: branch 4.24.3](https://www.unrealengine.com/en-US/).
-1. Extract the Plugins.zip archive into the 4.24.3 Engine's Plugins directory. e.g. if the UE4.24.3 branch is cloned at `/usr/local/UE_4.24.3`, then extract the archive into `/usr/local/UE_4.24.3/Engine/Plugins`. The resulting directory structure should look as follows:
+1. Clone [Unreal Engine: branch 4.25.6](https://www.unrealengine.com/en-US/).
+1. Extract the Plugins.zip archive into the 4.25.6 Engine's Plugins directory. e.g. if the UE4.25.6 branch is cloned at `/usr/local/UE_4.25.6`, then extract the archive into `/usr/local/UE_4.25.6/Engine/Plugins`. The resulting directory structure should look as follows:
 <pre>
-  /usr/local/UE_4.24.3/Engine/Plugins/monoDrive
+  /usr/local/UE_4.25.6/Engine/Plugins/monoDrive
     +-- monoDriveRadarSensor
     +-- monoDriveLidarSensor
     +-- ... (other monoDrive plugins)

@@ -12,10 +12,10 @@
 
 1. Extract the archive to a common location like `C:/monodrive`.
 1. If downloading for the first time, you will receive an email with a license.txt file attachment. Copy the attached license.txt file to the extracted location `C:/monodrive/VehicleAI_Editor/license.txt`.
-1. Install [Unreal Engine 4.24.3](https://www.unrealengine.com/en-US/).
-1. Extract the Plugins.zip archive into the 4.24.3 Engine's Plugins directory. e.g. if UE4.24.3 is installed at `c:\Program Files\Unreal\UE_4.24.3`, then extract the archive into `c:\Program Files\Unreal\UE_4.24.3\Engine\Plugins`. The resulting directory structure should look as follows:
+1. Install [Unreal Engine 4.25.6](https://www.unrealengine.com/en-US/).
+1. Extract the Plugins.zip archive into the 4.25.6 Engine's Plugins directory. e.g. if UE4.25.6 is installed at `c:\Program Files\Unreal\UE_4.25.6`, then extract the archive into `c:\Program Files\Unreal\UE_4.25.6\Engine\Plugins`. The resulting directory structure should look as follows:
 <pre>
-    c:\Program Files\Unreal\UE_4.24.3\Engine\Plugins\monoDrive
+    c:\Program Files\Unreal\UE_4.25.6\Engine\Plugins\monoDrive
         +-- monoDriveRadarSensor
         +-- monoDriveLidarSensor
         +-- ... (other monoDrive plugins)

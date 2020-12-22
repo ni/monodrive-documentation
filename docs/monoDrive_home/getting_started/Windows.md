@@ -2,6 +2,8 @@
 
 [Download monoDrive](https://www.monodrive.io/register)
 
+[Simulator & Scenario Editor Prerequisites](../../../Getting_Started)
+
 ## Simulator
 
 1. Extract the archive to a common location like `C:/monodrive`.

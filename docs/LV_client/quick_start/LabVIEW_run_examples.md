@@ -229,7 +229,7 @@ Follow the `README.md` located in the `experimental` folder prior to running the
 
 ### Lane Follower Example 
 
-The Lane Follower Example, *mono_lane_follower_cpp_dll.vi*, demonstrates a vehicle's ability to follow a lane using a compiled C++ DLL. This algorithm uses GeoJSON map and state sensor information to follow a second lane on the map.
+The Lane Follower Example, *mono_lane_follower_cpp_dll.vi*, demonstrates a vehicle's ability to follow a lane using a compiled C++ DLL. This algorithm uses the waypoint sensor and state sensor information to follow a lane on the map.
 
 <div class="img_container">
     <img class='wide_img' src="../imgs/lane_follower.png"/>

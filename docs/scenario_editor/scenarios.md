@@ -131,35 +131,6 @@ set speed and initial speed will be a delta above or below the road's speed limi
 - **Trigger Sleep Time:** A vehicle might hit a dynamic trigger box more than once as they are in motion, to avoid double triggering, behavior can only be modified by the same trigger component again after this many seconds.
 
 
-## Vehicle Behavior Trigger Boxes
-
-1. In the vehicle's "Details" window, click the "Add Component" button at the top and search for "Vehicle Behavior Trigger."
-  <div class="img_container">
-    <img class='lg_img' src="../imgs/trigger_details1.png"/>
-  </div>
-
-1. Select the "Vehicle Behavior Trigger" component from the list to attach it.
-
-1. Click on the `VehicleBehaviorTrigger` component in the vehicle's hierarchy in side of the "Details" window to bring up the settings for adding trigger boxes.
-  <div class="img_container">
-    <img class='lg_img' src="../imgs/trigger_details2.png"/>
-  </div>
-
-1. To add a trigger box, select the plus icon next inside the "Trigger Boxes" Group.
-  <div class="img_container">
-    <img class='lg_img' src="../imgs/trigger_details3.png"/>
-  </div>
-
-1. Choose the desired settings for the vehicle or other vehicles behavior
-in relation to this vehicle.
-  <div class="img_container">
-    <img class='lg_img' src="../imgs/trigger_box4.png"/>
-  </div>
-
-1. Use "Debug Draw" to see the trigger box's physical location in the scene. 
-
-<!-- - **Distance** -->
-
 ## Tagging System
 
 The Simulator's tagging system is used to specific attributes for desired actors in a recording. The tags for each actor can be seen by clicking on the actor and scrolling down to the actor's "Actor" group and looking under the "Tags" array. 

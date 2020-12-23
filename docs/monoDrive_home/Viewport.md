@@ -3,7 +3,7 @@
 The Viewport sensor allows a client to configure the camera that is displayed in 
 the monoDrive Simulator or Scenario Editor. 
 
-To add an additional Viewport, see [Multi Viewport](../Multi-viewport.md)
+To add an additional Viewport, see [Multi Viewport](../Multi-viewport)
 
 ## Configuration
 

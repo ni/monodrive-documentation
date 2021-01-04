@@ -20,7 +20,7 @@ Ubuntu 18.04.
 - Windows 10
 - [Visual Studio 2019 Community Edition](https://visualstudio.microsoft.com/vs/community/)
 - [VSCode](https://code.visualstudio.com/)
-- [Boost 1.65.1](https://sourceforge.net/projects/boost/files/boost-binaries/1.65.1/boost_1_65_1-msvc-14.1-64.exe/download)
+- [boost_1_73_0](https://sourceforge.net/projects/boost/files/boost-binaries/1.65.1/boost_1_65_1-msvc-14.1-64.exe/download)
     *Note: Use the default install location*
  
 ### Ubuntu 18.04 Prerequisites

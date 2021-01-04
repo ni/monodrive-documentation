@@ -1,6 +1,6 @@
 # Simulator API Commands
 
-Information on sending a message, message types and receiving messages, see [Simulator API Introduction](monoDrive_home/API.md)
+Information on sending a message, message types and receiving messages, see [Simulator API Introduction](../../monoDrive_home/API).
 
 ## Closed Loop Configuration
 

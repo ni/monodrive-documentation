@@ -1,6 +1,9 @@
 # Simulator API Commands
 
+Information on sending a message, message types and receiving messages, see [Simulator API Introduction](monoDrive_home/API.md)
+
 ## Closed Loop Configuration
+
 Configures the closed loop simulation.
 
 **Command ID:  "ClosedLoopConfigCommand_ID"**

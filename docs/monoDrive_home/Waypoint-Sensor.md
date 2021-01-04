@@ -1,4 +1,4 @@
-# Waypoint Sensor
+# Waypoint
 
 The waypoint sensor returns a JSON string with information on the waypoints behind and in front of all vehicles in the scenario. Information for the vehicle's current lane, left lane, and right lane are included.
 

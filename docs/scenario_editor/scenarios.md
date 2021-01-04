@@ -5,7 +5,7 @@ controlling various different aspects of AI vehicle behavior. There are two type
 
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
-    <source src="https://cdn.monodrive.io/readthedocs/scenario_editor_recording.mp4" type="video/mp4">
+    <source src="https://cdn.monodrive.io/scenario_editor.mp4" type="video/mp4">
   </video>
 </div> 
 

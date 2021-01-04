@@ -14,11 +14,15 @@ nav:
   monoDrive_home/getting_started/Windows.md,
   monoDrive_home/getting_started/Linux.md
 ]
+- F.A.Q. : [
+  FAQ.md
+]
 - Products : 
   - Simulator : Simulator.md
   - Scenario Editor : [
       scenario_editor/scenario_intro.md,
       scenario_editor/scenarios.md,
+      scenario_editor/trigger_boxes.md,
       scenario_editor/scenario_files.md,
       scenario_editor/trajectory_files.md,
       scenario_editor/generation.md,
@@ -49,7 +53,7 @@ nav:
     monoDrive_home/RPM.md,
     monoDrive_home/State-sensor.md,
     monoDrive_home/Ultrasonic.md,
-    monoDrive_home/Viewport.md]
+    monoDrive_home/Viewport.md, monoDrive_home/Waypoint-Sensor.md]
   - Vehicle : [
     monoDrive_home/Vehicle-Configuration.md,
     monoDrive_home/Vehicle-PhysX.md]
@@ -121,6 +125,7 @@ nav:
           - mono_state_sensor.vi: LV_client/sensors/mono_state_sensor.md
           - mono_ultrasonic.vi: LV_client/sensors/mono_ultrasonic.md
           - mono_viewport.vi: LV_client/sensors/mono_viewport.md
+          - mono_waypoint_sensor.vi: LV_client/sensors/mono_waypoint_sensor.md
       - Weather:
           - mono_get_weather.vi: LV_client/weather/mono_get_weather.md
           - mono_weather_update.vi: LV_client/weather/mono_weather_update.md
@@ -174,6 +179,7 @@ nav:
           - mono_get_map.vi: LV_client/utilities/mono_get_map.md
           - mono_get_number_frames.vi: LV_client/utilities/mono_get_number_frames.md
           - mono_get_number_points_lidar.vi: LV_client/utilities/mono_get_number_points_lidar.md
+          - mono_get_radar_config_params.vi: LV_client/utilities/mono_get_radar_config_params.md
           - mono_get_spawn_position.vi: LV_client/utilities/mono_get_spawn_position.md
           - mono_get_start_points.vi: LV_client/utilities/mono_get_start_points.md
           - mono_get_stream_dimensions.vi: LV_client/utilities/mono_get_stream_dimensions.md
@@ -206,6 +212,7 @@ nav:
           - mono_sensor_parser.vi: LV_client/utilities/mono_sensor_parser.md
           - mono_set_map.vi: LV_client/utilities/mono_set_map.md
           - mono_velodyne_parse.vi: LV_client/utilities/mono_velodyne_parse.md
+
 
       - Shared Libraries:
           - mono_control.vi: LV_client/shared_libraries/mono__control.md

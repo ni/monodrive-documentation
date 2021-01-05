@@ -1,11 +1,13 @@
 # Camera
 
-A monoDrive Camera Sensor can support four different image types:
+A monoDrive Camera Sensor can support six different image types:
 
 - **RGB:** A three channel image of the scene
 - **Grayscale:** A single channel grayscale image of the scene
 - **Semantic Segmentation:** Each object in the scene is semantically labeled by color
 - **Depth camera:** Provides a camera array where pixel values represent distance from the camera
+- **Fisheye:** Equidistant or Poly1 Fisheye Camera/Scaramuzza model Fisheye camera based.
+- **360 Camera:** Shows a 360 View
 
 Image output size, intrinsic camera parameters, and various other settings can 
 be controlled through each camera's configuration.
@@ -271,6 +273,219 @@ represent the distance from the camera in centimeters.
 These configuration values are the same as the RGB camera. Note that the output 
 format of the image is an array the same size as `stream_dimensions` containing 
 32-bit floating point numbers representing depth in centimeters.
+
+## Fisheye and Wide Angle Camera
+
+### Scaramuzza based Fisheye Camera
+
+The fisheye lens model was expanded to include the Poly1FisheyeCamera model. This model is defined by a polynomial (Scaramuzza’s model a0, a2, a3, a4) which describes the projection onto the image sensor. The model can generically describe any camera lens projection but is best used for difficult models such as fisheye and ultra wide angle lenses. The polynomial parameters can be calibrated automatically from a chessboard dataset using [mathwork’s toolbox](https://www.mathworks.com/help/vision/ug/fisheye-calibration-basics.html).
+
+<div class ='multi_img_container'>
+<div class="wide_img">
+
+```json
+{
+    "type": "Poly1FisheyeCamera",
+   	"listen_port": 8100,
+   	"description": "",  
+    "location": {
+        "x": 0.0,
+		"y": 0.0,
+		"z": 225.0
+	},
+    "stream_dimensions": {
+		"x": 512,
+		"y": 512
+	},
+    "rotation": {
+		"pitch": 0.0,
+		"roll": 0.0,
+		"yaw": 0.0
+	},
+    "viewport": {
+		"enable_viewport": false,
+		"fullscreen": false,
+		"monitor_name": "",
+		"monitor_number": 0,
+        "window_offset": {
+            "x": 0,
+            "y": 0
+        },
+		"window_size": {
+            "x": 0,
+			"y": 0
+		}
+	},
+	"a0": 349.1260070800781,
+	"a2": -0.0010999999940395355,
+	"a3": 1.1977999747614376e-06,
+	"a4": -1.5119000496000012e-09,
+	"channel_depth": 1,
+	"channels": "bgra",
+	"dynamic_range": 50.0,
+	"enable_streaming": true,
+	"face_size": 492,
+	"focal_length": 9.0,
+	"fov": 180.0,
+	"fstop": 1.399999976158142,
+	"max_distance": 50000.0,
+	"max_shutter": 0.00139999995008111,
+	"min_shutter": 0.0005000000237487257,
+	"sensor_size": 9.069999694824219,
+	"wait_for_fresh_frame": true,
+    "annotation": {
+        "cull_partial_frame": false,
+        "debug_draw": false,
+        "desired_tags": [],
+        "far_plane": 10000.0,
+        "include_annotation": false,
+        "include_obb": false,
+        "include_tags": false
+	}
+}
+```
+</div>
+
+<p class="img_container">
+  <img class='half_screen_img' src="../img/scaramuzza.bmp"  height="400" />
+</p>
+
+</div>
+
+### Equidistant Fisheye Camera
+
+<div class ='multi_img_container'>
+<div class="wide_img">
+
+```json
+{
+    "type": "EquidistantFisheyeCamera",
+    "listen_port": 8100,
+    "description": "",
+	"location": {
+	    "x": 0.0,
+	    "y": 0.0,
+	    "z": 225.0
+    },
+    "rotation": {
+	    "pitch": 0.0,
+	    "roll": 0.0,
+	    "yaw": 0.0
+    },
+    "stream_dimensions": {
+	    "x": 512,
+	    "y": 512
+	},
+	"annotation": {
+		"cull_partial_frame": false,
+		"debug_draw": false,
+		"desired_tags": [],
+		"far_plane": 10000.0,
+		"include_annotation": false,
+		"include_obb": false,
+		"include_tags": false
+	},
+	"channel_depth": 1,
+	"channels": "bgra",
+	"dynamic_range": 50.0,
+	"enable_streaming": true,
+	"face_size": 1024,
+	"fisheye_pixel_diameter": 512,
+	"focal_length": 9.0,
+	"fov": 180.0,
+	"fstop": 1.399999976158142,
+	"max_distance": 50000.0,
+	"max_shutter": 0.00139999995008111,
+	"min_shutter": 0.0005000000237487257,
+	"sensor_size": 9.069999694824219,
+	"viewport": {
+		"enable_viewport": false,
+		"fullscreen": false,
+		 "monitor_name": "",
+		"monitor_number": 0,
+		 "window_offset": {
+			"x": 0,
+			"y": 0
+		},
+		"window_size": {
+			"x": 0,
+			"y": 0
+		}
+	},
+	"vignette_bias": 0.5,
+	"vignette_radius_start": 0.949999988079071,
+	"wait_for_fresh_frame": true
+}
+```
+</div>
+
+<p class="img_container">
+  <img class='half_screen_img' src="../img/equidistant.bmp"  height="400" />
+</p>
+
+</div>
+
+The configuration for a Equidistant Fisheye Camera requires some additional settings.
+
+ - **vignette_bias**: Before the hard mechanical vignette at what point should the fade start normalized with respect to the diameter of the fisheye.
+ - **vignette_radius_start**: in the transition to black at the start of the mechanical vignette start with this value of black before the linear fade.
+ - **fisheye_pixel_diameter**: To obtain a bounded fisheye set the pixel diameter to the smallest axis, or to the measured real pixel diameter limit from the image. To obtain a diagonal bounded fisheye set the pixel diameter to the hypotenuse of the image. To obtain a fisheye that is greater than the image plane use the value from your model
+ - **face_size**: Increasing this number improves image quality and vice versa with diminishing returns with respect to the image resolution. face_size should be smaller than the largest resolution.
+
+## 360 Camera
+
+Provides a 360 view of the scene.
+
+<div class ='multi_img_container'>
+<div class="wide_img">
+
+```json
+{
+    "type":"Camera360",
+    "listen_port":8017,
+    "location": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 250.0
+    },
+    "rotation": {
+      "pitch": 0.0,
+      "yaw":  0.0,
+      "roll": 0.0
+    },
+    "stream_dimensions": {
+      "x": 512.0,
+      "y": 512.0
+    },
+    "face_size": 512,
+    "fov": 180.0,
+    "viewport": {
+        "enable_viewport": false,
+        "fullscreen": false,
+            "monitor_name": "",
+        "monitor_number": 0,
+            "window_offset": {
+                "x": 32,
+                "y": 32
+            },
+        "window_size": {
+                "x": 0,
+                "y": 0
+            }
+	}
+}
+```
+</div>
+
+<div class="img_container">
+  <video class='half_screen_img' height=400px muted autoplay loop>
+    <source src="https://cdn.monodrive.io/QP-360.mov" type="video/mp4">
+  </video>
+</div> 
+
+</div>
+
+
 
 ## Raw Output
 

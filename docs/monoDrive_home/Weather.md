@@ -30,7 +30,7 @@ in the "Modes" window as shown in the image below. Simply drag the actor into
 the custom map and it should now appear in the "World Outliner".
 
 <p class="img_container">
-  <img class="lg_img" src="../img/modes_weather_actor.png" />
+  <img class="lg_img" src="../img/weather_search.png" />
 </p>
 
 The weather also references the wind actor and the fog actor. Simply add these

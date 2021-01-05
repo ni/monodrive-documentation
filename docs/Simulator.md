@@ -12,7 +12,7 @@ The Simulator offers four modes for robust testing:
 
 - *Closed Loop with Fixed Step*, enables a user to control the time delta between simulation steps regardless of the wall clock time.
 
-## Maps
+## monoDrive Maps
 
 Through a monoDrive Client, users may control specific vehicle behavior. These examples show vehicle behaviors for three different set-ups.
 
@@ -53,7 +53,7 @@ These are two examples of the Simulator on the Straight Highway Map. The first d
   </video>
 </div> 
 
-### Integrate Carla Maps
+## Carla Maps
 
 Two Carla maps Town04 and Town07 have been added to monoDrive. These maps have been updated with monoDrive physical materials, lighting, semantic labeling, dynamic weather, traffic signaling, and ray tracing settings.
 

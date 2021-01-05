@@ -26,7 +26,7 @@ conditions and saving them to configuration files.
 In the monoDrive Scenario Editor, the "Weather" actor can be found in any one of
 the pre-made monoDrive Unreal Engine maps found in the `Content/Maps` directory.
 The Weather actor can be added to custom maps easily by searching for the Actor 
-in the "Modes" window as shown in the image below. Simply drag the actor into 
+in the "Place Actors" window as shown in the image below. Simply drag the actor into 
 the custom map and it should now appear in the "World Outliner".
 
 <p class="img_container">

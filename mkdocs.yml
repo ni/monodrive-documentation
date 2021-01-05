@@ -54,7 +54,9 @@ nav:
     monoDrive_home/RPM.md,
     monoDrive_home/State-sensor.md,
     monoDrive_home/Ultrasonic.md,
-    monoDrive_home/Viewport.md, monoDrive_home/Waypoint-Sensor.md]
+    monoDrive_home/Viewport.md, 
+    monoDrive_home/Waypoint-Sensor.md
+    ]
   - Vehicle : [
     monoDrive_home/Vehicle-Configuration.md,
     monoDrive_home/Vehicle-PhysX.md]

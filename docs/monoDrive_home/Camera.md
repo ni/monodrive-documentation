@@ -403,7 +403,6 @@ for a dynamic actor.
     - **scale:** The scale coefficients for this bounding box
 - **tags:** An array of tags assigned to this actor    
 
-
 ## Camera Coordinate Reference System
 A Camera's coordinate reference system is used in relation to Unreal Engine. 
 
@@ -413,11 +412,38 @@ A Camera's coordinate reference system is used in relation to Unreal Engine.
 
 ## Color Filter Arrays (Bayer)
 
-Real cameras generate RAW images before demosaicing (debayering) into RGB. The monoDrive simulator is able to generate RAW images with any red, green, blue, and clear 2x2 filter pattern at runtime in the monoDrive client API. The demosaicing process on real cameras introduces several different artifacts that your perception system has been trained with and from real camera images.  
+Real cameras generate RAW images before demosaicing (debayering) into RGB. The monoDrive simulator is able to generate RAW images with any red, green, blue, and clear 2x2 filter pattern at runtime in the monoDrive client API. The demosaicing process on real cameras introduces several different artifacts that your perception system has been trained with and from real camera images. 
+
+To enable color filter, set `use_cfa` to `true`, and select a cfa type such as "rccc" or "rggb"
+
+```json
+     "color_filter_array": {
+          "use_cfa": true,
+          "cfa":"rccc"
+    }
+```
 
 <p class="img_container">
 <img class="wide_img" src="../img/RGGB.png"/>
 </p>
+
+## Camera as a Viewport Camera
+
+Starting from release 1.12, the user can configure a viewport on any standard, fisheye, or 360 camera. This will open an additional window on the simulation machine to directly display the stream of camera data.
+
+```json
+"viewport": {
+      "enable_viewport": true,
+      "monitor_name": "",
+      "monitor_number": 0,
+      "fullscreen": false,
+      "window_offset": {
+        "x": 256.0,
+        "y": 256.0
+      }
+```
+
+More information can be found on [Multi-Viewport Page](../Multi-viewport/)
 
 ## Camera Configuration Examples   
 

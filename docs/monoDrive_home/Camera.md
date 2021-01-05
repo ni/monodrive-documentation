@@ -405,19 +405,29 @@ for a dynamic actor.
 
 
 ## Camera Coordinate Reference System
+A Camera's coordinate reference system is used in relation to Unreal Engine. 
+
 <p class="img_container">
-<img class="lg_img" src="../img/camera_reference.png"/>
+<img class="wide_img" src="../img/camera_reference.png"/>
 </p>
 
+## Color Filter Arrays (Bayer)
 
+Real cameras generate RAW images before demosaicing (debayering) into RGB. The monoDrive simulator is able to generate RAW images with any red, green, blue, and clear 2x2 filter pattern at runtime in the monoDrive client API. The demosaicing process on real cameras introduces several different artifacts that your perception system has been trained with and from real camera images.  
 
-### Camera Configuration Examples   
+<p class="img_container">
+<img class="wide_img" src="../img/RGGB.png"/>
+</p>
+
+## Camera Configuration Examples   
+
+### Cull Partial Frame
 
 <p class="img_container">
   <img class='wide_img'src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/cull_partial_frame.png" />
 </p>
 
-#### Field Of View Example
+### Field Of View Example
 
 <p class="img_container">
   <img class='wide_img'src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/FOV.png" />

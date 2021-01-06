@@ -40,7 +40,6 @@ nav:
   - Introduction: monoDrive_home/API.md
   - Simulator API Commands: monoDrive_home/Simulator-Commands.md
   - Lighting API: monoDrive_home/Lighting API.md
-  - Real-time Ray Tracing: monoDrive_home/Ray-Tracing.md
   - Simulator : monoDrive_home/Simulator-Configuration.md
   - Sensors: [
     monoDrive_home/Common.md,

@@ -53,15 +53,16 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
         "fullscreen": false,
             "monitor_name": "",
         "monitor_number": 0,
-            "window_offset": {
-                "x": 32,
-                "y": 32
-            },
+        "window_offset": {
+            "x": 32,
+            "y": 32
+        },
         "window_size": {
-                "x": 0,
-                "y": 0
-                }
+            "x": 0,
+            "y": 0
+        }
     },
+    "ray_tracing_enable": false,
     "annotation": {
       "include_annotation": false,
       "desired_tags": [
@@ -103,6 +104,9 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
 - **cull_partial_frame:** If `true`, the actors that are only partially in frame will be removed from annotations.
 - **far_plane:** The maximum distance in centimeters to annotate actors in the scene.
 - **desired_tags:** If this array is not empty, the only actors with the tags specified here will be included in annotations.
+- **viewport:** if `enable_viewport` is set to `true`, a new window will open with this camera as a viewport camera. For more information see multi-viewport 
+- **color_filter_array** If `use_cfa` set to `true`, enables color filter array. 
+- **ray_tracing_enable:** If set to `true`, enables ray tracing
 
 ## Grayscale Camera
 
@@ -354,7 +358,7 @@ The fisheye lens model was expanded to include the Poly1FisheyeCamera model. Thi
             "x": 0,
 			"y": 0
 		}
-	},
+    },
 	"a0": 349.1260070800781,
 	"a2": -0.0010999999940395355,
 	"a3": 1.1977999747614376e-06,
@@ -392,9 +396,6 @@ The fisheye lens model was expanded to include the Poly1FisheyeCamera model. Thi
 </div>
 
 ### Equidistant Fisheye Camera
-
-<div class ='multi_img_container'>
-<div class="wide_img">
 
 ```json
 {
@@ -450,19 +451,17 @@ The fisheye lens model was expanded to include the Poly1FisheyeCamera model. Thi
 			"x": 0,
 			"y": 0
 		}
-	},
+    },
 	"vignette_bias": 0.5,
 	"vignette_radius_start": 0.949999988079071,
 	"wait_for_fresh_frame": true
 }
 ```
-</div>
 
 <p class="img_container">
-  <img class='half_screen_img' src="../img/equidistant.bmp"  height="400" />
+  <img class="wide_img" src="../img/fisheye1.png" />
 </p>
 
-</div>
 
 The configuration for a Equidistant Fisheye Camera requires some additional settings.
 
@@ -503,15 +502,15 @@ Provides a 360 view of the scene.
         "fullscreen": false,
             "monitor_name": "",
         "monitor_number": 0,
-            "window_offset": {
-                "x": 32,
-                "y": 32
-            },
+        "window_offset": {
+            "x": 32,
+            "y": 32
+        },
         "window_size": {
-                "x": 0,
-                "y": 0
-            }
-	}
+            "x": 0,
+            "y": 0
+        }
+    }
 }
 ```
 </div>
@@ -668,7 +667,7 @@ A Camera's coordinate reference system is used in relation to Unreal Engine.
 
 Real cameras generate RAW images before demosaicing (debayering) into RGB. The monoDrive simulator is able to generate RAW images with any red, green, blue, and clear 2x2 filter pattern at runtime in the monoDrive client API. The demosaicing process on real cameras introduces several different artifacts that your perception system has been trained with and from real camera images. 
 
-To enable color filter, set `use_cfa` to `true`, and select a cfa type such as "rccc" or "rggb"
+To enable color filter, set `use_cfa` to `true`, and select a cfa type such as "rccc" or any combination of r, g, b, or c.
 
 ```json
      "color_filter_array": {
@@ -698,6 +697,22 @@ Starting from release 1.12, the user can configure a viewport on any standard, f
 ```
 
 More information can be found on [Multi-Viewport Page](../Multi-viewport/)
+
+## Real-Time Ray Tracing Tuning
+
+The maps available out of the box in monoDrive have been better tuned for Real-Time Ray Tracing. Real-Time Ray Tracing allows for accurate real-time reflections, better dynamic shadows, and ambient occlusion at the cost of frame rate on lower end machines. The primary viewport also defaults to ray tracing disabled but can be enabled by selecting the post processing volume in the map of interest and turning on ray traced ambient occlusion and ray traced reflections.
+
+For better performance, the camera sensors default to `ray_tracing_enable: false`, but `ray_tracing_enable: true` can be set or added in the configuration at runtime to enable real time ray tracing. 
+
+<p class="img_container">
+    <img class='lg_img' src="../img/no_refl1.PNG"/>
+    <img class='lg_img' src="../img/refl1.PNG"/>
+</p>
+
+<p class="img_container">
+    <img class='lg_img' src="../img/no_refl2.PNG"/>
+    <img class='lg_img' src="../img/refl2.PNG"/>
+</p>
 
 ## Camera Configuration Examples   
 

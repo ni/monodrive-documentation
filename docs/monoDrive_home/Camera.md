@@ -19,41 +19,62 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
 <div class="wide_img">
 
 ``` json
-   {
-    "type": "Camera",
-    "annotation": {
-        "cull_partial_frame": false,
-        "debug_draw": false,
-        "desired_tags": [],
-        "far_plane": 10000.0,
-        "include_annotation": false,
-        "include_obb": false,
-        "include_tags": false
-    },
-    "channel_depth": 1,
-    "channels": "bgra",
-    "dynamic_range": 50.0,
-    "focal_length": 9.0,
-    "fov": 60.0,
-    "fstop": 1.39999997615814,
-    "listen_port": 8120,
+{
+    "type":"Camera",
+    "listen_port":8010,
     "location": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
+      "x": 0.0,
+      "y": 0.0,
+      "z": 250.0
     },
-    "max_shutter": 0.00139999995008111,
-    "min_shutter": 0.000500000023748726,
     "rotation": {
-        "pitch": 0.0,
-        "roll": 0.0,
-        "yaw": 0.0
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0
     },
-    "sensor_size": 9.06999969482422,
     "stream_dimensions": {
-        "x": 512,
-        "y": 512
-    }
+      "x": 512.0,
+      "y": 512.0
+    },
+    "dynamic_range": 50,
+    "fov": 60.0,
+    "focal_length": 9.0,
+    "fstop": 1.4,
+    "min_shutter": 0.0005,
+    "max_shutter": 0.0014,
+    "sensor_size": 9.07,
+    "color_filter_array": {
+        "use_cfa": false,
+        "cfa":"rccc"
+    },
+    "channels": "bgra",
+    "viewport": {
+        "enable_viewport": false,
+        "fullscreen": false,
+            "monitor_name": "",
+        "monitor_number": 0,
+            "window_offset": {
+                "x": 32,
+                "y": 32
+            },
+        "window_size": {
+                "x": 0,
+                "y": 0
+                }
+    },
+    "annotation": {
+      "include_annotation": false,
+      "desired_tags": [
+        "traffic_sign", "vehicle"
+      ],
+      "far_plane": 10000.0,
+      "include_tags": true,
+      "include_obb": false,
+      "cull_partial_frame":false,
+      "debug_draw":false
+    },
+    "max_distance":50000.0,
+    "channel_depth":1
 }
 ```
 </div>
@@ -92,41 +113,44 @@ Provides a grayscale camera stream with optional bounding boxes for dynamic obje
 <div class="wide_img">
 
 ``` json
-   {
+ {
     "type": "Camera",
-    "annotation": {
-        "cull_partial_frame": false,
-        "debug_draw": false,
-        "desired_tags": [],
-        "far_plane": 10000.0,
-        "include_annotation": false,
-        "include_obb": false,
-        "include_tags": false
-    },
-    "channel_depth": 1,
-    "channels": "gray",
-    "dynamic_range": 50.0,
-    "focal_length": 9.0,
-    "fov": 60.0,
-    "fstop": 1.39999997615814,
-    "listen_port": 8120,
+    "listen_port": 8012,
     "location": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.0
+        "z": 250.0
     },
-    "max_shutter": 0.00139999995008111,
-    "min_shutter": 0.000500000023748726,
     "rotation": {
         "pitch": 0.0,
-        "roll": 0.0,
-        "yaw": 0.0
+        "yaw": 0.0,
+        "roll": 0.0
     },
-    "sensor_size": 9.06999969482422,
     "stream_dimensions": {
-        "x": 512,
-        "y": 512
-    }
+        "x": 512.0,
+        "y": 512.0
+    },
+    "dynamic_range":  50,
+    "fov": 60.0,
+    "focal_length": 9.0,
+    "fstop": 1.4,
+    "min_shutter":  0.000500,
+    "max_shutter":  0.001400,
+    "sensor_size":  9.07,
+   "channels" : "gray",
+   "annotation": {
+      "include_annotation": false,
+      "desired_tags": [
+        "traffic_sign", "vehicle"
+      ],
+      "far_plane": 10000.0,
+      "include_tags": true,
+      "include_obb": false,
+      "cull_partial_frame":false,
+      "debug_draw":false
+    },
+    "max_distance":50000.0,
+    "channel_depth":1
 }
 ```
 
@@ -151,39 +175,45 @@ Provides a grayscale camera stream where pixel values represent the semantic cat
 <div class="wide_img">
 
 ``` json
-{
-  "type": "SemanticCamera",
-  "annotation": {
-    "cull_partial_frame": false,
-    "debug_draw": false,
-    "desired_tags": [],
-    "far_plane": 10000.0,
-    "include_annotation": false,
-    "include_obb": false,
-    "include_tags": false
-  },
-  "channel_depth": 1,
-  "channels": "gray",
-  "focal_length": 9.0,
-  "fov": 60.0,
-  "listen_port": 8051,
-  "location": {
-      "x": 0.0,
-      "y": 0.0,
-      "z": 0.0
-  },
-  "rotation": {
-      "pitch": 0.0,
-      "roll": 0.0,
-      "yaw": 0.0
-  },
-  "sensor_size": 9.06999969482422,
-  "stream_dimensions": {
-      "x": 512,
-      "y": 512
-  },
-  "debug_draw": false
-}
+ {
+     "type": "SemanticCamera",
+     "listen_port": 8013,
+     "location": {
+       "x": 0.0,
+       "y": 0.0,
+       "z": 250.0
+     },
+     "rotation": {
+       "pitch": 0.0,
+       "yaw": 0.0,
+       "roll": 0.0
+     },
+     "stream_dimensions": {
+       "x": 512.0,
+       "y": 512.0
+     },
+    "dynamic_range":  50,
+    "fov": 60.0,
+    "focal_length": 9.0,
+    "fstop": 1.4,
+    "min_shutter":  0.000500,
+    "max_shutter":  0.001400,
+    "sensor_size":  9.07,
+   "channels" : "rgba",
+   "annotation": {
+      "include_annotation": false,
+      "desired_tags": [
+        "traffic_sign", "vehicle"
+      ],
+      "far_plane": 10000.0,
+      "include_tags": true,
+      "include_obb": false,
+      "cull_partial_frame":false,
+      "debug_draw":false
+    },
+    "max_distance":50000.0,
+    "channel_depth": 1
+ }
 
 ```
 
@@ -233,33 +263,42 @@ represent the distance from the camera in centimeters.
 
 ```json
 {
-    "type": "DepthCamera",
-    "annotation": {
-      "cull_partial_frame": false,
-      "debug_draw": false,
-      "desired_tags": [],
-      "far_plane": 10000.0,
+     "type": "DepthCamera",
+      "listen_port": 8014,
+      "location": {
+       "x": 0.0,
+       "y": 0.0,
+       "z": 250.0
+     },
+     "rotation": {
+       "pitch": 0.0,
+       "yaw": 0.0,
+       "roll": 0.0
+     },
+     "stream_dimensions": {
+       "x": 512.0,
+       "y": 512.0
+     },
+    "dynamic_range":  50,
+    "fov": 60.0,
+    "focal_length": 9.0,
+    "fstop": 1.4,
+    "min_shutter":  0.000500,
+    "max_shutter":  0.001400,
+    "sensor_size":  9.07,
+     "annotation": {
       "include_annotation": false,
+      "desired_tags": [
+        "traffic_sign", "vehicle"
+      ],
+      "far_plane": 10000.0,
+      "include_tags": true,
       "include_obb": false,
-      "include_tags": false
+      "cull_partial_frame":false,
+      "debug_draw":false
     },
-    "listen_port": 8120,
-    "location": {
-      "x": -800.0,
-      "y": 0.0,
-      "z": 400.0
-    },
-    "rotation": {
-      "pitch": -15.0,
-      "yaw": 0.0,
-      "roll": 0.0
-    },
-    "stream_dimensions": {
-      "x": 512.0,
-      "y": 512.0
-    },
-  "fov": 60.0,
-  "debug_draw": false
+    "max_distance":50000.0,
+    "channel_depth":1
  }
 ```
 </div>

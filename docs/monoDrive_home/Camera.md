@@ -677,7 +677,7 @@ To enable color filter, set `use_cfa` to `true`, and select a cfa type such as "
 ```
 
 <p class="img_container">
-<img class="wide_img" src="../img/RGGB.png"/>
+<img class="wide_img" src="../img/RCCC.png"/>
 </p>
 
 ## Camera as a Viewport Camera

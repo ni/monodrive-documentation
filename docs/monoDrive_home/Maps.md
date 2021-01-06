@@ -5,13 +5,21 @@
 ### Almono Map
 
 <p class="img_container">
-<img class="wide_img" src="../img/almono.png"/>
+<img class="wide_img" src="../img_maps/almono.png"/>
 </p>
 
 ### Straight Highway
 
 <p class="img_container">
-<img class="wide_img" src="../img/tractor.png"/>
+<img class="wide_img" src="../img_maps/straightaway.png"/>
+</p>
+
+<p class="img_container">
+<img class="wide_img" src="../img_maps/night.png"/>
+</p>
+
+<p class="img_container">
+<img class="wide_img" src="../img_maps/empty_straight.png"/>
 </p>
 
 ## Carla Maps

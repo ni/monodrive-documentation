@@ -126,7 +126,7 @@
 ### Configuration Tags
 
 - **server_ip**: The IP address of the computer running the monoDrive simulator. 
-- **id** The name for the simulator configuration i.e. "simulator with no traffic"
+- **id**: The name for the simulator configuration i.e. "simulator with no traffic"
 - **map**: The name of the map to load.
 - **phys_materials**: Specify the physical material properties for the specular exponent (10-100), specular reflection coefficient (0.0-1.0), diffuse reflection coefficient (0.0-1.0), dielectric constant (0.10-10,000+), and roughness (0.0-1.0).
 - **server_port**: the TCP port for the simulator, typically 8999.

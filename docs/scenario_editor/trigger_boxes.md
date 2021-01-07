@@ -14,6 +14,8 @@ within the scene.
 
 ## Adding a Trigger Box
 
+1. Click the vehicle and then go the "Details" window
+
 1. In the vehicle's "Details" window, click the "Add Component" button at the top and search for "Vehicle Behavior Trigger."
   <div class="img_container">
     <img class='lg_img' src="../imgs/trigger_details1.png"/>
@@ -45,7 +47,7 @@ in relation to this vehicle.
 
   - **Owner:** The description of the actions that this box will trigger on the owning vehicle.
 
-  - **Other:** "The description of the actions that this box will trigger on the other vehicle.
+  - **Other:** The description of the actions that this box will trigger on the other vehicle.
 
 ## Vehicle Trigger Actions
   - **Change Lane Left:** Triggers the vehicle to execute a lane change to the left lane if one is available. 
@@ -58,7 +60,7 @@ in relation to this vehicle.
 
   - **Next Turn Right:** Triggers the vehicle to take the rightmost lane at the next intersection or lane branch.
 
-  - **Next Turn Center:** Triggers the vehicle to take the center most lane at the next intersection or lane branch. 
+  - **Next Turn Center:** Triggers the vehicle to take the center lane at the next intersection or lane branch. 
 
   - **Number of Lanes to Change:** If a lane change is selected, the number of lanes the vehicle should try to change.
 

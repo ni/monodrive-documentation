@@ -1,7 +1,7 @@
 # Scenario File Creation
 
 The monoDrive Scenario Editor allows users to create their own scenarios by 
-controlling various different aspects of AI vehicle behavior. There are two types of files that can be created: the trajectory file for Replay Mode and the scenario file for Closed loop mode. 
+controlling various different aspects of AI vehicle behavior. The scenario file is used when running the Simulator and/or the Scenario Editor in closed loop mode.
 
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>

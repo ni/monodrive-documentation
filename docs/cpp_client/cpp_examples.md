@@ -167,7 +167,7 @@ state_config.undesired_tags = {""};
 sensors.push_back(std::make_shared<Sensor>(std::make_unique<StateConfig>(state_config)));
 ```
 
-These examples use the OpenDrive Map in order to calculate the distance of the ego vehicle to the current lane. The map can be read like this:
+These examples query the simulator for the OpenDrive Map definition, parse it using the client's map API, and query the resulting data structure to determine the target location for the ego vehicle. The map query to the simulator is sent and read here:
 ```cpp
     MapConfig map_request;
     map_request.format = "opendrive";

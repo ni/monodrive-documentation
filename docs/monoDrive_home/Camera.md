@@ -104,9 +104,9 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
 - **cull_partial_frame:** If `true`, the actors that are only partially in frame will be removed from annotations.
 - **far_plane:** The maximum distance in centimeters to annotate actors in the scene.
 - **desired_tags:** If this array is not empty, the only actors with the tags specified here will be included in annotations.
-- **viewport:** if `enable_viewport` is set to `true`, a new window will open with this camera as a viewport camera. For more information see multi-viewport 
-- **color_filter_array** If `use_cfa` set to `true`, enables color filter array. 
-- **ray_tracing_enable:** If set to `true`, enables ray tracing
+- **viewport:** if `enable_viewport` is set to `true`, a new window will open with this camera as a viewport camera. For more information see [multi-viewport](../Multi-viewport)
+- **color_filter_array** If `use_cfa` set to `true`, enables color filter array. For more information, see [color filter array (bayer)](./#color-filter-arrays-bayer)
+- **ray_tracing_enable:** If set to `true`, enables ray tracing. For more information, see [ray tracing](./#real-time-ray-tracing-tuning)
 
 ## Grayscale Camera
 

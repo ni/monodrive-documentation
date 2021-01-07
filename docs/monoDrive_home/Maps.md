@@ -35,7 +35,7 @@ The Straightaway5k monoDrive Maps contain 3 variants of use, one with aesthetic 
 </div>
 
 <p class="img_container_with_tag">
-<img class="height_only" src="../img_maps/night_map.png"/>
+<img class="height_only" src="../img/lights.png"/>
 <div class="img_content_color"> Map of "Straightaway5k_night"</div>
 </p>
 

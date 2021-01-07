@@ -1,11 +1,13 @@
 # Camera
 
-A monoDrive Camera Sensor can support four different image types:
+A monoDrive Camera Sensor can support six different image types:
 
 - **RGB:** A three channel image of the scene
 - **Grayscale:** A single channel grayscale image of the scene
 - **Semantic Segmentation:** Each object in the scene is semantically labeled by color
 - **Depth camera:** Provides a camera array where pixel values represent distance from the camera
+- **Fisheye:** Equidistant or Poly1 Fisheye Camera/Scaramuzza model Fisheye camera based.
+- **360 Camera:** Provides a 360 view of the scene.
 
 Image output size, intrinsic camera parameters, and various other settings can 
 be controlled through each camera's configuration.
@@ -17,41 +19,63 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
 <div class="wide_img">
 
 ``` json
-   {
-    "type": "Camera",
-    "annotation": {
-        "cull_partial_frame": false,
-        "debug_draw": false,
-        "desired_tags": [],
-        "far_plane": 10000.0,
-        "include_annotation": false,
-        "include_obb": false,
-        "include_tags": false
-    },
-    "channel_depth": 1,
-    "channels": "bgra",
-    "dynamic_range": 50.0,
-    "focal_length": 9.0,
-    "fov": 60.0,
-    "fstop": 1.39999997615814,
-    "listen_port": 8120,
+{
+    "type":"Camera",
+    "listen_port":8010,
     "location": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
+      "x": 0.0,
+      "y": 0.0,
+      "z": 250.0
     },
-    "max_shutter": 0.00139999995008111,
-    "min_shutter": 0.000500000023748726,
     "rotation": {
-        "pitch": 0.0,
-        "roll": 0.0,
-        "yaw": 0.0
+      "pitch": 0.0,
+      "yaw": 0.0,
+      "roll": 0.0
     },
-    "sensor_size": 9.06999969482422,
     "stream_dimensions": {
-        "x": 512,
-        "y": 512
-    }
+      "x": 512.0,
+      "y": 512.0
+    },
+    "dynamic_range": 50,
+    "fov": 60.0,
+    "focal_length": 9.0,
+    "fstop": 1.4,
+    "min_shutter": 0.0005,
+    "max_shutter": 0.0014,
+    "sensor_size": 9.07,
+    "color_filter_array": {
+        "use_cfa": false,
+        "cfa":"rccc"
+    },
+    "channels": "bgra",
+    "viewport": {
+        "enable_viewport": false,
+        "fullscreen": false,
+            "monitor_name": "",
+        "monitor_number": 0,
+        "window_offset": {
+            "x": 32,
+            "y": 32
+        },
+        "window_size": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "ray_tracing_enable": false,
+    "annotation": {
+      "include_annotation": false,
+      "desired_tags": [
+        "traffic_sign", "vehicle"
+      ],
+      "far_plane": 10000.0,
+      "include_tags": true,
+      "include_obb": false,
+      "cull_partial_frame":false,
+      "debug_draw":false
+    },
+    "max_distance":50000.0,
+    "channel_depth":1
 }
 ```
 </div>
@@ -80,6 +104,9 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
 - **cull_partial_frame:** If `true`, the actors that are only partially in frame will be removed from annotations.
 - **far_plane:** The maximum distance in centimeters to annotate actors in the scene.
 - **desired_tags:** If this array is not empty, the only actors with the tags specified here will be included in annotations.
+- **viewport:** if `enable_viewport` is set to `true`, a new window will open with this camera as a viewport camera. For more information see [multi-viewport](../Multi-viewport)
+- **color_filter_array:** If `use_cfa` set to `true`, enables color filter array. For more information, see [color filter array (bayer)](./#color-filter-arrays-bayer)
+- **ray_tracing_enable:** If set to `true`, enables ray tracing. For more information, see [ray tracing](./#real-time-ray-tracing-tuning)
 
 ## Grayscale Camera
 
@@ -90,41 +117,44 @@ Provides a grayscale camera stream with optional bounding boxes for dynamic obje
 <div class="wide_img">
 
 ``` json
-   {
+ {
     "type": "Camera",
-    "annotation": {
-        "cull_partial_frame": false,
-        "debug_draw": false,
-        "desired_tags": [],
-        "far_plane": 10000.0,
-        "include_annotation": false,
-        "include_obb": false,
-        "include_tags": false
-    },
-    "channel_depth": 1,
-    "channels": "gray",
-    "dynamic_range": 50.0,
-    "focal_length": 9.0,
-    "fov": 60.0,
-    "fstop": 1.39999997615814,
-    "listen_port": 8120,
+    "listen_port": 8012,
     "location": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.0
+        "z": 250.0
     },
-    "max_shutter": 0.00139999995008111,
-    "min_shutter": 0.000500000023748726,
     "rotation": {
         "pitch": 0.0,
-        "roll": 0.0,
-        "yaw": 0.0
+        "yaw": 0.0,
+        "roll": 0.0
     },
-    "sensor_size": 9.06999969482422,
     "stream_dimensions": {
-        "x": 512,
-        "y": 512
-    }
+        "x": 512.0,
+        "y": 512.0
+    },
+    "dynamic_range":  50,
+    "fov": 60.0,
+    "focal_length": 9.0,
+    "fstop": 1.4,
+    "min_shutter":  0.000500,
+    "max_shutter":  0.001400,
+    "sensor_size":  9.07,
+   "channels" : "gray",
+   "annotation": {
+      "include_annotation": false,
+      "desired_tags": [
+        "traffic_sign", "vehicle"
+      ],
+      "far_plane": 10000.0,
+      "include_tags": true,
+      "include_obb": false,
+      "cull_partial_frame":false,
+      "debug_draw":false
+    },
+    "max_distance":50000.0,
+    "channel_depth":1
 }
 ```
 
@@ -149,39 +179,45 @@ Provides a grayscale camera stream where pixel values represent the semantic cat
 <div class="wide_img">
 
 ``` json
-{
-  "type": "SemanticCamera",
-  "annotation": {
-    "cull_partial_frame": false,
-    "debug_draw": false,
-    "desired_tags": [],
-    "far_plane": 10000.0,
-    "include_annotation": false,
-    "include_obb": false,
-    "include_tags": false
-  },
-  "channel_depth": 1,
-  "channels": "gray",
-  "focal_length": 9.0,
-  "fov": 60.0,
-  "listen_port": 8051,
-  "location": {
-      "x": 0.0,
-      "y": 0.0,
-      "z": 0.0
-  },
-  "rotation": {
-      "pitch": 0.0,
-      "roll": 0.0,
-      "yaw": 0.0
-  },
-  "sensor_size": 9.06999969482422,
-  "stream_dimensions": {
-      "x": 512,
-      "y": 512
-  },
-  "debug_draw": false
-}
+ {
+     "type": "SemanticCamera",
+     "listen_port": 8013,
+     "location": {
+       "x": 0.0,
+       "y": 0.0,
+       "z": 250.0
+     },
+     "rotation": {
+       "pitch": 0.0,
+       "yaw": 0.0,
+       "roll": 0.0
+     },
+     "stream_dimensions": {
+       "x": 512.0,
+       "y": 512.0
+     },
+    "dynamic_range":  50,
+    "fov": 60.0,
+    "focal_length": 9.0,
+    "fstop": 1.4,
+    "min_shutter":  0.000500,
+    "max_shutter":  0.001400,
+    "sensor_size":  9.07,
+   "channels" : "rgba",
+   "annotation": {
+      "include_annotation": false,
+      "desired_tags": [
+        "traffic_sign", "vehicle"
+      ],
+      "far_plane": 10000.0,
+      "include_tags": true,
+      "include_obb": false,
+      "cull_partial_frame":false,
+      "debug_draw":false
+    },
+    "max_distance":50000.0,
+    "channel_depth": 1
+ }
 
 ```
 
@@ -231,33 +267,42 @@ represent the distance from the camera in centimeters.
 
 ```json
 {
-    "type": "DepthCamera",
-    "annotation": {
-      "cull_partial_frame": false,
-      "debug_draw": false,
-      "desired_tags": [],
-      "far_plane": 10000.0,
+     "type": "DepthCamera",
+      "listen_port": 8014,
+      "location": {
+       "x": 0.0,
+       "y": 0.0,
+       "z": 250.0
+     },
+     "rotation": {
+       "pitch": 0.0,
+       "yaw": 0.0,
+       "roll": 0.0
+     },
+     "stream_dimensions": {
+       "x": 512.0,
+       "y": 512.0
+     },
+    "dynamic_range":  50,
+    "fov": 60.0,
+    "focal_length": 9.0,
+    "fstop": 1.4,
+    "min_shutter":  0.000500,
+    "max_shutter":  0.001400,
+    "sensor_size":  9.07,
+     "annotation": {
       "include_annotation": false,
+      "desired_tags": [
+        "traffic_sign", "vehicle"
+      ],
+      "far_plane": 10000.0,
+      "include_tags": true,
       "include_obb": false,
-      "include_tags": false
+      "cull_partial_frame":false,
+      "debug_draw":false
     },
-    "listen_port": 8120,
-    "location": {
-      "x": -800.0,
-      "y": 0.0,
-      "z": 400.0
-    },
-    "rotation": {
-      "pitch": -15.0,
-      "yaw": 0.0,
-      "roll": 0.0
-    },
-    "stream_dimensions": {
-      "x": 512.0,
-      "y": 512.0
-    },
-  "fov": 60.0,
-  "debug_draw": false
+    "max_distance":50000.0,
+    "channel_depth":1
  }
 ```
 </div>
@@ -271,6 +316,214 @@ represent the distance from the camera in centimeters.
 These configuration values are the same as the RGB camera. Note that the output 
 format of the image is an array the same size as `stream_dimensions` containing 
 32-bit floating point numbers representing depth in centimeters.
+
+## Fisheye and Wide Angle Camera
+
+### Scaramuzza based Fisheye Camera
+
+The fisheye lens model was expanded to include the Poly1FisheyeCamera model. This model is defined by a polynomial (Scaramuzza’s model a0, a2, a3, a4) which describes the projection onto the image sensor. The model can generically describe any camera lens projection but is best used for difficult models such as fisheye and ultra wide angle lenses. The polynomial parameters can be calibrated automatically from a chessboard dataset using [mathwork’s toolbox](https://www.mathworks.com/help/vision/ug/fisheye-calibration-basics.html).
+
+<div class ='multi_img_container'>
+<div class="wide_img">
+
+```json
+{
+    "type": "Poly1FisheyeCamera",
+   	"listen_port": 8100,
+   	"description": "",  
+    "location": {
+        "x": 0.0,
+		"y": 0.0,
+		"z": 225.0
+	},
+    "stream_dimensions": {
+		"x": 512,
+		"y": 512
+	},
+    "rotation": {
+		"pitch": 0.0,
+		"roll": 0.0,
+		"yaw": 0.0
+	},
+    "viewport": {
+		"enable_viewport": false,
+		"fullscreen": false,
+		"monitor_name": "",
+		"monitor_number": 0,
+        "window_offset": {
+            "x": 0,
+            "y": 0
+        },
+		"window_size": {
+            "x": 0,
+			"y": 0
+		}
+    },
+	"a0": 349.1260070800781,
+	"a2": -0.0010999999940395355,
+	"a3": 1.1977999747614376e-06,
+	"a4": -1.5119000496000012e-09,
+	"channel_depth": 1,
+	"channels": "bgra",
+	"dynamic_range": 50.0,
+	"enable_streaming": true,
+	"face_size": 492,
+	"focal_length": 9.0,
+	"fov": 180.0,
+	"fstop": 1.399999976158142,
+	"max_distance": 50000.0,
+	"max_shutter": 0.00139999995008111,
+	"min_shutter": 0.0005000000237487257,
+	"sensor_size": 9.069999694824219,
+	"wait_for_fresh_frame": true,
+    "annotation": {
+        "cull_partial_frame": false,
+        "debug_draw": false,
+        "desired_tags": [],
+        "far_plane": 10000.0,
+        "include_annotation": false,
+        "include_obb": false,
+        "include_tags": false
+	}
+}
+```
+</div>
+
+<p class="img_container">
+  <img class='half_screen_img' src="../img/scaramuzza.bmp"  height="400" />
+</p>
+
+</div>
+
+### Equidistant Fisheye Camera
+
+```json
+{
+    "type": "EquidistantFisheyeCamera",
+    "listen_port": 8100,
+    "description": "",
+	"location": {
+	    "x": 0.0,
+	    "y": 0.0,
+	    "z": 225.0
+    },
+    "rotation": {
+	    "pitch": 0.0,
+	    "roll": 0.0,
+	    "yaw": 0.0
+    },
+    "stream_dimensions": {
+	    "x": 512,
+	    "y": 512
+	},
+	"annotation": {
+		"cull_partial_frame": false,
+		"debug_draw": false,
+		"desired_tags": [],
+		"far_plane": 10000.0,
+		"include_annotation": false,
+		"include_obb": false,
+		"include_tags": false
+	},
+	"channel_depth": 1,
+	"channels": "bgra",
+	"dynamic_range": 50.0,
+	"enable_streaming": true,
+	"face_size": 1024,
+	"fisheye_pixel_diameter": 512,
+	"focal_length": 9.0,
+	"fov": 180.0,
+	"fstop": 1.399999976158142,
+	"max_distance": 50000.0,
+	"max_shutter": 0.00139999995008111,
+	"min_shutter": 0.0005000000237487257,
+	"sensor_size": 9.069999694824219,
+	"viewport": {
+		"enable_viewport": false,
+		"fullscreen": false,
+		 "monitor_name": "",
+		"monitor_number": 0,
+		 "window_offset": {
+			"x": 0,
+			"y": 0
+		},
+		"window_size": {
+			"x": 0,
+			"y": 0
+		}
+    },
+	"vignette_bias": 0.5,
+	"vignette_radius_start": 0.949999988079071,
+	"wait_for_fresh_frame": true
+}
+```
+
+<p class="img_container">
+  <img class="wide_img" src="../img/fisheye1.png" />
+</p>
+
+
+The configuration for a Equidistant Fisheye Camera requires some additional settings.
+
+ - **vignette_bias**: Before the hard mechanical vignette at what point should the fade start normalized with respect to the diameter of the fisheye.
+ - **vignette_radius_start**: in the transition to black at the start of the mechanical vignette start with this value of black before the linear fade.
+ - **fisheye_pixel_diameter**: To obtain a bounded fisheye set the pixel diameter to the smallest axis, or to the measured real pixel diameter limit from the image. To obtain a diagonal bounded fisheye set the pixel diameter to the hypotenuse of the image. To obtain a fisheye that is greater than the image plane use the value from your model
+ - **face_size**: Increasing this number improves image quality and vice versa with diminishing returns with respect to the image resolution. face_size should be smaller than the largest resolution.
+
+## 360 Camera
+
+Provides a 360 view of the scene.
+
+<div class ='multi_img_container'>
+<div class="wide_img">
+
+```json
+{
+    "type":"Camera360",
+    "listen_port":8017,
+    "location": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 250.0
+    },
+    "rotation": {
+      "pitch": 0.0,
+      "yaw":  0.0,
+      "roll": 0.0
+    },
+    "stream_dimensions": {
+      "x": 512.0,
+      "y": 512.0
+    },
+    "face_size": 512,
+    "fov": 180.0,
+    "viewport": {
+        "enable_viewport": false,
+        "fullscreen": false,
+            "monitor_name": "",
+        "monitor_number": 0,
+        "window_offset": {
+            "x": 32,
+            "y": 32
+        },
+        "window_size": {
+            "x": 0,
+            "y": 0
+        }
+    }
+}
+```
+</div>
+
+<div class="img_container">
+  <video class='half_screen_img' height=400px muted autoplay loop>
+    <source src="https://cdn.monodrive.io/QP-360.mov" type="video/mp4">
+  </video>
+</div> 
+
+</div>
+
+
 
 ## Raw Output
 
@@ -403,21 +656,76 @@ for a dynamic actor.
     - **scale:** The scale coefficients for this bounding box
 - **tags:** An array of tags assigned to this actor    
 
-
 ## Camera Coordinate Reference System
+A Camera's coordinate reference system is used in relation to Unreal Engine. 
+
 <p class="img_container">
-<img class="lg_img" src="../img/camera_reference.png"/>
+<img class="wide_img" src="../img/camera_reference.png"/>
 </p>
 
+## Color Filter Arrays (Bayer)
 
+Real cameras generate RAW images before demosaicing (debayering) into RGB. The monoDrive simulator is able to generate RAW images with any red, green, blue, and clear 2x2 filter pattern at runtime in the monoDrive client API. The demosaicing process on real cameras introduces several different artifacts that your perception system has been trained with and from real camera images. 
 
-### Camera Configuration Examples   
+To enable color filter, set `use_cfa` to `true`, and select a cfa type such as "rccc" or any combination of r, g, b, or c.
+
+```json
+     "color_filter_array": {
+          "use_cfa": true,
+          "cfa":"rccc"
+    }
+```
+
+<p class="img_container">
+<img class="wide_img" src="../img/RCCC.png"/>
+</p>
+
+## Camera as a Viewport Camera
+
+Starting from release 1.12, the user can configure a viewport on any standard, fisheye, or 360 camera. This will open an additional window on the simulation machine to directly display the stream of camera data.
+
+```json
+"viewport": {
+      "enable_viewport": true,
+      "monitor_name": "",
+      "monitor_number": 0,
+      "fullscreen": false,
+      "window_offset": {
+        "x": 256.0,
+        "y": 256.0
+      }
+}
+```
+
+More information can be found on [Multi-Viewport Page](../Multi-viewport/)
+
+## Real-Time Ray Tracing Tuning
+
+The maps available out of the box in monoDrive have been better tuned for Real-Time Ray Tracing. Real-Time Ray Tracing allows for accurate real-time reflections, better dynamic shadows, and ambient occlusion at the cost of frame rate on lower end machines. The primary viewport also defaults to ray tracing disabled but can be enabled by selecting the post processing volume in the map of interest and turning on ray traced ambient occlusion and ray traced reflections.
+
+For better performance, the camera sensors default to `ray_tracing_enable: false`, but `ray_tracing_enable: true` can be set or added in the configuration at runtime to enable real time ray tracing. 
+
+<p class="img_container">
+    <img class='half_lg' src="../img/no_refl1.PNG"/>
+    <img class='half_lg' src="../img/refl1.PNG"/>
+</p>
+
+<p class="img_container">
+    <img class='half_lg' src="../img/no_refl2.PNG"/>
+    <img class='half_lg' src="../img/refl2.PNG"/>
+</p>
+
+&nbsp;
+
+## Camera Configuration Examples   
+
+### Cull Partial Frame
 
 <p class="img_container">
   <img class='wide_img'src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/cull_partial_frame.png" />
 </p>
 
-#### Field Of View Example
+### Field Of View Example
 
 <p class="img_container">
   <img class='wide_img'src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/FOV.png" />

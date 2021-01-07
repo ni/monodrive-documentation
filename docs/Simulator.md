@@ -12,9 +12,7 @@ The Simulator offers four modes for robust testing:
 
 - *Closed Loop with Fixed Step*, enables a user to control the time delta between simulation steps regardless of the wall clock time.
 
-## Starting in the Simulator
-
-Through a monoDrive Client, users may control specific vehicle behavior. Below are three demonstrations of the Almono map in Replay mode. These examples show vehicle behaviors for three different set-ups in the map. 
+Through a monoDrive Client, users may control specific vehicle behavior. These examples show vehicle behaviors for three different set-ups on the monoDrive Almono Map.
 
 
 <div class="img_container">
@@ -35,8 +33,6 @@ Through a monoDrive Client, users may control specific vehicle behavior. Below a
   </video>
 </div> 
 
-### Straight Highway
-
 These are two examples of the Simulator on the Straight Highway Map. The first demonstrating a car following the right lane, and the second displaying a quick lane change.
 
 <div class="img_container">
@@ -50,5 +46,3 @@ These are two examples of the Simulator on the Straight Highway Map. The first d
     <source src="https://cdn.monodrive.io/readthedocs/highway_lane_change.mp4" type="video/mp4">
   </video>
 </div> 
-
-<p>&nbsp;</p>

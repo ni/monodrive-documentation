@@ -97,7 +97,7 @@ ENV/
 # Logs
 client_log*
 
-
+.DS_Store
 
 # MonoDrive
 .monodrive_client_settings

@@ -14,12 +14,13 @@ nav:
   monoDrive_home/getting_started/Windows.md,
   monoDrive_home/getting_started/Linux.md
 ]
+- F.A.Q. : FAQ.md
 - Products : 
   - Simulator : Simulator.md
   - Scenario Editor : [
       scenario_editor/scenario_intro.md,
       scenario_editor/scenarios.md,
-      scenario_editor/scenario_files.md,
+      scenario_editor/trigger_boxes.md,
       scenario_editor/trajectory_files.md,
       scenario_editor/generation.md,
       scenario_editor/roads.md
@@ -35,6 +36,7 @@ nav:
 - Simulator API :
   - Introduction: monoDrive_home/API.md
   - Simulator API Commands: monoDrive_home/Simulator-Commands.md
+  - Simulator Maps: monoDrive_home/Maps.md
   - Lighting API: monoDrive_home/Lighting API.md
   - Simulator : monoDrive_home/Simulator-Configuration.md
   - Sensors: [
@@ -49,14 +51,16 @@ nav:
     monoDrive_home/RPM.md,
     monoDrive_home/State-sensor.md,
     monoDrive_home/Ultrasonic.md,
-    monoDrive_home/Viewport.md, monoDrive_home/Waypoint-Sensor.md]
+    monoDrive_home/Viewport.md, 
+    monoDrive_home/Waypoint-Sensor.md
+    ]
   - Vehicle : [
     monoDrive_home/Vehicle-Configuration.md,
     monoDrive_home/Vehicle-PhysX.md]
   - Weather: monoDrive_home/Weather.md
   
 - Tutorials:
-  - Common Tutorials: [monoDrive_home/Multi viewport.md]
+  - Common Tutorials: [monoDrive_home/Multi-viewport.md]
   - Co-simulation Tutorials: [monoDrive_home/CarSim.md]
   - LabVIEW Tutorials: [LV_client/tutorials/Setup.md,
     LV_client/tutorials/AddSensors.md,

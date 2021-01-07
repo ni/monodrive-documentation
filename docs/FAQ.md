@@ -1,4 +1,6 @@
-# Installation
+# F.A.Q.
+
+## Installation
 
  - **Build Errors**
      - Ensure that you have followed all the instructions in [getting started](Getting_Started.md). 
@@ -11,5 +13,5 @@
     - Each license is for one machine's use only. Please contact us through email at support@monodrive.io or through a communication channel already established, so we can help you resolve this issue. 
 
  - **License is not found**
-    - Ensure that you have copied a valid `license.txt` file into the correct folder, and that the name of the file is `license.txt`.
+    - Ensure that you have copied a valid `license.txt` file into the correct folder, and that the name of the file is `license.txt`. It should be next to the VehicleAI.exe or the VehicleAI.uproject
 

@@ -14,9 +14,7 @@ nav:
   monoDrive_home/getting_started/Windows.md,
   monoDrive_home/getting_started/Linux.md
 ]
-- F.A.Q. : [
-  FAQ.md
-]
+- F.A.Q. : FAQ.md
 - Products : 
   - Simulator : Simulator.md
   - Scenario Editor : [

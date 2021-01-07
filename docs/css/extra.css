@@ -55,6 +55,10 @@ main {
     width: 300px;
 }
 
+.half_lg {
+    width: 350px;
+}
+
 .lg_img {
     width: 400px;
     height: auto

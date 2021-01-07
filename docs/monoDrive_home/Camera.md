@@ -105,7 +105,7 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
 - **far_plane:** The maximum distance in centimeters to annotate actors in the scene.
 - **desired_tags:** If this array is not empty, the only actors with the tags specified here will be included in annotations.
 - **viewport:** if `enable_viewport` is set to `true`, a new window will open with this camera as a viewport camera. For more information see [multi-viewport](../Multi-viewport)
-- **color_filter_array** If `use_cfa` set to `true`, enables color filter array. For more information, see [color filter array (bayer)](./#color-filter-arrays-bayer)
+- **color_filter_array:** If `use_cfa` set to `true`, enables color filter array. For more information, see [color filter array (bayer)](./#color-filter-arrays-bayer)
 - **ray_tracing_enable:** If set to `true`, enables ray tracing. For more information, see [ray tracing](./#real-time-ray-tracing-tuning)
 
 ## Grayscale Camera
@@ -694,6 +694,7 @@ Starting from release 1.12, the user can configure a viewport on any standard, f
         "x": 256.0,
         "y": 256.0
       }
+}
 ```
 
 More information can be found on [Multi-Viewport Page](../Multi-viewport/)
@@ -705,14 +706,16 @@ The maps available out of the box in monoDrive have been better tuned for Real-T
 For better performance, the camera sensors default to `ray_tracing_enable: false`, but `ray_tracing_enable: true` can be set or added in the configuration at runtime to enable real time ray tracing. 
 
 <p class="img_container">
-    <img class='lg_img' src="../img/no_refl1.PNG"/>
-    <img class='lg_img' src="../img/refl1.PNG"/>
+    <img class='half_lg' src="../img/no_refl1.PNG"/>
+    <img class='half_lg' src="../img/refl1.PNG"/>
 </p>
 
 <p class="img_container">
-    <img class='lg_img' src="../img/no_refl2.PNG"/>
-    <img class='lg_img' src="../img/refl2.PNG"/>
+    <img class='half_lg' src="../img/no_refl2.PNG"/>
+    <img class='half_lg' src="../img/refl2.PNG"/>
 </p>
+
+&nbsp;
 
 ## Camera Configuration Examples   
 

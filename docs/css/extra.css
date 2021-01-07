@@ -12,10 +12,19 @@ main {
     justify-content: center;
 }
 
-.img_tag_container {
+.img_container_with_tag {
+    width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-content: center;
 }
+
+.img_content_color {
+    color: #6074bd;
+    /* text-align: end; */
+}
+
 
 .ue_videos {
     width: 100%;
@@ -60,8 +69,9 @@ main {
     width: 300px;
 }
 
-.half_lg {
-    width: 350px;
+.height_only {
+    height: 200px;
+    max-width: 340px;
 }
 
 .lg_img {

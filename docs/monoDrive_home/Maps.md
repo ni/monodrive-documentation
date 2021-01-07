@@ -6,33 +6,38 @@ Almono, on the left, displays a variety of different types of intersections pre-
 
 <div class ='multi_img_container'>
 
-<p class="img_container">
-<img class="wide_img" src="../img_maps/almono.png"/>
-</p>
+<div>
+<img class="height_only" src="../img_maps/almono.png"/>
+<div class="img_content_color"> Map of "Almono"</div>
+</div>
 
-<p class="img_container">
-<img class="wide_img" src="../img_maps/parking_lot_map.png"/>
-</p>
+<div>
+<img class="height_only" src="../img_maps/parking_lot_map.png"/>
+<div class="img_content_color"> Map of "ParkingLot"</div>
+</div>
 
 </div>
 
-The StraightAway monoDrive Map contains 3 variants of use, one with aesthetic assets such as signs and trees, an empty map without aesthetic assets, and a map displayed at night. 
-
-<p class="img_container">
-<img class="lg_img" src="../img_maps/straightaway.png"/>
-</p>
+The Straightaway5k monoDrive Maps contain 3 variants of use, one with aesthetic assets such as signs and trees, an empty map without aesthetic assets, and a map displayed at night. 
 
 <div class ='multi_img_container'>
 
-<p class="img_container">
-<img class="wide_img" src="../img_maps/night_map.png"/>
-</p>
+<div>
+<img class="height_only" src="../img_maps/straightaway.png"/>
+<div class="img_content_color"> Map of "Straightaway5k"</div>
+</div>
 
-<p class="img_container">
-<img class="wide_img" src="../img_maps/empty_straight.png"/>
-</p>
+<div>
+<img class="height_only" src="../img_maps/empty_straight.png"/>
+<div class="img_content_color"> Map of "straightaway_5k_empty"</div>
+</div>
 
 </div>
+
+<p class="img_container_with_tag">
+<img class="height_only" src="../img_maps/night_map.png"/>
+<div class="img_content_color"> Map of "Straightaway5k_night"</div>
+</p>
 
 The monoDrive Real-to-Virtual hardware and software provide an end-to-end solution for collecting real-world data from cameras, LiDAR, and GNSS systems to create high-fidelity assets and maps usable in the Unreal Engine and the monoDrive Scenario Editor. Below are two examples from this product.
 
@@ -40,13 +45,15 @@ The monoDrive Real-to-Virtual hardware and software provide an end-to-end soluti
 
 <div class ='multi_img_container'>
 
-<p class="img_container">
-<img class="wide_img" src="../img_maps/2222_map.png"/>
-</p>
+<div>
+<img class="height_only" src="../img_maps/2222_map.png"/>
+<div class="img_content_color"> Map of "2222_R2V"</div>
+</div>
 
-<p class="img_container">
-<img class="wide_img" src="../img_maps/farm_map.png"/>
-</p>
+<div>
+<img class="height_only" src="../img_maps/farm_map.png"/>
+<div class="img_content_color"> Map of "Farm"</div>
+</div>
 
 </div>
 
@@ -54,13 +61,15 @@ These two maps display monoDrive using lane detection software using opendrive.
 
 <div class ='multi_img_container'>
 
-<p class="img_container">
-<img class="wide_img" src="../img_maps/infinity.png"/>
-</p>
+<div>
+<img class="height_only" src="../img_maps/infinity.png"/>
+<div class="img_content_color"> Map of "Infinity"</div>
+</div>
 
-<p class="img_container">
-<img class="wide_img" src="../img_maps/loop_map.png"/>
-</p>
+<div>
+<img class="height_only" src="../img_maps/loop_map.png"/>
+<div class="img_content_color"> Map of "IACT_Track"</div>
+</div>
 
 </div>
 
@@ -73,13 +82,15 @@ To see a tutorial on how to import a Carla Map, See [Carla to monoDrive Conversi
 
 <div class ='multi_img_container'>
 
-<p class="img_container">
-<img class="wide_img" src="../../imgs/tractor.png"/>
-</p>
+<div>
+<img class="height_only" src="../../imgs/tractor.png"/>
+<div class="img_content_color"> Map of "Town07"</div>
+</div>
 
-<p class="img_container">
-<img class="wide_img" src="../../imgs/town.png"/>
-</p>
+<div>
+<img class="height_only" src="../../imgs/town.png"/>
+<div class="img_content_color"> Map of "Town04"</div>
+</div>
 
 </div>
 

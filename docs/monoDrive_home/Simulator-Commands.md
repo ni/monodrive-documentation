@@ -38,8 +38,8 @@ Configures the ego vehicle used in the simulation run.
  - **Command Data**:
 
 	- *forward_amount*: (float) - value between 0.0 and 1.0 referring to the amount of throttle to apply
-	- *right_amount*: (float) - value between -1.0 and 1.0 referring to the wheel position. Positive values are to the right of center,
-	- *brake_amount*: (float) - value between 0.0 and 1.0 referring to the amount of braking to apply,
+	- *right_amount*: (float) - value between -1.0 and 1.0 referring to the wheel position. Positive values are to the right of center
+	- *brake_amount*: (float) - value between 0.0 and 1.0 referring to the amount of braking to apply
 	- *drive_mode*: (integer) - value indicating the drive mode: -1 = reverse, 0 = neutral, 1 = drive	
 
  - **Response**: (string)
@@ -52,13 +52,13 @@ Retrieves the current road network in the requested format.
  - **Command ID:  "GetMap"**
 
  - **Command Data**:
-	- *format*:  "geojson" | "opendrive" | "point_array",
+	- *format*:  "geojson" | "opendrive" | "point_array"
 	- *coordinates*: "world" | "gis", - UE4 world coordinates or GIS
 	- *gis_anchor*: the reference point to use for GIS coordinates
 		- x: (float) latitude
 		- y: (float) longitude
 		- z: (float) elevation
-	- *orientation*: (float) - rotation to apply,
+	- *orientation*: (float) - rotation to apply
 	- *point_delta*: (float) - distance between lane center points in centimeters
 
 - **Response**: 
@@ -73,8 +73,8 @@ Retrieves the set of starting locations for the current simulation map.
  - **Command Data**: `{}`
 
  - **Response**: (json object)
-	- *type*: [ "PIE" | "startPlayer", ... ],
-	- *locations*: [ [x (float), y (float), z (float)],... ],
+	- *type*: [ "PIE" | "startPlayer", ... ]
+	- *locations*: [ [x (float), y (float), z (float)],... ]
 	- *rotations*: [ [yaw (float), pitch (float), roll (float)], ... ]
 
 ## Get Simulator Version
@@ -114,7 +114,7 @@ Configures a sensor or set of sensors to use with the ego vehicle in the simulat
 
 
 ## Trajectory Configuration
-Configures the simulation [trajectory](../../scenario_editor/trajectory_files). The trajectory file determines the initial state of the simulation for closed loop mode, and a series of frames for replay/replay step mode. The frames provide the location/state of all actors in the simulation as a given point.
+Configures the simulation [trajectory](../../scenario_editor/trajectory_files). The frames on this file provide the location/state of all actors in the simulation as a given point for replay/replay step mode. 
 
  - **Command ID:  "REPLAY_ConfigureTrajectoryCommand_ID"**
 

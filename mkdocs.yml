@@ -21,7 +21,6 @@ nav:
       scenario_editor/scenario_intro.md,
       scenario_editor/scenarios.md,
       scenario_editor/trigger_boxes.md,
-      scenario_editor/scenario_files.md,
       scenario_editor/trajectory_files.md,
       scenario_editor/generation.md,
       scenario_editor/roads.md

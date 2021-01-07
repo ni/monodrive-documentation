@@ -1,4 +1,4 @@
-# Scenario Creation
+# Scenario File Creation
 
 The monoDrive Scenario Editor allows users to create their own scenarios by 
 controlling various different aspects of AI vehicle behavior. There are two types of files that can be created: the trajectory file for Replay Mode and the scenario file for Closed loop mode. 
@@ -151,3 +151,21 @@ There are two categories of tags:
 * [Python Client Examples](../../python_client/examples)
 * [C++ Client Replay Modes](../../cpp_client/cpp_examples)
 
+## Scenario Setup/ Scenario File Tool Widget
+
+By opening the Scenario File Tool Widget, users can save scenarios to monoDrive scenario files that can then be used in the Closed loop modes of the monoDrive Simulator and Scenario Editor. New Scenario files can be sent to the running simulator to replay dynamic actors for testing and review. 
+
+To begin, find the tool under the Content Folder, right-click and select Run Editor Utility Widget.
+
+  <div class="img_container">
+    <img class='lg_img' src="../imgs/scenario_tool_widget.png"/>
+  </div>
+
+In the "Scenario File Tool Widget," the user can load or save a new scenario file. 
+Selecting "Save" will write the scene's current configuration file indicated on the specified file on FilePath. This will overwrite any file that has the same name. 
+
+  <div class="img_container">
+    <img class='lg_img' src="../imgs/scenario_tool_widget2.png"/>
+  </div>
+
+ It is important to Clear All assets on the editor before using any client to playback the scenario. Failing to do that, may cause issues with the playback.

@@ -167,12 +167,15 @@ state_config.undesired_tags = {""};
 sensors.push_back(std::make_shared<Sensor>(std::make_unique<StateConfig>(state_config)));
 ```
 
-These examples use the GeoJSON lanes from the monoDrive `Straightaway5k` map in 
-order to calculate the distance of the ego vehicle to the current lane. The 
-lanes can be read in as follows:
-
+These examples use the OpenDrive Map in order to calculate the distance of the ego vehicle to the current lane. The map can be read like this:
 ```cpp
-LaneSpline lanespline = LaneSpline(std::string("examples/cpp/lane_follower/Straightaway5k.json"));
+    MapConfig map_request;
+    map_request.format = "opendrive";
+    ApiMessage response;
+    sim0.sendCommand(map_request.message(), &response);
+    map_data = carla::opendrive::OpenDriveParser::Load(
+        nlohmann::json::parse(response.get_message().get<std::string>()).at("map")
+    );
 ```
 
 To issue vehicle control commands for keeping the ego vehicle within its current 
@@ -213,29 +216,47 @@ Now compute the vehicle's current distance from the lane and steer the vehicle
 towards the correct position:
 
 ```cpp
-  auto nearestIndex = lanespline.GetNearestPoint("road_0", "lane_2", position);
-    auto& lane_points = lanespline.spline_map["road_0"]["lane_2"];
-    int nextPointIndex = nearestIndex;
-    if(nearestIndex >= lane_points.size()-4){
-        nextPointIndex = (int)lane_points.size() - 1;
-    }
-    else{
-        nextPointIndex += 3;
-    }
-    Eigen::VectorXd forwardVector(3);
-    forwardVector << 1, 0, 0;
-    forwardVector = orientation * forwardVector;
-    auto nextPoint = lane_points[nextPointIndex];
+    auto currentWp = map_data->GetClosestWaypointOnRoad(carla::geom::Location(
+    float(position[0] / 100.0), 
+    float(position[1] / 100.0),
+    float(position[2] / 100.0)));
+    if(currentWp.has_value()) {
+      auto nextWps = map_data->GetNext(*currentWp, 6.0);
+      auto currentPos = map_data->ComputeTransform(*currentWp).location;
+      if(nextWps.size() > 0) {
+          auto nextLocation = map_data->ComputeTransform(nextWps[0]).location;
+          nextPoint = Eigen::Vector3d(nextLocation.x, nextLocation.y, nextLocation.z)*100.0;
+      } 
+    } 
+
     Eigen::VectorXd dirToNextPoint = nextPoint - position;
     dirToNextPoint.normalize();
 
     double angle = -dirToNextPoint.head<3>().cross(forwardVector.head<3>())[2];
 
+    // use PID speed controller for throttle
+    Eigen::VectorXd velocity(3);
+    velocity << vehicle_frame->state.odometry.linear_velocity.x,
+        vehicle_frame->state.odometry.linear_velocity.y,
+        vehicle_frame->state.odometry.linear_velocity.z;
+    double speed = velocity.norm();
+
+    double dt = last_time > 0 ? frame.game_time - last_time : 0.1;
+    last_time = frame.game_time;
+
+    float throttle = last_throttle;
+    if (dt) {
+        throttle = pid.pid(float(desired_speed - speed), float(dt));
+        last_throttle = throttle;
+    }
+
+    // form controls response
     EgoControlConfig egoControl;
-    egoControl.forward_amount = 0.75;
-    egoControl.brake_amount = 0.0;
+    egoControl.forward_amount = std::max(0.0f, throttle);
+    egoControl.brake_amount = std::min(0.0f, throttle);
     egoControl.drive_mode = 1;
     egoControl.right_amount = (float)angle;
+
     return egoControl;
 }
 ```    

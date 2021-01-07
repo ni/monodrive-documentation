@@ -2,6 +2,8 @@
 
 [Download monoDrive](https://www.monodrive.io/register)
 
+[Simulator & Scenario Editor Prerequisites](../../../Getting_Started)
+
 ## Simulator
 
 1. Extract the archive to a common location like `~/monodrive`.
@@ -12,15 +14,17 @@
 
 1. Extract the archive to a common location like `~/monodrive`.
 1. If downloading for the first time, you will need to download the license.txt file through your account on [monoDrive.io](https://www.monodrive.io/register), unless one has been provided directly from monoDrive. Copy the attached license.txt file to the extracted location `~/monodrive/VehicleAI_Editor/license.txt`.
-1. Clone [Unreal Engine: branch 4.24.3](https://www.unrealengine.com/en-US/).
-1. Extract the Plugins.zip archive into the 4.24.3 Engine's Plugins directory. e.g. if the UE4.24.3 branch is cloned at `/usr/local/UE_4.24.3`, then extract the archive into `/usr/local/UE_4.24.3/Engine/Plugins`. The resulting directory structure should look as follows:
+1. Clone [Unreal Engine: branch 4.25.6](https://www.unrealengine.com/en-US/).
+1. Extract the Plugins.zip archive into the 4.25.6 Engine's Plugins directory. e.g. if the UE4.25.6 branch is cloned at `/usr/local/UE_4.25.6`, then extract the archive into `/usr/local/UE_4.25.6/Engine/Plugins`. The resulting directory structure should look as follows:
   <pre>
-  /usr/local/UE_4.24.3/Engine/Plugins/monoDrive
+  /usr/local/UE_4.25.6/Engine/Plugins/monoDrive
     +-- monoDriveRadarSensor
     +-- monoDriveLidarSensor
     +-- ... (other monoDrive plugins)
   </pre>
 5. Open VehicleAI.uproject. Note that the first time you open the project, UE4 will prompt you about missing modules that need to be rebuilt (VehicleAI and VehicleAIEditor). Select "Yes" to build the modules, then the project will open.
+
+    Note that the editor may take a long time to compiling shaders, and may appear to get stuck at 95% or 99%. This is expected and you will need to wait for the compiling to finish. If no error is reported then the system is still compiling shaders, this only happens the first time opening. 
 
 
 ## Scenario Editor: Generating Project Files (Optional)

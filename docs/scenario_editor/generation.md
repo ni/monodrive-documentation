@@ -6,12 +6,12 @@ using the Windows Scenario Editor. Custom code can be added to the Simulator und
 `VehicleAI_Editor/Source` folder, or as Unreal Engine 4 plugins by adding the plugins
 to `VehicleAI_Editor/Plugins` and modifying the `VehicleAI.uproject` file accordingly.
 Custom assets can be imported into the editor using the Unreal Engine asset import 
-process, or by adding uassets/blueprints to `VehicleAI_Editor/Content`.
+process, or by adding uassets/blueprints to `VehicleAI_Editor/Content`. For example, if looking to import a new vehicle model, use this tutorial: 
+<a href="https://docs.google.com/document/d/1CNKV6uH6LYNShUDCY0I2ScNnKuVzvCVtPHe4Pv_Hcs0/edit?usp=sharing" target="_blank">New Vehicle Model Reduction & Import/Export to UE4</a>.
 
 The monoDrive Simulator uses CUDA for certain features. Consequently, in order to 
 build the standalone Simulator from the Scenario Editor, the CUDA SDK must be installed
-on the system. This version of the Scenario Editor uses CUDA 10.2: 
-http://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda_10.2.89_441.22_win10.exe
+on the system. This version of the Scenario Editor uses [Cuda Toolkit 10.2](https://developer.nvidia.com/cuda-10.2-download-archive).
 
 Additionally, in order to generate the Linux standalone build from Windows, the Linux
 CUDA libraries must be added to the Windows CUDA installation. These libraries are included
@@ -25,15 +25,16 @@ the contents of this zip file into the directory of the generated release build.
 ### Build Steps 
 1. To generate the standalone simulator, open the Scenario Editor and go to 
 `File -> Package Project -> Build Configuration` and select `Shipping`. Then go to
-`File -> Package Project -> Windows -> Windows (64 bit)` to generate the Windows build,
-or `File -> Package Project -> Linux -> Linux` to generate the Linux x64 build.
+`File -> Package Project -> Windows (64 bit)` to generate the Windows build,
+or `File -> Package Project -> Linux` to generate the Linux x64 build.
+  <div class="img_container">
+    <img class='wide_img' src="../imgs/generate_simulator.png"/>
+  </div>
 
-<div class="img_container">
-  <img class='wide_img' src="../imgs/build.png"/>
-</div>
-
-2. A dialog will prompt you to select a location for generating the build. This folder is
+1. A dialog will prompt you to select a location for generating the build. This folder is
 where the final `VehicleAI.exe` and it's related content/files will be created.
 
-3. For the Windows release build, copy the DLLs referenced above into the directory. 
+1. For the Windows release build, copy the DLLs referenced above into the directory. 
 The DLLs should be in the same directory as `VehicleAI.exe`.
+
+1. Copy the license.txt file to the generated build directory.

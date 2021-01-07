@@ -71,6 +71,8 @@ Two Carla maps Town04 and Town07 are available in monoDrive Simulator or Scenari
 
 To see a tutorial on how to import a Carla Map, See [Carla to monoDrive Conversion](https://docs.google.com/document/d/18JTYXOFPb98qLm8aHvCYH4nb2eU6P5sVzD1qkONqTeU/edit).
 
+<div class ='multi_img_container'>
+
 <p class="img_container">
 <img class="wide_img" src="../../imgs/tractor.png"/>
 </p>
@@ -78,5 +80,7 @@ To see a tutorial on how to import a Carla Map, See [Carla to monoDrive Conversi
 <p class="img_container">
 <img class="wide_img" src="../../imgs/town.png"/>
 </p>
+
+</div>
 
 <p>&nbsp;</p>

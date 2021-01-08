@@ -91,11 +91,11 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
     - **y:** The height of the image in pixels
 - **dynamic_range:** Controls the gain of the camera. A higher value will result in a grainer image.
 - **fov:** Controls the horizontal angle of view of the camera. The vertical angle will be dynamically calculated based on `stream_dimensions`
-- **focal_length:** If `fov` is not set explicitly, this will be used to emulate the focal length of the lens in millimeters. Used to calculate field-of-view.
+- **focal_length:** If `fov` is set to `0`, this will be used to emulate the focal length of the lens in millimeters. Used to calculate field-of-view.
 - **fstop:** Controls the exposure time of the camera, higher values will yield brighter images with more motion blur.
 - **min_shutter:** Lower bound of the camera's exposure time in seconds. Higher values will have more motion blur.
 - **max_shutter:** Upper bound of the camera's exposure time in seconds. Higher values will have more motion blur.
-- **sensor_size:** If `fov` is not set explicitly, this will be used to emulate the size of the camera's image sensor in millimeters. Used to calculate field-of-view.
+- **sensor_size:** If `fov` is set to `0`, this will be used to emulate the size of the camera's image sensor in millimeters. Used to calculate field-of-view.
 - **channels:** Used to determine type of image output. For RGB cameras, this should always be `rgba`.
 - **debug_draw:** If `true` and `annotation` is `true`, the bounding boxes will be displayed in the image for annotated objects.
 - **annotation:** If `true`, the annotation information will be provided in the output data.

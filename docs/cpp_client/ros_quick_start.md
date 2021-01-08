@@ -11,7 +11,7 @@ To get the client:
 
 ## Ubuntu 18.04 Prerequisites
 
-- [monoDrive c++ client](https://github.com/monoDriveIO/monodrive-client/blob/master/cpp-client/README.md#monodrive-c++-client)
+- [monoDrive c++ client](https://github.com/monoDriveIO/monodrive-client/#monodrive-c++-client)
 
 - [ROS](http://wiki.ros.org/melodic/Installation/Ubuntu) *Note: Tested with melodic*
 

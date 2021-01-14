@@ -16,9 +16,12 @@
  - **License is not found**
     - Ensure that you have copied a valid `license.txt` file into the correct folder, and that the name of the file is `license.txt`. It should be next to the VehicleAI.exe or the VehicleAI.uproject
 
+## Debbuging
+
  - **Logs**   
-     - monoDrive saves a log for Scenario Editor and the simulator on the following locations:
-         - Scenario Editor   
-             - `Installation Folder\VehicleAI_Editor\Saved\Logs\VehicleAI.log`
-         - Simulator   
-             - Crash logs: `C:\Users\{user}\AppData\Local\VehicleAI\Saved\Crashes`
+ monoDrive saves a log for Scenario Editor and the simulator on the following locations:
+     - Scenario Editor   
+         - `Installation Folder\VehicleAI_Editor\Saved\Logs\VehicleAI.log`
+     - Simulator   
+        - By default logging is disable. To enable logging set the flag `bUseLoggingInShipping` located on the file `Simulator/Source/VehicleAI.Target.cs`. The generated log will be saved on `C:\Users\UserName\AppData\Local\GameName`   
+        - If a crash occurr, the log will be saved in the following location: `C:\Users\{user}\AppData\Local\GameName\Saved\Crashes`

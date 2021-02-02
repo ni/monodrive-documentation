@@ -30,6 +30,12 @@ control during playback). To attach the state sensor:
       <img class='lg_img' src="../imgs/state_sensor_streamer_type.png"/>
     </div>
 
+1. Under the "Tag System" section, click on the + button to add the tags of the objects you want to record with the state sensors under the `Desired Tags`. On a similar way, add the tags of the actors you **do not** want to record under the  `Undesired Tags`.   
+
+    <div class="img_container">
+      <img class='lg_img' src="../imgs/tag_system.png"/>
+    </div>   
+
 1. On the Sampling Control select 20 hz rate to save the state sensor data.
 
 

@@ -1,7 +1,5 @@
 # Occupancy Grid
 
-## Occupancy Grid
-
 The monoDrive occupancy grid sensor provides a top-down orthographic view
 of the semantic information in a simulation. The sensor follows the ego vehicle either locked to horizontal and vertical axis of the world, or rotating with 
 the vehicle. Each pixel in the image is square and is exactly the size set

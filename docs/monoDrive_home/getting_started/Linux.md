@@ -22,26 +22,18 @@
     +-- monoDriveLidarSensor
     +-- ... (other monoDrive plugins)
   </pre>
-5. Open VehicleAI.uproject. Note that the first time you open the project, UE4 will prompt you about missing modules that need to be rebuilt (VehicleAI and VehicleAIEditor). Select "Yes" to build the modules, then the project will open.
+
+
+1. Generate Visual Studio project files. In UE4 directory
+  `$ Setup.sh`
+  `$ GenerateProjectFiles.sh`
+  `$ make`
+
+1. Afterward you can launch
+  `${UE4_ROOT}/Engine/Binaries/Linux/UE4Editor` 
+  `${SIMULATOR_ROOT}/Simulator/VehicleAI.uproject`
 
     Note that the editor may take a long time to compiling shaders, and may appear to get stuck at 95% or 99%. This is expected and you will need to wait for the compiling to finish. If no error is reported then the system is still compiling shaders, this only happens the first time opening. 
-
-
-## Scenario Editor: Generating Project Files (Optional)
-
-Generation of project files is not a requirement to run the Simulator, but it enables users to make changes to the open source from monoDrive as well as run the debugger.
-
-1. Download [Visual Studio Code](https://code.visualstudio.com/).
-
-1. Generate Visual Studio project files
-
-    `/usr/local/monodrive/UnrealEngine/GenerateProjectFiles.sh -project="/usr/local/monodrive/VehicleAI_Editor/Simulator/VehicleAI.uproject" -game -engine -makefiles`
-
-1. After the file are generated, there will be a Visual Studio Code Workspace file in 
-
-    `/usr/local/monodrive/VehicleAI_Editor/VehicleAI.workspace`
-
-    The Workspace file can also be opened by starting Visual Studio Code and selecting "File -> Open Workspace..."
 
 <p>&nbsp;</p>
 

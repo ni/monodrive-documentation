@@ -25,12 +25,17 @@
 
 
 1. Generate Visual Studio project files. In UE4 directory
+  
   `$ Setup.sh`
+  
   `$ GenerateProjectFiles.sh`
+  
   `$ make`
 
 1. Afterward you can launch
+  
   `${UE4_ROOT}/Engine/Binaries/Linux/UE4Editor` 
+  
   `${SIMULATOR_ROOT}/Simulator/VehicleAI.uproject`
 
     Note that the editor may take a long time to compiling shaders, and may appear to get stuck at 95% or 99%. This is expected and you will need to wait for the compiling to finish. If no error is reported then the system is still compiling shaders, this only happens the first time opening. 

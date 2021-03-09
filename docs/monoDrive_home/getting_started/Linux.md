@@ -25,15 +25,14 @@
 
 1. Setup & Generate Visual Studio project files. Open the terminal in the Unreal Engine Folder,  `/usr/local/UE_4.25.4/`, and run these commands.
     <pre>
-      $ Setup.sh
-      $ GenerateProjectFiles.sh
+      $ ./Setup.sh
+      $ ./GenerateProjectFiles.sh
       $ make
     </pre>
 
 1. Afterwards to launch the Scenario Editor or Simulator:
   <pre>
-    ${UE4_ROOT}/Engine/Binaries/Linux/UE4Editor 
-    ${SIMULATOR_ROOT}/Simulator/VehicleAI.uproject
+    ${UE4_ROOT}/Engine/Binaries/Linux/UE4Editor ${SIMULATOR_ROOT}/Simulator/VehicleAI.uproject
   </pre>
     Note that the editor may take a long time to compiling shaders, and may appear to get stuck at 95% or 99%. This is expected and you will need to wait for the compiling to finish. If no error is reported then the system is still compiling shaders, this only happens the first time opening. 
 

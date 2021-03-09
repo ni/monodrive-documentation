@@ -1,16 +1,16 @@
 # F.A.Q.   
 
-## Logs
+<h2> Logs </h2>
 
 - [ If an error occurred while build or a crash ocurred, where can I find a log for these?](./#find-error-log)
 - [When I tried to build the scenario Editor, I get the following error on the logs: ```libboost_date_time-vc141-mt-x64-1_74.lib```](./#error-log-messages)
 - [When I tried to build the scenario Editor, I see the following error on the logs: ```'cuda_runtime.h' file not found```](./#error-log-messages)
 
-## Installation
+<h2> Installation </h2>
 
 - [After some time building, I see the VehicleAI window stuck at 95%](./#vehicleai-window-stuck-at-95)
 
-## Licensing
+<h2> Licensing </h2>
 
 - [I moved my license to a new machine, the simulator shows an ```UNLICENSED. License in use``` message, even though my license is still valid.](./#unlicensed-license-in-use-message-even-though-license-is-still-valid)
 - [The simulator shows an ```License is not found``` message.](./#the-simulator-shows-an-license-is-not-found-message)

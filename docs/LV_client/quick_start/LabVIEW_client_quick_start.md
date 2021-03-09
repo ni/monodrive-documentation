@@ -20,11 +20,7 @@ configuring the monoDrive Simulator and Scenario Editor. To get started,
 user may clone the client from the monoDrive GitHub repository or 
 through LabVIEW's VI Package Manager. 
 
-    - To clone the client through GitHub: 
-    
-        ```
-        $ git clone git@github.com:monoDriveIO/monodrive-labview-client.git
-        ```
+    - To clone the client through GitHub, please contact us directly at support@monodrive.io
 
     - To get access through the VI Package Manager, open the VI Package Manager as Administrator 
     and install the monoDrive Client.

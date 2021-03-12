@@ -117,6 +117,7 @@ nav:
           - mono_gps.vi: LV_client/sensors/mono_gps.md
           - mono_imu.vi: LV_client/sensors/mono_imu.md
           - mono_led_array.vi: LV_client/sensors/mono_led_array.md
+          - mono_lidar_array.vi: LV_client/sensors/mono_lidar_array.md
           - mono_lidar.vi: LV_client/sensors/mono_lidar.md
           - mono_occupancy_grid.vi: LV_client/sensors/mono_occupancy_grid.md
           - mono_radar.vi: LV_client/sensors/mono_radar.md

@@ -6,7 +6,9 @@
 
 ### Description
 
- 
+Builds the name of a file based on the type of sensor and the custom name the user provided.
+
+For technical support contact us at <b>support@monodrive.io</b>  
 
 ### Inputs
 

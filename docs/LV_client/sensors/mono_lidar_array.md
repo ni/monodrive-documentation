@@ -19,7 +19,7 @@ For technical support contact us at <b>support@monodrive.io</b>
 - **LiDAR Configuration:**  Configuration used to setup LiDAR sensor
  
 
-- **LiDAR Data:**  Array of clusters that cointain information for each laser. 
+- **LiDAR Data:**  Array of clusters that contain information for each laser. 
 
 | Type  | Name   |
 |  |  |

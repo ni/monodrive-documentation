@@ -302,7 +302,8 @@ represent the distance from the camera in centimeters.
       "debug_draw":false
     },
     "max_distance":50000.0,
-    "channel_depth":1
+    "channels":"gray",
+    "channel_depth":4
  }
 ```
 </div>

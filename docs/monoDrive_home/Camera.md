@@ -203,8 +203,8 @@ Provides a grayscale camera stream where pixel values represent the semantic cat
     "min_shutter":  0.000500,
     "max_shutter":  0.001400,
     "sensor_size":  9.07,
-   "channels" : "rgba",
-   "annotation": {
+    "channels" : "gray",
+    "annotation": {
       "include_annotation": false,
       "desired_tags": [
         "traffic_sign", "vehicle"

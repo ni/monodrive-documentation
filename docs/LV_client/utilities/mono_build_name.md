@@ -6,14 +6,14 @@
 
 ### Description
 
-Builds the name of a file based on the type of sensor and the custom name the user provided.
+Builds the name of a file based on the type of sensor and the custom name provided the user.
 
 For technical support contact us at <b>support@monodrive.io</b>  
 
 ### Inputs
 
 - **Configuration:**  Configuration for the sensors. Each sensor has an output
-named "Configuration" wire that output to this input.
+named "Configuration" wire that outputs to this input.
  
 
 - **Name:**  Name appended to the type of sensor. For example if the type

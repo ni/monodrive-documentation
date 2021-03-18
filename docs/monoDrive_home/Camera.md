@@ -359,10 +359,10 @@ The fisheye lens model was expanded to include the Poly1FisheyeCamera model. Thi
 			"y": 0
 		}
     },
-	"a0": 349.1260070800781,
-	"a2": -0.0010999999940395355,
-	"a3": 1.1977999747614376e-06,
-	"a4": -1.5119000496000012e-09,
+	"a0": 350.0,
+	"a2": -0.001,
+	"a3": 1.2e-06,
+	"a4": -1.5e-09,
 	"channel_depth": 1,
 	"channels": "bgra",
 	"dynamic_range": 50.0,

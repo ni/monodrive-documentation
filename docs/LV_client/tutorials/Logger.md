@@ -18,7 +18,7 @@ User should connect the output of the sensor to the **Data** input of the mono_l
 
 User will also need to connect the **Configuration** output of the sensor to the **Configuration** input of the `mono_logger.vi`
 
-User will need to specify any custom name for the log file, taking into account that the name of the file by default will be the type of the sensor logged. For instance, if there are two `Camera` sensors, only one file `Camera.bin` will be created, to avoid this the user needs to specify a name for the second camera sensor, i.e. `Frontal` so that the second file is created with the name `Camera_Frontal.bin`
+User will need to specify any custom name for the log file, taking into account that the name of the file by default will be the type of the sensor logged. For instance, if there are two `Camera` sensors, only one file `Camera.bin` will be created, to avoid this from happening, the user will need to specify a name for the second camera sensor, i.e. `Frontal` so that the second file is created with the name `Camera_Frontal.bin`.
 
 
 This VI will produce a binary file for the following sensors:   
@@ -45,16 +45,15 @@ This VI will produce a text file for:
 
 ## mono_parse_binaries.vi
 
-This tool can help the user to visualize data from a binary file.
+To visualize data from a binary file:
 
-1. The user will browse to the configuration file that wants to parse.
+1. Browse to the configuration file to be parsed.
 2. The program will find the correspoding binary file.   
 
 ### Camera data
-For camera images the user needs to specify a path to save the image, if the folder 
-doesn't exist.The folder will be created. 
+For camera images the user needs to specify a path to save the image. If the folder does not exist, the folder will be created.
 
-User will need to select if wants to save JPEG or PNG images. By default the program will save PNG images.
+Then the user will need to select the file format if he/she wants to save as a JPEG or PNG formatted image. By default the image file format is saved as PNG.
 
 ### LiDAR
-For LiDAR the user needs to specify the VeloView port you want to stream the LiDAR data.
+For LiDAR, the user needs to specify the VeloView port he/she wants to stream for the LiDAR data

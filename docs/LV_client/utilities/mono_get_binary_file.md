@@ -19,16 +19,15 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Outputs
 
-- **Channels:**  If the sensor configurated was a camera, this VI will
+- **Channels:**  If the sensor configured is a camera, this VI will
 extracted the number of channels from the the configuration
-file
+file.
  
 
 - **Type:**  Type of sensor obtained from the sensor configuration
  
 
-- **Stream dimensions:**  If the type of sensor is a camera returned the stream
-dimensions to parse image correctly.
+- **Stream dimensions:**  If the sensor type is camera, the stream dimensions will be returned in order to parse the image correctly.
  
 
 - **Binary File ref:**  Reference to the binary file found based on the sensor

@@ -47,7 +47,7 @@ This VI will produce a text file for:
 
 To visualize data from a binary file:
 
-1. Browse to the configuration file to be parsed.
+1. Browse to the configuration file (this will be the `.txt` file created by the logger.vi) to be parsed.
 2. The program will find the correspoding binary file.   
 
 ### Camera data

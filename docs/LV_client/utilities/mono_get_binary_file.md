@@ -12,7 +12,7 @@ For technical support contact us at <b>support@monodrive.io</b>
 
 ### Inputs
 
-- **Sensor configuration:**  Path to the configuration file created by the mono_logger.vi
+- **Sensor configuration:**  Path to the configuration file created by the mono_logger.vi.
  
 
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
@@ -20,18 +20,18 @@ For technical support contact us at <b>support@monodrive.io</b>
 ### Outputs
 
 - **Channels:**  If the sensor configured is a camera, this VI will
-extracted the number of channels from the the configuration
+extract the number of channels from the the configuration
 file.
  
 
-- **Type:**  Type of sensor obtained from the sensor configuration
+- **Type:**  Type of sensor obtained from the sensor configuration.
  
 
 - **Stream dimensions:**  If the sensor type is camera, the stream dimensions will be returned in order to parse the image correctly.
  
 
 - **Binary File ref:**  Reference to the binary file found based on the sensor
-configuration 
+configuration.
  
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 

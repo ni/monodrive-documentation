@@ -211,4 +211,25 @@ Configures the weather used in the simulation run. The profiles parameter is opt
 	- `Weather profile is invalid or missing` if the profile ID is not found
 	- `Weather configured to {profile_id}` if the weather was properly configured
 
+
+## Sample Command
+Obtain the latest sample from the sensors.   
+
+- **Command ID:  "SampleSensorsCommand_ID"**
+
+- **Command Data**: Specify the amount of time to wait for the sensors to return the sample before they timeout.i.e `{"timeout":10000}`.
+
+- **Response**: (string)
+	- `"An attempt to sample sensors was made but no ego vehicle is registered to the simulator."` if for some reason an ego vehicle was not spawn.
+
+## Update Command
+Update the state of the ego and other actors in the scene based on the message.   
+
+- **Command ID:**  **"UpdateStateCommand_ID"**
+
+- **Command Data**: Frame information for the ego vehicle and other actors.
+
+- **Response**: (string)
+	- `complete` if the simulation was updated properly.
+
  &nbsp;

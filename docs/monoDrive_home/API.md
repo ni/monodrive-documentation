@@ -61,8 +61,10 @@ The following message types are currently defined for sending messages to the si
 | [REPLAY_ReConfigureSensorCommand_ID](../Simulator-Commands/#sensor-reconfiguration) | Reconfigure a sensor or set of sensors in a simulation run |
 | [REPLAY_StateStepSimulationCommand_ID](../Simulator-Commands/#state-step-simulation) | Steps the simulation |
 | [REPLAY_StepSimulationCommand_ID](../Simulator-Commands/#step-the-simulation) | Steps the simulation |
+| [SampleSensorsCommand_ID](../Simulator-Commands/#sample-command) | Obtain the latest sample from the sensors | 
 | [SimulatorConfig_ID](../Simulator-Commands/#simulator-configuration) | Configure the Simulator session |
 | [SpawnVehicleCommand_ID](../Simulator-Commands/#spawn-ego-vehicle) | Spawns the EGO vehicle | 
+| [UpdateStateCommand_ID](../Simulator-Commands/#update-command) | Update the state of the ego and other actors in the scene| 
 | [WeatherConfig](../Simulator-Commands/#weather-configuration) | Configure the current weather in the scenario | 
 
 

@@ -1,10 +1,10 @@
 # Logger and Parser
-## Mono_logger.vi
+## mono_logger.vi
 User should connect the output of the sensor to the **Data** input of the mono_logger.vi as follows depending on the type of sensor:   
 
 |  Sensor  |  Connection  |   
 |---|---|   
-|  Camera | Raw data |   
+|  Any type of Camera | Raw data |   
 |  RPM |Raw data  |   
 |  State Sensor | State sensor sample  |   
 |  Ultrasonic | Raw data  |   
@@ -12,15 +12,20 @@ User should connect the output of the sensor to the **Data** input of the mono_l
 |  Semantic LiDAR | Raw data  |   
 |  Collision | Raw data  |   
 |  IMU | Raw data  |   
+|  GPS | Raw data  |   
 |  Radar | Target list  |  
 |  Radar Cube | Radar Data Cube  |   
+
+User will also need to connect the **Configuration** output of the sensor to the **Configuration** input of the `mono_logger.vi`
+
+User will need to specify any custom name for the log file, taking into account that the name of the file by default will be the type of the sensor logged. For instance, if there are two `Camera` sensors, only one file `Camera.bin` will be created, to avoid this from happening, the user will need to specify a name for the second camera sensor, i.e. `Frontal` so that the second file is created with the name `Camera_Frontal.bin`.
 
 
 This VI will produce a binary file for the following sensors:   
 
    - IMU   
    - LiDAR   
-   - Camera   
+   - Any type of Camera   
    - GPS   
    - RPM   
    - Radar Cube   
@@ -38,11 +43,17 @@ This VI will produce a text file for:
 <img class="lg_img" src="../logger.png"/>
 </p>
 
-## Mono_parse_binaries.vi
+## mono_parse_binaries.vi
 
-This tool can help the user to visualize data from a binary file.
+To visualize data from a binary file:
 
-1. Browse to the file you want to parse.
-2. Select the type of sensor you want to parse.
-3. For camera images add a path to save the images. 
-4. For LiDAR set the VeloView port you want to stream the LiDAR data.
+1. Browse to the configuration file (this will be the `.txt` file created by the logger.vi) to be parsed.
+2. The program will find the correspoding binary file.   
+
+### Camera data
+For camera images the user needs to specify a path to save the image. If the folder does not exist, the folder will be created.
+
+Then the user will need to select the file format if he/she wants to save it as a JPEG or PNG formatted image. By default the image file format is saved as PNG.
+
+### LiDAR
+For LiDAR, the user needs to specify the VeloView port he/she wants to stream for the LiDAR data

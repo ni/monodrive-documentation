@@ -53,7 +53,7 @@ To visualize data from a binary file:
 ### Camera data
 For camera images the user needs to specify a path to save the image. If the folder does not exist, the folder will be created.
 
-Then the user will need to select the file format if he/she wants to save as a JPEG or PNG formatted image. By default the image file format is saved as PNG.
+Then the user will need to select the file format if he/she wants to save it as a JPEG or PNG formatted image. By default the image file format is saved as PNG.
 
 ### LiDAR
 For LiDAR, the user needs to specify the VeloView port he/she wants to stream for the LiDAR data

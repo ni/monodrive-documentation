@@ -16,9 +16,9 @@ For technical support contact us at <b>support@monodrive.io</b>
 named "Configuration" wire that outputs to this input.
  
 
-- **Name:**  Name appended to the type of sensor. For example if the type
+- **Name:**  Name appended to the type of sensor. For example, if the type
 of sensor is Camera and its name is "Front", the resulting
-name will be "Camera_Front.bin"
+name will be "Camera_Front.bin".
  
 
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
@@ -30,7 +30,7 @@ JSON configuration.
  
 
 - **Name:**  The constructed name for the log file is going to be
-created, based on the type of sensor and the custom name provided by the user.
+created based on the type of sensor and the custom name provided by the user.
  
 
 - **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 

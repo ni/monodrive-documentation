@@ -16,6 +16,8 @@
 - [The simulator shows an ```License is not found``` message.](./#the-simulator-shows-an-license-is-not-found-message)
 <p>&nbsp;</p>
 
+- [I received this error message, "'Scenario Editor Licence Error' - the feature 'monodrive_scenario_editor' is not available", and I have a valid license in the correct location.]()
+
 _ _ _ 
 
 ## Logs
@@ -50,7 +52,7 @@ _ _ _
 
 After some time building, I see the VehicleAI window stuck at 95%.
 
-    monoDrive's Scenario Editor has high quality graphics that will take some time to compile when opening for the first time. Verify the process is still running by opening the Task Manager and see shaders are still compiling.
+monoDrive's Scenario Editor has high quality graphics that will take some time to compile when opening for the first time. Verify the process is still running by opening the Task Manager and see shaders are still compiling.
 <p>&nbsp;</p>
 _ _ _ 
 
@@ -67,6 +69,14 @@ I moved my license to a new machine, the simulator shows an ```UNLICENSED. Licen
 ##### The simulator shows an "License is not found" message.
 
 - Ensure that you have copied a valid `license.txt` file into the correct folder, and that the name of the file is `license.txt`. It should be next to the VehicleAI.exe or the VehicleAI.uproject.   
+
+##### Scenario Editor Licence Error/ Simulator License Error (Windows)
+
+I received this error message, "'Scenario Editor Licence Error' - the feature 'monodrive_scenario_editor' is not available", and I have a valid license in the correct location.
+
+ - Check to see if the simulator is able to connect to the server for license checks. [Click here to check connectivity](https://api.monodrive.io/api/v1/status), if there is no connectivity
+    - Ensure that you are online for access
+    - Check the firewall settings on your Windows machine is not blocking access to the network for vehicleAI / UE4Editor.exe. 
+- Check the Logs to see if there is another issue, you can find the logs [here]((./#find-error-log)).
+
 <p>&nbsp;</p>
-
-

@@ -203,8 +203,8 @@ Provides a grayscale camera stream where pixel values represent the semantic cat
     "min_shutter":  0.000500,
     "max_shutter":  0.001400,
     "sensor_size":  9.07,
-   "channels" : "rgba",
-   "annotation": {
+    "channels" : "gray",
+    "annotation": {
       "include_annotation": false,
       "desired_tags": [
         "traffic_sign", "vehicle"
@@ -302,7 +302,8 @@ represent the distance from the camera in centimeters.
       "debug_draw":false
     },
     "max_distance":50000.0,
-    "channel_depth":1
+    "channels":"gray",
+    "channel_depth":4
  }
 ```
 </div>

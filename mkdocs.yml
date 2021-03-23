@@ -117,6 +117,7 @@ nav:
           - mono_gps.vi: LV_client/sensors/mono_gps.md
           - mono_imu.vi: LV_client/sensors/mono_imu.md
           - mono_led_array.vi: LV_client/sensors/mono_led_array.md
+          - mono_lidar_array.vi: LV_client/sensors/mono_lidar_array.md
           - mono_lidar.vi: LV_client/sensors/mono_lidar.md
           - mono_occupancy_grid.vi: LV_client/sensors/mono_occupancy_grid.md
           - mono_radar.vi: LV_client/sensors/mono_radar.md
@@ -157,12 +158,14 @@ nav:
           - mono_header.vi: LV_client/simulator/mono_header.md
           - mono_init.vi: LV_client/simulator/mono_init.md
           - mono_send_command.vi: LV_client/simulator/mono_send_command.md
+          - mono_send_pause_command.vi: LV_client/simulator/mono_send_pause_command.md
           - mono_send_step.vi: LV_client/simulator/mono_send_step.md
           - mono_set_running_mode.vi: LV_client/simulator/mono_set_running_mode.md
-
+          
       - Utilities:
           - mono_add_tcp_connection.vi: LV_client/utilities/mono_add_tcp_connection.md
           - mono_build_json.vi: LV_client/utilities/mono_build_json.md
+          - mono_build_name.vi: LV_client/utilities/mono_build_name.md
           - mono_build_version_msg.vi: LV_client/utilities/mono_build_version_msg.md
           - mono_calculate_image_indexes.vi: LV_client/utilities/mono_calculate_image_indexes.md
           - mono_calculate_average.vi: LV_client/utilities/mono_calculate_average.md
@@ -177,6 +180,7 @@ nav:
           - mono_Error_Fork_Stacker.vi: LV_client/utilities/mono_Error_Fork_Stacker.md
           - mono_filter_average_by_target.vi: LV_client/utilities/mono_filter_average_by_target.md
           - mono_generate_frame.vi: LV_client/utilities/mono_generate_frame.md
+          - mono_get_binary_file.vi: LV_client/utilities/mono_get_binary_file.md
           - mono_get_map.vi: LV_client/utilities/mono_get_map.md
           - mono_get_number_frames.vi: LV_client/utilities/mono_get_number_frames.md
           - mono_get_number_points_lidar.vi: LV_client/utilities/mono_get_number_points_lidar.md

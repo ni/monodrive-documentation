@@ -25,7 +25,7 @@
 
     Note that the editor may take a long time to compiling shaders, and may appear to get stuck at 95% or 99%. This is expected and you will need to wait for the compiling to finish. If no error is reported then the system is still compiling shaders, this only happens the first time opening. 
 
-    Note that the Simulator needs access to communicate to Public networks, select "Allow Access." If this window does not pop-up and there is a license error, see the [solution here](link)
+    Note that the Simulator needs access to communicate to Public networks, select "Allow Access". If this window does not pop-up and there is a license error, see the [solution here](link)
     
     <div class="img_container">
     <img class='lg_img' src="../../img/allow_access.png"/>

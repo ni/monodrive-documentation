@@ -77,7 +77,7 @@ running in a networked mode. If a `listen_port` is specified in the message,
 (e.g. a sensor that should stream data over a specified port), the message will
 be sent to the specified port.
 
-Each message will begin with a 12 byte monoDrive header starting with the 
+Each message will begin with a 16 byte monoDrive header starting with the 
 header flag:
 
 ```

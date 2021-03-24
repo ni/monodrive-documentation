@@ -8,7 +8,7 @@ Configures the closed loop simulation.
  - **Command ID:  "ClosedLoopConfigCommand_ID"**
 
  - **Command Data**:
-A [closed_loop configuration](../../scenario_editor/scenario_files) json
+A [closed_loop configuration](../../scenario_editor/scenarios) json
 
  - **Response**: (string)
 	One of
@@ -86,7 +86,7 @@ Retrieves the current version of the simulator and of the simulator API with the
 
  - **Response**: (string)
 
-	`simulator_version: 1.12, api_version: 4.0`
+	`simulator_version: 1.14, api_version: 5.0`
 
 
 ## Import Map

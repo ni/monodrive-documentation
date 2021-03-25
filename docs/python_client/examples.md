@@ -14,7 +14,7 @@ To connect to the monoDrive Simulator, construct a `Simulator` object:
 simulator = Simulator.from_file(
     "examples/configurations/simulator_closed_loop.json",
     trajectory="examples/trajectories/Closed_Loop.json",
-    sensors="examples/configurations/all_sensors.json',
+    sensors="examples/configurations/all_sensors.json",
     weather="examples/configurations/weather.json",
     ego="examples/configurations/vehicle.json"
 )

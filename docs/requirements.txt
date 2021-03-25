@@ -11,7 +11,7 @@ MarkupSafe==1.1.1
 mkdocs==1.1.2
 mkdocs-ivory==0.4.6
 nltk==3.5
-PyYAML==5.3.1
+PyYAML==5.4
 regex==2020.11.13
 six==1.15.0
 tornado==6.1

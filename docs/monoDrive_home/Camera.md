@@ -679,19 +679,13 @@ for a dynamic actor.
     - **tags:** An array of tags assigned to this actor    
 
 - **lanes:** Array JSON objects that decribe the lanes on the camera frame
-    - **road_id:**
-    - **lane_id:** this value can be positive or negative which represents the direction of the current lane with respect to the road.
-    - **s:**
-    - **offset:**
-    - **left:**
-        - **x:**
-        - **y:**
-    - **right:**
-        - **x:**
-        - **y:**
-    - **center**
-        - **x:**
-        - **y:**
+    - **road_id:** opendrive spec road id, can be used to lookup this lane in the opendrive map.
+    - **lane_id:** opendrive lane id, can be be used to identify this lane in the opendrive map.
+    - **s:** distance along opendrive lane spline.
+    - **offset:** an array of (x,y) points in image space for the left lane marking.
+    - **left:** an array of (x,y) points in image space for the left lane marking.
+    - **right:** an array of (x,y) points in image space for the right lane marking.
+    - **center** an array of (x,y) points in image space for the lane center.
 
 <p class="img_container">
 <img class="wide_img" src="../img/lane_annotation.png"/>

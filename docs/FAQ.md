@@ -14,9 +14,10 @@
 
 - [I moved my license to a new machine, the simulator shows an ```UNLICENSED. License in use``` message, even though my license is still valid.](./#unlicensed-license-in-use-message)
 - [The simulator shows an ```License is not found``` message.](./#the-simulator-shows-an-license-is-not-found-message)
-<p>&nbsp;</p>
 
-- [I received this error message, "'Scenario Editor Licence Error' - the feature 'monodrive_scenario_editor' is not available", and I have a valid license in the correct location.]()
+- [I received this error message, "'Scenario Editor Licence Error' - the feature 'monodrive_scenario_editor' is not available", and I have a valid license in the correct location.](./#scenario-editor-licence-error-simulator-license-error-windows)
+
+<p>&nbsp;</p>
 
 _ _ _ 
 

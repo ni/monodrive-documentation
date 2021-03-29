@@ -38,7 +38,7 @@ vehicle:
 The data collection software provides a tool to determine the optimal 
 field-of-view in both the horizontal and vertical dimensions. 
 
-> **TODO:** insert picture of calibration tool for images.
+<!-- > **TODO:** insert picture of calibration tool for images. -->
 
 After finding the optimal field-of-view angles, the values should be entered 
 into the "Ladybug Configuration" section of the "Configuration" tab. For the

@@ -8,7 +8,7 @@
 
 1. Extract the archive to a common location like `~/monodrive`.
 1. If downloading for the first time, you will need to download the license.txt file through your account on [monoDrive.io](https://www.monodrive.io/register), unless one has been provided directly from monoDrive. Copy the attached license.txt file to the extracted location `~/monodrive/VehicleAI/license.txt`.
-1. Run the simulator by navigating the `~/monodrive/VehicleAI` directory and running the shell script `VehicleAI.sh -opengl`.
+1. Run the simulator by navigating the `~/monodrive/VehicleAI` directory and running the shell script `VehicleAI.sh`.
 
 ## Scenario Editor
 

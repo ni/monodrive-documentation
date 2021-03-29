@@ -117,7 +117,7 @@ LiDAR data output shows attenuation as an effect of the weather conditions.
 </div>
 
 
-The efect of wind can also be seen on the LiDAR returns.   
+The effect of wind can also be seen on the LiDAR returns.   
 <div class="img_container">
   <video width=650px height=400px muted autoplay loop>
     <source src="https://cdn.monodrive.io/readthedocs/lidar_random_wind_noise.mp4" type="video/mp4">

@@ -45,6 +45,7 @@ control during playback). To attach the state sensor:
 
 1. Hit "Play" at the top of the Scenario Editor, the file set in the previous step should now be populated with all the desired tags.
 
+NOTE: You must have a vehicle with the tag "ego," otherwise it cannot be used with the monoDrive client.
 
 ## Replaying Trajectory Files
 

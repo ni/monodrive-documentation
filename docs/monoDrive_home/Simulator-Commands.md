@@ -8,7 +8,7 @@ Configures the closed loop simulation.
  - **Command ID:  "ClosedLoopConfigCommand_ID"**
 
  - **Command Data**:
-A [closed_loop configuration](../../scenario_editor/scenario_files) json
+A [closed_loop configuration](../../scenario_editor/scenarios) json
 
  - **Response**: (string)
 	One of
@@ -86,7 +86,7 @@ Retrieves the current version of the simulator and of the simulator API with the
 
  - **Response**: (string)
 
-	`simulator_version: 1.12, api_version: 4.0`
+	`simulator_version: 1.14, api_version: 5.0`
 
 
 ## Import Map
@@ -124,6 +124,15 @@ Configures the simulation [trajectory](../../scenario_editor/trajectory_files). 
 
 	`complete` if the trajectory was properly applied
 
+## Sample Command
+Obtain the latest sample from the sensors.   
+
+- **Command ID:  "SampleSensorsCommand_ID"**
+
+- **Command Data**: Specify the amount of time to wait for the sensors to return the sample before they timeout.i.e `{"timeout":10000}`.
+
+- **Response**: (string)
+	- `"An attempt to sample sensors was made but no ego vehicle is registered to the simulator."` if for some reason an ego vehicle was not spawn.
 
 ## Sensor Reconfiguration
 Reconfigures a previously configured sensor or set of sensors to use with the ego vehicle in the simulation run. The command takes a [single sensor configuration](Common.md).
@@ -196,6 +205,15 @@ Spawns the EGO vehicle using the supplied configuration. This command applies on
 	- `Spawn vehicle is only available in closed loop.`
 	- `Failed to spawn vehicle.`
 
+## Update Command
+Update the state of the ego and other actors in the scene based on the message.   
+
+- **Command ID:**  **"UpdateStateCommand_ID"**
+
+- **Command Data**: Frame information for the ego vehicle and other actors.
+
+- **Response**: (string)
+	- `complete` if the simulation was updated properly.
 
 ## Weather Configuration
 Configures the weather used in the simulation run. The profiles parameter is optional, and if present, the profiles are added or modified based on the supplied parameters for each profile.

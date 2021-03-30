@@ -105,6 +105,26 @@ semantic definition for each pixel value:
 | sidewalk |	190 |
 | road art |	193 |
 
+
+## Weather effect
+**NEW in 1.14 release**   
+LiDAR data output shows attenuation as an effect of the weather conditions.
+
+<p class="img_container">
+  <img class="wide_img" src="../img/lidar_weather.png" />
+</p>
+
+</div>
+
+
+The effect of wind can also be seen on the LiDAR returns.   
+<div class="img_container">
+  <video width=650px height=400px muted autoplay loop>
+    <source src="https://cdn.monodrive.io/readthedocs/lidar_random_wind_noise.mp4" type="video/mp4">
+  </video>
+</div> 
+
+
 ## Raw Output
 
 The output format of the **16 laser** LiDAR matches that of the 

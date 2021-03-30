@@ -80,23 +80,17 @@ Carpaint_White
 When selecting a color programmatically (i.e. using any client) in Closed loop mode, the user can assign a color for the ego vehicle using the scenario file.
 
 ```
-
-"body": {
-    "color": "Carpaint_White.Carpaint_White",
-    "type": "/Game/Vehicles/crossover_monoDrive_01.crossover_monoDrive_01_C"
-  }
+"body_color": "Carpaint_OliveGreen",
+"class_path": "/Game/Vehicles/sedan_monoDrive_01.sedan_monoDrive_01_C"
 ```
 
 ### Replay Mode
 
-When selecting a color programmatically (i.e. using any client) in Replay mode, the user can assign a color for the ego vehicle using the `simulator.json` in the `body` tag. 
+When selecting a color programmatically (i.e. using any client) in Replay mode, the user can assign a color for the ego vehicle using the trajectory file.
 
 ```
-"vehicles": [
-    {
-      "body_color": "Carpaint_White",
-      "class_path": "/Game/Vehicles/subcompact_monoDrive_01.subcompact_monoDrive_01_C",
-      "delayed_start": 0.0,
+"color": "Carpaint_DarkGrey",
+"replay_class": "/Game/Vehicles/compact_simple_01.compact_simple_01_C",
 ```
 
 ## PID Speed Controllers

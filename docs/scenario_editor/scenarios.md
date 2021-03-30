@@ -155,13 +155,13 @@ There are two categories of tags:
 
 By opening the Scenario File Tool Widget, users can save scenarios to monoDrive scenario files that can then be used in the Closed loop modes of the monoDrive Simulator and Scenario Editor. New Scenario files can be sent to the running simulator to replay dynamic actors for testing and review. 
 
-To begin, find the tool under the Content Folder, right-click and select Run Editor Utility Widget.
+To begin, find the tool **"Scenario File Tool Widget"** under the Content Folder, right-click and select Run Editor Utility Widget.
 
   <div class="img_container">
     <img class='lg_img' src="../imgs/scenario_tool_widget.png"/>
   </div>
 
-In the "Scenario File Tool Widget," the user can load or save a new scenario file. Selecting "Save" will write the scene's current configuration to the specified file on FilePath. This will overwrite any file that has the same name.
+In the "Scenario File Tool Widget", the user can load or save a new scenario file. Selecting "Save" will write the scene's current configuration to the specified file on FilePath. This will overwrite any file that has the same name.
 
   <div class="img_container">
     <img class='lg_img' src="../imgs/scenario_tool_widget2.png"/>

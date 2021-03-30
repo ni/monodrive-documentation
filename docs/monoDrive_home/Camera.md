@@ -203,8 +203,8 @@ Provides a grayscale camera stream where pixel values represent the semantic cat
     "min_shutter":  0.000500,
     "max_shutter":  0.001400,
     "sensor_size":  9.07,
-   "channels" : "rgba",
-   "annotation": {
+    "channels" : "gray",
+    "annotation": {
       "include_annotation": false,
       "desired_tags": [
         "traffic_sign", "vehicle"
@@ -302,7 +302,8 @@ represent the distance from the camera in centimeters.
       "debug_draw":false
     },
     "max_distance":50000.0,
-    "channel_depth":1
+    "channels":"gray",
+    "channel_depth":4
  }
 ```
 </div>
@@ -546,115 +547,149 @@ the output format for this sensor.
 ### Annotation
 
 ``` json
-[
-    {
-        "2d_bounding_boxes": [
-            {
-                "2d_bounding_box": [
-                    158.12020874023438,
-                    191.5050811767578,
-                    261.953125,
-                    272.0334167480469
-                ],
-                "name": "Body"
-            }
-        ],
-        "name": "sedan_monoDrive_02_HD4_128",
-        "oriented_bounding_box": [
-            {
-                "center": [
-                    7072.78662109375,
-                    -1290.6829833984375,
-                    -172.56475830078125
-                ],
-                "extents": [
-                    509.5,
-                    184.18313598632812,
-                    148.64846801757812
-                ],
-                "name": "Body",
-                "orientation": [
-                    -2.768632839433849e-06,
-                    -0.00046827553887851536,
-                    -0.9241809248924255,
-                    0.381954550743103
-                ],
-                "scale": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            }
-        ],
-        "tags": [
-            "vehicle",
-            "static",
-            "car"
-        ]
-    },
-    {
-        "2d_bounding_boxes": [
-            {
-                "2d_bounding_box": [
-                    189.89840698242188,
-                    203.3860321044922,
-                    260.5026550292969,
-                    267.6765441894531
-                ],
-                "name": "Body"
-            }
-        ],
-        "name": "subcompact_monoDrive_01_HD_32",
-        "oriented_bounding_box": [
-            {
-                "center": [
-                    9515.275390625,
-                    -1273.10546875,
-                    -172.4475555419922
-                ],
-                "extents": [
-                    253.14500427246094,
-                    144.71368408203125,
-                    148.70858764648438
-                ],
-                "name": "Body",
-                "orientation": [
-                    8.400806109420955e-06,
-                    -0.0004682083672378212,
-                    -0.9330278635025024,
-                    0.3598036468029022
-                ],
-                "scale": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            }
-        ],
-        "tags": [
-            "vehicle",
-            "static",
-            "car"
-        ]
-    },
-]
+{
+	"actors": [{
+			"2d_bounding_boxes": [{
+				"2d_bounding_box": [
+					158.12020874023438,
+					191.5050811767578,
+					261.953125,
+					272.0334167480469
+				],
+				"name": "Body"
+			}],
+			"name": "sedan_monoDrive_02_HD4_128",
+			"oriented_bounding_box": [{
+				"center": [
+					7072.78662109375,
+					-1290.6829833984375,
+					-172.56475830078125
+				],
+				"extents": [
+					509.5,
+					184.18313598632812,
+					148.64846801757812
+				],
+				"name": "Body",
+				"orientation": [
+					-2.768632839433849e-06,
+					-0.00046827553887851536,
+					-0.9241809248924255,
+					0.381954550743103
+				],
+				"scale": [
+					1.0,
+					1.0,
+					1.0
+				]
+			}],
+			"tags": [
+				"vehicle",
+				"static",
+				"car"
+			]
+		},
+		{
+			"2d_bounding_boxes": [{
+				"2d_bounding_box": [
+					189.89840698242188,
+					203.3860321044922,
+					260.5026550292969,
+					267.6765441894531
+				],
+				"name": "Body"
+			}],
+			"name": "subcompact_monoDrive_01_HD_32",
+			"oriented_bounding_box": [{
+				"center": [
+					9515.275390625,
+					-1273.10546875,
+					-172.4475555419922
+				],
+				"extents": [
+					253.14500427246094,
+					144.71368408203125,
+					148.70858764648438
+				],
+				"name": "Body",
+				"orientation": [
+					8.400806109420955e-06,
+					-0.0004682083672378212,
+					-0.9330278635025024,
+					0.3598036468029022
+				],
+				"scale": [
+					1.0,
+					1.0,
+					1.0
+				]
+			}],
+			"tags": [
+				"vehicle",
+				"static",
+				"car"
+			]
+		}
+	],
+	"lanes": [{
+		"center": [{
+			"x": 255.92514038085938,
+			"y": 477.407958984375
+		}, {
+			"x": 255.9377899169922,
+			"y": 440.50653076171875
+		}],
+		"left": [{
+			"x": 109.17768859863281,
+			"y": 477.3799743652344
+		}, {
+			"x": 133.64822387695313,
+			"y": 440.4832458496094
+		}],
+		"right": [{
+			"x": 402.6728515625,
+			"y": 477.435791015625
+		}, {
+			"x": 378.22747802734375,
+			"y": 440.52972412109375
+		}],
+		"road_id": 0,
+		"lane_id": 3,
+		"s": 5162.6796875,
+		"offset": 0
+	}]
+}
 ```
 
 Annotation data comes in an additional JSON message on the same port as the 
 camera image data. Each element in the JSON array represents a single annotation 
 for a dynamic actor.
 
-- **2d_bounding_boxes:** Array of JSON bounding boxes for an actor
-    - **2d_bounding_box:** Array containing the top-left x, top-left y, bottom-right x, bottom-right y coordinates in the image plane for the bounding box of this actor's section
-    - **name:** The name of the actor's section this bounding box surrounds
-- **name:** The name of the actor for these bounding boxes
-- **oriented_bounding_box:** An array containing JSON for each 3D bounding box for the actor's sections
-    - **center:** The x, y, and z center of the bounding box in centimeters with respect to the camera.
-    - **extents:** The x, y, and z radius in centimeters from the center of the bounding box
-    - **name:** The name of the actor's section this bounding box surrounds
-    - **orientation:** The rotation of the bounding box about the center as a quaternion
-    - **scale:** The scale coefficients for this bounding box
-- **tags:** An array of tags assigned to this actor    
+- **actors:** Array JSON objects that decribe the actors on the camera frame  
+    - **2d_bounding_boxes:** Array of JSON bounding boxes for an actor
+        - **2d_bounding_box:** Array containing the top-left x, top-left y, bottom-right x, bottom-right y coordinates in the image plane for the bounding box of this actor's section
+        - **name:** The name of the actor's section this bounding box surrounds
+    - **name:** The name of the actor for these bounding boxes
+    - **oriented_bounding_box:** An array containing JSON for each 3D bounding box for the actor's sections
+        - **center:** The x, y, and z center of the bounding box in centimeters with respect to the camera.
+        - **extents:** The x, y, and z radius in centimeters from the center of the bounding box
+        - **name:** The name of the actor's section this bounding box surrounds
+        - **orientation:** The rotation of the bounding box about the center as a quaternion
+        - **scale:** The scale coefficients for this bounding box
+    - **tags:** An array of tags assigned to this actor    
+
+- **lanes:** Array JSON objects that decribe the lanes on the camera frame
+    - **road_id:** opendrive spec road id, can be used to lookup this lane in the opendrive map.
+    - **lane_id:** opendrive lane id, can be be used to identify this lane in the opendrive map.
+    - **s:** distance along opendrive lane spline.
+    - **offset:** an array of (x,y) points in image space for the left lane marking.
+    - **left:** an array of (x,y) points in image space for the left lane marking.
+    - **right:** an array of (x,y) points in image space for the right lane marking.
+    - **center** an array of (x,y) points in image space for the lane center.
+
+<p class="img_container">
+<img class="wide_img" src="../img/lane_annotation.png"/>
+</p>
 
 ## Camera Coordinate Reference System
 A Camera's coordinate reference system is used in relation to Unreal Engine. 

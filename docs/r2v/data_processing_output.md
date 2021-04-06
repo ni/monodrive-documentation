@@ -22,10 +22,10 @@ that are part of the monoDrive Real-to-Virtual hardware. The current data
 logger saves:
 
 * GNSS Data - Log files that can be played back in the 
-[MT Software Suite](https://content.xsens.com/mt-software-suite-download?hsCtaTracking=ca04936d-827e-43ef-a5e9-1797c4d9a297%7C1e7a3b81-a8f1-40af-8464-97db700b3dec)
+[VectorNav Control Center](https://www.vectornav.com/resources/vectornav-control-center)
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>
-    <source src="https://cdn.monodrive.io/readthedocs/mt_software_suite.mp4" type="video/mp4">
+    <source src="https://cdn.monodrive.io/readthedocs/vectornav_control_center.mp4" type="video/mp4">
   </video>
 </div> 
 
@@ -100,7 +100,8 @@ motion from a forward facing camera.
 
 ## SLAM
 
-monoDrive uses Simultaneous Localization And Mapping (SLAM) in order to 
+This is available from the optional third party distritbuion. monoDrive can use 
+Simultaneous Localization And Mapping (SLAM) in order to 
 supplement and improve the paths from the Real-to-Virtual hardware's GNSS. The
 `slam` directory contains the output paths from the visual odometry when run
 on the collected camera data. The output of the path is in the 
@@ -116,7 +117,7 @@ stitching algorithms.
 * There are several different paths formatted in the 
 [TUM format](https://vision.in.tum.de/data/datasets/rgbd-dataset/file_formats) 
 available in `.txt` files.
-* KML Files that can be loaded into Google Earth for viewing the GNSS paths.
+* KMZ Files that can be loaded for viewing the GNSS paths.
 <p>&nbsp;</p>
 <div class="img_container">
     <img class='lg_img' src="../imgs/full_gnss_path.png"/>
@@ -145,6 +146,14 @@ fusing the LiDAR and camera image data.
     <source src="https://cdn.monodrive.io/readthedocs/fully_stitched_semantic_cloud.mp4" type="video/mp4">
   </video>
 </div> 
+<p>&nbsp;</p>
+* There is also full color stiched cloud data available in the `cloud_full_color` directory
+<div class="img_container">
+  <video width=650px height=480px muted autoplay loop>
+    <source src="https://cdn.monodrive.io/readthedocs/full_color_cloud_example.mp4" type="video/mp4">
+  </video>
+</div> 
+<p>&nbsp;</p>
 
 ## Object Detection
 
@@ -289,6 +298,47 @@ object was tracked to
  * `camera`: The index of the camera the image was taken from
  * `bbox`: The bounding box within the frame of the object
  * `mask`: The RLE encoded mask of the object to the pixel level
+
+## Static Object Detection
+
+Once all of the objects of interest have been identified by the object detection
+and tracked by the tracking algorithms, they are registered with world at
+an instance level. The `actors` directory contains the JSON formatted data 
+that uniquely identifies each static object in the scene and provides world 
+location information for the object. 
+
+Each actor's JSON file should contain something similar to the following:
+
+```
+{
+  "_type": "StaticActor",
+  "class_label": 20,
+  "instance_label": 1035,
+  "tags": [],
+  "pose": {
+    "_type": "Pose",
+    "position": {
+      "_type": "Position",
+      "x": 41.97428340799148,
+      "y": -18.99226235561603,
+      "z": 0.6569370864010778
+    },
+    "quaternion": {
+      "_type": "Quaternion",
+      "x": 0.0,
+      "y": -0.0,
+      "z": 0.9644060037462335,
+      "w": 0.26442590632957996
+    }
+  }
+}
+```
+
+* `class_label`: Indicates the actors classification.
+* `instance_label`: Uniquely identifies this actor in the data set.
+* `tags`: Any tags that were applied to the actor for meta data.
+* `position`: The x, y, and z coordinates of the actor in the world.
+* `quaternion`: The quaternion that gives the rotation of the actor in the world.
 
 ## Mesh
 

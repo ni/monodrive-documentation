@@ -88,7 +88,7 @@ the monoDrive LabVIEW data logger application. The data logger will connect to
 all sensors and ensure they are functioning as expected.
 1. The software is now connected and can display sensor outputs. 
 To begin recording data, click "Record".
-1. When data collection is complete, click "Stop Rec"
+1. When data collection is complete, click "Stop Rec".
 1. When you are done collecting data, click "Exit" to properly shut down all the 
 sensor connections.
 
@@ -128,7 +128,7 @@ was successful:
 
 For use in the monoDrive Real-to-Virtual data processing pipeline, the collected
 data needs to be converted to the 
-[KITTI format](https://www.cvlibs.net/datasets/kitti/index.php). The 
+[KITTI format](http://www.cvlibs.net/datasets/kitti/). The 
 `monodrive_to_kitti.py` script in the monoDrive Mapping Toolkit allows users
 to parse the collected binary data into KITTI:
 

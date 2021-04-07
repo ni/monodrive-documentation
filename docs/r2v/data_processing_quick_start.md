@@ -17,7 +17,7 @@ levels usable in the monoDrive Simulator.
 ### Processing Pipeline Installation
 
 Users of the Real-to-Virtual software will have access to the monoDrive 
-Real-to-Virtual deployment. These binary Docker images and configuration files  
+Real-to-Virtual deployment. These binary Docker images and configuration files 
 contain all software for processing real-to-virtual data into assets for use in 
 Unreal Engine and the monoDrive Simulator.
 
@@ -25,8 +25,17 @@ To install, navigate to the provided directory with Docker images and
 installation scripts and run:
 
 ```
-$ ./load_docker_deployment.sh --deployment-dir .
+$ ./install.sh --deployment-dir .
 ```
+
+To install third party applications along with the Real-to-Virtual images:
+
+```
+$ ./install.sh --deployment-dir . --third-party
+```
+
+This will pull down and build all third party data for building docker images
+from the open source `Dockerfile`s. 
 
 ## Calibrating LiDAR Position
 
@@ -162,6 +171,78 @@ objects in the cloud become more apparent:
 
 Once the values have been determined, place them in the 
 `config/sensor_offset.json` file for use in the pipeline.
+
+## Calibrating Texture Mapping
+
+After the mesh data has been created, the Texture Mapping Alignment Tool can
+be used to better align the GNSS and camera. This tool allows the user to see
+a portion of the rough texture mapped mesh rotate the offset between the 
+GNSS and camera in order to align features. This tool will allow users to 
+calibrate the `rotation_offset` value in the 
+`config/texture_mapping_config.json` file.
+
+To use the tool:
+
+```bash
+$ ./run_pipeline.sh --workspace /path/to/data_collection \
+    --texture-mapping-alignment
+```
+
+This will bring up the GUI window for manipulating the alignment. The mesh and
+texture mapping are controlled through the mouse and keyboard:
+
+* `Right mouse` + `w`/`s`/`a`/`d`: Contol the camera view of the mesh
+* `4`/`5`: Rotate texture alignment in yaw
+* `6`/`7`: Rotate texture alignment in roll
+* `8`/`9`: Rotate texture alignment in pitch
+
+The below image shows texture mapping with the original alignment, the alignment
+values for yaw, roll, and pitch can be seen at the bottom. Notice the lane
+edge markers are slightly skewed:
+
+<div class="img_container">
+    <img class='lg_img' src="../imgs/alignment_tool_misaligned.png"/>
+</div>
+
+By manipulating the texture mapping alignment, a better alignment can be found
+as shown below. Notice the straight lane edge markers:
+
+<div class="img_container">
+    <img class='lg_img' src="../imgs/alignment_tool_aligned.png"/>
+</div>
+
+Once the alignment is found, the values printed on the screen can be copied into
+the `texture_mapping_config.json` in the `rotation_offset`. The re-running
+the pipeline with these values installed will yield a slightly better texture
+mapping:
+
+```json
+{
+    "ppm": 80,
+    "max_resolution": 2048,
+    "cameras": [4, 0, 1],
+    "spherical_cameras": [],
+    "start_index": 0,
+    "end_index": 50000,
+    "num_boundary_triangle_layers": 0,
+    "pose_graph": "cloud/gnss_cam_path.txt",
+    "rotation_offset": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 1.0
+    },
+    "models": [
+        {
+            "mesh_filename": "000175_road_cloud.obj",
+            "max_projection_distance": 2000.0,
+            "min_projection_distance_delta": 50.0,
+            "semantic_label": 175,
+            "friendly_labels": [3, 4, 6, 8],
+            "scale": 100.0
+        }
+    ]
+}
+```
 
 ## Running the Pipeline
 

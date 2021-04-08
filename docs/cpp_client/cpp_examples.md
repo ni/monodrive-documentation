@@ -73,6 +73,39 @@ for (auto& sensor : sensors)
 }
 ```
 
+### Data Parsers
+monoDrive provides data parsers for each sensor for instance here is a Camera Frame:
+```cpp
+class  CameraFrame : public DataFrame{
+public:
+	virtual void parse(ByteBuffer& buffer) override;
+	virtual ByteBuffer write() const override;
+    CameraFrame(int x_res, int y_res, int channels, int channel_depth,
+        bool hasAnnotation) : 
+        bHasAnnotation(hasAnnotation), currentFrameIndex(0) {
+          imageFrame = new ImageFrame(x_res, y_res, channels, channel_depth);
+          annotationFrame = new CameraAnnotationFrame();
+    }
+    ~CameraFrame(){
+        delete imageFrame;
+        delete annotationFrame;
+    }
+    // for the double send on image then annotation
+    virtual bool parse_complete() const override{
+        if(!bHasAnnotation or currentFrameIndex % 2 == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    ImageFrame* imageFrame;
+    CameraAnnotationFrame* annotationFrame;
+    bool bHasAnnotation;
+    int currentFrameIndex;
+};
+```
+
 ### Stepping in Replay Mode
 
 After the `simulator` object is connected and the sensors are configured, the 

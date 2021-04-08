@@ -4,7 +4,7 @@ The monoDrive Simulator provides users with the ability to customize color and m
 
 ## Add Vehicle Model
 
-[New Vehicle Model Reduction & Import/Export to UE4](https://docs.google.com/document/d/1CNKV6uH6LYNShUDCY0I2ScNnKuVzvCVtPHe4Pv_Hcs0/edit?usp=sharing) -- Instructions on reducing the Vehicle model, and how to import/export new vehicle models into Unreal Engine.
+For information on adding a new vehicle model contact monoDrive support at support@monodrive.io
 
 ## Change the Vehicle's Model
 <div class="img_container">

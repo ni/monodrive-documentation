@@ -6,8 +6,7 @@ using the Windows Scenario Editor. Custom code can be added to the Simulator und
 `VehicleAI_Editor/Source` folder, or as Unreal Engine 4 plugins by adding the plugins
 to `VehicleAI_Editor/Plugins` and modifying the `VehicleAI.uproject` file accordingly.
 Custom assets can be imported into the editor using the Unreal Engine asset import 
-process, or by adding uassets/blueprints to `VehicleAI_Editor/Content`. For example, if looking to import a new vehicle model, use this tutorial: 
-<a href="https://docs.google.com/document/d/1CNKV6uH6LYNShUDCY0I2ScNnKuVzvCVtPHe4Pv_Hcs0/edit?usp=sharing" target="_blank">New Vehicle Model Reduction & Import/Export to UE4</a>.
+process, or by adding uassets/blueprints to `VehicleAI_Editor/Content`. 
 
 The monoDrive Simulator uses CUDA for certain features. Consequently, in order to 
 build the standalone Simulator from the Scenario Editor, the CUDA SDK must be installed

@@ -49,15 +49,12 @@ The following sensor message types are supported:
 | Waypoint Sensor| monodrive_msgs/WaypointSensor |
 
 ### Message Conversion
-There is a message conversion utility for ROS that converts parsed monoDrive frame data to/from ROS messages. For example:
+monoDrive provides a message conversion factory class for converting monoDrive frame data to/from ROS messages. This class is defined in `monodrive/ros/src/monodrive_msgs/include/MessageFactory.h`. An example usage:
 
 ```cpp
-static monodrive_msgs::Complex complexToROSComplex(const std::complex<float> value) {
-    monodrive_msgs::Complex result;
-    result.real = std::real(value);
-    result.imag = std::imag(value);
-    return result;
-}
+auto& data = *static_cast<RadarFrame*>(frame); // parsed monoDrive radar sensor frame
+monodrive_msgs::Radar msg = monodrive_msgs::MessageFactory::FromMonoDriveFrame(data); // convert to ROS message
+pub_radar.publish(msg); // publish to ROS topic
 ```
 
 ## Example Description

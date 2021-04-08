@@ -28,15 +28,6 @@ installation scripts and run:
 $ ./install.sh --deployment-dir .
 ```
 
-To install third party applications along with the Real-to-Virtual images:
-
-```
-$ ./install.sh --deployment-dir . --third-party
-```
-
-This will pull down and build all third party data for building docker images
-from the open source `Dockerfile`s. 
-
 ## Calibrating LiDAR Position
 
 Though the default values from the original data collection should be sufficient

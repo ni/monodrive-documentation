@@ -98,15 +98,6 @@ motion from a forward facing camera.
   </video>
 </div>
 
-## SLAM
-
-This is available from the optional third party distritbuion. monoDrive can use 
-Simultaneous Localization And Mapping (SLAM) in order to 
-supplement and improve the paths from the Real-to-Virtual hardware's GNSS. The
-`slam` directory contains the output paths from the visual odometry when run
-on the collected camera data. The output of the path is in the 
-[TUM format](https://vision.in.tum.de/data/datasets/rgbd-dataset/file_formats).
-
 
 ## Point Cloud Data
 

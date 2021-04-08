@@ -22,7 +22,7 @@ To launch the monoDrive ROS example, open a terminal and create 3 tabs in the
 
 1. In one tab, launch `rosbridge`: 
 
-        $ roslaunch rosbridge_server rosbridge_tcp.launch bson_only_mode:=True
+        $ roscore
 
 2. To start the vehicle control node:
 

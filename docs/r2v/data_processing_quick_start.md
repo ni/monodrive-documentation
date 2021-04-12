@@ -91,7 +91,7 @@ onto the road markers:
     <img class='lg_img' src="../imgs/lidar_camera_calibration_after.png"/>
 </div>
 
-Once the values have been determined, place them in the 
+Once the values have been determined, place update them in the 
 `config/sensor_offset.json` file for use in the pipeline.
 
 ## Calibrating the GNSS Position
@@ -160,13 +160,14 @@ objects in the cloud become more apparent:
     <img class='lg_img' src="../imgs/lidar_close_up.png"/>
 </div>
 
-Once the values have been determined, place them in the 
+Once the values have been determined, place update them in the 
 `config/sensor_offset.json` file for use in the pipeline.
 
 ## Calibrating Texture Mapping
 
-After the mesh data has been created, the Texture Mapping Alignment Tool can
-be used to better align the GNSS and camera. This tool allows the user to see
+After a data set has been run through the pipeline, texture mapping can be 
+updated if necessary by using the Texture Mapping Alignment Tool
+to better align the GNSS and camera. This tool allows the user to see
 a portion of the rough texture mapped mesh rotate the offset between the 
 GNSS and camera in order to align features. This tool will allow users to 
 calibrate the `rotation_offset` value in the 
@@ -182,10 +183,12 @@ $ ./run_pipeline.sh --workspace /path/to/data_collection \
 This will bring up the GUI window for manipulating the alignment. The mesh and
 texture mapping are controlled through the mouse and keyboard:
 
-* `Right mouse` + `w`/`s`/`a`/`d`: Contol the camera view of the mesh
+* `Right mouse` + `w`/`s`/`a`/`d`: Control the camera view of the mesh
 * `4`/`5`: Rotate texture alignment in yaw
 * `6`/`7`: Rotate texture alignment in roll
 * `8`/`9`: Rotate texture alignment in pitch
+* `n`: Move forward one step in the pose graph
+* `m`: Move backward 10 steps in the pose graph
 
 The below image shows texture mapping with the original alignment, the alignment
 values for yaw, roll, and pitch can be seen at the bottom. Notice the lane

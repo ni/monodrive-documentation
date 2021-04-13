@@ -40,7 +40,7 @@ main {
 @media(min-width: 100px) 
     and (max-width: 1240px) {
         .multi_img_container {
-            flex-direction: column
+            flex-wrap: wrap
         };
         .img_container {
             flex-direction: column 

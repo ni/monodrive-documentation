@@ -78,7 +78,7 @@ These two maps display monoDrive using lane detection software using opendrive.
 
 Two Carla maps Town04 and Town07 are available in monoDrive Simulator or Scenario Editor. These maps have been updated with monoDrive physical materials, lighting, semantic labeling, dynamic weather, traffic signaling, and ray tracing settings.
 
-To see a tutorial on how to import a Carla Map, contact monoDrive Support at support@monodrive.io
+To see a tutorial on how to import a Carla Map, contact monoDrive support at support@monodrive.io
 
 <div class ='multi_img_container'>
 

@@ -34,11 +34,26 @@ The Radar Shooting Bouncing Ray (RSBR) sensor provides ground truth hit point ac
 
 ## Raw Output
 
-Explanation
+The first element of the buffer is the total number of hit points for the return. The output is a raw buffer of `RSBRHitPoint`s. Here is the information sent back for a single hit point.
 
-Chart if needed:
+- distance: float
+- dir_x: float
+- dir_y: float
+- dir_z: float
+- radial_velocity: float
+- reflection: float
+- normal_x: float
+- normal_y: float
+- normal_z: float
+- dielectric_constant: float
+- roughness: float
 
-| column1   | column2 |
-| ------------ | ------------ |
-|Description 1 | Description 2 |
+<p>&nbsp;</p>
 
+<div class="img_container">
+  <video width=650px height=238px class="border" muted autoplay loop>
+    <source src="https://cdn.monodrive.io/readthedocs/rsbr.mp4" type="video/mp4">
+  </video>
+</div> 
+
+<p>&nbsp;</p>

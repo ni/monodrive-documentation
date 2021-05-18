@@ -1,6 +1,6 @@
 # RSBR  
 
-RSBR Description
+The Radar Shooting Bouncing Ray (RSBR) sensor provides ground truth hit point access to targets that are within the field-of-view of a simulated radar. The output of the sensor provides target intersection information at the resolution and field-of-view specified by the configuration. 
 
 ## Configuration
 
@@ -22,23 +22,15 @@ RSBR Description
     "ele_fov": 90,
     "scan_distance": 3000,
     "debug_draw": false,
-    "num_threads": 8,
-    "resolution": 5,
-    "max_returns": 100000,
-    "raycasts_per_thread": 100000,
-    "max_targets_capture": 1000
+    "num_threads": 8
 }
 ```
 
- - **azi_fov:** The angle in the x-y plane to detect objects in degrees.
- - **ele_fov:** The angle in the y-z plane to detect objects in degrees.
- - **scan_distance:** The maximum distance the sensor will detect objects in meters.
- - **debug_draw:** If true, the oriented bounding boxes for each actor in the output will be drawn.
- - **num_threads:** Description.
- - **resolution:** Description.
- - **max_returns:** Description.
- - **raycasts_per_thread:** Description.
- - **max_targets_capture:** Description.
+ - **azi_fov:** The horizontal field-of-view along the azimuth of the sensor in degrees.
+ - **ele_fov:** The vertical field-of-view along the elevation of the sensor in degrees.
+ - **scan_distance:** The maximum distance the sensor will detect objects in centimeters.
+ - **debug_draw:** If true, the rays that are cast will be drawn in editor mode.
+ - **num_threads:** The total number of threads that will be used to compute the ray casts.
 
 ## Raw Output
 

@@ -36,17 +36,17 @@ The Radar Shooting Bouncing Ray (RSBR) sensor provides ground truth hit point ac
 
 The first element of the buffer is the total number of hit points for the return. The output is a raw buffer of `RSBRHitPoint`s. Here is the information sent back for a single hit point.
 
-- **distance:** 
-- **dir_x:** 
-- **dir_y:** 
-- **dir_z:** 
-- **radial_velocity:** 
-- **reflection:** 
-- **normal_x:** 
-- **normal_y:** 
-- **normal_z:** 
-- **dielectric_constant:** 
-- **roughness:** 
+- **distance:** The magnitude of the vector from the sensor to the target in meters
+- **dir_x:** The distance in the x-direction in centimeters.
+- **dir_y:** The distance in the y-direction in centimeters.
+- **dir_z:** The distance in the z-direction in centimeters.
+- **radial_velocity:** The velocity along the azimuth direction of the Radar.
+- **reflection:** The electrical intensity of the return for the Radar.
+- **normal_x:** The x component of the unit's normal vector.
+- **normal_y:** The y component of the unit's normal vector.
+- **normal_z:** The z component of the unit's normal vector.
+- **dielectric_constant:** The coefficient of the material's dielectric property.
+- **roughness:** The coefficient of the material's roughness property.
 
 <p>&nbsp;</p>
 

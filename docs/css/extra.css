@@ -25,6 +25,9 @@ main {
     /* text-align: end; */
 }
 
+.border {
+    border: 1px solid #6074bd;
+}
 
 .ue_videos {
     width: 100%;

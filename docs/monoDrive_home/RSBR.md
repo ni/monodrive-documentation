@@ -34,13 +34,13 @@ The Radar Shooting Bouncing Ray (RSBR) sensor provides ground truth hit point ac
 
 ## Raw Output
 
-The RSBR dataframe contains a vector of `RSBRHitPoint`s. Here is the information sent back for a single hit point.
+The RSBR dataframe contains a vector of `RSBRHitPoint`s. The directions and normals are within the RSBR sensor's coordinate frame. Here is the information for a single hit point.
 
 - **distance:** The magnitude of the vector from the sensor to the target in meters.
 - **dir_x:** The distance in the x-direction in centimeters.
 - **dir_y:** The distance in the y-direction in centimeters.
 - **dir_z:** The distance in the z-direction in centimeters.
-- **radial_velocity:** The velocity along the radial direction of the Radar.
+- **radial_velocity:** The velocity along the radial direction of the ray.
 - **reflection:** The electrical intensity of the return for the Radar.
 - **normal_x:** The x component of the unit normal vector.
 - **normal_y:** The y component of the unit normal vector.

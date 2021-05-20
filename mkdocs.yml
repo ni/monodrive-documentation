@@ -50,6 +50,7 @@ nav:
     monoDrive_home/OccupancyGrid.md,
     monoDrive_home/Radar.md,
     monoDrive_home/RPM.md,
+    monoDrive_home/RSBR.md,
     monoDrive_home/State-sensor.md,
     monoDrive_home/Ultrasonic.md,
     monoDrive_home/Viewport.md, 

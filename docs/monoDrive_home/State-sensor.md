@@ -276,10 +276,10 @@ File and played back in Replay Mode.
    - **control_state** 
       - **lane_change_left:** The vehicle is considered to be in a left lane change.
       - **lane_change_right:** The vehicle is considered to be in a right lane change.
-      - **lane_id:** The vehicle's new lane, changes as soon as the vehicle begins the lane change.
-      - **road_id:** 
-      - **s:**
-      - **section_id:** 
+      - **lane_id:** The opendrive lane id, changes to new lane id as soon as the vehicle begins the lane change. 
+      - **road_id:** The opendrive road id.
+      - **s:** The opendrive distance along the road.
+      - **section_id:** The opendrive section id along the lane.
    - **state**
       - **name:** The name of the actor in the scene
       - **odometry**

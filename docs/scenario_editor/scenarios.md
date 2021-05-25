@@ -107,6 +107,17 @@ is not set, the input in this field sets the speed of the vehicle (in miles per 
 
 - **Speed PID:** PID Controller settings for speed control.
 
+ -	**Lane Change Transition Distance:** Lane Change is considered complete after the vehicle coordinate frame is close to the new lane center.
+
+ -	**Steer Forward Distance During Lane Change:** The range of centimeters to look ahead when performing steering AI actions during a lane change, interpolated based on steerForwardSpeedRange.
+ 
+ -	**Lane Change Comfort Proximity:** The minimum proximity in centimeters behind and in front of the vehicle for which it is acceptable to change lanes. In addition, the vehicle calculates if it or the other vehicle could stop in time to avoid the collision, and this value sets an extra barrier. 
+ 
+ -	**Lane Change Clamp Steer:** The maximum allowable steering angle from the pure pursuit controller, will use this range with the Lane Change Clamp Steer Speed. The actual clamped value is interpolated using the current speed, the clamp steer range, and the Lane Change Clamp Steer Speed. 
+ 
+ -	**Lane Change Clamp Steer Speed:** The speed range used in interpolating the steering clamping function. 
+
+
 ### Vehicle Behavior Settings
 The "Vehicle Behavior Settings" section of a vehicle's settings contains options for 
 obeying (or not) traffic laws:

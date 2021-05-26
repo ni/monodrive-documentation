@@ -38,11 +38,9 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
     },
     "dynamic_range": 50,
     "fov": 60.0,
-    "focal_length": 9.0,
     "fstop": 1.4,
     "min_shutter": 0.0005,
     "max_shutter": 0.0014,
-    "sensor_size": 9.07,
     "color_filter_array": {
         "use_cfa": false,
         "cfa":"rccc"
@@ -91,11 +89,9 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
     - **y:** The height of the image in pixels
 - **dynamic_range:** Controls the gain of the camera. A higher value will result in a grainer image.
 - **fov:** Controls the horizontal angle of view of the camera. The vertical angle will be dynamically calculated based on `stream_dimensions`
-- **focal_length:** If `fov` is set to `0`, this will be used to emulate the focal length of the lens in millimeters. Used to calculate field-of-view.
 - **fstop:** Controls the exposure time of the camera, higher values will yield brighter images with more motion blur.
 - **min_shutter:** Lower bound of the camera's exposure time in seconds. Higher values will have more motion blur.
 - **max_shutter:** Upper bound of the camera's exposure time in seconds. Higher values will have more motion blur.
-- **sensor_size:** If `fov` is set to `0`, this will be used to emulate the size of the camera's image sensor in millimeters. Used to calculate field-of-view.
 - **channels:** Used to determine type of image output. For RGB cameras, this should always be `rgba`.
 - **debug_draw:** If `true` and `annotation` is `true`, the bounding boxes will be displayed in the image for annotated objects.
 - **annotation:** If `true`, the annotation information will be provided in the output data.
@@ -136,11 +132,9 @@ Provides a grayscale camera stream with optional bounding boxes for dynamic obje
     },
     "dynamic_range":  50,
     "fov": 60.0,
-    "focal_length": 9.0,
     "fstop": 1.4,
     "min_shutter":  0.000500,
     "max_shutter":  0.001400,
-    "sensor_size":  9.07,
    "channels" : "gray",
    "annotation": {
       "include_annotation": false,
@@ -198,11 +192,9 @@ Provides a grayscale camera stream where pixel values represent the semantic cat
      },
     "dynamic_range":  50,
     "fov": 60.0,
-    "focal_length": 9.0,
     "fstop": 1.4,
     "min_shutter":  0.000500,
     "max_shutter":  0.001400,
-    "sensor_size":  9.07,
     "channels" : "gray",
     "annotation": {
       "include_annotation": false,
@@ -285,11 +277,9 @@ represent the distance from the camera in centimeters.
      },
     "dynamic_range":  50,
     "fov": 60.0,
-    "focal_length": 9.0,
     "fstop": 1.4,
     "min_shutter":  0.000500,
     "max_shutter":  0.001400,
-    "sensor_size":  9.07,
      "annotation": {
       "include_annotation": false,
       "desired_tags": [
@@ -374,7 +364,6 @@ The fisheye lens model was expanded to include the Poly1FisheyeCamera model. Thi
 	"max_distance": 50000.0,
 	"max_shutter": 0.00139999995008111,
 	"min_shutter": 0.0005000000237487257,
-	"sensor_size": 9.069999694824219,
 	"wait_for_fresh_frame": true,
     "annotation": {
         "cull_partial_frame": false,
@@ -436,7 +425,6 @@ The fisheye lens model was expanded to include the Poly1FisheyeCamera model. Thi
 	"max_distance": 50000.0,
 	"max_shutter": 0.00139999995008111,
 	"min_shutter": 0.0005000000237487257,
-	"sensor_size": 9.069999694824219,
 	"viewport": {
 		"enable_viewport": false,
 		"fullscreen": false,

@@ -20,60 +20,87 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
 
 ``` json
 {
-    "type":"Camera",
-    "listen_port":8010,
-    "location": {
-      "x": 0.0,
-      "y": 0.0,
-      "z": 250.0
+  "type": "Camera",
+  "listen_port": 0,
+  "location": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "rotation": {
+    "pitch": 0.0,
+    "roll": 0.0,
+    "yaw": 0.0
+  },
+  "stream_dimensions": {
+    "x": 512,
+    "y": 512
+  },
+  "annotation": {
+    "cull_partial_frame": false,
+    "cull_partial_frame_min": 1.0,
+    "debug_draw": false,
+    "desired_tags": [],
+    "far_plane": 10000.0,
+    "include_annotation": false,
+    "include_lanes": false,
+    "include_obb": false,
+    "include_tags": false,
+    "lane_sampling_distance": 10000.0,
+    "lane_sampling_frequency": 100.0,
+    "lane_subsampling": 10.0
+  },
+  "camera_matrix": [
+    [
+      443.0,
+      0.0,
+      256.0
+    ],
+    [
+      0.0,
+      443.0,
+      256.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "channel_depth": 1,
+  "channels": "bgra",
+  "color_filter_array": {
+    "cfa": "rccc",
+    "use_cfa": false
+  },
+  "dynamic_range": 1.0,
+  "exposure_compensation": -1.0,
+  "fov": 0.0,
+  "image_noise_bias": 0.0,
+  "min_shutter": 0.0005000000237487257,
+  "max_shutter": 0.00139999995008111,
+  "motion_blur_bias": 0.10000000149011612,
+  "white_balance": 0.0,
+  "white_balance_temp_offset": 0.0,
+  "ray_tracing": {
+    "enable_ray_tracing": false
+  },
+  "viewport": {
+    "enable_hud": false,
+    "enable_viewport": false,
+    "fullscreen": false,
+    "hud_class_path": "WidgetBlueprint'/Game/HUD/VehicleHUD.VehicleHUD_C'",
+    "monitor_name": "",
+    "monitor_number": 0,
+    "window_offset": {
+      "x": 0,
+      "y": 0
     },
-    "rotation": {
-      "pitch": 0.0,
-      "yaw": 0.0,
-      "roll": 0.0
-    },
-    "stream_dimensions": {
-      "x": 512.0,
-      "y": 512.0
-    },
-    "dynamic_range": 50,
-    "fov": 60.0,
-    "fstop": 1.4,
-    "min_shutter": 0.0005,
-    "max_shutter": 0.0014,
-    "color_filter_array": {
-        "use_cfa": false,
-        "cfa":"rccc"
-    },
-    "channels": "bgra",
-    "viewport": {
-        "enable_viewport": false,
-        "fullscreen": false,
-            "monitor_name": "",
-        "monitor_number": 0,
-        "window_offset": {
-            "x": 32,
-            "y": 32
-        },
-        "window_size": {
-            "x": 0,
-            "y": 0
-        }
-    },
-    "ray_tracing_enable": false,
-    "annotation": {
-      "include_annotation": false,
-      "desired_tags": [
-        "traffic_sign", "vehicle"
-      ],
-      "far_plane": 10000.0,
-      "include_tags": true,
-      "include_obb": false,
-      "cull_partial_frame":false,
-      "debug_draw":false
-    },
-    "max_distance":50000.0,
-    "channel_depth":1
+    "window_size": {
+      "x": 0,
+      "y": 0
+    }
+  }
 }
 ```
 </div>
@@ -87,22 +114,45 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
 - **stream_dimensions:** The size of the image in pixels
     - **x:** The width of the image in pixels
     - **y:** The height of the image in pixels
+- **annotation:** If `true`, the annotation information will be provided in the output data.
+    - **cull_partial_frame:** If `true`, the actors that are only partially in frame will be removed from annotations.
+    - **cull_partial_frame_min:** 
+    - **debug_draw:** If `true` and `annotation` is `true`, the bounding boxes will be displayed in the image for annotated objects.
+    - **desired_tags:** If this array is not empty, the only actors with the tags specified here will be included in annotations.
+    - **far_plane:** The maximum distance in centimeters to annotate actors in the scene.
+    - **include_annotation:**
+    - **include_obb:** If `true`, the actor oriented bounding box information will be included in annotations.
+    - **include_tags:** If `true`, the actor tag information will be included in annotations.
+    - **lane_sampling_distance:**
+    - **lane_sampling_frequency:**
+    - **lane_subsampling:**
+- **camera_matrix:**
+- **channel_depth:**
+- **channels:** Used to determine type of image output. For RGB cameras, this should always be `rgba`.
+- **color_filter_array:** [color filter array (bayer)](./#color-filter-arrays-bayer)
+    - **cfa:** The cfa type.
+    - **use_cfa:** If `use_cfa` set to `true`, enables color filter array. 
 - **dynamic_range:** Controls the gain of the camera. A higher value will result in a grainer image.
+- **exposure_compensation:**
 - **fov:** Controls the horizontal angle of view of the camera. The vertical angle will be dynamically calculated based on `stream_dimensions`
-- **fstop:** Controls the exposure time of the camera, higher values will yield brighter images with more motion blur.
+- **image_noise_bias:**
 - **min_shutter:** Lower bound of the camera's exposure time in seconds. Higher values will have more motion blur.
 - **max_shutter:** Upper bound of the camera's exposure time in seconds. Higher values will have more motion blur.
-- **channels:** Used to determine type of image output. For RGB cameras, this should always be `rgba`.
-- **debug_draw:** If `true` and `annotation` is `true`, the bounding boxes will be displayed in the image for annotated objects.
-- **annotation:** If `true`, the annotation information will be provided in the output data.
-- **include_tags:** If `true`, the actor tag information will be included in annotations.
-- **include_obb:** If `true`, the actor oriented bounding box information will be included in annotations.
-- **cull_partial_frame:** If `true`, the actors that are only partially in frame will be removed from annotations.
-- **far_plane:** The maximum distance in centimeters to annotate actors in the scene.
-- **desired_tags:** If this array is not empty, the only actors with the tags specified here will be included in annotations.
-- **viewport:** if `enable_viewport` is set to `true`, a new window will open with this camera as a viewport camera. For more information see [multi-viewport](../Multi-viewport)
-- **color_filter_array:** If `use_cfa` set to `true`, enables color filter array. For more information, see [color filter array (bayer)](./#color-filter-arrays-bayer)
-- **ray_tracing_enable:** If set to `true`, enables ray tracing. For more information, see [ray tracing](./#real-time-ray-tracing-tuning)
+- **motion_blur_bias:**
+- **white_balance:**
+- **white_balance_temp_offset:**
+- **ray_tracing:** [ray tracing](./#real-time-ray-tracing-tuning)
+    - **ray_tracing_enable:** If set to `true`, enables ray tracing.
+- **viewport:** [Multi-Viewport Camera Information](../Multi-viewport)
+    - **enable_viewport:** If `true`, will enable camera viewport
+    - **monitor_name:** If specified, will position viewport on specific monitor by name
+    - **monitor_number:** If specified, will position viewport on specific monitor by index. Note that if `monitor_name`
+    is also specified, this index will be within the matching group of monitors.
+    - **fullscreen:** If `true`, the camera viewport will be set to borderless fullscreen
+    - **window_offset:** The viewport window offset from top-left of monitor. This only applies if `fullscreen` is `false`.
+        - **x:** The window offset in x
+        - **y:** The window offset in y
+
 
 ## Grayscale Camera
 
@@ -703,7 +753,7 @@ To enable color filter, set `use_cfa` to `true`, and select a cfa type such as "
 
 ## Camera as a Viewport Camera
 
-Starting from release 1.12, the user can configure a viewport on any standard, fisheye, or 360 camera. This will open an additional window on the simulation machine to directly display the stream of camera data.
+The user can configure a viewport on any standard, fisheye, or 360 camera. This will open an additional window on the simulation machine to directly display the stream of camera data.
 
 ```json
 "viewport": {

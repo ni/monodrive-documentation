@@ -1,12 +1,10 @@
 ## Multi viewport
 
-***NEW in 1.12***
-
 For many high performance use cases, TCP is simply not fast enough to stream the large amount of camera data
 we are simulating in real time. As a better performance alternative, monoDrive supports streaming camera data
 directly from the GPU over display output.
 
-Starting from release **1.12**, the user can configure a viewport on any standard, fisheye, or 360 camera. This will open
+The user can configure a viewport on any standard, fisheye, or 360 camera. This will open
 an additional window on the simulation machine to directly display the stream of camera data.
 
 ### Usage

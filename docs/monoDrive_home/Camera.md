@@ -15,17 +15,18 @@ be controlled through each camera's configuration.
 ## RGB Camera
 Provides a RGBA camera stream with optional bounding boxes for dynamic objects in the scene.
 
-<div class ='multi_img_container'>
-<div class="wide_img">
+<p class="img_container">
+  <img class='half_screen_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camerasensor.PNG"  height="400" />
+</p>
 
 ``` json
 {
   "type": "Camera",
-  "listen_port": 0,
+  "listen_port": 8010,
   "location": {
     "x": 0.0,
     "y": 0.0,
-    "z": 0.0
+    "z": 250.0
   },
   "rotation": {
     "pitch": 0.0,
@@ -40,32 +41,22 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
     "cull_partial_frame": false,
     "cull_partial_frame_min": 1.0,
     "debug_draw": false,
-    "desired_tags": [],
+    "desired_tags": [
+      "traffic_sign", "vehicle"
+    ],
     "far_plane": 10000.0,
     "include_annotation": false,
-    "include_lanes": false,
+    "include_lanes": true,
     "include_obb": false,
-    "include_tags": false,
+    "include_tags": true,
     "lane_sampling_distance": 10000.0,
     "lane_sampling_frequency": 100.0,
     "lane_subsampling": 10.0
   },
   "camera_matrix": [
-    [
-      443.0,
-      0.0,
-      256.0
-    ],
-    [
-      0.0,
-      443.0,
-      256.0
-    ],
-    [
-      0.0,
-      0.0,
-      1.0
-    ]
+    [443.0, 0.0, 256.0],
+    [0.0, 443.0, 256.0],
+    [0.0, 0.0, 1.0]
   ],
   "channel_depth": 1,
   "channels": "bgra",
@@ -75,7 +66,225 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
   },
   "dynamic_range": 1.0,
   "exposure_compensation": -1.0,
-  "fov": 0.0,
+  "fov": 60.0,
+  "image_noise_bias": 0.0,
+  "min_shutter": 0.0005000000237487257,
+  "max_shutter": 0.00139999995008111,
+  "motion_blur_bias": 0.10000000149011612,
+  "white_balance": 0.0,
+  "white_balance_temp_offset": 0.0,
+  "ray_tracing": {
+    "enable_ray_tracing": false
+  },
+  "viewport": {
+    "enable_hud": false,
+    "enable_viewport": false,
+    "fullscreen": false,
+    "hud_class_path": "WidgetBlueprint'/Game/HUD/VehicleHUD.VehicleHUD_C'",
+    "monitor_name": "",
+    "monitor_number": 0,
+    "window_offset": {
+      "x": 32,
+      "y": 32
+    },
+    "window_size": {
+      "x": 0,
+      "y": 0
+    }
+  }
+}
+```
+
+- **stream_dimensions:** The size of the image in pixels.
+    - **x:** The width of the image in pixels.
+    - **y:** The height of the image in pixels.
+- **annotation:**
+    - **cull_partial_frame:** If `true`, the actors that are only partially in frame will be removed from annotations.
+    - **cull_partial_frame_min:** Sets a border of pixels inside the image to cull.
+    - **debug_draw:** If `true` and `annotation` is `true`, the bounding boxes will be displayed in the image for annotated objects.
+    - **desired_tags:** If this array is not empty, the only actors with the tags specified here will be included in annotations.
+    - **far_plane:** The maximum distance in centimeters to annotate actors in the scene.
+    - **include_annotation:** If `true`, the annotation information will be provided in the output data.
+    - **include_lanes:** If `true`, lane information will be included in the annotation.
+    - **include_obb:** If `true`, the actor oriented bounding box information will be included in annotations.
+    - **include_tags:** If `true`, the actor tag information will be included in annotations.
+    - **lane_sampling_distance:** Distance (cm) along the lane we want included in the annotation.
+    - **lane_sampling_frequency:** Interval (cm) along the lane we want to sample annotation points.
+    - **lane_subsampling:** Interval (pixels) between points in image space we want to actually be returned.
+- **camera_matrix:** Computes Field of View (FOV). 
+- **channel_depth:** Sets the total number of channels that will be in the output.
+- **channels:** Used to determine type of image output. For RGB cameras, this should always be `rgba`.
+- **color_filter_array:** [color filter array (bayer)](./#color-filter-arrays-bayer)
+    - **cfa:** The cfa type.
+    - **use_cfa:** If `use_cfa` set to `true`, enables color filter array. 
+- **dynamic_range:** Controls the contrast of the image.
+- **exposure_compensation:** Control of the ISO value in the image via the exposure scale (moves gray point of the image and controls brightness).
+- **fov:** Controls the horizontal angle of view of the camera. The vertical angle will be dynamically calculated based on `stream_dimensions`.
+- **image_noise_bias:** Direct control over gaussian noise in image data.
+- **min_shutter:** Lower bound of the camera's exposure time in seconds. Higher values will have more motion blur.
+- **max_shutter:** Upper bound of the camera's exposure time in seconds. Higher values will have more motion blur.
+- **motion_blur_bias:** Allows direct control over motion blur amount.
+- **white_balance:** Controls the cyan/magenta balance.
+- **white_balance_temp_offset:** A base temperature of 6500K can now be offset to be warmer or colder.
+- **ray_tracing:** [ray tracing](./#real-time-ray-tracing-tuning)
+    - **ray_tracing_enable:** If set to `true`, enables ray tracing.
+- **viewport:** [Multi-Viewport Camera Information](../Multi-viewport)
+    - **enable_viewport:** If `true`, will enable camera viewport.
+    - **enable_hud:** If `true`, will enable HUD (Heads Up Display).
+    - **hud_class_path:** Path to HUD Blueprint.
+    - **monitor_name:** If specified, will position viewport on specific monitor by name.
+    - **monitor_number:** If specified, will position viewport on specific monitor by index. Note that if `monitor_name` is also specified, this index will be within the matching group of monitors.
+    - **fullscreen:** If `true`, the camera viewport will be set to borderless fullscreen.
+    - **window_offset:** The viewport window offset from top-left of monitor. This only applies if `fullscreen` is `false`.
+        - **x:** The window offset in x.
+        - **y:** The window offset in y.
+
+
+## Grayscale Camera
+
+Provides a grayscale camera stream with optional bounding boxes for dynamic objects in the scene.
+
+<p class="img_container">
+  <img class='half_screen_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_grayscale.png"  height="400" />
+</p>
+
+``` json
+{
+  "type": "Camera",
+  "listen_port": 8012,
+  "location": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 250.0
+  },
+  "rotation": {
+    "pitch": 0.0,
+    "roll": 0.0,
+    "yaw": 0.0
+  },
+  "stream_dimensions": {
+    "x": 512,
+    "y": 512
+  },
+  "annotation": {
+    "cull_partial_frame": false,
+    "cull_partial_frame_min": 1.0,
+    "debug_draw": false,
+    "desired_tags": [
+      "traffic_sign", "vehicle"
+    ],
+    "far_plane": 10000.0,
+    "include_annotation": false,
+    "include_lanes": true,
+    "include_obb": false,
+    "include_tags": true,
+    "lane_sampling_distance": 10000.0,
+    "lane_sampling_frequency": 100.0,
+    "lane_subsampling": 10.0
+  },
+  "camera_matrix": [
+    [443.0, 0.0, 256.0],
+    [0.0, 443.0, 256.0],
+    [0.0, 0.0, 1.0]
+  ],
+  "channel_depth": 1,
+  "channels": "gray",
+  "color_filter_array": {
+    "cfa": "rccc",
+    "use_cfa": false
+  },
+  "dynamic_range": 1.0,
+  "exposure_compensation": -1.0,
+  "fov": 60.0,
+  "image_noise_bias": 0.0,
+  "min_shutter": 0.0005000000237487257,
+  "max_shutter": 0.00139999995008111,
+  "motion_blur_bias": 0.10000000149011612,
+  "white_balance": 0.0,
+  "white_balance_temp_offset": 0.0,
+  "ray_tracing": {
+    "enable_ray_tracing": false
+  },
+  "viewport": {
+    "enable_hud": false,
+    "enable_viewport": false,
+    "fullscreen": false,
+    "hud_class_path": "WidgetBlueprint'/Game/HUD/VehicleHUD.VehicleHUD_C'",
+    "monitor_name": "",
+    "monitor_number": 0,
+    "window_offset": {
+      "x": 32,
+      "y": 32
+    },
+    "window_size": {
+      "x": 0,
+      "y": 0
+    }
+  }
+}
+```
+
+All values are the same as the RGB camera except: 
+
+- **channels:** Used to determine the type of image output. For grayscale cameras, this should always be `gray`.
+
+<p>&nbsp;</p>
+
+## Semantic Camera
+Provides a grayscale camera stream where pixel values represent the semantic category of the rendered actor.
+
+<p class="img_container">
+  <img class='half_screen_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/semanticcamerasensor.PNG"  height="400" />
+</p>
+
+``` json
+ {
+   "type": "SemanticCamera",
+    "listen_port": 8013,
+  "location": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 250.0
+  },
+  "rotation": {
+    "pitch": 0.0,
+    "roll": 0.0,
+    "yaw": 0.0
+  },
+  "stream_dimensions": {
+    "x": 512,
+    "y": 512
+  },
+  "annotation": {
+    "cull_partial_frame": false,
+    "cull_partial_frame_min": 1.0,
+    "debug_draw": false,
+    "desired_tags": [
+      "traffic_sign", "vehicle"
+    ],
+    "far_plane": 10000.0,
+    "include_annotation": false,
+    "include_lanes": true,
+    "include_obb": false,
+    "include_tags": true,
+    "lane_sampling_distance": 10000.0,
+    "lane_sampling_frequency": 100.0,
+    "lane_subsampling": 10.0
+  },
+  "camera_matrix": [
+    [443.0, 0.0, 256.0],
+    [0.0, 443.0, 256.0],
+    [0.0, 0.0, 1.0]
+  ],
+  "channel_depth": 1,
+  "channels": "gray",
+  "color_filter_array": {
+    "cfa": "rccc",
+    "use_cfa": false
+  },
+  "dynamic_range": 1.0,
+  "exposure_compensation": -1.0,
+  "fov": 60.0,
   "image_noise_bias": 0.0,
   "min_shutter": 0.0005000000237487257,
   "max_shutter": 0.00139999995008111,
@@ -103,173 +312,6 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
   }
 }
 ```
-</div>
-
-<p class="img_container">
-  <img class='half_screen_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camerasensor.PNG"  height="400" />
-</p>
-
-</div>
-
-- **stream_dimensions:** The size of the image in pixels
-    - **x:** The width of the image in pixels
-    - **y:** The height of the image in pixels
-- **annotation:**
-    - **cull_partial_frame:** If `true`, the actors that are only partially in frame will be removed from annotations.
-    - **cull_partial_frame_min:** Sets a border of pixels inside the image to cull.
-    - **debug_draw:** If `true` and `annotation` is `true`, the bounding boxes will be displayed in the image for annotated objects.
-    - **desired_tags:** If this array is not empty, the only actors with the tags specified here will be included in annotations.
-    - **far_plane:** The maximum distance in centimeters to annotate actors in the scene.
-    - **include_annotation:** If `true`, the annotation information will be provided in the output data.
-    - **include_obb:** If `true`, the actor oriented bounding box information will be included in annotations.
-    - **include_tags:** If `true`, the actor tag information will be included in annotations.
-    - **lane_sampling_distance:**
-    - **lane_sampling_frequency:**
-    - **lane_subsampling:**
-- **camera_matrix:** Computes Field of View (FOV). 
-- **channel_depth:** Sets the total number of channels that will be in the output.
-- **channels:** Used to determine type of image output. For RGB cameras, this should always be `rgba`.
-- **color_filter_array:** [color filter array (bayer)](./#color-filter-arrays-bayer)
-    - **cfa:** The cfa type.
-    - **use_cfa:** If `use_cfa` set to `true`, enables color filter array. 
-- **dynamic_range:** Controls the contrast of the image.
-- **exposure_compensation:** Control of the ISO value in the image via the exposure scale (moves gray point of the image and controls brightness)
-- **fov:** Controls the horizontal angle of view of the camera. The vertical angle will be dynamically calculated based on `stream_dimensions`
-- **image_noise_bias:** Direct control over gaussian noise in image data.
-- **min_shutter:** Lower bound of the camera's exposure time in seconds. Higher values will have more motion blur.
-- **max_shutter:** Upper bound of the camera's exposure time in seconds. Higher values will have more motion blur.
-- **motion_blur_bias:** Allows direct control over motion blur amount.
-- **white_balance:** Controls the cyan/magenta balance.
-- **white_balance_temp_offset:** A base temperature of 6500K can now be offset to be warmer or colder.
-- **ray_tracing:** [ray tracing](./#real-time-ray-tracing-tuning)
-    - **ray_tracing_enable:** If set to `true`, enables ray tracing.
-- **viewport:** [Multi-Viewport Camera Information](../Multi-viewport)
-    - **enable_viewport:** If `true`, will enable camera viewport
-    - **monitor_name:** If specified, will position viewport on specific monitor by name
-    - **monitor_number:** If specified, will position viewport on specific monitor by index. Note that if `monitor_name`
-    is also specified, this index will be within the matching group of monitors.
-    - **fullscreen:** If `true`, the camera viewport will be set to borderless fullscreen
-    - **window_offset:** The viewport window offset from top-left of monitor. This only applies if `fullscreen` is `false`.
-        - **x:** The window offset in x
-        - **y:** The window offset in y
-
-
-## Grayscale Camera
-
-Provides a grayscale camera stream with optional bounding boxes for dynamic objects in the scene.
-
-
-<div class ='multi_img_container'>
-<div class="wide_img">
-
-``` json
- {
-    "type": "Camera",
-    "listen_port": 8012,
-    "location": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 250.0
-    },
-    "rotation": {
-        "pitch": 0.0,
-        "yaw": 0.0,
-        "roll": 0.0
-    },
-    "stream_dimensions": {
-        "x": 512.0,
-        "y": 512.0
-    },
-    "dynamic_range":  50,
-    "fov": 60.0,
-    "fstop": 1.4,
-    "min_shutter":  0.000500,
-    "max_shutter":  0.001400,
-   "channels" : "gray",
-   "annotation": {
-      "include_annotation": false,
-      "desired_tags": [
-        "traffic_sign", "vehicle"
-      ],
-      "far_plane": 10000.0,
-      "include_tags": true,
-      "include_obb": false,
-      "cull_partial_frame":false,
-      "debug_draw":false
-    },
-    "max_distance":50000.0,
-    "channel_depth":1
-}
-```
-
-</div>
-
-<p class="img_container">
-  <img class='half_screen_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_grayscale.png"  height="400" />
-</p>
-
-</div>
-
-All values are the same as the RGB camera except: 
-
-- **channels:** Used to determine the type of image output. For grayscale cameras, this should always be `gray`.
-
-<p>&nbsp;</p>
-
-## Semantic Camera
-Provides a grayscale camera stream where pixel values represent the semantic category of the rendered actor.
-
-<div class ='multi_img_container'>
-<div class="wide_img">
-
-``` json
- {
-     "type": "SemanticCamera",
-     "listen_port": 8013,
-     "location": {
-       "x": 0.0,
-       "y": 0.0,
-       "z": 250.0
-     },
-     "rotation": {
-       "pitch": 0.0,
-       "yaw": 0.0,
-       "roll": 0.0
-     },
-     "stream_dimensions": {
-       "x": 512.0,
-       "y": 512.0
-     },
-    "dynamic_range":  50,
-    "fov": 60.0,
-    "fstop": 1.4,
-    "min_shutter":  0.000500,
-    "max_shutter":  0.001400,
-    "channels" : "gray",
-    "annotation": {
-      "include_annotation": false,
-      "desired_tags": [
-        "traffic_sign", "vehicle"
-      ],
-      "far_plane": 10000.0,
-      "include_tags": true,
-      "include_obb": false,
-      "cull_partial_frame":false,
-      "debug_draw":false
-    },
-    "max_distance":50000.0,
-    "channel_depth": 1
- }
-
-```
-
-</div>
-
-<p class="img_container">
-  <img class='half_screen_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/semanticcamerasensor.PNG"  height="400" />
-</p>
-
-</div>
 
 The configuration values are the same as RGB. The following table shows the 
 semantic definition for each pixel value:
@@ -304,55 +346,88 @@ semantic definition for each pixel value:
 Provides an unsigned 32-bit floating point array where the pixel values 
 represent the distance from the camera in centimeters.
 
-<div class ='multi_img_container'>
-<div class="wide_img">
+<div class="img_container">
+  <img class='half_screen_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_depth.png"/>
+</div>
 
 ```json
 {
-     "type": "DepthCamera",
-      "listen_port": 8014,
-      "location": {
-       "x": 0.0,
-       "y": 0.0,
-       "z": 250.0
-     },
-     "rotation": {
-       "pitch": 0.0,
-       "yaw": 0.0,
-       "roll": 0.0
-     },
-     "stream_dimensions": {
-       "x": 512.0,
-       "y": 512.0
-     },
-    "dynamic_range":  50,
-    "fov": 60.0,
-    "fstop": 1.4,
-    "min_shutter":  0.000500,
-    "max_shutter":  0.001400,
-     "annotation": {
-      "include_annotation": false,
-      "desired_tags": [
-        "traffic_sign", "vehicle"
-      ],
-      "far_plane": 10000.0,
-      "include_tags": true,
-      "include_obb": false,
-      "cull_partial_frame":false,
-      "debug_draw":false
-    },
-    "max_distance":50000.0,
-    "channels":"gray",
-    "channel_depth":4
+  "type": "DepthCamera",
+  "listen_port": 8014,
+  "annotation": {
+    "cull_partial_frame": false,
+    "cull_partial_frame_min": 1.0,
+    "debug_draw": false,
+    "desired_tags": [
+      "traffic_sign", "vehicle"
+    ],
+    "far_plane": 10000.0,
+    "include_annotation": false,
+    "include_lanes": true,
+    "include_obb": false,
+    "include_tags": true,
+    "lane_sampling_distance": 10000.0,
+    "lane_sampling_frequency": 100.0,
+    "lane_subsampling": 10.0
+  },
+  "camera_matrix": [
+      [443.0,0.0, 256.0],
+      [0.0,443.0, 256.0],
+      [0.0,0.0, 1.0]
+  ],
+  "channel_depth": 4,
+  "channels": "gray",
+  "color_filter_array": {
+      "cfa": "rccc",
+      "use_cfa": false
+  },
+  "description": "",
+  "dynamic_range": 1.0,
+  "enable_streaming": true,
+  "exposure_compensation": -1.0,
+  "fov": 0.0,
+  "image_noise_bias": 0.0,
+  "location": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 250.0
+  },
+  "max_distance": 50000.0,
+  "max_shutter": 0.00139999995008111,
+  "min_shutter": 0.0005000000237487257,
+  "motion_blur_bias": 0.10000000149011612,
+  "ray_tracing": {
+      "enable_ray_tracing": false
+  },
+  "rotation": {
+      "pitch": 0.0,
+      "roll": 0.0,
+      "yaw": 0.0
+  },
+  "stream_dimensions": {
+      "x": 512,
+      "y": 512
+  },
+  "viewport": {
+      "enable_hud": false,
+      "enable_viewport": false,
+      "fullscreen": false,
+      "hud_class_path": "WidgetBlueprint'/Game/HUD/VehicleHUD.VehicleHUD_C'",
+      "monitor_name": "",
+      "monitor_number": 0,
+      "window_offset": {
+          "x": 0,
+          "y": 0
+      },
+      "window_size": {
+          "x": 0,
+          "y": 0
+      }
+  },
+  "white_balance": 0.0,
+  "white_balance_temp_offset": 0.0
  }
 ```
-</div>
-
-  <div class="img_container">
-      <img class='half_screen_img' src="https://github.com/monoDriveIO/documentation/raw/master/WikiPhotos/camera_depth.png"/>
-  </div>
-  
-</div>
 
 These configuration values are the same as the RGB camera. Note that the output 
 format of the image is an array the same size as `stream_dimensions` containing 
@@ -364,141 +439,181 @@ format of the image is an array the same size as `stream_dimensions` containing
 
 The fisheye lens model was expanded to include the Poly1FisheyeCamera model. This model is defined by a polynomial (Scaramuzza’s model a0, a2, a3, a4) which describes the projection onto the image sensor. The model can generically describe any camera lens projection but is best used for difficult models such as fisheye and ultra wide angle lenses. The polynomial parameters can be calibrated automatically from a chessboard dataset using [mathwork’s toolbox](https://www.mathworks.com/help/vision/ug/fisheye-calibration-basics.html).
 
-<div class ='multi_img_container'>
-<div class="wide_img">
-
-```json
-{
-    "type": "Poly1FisheyeCamera",
-   	"listen_port": 8100,
-   	"description": "",  
-    "location": {
-        "x": 0.0,
-		"y": 0.0,
-		"z": 225.0
-	},
-    "stream_dimensions": {
-		"x": 512,
-		"y": 512
-	},
-    "rotation": {
-		"pitch": 0.0,
-		"roll": 0.0,
-		"yaw": 0.0
-	},
-    "viewport": {
-		"enable_viewport": false,
-		"fullscreen": false,
-		"monitor_name": "",
-		"monitor_number": 0,
-        "window_offset": {
-            "x": 0,
-            "y": 0
-        },
-		"window_size": {
-            "x": 0,
-			"y": 0
-		}
-    },
-	"a0": 350.0,
-	"a2": -0.001,
-	"a3": 1.2e-06,
-	"a4": -1.5e-09,
-	"channel_depth": 1,
-	"channels": "bgra",
-	"dynamic_range": 50.0,
-	"enable_streaming": true,
-	"face_size": 492,
-	"fov": 180.0,
-	"fstop": 1.399999976158142,
-	"max_distance": 50000.0,
-	"max_shutter": 0.00139999995008111,
-	"min_shutter": 0.0005000000237487257,
-	"wait_for_fresh_frame": true,
-    "annotation": {
-        "cull_partial_frame": false,
-        "debug_draw": false,
-        "desired_tags": [],
-        "far_plane": 10000.0,
-        "include_annotation": false,
-        "include_obb": false,
-        "include_tags": false
-	}
-}
-```
-</div>
-
 <p class="img_container">
   <img class='half_screen_img' src="../img/scaramuzza.bmp"  height="400" />
 </p>
 
-</div>
-
-### Equidistant Fisheye Camera
-
 ```json
 {
-    "type": "EquidistantFisheyeCamera",
-    "listen_port": 8100,
+    "type": "Poly1FisheyeCamera",
+    "listen_port": 8018,
+   "a0": -431602080.0,
+    "a2": -431602080.0,
+    "a3": -431602080.0,
+    "a4": -431602080.0,
+    "annotation": {
+      "cull_partial_frame": false,
+      "cull_partial_frame_min": 1.0,
+      "debug_draw": false,
+      "desired_tags": [
+        "traffic_sign", "vehicle"
+      ],
+      "far_plane": 10000.0,
+      "include_annotation": false,
+      "include_lanes": true,
+      "include_obb": false,
+      "include_tags": true,
+      "lane_sampling_distance": 10000.0,
+      "lane_sampling_frequency": 100.0,
+      "lane_subsampling": 10.0
+    },
+    "camera_matrix": [
+        [443.0, 0.0, 256.0],
+        [0.0, 443.0, 256.0],
+        [0.0, 0.0, 1.0]
+    ],
+    "channel_depth": 4,
+    "channels": "bgra",
+    "color_filter_array": {
+        "cfa": "rccc",
+        "use_cfa": false
+    },
     "description": "",
-	"location": {
-	    "x": 0.0,
-	    "y": 0.0,
-	    "z": 225.0
+    "dynamic_range": 1.0,
+    "enable_streaming": true,
+    "exposure_compensation": -1.0,
+    "face_size": 512,
+    "fov": 180.0,
+    "image_noise_bias": 0.0,
+    "location": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "max_distance": 50000.0,
+    "max_shutter": 0.00139999995008111,
+    "min_shutter": 0.0005000000237487257,
+    "motion_blur_bias": 0.10000000149011612,
+    "ray_tracing": {
+        "enable_ray_tracing": false
     },
     "rotation": {
-	    "pitch": 0.0,
-	    "roll": 0.0,
-	    "yaw": 0.0
+        "pitch": 0.0,
+        "roll": 0.0,
+        "yaw": 0.0
     },
     "stream_dimensions": {
-	    "x": 512,
-	    "y": 512
-	},
-	"annotation": {
-		"cull_partial_frame": false,
-		"debug_draw": false,
-		"desired_tags": [],
-		"far_plane": 10000.0,
-		"include_annotation": false,
-		"include_obb": false,
-		"include_tags": false
-	},
-	"channel_depth": 1,
-	"channels": "bgra",
-	"dynamic_range": 50.0,
-	"enable_streaming": true,
-	"face_size": 1024,
-	"fisheye_pixel_diameter": 512,
-	"fov": 180.0,
-	"fstop": 1.399999976158142,
-	"max_distance": 50000.0,
-	"max_shutter": 0.00139999995008111,
-	"min_shutter": 0.0005000000237487257,
-	"viewport": {
-		"enable_viewport": false,
-		"fullscreen": false,
-		 "monitor_name": "",
-		"monitor_number": 0,
-		 "window_offset": {
-			"x": 0,
-			"y": 0
-		},
-		"window_size": {
-			"x": 0,
-			"y": 0
-		}
+        "x": 512,
+        "y": 512
     },
-	"vignette_bias": 0.5,
-	"vignette_radius_start": 0.949999988079071,
-	"wait_for_fresh_frame": true
-}
+    "viewport": {
+        "enable_hud": false,
+        "enable_viewport": false,
+        "fullscreen": false,
+        "hud_class_path": "WidgetBlueprint'/Game/HUD/VehicleHUD.VehicleHUD_C'",
+        "monitor_name": "",
+        "monitor_number": 0,
+        "window_offset": {
+            "x": 0,
+            "y": 0
+        },
+        "window_size": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "white_balance": 0.0,
+    "white_balance_temp_offset": 0.0
 ```
+
+### Equidistant Fisheye Camera
 
 <p class="img_container">
   <img class="wide_img" src="../img/fisheye1.png" />
 </p>
 
+```json
+{
+  "type": "EquidistantFisheyeCamera",
+  "listen_port": 8019,
+  "annotation": {
+    "cull_partial_frame": false,
+    "cull_partial_frame_min": 1.0,
+    "debug_draw": false,
+    "desired_tags": [
+      "traffic_sign", "vehicle"
+    ],
+    "far_plane": 10000.0,
+    "include_annotation": false,
+    "include_lanes": true,
+    "include_obb": false,
+    "include_tags": true,
+    "lane_sampling_distance": 10000.0,
+    "lane_sampling_frequency": 100.0,
+    "lane_subsampling": 10.0
+  },
+  "camera_matrix": [
+      [443.0, 0.0, 256.0],
+      [0.0, 443.0, 256.0],
+      [0.0, 0.0, 1.0]
+  ],
+  "channel_depth": 4,
+  "channels": "bgra",
+  "color_filter_array": {
+      "cfa": "rccc",
+      "use_cfa": false
+  },
+  "description": "",
+  "dynamic_range": 1.0,
+  "enable_streaming": true,
+  "exposure_compensation": -1.0,
+  "face_size": 512,
+  "fisheye_pixel_diameter": 512,
+  "fov": 180.0,
+  "image_noise_bias": 0.0,
+  "location": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 250.0
+  },
+  "max_distance": 50000.0,
+  "max_shutter": 0.00139999995008111,
+  "min_shutter": 0.0005000000237487257,
+  "motion_blur_bias": 0.10000000149011612,
+  "ray_tracing": {
+      "enable_ray_tracing": false
+  },
+  "rotation": {
+      "pitch": 0.0,
+      "roll": 0.0,
+      "yaw": 0.0
+  },
+  "stream_dimensions": {
+      "x": 512,
+      "y": 512
+  },
+  "viewport": {
+      "enable_hud": false,
+      "enable_viewport": false,
+      "fullscreen": false,
+      "hud_class_path": "WidgetBlueprint'/Game/HUD/VehicleHUD.VehicleHUD_C'",
+      "monitor_name": "",
+      "monitor_number": 0,
+      "window_offset": {
+          "x": 0,
+          "y": 0
+      },
+      "window_size": {
+          "x": 0,
+          "y": 0
+      }
+  },
+  "vignette_bias": 0.5,
+  "vignette_radius_start": 0.949999988079071,
+  "white_balance": 0.0,
+  "white_balance_temp_offset": 0.0
+}
+```
 
 The configuration for a Equidistant Fisheye Camera requires some additional settings.
 
@@ -511,56 +626,87 @@ The configuration for a Equidistant Fisheye Camera requires some additional sett
 
 Provides a 360 view of the scene.
 
-<div class ='multi_img_container'>
-<div class="wide_img">
-
-```json
-{
-    "type":"Camera360",
-    "listen_port":8017,
-    "location": {
-      "x": 0.0,
-      "y": 0.0,
-      "z": 250.0
-    },
-    "rotation": {
-      "pitch": 0.0,
-      "yaw":  0.0,
-      "roll": 0.0
-    },
-    "stream_dimensions": {
-      "x": 512.0,
-      "y": 512.0
-    },
-    "face_size": 512,
-    "fov": 180.0,
-    "viewport": {
-        "enable_viewport": false,
-        "fullscreen": false,
-            "monitor_name": "",
-        "monitor_number": 0,
-        "window_offset": {
-            "x": 32,
-            "y": 32
-        },
-        "window_size": {
-            "x": 0,
-            "y": 0
-        }
-    }
-}
-```
-</div>
-
 <div class="img_container">
-  <video class='half_screen_img' height=400px muted autoplay loop>
+  <video class='wide_img' height=400px muted autoplay loop>
     <source src="https://cdn.monodrive.io/QP-360.mov" type="video/mp4">
   </video>
 </div> 
 
-</div>
-
-
+```json
+{
+  "type":"Camera360",
+  "listen_port": 8017,
+  "location": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "rotation": {
+    "pitch": 0.0,
+    "roll": 0.0,
+    "yaw": 0.0
+  },
+  "stream_dimensions": {
+    "x": 512,
+    "y": 512
+  },
+  "annotation": {
+    "cull_partial_frame": false,
+    "cull_partial_frame_min": 1.0,
+    "debug_draw": false,
+    "desired_tags": [
+      "traffic_sign", "vehicle"
+    ],
+    "far_plane": 10000.0,
+    "include_annotation": false,
+    "include_lanes": true,
+    "include_obb": false,
+    "include_tags": true,
+    "lane_sampling_distance": 10000.0,
+    "lane_sampling_frequency": 100.0,
+    "lane_subsampling": 10.0
+  },
+  "camera_matrix": [
+    [443.0, 0.0, 256.0],
+    [0.0, 443.0, 256.0],
+    [0.0, 0.0, 1.0]
+  ],
+  "channel_depth": 1,
+  "channels": "bgra",
+  "color_filter_array": {
+    "cfa": "rccc",
+    "use_cfa": false
+  },
+  "dynamic_range": 1.0,
+  "exposure_compensation": -1.0,
+  "fov": 60.0,
+  "image_noise_bias": 0.0,
+  "min_shutter": 0.0005000000237487257,
+  "max_shutter": 0.00139999995008111,
+  "motion_blur_bias": 0.10000000149011612,
+  "white_balance": 0.0,
+  "white_balance_temp_offset": 0.0,
+  "ray_tracing": {
+    "enable_ray_tracing": false
+  },
+  "viewport": {
+    "enable_hud": false,
+    "enable_viewport": false,
+    "fullscreen": false,
+    "hud_class_path": "WidgetBlueprint'/Game/HUD/VehicleHUD.VehicleHUD_C'",
+    "monitor_name": "",
+    "monitor_number": 0,
+    "window_offset": {
+      "x": 0,
+      "y": 0
+    },
+    "window_size": {
+      "x": 0,
+      "y": 0
+    }
+  }
+}
+```
 
 ## Raw Output
 
@@ -701,7 +847,7 @@ Annotation data comes in an additional JSON message on the same port as the
 camera image data. Each element in the JSON array represents a single annotation 
 for a dynamic actor.
 
-- **actors:** Array JSON objects that decribe the actors on the camera frame  
+- **actors:** Array JSON objects that describe the actors on the camera frame  
     - **2d_bounding_boxes:** Array of JSON bounding boxes for an actor
         - **2d_bounding_box:** Array containing the top-left x, top-left y, bottom-right x, bottom-right y coordinates in the image plane for the bounding box of this actor's section
         - **name:** The name of the actor's section this bounding box surrounds
@@ -714,7 +860,7 @@ for a dynamic actor.
         - **scale:** The scale coefficients for this bounding box
     - **tags:** An array of tags assigned to this actor    
 
-- **lanes:** Array JSON objects that decribe the lanes on the camera frame
+- **lanes:** Array JSON objects that describe the lanes on the camera frame
     - **road_id:** opendrive spec road id, can be used to lookup this lane in the opendrive map.
     - **lane_id:** opendrive lane id, can be be used to identify this lane in the opendrive map.
     - **s:** distance along opendrive lane spline.
@@ -757,14 +903,20 @@ The user can configure a viewport on any standard, fisheye, or 360 camera. This 
 
 ```json
 "viewport": {
-      "enable_viewport": true,
-      "monitor_name": "",
-      "monitor_number": 0,
-      "fullscreen": false,
-      "window_offset": {
-        "x": 256.0,
-        "y": 256.0
-      }
+  "enable_hud": false,
+  "enable_viewport": false,
+  "fullscreen": false,
+  "hud_class_path": "WidgetBlueprint'/Game/HUD/VehicleHUD.VehicleHUD_C'",
+  "monitor_name": "",
+  "monitor_number": 0,
+  "window_offset": {
+    "x": 32,
+    "y": 32
+  },
+  "window_size": {
+    "x": 0,
+    "y": 0
+  }
 }
 ```
 
@@ -793,17 +945,17 @@ For better performance, the camera sensors default to `ray_tracing_enable: false
 ### Cull Partial Frame
 
 <p class="img_container">
-  <img class='wide_img'src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/cull_partial_frame.png" />
+  <img class='wide_img' src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/cull_partial_frame.png" />
 </p>
 
 ### Field Of View Example
 
 <p class="img_container">
-  <img class='wide_img'src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/FOV.png" />
+  <img class='wide_img' src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/FOV.png" />
 </p>
 
 #### Far Plane Example
 
 <p class="img_container">
-  <img class='wide_img'src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/far_plane.png" />
+  <img class='wide_img' src="https://github.com/monoDriveIO/client/raw/master/WikiPhotos/LV_client/sensors/configuration/camera/far_plane.png" />
 </p>

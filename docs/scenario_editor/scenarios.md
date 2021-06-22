@@ -105,11 +105,11 @@ is not set, the input in this field sets the speed of the vehicle (in miles per 
 
 - **Changing Lanes Left: / Changing Lanes Right:**  Status change only, shows when vehicle is in lane change.
 
--	**Lane Change Transition Distance:** Lane Change is considered complete after the vehicle coordinate frame is close to the new lane center.
+-	**Lane Change Transition Distance:** Lane Change is considered complete after the origin vehicle coordinate frame is this many centimeters from the new lane center.
 
--	**Steer Forward Distance During Lane Change:** The range of centimeters to look ahead when performing steering AI actions during a lane change, interpolated based on steerForwardSpeedRange.
+-	**Steer Forward Distance During Lane Change:** The range in centimeters to look ahead when performing steering AI actions during a lane change, interpolated based on steerForwardSpeedRange.
 
-- **Clamp Decay Exponent:** Exponential decay was added to lighten the clamping to 1 as the vehicle converged on the center lane to regain full steering control.
+- **Clamp Decay Exponent:** Exponential decay to lighten the clamping to full steering extents as the vehicle converges on the center lane to regain steering control.
 
 -	**Lane Change Comfort Proximity:** The minimum proximity in centimeters behind and in front of the vehicle for which it is acceptable to change lanes. In addition, the vehicle calculates if it or the other vehicle could stop in time to avoid the collision, and this value sets an extra barrier. 
 
@@ -137,7 +137,7 @@ set speed and initial speed will be a delta above or below the road's speed limi
 
 - **Should Overtake Slower Vehicles:** If set, will allow vehicle to overtake slower vehicles that it is following for the overtake timer trigger set amount of time. Otherwise, the vehicles will slow to the lead vehicle's speed and remain there. 
 
-- **Overtake Timer Trigger:** The time in seconds a vehicle should wait before triggering the should overtake slower vehicles behavior when it is following a vehicle. Only applies when the vehicle is allowed to overtake vehicles.
+- **Overtake Timer Trigger:** The time in seconds a vehicle should wait before triggering the "Should Overtake Slower Vehicles" behavior when it is following a vehicle. Only applies when the vehicle is allowed to overtake vehicles.
 
 - **Snap to Lane:**  If set, this vehicle will search for the nearest lane and snap to it at spawn.
 

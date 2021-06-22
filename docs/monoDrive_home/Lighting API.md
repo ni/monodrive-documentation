@@ -65,6 +65,17 @@ The `VehicleLightsConfigCommand_ID` command configures a set of LED arrays and s
 }
 ```
 
+The spotlight component of a `ULightObject` can be configured using an [IES profile](https://docs.unrealengine.com/4.26/en-US/BuildingWorlds/LightingAndShadows/IESLightProfiles/). When specifying an IES profile,
+the configuration will ignore the values of the other configuration parameters as all of those are part of the profile. The `ies_profile` parameter specifies the path, relative to the `Content` folder, for the
+file. For example:
+```
+"ies_profile": "Materials/IES/JellyFish.uasset"
+```
+
+The simulator/scenario editor ships with several IES profiles which can be found inside the `Content/Materials/IES` folder. You can import additional IES profiles by following the instructions under the 
+[Importing and Assigning to Lights](https://docs.unrealengine.com/4.26/en-US/BuildingWorlds/LightingAndShadows/IESLightProfiles/#importingandassigningtolights) section or the UE4 IES Light Profile documentation page.
+
+
 The monoDrive C++ client provides three structs for the configuration detailed above: LightsConfig, LEDArrayConfig and LEDConfig. These are defined in the sensor_config.h header and provide conversion to/from json.
 
 A sample configuration command using the C++ client code would look as follows:

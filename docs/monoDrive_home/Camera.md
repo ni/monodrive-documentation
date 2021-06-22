@@ -111,15 +111,15 @@ Provides a RGBA camera stream with optional bounding boxes for dynamic objects i
     - **lane_sampling_distance:** Distance (cm) along the lane we want included in the annotation.
     - **lane_sampling_frequency:** Interval (cm) along the lane we want to sample annotation points.
     - **lane_subsampling:** Interval (pixels) between points in image space we want to actually be returned.
-- **camera_matrix:** Computes Field of View (FOV). 
+- **camera_matrix:** Camera projection matrix used for computing field-of-view.
 - **channel_depth:** Sets the total number of channels that will be in the output.
-- **channels:** Used to determine type of image output. For RGB cameras, this should always be `rgba`.
+- **channels:** Used to determine type of image output. For RGB cameras, this should always be `rgba` and for grayscale this should be `gray`.
 - **color_filter_array:** [color filter array (bayer)](./#color-filter-arrays-bayer)
-    - **cfa:** The cfa type.
+    - **cfa:** The cfa type. Can be any 4 length string consisting of the letters `rgbc`.
     - **use_cfa:** If `use_cfa` set to `true`, enables color filter array. 
 - **dynamic_range:** Controls the contrast of the image.
 - **exposure_compensation:** Control of the ISO value in the image via the exposure scale (moves gray point of the image and controls brightness).
-- **fov:** Controls the horizontal angle of view of the camera. The vertical angle will be dynamically calculated based on `stream_dimensions`.
+- **fov:** Controls the horizontal angle of view of the camera. The vertical angle will be dynamically calculated based on `stream_dimensions`. If set to `0` then the camera matrix will be used to compute the field-of-view.
 - **image_noise_bias:** Direct control over gaussian noise in image data.
 - **min_shutter:** Lower bound of the camera's exposure time in seconds. Higher values will have more motion blur.
 - **max_shutter:** Upper bound of the camera's exposure time in seconds. Higher values will have more motion blur.

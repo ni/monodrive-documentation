@@ -10,6 +10,8 @@
 
 - [After some time building, I see the VehicleAI window stuck at 95%](./#vehicleai-window-stuck-at-95)
 
+- [When building the C++ Client, I get the error: "Unable to determine what CMake generator to use. Please install or configure a preferred generator, or update settings.json](./#cmake-error)
+
 <h2> Licensing </h2>
 
 - [I moved my license to a new machine, the simulator shows an ```UNLICENSED. License in use``` message, even though my license is still valid.](./#unlicensed-license-in-use-message)
@@ -54,6 +56,13 @@ _ _ _
 After some time building, I see the VehicleAI window stuck at 95%.
 
 monoDrive's Scenario Editor has high quality graphics that will take some time to compile when opening for the first time. Verify the process is still running by opening the Task Manager and see shaders are still compiling.
+
+##### CMake Error
+
+When building the C++ Client, I get the error: "Unable to determine what CMake generator to use. Please install or configure a preferred generator, or update settings.json
+
+To use CMake, you will need to install [Visual Studio 2019 Community Edition](https://visualstudio.microsoft.com/vs/community/). See [C++ Client Prerequisites](./cpp_client/cpp_quick_start.md)
+
 <p>&nbsp;</p>
 _ _ _ 
 

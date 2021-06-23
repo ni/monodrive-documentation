@@ -69,7 +69,8 @@ is not set, the input in this field sets the speed of the vehicle (in miles per 
       <img class='wide_img' src="../imgs/vehicle_charts_3.png"/>
     </div>
 
-- **Debug Drawing:**  If set, then debug vehicle information will be drawn in the editor.
+- **Debug Drawing:**  If set, then debug vehicle information will be drawn in the editor. The blue point indicates the steer forward position, the red points indicate the path points, and the cyan point is the predicted distance given the change in speed control. 
+
 	<div class="img_container">
       <img class='lg_img' src="../imgs/debug_draw.png"/>
     </div>

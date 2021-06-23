@@ -107,6 +107,15 @@ File and played back in Replay Mode.
             ],
             "vehicles": [
                 {
+                       {
+                    "control_state": {
+                        "lane_change_left": false,
+                        "lane_change_right": false,
+                        "lane_id": 1,
+                        "road_id": 0,
+                        "s": 5077.20947265625,
+                        "section_id": 0
+                    },
                     "state": {
                         "name": "compact_monoDrive_01_2",
                         "odometry": {
@@ -237,268 +246,6 @@ File and played back in Replay Mode.
                             "speed": 37.7250938415527
                         }
                     ]
-                },
-                {
-                    "state": {
-                        "name": "subcompact_monoDrive_01_2",
-                        "odometry": {
-                            "angular_velocity": {
-                                "x": 0.00397115619853139,
-                                "y": -0.0178125314414501,
-                                "z": -0.0100505687296391
-                            },
-                            "linear_velocity": {
-                                "x": 1078.56713867188,
-                                "y": 18.6435050964355,
-                                "z": 0.526299476623535
-                            },
-                            "pose": {
-                                "orientation": {
-                                    "w": 0.999955952167511,
-                                    "x": -0.00160277157556266,
-                                    "y": 0.00162250676658005,
-                                    "z": 0.00911359395831823
-                                },
-                                "position": {
-                                    "x": 12218.37890625,
-                                    "y": 5081.291015625,
-                                    "z": 12.1331481933594
-                                }
-                            }
-                        },
-                        "oriented_bounding_box": [
-                            {
-                                "center": {
-                                    "x": 12213.0517578125,
-                                    "y": 5082.02734375,
-                                    "z": 93.3432235717773
-                                },
-                                "extents": {
-                                    "x": 164.623306274414,
-                                    "y": 130.190704345703,
-                                    "z": 251.728515625
-                                },
-                                "name": "Body",
-                                "orientation": {
-                                    "w": 0.509322762489319,
-                                    "x": 0.5018350481987,
-                                    "y": -0.492163270711899,
-                                    "z": -0.496515303850174
-                                },
-                                "scale": {
-                                    "x": 1.0,
-                                    "y": 1.0,
-                                    "z": 1.0
-                                }
-                            }
-                        ],
-                        "tags": [
-                            "vehicle",
-                            "dynamic",
-                            "car"
-                        ]
-                    },
-                    "wheels": [
-                        {
-                            "id": 0,
-                            "pose": {
-                                "orientation": {
-                                    "w": 1.0,
-                                    "x": -2.42835085373372e-10,
-                                    "y": -3.94384187529795e-08,
-                                    "z": 0.0
-                                },
-                                "position": {
-                                    "x": 0.0,
-                                    "y": 0.0,
-                                    "z": 0.0
-                                }
-                            },
-                            "speed": 36.0967025756836
-                        },
-                        {
-                            "id": 1,
-                            "pose": {
-                                "orientation": {
-                                    "w": -0.379620462656021,
-                                    "x": -0.000789966084994376,
-                                    "y": -0.925141930580139,
-                                    "z": 0.00032415275927633
-                                },
-                                "position": {
-                                    "x": 0.0,
-                                    "y": 0.0,
-                                    "z": 0.0
-                                }
-                            },
-                            "speed": 36.1465301513672
-                        },
-                        {
-                            "id": 2,
-                            "pose": {
-                                "orientation": {
-                                    "w": -0.348176896572113,
-                                    "x": -0.000799307250417769,
-                                    "y": -0.937428414821625,
-                                    "z": 0.000296876329230145
-                                },
-                                "position": {
-                                    "x": 0.0,
-                                    "y": 0.0,
-                                    "z": 0.0
-                                }
-                            },
-                            "speed": 36.1463508605957
-                        },
-                        {
-                            "id": 3,
-                            "pose": {
-                                "orientation": {
-                                    "w": -0.424199938774109,
-                                    "x": 1.7337804900785e-18,
-                                    "y": -0.905568540096283,
-                                    "z": 3.98393264653351e-16
-                                },
-                                "position": {
-                                    "x": 0.0,
-                                    "y": 0.0,
-                                    "z": 0.0
-                                }
-                            },
-                            "speed": 36.189338684082
-                        }
-                    ]
-                },
-                {
-                    "state": {
-                        "name": "SUV_monoDrive_01_2",
-                        "odometry": {
-                            "angular_velocity": {
-                                "x": 0.0349516868591309,
-                                "y": -0.00629166793078184,
-                                "z": 0.0216597486287355
-                            },
-                            "linear_velocity": {
-                                "x": 1078.73571777344,
-                                "y": -4.44047498703003,
-                                "z": 0.0467185191810131
-                            },
-                            "pose": {
-                                "orientation": {
-                                    "w": 0.999997079372406,
-                                    "x": -0.00159215414896607,
-                                    "y": 0.000595311226788908,
-                                    "z": -0.0017311725532636
-                                },
-                                "position": {
-                                    "x": 10308.51953125,
-                                    "y": 5396.32763671875,
-                                    "z": 10.8787307739258
-                                }
-                            }
-                        },
-                        "oriented_bounding_box": [
-                            {
-                                "center": {
-                                    "x": 10308.2490234375,
-                                    "y": 5396.82373046875,
-                                    "z": 102.802200317383
-                                },
-                                "extents": {
-                                    "x": 206.304290771484,
-                                    "y": 133.491729736328,
-                                    "z": 465.631927490234
-                                },
-                                "name": "Body",
-                                "orientation": {
-                                    "w": 0.501211106777191,
-                                    "x": 0.495349526405334,
-                                    "y": -0.500353097915649,
-                                    "z": -0.503053665161133
-                                },
-                                "scale": {
-                                    "x": 1.0,
-                                    "y": 1.0,
-                                    "z": 1.0
-                                }
-                            }
-                        ],
-                        "tags": [
-                            "vehicle",
-                            "dynamic",
-                            "car"
-                        ]
-                    },
-                    "wheels": [
-                        {
-                            "id": 0,
-                            "pose": {
-                                "orientation": {
-                                    "w": 1.0,
-                                    "x": -9.95896559663478e-11,
-                                    "y": -5.30137569398903e-08,
-                                    "z": -6.93835247034258e-08
-                                },
-                                "position": {
-                                    "x": 0.0,
-                                    "y": 0.0,
-                                    "z": 0.0
-                                }
-                            },
-                            "speed": 36.15625
-                        },
-                        {
-                            "id": 1,
-                            "pose": {
-                                "orientation": {
-                                    "w": -0.401167452335358,
-                                    "x": 0.00281385076232255,
-                                    "y": -0.915999531745911,
-                                    "z": -0.00123234267812222
-                                },
-                                "position": {
-                                    "x": 0.0,
-                                    "y": 0.0,
-                                    "z": 0.0
-                                }
-                            },
-                            "speed": 36.0364761352539
-                        },
-                        {
-                            "id": 2,
-                            "pose": {
-                                "orientation": {
-                                    "w": -0.32726725935936,
-                                    "x": 0.00291450833901763,
-                                    "y": -0.944926738739014,
-                                    "z": -0.00100941490381956
-                                },
-                                "position": {
-                                    "x": 0.0,
-                                    "y": 0.0,
-                                    "z": 0.0
-                                }
-                            },
-                            "speed": 36.2052955627441
-                        },
-                        {
-                            "id": 3,
-                            "pose": {
-                                "orientation": {
-                                    "w": -0.449046015739441,
-                                    "x": 0.0,
-                                    "y": -0.893508613109589,
-                                    "z": 0.0
-                                },
-                                "position": {
-                                    "x": 0.0,
-                                    "y": 0.0,
-                                    "z": 0.0
-                                }
-                            },
-                            "speed": 36.099666595459
-                        }
-                    ]
                 }
             ]
         },
@@ -526,6 +273,13 @@ File and played back in Replay Mode.
       - **scale:** The scale of this box as a coefficient
    - **tags:** The actor tags of this actor
 - **vehicles** An array of vehicle actors' in the scene
+   - **control_state** 
+      - **lane_change_left:** The vehicle is considered to be in a left lane change.
+      - **lane_change_right:** The vehicle is considered to be in a right lane change.
+      - **lane_id:** The opendrive lane id, changes to new lane id as soon as the vehicle begins the lane change. 
+      - **road_id:** The opendrive road id.
+      - **s:** The opendrive distance along the road.
+      - **section_id:** The opendrive section id along the lane.
    - **state**
       - **name:** The name of the actor in the scene
       - **odometry**

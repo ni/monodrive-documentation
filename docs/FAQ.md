@@ -12,6 +12,8 @@
 
 - [When building the C++ Client, I get the error: "Unable to determine what CMake generator to use. Please install or configure a preferred generator, or update settings.json](./#cmake-error)
 
+- [When I try building the Linux Scenario Editor, I recieve this error message even though the plugins were extracted in the correct location: "The following modules are missing...."](./#modules-missing-error-linux)
+
 <h2> Licensing </h2>
 
 - [I moved my license to a new machine, the simulator shows an ```UNLICENSED. License in use``` message, even though my license is still valid.](./#unlicensed-license-in-use-message)
@@ -63,6 +65,30 @@ When building the C++ Client, I get the error: "Unable to determine what CMake g
 
 To use CMake, you will need to install [Visual Studio 2019 Community Edition](https://visualstudio.microsoft.com/vs/community/). See [C++ Client Prerequisites](./cpp_client/cpp_quick_start.md)
 
+##### Modules Missing Error: Linux
+
+<div class="img_container">
+    <img class='lg_img' src="../imgs/monodrive_error.png"/>
+</div>
+
+The VehicleAI project needs to be rebuilt for your build of the Unreal Engine. To do this you will need to run a few more commands:
+
+1. Generate updated project files for the editor:
+
+```
+${UE4_ROOT}/GenerateProjectFiles.sh -project="${SIMULATOR_ROOT}/VehicleAI.uproject" -game -engine -makefiles
+```
+
+2. Build the editor:
+```
+cd ${SIMULATOR_ROOT}
+make VehicleAIEditor
+```
+
+3. Run the editor like normal:
+```
+${UE4_ROOT}/Engine/Binaries/Linux/UE4Editor ${SIMULATOR_ROOT}/VehicleAI.uproject
+```
 <p>&nbsp;</p>
 _ _ _ 
 

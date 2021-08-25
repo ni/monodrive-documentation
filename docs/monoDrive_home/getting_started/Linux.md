@@ -42,12 +42,6 @@
     ${UE4_ROOT}/Engine/Binaries/Linux/UE4Editor ${SIMULATOR_ROOT}/VehicleAI.uproject
     ```
 
-    or 
-
-    ```
-    ${UE4_ROOT}/Engine/Binaries/Linux/UE4Editor ${SIMULATOR_ROOT}
-    ```
-
   Note that the editor may take a long time to compiling shaders, and may appear to get stuck at 95% or 99%. This is expected and you will need to wait for the compiling to finish. If no error is reported then the system is still compiling shaders, this only happens the first time opening. 
 
 
@@ -58,5 +52,7 @@
   Go to [C++ Client Setup](../../cpp_client/cpp_quick_start.md)
 
   Go to [Python Client Setup](../../python_client/quick_start.md)
+
+  Go to [FAQ](../../FAQ.md)
 
 <p>&nbsp;</p>

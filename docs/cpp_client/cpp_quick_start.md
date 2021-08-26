@@ -1,7 +1,5 @@
 # C++ Quick Start
 
-## Guide
-
 The monoDrive C++ Client is Open Source Software for connecting to and 
 configuring the monoDrive Simulator and Scenario Editor. To get started, 
 contact support@monodrive.io to get access to the monoDrive Client repository,
@@ -11,6 +9,8 @@ then clone the repository.
 
 The monoDrive C++ Client is cross-platform and tested on both Windows 10 and 
 Ubuntu 18.04.
+
+## Windows
 
 ### Windows Prerequisites
 
@@ -43,12 +43,13 @@ To build the examples the following are required:
     <img class="lg_img" src="../imgs/eigen3_dir.jpeg">
 </div>
 
-#### Figure: Environment Variables
+### Environment Variables
 
 <div class="img_container">
     <img class="lg_img" src="../imgs/env_paths.jpeg">
 </div>
 
+## Ubuntu
 
 ### Ubuntu 18.04 Prerequisites
 - [Ubuntu 18.04](https://releases.ubuntu.com/18.04.4/)
@@ -59,7 +60,7 @@ $ ./util/setup.sh
 
 - [VSCode](https://code.visualstudio.com/)
 
-## Ubuntu 20.04 Prerequisites
+### Ubuntu 20.04 Prerequisites
 - Ubuntu 20.04
     - Install packages:
 ```bash
@@ -67,7 +68,59 @@ $ sudo apt-get update && sudo apt-get install libboost-dev libboost-system-dev l
 ```
 - [VSCode](https://code.visualstudio.com/)
 
-## Setup from command line
+### Installation with Bazel
+You can include the monoDrive Simulator client in your existing Bazel project
+by adding the following lines to your `WORKSPACE` file
+```
+local_repository(
+    name = "monodrive",
+    path = "path/to/monodrive-client"
+)
+```
+and the following to your `BUILD` files as needed
+```
+cc_library(
+    name = "my_lib",
+    srcs = [...],
+    hdrs = [...],
+    deps = [
+        ...,
+        "@monodrive//monodrive/core:monodrive"
+    ]
+)
+```
+
+### Installation to system for Bazel & Ubuntu
+You can build and install the monoDrive Simulator client to your Ubuntu system
+using CMake
+```
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+```
+
+This will install the client library under the prefix `/usr/local/monodrive/client`.
+It can now be included or linked as needed.
+
+For example, to compile your own executable with the monoDrive client library
+```
+g++ main.cpp -I/usr/local/monodrive/client/include/ -L/usr/local/monodrive/client/lib -lboost_system -lmonodrive -o my_program
+```
+
+Make library available for dynamic loading
+```
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/monodrive/client/lib
+```
+
+Finally run
+```
+./my_program
+```
+
+
+## Setup from Command Line
 
 ### Configure
 
@@ -147,9 +200,7 @@ _Linux_
 **NOTE**: Launching automatically fires off a build check in cmake so just setting the launch target will suffice.
 
 
-### Run Example
-
-#### Windows
+### Run Windows Example
 
 <div class="img_container">
     <img class="wide_img" src="../imgs/example_windows_vscode.jpeg">
@@ -169,57 +220,4 @@ add_subdirectory(path/to/monodrive-client/monodrive mdclient)
 
 # link targets as needed
 target_link_libraries(<mytarget> monodrive)
-```
-
-
-## Installation with Bazel
-You can include the monoDrive Simulator client in your existing Bazel project
-by adding the following lines to your `WORKSPACE` file
-```
-local_repository(
-    name = "monodrive",
-    path = "path/to/monodrive-client"
-)
-```
-and the following to your `BUILD` files as needed
-```
-cc_library(
-    name = "my_lib",
-    srcs = [...],
-    hdrs = [...],
-    deps = [
-        ...,
-        "@monodrive//monodrive/core:monodrive"
-    ]
-)
-```
-
-
-## Installation to system on Ubuntu
-You can build and install the monoDrive Simulator client to your Ubuntu system
-using CMake
-```
-mkdir build
-cd build
-cmake ..
-make
-sudo make install
-```
-
-This will install the client library under the prefix `/usr/local/monodrive/client`.
-It can now be included or linked as needed.
-
-For example, to compile your own executable with the monoDrive client library
-```
-g++ main.cpp -I/usr/local/monodrive/client/include/ -L/usr/local/monodrive/client/lib -lboost_system -lmonodrive -o my_program
-```
-
-Make library available for dynamic loading
-```
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/monodrive/client/lib
-```
-
-Finally run
-```
-./my_program
 ```

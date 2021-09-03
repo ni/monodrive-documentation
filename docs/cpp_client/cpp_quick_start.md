@@ -210,7 +210,7 @@ _Linux_
 
 After you've set your build configuration and target, you can run by hitting `F5` to run in debug or `Ctrl+F5` to run without debugging.
 
-## Installation with CMake
+## Integration with CMake
 You can include the monoDrive Simulator client in your existing CMake project
 by adding the following lines to your `CMakeLists.txt`
 

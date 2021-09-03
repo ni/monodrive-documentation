@@ -12,7 +12,7 @@
 
 - [When building the C++ Client, I get the error: "Unable to determine what CMake generator to use. Please install or configure a preferred generator, or update settings.json](./#cmake-error)
 
-- [When I try building the Linux Scenario Editor, I recieve this error message even though the plugins were extracted in the correct location: "The following modules are missing...."](./#modules-missing-error-linux)
+- [When I try building the Linux Scenario Editor, I receive this error message even though the plugins were extracted in the correct location: "The following modules are missing...."](./#modules-missing-error-linux)
 
 <h2> Licensing </h2>
 

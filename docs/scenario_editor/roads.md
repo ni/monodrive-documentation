@@ -27,7 +27,7 @@ OpenDrive can be loaded from file by:
 
 * Providing the path to an `.xodr` file into the "Filename" field and clicking "Load"
 
-* If "Generate traffic control assets?" is checked, the traffic control assets such as light poles, stop signs, and yield signs will be included, otherwise it will just spawn the road and traffic control devices. 
+* If "Generate traffic control assets" is checked, the traffic control assets such as light poles, stop signs, and yield signs will be included, otherwise it will just spawn the road and traffic control devices. 
 
 * The road definitions should appear in the `monoDriveRoadNetwork` directory in the "World Outliner"
 

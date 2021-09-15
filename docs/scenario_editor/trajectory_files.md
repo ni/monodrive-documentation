@@ -5,7 +5,7 @@ trajectory files that can then be used in the Replay modes of the monoDrive Simu
 
 ## Using the State Sensor
 
-In order to save all vehicles in a single simulation and generate a Trajectory File for Relay mode, a monoDrive State Sensor should be placed on the ego vehicle (i.e. the vehicle the simulation will 
+In order to save all vehicles in a single simulation and generate a Trajectory File for Replay mode, a monoDrive State Sensor should be placed on the ego vehicle (i.e. the vehicle the simulation will 
 control during playback). To attach the state sensor:
 
 1. Click on the vehicle to designate as the ego vehicle

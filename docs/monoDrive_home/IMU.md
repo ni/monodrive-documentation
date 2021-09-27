@@ -24,27 +24,28 @@ respect to the origin of the ego vehicle.
 }
 ```
 
-## Raw Output
+## Output
 
-The total sensor output is 51 bytes, where the first 16 bytes correspond to the 
-monoDrive sensor header and the remaining 35 conform to the 3DM-GX2 Data 
-Communications Protocol. The format for the protocol can be found 
-[here](http://files.microstrain.com/dcp/Inertia-Link-3DM-GX2-data-communications-protocol.pdf). 
+The total sensor output is 184 bytes, where the first 16 bytes correspond to the 
+monoDrive sensor header and the remaining 168 conform to the IMU data output
+
 Note that the simulator returns **acceleration** relative to the 
 **global coordinate frame** and **angular velocity** relative to the 
 **vehicle coordinate frame**. Below is a table of each element in the message:
 
-| Byte  | Description   |
-| ------------ | ------------ |
-|Byte 1  | Start Byte |
-|Bytes 2-5 | x acceleration bits represented as a float in single precision IEEE-754 format |
-|Bytes 6-9 | y acceleration bits represented as a float in single precision IEEE-754 format |
-|Byte 10-13 | z acceleration bits represented as a float in single precision IEEE-754 format |
-|Bytes 14-17 | x angular velocity bits represented as a float in single precision IEEE-754 format |
-|Bytes 18-21 | y angular velocity bits represented as a float in single precision IEEE-754 format |
-|Bytes 22-25 | z angular velocity bits represented as a float in single precision IEEE-754 format |
-|Bytes 26-29 | Timestamp as indicated in the above link |
-|Bytes 30-31 | Checksum |
-|Byte 32-35| Time of week |
+| Type  | Name   | Units   |
+| ------------ | ------------ | |
+|Vector (Float) | Acceleration (x, y, z)| cm/s^2|
+|Vector (Float) | Angular velocity (x, y, z) | radians/s|
+|Vector (Float) | Angular acceleration (x, y, z) | radians/s^2|
+|Vector (Float) | Velocity (x, y, z) |cm/s|
+|Vector (Float) | Local acceleration (x, y, z) |cm/s^2 |
+|Vector (Float) | Local angular_velocity (x, y, z) |radians/s| |
+|Vector (Float) | Local angular_acceleration (x, y, z)|radians/s^2 |
+|Vector (Float) | Local velocity (x, y, z) |cm/s |
+|Vector (Float) | Position (x, y, z) | |
+|Vector (Float) | Orientation (x, y, z, w) | |
+|Vector (Float) | Parent position (x, y, z)| |
+|Vector (Float) | Parent orientation (x, y, z, w)| |
 
 <p>&nbsp;</p>

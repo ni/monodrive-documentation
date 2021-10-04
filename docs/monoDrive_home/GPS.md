@@ -41,7 +41,18 @@ The GPS coordinates are based on the GPS anchor set for the current map. The loc
   - **use_override**: if set to true use these override values, if false the **gis_anchor** actor placed in the map will be used, if there is no **gis_anchor** actor and this is set to false then the Center of Austin Texas will be used at your maps coordinate center.
   - **gis_anchor**: (longitude, latitude, height) positioned at the world anchor
   - **rotation**: the north direction for heading rotated counter clockwise with respect to the X vector of the map
-  - **world_anchor**: the position in the simulation map where the gis_anchor originates
+  - **world_anchor**: the position in the simulation map where the gis_anchor originates    
+  
+  
+## Adding a GPSAnchor to a map
+1. On the search box of the `Place Actors` window, look for `GPSAnchor`. 
+2. Drag and drop to the map at the desired location. 
+3. On the `Details` windows, modify the `x` for longitude and `y` for latitude, as desired.
+
+<p class="img_container">
+  <img class="wide_img" src="../img/GPSAnchor.png" />
+</p>
+
 
 ## Output
 

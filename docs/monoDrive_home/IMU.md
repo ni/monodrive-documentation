@@ -43,9 +43,9 @@ Note that the simulator returns **acceleration** relative to the
 |Vector (Float) | Local angular_velocity (x, y, z) |radians/s| |
 |Vector (Float) | Local angular_acceleration (x, y, z)|radians/s^2 |
 |Vector (Float) | Local velocity (x, y, z) |cm/s |
-|Vector (Float) | Position (x, y, z) | |
-|Vector (Float) | Orientation (x, y, z, w) | |
-|Vector (Float) | Parent position (x, y, z)| |
-|Vector (Float) | Parent orientation (x, y, z, w)| |
+|Vector (Float) | Position (x, y, z) |cm |
+|Vector (Float) | Orientation (x, y, z, w) | Quaternion|
+|Vector (Float) | Parent position (x, y, z)| cm |
+|Vector (Float) | Parent orientation (x, y, z, w)| Quaternion |
 
 <p>&nbsp;</p>

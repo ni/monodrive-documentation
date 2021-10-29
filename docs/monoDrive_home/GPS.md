@@ -37,11 +37,11 @@ The GPS coordinates are based on the GPS anchor set for the current map. The loc
 
 ```
 
-- **anchor_overrides**:
-  - **use_override**: if set to true use these override values, if false the **gis_anchor** actor placed in the map will be used, if there is no **gis_anchor** actor and this is set to false then the Center of Austin Texas will be used at your maps coordinate center.
-  - **gis_anchor**: (longitude, latitude, height) positioned at the world anchor
-  - **rotation**: the north direction for heading rotated counter clockwise with respect to the X vector of the map
-  - **world_anchor**: the position in the simulation map where the gis_anchor originates    
+- **anchor_overrides**:   
+    - **use_override**: if set to true use these override values, if false the **gis_anchor** actor placed in the map will be used, if there is no **gis_anchor** actor and this is set to false then the Center of Austin Texas will be used at your maps coordinate center.
+    - **gis_anchor**: (longitude, latitude, height) positioned at the world anchor
+    - **rotation**: the north direction for heading rotated counter clockwise with respect to the X vector of the map
+    - **world_anchor**: the position in the simulation map where the gis_anchor originates    
   
   
 ## Adding a GPSAnchor to a map
@@ -65,15 +65,15 @@ Below is a table of each element in the message:
 |Float | Latitude | Degrees | Latitude on the map with respect to the GIS anchor |
 |Float | Longitude | Degrees | Longitude on the map with respect to the GIS anchor |
 |Float | Elevation | Meters | Elevation on the map with respect to the GIS anchor |
-|Float | World Location x |  | Coordinate in the y direction with respect to the world |
-|Float | World Location y| | Coordinate in the x direction with respect to the  world |
-|Float | Forward x   | | Magnitud of the vector on the x axis |
-|Float | Forward y   | | Magnitud of the vector on the y axis |
-|Float | Forward z   | | Magnitud of the vector on the z axis|
+|Float | World Location x | Cemtimeter | Coordinate in the y direction with respect to the world |
+|Float | World Location y| Cemtimeter| Coordinate in the x direction with respect to the  world |
+|Float | Forward x   | | X componet of the GPS anchor unit vector |
+|Float | Forward y   | | Y componet of the GPS anchor unit vector |
+|Float | Forward z   | | Z componet of the GPS anchor unit vector|
 |Float | Ego yaw  | Degrees | Compass heading of the ego vehicle |
 |Float | Ego speed | Meters per second | Speed of the ego vehicle |
-|U16 | horizontal accuracy  | Millimeters | |
-|U16 | vertical accuracy  | Millimeters | |
+|U16 | horizontal accuracy  | Meters | Horizontal accuracy of the GPS|
+|U16 | vertical accuracy  | Meters |  Vertical accuracy of the GPS|
 |U8| Number of satellites| | Number of satellites used for signal |
 |U8 | Mode| | Fixed mode status |
 |U16| CRC  | | |

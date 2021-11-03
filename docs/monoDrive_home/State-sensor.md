@@ -2,8 +2,9 @@
 
 The state sensor is created during a simulation to  output state information for 
 actors with the `"desired_tags"` and cull out information of actors with the 
-`"undesired_tags"`. This information can be serialized to a monoDrive Trajectory 
-File and played back in Replay Mode.
+`"undesired_tags"`. All the information for the actor is returned in the **global coordinate frame**.   
+
+This information can be serialized to a monoDrive Trajectory File and played back in Replay Mode.
 
 ## Configuration
 

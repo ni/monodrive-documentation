@@ -9,7 +9,7 @@ controlling various different aspects of AI vehicle behavior. The scenario file 
   </video>
 </div> 
 
-## Placing Vehicles in a Scene
+## Placing monoDrive Vehicles in a Scene
 
 The first step in creating a scenario is setting up the monoDrive vehicles in 
 the desired scene and applying driving properties to each. To place a vehicle:
@@ -21,6 +21,12 @@ the desired scene and applying driving properties to each. To place a vehicle:
 
 1. Drag one of the vehicles into the scene by click on the vehicle's icon
 and putting it on the desired lane of travel.
+
+1. When adding actors that aren't provided by monoDrive to a scenario, make sure to add "serialize" under the Actor's "Tags".
+  <div class="img_container">
+    <img class='lg_img' src="../imgs/serialize_tag.png"/>
+  </div>
+
 
 1. In the "Details" window, search for the "Vehicle Controller Settings" group 
 and and set the desired vehicle controller settings. 
@@ -131,6 +137,21 @@ set speed and initial speed will be a delta above or below the road's speed limi
 
 - **Trigger Sleep Time:** A vehicle might hit a dynamic trigger box more than once as they are in motion, to avoid double triggering, behavior can only be modified by the same trigger component again after this many seconds.
 
+##Adding Components to an Actor
+1. Add the desired component to the actor as seen below. The location in the hierarchy of the actor's components will be preserved. 
+  <div class="img_container">
+    <img class='lg_img' src="../imgs/Add_Component_to_Actor.gif"/>
+  </div>
+
+##Blueprint Variable Values
+1. Variables specific to the blueprint and specified in the details of the actor will be preserved by the scenario system.
+
+##Saving Materials in a Scenario
+1. Modify a material for a particular component on your actor
+1. Tag that component within your actor for serialization
+  <div class="img_container">
+    <img class='lg_img' src="../imgs/Material_Scenario.gif"/>
+  </div>
 
 ## Tagging System
 

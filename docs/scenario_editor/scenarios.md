@@ -137,14 +137,22 @@ set speed and initial speed will be a delta above or below the road's speed limi
 
 - **Trigger Sleep Time:** A vehicle might hit a dynamic trigger box more than once as they are in motion, to avoid double triggering, behavior can only be modified by the same trigger component again after this many seconds.
 
-##Adding Components to an Actor
-1. Add the desired component to the actor as seen below. The location in the hierarchy of the actor's components will be preserved. 
+##Adding Static or Skeletal Meshes to an Actor
+1. Add the desired Static or Skeletal Mesh to the actor's component list as seen below. The location in the hierarchy of the actor's components will be preserved. 
+Note: If the mesh is not added to the actor's component list, it will become an independed Static or Skeletal Mesh actor. This can be serialized as an independent actor.
   <div class="img_container">
     <img class='lg_img' src="../imgs/Add_Component_to_Actor.gif"/>
   </div>
+  
+##Serializing Static or Skeletal Mesh Actors
+- Acors which consist of a Static or Skeletal Mesh (i.e. Traffic Cone) can be saved to a scenario by adding the "serialize" tag to the **Actor tag list**
+  <div class="img_container">
+    <img class='lg_img' src="../imgs/Static_Skeletal_Actor_Tags.png"/>
+  </div>
 
 ##Blueprint Variable Values
-1. Variables specific to the blueprint and specified in the details of the actor will be preserved by the scenario system.
+- The Scenario system will save properties of a blueprint that are Int32, Float, Or Boolean types. This allows users to save-out the values of parameters that might be defined on the blueprint level.
+
 
 ##Saving Materials in a Scenario
 1. Modify a material for a particular component on your actor

@@ -38,8 +38,12 @@ configuration documentation.
     - **pitch:** The pitch angle
     - **yaw:** The yaw angle
     - **roll:** The roll angle
-- **Attachment** Attaching the sensor allows you to place a sensor at the origin of a particular component, or on a socket defined by the actor's blueprint. This allows sensor placement to be preserved in .uasset's, and allows for placement and rotation to be defined in the editor. **Note** location and rotation above will transform the sensor relative to the socket/component, and are not necessary if attachment is specified.
+- **Attachment** Attaching the sensor allows you to place a sensor at the origin of a particular component, or on a socket defined by the skeletal or static mesh. This allows sensor placement to be preserved in .uasset's, and allows for placement and rotation to be defined in the editor. **Note** location and rotation above will transform the sensor relative to the socket/component, and may be undesirabel if attachment is specified.
   - **use_parent_component_attachment** Specifies whether we should attempt to attach the sensor to a particular component of the ego vehicle.
   - **parent_component_attachment** String matching the component of the ego actor where we would like to attach the sensor.
   - **use_attach_socket** Specifies whether we should attempt to attach the sensor to a particular socket subcomponent of the parent component.
   - **attach_socket** String matching the name of the socket to which we would like to attach the sensor. 
+
+  <p class="img_container">
+<img class="lg_img" src="../img/Wheel_Socket.png"/>
+</p>

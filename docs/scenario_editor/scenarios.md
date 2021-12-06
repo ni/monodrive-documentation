@@ -139,7 +139,7 @@ set speed and initial speed will be a delta above or below the road's speed limi
 
 ##Adding Static or Skeletal Meshes to an Actor
 1. Add the desired Static or Skeletal Mesh to the actor's component list as seen below. The location in the hierarchy of the actor's components will be preserved. 
-Note: If the mesh is not added to the actor's component list, it will become an independed Static or Skeletal Mesh actor. This can be serialized as an independent actor.
+Note: If the mesh is not added to an existing actor's component list (as seen below), it will become an independent Static or Skeletal Mesh actor. This will then be serialized as an independent actor.
   <div class="img_container">
     <img class='lg_img' src="../imgs/Add_Component_to_Actor.gif"/>
   </div>

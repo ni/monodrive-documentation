@@ -56,7 +56,36 @@ processed to produce the list.
         "aperture": 0.000859,
         "gain": 13.5,
         "peak_power": 5.0
-    }
+    },
+    "run_tracker": true,
+    "tracker": {
+        "filter_size": 8,
+        "kalman_alpha": 10.0,
+        "kinematic_iir_alpha": 0.05000000074505806,
+        "min_cluster_distance": 25.0,
+        "min_detections_per_cluster": 2,
+        "missed_detections_threshold": 5,
+        "vel_coeff": 0.699999988079071,
+        "x_dir_coeff": 9.0,
+        "y_dir_coeff": 4.199999809265137
+        "write_debug_json": "",
+    },
+    "rois": [
+        {
+            "max_angle": 10.0,
+            "min_angle": 0.0,
+            "max_range": 20.0,
+            "min_range": 1.0,
+            "roi_name": "test_left_roi"
+        },
+        {
+            "max_angle": 0.0,
+            "min_angle": -10.0,
+            "max_range": 20.0,
+            "min_range": 1.0,
+            "roi_name": "test_right_roi"
+        }
+    ]
 }
 ```
 
@@ -93,7 +122,24 @@ processed to produce the list.
     - **debug_frustum:** If true, a visualization of the field-of-view of the Radar will be drawn on the viewport and camera sensors.
     - **debug_scan:** If true, a visualization of the rays being cast by the SBR will be drawn on the viewport and camera sensors.
     - **debug_rescan:** If true, a visualization of the rescan rays being cast by the SBR will be drawn on the viewport and camera sensors.
-
+- **run_tracker:** If true the radar tracker will run during simulation and tracks will be output.
+- **tracker**: Tracker settings for the radar
+    - **filter_size**: The total number of samples to buffer for tracking
+    - **kalman_alpha**: The integration coefficient to the extended Kalman filter (EKF) for tracking.
+    - **kinematic_iir_alpha**: The integration coefficient to the kinematic IIR filter for track properties
+    - **min_cluster_distance**: The minimum distance between separate clusters of returns. Represents the `x distance * y distance * velocity` for clustering.
+    - **min_detections_per_cluster**: The minimum number of detections needed to form a cluster.
+    - **missed_detections_threshold**: The total number of missed detections before a track is dropped.
+    - **vel_coeff**: The coefficient for the velocity thresholding in the EKF
+    - **x_dir_coeff**: The coefficient for the x distance thresholding in the EKF
+    - **y_dir_coeff**: The coefficient for the y distance thresholding in the EKF
+    - **write_debug_json**: If set to a valid filename, debug output from the tracker will be written to disk when the simulation is stopped.
+- **rois**: Regions of interest for detections. If there are valid detections within the defined regions then the ROI will be present in the tracker output. The ROI is defined as positive clockwise from -180 to 180 degrees starting behind the vehicle.
+    - **max_angle**: The maximum angle in degrees to bound the region
+    - **min_angle**: The minimum angle in degrees to bound the region
+    - **max_range**: The maximum range in meters to bound the region
+    - **min_range**: The minimum range in meters to bound the region
+    - **roi_name**: The unique ID for this region to populate in the output
 
 ## Raw Output
 
@@ -122,7 +168,8 @@ By default, the Radar will return JSON containing the Radar returns. If
             "prp_streetLight96"
          ],
          "velocity":9.99999974737875e-05
-      }
+      },
+      ...
    ],
    "target_list":[
       {
@@ -142,8 +189,44 @@ By default, the Radar will return JSON containing the Radar returns. If
             "M_ShippingContainer72"
          ],
          "velocity":-0.0
-      }
+      },
+      ...
+   ],
+   "tracks": [
+       {
+           "heading": 0.0,
+           "lifetime_seconds": 0.0,
+           "track_id": 1,
+           "velocity": 0.0,
+           "x_range": -0.39406856894493103,
+           "y_range": 14.31589412689209
+       },
+       {
+           "heading": 0.0,
+           "lifetime_seconds": 0.0,
+           "track_id": 2,
+           "velocity": 0.0,
+           "x_range": -4.0150322914123535,
+           "y_range": 19.060630798339844
+       },
+       ...
+   ],
+   "roi_targets": [
+       {
+           "radar_target": {
+               "aoa": -0.0010617646621540189,
+               "range": 16.69966697692871,
+               "rcs": 0.0,
+               "target_ids": [
+                   "sedan_monoDrive_01_5"
+               ],
+               "velocity": 0.3018724322319031
+           },
+           "roi_name": "test_right_roi"
+       },
+       ...
    ]
+
 }
 ```
 
@@ -166,6 +249,16 @@ index 0 of `aoas` corresponds with index 0 of `ranges` and so on.)
         - **target_ids:** Array of target information for each target
             - **target_id:** The string representing the name of the actor that generated the target
         - **velocities:** The velocity in meters per second of each target
+    - **tracks**: A list of all tracks current in the radar's field-of-view
+        - **heading**: The current estimated heading of the track based on kinematics
+        - **lifetime_seconds**: The total number of seconds the track has been alive
+        - **track_id**: The unique ID of this track
+        - **velocity**: The current estimated velocity of the track based on kinematics
+        - **x_range**: The distance away from the radar in the x (forward) direction (meters)
+        - **y_range**: The distance away from the radar in the y (lateral) direction (meters)
+    - **roi_targets**: The list of current targets inside of the input ROIs
+        - **radar_target**: The information about the target within the ROI (same as `target_list`)
+        - **roi_name**: The unique ID assigned to the ROI from the configuration
   **time:** The time in UTC seconds when this sample was acquired
 
 ### Radar Data Cube

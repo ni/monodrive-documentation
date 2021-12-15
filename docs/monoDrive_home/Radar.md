@@ -61,13 +61,13 @@ processed to produce the list.
     "tracker": {
         "filter_size": 8,
         "kalman_alpha": 10.0,
-        "kinematic_iir_alpha": 0.05000000074505806,
+        "kinematic_iir_alpha": 0.05,
         "min_cluster_distance": 25.0,
         "min_detections_per_cluster": 2,
         "missed_detections_threshold": 5,
-        "vel_coeff": 0.699999988079071,
-        "x_dir_coeff": 9.0,
-        "y_dir_coeff": 4.199999809265137
+        "vel_coeff": 0.7,
+        "x_dir_coeff": 10.0,
+        "y_dir_coeff": 4.0,
         "write_debug_json": "",
     },
     "rois": [
@@ -109,7 +109,7 @@ processed to produce the list.
     - **aperture:** The total aperture radius in centimeters for Radar receive array.
     - **noise_temp:** Coefficient to the exponent of the noise floor. Controls the level of the noise floor in the data.
     - **gain:** The total gain applied to the receivers in dB.
-- **sbr:** JSON value for shooting bouncing ray properties of the Radar ray traces
+- **sbr:** JSON value for shooting bouncing ray properties of the Radar ray traces.
     - **long_range_scan_distance:** The maximum distance the long range Radar will detect targets in meters.
     - **short_range_scan_distance:** The maximum distance the short range Radar will detect targets in meters.
     - **long_range_fov:** Field-of-view in degrees of the long range Radar.
@@ -124,22 +124,22 @@ processed to produce the list.
     - **debug_rescan:** If true, a visualization of the rescan rays being cast by the SBR will be drawn on the viewport and camera sensors.
 - **run_tracker:** If true the radar tracker will run during simulation and tracks will be output.
 - **tracker**: Tracker settings for the radar
-    - **filter_size**: The total number of samples to buffer for tracking
+    - **filter_size**: The total number of samples to buffer for tracking.
     - **kalman_alpha**: The integration coefficient to the extended Kalman filter (EKF) for tracking.
-    - **kinematic_iir_alpha**: The integration coefficient to the kinematic IIR filter for track properties
+    - **kinematic_iir_alpha**: The integration coefficient to the kinematic IIR filter for track properties.
     - **min_cluster_distance**: The minimum distance between separate clusters of returns. Represents the `x distance * y distance * velocity` for clustering.
     - **min_detections_per_cluster**: The minimum number of detections needed to form a cluster.
     - **missed_detections_threshold**: The total number of missed detections before a track is dropped.
-    - **vel_coeff**: The coefficient for the velocity thresholding in the EKF
-    - **x_dir_coeff**: The coefficient for the x distance thresholding in the EKF
-    - **y_dir_coeff**: The coefficient for the y distance thresholding in the EKF
+    - **vel_coeff**: The coefficient for the velocity thresholding in the EKF.
+    - **x_dir_coeff**: The coefficient for the x distance thresholding in the EKF.
+    - **y_dir_coeff**: The coefficient for the y distance thresholding in the EKF.
     - **write_debug_json**: If set to a valid filename, debug output from the tracker will be written to disk when the simulation is stopped.
 - **rois**: Regions of interest for detections. If there are valid detections within the defined regions then the ROI will be present in the tracker output. The ROI is defined as positive clockwise from -180 to 180 degrees starting behind the vehicle.
-    - **max_angle**: The maximum angle in degrees to bound the region
-    - **min_angle**: The minimum angle in degrees to bound the region
-    - **max_range**: The maximum range in meters to bound the region
-    - **min_range**: The minimum range in meters to bound the region
-    - **roi_name**: The unique ID for this region to populate in the output
+    - **max_angle**: The maximum angle in degrees to bound the region.
+    - **min_angle**: The minimum angle in degrees to bound the region.
+    - **max_range**: The maximum range in meters to bound the region.
+    - **min_range**: The minimum range in meters to bound the region.
+    - **roi_name**: The unique ID for this region to populate in the output.
 
 ## Raw Output
 
@@ -235,6 +235,7 @@ Radar returns. All arrays in the returns are indexed by target number (i.e.
 index 0 of `aoas` corresponds with index 0 of `ranges` and so on.)
 
 - **game_time:** The time in seconds since the simulation started when this sample was acquired
+- **time:** The time in UTC seconds when this sample was acquired
 - **message:** JSON containing the Radar return results
     - **gt_target_list:** JSON containing ground truth targets within the Radar range
         - **aoas:** Angle of arrival of each target in degrees
@@ -254,12 +255,11 @@ index 0 of `aoas` corresponds with index 0 of `ranges` and so on.)
         - **lifetime_seconds**: The total number of seconds the track has been alive
         - **track_id**: The unique ID of this track
         - **velocity**: The current estimated velocity of the track based on kinematics
-        - **x_range**: The distance away from the radar in the x (forward) direction (meters)
-        - **y_range**: The distance away from the radar in the y (lateral) direction (meters)
+        - **x_range**: The distance away from the radar in the x (lateral) direction (meters)
+        - **y_range**: The distance away from the radar in the y (forward) direction (meters)
     - **roi_targets**: The list of current targets inside of the input ROIs
         - **radar_target**: The information about the target within the ROI (same as `target_list`)
         - **roi_name**: The unique ID assigned to the ROI from the configuration
-  **time:** The time in UTC seconds when this sample was acquired
 
 ### Radar Data Cube
 

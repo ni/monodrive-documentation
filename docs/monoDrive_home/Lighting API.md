@@ -12,56 +12,172 @@ The monoDrive lights API allows users to create, configure and control lights in
 
 The API provides two commands: the lights configuration command `VehicleLightsConfigCommand_ID` which is used to set up and configure the lights at the beginning of the simulation, and the lights update command `VehicleLightsUpdateCommand_ID` which is used to update the state of the lights (intensity, location, orientation, etc.) during the simulation.
 
-Lights are composed of one or more `ULightObjects` grouped together into a `ULightArray`, which is attached to an actor in the simulation. `ULightObjects` are composed of a `UPointLightComponent` and a `USpotLightComponent`.
+Lights are composed of one or more `URectangleLightObjects` or `UConeLightObjects` grouped together into a `ULightArray`, which is attached to an actor in the simulation. `UConeLightObjects` are composed of a `UPointLightComponent` which optionally provides backlighting in encslosures and a `USpotLightComponent` which provides the projected conical light. `URectangleLightObjects` use `RectLightComponents` instead to create a retangular light projection useful for LEDs.
+
+Each backlight and directional light component are independetly moveable and controllable to create the correct projected and backlighting that models your vehicle's headlamps.
+
+## Light Editor UI
+
+<p class="img_container">
+  <img class="lg_img" src="../img/light_array.png" />
+</p>
+
+The Light Editor UI allows the user to easily add, remove and configure conical and rectangular lights to a light array on an actor. The configuration can further be exported or imported to/from json for use with the client. This makes it very easy to visualize your light array from the editor and verify it setup correctly before working with it from your control algorithm on the client.  
+
+**Export Light Array Button**: Opens a file dialogue to export the current light array to a `.json` file. This json file can then be used in the client or the light array created can be copied to a larger `.json` file that contains more arrays for configuration.  
+**Import Light Array Button**: Opens a file dialogue to import a `.json` file overwriting the current array.  
+**Cone Light Dropdown**: Lets the user select a ConeLightObject for deletion. Also, the add cone light button will copy the currently selected ConeLightObject making duplication easier for array lights.  
+**Rectangular Light Dropdown**: Same as Cone Light Dropdown but for the rectangular light array.
+**Id**: This is the name or id of the array which is needed for the client to address the id it wises to update or configure at runtime.  
+**Cone Lights and Rectangle Lights**: These lists should not be directly modified. To modify a cone or rectangle light object instead select them in the Component List which resides above the Search Details search bar.  
 
 
 ## Configuration
-The `VehicleLightsConfigCommand_ID` command configures a set of LED arrays and sets the initial state of each LED in the array:
+The `VehicleLightsConfigCommand_ID` command configures a set of LED arrays and sets the initial state of each LED in the array. The file consists of an `actor_id` which specifies which actor in the scenario the lights will be attached to, the location and an array of arrays which can be placed anywhere on the actor and controlled at run time.
 
 ```json
 {
-  "actor_id"	// the id of the actor to attach the lights to
-  "lights": [
-    {
-      "array_id" // id of this light array, used for control
-      "position" // x, y, z relative to actor center
-      "rotation"// yaw, pitch, roll relative to actor center
-      "lights": [
-        // array of led configuration
-        {
-          "led": 0, 	// led index in array
-          "position": ,	// x,y,z relative to array
-          "rotation":	,// yaw, pitch, roll relative to array
-          // backlight (UPointLightComponent) settings
-          "backlight_intensity"
-          "backlight_color"
-          "backlight_attenuation_radius"
-          "backlight_source_radius"
-          "backlight_soft_source_radius"
-          "backlight_source_length"
-          "backlight_temperature"
-          "backlight_indirect_lighting_intensity"
-          "backlight_volumetric_scattering_intensity"
-
-          // spotlight (USpotLightComponent) settings
-          "inner_cone_angle"
-          "outer_cone_angle"
-          "intensity"
-          "color"
-          "attenuation_radius"
-          "temperature"
-          "source_radius"
-          "soft_source_radius"
-          "source_length"
-          "indirect_lighting_intensity"
-          "volumetric_scattering_intensity"
-          "ies_profile"
-        },
-        ...
-      ]
-    },
-    ...
-  ]
+	"actor_id": "",
+	"lights": [{
+		"array_id": "RightHeadLamp",
+		"coneLights": [{
+			"attach_socket": "",
+			"attenuation_radius": 10000.0,
+			"backlight_attenuation_radius": 20.0,
+			"backlight_color": {
+				"a": 1,
+				"b": 1,
+				"g": 1,
+				"r": 1
+			},
+			"backlight_indirect_lighting_intensity": 10.0,
+			"backlight_intensity": 20.0,
+			"backlight_location": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			},
+			"backlight_soft_source_radius": 2.0,
+			"backlight_source_length": 1.0,
+			"backlight_source_radius": 1.0,
+			"backlight_temperature": 8000.0,
+			"backlight_volumetric_scattering_intensity": 10.0,
+			"color": {
+				"a": 1,
+				"b": 1,
+				"g": 1,
+				"r": 1
+			},
+			"description": "",
+			"enable_backlight": true,
+			"enable_directional_light": true,
+			"enable_streaming": true,
+			"ies_profile": "None",
+			"indirect_lighting_intensity": 1.0,
+			"inner_cone_angle": 8.0,
+			"intensity": 1200.0,
+			"led": 0,
+			"listen_port": 0,
+			"location": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			},
+			"outer_cone_angle": 16.0,
+			"parent_component_attachment": "",
+			"raytrace_global_ilum": false,
+			"raytrace_reflection": false,
+			"raytrace_shadow": false,
+			"receive_stream": true,
+			"rotation": {
+				"pitch": 0.0,
+				"roll": 0.0,
+				"yaw": 0.0
+			},
+			"soft_source_radius": 0.0,
+			"source_length": 1.0,
+			"source_radius": 0.0,
+			"temperature": 8000.0,
+			"type": "None",
+			"use_attach_socket": false,
+			"use_parent_component_attachment": false,
+			"volumetric_scattering_intensity": 5.0,
+			"wait_for_fresh_frame": true
+		}],
+		"location": {
+			"x": 0.0,
+			"y": 0.0,
+			"z": 0.0
+		},
+		"rectLights": [{
+			"attach_socket": "",
+			"attenuation_radius": 10000.0,
+			"backlight_attenuation_radius": 20.0,
+			"backlight_color": {
+				"a": 1,
+				"b": 1,
+				"g": 1,
+				"r": 1
+			},
+			"backlight_indirect_lighting_intensity": 10.0,
+			"backlight_intensity": 20.0,
+			"backlight_location": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			},
+			"backlight_soft_source_radius": 2.0,
+			"backlight_source_length": 1.0,
+			"backlight_source_radius": 1.0,
+			"backlight_temperature": 8000.0,
+			"backlight_volumetric_scattering_intensity": 10.0,
+			"barn_door_angle": 30.0,
+			"barn_door_length": 20.0,
+			"color": {
+				"a": 1,
+				"b": 1,
+				"g": 1,
+				"r": 1
+			},
+			"description": "",
+			"enable_backlight": true,
+			"enable_directional_light": true,
+			"enable_streaming": true,
+			"ies_profile": "None",
+			"indirect_lighting_intensity": 1.0,
+			"intensity": 1200.0,
+			"led": 0,
+			"listen_port": 0,
+			"location": {
+				"x": 0.0,
+				"y": 0.0,
+				"z": 0.0
+			},
+			"parent_component_attachment": "",
+			"raytrace_global_ilum": false,
+			"raytrace_reflection": false,
+			"raytrace_shadow": false,
+			"receive_stream": true,
+			"rotation": {
+				"pitch": 0.0,
+				"roll": 0.0,
+				"yaw": 0.0
+			},
+			"source_height": 10.0,
+			"source_width": 10.0,
+			"temperature": 8000.0,
+			"type": "None",
+			"use_attach_socket": false,
+			"use_parent_component_attachment": false,
+			"volumetric_scattering_intensity": 5.0,
+			"wait_for_fresh_frame": true
+		}],
+		"rotation": {
+			"pitch": 0.0,
+			"roll": 0.0,
+			"yaw": 0.0
+		}
+	}]
 }
 ```
 

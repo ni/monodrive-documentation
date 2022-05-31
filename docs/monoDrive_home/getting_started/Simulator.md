@@ -36,4 +36,12 @@ Working with the monoDrive Simulator can be done directly through TCP/IP communi
  - Go to [LabVIEW Client Setup](../../LV_client/quick_start/LabVIEW_client_quick_start.md)
 
  - Go to [Python Client Setup](../../python_client/quick_start.md)
-    
+
+## Installation & Licensing Errors
+
+For frequently asked questions, see our FAQ Page. If this  does not resolve the seen issue, please get in contact with [ NI monoDrive support team](https://www.monodrive.io/contact).
+
+ - [FAQ Installation](../../../FAQ/#installation)
+ - [FAQ Licensing](../../../FAQ/#licensing)
+
+<p>&nbsp;</p>

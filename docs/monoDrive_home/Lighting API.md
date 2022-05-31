@@ -24,10 +24,16 @@ Each backlight and directional light component are independetly moveable and con
 
 The Light Editor UI allows the user to easily add, remove and configure conical and rectangular lights to a light array on an actor. The configuration can further be exported or imported to/from json for use with the client. This makes it very easy to visualize your light array from the editor and verify it setup correctly before working with it from your control algorithm on the client.  
 
+The best way to get started with the lights API is to create a vehicle, click Add Component as seen in the figure, add a light array component, and then add and manipulate cone and rectangular lights to the array.
+
 **Export Light Array Button**: Opens a file dialogue to export the current light array to a `.json` file. This json file can then be used in the client or the light array created can be copied to a larger `.json` file that contains more arrays for configuration.  
 **Import Light Array Button**: Opens a file dialogue to import a `.json` file overwriting the current array.  
-**Cone Light Dropdown**: Lets the user select a ConeLightObject for deletion. Also, the add cone light button will copy the currently selected ConeLightObject making duplication easier for array lights.  
-**Rectangular Light Dropdown**: Same as Cone Light Dropdown but for the rectangular light array.
+**Cone Light Dropdown**: Lets the user select a ConeLightObject for deletion or copy.  
+**Add Cone Light**: Adds a cone light to the array which is a copy of the currently selected cone light or a new light with defaults settings if no cone light exists or is selected.  
+**Delete Cone Light**: Deletes the currently selected cone light from the list. Do not try to delete cone lights directly from the Component List or the ConeLights Array as this will not perform proper cleanup.  
+**Rectangular Light Dropdown**: Same as Cone Light Dropdown but for the rectangular light array.  
+**Add Rect Light**: Adds a rectangule light to the array which is a copy of the currently selected rectangule light or a new light with defaults settings if no rectangle light exists or is selected.  
+**Delete Rect Light**: Deletes the currently selected rectangle light from the list. Do not try to delete rectangle lights directly from the Component List or the RectangleLights Array as this will not perform proper cleanup.  
 **Id**: This is the name or id of the array which is needed for the client to address the id it wises to update or configure at runtime.  
 **Cone Lights and Rectangle Lights**: These lists should not be directly modified. To modify a cone or rectangle light object instead select them in the Component List which resides above the Search Details search bar.  
 
@@ -202,26 +208,32 @@ The `VehicleLightsConfigCommand_ID` command configures a set of LED arrays and s
 **enable_directional_light**: Disables the directional light, useful if you only want to use the backlight for whatever purpose.  
 **ies_profile**: The IES profile to use for the directional light if you have one available, otherwise leave blank.  
 **indirect_lighting_intensity**: Unused.  
-**inner_cone_angle**: The inner angle of the cone. Light dropoff starts at this angle and decreases out to the outer cone angle.  
 **intensity**: Light intensity of the direcitonal light in lumens.  
 **led**: The ID used to address this light.  
 **location**: The location of the directional light.  
-**outer_cone_angle**: The outer cone angle where the light will completely dropoff.  
 **raytrace_global_ilum**: Whether this light should be ray traced for global illumination.  Performance impact and will not be visible if the camera is not set to use ray tracing. Suggest off for low end machines.  
 **raytrace_reflection**: Whether this light should be ray traced for reflections. Performance impact and will not be visible if the camera is not set to use ray tracing. Suggest off for low end machines.  
 **raytrace_shadow**: Whether this light should be ray traced for shadows. Performance impact and will not be visible if the camera is not set to use ray tracing. Suggest off for low end machines.  
 **rotation**: The relative rotation of the directional light with respect to the origin of the vehicle.  
 **soft_source_radius**: Bleed through radius of the directional light.  
-**source_length**: The length size of the source of the light. Increasing stretches the light along the Z axis.  
 **temperature**: The light temperature for the directional light.  
 **volumetric_scattering_intensity**: Unused.  
 
 ### Rectangle Light
+**source_width**: The width of the rectangular light source element.  
+**source_height**: The length of the rectangular light source element.  
+**barn_door_angle**: The angle of the barn door which is the angle of the rectangular walls channeling the light.  
+**barn_door_length**: The length of the barn door which will define how sharp the edges of the projected light are as longer is more focused and shorter is more diffuse.  
 
 ### Cone Light
+**inner_cone_angle**: The inner angle of the cone. Light dropoff starts at this angle and decreases out to the outer cone angle.  
+**outer_cone_angle**: The outer cone angle where the light will completely dropoff.  
+**source_radius**: The radius at which the light source covers. This will reduce the realism of attenuation or IES. Defaults to 0.  
+**soft_source_radius**: The source radius that is allowed to bleed through otherwise occluding objects, defaults to 0.  
+**source_length**: The length size of the source of the light. Increasing stretches the light along the Z axis.  
 
 
-The spotlight component of a `ULightObject` can be configured using an [IES profile](https://docs.unrealengine.com/4.26/en-US/BuildingWorlds/LightingAndShadows/IESLightProfiles/). When specifying an IES profile,
+The directional light component of a `ULightObject` can be configured using an [IES profile](https://docs.unrealengine.com/4.26/en-US/BuildingWorlds/LightingAndShadows/IESLightProfiles/). When specifying an IES profile,
 the configuration will ignore the values of the other configuration parameters as all of those are part of the profile. The `ies_profile` parameter specifies the path, relative to the `Content` folder, for the
 file. For example:
 ```
@@ -232,12 +244,11 @@ The simulator/scenario editor ships with several IES profiles which can be found
 [Importing and Assigning to Lights](https://docs.unrealengine.com/4.26/en-US/BuildingWorlds/LightingAndShadows/IESLightProfiles/#importingandassigningtolights) section or the UE4 IES Light Profile documentation page.
 
 
-The monoDrive C++ client provides three structs for the configuration detailed above: LightsConfig, LEDArrayConfig and LEDConfig. These are defined in the sensor_config.h header and provide conversion to/from json.
+The monoDrive C++ client provides three structs for the configuration detailed above: LightsConfig, LEDArrayConfig, ConeLEDConfig, and RectLEDConfig. These are defined in the sensor_config.h header and provide conversion to/from json.
 
 A sample configuration command using the C++ client code would look as follows:
 
 ```
-
 LightsConfig lightsConfig; // the lights configuration
 lightsConfig.actor_id = sim0.getEgoVehicleId();	// attach the configuration to the EGO vehicle
 
@@ -245,7 +256,7 @@ LEDArrayConfig lf_light_config; // the configuration for the left-front headligh
 lf_light_config.array_id = "LeftFront";
 lf_light_config.location = Location(90, -50, 75);
 
-LEDConfig led_config;
+ConeLEDConfig led_config;
 led_config.led = 0;
 led_config.location = Location(0, 0, 0);
 led_config.rotation = Rotation(0, -1, 0);
@@ -254,7 +265,7 @@ led_config.backlight_intensity = 400;
 led_config.attenuation_radius = 5000;
 led_config.temperature = 8000;
 led_config.backlight_temperature = 8000;
-lf_light_config.lights.push_back(led_config);
+lf_light_config.coneLights.push_back(led_config);
 lightsConfig.lights.push_back(lf_light_config);
 
 LEDArrayConfig rf_light_config;	// do the same for the right-front headlight
@@ -273,23 +284,22 @@ The `VehicleLightsUpdateCommand_ID` command adjusts settings for each LED in the
 
 ```json
 {
-  "actor_id": "ego_vehicle",	
-  "lights": [
-    {
-      "array_id": "LeftFront", 
-      "lights": [
+	"actor_id": "ego_vehicle",	
+	"lights": [
+	{
+		"array_id": "LeftFront", 
+		"coneLights": [
         {
-    "led": 0,
-    "backlight_intensity": 400,
-    "intensity": 1200
-          },
-   ...
-        ]
+			"led": 0,
+			"backlight_intensity": 400,
+			"intensity": 1200
+		},
+	...
+		]
 },
 ...
-    ]
+	]
 }
-
 ```
 
 A sample update command using the C++ client code might look as follows:
@@ -305,10 +315,10 @@ while (simulationIsRunning)
         auto& lightArray = lightsConfig.lights[i];
         update_config["lights"].push_back({
                 { "array_id", lightArray.array_id },
-                { "lights", nlohmann::json::array() }
+                { "coneLights", nlohmann::json::array() }
             });
-        for (int j = 0; j < lightArray.lights.size(); j++) {
-            update_config["lights"].back()["lights"].push_back({
+        for (int j = 0; j < lightArray.coneLights.size(); j++) {
+            update_config["lights"].back()["coneLights"].push_back({
                     { "led", j },
                     { "intensity", calculateIntensity(i, j) },
                     { "backlight_intensity", calculateBacklightIntensity(i, j) }

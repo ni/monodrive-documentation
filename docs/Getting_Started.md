@@ -2,9 +2,9 @@
 
 ### Scenario Editor
 
-1. Ensure that [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/) is installed to generate the project files.
+1. Ensure that [Visual Studio 2019 or 2022](https://visualstudio.microsoft.com/downloads/) is installed to generate the project files. 
 
-1. Install [Cuda Toolkit 10.2](https://developer.nvidia.com/cuda-10.2-download-archive)
+1. Install [Cuda Toolkit 11.6](https://developer.nvidia.com/cuda-11-6-2-download-archive)
     - During installation under "Options", "Express" will update or download the NVIDIA driver for this version of Cuda Toolkit. 
     - (Optional) If you have already updated to the most recent NVIDIA display drivers, you may want to customize this install under "Options", then "Custom". The next window will display installation options including "Driver Components", where you may remove checks to keep the driver version you currently have.
 

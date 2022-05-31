@@ -75,6 +75,18 @@ Generation of project files is not a requirement to run the Simulator, but it en
     <img class='wide_img' src="../../../LV_client/quick_start/imgs/play.png"/>
     </div>
 
+## Update Versions
+
+1. Extract the new archive to a common location like `C:/monodrive`.
+1. Copy your license.txt file to the new extracted location `C:/monodrive/VehicleAI_Editor/license.txt`.
+1. Delete previous monoDrive Plugins and extract the new verion of Plugins.zip archive into the 4.25.4 Engine's Plugins directory. e.g. if UE4.25.4 is installed at `C:\Program Files\Epic Games\UE_4.25`, then extract the archive into `C:\Program Files\Epic Games\UE_4.25\Engine\Plugins`. The resulting directory structure should look as follows:
+    <pre>
+        C:\Program Files\Epic Games\UE_4.25\Engine\Plugins\monoDrive
+            +-- monoDriveSensors
+            +-- ... (other monoDrive plugins)
+    </pre>         
+5. Open VehicleAI.uproject. Note that the first time you open the project, UE4 will prompt you about missing modules that need to be rebuilt (VehicleAI and VehicleAIEditor). Select "Yes" to build the modules, then the project will begin compiling shaders. 
+
 ## Open Source Clients
 
 Working with the monoDrive Simulator can be done directly through TCP/IP communications with any application that conforms to the monoDrive API. However, monoDrive provides several reference implementations of clients in C++, LabVIEW, and Python. The monoDrive Clients are open source and available to all users of the monoDrive Simulator and Scenario Editor.

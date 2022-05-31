@@ -181,6 +181,46 @@ The `VehicleLightsConfigCommand_ID` command configures a set of LED arrays and s
 }
 ```
 
+## Light Parameters
+**actor_id**: The actor these lights will be connected to.  
+**array_id**: Identifier of the array, used by client to determine which array is being updated.  
+**coneLights**: The array of ConeLightObjects which will be updated.  
+**rectLights**: The array of RectangleLightObjects which will be updated.  
+**location (at the array level)**: Relative location of the array with respect to the actor origin.
+**rotation (at the array level)**: Relative rotation of the array with respect to the actor's coordinate frame.  
+### Cone and Rectangle Lights (common parameters)
+**attenuation_radius**: Radius (cm) used for attenuation of light of the directional light.  
+**backlight_attenuation_radius**: Radius (cm) used for attenuation of light of the back light.  
+**backlight_color**: Color of backlight, RGBA.  
+**backlight_indirect_lighting_intensity**: Unused.
+**backlight_intensity**: Light intensity in lumens of backlight.  
+**backlight_location**: XYZ location relative to actors origin of the backlight.  
+**backlight_soft_source_radius**: Radius in (cm) of the soft source, this light can bleed through surfaces.
+**backlight_temperature**: The color temperature of the backlight.
+**backlight_volumetric_scattering_intensity**: Unused.
+**color**: Color of the directional light.
+**enable_directional_light**: Disables the directional light, useful if you only want to use the backlight for whatever purpose.  
+**ies_profile**: The IES profile to use for the directional light if you have one available, otherwise leave blank.  
+**indirect_lighting_intensity**: Unused.  
+**inner_cone_angle**: The inner angle of the cone. Light dropoff starts at this angle and decreases out to the outer cone angle.  
+**intensity**: Light intensity of the direcitonal light in lumens.  
+**led**: The ID used to address this light.  
+**location**: The location of the directional light.  
+**outer_cone_angle**: The outer cone angle where the light will completely dropoff.  
+**raytrace_global_ilum**: Whether this light should be ray traced for global illumination.  Performance impact and will not be visible if the camera is not set to use ray tracing. Suggest off for low end machines.  
+**raytrace_reflection**: Whether this light should be ray traced for reflections. Performance impact and will not be visible if the camera is not set to use ray tracing. Suggest off for low end machines.  
+**raytrace_shadow**: Whether this light should be ray traced for shadows. Performance impact and will not be visible if the camera is not set to use ray tracing. Suggest off for low end machines.  
+**rotation**: The relative rotation of the directional light with respect to the origin of the vehicle.  
+**soft_source_radius**: Bleed through radius of the directional light.  
+**source_length**: The length size of the source of the light. Increasing stretches the light along the Z axis.  
+**temperature**: The light temperature for the directional light.  
+**volumetric_scattering_intensity**: Unused.  
+
+### Rectangle Light
+
+### Cone Light
+
+
 The spotlight component of a `ULightObject` can be configured using an [IES profile](https://docs.unrealengine.com/4.26/en-US/BuildingWorlds/LightingAndShadows/IESLightProfiles/). When specifying an IES profile,
 the configuration will ignore the values of the other configuration parameters as all of those are part of the profile. The `ies_profile` parameter specifies the path, relative to the `Content` folder, for the
 file. For example:

@@ -10,7 +10,7 @@ nav:
 - monoDrive: index.md
 - About monoDrive : intro_information.md
 - Getting Started : [
-  # Getting_Started.md,
+  Getting_Started.md,
   monoDrive_home/getting_started/Simulator.md,
   monoDrive_home/getting_started/Editor.md,
   # monoDrive_home/getting_started/Windows.md,

@@ -2,17 +2,13 @@
 
 ## Download
 
-<<<<<<< Updated upstream
-The monoDrive Simulator is available for download through [NI-monoDrive Website](https://www.monodrive.io/register/). 
-=======
-monoDrive products for evaluation and access to our open source clients are available by contacting monoDrive support at <b>support@monodrive.io</b>. Although the monoDrive Simulator is available for download through [NI-monoDrive Website](https://www.monodrive.io/register/), you may want to request access to one of our clients to use with the Simulator. 
->>>>>>> Stashed changes
+monoDrive products are available for evaluation as well as access to our open source clients are available by contacting NI's monoDrive support, and the monoDrive Simulator is available for evaluation through [monoDrive Website](https://www.monodrive.io/register/). Inquiries about purchasing and/or acquiring an evaluation can be provided by contacting NI's monoDrive support at <b>support@monodrive.io</b>. 
 
 ## Setup
 
-[Go to Simulator Setup](../monoDrive_home/getting_started/Simulator)
-
-[Go to Scenario Editor Setup](../monoDrive_home/getting_started/Editor)
-
+[Recommended Hardware](../monoDrive_home/getting_started/Recommended_hardware) <br />
+[Simulator Setup](../monoDrive_home/getting_started/Simulator) <br />
+[Scenario Editor Setup](../monoDrive_home/getting_started/Editor) <br />
+[monoDrive Clients Setup & Access](../monodrive_clients) <br />
 
 <p>&nbsp;</p>

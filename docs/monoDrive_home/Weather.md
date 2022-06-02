@@ -21,7 +21,7 @@ conditions and saving them to configuration files.
   </video>
 </div> 
 
-## Adding Weather to a custom Map
+## Adding Weather to a Map
 
 In the monoDrive Scenario Editor, the "Weather" actor can be found in any one of
 the pre-made monoDrive Unreal Engine maps.
@@ -58,9 +58,9 @@ window to find the weather settings pictured below.
 </p>
 
 **Import Weather Button:** Opens a file dialog to import a weather `.json` file. This will populate the Weather Description list with the new descriptions while removing the currently loaded descriptions.  
-**Export Weather Button:** Saves the weather description list to the `.json` file listed. This allows you to use the weather descriptions from the client. If no file path is listed in Weather File Path then you will receive a file dialogue to select or create the file.  
+**Export Weather Button:** Saves the weather description list to the `.json` file listed. This enables you to use the weather descriptions from the client. If no file path is listed in Weather File Path then you will receive a file dialogue to select or create the file.  
 **Export Weather As Button:** Opens a file dialogue to select or create a new weather `.json` file for export. 
-**Mark Actors to Save:** The weather actor works by modifying the other actors responsible for producing weather affects such as the fog actor, directional light component, sky light etc. When this box is selected, modifying the current weather description or changing the selected weather description will mark the affected actors as dirty. This will allow you to save the level the actor belongs to so that whenever you load the map, weather will be set just as you see it right now.  
+**Mark Actors to Save:** The weather actor works by modifying the other actors responsible for producing weather affects such as the fog actor, directional light component, sky light etc. When this box is selected, modifying the current weather description or changing the selected weather description will mark the affected actors as dirty. This will enable you to save the level the actor belongs to so that whenever you load the map, weather will be set just as you see it right now.  
 **Artificial Lighting Actor Classes:** If you have added custom actors to the map which should enable or disable some lighting you can add them to this list to receive the notification that the map is now in night settings so that they will enable/disable automatically.  
 **Is Night:** This is view only and indicates whether the map is considered to be in night. You can see the logic that sets this by viewing the Weather blueprint.  
 

@@ -13,6 +13,7 @@ The monoDrive lights API allows users to create, configure and control lights in
 The API provides two commands: the lights configuration command `VehicleLightsConfigCommand_ID` which is used to set up and configure the lights at the beginning of the simulation, and the lights update command `VehicleLightsUpdateCommand_ID` which is used to update the state of the lights (intensity, location, orientation, etc.) during the simulation.
 
 Lights are composed of one or more `URectangleLightObjects` or `UConeLightObjects` grouped together into a `ULightArray`, which is attached to an actor in the simulation. 
+
 - `UConeLightObjects` are composed of a `UPointLightComponent` which optionally provides backlighting in encslosures and a `USpotLightComponent` which provides the projected conical light. 
 - `URectangleLightObjects` use `RectLightComponents` instead to create a retangular light projection useful for LEDs.
 

@@ -67,9 +67,9 @@ window to find the weather settings pictured below.
 <p>&nbsp;</p>
 
 ## Weather parameters
-The sun position can be controlled using geo positioning and time or directly. This sections uses geo positioning.
+The sun position can be controlled using geopositioning and time or directly. This sections uses geopositioning.
 
-### Sun Direction and Intensity, geo positioned
+### Sun Direction and Intensity, geopositioned
 **Latitude**: The latitude at origin of map, ranges from -89.99 (south) to 89.99 (north), used to position the sun.  
 **Longitude**: The longitude at origin of map, ranges from -180 (west) to 180 (east), used to position the sun.  
 **TimeZone**: The UTC time zone ranging from -12 to +14.  
@@ -116,9 +116,9 @@ Note: These will likely be updated in the following release with the new volumet
 
 ### Precipitation Effects
 **bPrecipitation**: Weather to include rain or wetness on master road material.  
-**PrecipitationType**: Type of precicipiation; only Rain is currently supported.  
+**PrecipitationType**: Type of precipitation; only Rain is currently supported.  
 **PrecipitationAmount**: Amount of precipitation to display in the the particle effect. Also effects sensors like lidar which will have more attenuation. 0.0 to 100.0  
-**PrecipitationAccumulation**: Amount of precipitation to accumulate on the ground. Visibile in amount of water on ground. 0.0 to 100.0  
+**PrecipitationAccumulation**: Amount of precipitation to accumulate on the ground. Visible in amount of water on ground. 0.0 to 100.0  
 
 ### Wind Effects  
 **bWind**: Whether to include wind affects such as swaying of trees and foliage.  

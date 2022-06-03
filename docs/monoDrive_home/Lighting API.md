@@ -14,7 +14,7 @@ The API provides two commands: the lights configuration command `VehicleLightsCo
 
 Lights are composed of one or more `URectangleLightObjects` or `UConeLightObjects` grouped together into a `ULightArray`, which is attached to an actor in the simulation. `UConeLightObjects` are composed of a `UPointLightComponent` which optionally provides backlighting in encslosures and a `USpotLightComponent` which provides the projected conical light. `URectangleLightObjects` use `RectLightComponents` instead to create a retangular light projection useful for LEDs.
 
-Each backlight and directional light component are independetly moveable and controllable to create the correct projected and backlighting that models your vehicle's headlamps.
+Each backlight and directional light component are independetly moveable and controllable to create the correct projected and backlighting that models a vehicle's headlamps.
 
 ## Light Editor UI
 
@@ -22,7 +22,7 @@ Each backlight and directional light component are independetly moveable and con
   <img class="lg_img" src="../img/light_array.png" />
 </p>
 
-The Light Editor UI allows the user to easily add, remove and configure conical and rectangular lights to a light array on an actor. The configuration can further be exported or imported to/from json for use with the client. This makes it very easy to visualize your light array from the editor and verify it setup correctly before working with it from your control algorithm on the client.  
+The Light Editor UI allows the user to easily add, remove and configure conical and rectangular lights to a light array on an actor. The configuration can further be exported or imported to/from json for use with the client. This makes it very easy to visualize light arrays from the editor and verify it setup correctly before working with it from a control algorithm on the client.  
 
 The best way to get started with the lights API is to create a vehicle, click Add Component as seen in the figure, add a light array component, and then add and manipulate cone and rectangular lights to the array.
 
@@ -205,8 +205,8 @@ The `VehicleLightsConfigCommand_ID` command configures a set of LED arrays and s
 **backlight_temperature**: The color temperature of the backlight.
 **backlight_volumetric_scattering_intensity**: Unused.
 **color**: Color of the directional light.
-**enable_directional_light**: Disables the directional light, useful if you only want to use the backlight for whatever purpose.  
-**ies_profile**: The IES profile to use for the directional light if you have one available, otherwise leave blank.  
+**enable_directional_light**: Disables the directional light, useful if only backlight is needed.  
+**ies_profile**: The IES profile to use for the directional light if one is available, otherwise leave blank.  
 **indirect_lighting_intensity**: Unused.  
 **intensity**: Light intensity of the direcitonal light in lumens.  
 **led**: The ID used to address this light.  
@@ -240,7 +240,7 @@ file. For example:
 "ies_profile": "Materials/IES/JellyFish.uasset"
 ```
 
-The simulator/scenario editor ships with several IES profiles which can be found inside the `Content/Materials/IES` folder. You can import additional IES profiles by following the instructions under the 
+The simulator/scenario editor ships with several IES profiles which can be found inside the `Content/Materials/IES` folder. Additional IES profiles can be imported by following the instructions under 
 [Importing and Assigning to Lights](https://docs.unrealengine.com/4.26/en-US/BuildingWorlds/LightingAndShadows/IESLightProfiles/#importingandassigningtolights) section or the UE4 IES Light Profile documentation page.
 
 

@@ -33,7 +33,7 @@ the custom map and it should now appear in the "World Outliner".
   <img class="lg_img" src="../img/weather_search.png" />
 </p>
 
-The weather actor requires several other weather related actors to function. Place the following additional actors just as you placed the weather actor:
+The weather actor requires several other weather related actors to function. Add the following addiitonal actors to the map:
 
 <p class="img_container">
   <img class="lg_img" src="../img/weather_actors.png" />
@@ -58,11 +58,11 @@ window to find the weather settings pictured below.
 </p>
 
 **Import Weather Button:** Opens a file dialog to import a weather `.json` file. This will populate the Weather Description list with the new descriptions while removing the currently loaded descriptions.  
-**Export Weather Button:** Saves the weather description list to the `.json` file listed. This enables you to use the weather descriptions from the client. If no file path is listed in Weather File Path then you will receive a file dialogue to select or create the file.  
+**Export Weather Button:** Saves the weather description list to the `.json` file listed. This enables the use of the weather descriptions from the client. If no file path is listed in Weather File Path then a file dialogue will popup requesting the user to select or created the file.  
 **Export Weather As Button:** Opens a file dialogue to select or create a new weather `.json` file for export. 
-**Mark Actors to Save:** The weather actor works by modifying the other actors responsible for producing weather affects such as the fog actor, directional light component, sky light etc. When this box is selected, modifying the current weather description or changing the selected weather description will mark the affected actors as dirty. This will enable you to save the level the actor belongs to so that whenever you load the map, weather will be set just as you see it right now.  
-**Artificial Lighting Actor Classes:** If you have added custom actors to the map which should enable or disable some lighting you can add them to this list to receive the notification that the map is now in night settings so that they will enable/disable automatically.  
-**Is Night:** This is view only and indicates whether the map is considered to be in night. You can see the logic that sets this by viewing the Weather blueprint.  
+**Mark Actors to Save:** The weather actor works by modifying the other actors responsible for producing weather affects such as the fog actor, directional light component, sky light etc. When this box is selected, modifying the current weather description or changing the selected weather description will mark the affected actors as dirty. This will enable the user to save the level the actor belongs to so that whenever the map is loaded, weather will be set just as it is seen right now.  
+**Artificial Lighting Actor Classes:** If a user hase added custom actors to the map which have lights which can be enabled or disabled, the actor class for these actors can be added to this list. These actors will receive the notification that the map is now in night settings so that they will enable/disable automatically.  
+**Is Night:** This is view only and indicates whether the map is considered to be in night. The logic that sets this is viewable in the Weather blueprint.  
 
 <p>&nbsp;</p>
 
@@ -73,7 +73,7 @@ The sun position can be controlled using geo positioning and time or directly. T
 **Latitude**: The latitude at origin of map, ranges from -89.99 (south) to 89.99 (north), used to position the sun.  
 **Longitude**: The longitude at origin of map, ranges from -180 (west) to 180 (east), used to position the sun.  
 **TimeZone**: The UTC time zone ranging from -12 to +14.  
-**NorthOffset**: The relative orientation of your map with respect to the X axis which is default north.  
+**NorthOffset**: The relative orientation of the map with respect to the X axis which is default north.  
 **Year**: Year of the simulation.  
 **Month**: Month of the simulation, will affect the beta angle or how high the sun will appear in the sky in a given day cycle based on lat/long and time zone.  
 **Day**: Day of the simulation.
@@ -129,7 +129,7 @@ Note: These will likely be updated in the following release with the new volumet
 
 ## Exporting Weather Descriptions
 
-After exporting the weather descriptions you will receive a json file with name parity to the description you saw in the editor. It is structured as `descriptions` which points to a list of descriptions. `id` refers to the name which will be visible in the Weather Description drop down.
+After exporting the weather descriptions a json file will be generated with name parity to the description seen in the editor. It is structured as `descriptions` which points to a list of descriptions. `id` refers to the name which will be visible in the Weather Description drop down.
 
 ```json
 {
@@ -223,8 +223,8 @@ After exporting the weather descriptions you will receive a json file with name 
 For the LabVIEW client, the weather profiles that are exported can be pasted 
 into the weather configuration (string control) located in the [mono_get_weather.vi](../LV_client/weather/mono_get_weather.md). 
 
-After opening the VI's GUI: the weather profiles can be found on the right-hand
-side of the interface. Simply copy and paste your custom JSON weather profile:
+After opening the VI's GUI: the weather descriptions can be found on the right-hand
+side of the interface. Simply copy and paste the custom JSON weather profile:
 
 <p class="img_container">
   <img class="wide_img" src="../img/get_weather_vi.png" />

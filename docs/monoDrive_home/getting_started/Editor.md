@@ -104,6 +104,4 @@ For frequently asked questions, see our FAQ Page. If this  does not resolve the 
  - [FAQ Installation](../../../FAQ/#installation)
  - [FAQ Licensing](../../../FAQ/#licensing)
 
-## Updating Versions
-
 <p>&nbsp;</p>

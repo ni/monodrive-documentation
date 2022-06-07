@@ -79,7 +79,7 @@ Generation of project files is not a requirement to run the Simulator, but it en
 
 1. Extract the new archive to a common location like `C:/monodrive`.
 1. Copy your license.txt file to the new extracted location `C:/monodrive/VehicleAI_Editor/license.txt`.
-1. Delete previous monoDrive Plugins and extract the new verion of Plugins.zip archive into the 4.25.4 Engine's Plugins directory. e.g. if UE4.25.4 is installed at `C:\Program Files\Epic Games\UE_4.25`, then extract the archive into `C:\Program Files\Epic Games\UE_4.25\Engine\Plugins`. The resulting directory structure should look as follows:
+1. Delete previous monoDrive Plugins and extract the new version of Plugins.zip archive into the 4.25.4 Engine's Plugins directory. e.g. if UE4.25.4 is installed at `C:\Program Files\Epic Games\UE_4.25`, then extract the archive into `C:\Program Files\Epic Games\UE_4.25\Engine\Plugins`. The resulting directory structure should look as follows:
     <pre>
         C:\Program Files\Epic Games\UE_4.25\Engine\Plugins\monoDrive
             +-- monoDriveSensors
@@ -103,5 +103,7 @@ For frequently asked questions, see our FAQ Page. If this  does not resolve the 
 
  - [FAQ Installation](../../../FAQ/#installation)
  - [FAQ Licensing](../../../FAQ/#licensing)
+
+## Updating Versions
 
 <p>&nbsp;</p>

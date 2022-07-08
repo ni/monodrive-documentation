@@ -68,14 +68,15 @@ monoDrive's Scenario Editor has high quality graphics that will take some time t
 You may need to permanently associate the project with Unreal Engine by opening the .uproject first before generating the project files. Then after rebooting, the "generate project files" may show as an option then. If this is not the case, try this solution offered from Unreal Engine Support:
 
 Set the file association of the “.uproject” file to “C:\Program Files (x86)\Epic Games\Launcher\Engine\Binaries\Win64\UnrealVersionSelector.exe” by following these steps:
-1. right-click the .uproject file
-1. click “open with…”
-1. click “choose another app”
-1. click “more apps”
-1. click “look for another app”
-1. browse to “C:\Program Files (x86)\Epic Games\Launcher\Engine\Binaries\Win64”
-1. select “UnrealVersionSelector.exe”
-1. click “open”
+
+   1. right-click the .uproject file
+   1. click “open with…”
+   1. click “choose another app”
+   1. click “more apps”
+   1. click “look for another app”
+   1. browse to “C:\Program Files (x86)\Epic Games\Launcher\Engine\Binaries\Win64”
+   1. select “UnrealVersionSelector.exe”
+   1. click “open”
 
 <p>&nbsp;</p>
 
@@ -119,7 +120,7 @@ I moved my license to a new machine, the simulator shows an ```UNLICENSED. Licen
 
 - Each license is for one machine's use only. 
 - If you did any change to the hardware,i.e. connect to a docking station, change ethernet card, etc. Your license can be blocked as well. 
-- Please contact us through email at **support@monodrive.io** or through a communication channel already established, so we can help you resolve this issue. 
+- Please contact us through email at **monodrive.support@ni.com** or through a communication channel already established, so we can help you resolve this issue. 
 
 ##### The simulator shows an "License is not found" message.
 

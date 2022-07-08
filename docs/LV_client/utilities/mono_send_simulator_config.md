@@ -8,7 +8,7 @@
 
 Configures simulator given a path to a  JSON file. The file will configure server ip, port, etc.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

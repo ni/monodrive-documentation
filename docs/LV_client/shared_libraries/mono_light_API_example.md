@@ -10,7 +10,7 @@ Enables users to control the vehicle's steering, throttle, brakes, starting posi
 
 *This is a free driving scenario with one car only*
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

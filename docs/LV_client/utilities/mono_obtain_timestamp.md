@@ -7,7 +7,7 @@
 ### Description
 
 Obtains timestamp (position 1200) in microseconds from the raw LiDAR stream (1206 bytes).
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

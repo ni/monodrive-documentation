@@ -8,7 +8,7 @@
 
 Sends the pause command to server to pause or unpause the update of the ego vehicle on simulation while the simulation keeps going. 
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

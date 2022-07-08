@@ -8,7 +8,7 @@
 
 Gets the number of points on a data packet depending on the horizontal resolution.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

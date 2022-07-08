@@ -8,7 +8,7 @@
 
 Configures and reads the Waypoint sensor information. The waypoint sensor returns a JSON string with information on the waypoints behind  and in front of all the vehicles in the scenario, given the specified distance and frequency.  Information about the left and right lanes is also included. 
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

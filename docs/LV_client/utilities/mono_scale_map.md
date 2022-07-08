@@ -8,7 +8,7 @@
 
 Use to fit the map into the drawing space.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

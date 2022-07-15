@@ -9,7 +9,7 @@ controlling various different aspects of AI vehicle behavior. The scenario file 
   </video>
 </div> 
 
-## Placing Vehicles in a Scene
+## Placing Vehicles in a Scenario
 
 The first step in creating a scenario is setting up the monoDrive vehicles in 
 the desired scene and applying driving properties to each. To place a vehicle:
@@ -147,6 +147,35 @@ set speed and initial speed will be a delta above or below the road's speed limi
 ### Replay Vehicle Path
 
 The user may specify the vehicle's blueprint path for replay. This path needs to point to a vehicle derived from Custom Physics Vehicle, which can be a shell with no physics implemented for this purpose. 
+
+## Placing Custom Actors and Blueprints in a Scenario
+
+Any actor can be added as part of a scenario by adding the **"serialize"** tag to the actors tag list. See the [Tagging System](#tagging-system) section. Blueprints, Static-Mesh actors, Skeletal-Mesh actors, and Pedestrians are currently supported.
+
+### Blueprint parameters
+
+**"blueprint_parameters"** 
+
+In addition to custom actors, blueprint parameters are also automatically discovered and added to scenario files. These parameters will show up under the **"blueprint_parameters"** key for the given actor.
+
+todo: example
+
+## Attached components
+
+**"instance_components"**
+
+Components added to actors or blueprints can be added and saved as part of the scenario as well. This allows you to attach arbitrary objects to scenario actors. For example, you can place tools in a truck bed or a human driver in a vehicle. These components show up under **"instance_components"** and they are automatically discovered by the monoDrive scenario engine.
+
+todo: example
+
+## Materials
+
+**"tagged_components"**
+
+By default, materials are not serialized to the scenario file. However, if you wish to make the materials changeable from scenario file you can *tag* the component you wish to serialize the materials. This will result in the materials saved out for that component and can be changed in the json to spawn different materials when the scenario is loaded. To do do this add the "serialize" tag to the actor component you want to record the materials for.
+
+todo: examle
+
 
 ## Tagging System
 

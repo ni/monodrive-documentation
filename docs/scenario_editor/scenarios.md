@@ -150,31 +150,6 @@ set speed and initial speed will be a delta above or below the road's speed limi
 
 - **Trigger Sleep Time:** A vehicle might hit a dynamic trigger box more than once as they are in motion, to avoid double triggering, behavior can only be modified by the same trigger component again after this many seconds.
 
-<<<<<<< HEAD
-##Adding Static or Skeletal Meshes to an Actor
-1. Add the desired Static or Skeletal Mesh to the actor's component list as seen below. The location in the hierarchy of the actor's components will be preserved. 
-Note: If the mesh is not added to an existing actor's component list (as seen below), it will become an independent Static or Skeletal Mesh actor. This will then be serialized as an independent actor.
-  <div class="img_container">
-    <img class='lg_img' src="../imgs/Add_Component_to_Actor.gif"/>
-  </div>
-  
-##Serializing Static or Skeletal Mesh Actors
-- Acors which consist of a Static or Skeletal Mesh (i.e. Traffic Cone) can be saved to a scenario by adding the "serialize" tag to the **Actor tag list**
-  <div class="img_container">
-    <img class='lg_img' src="../imgs/Static_Skeletal_Actor_Tags.png"/>
-  </div>
-
-##Blueprint Variable Values
-- The Scenario system will save properties of a blueprint that are Int32, Float, Or Boolean types. This allows users to save-out the values of parameters that might be defined on the blueprint level.
-
-
-##Saving Materials in a Scenario
-1. Modify a material for a particular component on your actor
-1. Tag that component within your actor for serialization
-  <div class="img_container">
-    <img class='lg_img' src="../imgs/Material_Scenario.gif"/>
-  </div>
-=======
 ### Replay Vehicle Path
 
 The user may specify the vehicle's blueprint path for replay. This path needs to point to a vehicle derived from Custom Physics Vehicle, which can be a shell with no physics implemented for this purpose. 
@@ -187,27 +162,28 @@ Any actor can be added as part of a scenario by adding the **"serialize"** tag t
 
 **"blueprint_parameters"** 
 
-In addition to custom actors, blueprint parameters are also automatically discovered and added to scenario files. These parameters will show up under the **"blueprint_parameters"** key for the given actor.
+In addition to custom actors, blueprint parameters are also automatically discovered and added to scenario files. These parameters will show up under the **"blueprint_parameters"** key for the given actor. Supported parameter types are are Int32, Float, and Boolean.
 
-todo: example
-
-## Attached components
+## Attached components, Adding Static or Skeletal Meshes to an Actor
 
 **"instance_components"**
 
-Components added to actors or blueprints can be added and saved as part of the scenario as well. This allows you to attach arbitrary objects to scenario actors. For example, you can place tools in a truck bed or a human driver in a vehicle. These components show up under **"instance_components"** and they are automatically discovered by the monoDrive scenario engine.
+Components added to actors or blueprints can be added and saved as part of the scenario as well. This allows you to attach arbitrary objects to scenario actors. For example, you can place tools in a truck bed or a human driver in a vehicle. These components show up under **"instance_components"** and they are automatically discovered by the monoDrive scenario engine. The location in the hierarchy of the actor's components will be preserved.
 
-todo: example
+  <div class="img_container">
+    <img class='lg_img' src="../imgs/Add_Component_to_Actor.gif"/>
+  </div>
+  <!-- docs/imgs/Add_Component_to_Actor.gif -->
 
-## Materials
+## Materials as part of the Scenario
 
 **"tagged_components"**
 
 By default, materials are not serialized to the scenario file. However, if you wish to make the materials changeable from scenario file you can *tag* the component you wish to serialize the materials. This will result in the materials saved out for that component and can be changed in the json to spawn different materials when the scenario is loaded. To do do this add the "serialize" tag to the actor component you want to record the materials for.
 
-todo: examle
-
->>>>>>> 1.15-beta
+  <div class="img_container">
+    <img class='lg_img' src="../imgs/Material_Scenario.gif"/>
+  </div>
 
 ## Tagging System
 

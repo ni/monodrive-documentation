@@ -8,7 +8,7 @@
 
 Compares the outputs of the mono_radar.vi and the mono_ground_radar.vi for a specific tracking element in the ground truth list. This tool also adds a Kalman Filter to the output of the  mono_radar.vi to smooth the angle of arrival value. 
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

@@ -9,6 +9,9 @@
 <h2> Installation </h2>
 
 - [After some time building, I see the VehicleAI window stuck at 95%](./#vehicleai-window-stuck-at-95)
+- [Generate Project Files option is missing](./#generate-project-files-option-is-missing)
+- [Error Message: VehicleAI could not be compiled. Try rebuilding from source manually.](./#error-vehicleai-could-not-be-compiled-try-rebuilding-from-source-manually)
+- [Error Message: DirectX Runtime Error / Scenario Editor Crash with D12RHI References](./#error-directx-runtime-error-scenario-editor-crash-with-d12rhi-references)
 
 <h2> Licensing </h2>
 
@@ -55,6 +58,58 @@ After some time building, I see the VehicleAI window stuck at 95%.
 
 monoDrive's Scenario Editor has high quality graphics that will take some time to compile when opening for the first time. Verify the process is still running by opening the Task Manager and see shaders are still compiling.
 <p>&nbsp;</p>
+
+##### Generate Project Files option is missing 
+
+<div class="img_container">
+   <img class='lg_img' src="../imgs/faq_generate.png"/>
+</div>
+
+You may need to permanently associate the project with Unreal Engine by opening the .uproject first before generating the project files. Then after rebooting, the "generate project files" may show as an option then. If this is not the case, try this solution offered from Unreal Engine Support:
+
+Set the file association of the “.uproject” file to “C:\Program Files (x86)\Epic Games\Launcher\Engine\Binaries\Win64\UnrealVersionSelector.exe” by following these steps:
+
+   1. right-click the .uproject file
+   1. click “open with…”
+   1. click “choose another app”
+   1. click “more apps”
+   1. click “look for another app”
+   1. browse to “C:\Program Files (x86)\Epic Games\Launcher\Engine\Binaries\Win64”
+   1. select “UnrealVersionSelector.exe”
+   1. click “open”
+
+<p>&nbsp;</p>
+
+##### Error: VehicleAI could not be compiled. Try rebuilding from source manually.
+
+<div class="img_container">
+   <img class='lg_img' src="../imgs/faq_rebuild.png"/>
+</div>
+
+Usually this popup error indicates that you may need to re-extract or extract the monoDrive Plugins, below are instructions on how to do this. 
+
+Delete previous monoDrive Plugins (if there are any), and extract the Plugins.zip archive from the root of the Scenario Editor into the 4.25.4 Engine's Plugins directory. e.g. if UE4.25.4 is installed at `C:\Program Files\Epic Games\UE_4.25`, then extract the archive into `C:\Program Files\Epic Games\UE_4.25\Engine\Plugins`. The resulting directory structure should look as follows:
+    <pre>
+        C:\Program Files\Epic Games\UE_4.25\Engine\Plugins\monoDrive
+            +-- monoDriveSensors
+            +-- ... (other monoDrive plugins)
+    </pre>         
+Rerunning Visual Studio is required to see changes. 
+
+##### Error: DirectX Runtime Error / Scenario Editor Crash with D12RHI References
+
+<div class="img_container">
+   <img class='lg_img' src="../imgs/faq_dx11_2.png"/>
+</div>
+
+DirectX11 is required to run monoDrive Simulator or Scenario Editor on Windows. You can [download DirectX11](https://www.microsoft.com/en-us/Download/confirmation.aspx?id=35) if working with the Simulator.
+
+If working with the Editor, you may resolve the issue by setting DirectX11 in Unreal Engine through Edit --> Project Settings. In the Details search bar, search "directx", there you should see a setting to change to DirectX11. 
+
+<div class="img_container">
+   <img class='lg_img' src="../imgs/faq_dx11.png"/>
+</div>
+
 _ _ _ 
 
 ## Licensing 
@@ -65,7 +120,7 @@ I moved my license to a new machine, the simulator shows an ```UNLICENSED. Licen
 
 - Each license is for one machine's use only. 
 - If you did any change to the hardware,i.e. connect to a docking station, change ethernet card, etc. Your license can be blocked as well. 
-- Please contact us through email at **support@monodrive.io** or through a communication channel already established, so we can help you resolve this issue. 
+- Please contact us through email at **monodrive.support@ni.com** or through a communication channel already established, so we can help you resolve this issue. 
 
 ##### The simulator shows an "License is not found" message.
 

@@ -8,7 +8,7 @@
 
 Parse the raw data from the Depth Camera sensor and output the  normalized data.
 
-For technical support contact us at **support@monodrive.io** 
+For technical support contact us at **monodrive.support@ni.com** 
 
 ### Inputs
 

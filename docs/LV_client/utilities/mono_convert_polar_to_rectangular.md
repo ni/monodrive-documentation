@@ -8,7 +8,7 @@
 
 Converts polar coordinates from the Velodyne to rectagular.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

@@ -8,7 +8,7 @@
 
 Send the GetStartPoints command to obtain the starting points for the map
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

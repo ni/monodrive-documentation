@@ -8,7 +8,7 @@
 
 Builds the name of a file based on the type of sensor and the custom name provided the user.
 
-For technical support contact us at <b>support@monodrive.io</b>  
+For technical support contact us at <b>monodrive.support@ni.com</b>  
 
 ### Inputs
 

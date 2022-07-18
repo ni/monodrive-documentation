@@ -8,7 +8,7 @@
 
 Convert from an array to an image
 
-For technical support contact us at **support@monodrive.io** 
+For technical support contact us at **monodrive.support@ni.com** 
 
 ### Inputs
 

@@ -8,7 +8,7 @@
 
 Configures and reads the data stream for a Fisheye Camera, this camera is based on Scaramuzza's model.
 
-For technical support contact us at **support@monodrive.io** 
+For technical support contact us at **monodrive.support@ni.com** 
 
 ### Inputs
 

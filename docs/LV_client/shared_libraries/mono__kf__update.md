@@ -7,7 +7,7 @@
 ### Description 
 Call the function `Update` from the DLL.
 
-For technical support contact us at support@monodrive.io
+For technical support contact us at monodrive.support@ni.com
 
 ### Inputs
 - **aoa:** AoA value from the radar output.

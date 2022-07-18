@@ -6,7 +6,7 @@ A monoDrive Camera Sensor can support six different image types:
 - **Grayscale:** A single channel grayscale image of the scene
 - **Semantic Segmentation:** Each object in the scene is semantically labeled by color
 - **Depth camera:** Provides a camera array where pixel values represent distance from the camera
-- **Fisheye:** Equidistant or Poly1 Fisheye Camera/Scaramuzza model Fisheye camera based.
+- **Fisheye:** Poly2FisheyeCamera is either Equidistant or Scaramuzza model Fisheye camera based.
 - **360 Camera:** Provides a 360 view of the scene.
 
 Image output size, intrinsic camera parameters, and various other settings can 
@@ -437,20 +437,38 @@ format of the image is an array the same size as `stream_dimensions` containing
 
 ### Scaramuzza based Fisheye Camera
 
-The fisheye lens model was expanded to include the Poly1FisheyeCamera model. This model is defined by a polynomial (Scaramuzza’s model a0, a2, a3, a4) which describes the projection onto the image sensor. The model can generically describe any camera lens projection but is best used for difficult models such as fisheye and ultra wide angle lenses. The polynomial parameters can be calibrated automatically from a chessboard dataset using [mathwork’s toolbox](https://www.mathworks.com/help/vision/ug/fisheye-calibration-basics.html).
+This model is defined by a polynomial (Scaramuzza’s model a0, a2, a3, a4) which describes the projection onto the image sensor if you wish to use an idealized or Equidistant fisheye model set *use_calibrated_parameters* to false. The Poly2 model can generically describe any camera lens projection but is best used for difficult models such as fisheye and ultra wide angle lenses. The polynomial parameters can be calibrated automatically from a chessboard dataset using [mathwork’s toolbox](https://www.mathworks.com/help/vision/ug/fisheye-calibration-basics.html).
 
+<span style="color:red">todo: replace this realllllly old image</span>
 <p class="img_container">
   <img class='half_screen_img' src="../img/scaramuzza.bmp"  height="400" />
 </p>
 
 ```json
 {
-    "type": "Poly1FisheyeCamera",
+    "type": "Poly2FisheyeCamera",
     "listen_port": 8018,
-   "a0": -431602080.0,
-    "a2": -431602080.0,
-    "a3": -431602080.0,
-    "a4": -431602080.0,
+
+    "a0": -350.0,
+    "a2": --0.0001,
+    "a3": 1.2e-06,
+    "a4": -1.5e-09,
+
+    "b0": 1.0,
+    "b1": 0.0,
+    "b2": 0.0,
+    "b3": 0.0,
+    "cx": 0.0,
+    "cy": 0.0,
+
+    "stretch_matrix_cde": {
+        "x": 1.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+
+    "exposure": 1,
+
     "annotation": {
       "cull_partial_frame": false,
       "cull_partial_frame_min": 1.0,
@@ -467,11 +485,6 @@ The fisheye lens model was expanded to include the Poly1FisheyeCamera model. Thi
       "lane_sampling_frequency": 100.0,
       "lane_subsampling": 10.0
     },
-    "camera_matrix": [
-        [443.0, 0.0, 256.0],
-        [0.0, 443.0, 256.0],
-        [0.0, 0.0, 1.0]
-    ],
     "channel_depth": 4,
     "channels": "bgra",
     "color_filter_array": {

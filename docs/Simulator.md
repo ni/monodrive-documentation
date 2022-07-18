@@ -4,11 +4,11 @@ The monoDrive Simulator is a powerful simulation software featuring high-fidelit
 
 The Simulator offers three modes for robust testing. Note, at one point there were four modes. The replay, closed loop, and HIL modes have all been collapsed into one very flexible hybrid mode allowing users to mix replay actors, closed loop actors, and HIL functionality all at the same time!
 
-- *Continuous*, the clock of monoDrive is real-time and driven by the local machines wall clock on which the instance is running. State driven or replay actors can still be driven but all timing for local physics actors are controlled by monoDrive clock. 
+- *Continuous*, the clock of monoDrive is real-time and driven by the local machines wall clock on which the instance is running. State driven or replay actors can still be driven but all timing for local physics actors are controlled by monoDrive clock. "simulator_mode": 0
 
-- *Fixed Step*, the clock of monoDrive only progresses when a step command is received from the client. Time is otherwise frozen until a step command is received. Replay and state actors actors can still be moved via client commands.
+- *Fixed Step*, the clock of monoDrive only progresses when a step command is received from the client. Time is otherwise frozen until a step command is received. Replay and state actors actors can still be moved via client commands. "simulator_mode": 3
 
-- *Remote Clock*, the clock of monoDrive is controlled externally through the UpdateState command. Local physics actors (if used in this mode) are still controlled by the local monoDrive clock, however, but all time reporting will be done with respect to the external clock input.
+- *Remote Clock*, the clock of monoDrive is controlled externally through the UpdateState command. Local physics actors (if used in this mode) are still controlled by the local monoDrive clock, however, but all time reporting will be done with respect to the external clock input. "simulator_mode": 1
 
 Through a monoDrive Client, users may control specific vehicle behavior. These examples show vehicle behaviors for three different set-ups on the monoDrive Almono Map.
 

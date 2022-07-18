@@ -8,7 +8,7 @@
 
 Configures and reads the data stream for a RGB Camera sensor and outputs a picture with the specified format in the stream dimensions.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

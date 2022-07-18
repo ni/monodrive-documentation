@@ -7,7 +7,7 @@
 ### Description
 
 This example shows how to run the monoDrive client  to configure the monoDrive simulator on HIL mode.
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

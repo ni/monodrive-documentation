@@ -8,7 +8,7 @@
 
 Send the command to step the simulation for any given amount. Specify the desired amount in the message string.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

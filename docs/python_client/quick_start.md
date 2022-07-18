@@ -3,12 +3,8 @@
 ## Guide
 
 The monoDrive Python Client is Open Source Software for connecting to and 
-configuring the monoDrive Simulator and Scenario Editor. To get started, 
-clone the client from the monoDrive repository:
-
-```bash
-$ git clone git@github.com:monoDriveIO/monodrive-python-client.git 
-```
+configuring the monoDrive Simulator and Scenario Editor. To get started 
+make a [contact the NI monoDrive Team](https://www.monodrive.io/contact). 
 
 ### Installation
 

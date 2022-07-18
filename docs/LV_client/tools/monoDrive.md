@@ -8,7 +8,7 @@
 
 This is a Global variable shared among all the sensors during the configuration phase. Contains the [**monoDrive.ctl**](../structures/monoDrive.md).
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

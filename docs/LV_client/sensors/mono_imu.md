@@ -8,7 +8,7 @@
 
 Reads and process the data stream for the IMU sensor. Outputs the IMU data in a cluster.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

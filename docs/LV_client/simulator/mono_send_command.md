@@ -8,7 +8,7 @@
 
 Send a command via TCP with format "type", "success", "reference", "message". This VI is used to send server commands.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

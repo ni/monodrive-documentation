@@ -7,7 +7,7 @@
 ### Description 
 Given a frame from the State sensor, calculates the correct steering value to maintain the vehicle on the second lane.
 
-For technical support contact us at support@monodrive.io
+For technical support contact us at monodrive.support@ni.com
 
 ### Inputs
 - **DLL path in(Path):** Path to the Release or Debug DLL .

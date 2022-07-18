@@ -9,7 +9,7 @@ controlling various different aspects of AI vehicle behavior. The scenario file 
   </video>
 </div> 
 
-## Placing Vehicles in a Scenario
+## Placing monoDrive Vehicles in a Scene
 
 The first step in creating a scenario is setting up the monoDrive vehicles in 
 the desired scene and applying driving properties to each. To place a vehicle:
@@ -21,6 +21,12 @@ the desired scene and applying driving properties to each. To place a vehicle:
 
 1. Drag one of the vehicles into the scene by click on the vehicle's icon
 and putting it on the desired lane of travel.
+
+1. When adding actors that aren't provided by monoDrive to a scenario, make sure to add "serialize" under the Actor's "Tags".
+  <div class="img_container">
+    <img class='lg_img' src="../imgs/serialize_tag.png"/>
+  </div>
+
 
 1. In the "Details" window, search for the "Vehicle Controller Settings" group 
 and and set the desired vehicle controller settings. 
@@ -156,26 +162,28 @@ Any actor can be added as part of a scenario by adding the **"serialize"** tag t
 
 **"blueprint_parameters"** 
 
-In addition to custom actors, blueprint parameters are also automatically discovered and added to scenario files. These parameters will show up under the **"blueprint_parameters"** key for the given actor.
+In addition to custom actors, blueprint parameters are also automatically discovered and added to scenario files. These parameters will show up under the **"blueprint_parameters"** key for the given actor. Supported parameter types are are Int32, Float, and Boolean.
 
-todo: example
-
-## Attached components
+## Attached components, Adding Static or Skeletal Meshes to an Actor
 
 **"instance_components"**
 
-Components added to actors or blueprints can be added and saved as part of the scenario as well. This allows you to attach arbitrary objects to scenario actors. For example, you can place tools in a truck bed or a human driver in a vehicle. These components show up under **"instance_components"** and they are automatically discovered by the monoDrive scenario engine.
+Components added to actors or blueprints can be added and saved as part of the scenario as well. This allows you to attach arbitrary objects to scenario actors. For example, you can place tools in a truck bed or a human driver in a vehicle. These components show up under **"instance_components"** and they are automatically discovered by the monoDrive scenario engine. The location in the hierarchy of the actor's components will be preserved.
 
-todo: example
+  <div class="img_container">
+    <img class='lg_img' src="../imgs/Add_Component_to_Actor.gif"/>
+  </div>
+  <!-- docs/imgs/Add_Component_to_Actor.gif -->
 
-## Materials
+## Materials as part of the Scenario
 
 **"tagged_components"**
 
 By default, materials are not serialized to the scenario file. However, if you wish to make the materials changeable from scenario file you can *tag* the component you wish to serialize the materials. This will result in the materials saved out for that component and can be changed in the json to spawn different materials when the scenario is loaded. To do do this add the "serialize" tag to the actor component you want to record the materials for.
 
-todo: examle
-
+  <div class="img_container">
+    <img class='lg_img' src="../imgs/Material_Scenario.gif"/>
+  </div>
 
 ## Tagging System
 

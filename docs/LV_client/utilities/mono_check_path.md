@@ -8,7 +8,7 @@
 
 Check if a path is relative or absolute. Decide to pass the name of the file or the path.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

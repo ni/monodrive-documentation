@@ -7,7 +7,7 @@
 ### Description 
 Initialize a `KalmanFilter` object.
 
-For technical support contact us at support@monodrive.io
+For technical support contact us at monodrive.support@ni.com
 
 ### Inputs
 - **R(DBL):** Measurement noise covariance.

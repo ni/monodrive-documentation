@@ -11,8 +11,8 @@ nav:
 - About monoDrive : intro_information.md
 - Getting Started : [
   Getting_Started.md,
-  monoDrive_home/getting_started/Windows.md,
-  monoDrive_home/getting_started/Linux.md,
+  monoDrive_home/getting_started/Simulator.md,
+  monoDrive_home/getting_started/Editor.md,
   monoDrive_home/getting_started/Recommended_hardware.md
 ]
 - F.A.Q. : FAQ.md

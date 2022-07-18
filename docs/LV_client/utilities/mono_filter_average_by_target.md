@@ -8,7 +8,7 @@
 
 Filter targets and calculate average for AoA, range and velocity for the specified target id when there are multiple targets with the same target id.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

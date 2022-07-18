@@ -90,6 +90,10 @@ main {
     width: 90%;
 }
 
+.split_screen_code {
+    width: 48%
+}
+
 .center {
     width: 100%;
     text-align: center;

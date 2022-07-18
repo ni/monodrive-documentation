@@ -8,7 +8,7 @@
 
 Process radar data cube and run a Matlab script to plot Radar cube data.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

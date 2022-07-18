@@ -8,7 +8,7 @@
 
 Calculate the indexes of interest on the RGBA array to obtain a RGB array.
 
-For technical support contact us at **support@monodrive.io** 
+For technical support contact us at **monodrive.support@ni.com** 
 
 ### Inputs
 

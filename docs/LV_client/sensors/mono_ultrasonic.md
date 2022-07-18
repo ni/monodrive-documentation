@@ -8,7 +8,7 @@
 
 Configures and samples the ultrasonic sensor according to the configuration settings. Provides range from the closest object to a single ultrasonic sensor.
 
-For technical support contact us at <b>support@monodrive.io</b>
+For technical support contact us at <b>monodrive.support@ni.com</b>
  
 
 ### Inputs

@@ -8,7 +8,7 @@
 
 Configure and sample the Collision sensor. Outputs information on the Time to collision, among other relevant information to detect a collision with vehicles or objects with the tag "vt" 
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

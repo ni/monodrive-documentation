@@ -5,9 +5,7 @@
 The monoDrive ROS Client is part of the monoDrive C++ Client but uses the ROS 
 API for sending messages to and from the monoDrive Simulator or Scenario Editor.
 It can be found in the `monoDrive-client` repo under `cpp-client/ros-examples`. 
-To get the client:
-
-    $ git clone git@github.com:monoDriveIO/monodrive-client.git
+To get started make a [contact the NI monoDrive Team](https://www.monodrive.io/contact). 
 
 ## Ubuntu 18.04 Prerequisites
 

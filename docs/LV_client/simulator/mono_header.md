@@ -8,7 +8,7 @@
 
 Parse data from sensor into a cluster given a connection ID.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

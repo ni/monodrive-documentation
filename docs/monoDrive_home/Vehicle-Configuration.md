@@ -4,7 +4,7 @@ The monoDrive Simulator provides users with the ability to customize color and m
 
 ## Add Vehicle Model
 
-For information on adding a new vehicle model contact monoDrive support at support@monodrive.io
+For information on adding a new vehicle model contact monoDrive support at monodrive.support@ni.com
 
 ## Change the Vehicle's Model
 <div class="img_container">

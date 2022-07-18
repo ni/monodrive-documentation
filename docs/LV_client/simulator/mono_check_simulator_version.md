@@ -8,7 +8,7 @@
 
 Check compatibility between the simulator's version and the client's version.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

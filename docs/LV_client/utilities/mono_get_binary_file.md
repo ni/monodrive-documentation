@@ -8,7 +8,7 @@
 
 Obtain the reference to the binary file to read based on the name of the sensor type and the custom name assigned by the user. 
 
-For technical support contact us at <b>support@monodrive.io</b>  
+For technical support contact us at <b>monodrive.support@ni.com</b>  
 
 ### Inputs
 

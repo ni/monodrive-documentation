@@ -54,7 +54,7 @@ behavior settings: vehicle controller settings and vehicle behavior settings.
 The first section, "Vehicle Controller Settings", 
 contains several settings relative to vehicle behavior for speed and control:
 
--   **Set Speed:**  Sets the desired speed of the vehicle as a delta above 
+- **Set Speed:**  Sets the desired speed of the vehicle as a delta above 
 or below the road's speed limit in miles per hour.
 For example, if the road's set speed limit is 40mph, a 
 value of "0" would result in the vehicle moving at a speed of 40mph, and with 
@@ -62,14 +62,12 @@ a value of "-20", the vehicle's speed would be 20mph.
 When the "Obey Road Speed Limits" is not set, the input in this field sets the 
 speed of the vehicle (in miles per hour) without regarding the road's speed limit.
 
--   **Initial Speed:** Sets the initial speed of the vehicle as a delta above 
+- **Initial Speed:** Sets the initial speed of the vehicle as a delta above 
 or below the road's speed limit in miles per hour. When the "Obey Road Speed Limits" 
 is not set, the input in this field sets the speed of the vehicle (in miles per hour)
  without regarding the road's speed limit.
-
--   **Delayed Start:**  The number of seconds to wait before moving this vehicle.
  
--   **Show Vehicle Charts:**  If set, then vehicle dynamics charts will be shown.
+- **Show Vehicle Charts:**  If set, then vehicle dynamics charts will be shown.
 	Charts display information about Steering, Speed, Acceleration, Gear, Engine RPM,
 	and Throttle. To the right of the charts, the speed of the vehicle is displayed in
 	miles per hour.
@@ -77,66 +75,82 @@ is not set, the input in this field sets the speed of the vehicle (in miles per 
       <img class='wide_img' src="../imgs/vehicle_charts_3.png"/>
     </div>
 
--   **Debug Drawing:**  If set, then debug vehicle information will be drawn in the editor. The blue point indicates the steer forward position, the red points indicate the path points, and the cyan point is the predicted distance given the change in speed control. 
+- **Debug Drawing:**  If set, then debug vehicle information will be drawn in the editor. The blue point indicates the steer forward position, the red points indicate the path points, and the cyan point is the predicted distance given the change in speed control. 
 
 	<div class="img_container">
       <img class='lg_img' src="../imgs/debug_draw.png"/>
     </div>
 
--   **Search Forward Distance:**  The number of centimeters to look ahead when computing AI actions. If speeds are much higher than 70mph consider increasing.
+- **Search Forward Distance:**  The number of centimeters to look ahead when computing AI actions. If speeds are much higher than 70mph consider increasing.
 
 - **Search Backward Distance:** The number of centimeters to look backward when computing AI actions.
 
-- **Lane Offset:**  The number of centimeters to drive from the lane center: positive is right, negative is left.
-
--   **Steer Forward Distance:**  The range of centimeters to look ahead when performing steering AI actions, interpolated based on `steerForwardSpeedRange`.
-
-- **Steer Forward Distance During Lane Change:** The range of centimeters to look ahead when performing steering AI actions during a lane change, interpolated based on `steerForwardSpeedRange`.
+- **Steer Forward Distance:**  The range of centimeters to look ahead when performing steering AI actions, interpolated based on `steerForwardSpeedRange`.
 
 - **Steer Forward Speed:** The range of speed (mph) used to LERP `steerForwardDistance`.
 
--   **Rolling stop speed:** The speed to travel before continuing after a legal stop.
+- **Rolling stop speed:** The speed to travel before continuing after a legal stop.
 
--   **Distance to Stop Sign:**  The number of centimeters to stop before a controlled intersection.
+- **Distance to Stop Sign:**  The number of centimeters to stop before a controlled intersection.
 
--  **Spawn Offset:** The offset to apply to the vehicle position prior to spawning.
+- **Spawn Offset:** The offset to apply to the vehicle position prior to spawning.
 
-- **Acceleration Constraints:** The minimum and maximum acceleration of the vehicle used by AutoPilot. cm/s^2.
-
-- **Changing Lanes:** Whether the vehicle is in the middle of a lane change.
+- **Deceleration Constraints:** The minimum and maximum deceleration of the vehicle used by AutoPilot. cm/s^2.
 
 - **Turn Pref:** (Turn Preference) At the next turn the vehicle will prefer to take this turn. 
 	This will reset the drop down menu to "NONE" after the following turn.
 
 - **Simple Speed Look Ahead:** The number of centimeters to look ahead when performing simple speed control.
 
+- **Vehicle Length:** Total length of the vehicle, used in various maneuver calculations.
+
 - **Point PID:** PID Controller settings for point control.
 
 - **Speed PID:** PID Controller settings for speed control.
+
+- **Lane Offset:**  The number of centimeters to drive from the lane center: positive is right, negative is left.
+
+- **Changing Lanes Left: / Changing Lanes Right:**  Status change only, shows when vehicle is in lane change.
+
+-	**Lane Change Transition Distance:** Lane Change is considered complete after the origin vehicle coordinate frame is this many centimeters from the new lane center.
+
+-	**Steer Forward Distance During Lane Change:** The range in centimeters to look ahead when performing steering AI actions during a lane change, interpolated based on steerForwardSpeedRange.
+
+- **Clamp Decay Exponent:** Exponential decay to lighten the clamping to full steering extents as the vehicle converges on the center lane to regain steering control.
+
+-	**Lane Change Comfort Proximity:** The minimum proximity in centimeters behind and in front of the vehicle for which it is acceptable to change lanes. In addition, the vehicle calculates if it or the other vehicle could stop in time to avoid the collision, and this value sets an extra barrier. 
+
+- **Lane Change Steering Clamp Curve:** Sets a threshold as a function of speed for the steering control. At the start of lane transition, this value will be used, but as the vehicle converges the clamp decay function will take over until full steering control is returned. Lower values smooth the lane change, higher values create a more aggressive lane change. 
+
 
 ### Vehicle Behavior Settings
 The "Vehicle Behavior Settings" section of a vehicle's settings contains options for 
 obeying (or not) traffic laws:
 
--   **Ignores Lane Change Boxes:**  If set, all lane change trigger boxes will be ignored.
+- **Ignores Lane Change Boxes:**  If set, all lane change trigger boxes will be ignored.
 
--   **Ignore Other Vehicles:**  If set, all other vehicles will be ignored when computing AI actions.
+- **Ignore Other Vehicles:**  If set, all other vehicles will be ignored when computing AI actions.
 
--   **Ignore Traffic Signals:**  If set, this vehicle will ignore all traffic control devices.
+- **Ignore Traffic Signals:**  If set, this vehicle will ignore all traffic control devices.
 
--   **Obey Road Speed Limits:** If set, this vehicle will obey the speed limits of the road and
+- **Obey Road Speed Limits:** If set, this vehicle will obey the speed limits of the road and
 set speed and initial speed will be a delta above or below the road's speed limit. 
 
--   **Limit Speed in Curves:**  If set, this vehicle will attempt to slow down in order to properly corner in turns.
+- **Limit Speed in Curves:**  If set, this vehicle will attempt to slow down in order to properly corner in turns.
 
 - **Initial Speed is Delta:** If set, when vehicle is obeying road speed limits, the initial velocity will be used as a delta above or below the speed limit. If vehicle is not obeying road speed limits this setting is ignored.
 
--   **Destroy on Collision:**  If set, this vehicle will be removed in the scene after colliding with another physics body.
+- **Destroy on Collision:**  If set, this vehicle will be removed in the scene after colliding with another physics body.
 
--   **Snap to Lane:**  If set, this vehicle will search for the nearest lane and snap to it at spawn.
+- **Should Overtake Slower Vehicles:** If set, will allow vehicle to overtake slower vehicles that it is following for the overtake timer trigger set amount of time. Otherwise, the vehicles will slow to the lead vehicle's speed and remain there. 
+
+- **Overtake Timer Trigger:** The time in seconds a vehicle should wait before triggering the "Should Overtake Slower Vehicles" behavior when it is following a vehicle. Only applies when the vehicle is allowed to overtake vehicles.
+
+- **Snap to Lane:**  If set, this vehicle will search for the nearest lane and snap to it at spawn.
 
 - **Trigger Sleep Time:** A vehicle might hit a dynamic trigger box more than once as they are in motion, to avoid double triggering, behavior can only be modified by the same trigger component again after this many seconds.
 
+<<<<<<< HEAD
 ##Adding Static or Skeletal Meshes to an Actor
 1. Add the desired Static or Skeletal Mesh to the actor's component list as seen below. The location in the hierarchy of the actor's components will be preserved. 
 Note: If the mesh is not added to an existing actor's component list (as seen below), it will become an independent Static or Skeletal Mesh actor. This will then be serialized as an independent actor.
@@ -160,6 +174,40 @@ Note: If the mesh is not added to an existing actor's component list (as seen be
   <div class="img_container">
     <img class='lg_img' src="../imgs/Material_Scenario.gif"/>
   </div>
+=======
+### Replay Vehicle Path
+
+The user may specify the vehicle's blueprint path for replay. This path needs to point to a vehicle derived from Custom Physics Vehicle, which can be a shell with no physics implemented for this purpose. 
+
+## Placing Custom Actors and Blueprints in a Scenario
+
+Any actor can be added as part of a scenario by adding the **"serialize"** tag to the actors tag list. See the [Tagging System](#tagging-system) section. Blueprints, Static-Mesh actors, Skeletal-Mesh actors, and Pedestrians are currently supported.
+
+### Blueprint parameters
+
+**"blueprint_parameters"** 
+
+In addition to custom actors, blueprint parameters are also automatically discovered and added to scenario files. These parameters will show up under the **"blueprint_parameters"** key for the given actor.
+
+todo: example
+
+## Attached components
+
+**"instance_components"**
+
+Components added to actors or blueprints can be added and saved as part of the scenario as well. This allows you to attach arbitrary objects to scenario actors. For example, you can place tools in a truck bed or a human driver in a vehicle. These components show up under **"instance_components"** and they are automatically discovered by the monoDrive scenario engine.
+
+todo: example
+
+## Materials
+
+**"tagged_components"**
+
+By default, materials are not serialized to the scenario file. However, if you wish to make the materials changeable from scenario file you can *tag* the component you wish to serialize the materials. This will result in the materials saved out for that component and can be changed in the json to spawn different materials when the scenario is loaded. To do do this add the "serialize" tag to the actor component you want to record the materials for.
+
+todo: examle
+
+>>>>>>> 1.15-beta
 
 ## Tagging System
 

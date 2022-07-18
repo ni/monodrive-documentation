@@ -8,7 +8,7 @@
 
 Obtain the  simulator's current version and  the current API version
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
  
 
 ### Inputs

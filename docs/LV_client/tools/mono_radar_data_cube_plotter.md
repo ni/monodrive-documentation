@@ -8,7 +8,7 @@
 
 Use to calculate the Fast Fourier transform (FFT) of the radar cube.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

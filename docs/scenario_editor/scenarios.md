@@ -507,3 +507,349 @@ In the "Scenario File Tool Widget", the user can load or save a new scenario fil
  
  Example json file generated for the truck with two nested cones, a motorcycle, and another random cone that is not attached to the truck. Note, all objects spawned by the scenario system can be manipulated during runtime by using the UpdateState command!
 
+## Scenario File Reference
+
+The following is the entire scenario file referenced in prior sections.
+
+```json
+{
+  "tagged_actors": [
+    {
+      "blueprint_parameters": [],
+      "class_path": "/Game/Meshes/RoadArt/Organize/StreetSet/Misc_TrafficCone.Misc_TrafficCone",
+      "instance_components": [],
+      "location": {
+        "x": 11713.0,
+        "y": -835.0,
+        "z": 12.0
+      },
+      "name": "Misc_TrafficCone_2",
+      "rotation": {
+        "pitch": 0.0,
+        "roll": 0.0,
+        "yaw": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "tagged_components": [],
+      "tags": [
+        "serialize"
+      ],
+      "type": "StaticMeshActor"
+    },
+    {
+      "blueprint_parameters": [
+        {
+          "max": true,
+          "min": false,
+          "name": "LightsOn",
+          "type": "bool",
+          "value": true
+        }
+      ],
+      "class_path": "/Game/Blueprints/prp_streetLight_Blueprint.prp_streetLight_Blueprint_C",
+      "instance_components": [],
+      "location": {
+        "x": 11804.0,
+        "y": -2623.0,
+        "z": 0.0
+      },
+      "name": "prp_streetLight146",
+      "rotation": {
+        "pitch": 0.0,
+        "roll": 0.0,
+        "yaw": -176.0474853515625
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "tagged_components": [],
+      "tags": [
+        "street_light",
+        "static",
+        "serialize"
+      ],
+      "type": "Actor"
+    }
+  ],
+  "trigger_boxes": [],
+  "vehicles": [
+    {
+      "behavior_settings": {
+        "destroy_on_collision": false,
+        "ignore_lane_change_boxes": false,
+        "ignore_other_vehicles": false,
+        "ignore_traffic_signals": false,
+        "initial_speed_is_delta": true,
+        "lane_change_safely": true,
+        "limit_speed_in_curves": true,
+        "obey_road_speed_limits": true,
+        "overtake_timer_trigger": 3.5,
+        "should_overtake_slower_vehicles": false,
+        "snap_to_lane": true
+      },
+      "body_color": "Carpaint_Red",
+      "class_path": "/Game/Vehicles/truck_monoDrive_01.truck_monoDrive_01_C",
+      "controller_settings": {
+        "auto_control_mode": true,
+        "car_charts": false,
+        "debug_drawing": false,
+        "deceleration_constraints": {
+          "x": -350.0,
+          "y": -700.0
+        },
+        "distance_to_stop_sign": 300.0,
+        "initial_speed": 0.0,
+        "lane_change_comfort_proximity": 800.0,
+        "lane_change_steer_clamp_curve": [
+          [
+            0.0,
+            1.0
+          ],
+          [
+            10.0,
+            1.0
+          ],
+          [
+            20.0,
+            0.20000000298023224
+          ],
+          [
+            30.0,
+            0.05000000074505806
+          ],
+          [
+            40.0,
+            0.03999999910593033
+          ],
+          [
+            55.0,
+            0.029999999329447746
+          ],
+          [
+            65.0,
+            0.029999999329447746
+          ],
+          [
+            75.0,
+            0.029999999329447746
+          ]
+        ],
+        "lane_change_transition_distance": 40.0,
+        "lane_offset": 0.0,
+        "rolling_stop_speed": 0.0010000000474974513,
+        "search_forward_distance": 15000.0,
+        "set_speed": 0.0,
+        "spawn_offset": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "steer_forward_distance": {
+          "x": 300.0,
+          "y": 1800.0
+        },
+        "steer_forward_distance_lane_change": {
+          "x": 800.0,
+          "y": 2500.0
+        },
+        "steer_forward_speed": {
+          "x": 0.0,
+          "y": 60.0
+        },
+        "turn_preference": 3
+      },
+      "instance_components": [
+        {
+          "class_path": "/Game/Vehicles/Models/motorcycle_monoDrive_01/motorcycle_monoDrive_01_HD.motorcycle_monoDrive_01_HD",
+          "location": {
+            "x": -196.0,
+            "y": 0.0,
+            "z": 133.0
+          },
+          "name": "motorcycle_monoDrive_01_HD",
+          "parent_name": "VehicleMesh",
+          "rotation": {
+            "pitch": 0.0,
+            "roll": 0.0,
+            "yaw": 0.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "type": "StaticMeshComponent"
+        },
+        {
+          "class_path": "/Game/Meshes/RoadArt/Organize/StreetSet/Misc_TrafficCone.Misc_TrafficCone",
+          "location": {
+            "x": -203.0,
+            "y": 65.0,
+            "z": 140.0
+          },
+          "name": "Misc_TrafficCone",
+          "parent_name": "VehicleMesh",
+          "rotation": {
+            "pitch": 0.0,
+            "roll": 0.0,
+            "yaw": 0.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "type": "StaticMeshComponent"
+        },
+        {
+          "class_path": "/Game/Meshes/RoadArt/Organize/StreetSet/Misc_TrafficCone.Misc_TrafficCone",
+          "location": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 18.0
+          },
+          "name": "Misc_TrafficCone1",
+          "parent_name": "Misc_TrafficCone",
+          "rotation": {
+            "pitch": 0.0,
+            "roll": 0.0,
+            "yaw": 0.0
+          },
+          "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "type": "StaticMeshComponent"
+        }
+      ],
+      "location": {
+        "x": 12096.0,
+        "y": -973.0,
+        "z": 12.0
+      },
+      "name": "truck_monoDrive_01_2",
+      "rotation": {
+        "pitch": 0.0,
+        "roll": 0.0,
+        "yaw": 0.0
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "tagged_components": [
+        {
+          "component_name": "VehicleMesh",
+          "materials": [
+            {
+              "path": "/Game/Vehicles/Materials/Details/CarInterior.CarInterior"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Metals/Mirrors.Mirrors"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Glass/Glass3_Dark2_Inst.Glass3_Dark2_Inst"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Glass/Glass3_Dark2_Inst.Glass3_Dark2_Inst"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Plastic/Plastic_Grey_Dark.Plastic_Grey_Dark"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Plastic/Plastic_Grey_Dark.Plastic_Grey_Dark"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Metals/Metal_Chrome_MAT_.Metal_Chrome_MAT_"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Metals/Metal_DarkChrome_MAT.Metal_DarkChrome_MAT"
+            },
+            {
+              "path": "/Game/Vehicles/CarPaint/Carpaint_Red.Carpaint_Red"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Plastic/Plastic_Black_Matte.Plastic_Black_Matte"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Glass/Vehicle_Lights_Brakes_MAT.Vehicle_Lights_Brakes_MAT"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Tires/Tire_V2_MAT.Tire_V2_MAT"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Glass/Window_MAT.Window_MAT"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Plastic/Plastic_Black_Matte.Plastic_Black_Matte"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Plastic/Plastic_White_Off.Plastic_White_Off"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Glass/Glass3_Inst.Glass3_Inst"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Metals/Metal_Chrome_MAT_.Metal_Chrome_MAT_"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Glass/Vehicle_Lights_Reverse.Vehicle_Lights_Reverse"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Glass/Glass_Red_MAT.Glass_Red_MAT"
+            },
+            {
+              "path": "/Game/Vehicles/CarPaint/Carpaint_Red.Carpaint_Red"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Metals/Metal_Chrome_MAT_.Metal_Chrome_MAT_"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Plastic/Plastic_Grey_80_Matte.Plastic_Grey_80_Matte"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Glass/Glass3_Dark1_Inst.Glass3_Dark1_Inst"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Glass/Vehicle_Lights_Blinker_Left_MAT.Vehicle_Lights_Blinker_Left_MAT"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Glass/Vehicle_Lights_Blinker_Right_MAT.Vehicle_Lights_Blinker_Right_MAT"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Plastic/Undercarage.Undercarage"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Glass/Vehicle_Lights_Brakes_2_MAT.Vehicle_Lights_Brakes_2_MAT"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Glass/Vehicle_Lights_Plates.Vehicle_Lights_Plates"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Glass/Vehicle_Lights_Brakes_2_MAT.Vehicle_Lights_Brakes_2_MAT"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Glass/Vehicle_Lights_Blinker_Right_2_MAT.Vehicle_Lights_Blinker_Right_2_MAT"
+            },
+            {
+              "path": "/Game/Vehicles/Materials/Glass/Vehicle_Lights_Blinker_Left_2_MAT.Vehicle_Lights_Blinker_Left_2_MAT"
+            }
+          ]
+        }
+      ],
+      "tags": [
+        "vehicle",
+        "dynamic"
+      ]
+    }
+  ]
+}
+```

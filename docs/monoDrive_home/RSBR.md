@@ -56,23 +56,23 @@ and field-of-view specified by the configuration.
 The RSBR dataframe contains a vector of `RSBRHitPoint`s. The directions and normals are within the RSBR sensor's coordinate frame. Here is the information for a single hit point.
 
 - **distance:** The magnitude of the vector from the sensor to the target in meters.
-- **point:** The 3-D point for the final sample position.
+- **point:** The 3-D point for the final sample position in centimeters.
 - **direction:** A unit vector representing the 3-D direction of the ray cast.
 - **normal:** A unit vector representing the 3-D direction of the normal to the surface sampled.
-- **relative_velocity:** The relative velocity of the target to the sensor.
-- **roughness:** The roughness value for the sampled surface.
-- **dielectric_constant:** The dielectric constant for the sampled surface.
-- **radial_velocity:** The velocity of the sampled target across the azimuth direction.
-- **reflection:** The total reflection value off the sampled surface.
+- **relative_velocity:** The relative velocity of the target to the sensor in cm/s.
+- **roughness:** The roughness value for the sampled surface used as a coefficient to intensity of returns for diffuse energy computations.
+- **dielectric_constant:** The dielectric constant for the sampled surface used as an intensity of returns for specular energy computations.
+- **radial_velocity:** The velocity of the sampled target across the azimuth direction in rads/s.
+- **reflection:** The total reflection value off the sampled surface as a summation of specular and diffuse reflections. Units will be a percentage of the total reflection of the dielectric constant based on Snell's Law.
 - **point_id:** The unique ID of this hit point.
 - **parent_point_id:** The unique ID of the origin point that was the origin for this sample. A value of `0` indicates the point has no parent's and has an origin at the sensor. 
 - **bounce_count:** The total number of bounces from the sensor before the sampled surface was impacted.
 - **is_direct:** If true then there exists a direct line of sight from this point to the sensor origin.
 - **in_fov:** If true then this point falls within the original field-of-view of the sensor.
 - **object_id:** The unique ID of the actor that was sampled.
-- **object_center:** The center 3-D point of the actor that is sampled.
-- **object_orientation:** The orientation vector of the sampled actor.
-- **object_extents:** The extents from the `object_center` of the sampled actor's bounding box.
+- **object_center:** The center 3-D point of the actor that is sampled in centimeters.
+- **object_orientation:** The orientation vector of the sampled actor as a quaternion.
+- **object_extents:** The extents from the `object_center` of the sampled actor's bounding box in centimeters.
 - **isRoad:** If true then the sampled actor was designated as a road surface.
 
 **NOTE:** The lineage of a point is a graph and not a single ray bouncing. To trace a point's lineage just continually follow the `parent_point_id` up the chain until you reach a value of `0` indicating this is the origin position of the tree. 

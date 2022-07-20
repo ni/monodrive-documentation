@@ -240,21 +240,21 @@ index 0 of `aoas` corresponds with index 0 of `ranges` and so on.)
     - **gt_target_list:** JSON containing ground truth targets within the Radar range
         - **aoas:** Angle of arrival of each target in degrees
         - **ranges:** The range to each target in centimeters
-        - **rcs:** The radial cross-section of the Radar return to each target
+        - **rcs:** The radial cross-section of the Radar return to each target in decibels per square meter (dBsm)
         - **target_ids:** The string representing the name of the actor that generated the target
         - **velocities:** The velocity in meters per second of each target
     - **target_list:** JSON containing the targets detected in the processed Radar signal
         - **aoas:** Angle of arrival of each target in degrees
         - **ranges:** The range to each target in centimeters
-        - **rcs:** The radial cross-section of the Radar return to each target
+        - **rcs:** The radial cross-section of the Radar return to each target in decibels per square meter (dBsm)
         - **target_ids:** Array of target information for each target
             - **target_id:** The string representing the name of the actor that generated the target
         - **velocities:** The velocity in meters per second of each target
     - **tracks**: A list of all tracks current in the radar's field-of-view
-        - **heading**: The current estimated heading of the track based on kinematics
+        - **heading**: The current estimated heading of the track based on kinematics in radians
         - **lifetime_seconds**: The total number of seconds the track has been alive
         - **track_id**: The unique ID of this track
-        - **velocity**: The current estimated velocity of the track based on kinematics
+        - **velocity**: The current estimated velocity of the track based on kinematics in meters per second
         - **x_range**: The distance away from the radar in the x (lateral) direction (meters)
         - **y_range**: The distance away from the radar in the y (forward) direction (meters)
     - **roi_targets**: The list of current targets inside of the input ROIs

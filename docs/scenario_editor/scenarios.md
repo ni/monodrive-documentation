@@ -1,7 +1,16 @@
 # Scenario File Creation
 
-The monoDrive Scenario Editor enables users to create their own scenarios by 
-controlling various different aspects of AI vehicle behavior, adding actors, pedestrians, attaching actors to other actors (like vehicles), modifying the materials of actors, and even modifying custom blueprint parameters of actors. The scenario file is used when running the Simulator and/or the Scenario Editor in closed loop mode.
+The monoDrive Scenario Editor is a graphical user interface which enables users to create scenario files which can be sent from the client to spawn various actors during runtime. The scenario file is human readable JSON and the parameters therein can be permuted by your orchestration software of choice to generate thousands of scenarios. 
+
+["vehicles"](#placing-monodrive-vehicles-in-a-scene) stores the AI vehicles which will be part of your scenario as well as their behavioral parameters. 
+
+["trigger_boxes"](../trigger_boxes) can be either placed in the scene or attached to vehicles to trigger a behavior in a vehicle when the vehicle overlaps these invisible areas.
+
+["tagged_actors"](#placing-custom-actors-and-blueprints-in-a-scenario) stores all of the non-vehicle actors which will be part of your scenario such as static-mesh and skeletal-mesh actors.
+
+["instance_components"](#attached-components-adding-static-or-skeletal-meshes-to-an-actor) are nested actors or components attached to other actors or vehicles in the scenario. For example, you could put things in the back of a truck bed or a human driver graphical model in a a vehicle.
+
+["tagged_components"](#materials-as-part-of-the-scenario) are those components in an actor which a user would like to modify the materials of as part of the scenario. You can change the physical properties by loading a different material or something as simple as the color.
 
 <div class="img_container">
   <video width=650px height=480px muted autoplay loop>

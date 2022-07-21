@@ -2,6 +2,8 @@
 
 The monoDrive Scenario Editor is a graphical user interface which enables users to create scenario files which can be sent from the client to spawn various actors during runtime. The scenario file is human readable JSON and the parameters therein can be permuted by your orchestration software of choice to generate thousands of scenarios. 
 
+Additionally, all actors spawned by the ScenarioConfig client call can be further manipulated during runtime. Generic actors are manipulated using UpdateState, and vehicles are manipulated through one of several vehicle commands depending on whether the vehicle is the ego or not: VehicleControlConfig, EgoControl, or EgoTorqueControl.
+
 ["vehicles"](#placing-monodrive-vehicles-in-a-scene) stores the AI vehicles which will be part of your scenario as well as their behavioral parameters. 
 
 ["trigger_boxes"](../trigger_boxes) can be either placed in the scene or attached to vehicles to trigger a behavior in a vehicle when the vehicle overlaps these invisible areas.
@@ -513,7 +515,7 @@ In the "Scenario File Tool Widget", the user can load or save a new scenario fil
 
  It is important to Clear All assets on the editor before using any client to playback the scenario. Failing to do that, may cause issues with the playback.
  
- Example json file generated for the truck with two nested cones, a motorcycle, and another random cone that is not attached to the truck. Note, all objects spawned by the scenario system can be manipulated during runtime by using the UpdateState command!
+ Example json file generated for the truck with two nested cones, a motorcycle, and another random cone that is not attached to the truck. 
 
 ## Scenario File Reference
 

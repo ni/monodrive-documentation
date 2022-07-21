@@ -166,7 +166,7 @@ The user may specify the vehicle's blueprint path for replay. This path needs to
 
 ## Tagging System
 
-The Simulator's tagging system is used to specify attributes for desired actors in a recording or to indicate to the scenario system that this otherwise generic actor is part of a scenario. The tags for each actor can be seen by clicking on the actor and scrolling down to the actor's "Actor" group and looking under the "Tags" array. 
+The Simulator's tagging system is used to specify attributes for desired actors in a recording or to indicate to the scenario system that an otherwise generic actor is part of a scenario. The tags for each actor can be seen by clicking on the actor and scrolling down to the actor's "Actor" group and looking under the "Tags" array. 
 
   <div class="img_container">
     <img class='xl_img' src="../imgs/vehicle_actor_tags.png"/>
@@ -174,7 +174,7 @@ The Simulator's tagging system is used to specify attributes for desired actors 
 
 ## Placing Custom Actors and Blueprints in a Scenario
 
-Any actor can be added as part of a scenario by adding the **"serialize"** tag to the actors tag list. See the [Tagging System](#tagging-system) section. Blueprints, Static-Mesh actors, Skeletal-Mesh actors, and Pedestrians are currently supported. For example, this cone static-mesh actor that would normally only be part of the level is now serialized to the json file that defines the scenario.
+Any actor can be added as part of a scenario by adding the **"serialize"** tag to the actors tag list. See the [Tagging System](#tagging-system) section. Blueprints, Static-Mesh actors, Skeletal-Mesh actors, and Pedestrians are currently supported. A actor that would normally be part of only the level is now serialized to the json file that defines the scenario.
 
 For example, this "Misc_TrafficCone" actor will now show up in the "tagged_actors" list of the scenario file.
 
@@ -379,7 +379,7 @@ By default, materials are not serialized to the scenario file, however, they can
   <img class='xl_img' src="../imgs/Material_Scenario.gif"/>
 </div>
 
-In the following, we've tagged the truck's skeletal mesh and now all of the materials in the materials array are now modifiable in the scenario file.
+In the example below, the truck's skeletal mesh has been tagged and therefore all of the materials in the materials array are now modifiable in the scenario file.
 
 ```json
 "tagged_components": [
@@ -513,7 +513,7 @@ In the "Scenario File Tool Widget", the user can load or save a new scenario fil
   <img class='xl_img' src="../imgs/scenario_tool_widget2.png"/>
 </div>
 
- It is important to Clear All assets on the editor before using any client to playback the scenario. Failing to do that, may cause issues with the playback.
+ It is important to use "Clear All" for assets to be reset on the editor before using any client to playback the scenario. Failing to clear all assets may result in issues with playbacks.
  
  Example json file generated for the truck with two nested cones, a motorcycle, and another random cone that is not attached to the truck. 
 

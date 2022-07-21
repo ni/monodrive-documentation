@@ -173,7 +173,7 @@ The Simulator's tagging system is used to specify attributes for desired actors 
 
 ## Placing Custom Actors and Blueprints in a Scenario
 
-Any actor can be added as part of a scenario by adding the **"serialize"** tag to the actors tag list. See the [Tagging System](#tagging-system) section. Blueprints, Static-Mesh actors, Skeletal-Mesh actors, and Pedestrians are currently supported. For example, this cone static-mesh actor that would normally only be part of the level is now serialized to the json file that defines the scenario.
+Any actor can be added as part of a scenario by adding the **"serialize"** tag to the actors tag list. See the [Tagging System](#tagging-system) section. Blueprints, Static-Mesh actors, Skeletal-Mesh actors, and Pedestrians are currently supported. A actor that would normally be part of only the level is now serialized to the json file that defines the scenario.
 
 For example, this "Misc_TrafficCone" actor will now show up in the "tagged_actors" list of the scenario file.
 

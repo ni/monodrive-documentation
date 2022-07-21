@@ -512,7 +512,7 @@ In the "Scenario File Tool Widget", the user can load or save a new scenario fil
   <img class='xl_img' src="../imgs/scenario_tool_widget2.png"/>
 </div>
 
- It is important to Clear All assets on the editor before using any client to playback the scenario. Failing to do that, may cause issues with the playback.
+ It is important to use "Clear All" for assets to be reset on the editor before using any client to playback the scenario. Failing to clear all assets may result in issues with playbacks.
  
  Example json file generated for the truck with two nested cones, a motorcycle, and another random cone that is not attached to the truck. Note, all objects spawned by the scenario system can be manipulated during runtime by using the UpdateState command!
 

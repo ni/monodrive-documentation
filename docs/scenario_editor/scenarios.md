@@ -519,7 +519,7 @@ In the "Scenario File Tool Widget", the user can load or save a new scenario fil
 
 ## Scenario File Reference
 
-The following is the entire scenario file referenced in prior sections.
+This example scenario configuration is the same scenario as used in examples in prior sections on this page. This generated json file contains these assets: a truck vehicle with two nested cones and a nested motorcycle and a cone that is not attached to the truck. 
 
 ```json
 {

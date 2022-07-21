@@ -378,7 +378,7 @@ By default, materials are not serialized to the scenario file, however, they can
   <img class='xl_img' src="../imgs/Material_Scenario.gif"/>
 </div>
 
-In the following, we've tagged the truck's skeletal mesh and now all of the materials in the materials array are now modifiable in the scenario file.
+In the example below, the truck's skeletal mesh has been tagged and therefore all of the materials in the materials array are now modifiable in the scenario file.
 
 ```json
 "tagged_components": [

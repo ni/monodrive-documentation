@@ -165,7 +165,7 @@ The user may specify the vehicle's blueprint path for replay. This path needs to
 
 ## Tagging System
 
-The Simulator's tagging system is used to specify attributes for desired actors in a recording or to indicate to the scenario system that this otherwise generic actor is part of a scenario. The tags for each actor can be seen by clicking on the actor and scrolling down to the actor's "Actor" group and looking under the "Tags" array. 
+The Simulator's tagging system is used to specify attributes for desired actors in a recording or to indicate to the scenario system that an otherwise generic actor is part of a scenario. The tags for each actor can be seen by clicking on the actor and scrolling down to the actor's "Actor" group and looking under the "Tags" array. 
 
   <div class="img_container">
     <img class='xl_img' src="../imgs/vehicle_actor_tags.png"/>

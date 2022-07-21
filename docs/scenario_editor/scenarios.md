@@ -24,30 +24,29 @@ The first step in creating a scenario is setting up the monoDrive vehicles in
 the desired scene and applying driving properties to each. To place a vehicle:
 
 1. In the "Content Browser" navigate to the folder `Content/Vehicles`
-<div class="img_container">
-  <img class='wide_img' src="../imgs/vehicles_content.png"/>
-</div>
+  <div class="img_container">
+    <img class='wide_img' src="../imgs/vehicles_content.png"/>
+  </div>
 
 1. Drag one of the vehicles into the scene by click on the vehicle's icon
 and putting it on the desired lane of travel.
 
 1. When adding actors that aren't provided by monoDrive to a scenario, make sure to add "serialize" under the Actor's "Tags".
-<div class="img_container">
-  <img class='lg_img' src="../imgs/serialize_tag.png"/>
-</div>
-
+  <div class="img_container">
+    <img class='lg_img' src="../imgs/serialize_tag.png"/>
+  </div>
 
 1. In the "Details" window, search for the "Vehicle Controller Settings" group 
 and and set the desired vehicle controller settings. 
-<div class="img_container">
-  <img class='xl_img' src="../imgs/vehicle_controller_settings.png"/>
-</div>
+  <div class="img_container">
+    <img class='xl_img' src="../imgs/vehicle_controller_settings.png"/>
+  </div>
 
 1. In the "Details" window, search for the "Vehicle Behavior Settings" group 
 and set the desired vehicle behaviors for traffic laws.
-<div class="img_container">
-  <img class='lg_img' src="../imgs/vehicle_behavior_settings.png"/>
-</div>
+  <div class="img_container">
+    <img class='lg_img' src="../imgs/vehicle_behavior_settings.png"/>
+  </div>
 
 1. At the top of the Scenario Editor hit the "Play" button. The vehicle should 
 begin to travel down the lane closest to its original placement. 

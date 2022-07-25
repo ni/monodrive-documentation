@@ -31,7 +31,7 @@ monoDrive's Platform is available now: [Download monoDrive](https://www.monodriv
 
 ## Simulator API
 
-[Simulator API Commands](monoDrive_home/Simulator-Commands.md) <br />
+[Simulator API Commands](monoDrive_home/Control-Channel-API-Commands.md) <br />
 
 The monoDrive simulator is configured from a client. Everything about the simulator can be configured, from the material properties, to these properties.
 

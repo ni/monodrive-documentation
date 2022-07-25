@@ -2,86 +2,80 @@ site_name: monoDrive Simulator
 repo_url: https://github.com/monodriveio/client
 docs_dir: docs
 theme:
-  name: 'ivory'
-  navigation_depth: 1
-  collapse_navigation: true
+  name: 'readthedocs'
+  # navigation_depth: 4
+  # collapse_navigation: true
 
 nav:
 - monoDrive: index.md
 - About monoDrive : intro_information.md
-- Getting Started : [
-  Getting_Started.md,
-  monoDrive_home/getting_started/Simulator.md,
-  monoDrive_home/getting_started/Editor.md,
-  monoDrive_home/getting_started/Recommended_hardware.md
-]
+- Getting Started : 
+  - Overview: Getting_Started.md
+  - Simulator: monoDrive_home/getting_started/Simulator.md
+  - Scenario Editor: monoDrive_home/getting_started/Editor.md
+  - Recommended Hardware: monoDrive_home/getting_started/Recommended_hardware.md
 - F.A.Q. : FAQ.md
-- Products : 
+- Products:
   - Simulator : Simulator.md
-  - Scenario Editor : [
-      scenario_editor/scenario_intro.md,
-      scenario_editor/scenarios.md,
-      scenario_editor/trigger_boxes.md,
-      scenario_editor/trajectory_files.md,
-      scenario_editor/generation.md,
-      scenario_editor/roads.md
-    ]
+  - Scenario Editor :
+      - About Scenario Editor: scenario_editor/scenario_intro.md
+      - Scenario File Creation: scenario_editor/scenarios.md
+      - Vehicle Behavior Trigger Boxes: scenario_editor/trigger_boxes.md
+      - Trajectory File Creation: scenario_editor/trajectory_files.md
+      - Generating a Simultor Build: scenario_editor/generation.md
+      - Import/Export Road Defintions: scenario_editor/roads.md
   - Scenario Batch Manager: scenario-dashboard.md
-  - Real-to-Virtual: [
-    r2v/about.md,
-    r2v/data_collection_quick_start.md,
-    r2v/data_processing_quick_start.md,
-    r2v/data_processing_output.md,
-    r2v/r2v_maps.md
-  ]
+  - Real-to-Virtual:
+    - About Real-to-Virtual: r2v/about.md
+    - Data Collection: r2v/data_collection_quick_start.md
+    - Data Processing: r2v/data_processing_quick_start.md
+    - Data Products: r2v/data_processing_output.md
+    - Real-to-Virtual Maps: r2v/r2v_maps.md
 - Simulator API :
-  - Introduction: monoDrive_home/API.md
-  - Simulator API Commands: monoDrive_home/Simulator-Commands.md
-  - Simulator Maps: monoDrive_home/Maps.md
-  - Lighting API: monoDrive_home/Lighting API.md
+  - Control Channel API Commands: monoDrive_home/Control-Channel-API-Commands.md
+  - Simulator Maps: monoDrive_home/Simulator-Maps.md
+  - Lighting API: monoDrive_home/Lighting-API.md
   - Simulator : monoDrive_home/Simulator-Configuration.md
-  - Sensors: [
-    monoDrive_home/Common.md,
-    monoDrive_home/Camera.md,
-    monoDrive_home/Collision.md,
-    monoDrive_home/GPS.md,
-    monoDrive_home/IMU.md,
-    monoDrive_home/Lidar.md,
-    monoDrive_home/OccupancyGrid.md,
-    monoDrive_home/Radar.md,
-    monoDrive_home/RPM.md,
-    monoDrive_home/RSBR.md,
-    monoDrive_home/State-sensor.md,
-    monoDrive_home/Ultrasonic.md,
-    monoDrive_home/Viewport.md, 
-    monoDrive_home/Waypoint-Sensor.md
-    ]
-  - Vehicle : [
-    monoDrive_home/Vehicle-Configuration.md,
-    monoDrive_home/Vehicle-PhysX.md]
+  - Sensors:
+    - Common: monoDrive_home/Common.md
+    - Camera: monoDrive_home/Camera.md
+    - Collision: monoDrive_home/Collision.md
+    - GPS: monoDrive_home/GPS.md
+    - IMU: monoDrive_home/IMU.md
+    - Lidar: monoDrive_home/Lidar.md
+    - Occupancy Grid: monoDrive_home/OccupancyGrid.md
+    - Radar: monoDrive_home/Radar.md
+    - RPM: monoDrive_home/RPM.md
+    - RSBR: monoDrive_home/RSBR.md
+    - State Sensor: monoDrive_home/State-sensor.md
+    - Ultrasonic: monoDrive_home/Ultrasonic.md
+    - Viewport: monoDrive_home/Viewport.md
+    - Waypoint Sensor: monoDrive_home/Waypoint-Sensor.md
+  - Vehicles :
+    - monoDrive Vehicles: monoDrive_home/Vehicle-Configuration.md
+    - PhysX: monoDrive_home/Vehicle-PhysX.md
   - Weather: monoDrive_home/Weather.md
   
 - Tutorials:
-  - Common Tutorials: [monoDrive_home/Multi-viewport.md]
-  - Co-simulation Tutorials: [monoDrive_home/CarSim.md]
-  - LabVIEW Tutorials: [LV_client/tutorials/Setup.md,
-    LV_client/tutorials/AddSensors.md,
-    LV_client/tutorials/Sensor_Palette.md,
-    LV_client/tutorials/Lidar.md, 
-    LV_client/tutorials/Simulator_configuration.md,
-    LV_client/tutorials/Loading_Maps.md,
-    LV_client/tutorials/Weather.md,
-    LV_client/tutorials/Remote_Connection.md,
-    LV_client/tutorials/wheel_integration.md,LV_client/tutorials/Logger.md
-    ]
-  - Unreal Engine Tutorials: [
-    unreal_tutorials/MayaWheels.md,
-    unreal_tutorials/FoliagePainting.md,
-    unreal_tutorials/PlacingSigns.md,
-    unreal_tutorials/SingularMesh.md,
-    unreal_tutorials/SplineMesh.md,
-  ]
-
+  - Common Tutorials: monoDrive_home/Multi-viewport.md
+  - Co-simulation Tutorials: monoDrive_home/CarSim.md
+  - LabVIEW Tutorials: 
+    - Setup: LV_client/tutorials/Setup.md
+    - Add Sensors: LV_client/tutorials/AddSensors.md
+    - Sensor Palette: LV_client/tutorials/Sensor_Palette.md
+    - Lidar: LV_client/tutorials/Lidar.md
+    - Simulator COnfiguration: LV_client/tutorials/Simulator_configuration.md
+    - Loading Maps: LV_client/tutorials/Loading_Maps.md
+    - Weather: LV_client/tutorials/Weather.md
+    - Remote Connection: LV_client/tutorials/Remote_Connection.md
+    - Wheel Integration: LV_client/tutorials/wheel_integration.md
+    - Logger and Parser: LV_client/tutorials/Logger.md
+  - Unreal Engine Tutorials:
+    - Unreal Engine Preparation: unreal_tutorials/MayaWheels.md
+    - Foliage Painting: unreal_tutorials/FoliagePainting.md
+    - Placing Signs: unreal_tutorials/PlacingSigns.md
+    - Singular Mesh: unreal_tutorials/SingularMesh.md
+    - Spline Mesh: unreal_tutorials/SplineMesh.md
 - monoDrive Clients: 
   - Introduction: monodrive_clients.md
   - C++ Client:

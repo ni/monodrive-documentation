@@ -105,7 +105,7 @@ main {
     font-weight: 500;
 }
 
-.toctree-l1>a.nav-item {
+/* .toctree-l1>a.nav-item {
     color: white
 }
 
@@ -141,7 +141,7 @@ a.nav-item.current {
 
 .toctree-l2>.nav-item.section:hover {
     background-color: #666666;
-}
+} */
 
 code {
     background-color: #F8F8F8;

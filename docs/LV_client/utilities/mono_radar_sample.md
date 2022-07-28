@@ -8,21 +8,18 @@
 
 Format the Radar sample into the final format for user display. Include the number of target detected.
 
-For technical support contact us at **support@monodrive.io** 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
-
-- **Raw data:**  Radar binary sample data
 
 - **error in (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
 ### Outputs
 
-- **Radar Sample:**  Radar sample contains information for the targets detected
-by radar and ground truth information as well.
- 
+- **error out (Error Cluster):** Accepts error information wired from previously called VIs. This information can be used to decide if any functionality should be bypassed in the event of errors from other VIs. 
 
-- **Number of targets:**  Number of targets detected by the radar sensor.
+<p>&nbsp;</p>
+e radar sensor.
  
 
 - **target_list:**  Objects detected by radar.  An array of clusters with the

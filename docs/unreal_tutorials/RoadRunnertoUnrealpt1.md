@@ -2,7 +2,7 @@
 
 ## Overview
 
-These walkthroughs go through each of the monoDrive methods of bringing the maps created in RoadRunner into Unreal and to get the
+The following walk-through outlines methods for integrating maps created in RoadRunner into Unreal Engine. 
  For more information, see [monodrive Documentation](https://monodrive.readthedocs.io/en/latest/).
 
 For [Unreal Engine Tutorials](https://monodrive.readthedocs.io/en/latest/unreal_tutorials/MayaWheels/) for guides.

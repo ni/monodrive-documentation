@@ -24,7 +24,7 @@ NOTE: RoadRunner uses Meters as its base measurement scale. Importing a vehicle 
 1. Open RoadRunner
   1. Create a new scene/map:
     <div class="img_container">
-      <img class='lg_img' src="../imgs/RoadRunnerPic_01.png"/>
+      <img class='extra_lg_img' src="../imgs/RoadRunnerPic_01.png"/>
     </div>
 1. With the 'Road Plan Tool' selected, located in the top left of the screen:
   <div class="img_container">

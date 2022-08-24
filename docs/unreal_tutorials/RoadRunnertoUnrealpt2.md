@@ -1,17 +1,10 @@
-
-# monoDrive: Unreal Map Setup from A to Z
-
+# RoadRunner and Unreal Engine Map Setup
 ## Overview
 
-These walkthroughs go through each of the monoDrive methods of bringing the maps created in RoadRunner into Unreal and to get the
+These walkthroughs go through each of the monoDrive methods of bringing the maps created in RoadRunner into Unreal Engine and to get the
  For more information, see [monodrive Documentation](https://monodrive.readthedocs.io/en/latest/).
 
-For [Unreal Engine Tutorials](https://monodrive.readthedocs.io/en/latest/unreal_tutorials/MayaWheels/) for guides.
-
-For [Maya Tutorial](https://knowledge.autodesk.com/search-result/caas/simplecontent/content/maya-1-minute-startup-movies.html) for guides.
-
-
-### Importing RoadRunner Exports
+## Importing RoadRunner Exports
 
 Once you have exported your assets from RoadRunner, you are now ready to import those assets into Unreal.
 
@@ -148,8 +141,6 @@ Now it is time to populate your environment.
 
 ## Setting Custom Depth Stencil Values
 
-### Overview
-
 Use this tutorial to set up Custom Depth Stencil Values.
 
 ### Application:
@@ -165,8 +156,6 @@ Use this tutorial to set up Custom Depth Stencil Values.
   </div>(2.a)
 
 ## Setting up Collision for Static Meshes
-
-### Overview
 
 Use this tutorial to set up the collision.
 
@@ -189,9 +178,9 @@ Use this tutorial to set up the collision.
     - For any landscape static meshes select the 'Landscape' option
 
 
-# Spline Assets
+## Spline Assets
 
-## Placing Mesh Splines
+### Placing Mesh Splines
 
 1. Now in the 'Details' panel on the right
     - Find the blueprint called 'Spline\_Actor'
@@ -218,7 +207,7 @@ Use this tutorial to set up the collision.
 1. A good starting point for repeatable assets is: 2000-5000
 1. To find a short video on this subject [click here](https://monodrive.readthedocs.io/en/latest/unreal_tutorials/SingularMesh/) to go to the monoDrive read the docs section about it.
 
-## Spline Curving
+### Spline Curving
 
 1. When needing to curve the spline asset do the following
     - For basic curves, double click on either of the 2 original spline points with your rotation tool selected
@@ -232,11 +221,9 @@ Use this tutorial to set up the collision.
     - Use the 'Translate' and 'Rotate tool to adjust the spline into the position you require.
 1. To find a short video on this subject [click here](https://monodrive.readthedocs.io/en/latest/unreal_tutorials/SplineMesh/#adjusting-a-spline-mesh) to go to the monoDrive read the docs section about it.
 
-# Foliage Assets
+## Foliage Assets
 
-## Painting Trees
-
-### Setting your Foliage Up
+### Painting Trees & Foliage Setup
 
 1. To paint foliage into your scene you must go to the 'Foliage' mode located in the top left corner of Unreal. (Note this is true for all Unreal's up to 4.24) (3.a)
   <div class="img_container">
@@ -252,7 +239,7 @@ Use this tutorial to set up the collision.
 1. Now hover your mouse over the new foliage actor and check the empty box and select the tree.
 1. To find a short video on this subject [click here](https://monodrive.readthedocs.io/en/latest/unreal_tutorials/FoliagePainting/) to go to the monoDrive read the docs section about it.
 
-## Adjusting the Foliage Settings
+### Adjusting the Foliage Settings
 
 A good starting point is something like this (5.a):
 
@@ -260,7 +247,7 @@ A good starting point is something like this (5.a):
     <img class='md_img' src="../imgs/UnrealPic_24.png"/>
 </div>
 
-### Setting Collision for Trees
+### Setting Collision for Grasses and Bushes
 
 1. Foliage actors such as small bushes, grasses and other small foliage's collision setting should look as so (6.a) :
   <div class="img_container">
@@ -272,7 +259,7 @@ A good starting point is something like this (5.a):
       <img class='md_img' src="../imgs/UnrealPic_26.png"/>
   </div>(7.a)
 
-## Setting Collision for Trees
+### Setting Collision for Trees
 
 1. Navigate to the static mesh of your tree
     - Scroll down the 'Details' panel until you find the 'Collision' section
@@ -286,7 +273,7 @@ A good starting point is something like this (5.a):
       <img class='wide_lg_img' src="../imgs/UnrealPic_27.png"/>
   </div>(8.a)
 
-## Setting your Physical Materials for Foliage
+### Setting your Physical Materials for Foliage
 
 1. Navigate to the materials that your tree is using
     - Open the various materials
@@ -297,7 +284,7 @@ A good starting point is something like this (5.a):
       <img class='sm_img' src="../imgs/UnrealPic_28.png"/>
   </div>(9.a)
 
-## Painting your Trees
+### Painting your Trees
 
 To paint your trees first you must set up your brush settings:
 

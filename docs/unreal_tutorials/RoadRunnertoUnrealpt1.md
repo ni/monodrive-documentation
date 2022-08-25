@@ -12,82 +12,76 @@ For [Maya Tutorial](https://knowledge.autodesk.com/search-result/caas/simplecont
 To continue with the Unreal importation continue to the RoadRunnertoUnreal Part 2.
 
 ## Roadrunner Basics
-
 Overview
 
-This section of the walkthrough goes through the methods of creating basic roads in RoadRunner as well as how to export them in preparation for Unreal Engine 4.
-
-NOTE: RoadRunner uses Meters as its base measurement scale. Importing a vehicle will help you with the scale of your scene.
+This is a guide for creating roads in RoadRunner and how to export them in preparation for Unreal Engine. Please note that Roadrunner uses meters as its base measurement scale, and that it's suggested to import a vehicle for help with scaling in the scene.
 
 ## Road Creation Basics
 
-1. Open RoadRunner
-  1. Create a new scene/map:
+1. Open RoadRunner and create a new scene/map
     <div class="img_container">
       <img class='extra_lg_img' src="../imgs/RoadRunnerPic_01.png"/>
     </div>
-1. With the 'Road Plan Tool' selected, located in the top left of the screen:
+1. Select the 'Road Plan Tool' icon located in the top left
   <div class="img_container">
-      <img class='sm_img' src="../imgs/RoadRunnerPic_02.png"/>
+      <img class='md_img' src="../imgs/RoadRunnerPic_02.png"/>
   </div>
-1. Navigate to the 'Library Browser' in the bottom right of the screen
+1. Navigate to the 'Library Browser' in the bottom right
     - Navigate to the folder labeled 'Road Styles'
-    - Select the road type you would like to use
+    - Select road type
   <div class="img_container">
       <img class='lg_img' src="../imgs/RoadRunnerPic_03.png"/>
   </div>
-1. Now with the 'Road Plan Tool' selected
-    - Right click anywhere on the grid that you see, this will create a red dot
-    - Next 'right' click again in another location, this will create your basic road.
+1. Now right click on the grid, this will create a red dot
+    - When right clicking again in another location within the screen space, this will create the basic road.
 
 ## Quickly Creating a Landscape
 
-1. With your road drawn, it is time to put some landscape around your road.
+1. With the road drawn, create a landscape around the road.
 
-1. First as the image shows, select the 'Surface Tool'
+1. As the image shows, select the 'Surface Tool'
   <div class="img_container">
       <img class='sm_img' src="../imgs/RoadRunnerPic_04.png"/>
   </div>
-1. Now in the screen space right click on the outside of where your road is located.
-  - Then make some additional clicks around your road like so:
+1. In the screen space right click on the outside of where the road is located.
+  - Make some additional clicks around your road like so:
   <div class="img_container">
       <img class='lg_img' src="../imgs/RoadRunnerPic_05.png"/>
   </div>
-1. Then continue to make clicks around the road until you reach the original dot you placed
-1. This will create a landscape around your road
+1. Continue to make clicks around the road until the original dot you placed is reached
+1. This will automatically create a landscape around the road
   <div class="img_container">
       <img class='lg_img' src="../imgs/RoadRunnerPic_06.png"/>
   </div>
 
 ## Getting Ready to Export to Unreal
 
-Now that you have a road created, it is time to export to Unreal.
+With the road created, it is time to export to Unreal.
 
-1. First as the image shows, go to 'File' → 'Export' → 'Unreal'
+1. As the image shows, go to 'File' → 'Export' → 'Unreal'
   <div class="img_container">
       <img class='lg_img' src="../imgs/RoadRunnerPic_07.png"/>
   </div>
-1. Once you click on 'Unreal', another window will pop up
-1. First select a place to save your files, it is recommended to create a folder
-1. The default setting for exporting your .fbx files should be adequate.
-1. Now 'Export'
+1. Click on 'Unreal', another window will pop up
+    - Navigate a place to save the created roads, it is recommended to create a folder
+    - The default setting for exporting .fbx files should be adequate.
+    - Now 'Export'
   <div class="img_container">
       <img class='lg_img' src="../imgs/RoadRunnerPic_08.png"/>
   </div>
 1. Next go to 'File' → 'Export' → ' Opendrive'
-1. Select the same location that you put your 'Unreal' export to save your file
+1. Select the same location of the 'Unreal' export
 1. Hit Export
+  <div class ='img_container'>  
 
-<div class ='img_container'>  
+  <div class="img_container">
+      <img class='wide_img' src="../imgs/RoadRunnerPic_09.png"/>
+  </div>
 
-<div class="img_container">
-    <img class='wide_img' src="../imgs/RoadRunnerPic_09.png"/>
-</div>
+  <div class="img_container">
+      <img class='md_img' src="../imgs/RoadRunnerPic_10.png"/>
+  </div>
 
-<div class="img_container">
-    <img class='md_img' src="../imgs/RoadRunnerPic_10.png"/>
-</div>
-
-</div>
+  </div>
 
 To continue with the Unreal importation continue to the NI monoDrive: Unreal Map Setup from A to Z.

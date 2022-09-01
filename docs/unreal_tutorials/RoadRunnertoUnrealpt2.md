@@ -178,7 +178,7 @@ Use this tutorial to set up the collision.
     - For any landscape static meshes select the 'Landscape' option
 
 
-## Spline Assets
+### Spline Assets
 
 ### Placing Mesh Splines
 

@@ -184,7 +184,7 @@ Use this tutorial to set up the collision.
 
 1. In the 'Details' panel on the right
     - Find the blueprint called 'Spline\_Actor'
-1. Drag said blueprint into the viewport
+1. Drag the blueprint into the viewport. This should have the 'concrete barrier' asset assigned to the Mesh slot by default.
     - This will already have the 'concrete barrier' asset assigned to the Mesh slot (1.b)
   <div class="img_container">
       <img class='md_img' src="../imgs/UnrealPic_18.png"/>

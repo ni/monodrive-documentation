@@ -98,7 +98,7 @@ To apply weather to the new level follow these steps.
   <div class="img_container">
       <img class='wide_lg_img' src="../imgs/UnrealPic_10.png"/>
   </div>
-1. Next, open the 'Straightaway5k' folder
+1. As a baseline weather, use a weather sublevel that already exists. Open the 'Straightaway5k' directory inside the Maps Directory. Copy the 'straightaway5k\_Weather' sublevel to the levels sublevel folder.```
 1. Copy the 'straightaway5k\_Weather' sublevel to the levels sublevel folder
 1. Next rename the file to "YourLevelNameHere\_Weather"
   <div class="img_container">

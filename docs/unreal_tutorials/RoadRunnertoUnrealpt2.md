@@ -43,7 +43,7 @@ To make the road driveable, the user will need to adjust the collision of the im
       <img class='lg_img' src="../imgs/UnrealPic_04.png"/>
   </div>
 
-1. Repeat on your other imported meshes
+1. Repeat for other imported meshes
 
 ## Adjusting Materials to be Sensor Ready
 

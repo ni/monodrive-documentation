@@ -230,7 +230,7 @@ Use this tutorial to set up the collision.
       <img class='sm_img' src="../imgs/UnrealPic_22.png"/>
   </div>(3.a)
 
-1. To add foliage to the 'Foliage' Painter tool, navigate to where the foliage content is. Ex: Content → Foliage → Trees → RedMaple
+1. To add foliage to the 'Foliage' Painter tool, navigate to the foliage content. For example, Content → Foliage → Trees → RedMaple
     - If the user already has a foliage actor, indicated by the green line at the bottom of the asset drag it into the 'Drop Foliage Here' section as seen in 3.a.
     - If the user doesn't already have a foliage actor, click and drag your static mesh into the 'Drop Foliage Here' section and Unreal will create one for you. (4.a)
   <div class="img_container">

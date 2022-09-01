@@ -152,7 +152,7 @@ Use this tutorial to set up Custom Depth Stencil Values.
     - [Data Products — monoDrive Simulator](https://monodrive.readthedocs.io/en/latest/r2v/data_processing_output/)
   <div class="img_container">
       <img class='lg_img' src="../imgs/UnrealPic_16.png"/>
-  </div>(2.a)
+  </div>
 
 ## Setting up Collision for Static Meshes
 

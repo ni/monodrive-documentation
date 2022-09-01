@@ -55,7 +55,7 @@ To make any asset viewable to the Radar 'Physical Materials,' it must be attache
     - Click on the drop down where it says 'None'
     - Apply the material that applies most to the material type
   <div class="img_container">
-      <img class='lg_img' src="../imgs/UnrealPic_05.png"/>
+      <img class='wide_img' src="../imgs/UnrealPic_05.png"/>
   </div>
 
 ## Importing OpenDrive

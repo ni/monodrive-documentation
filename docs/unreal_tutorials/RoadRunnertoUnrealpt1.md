@@ -60,7 +60,7 @@ With the road created, it is time to export to Unreal.
 
 1. Start the export process by navigating to 'File' → 'Export' → 'Unreal'
   <div class="img_container">
-      <img class='lg_img' src="../imgs/RoadRunnerPic_07.png"/>
+      <img class='wide_img' src="../imgs/RoadRunnerPic_07.png"/>
   </div>
 1. Click on 'Unreal', another window will pop up
     - Navigate a place to save the created roads, it is recommended to create a folder

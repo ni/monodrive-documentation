@@ -15,7 +15,7 @@ Before beginning, this section outlines the creation and setup of a Unreal Engin
       <img class='lg_img' src="../imgs/UnrealPic_01.png"/>
   </div>
 1. Click on 'Default'
-1. Once the new map is created go to the 'Landscape' folder in the 'Content' browser
+1. Once the new map is created, go to the 'Landscape' folder in the 'Content' browser
   <div class="img_container">
       <img class='wide_lg_img' src="../imgs/UnrealPic_02.png"/>
   </div>

@@ -60,7 +60,7 @@ To make any asset viewable to the Radar 'Physical Materials,' it must be attache
 
 ## Importing OpenDrive
 
-1. With the road and landscape imported it is time to import the OpenDrive file.
+With the road and landscape imported it is time to import the OpenDrive file.
 1. Go to the top level of the 'Content' structure 
 1. Next right click on the icon that says 'RoadNetworkToolWidget'
 1. Now click on 'Run Editor Utility Widget'

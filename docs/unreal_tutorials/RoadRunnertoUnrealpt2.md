@@ -113,7 +113,7 @@ To apply weather to the new level follow these steps.
   <div class="img_container">
       <img class='lg_img' src="../imgs/UnrealPic_13.png"/>
   </div>
-1. Next go back to the 'World Outliner'
+1. From the 'World Outliner'
     - Delete anything that isn't in the 'Atmosphere' folder and that is not an Imported asset.
     - It should look something like this:
     <div class="img_container">

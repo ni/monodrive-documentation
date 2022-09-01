@@ -134,7 +134,7 @@ When placing road signs, note that all of the signs in the Content → Meshes �
       <img class='md_img' src="../imgs/UnrealPic_15.png"/>
   </div>
 1. Navigate to the Content → Materials → Signs Folder, pick the appropriate sign shape folder, ex: Diamond\_Signs, and open the folder
-1. Find the material that sign is needed.
+1. Navigate to the desired material for the selected sign. Click and drag or move the material into the empty "Element Slot."
 1. Click and drag the material in to the empty 'Element slot'
 1. To find a short video on this subject [click here](https://monodrive.readthedocs.io/en/latest/unreal_tutorials/PlacingSigns/) to go to the monoDrive read the docs section about it.
 

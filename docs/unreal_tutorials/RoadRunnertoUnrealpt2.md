@@ -261,7 +261,7 @@ A good starting point is something like this (5.a):
 ### Setting Collision for Trees
 
 1. Navigate to the static mesh of the tree
-    - Scroll down the 'Details' panel until 'Collision' section is found
+    - Navigate in the 'Details' panel' to the 'Collision' section 
     - Find the option 'Collision Complexity'
     - Set the 'Collision Complexity' to 'Simple and Complex'
 1. Next, change the 'Collision Presets' to 'Custom'

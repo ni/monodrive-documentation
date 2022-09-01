@@ -285,7 +285,7 @@ A good starting point is something like this (5.a):
 
 ### Painting Trees
 
-To paint the trees first the user must set up the brush settings:
+To paint the trees set up the brush settings. 
 
 1. Start with a low 'Paint Density' setting, this keeps the scene from being overloaded. 
 1. Under the 'Filters' section have only the kinds of objects that want to be painting on selected. For example: Landscape or Static Meshes.

@@ -145,7 +145,7 @@ Use this tutorial to set up Custom Depth Stencil Values.
 ### Application:
 
 1. As stated above, place a static mesh into the scene
-1. Now with the mesh selected, locate the 'Details' panel
+1. With the mesh selected, locate the 'Details' panel
     - Type 'custom' into the search bar (2.a)
 1. Check the box labeled 'Render CustomDepth Pass'
 1. Go to the link provided and fill in the Custom Depth Stencil Value that matches the static mesh the closest.

@@ -109,7 +109,7 @@ To apply weather to the new level follow these steps.
       <img class='lg_img' src="../imgs/UnrealPic_12.png"/>
   </div>
 1. Right click on the sublevel and go to 'Change Streaming Method' → 'Always Loaded'
-1. NOTE: If this is not done, when 'Play' is hit the assets in the level will not appear.
+    - This step is required so that when 'Play' is clicked the assets in the level will appear.
   <div class="img_container">
       <img class='lg_img' src="../imgs/UnrealPic_13.png"/>
   </div>

@@ -180,7 +180,7 @@ Use this tutorial to set up the collision.
 
 ### Spline Assets
 
-### Placing Mesh Splines
+#### Placing Mesh Splines
 
 1. Now in the 'Details' panel on the right
     - Find the blueprint called 'Spline\_Actor'

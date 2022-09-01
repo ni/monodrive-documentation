@@ -65,7 +65,7 @@ With the road created, it is time to export to Unreal.
 1. Click on 'Unreal', another window will pop up
     - Navigate a place to save the created roads, it is recommended to create a folder
     - The default setting for exporting .fbx files should be adequate.
-    - Now 'Export'
+    - Once all adjustments are made, click "Export"
   <div class="img_container">
       <img class='lg_img' src="../imgs/RoadRunnerPic_08.png"/>
   </div>

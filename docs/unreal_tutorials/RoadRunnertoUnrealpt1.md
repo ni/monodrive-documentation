@@ -7,13 +7,9 @@ The following walk-through outlines methods for integrating maps created in Road
 
 For [Unreal Engine Tutorials](https://monodrive.readthedocs.io/en/latest/unreal_tutorials/MayaWheels/) for guides.
 
-For [Maya Tutorial](https://knowledge.autodesk.com/search-result/caas/simplecontent/content/maya-1-minute-startup-movies.html) for guides.
-
-To continue with the Unreal importation continue to the RoadRunnertoUnreal Part 2.
+To continue with the Unreal Engine importation continue to the RoadRunner and Unreal Engine Map Setup document.
 
 ## Roadrunner Basics
-Overview
-
 This is a guide for creating roads in RoadRunner and how to export them in preparation for Unreal Engine. Please note that Roadrunner uses meters as its base measurement scale, and that it's suggested to import a vehicle for help with scaling in the scene.
 
 ## Road Creation Basics
@@ -48,15 +44,12 @@ This is a guide for creating roads in RoadRunner and how to export them in prepa
   <div class="img_container">
       <img class='lg_img' src="../imgs/RoadRunnerPic_05.png"/>
   </div>
-1. Continue to make clicks around the road until the original dot you placed is reached
 1. Continue adding dots to create a circle until you reach the original dot that was placed, this will create a landscape around the road.
   <div class="img_container">
       <img class='lg_img' src="../imgs/RoadRunnerPic_06.png"/>
   </div>
 
 ## Export to Unreal Engine
-
-With the road created, it is time to export to Unreal.
 
 1. Start the export process by navigating to 'File' → 'Export' → 'Unreal'
   <div class="img_container">

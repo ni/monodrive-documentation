@@ -104,7 +104,7 @@ To apply weather to the new level follow these steps.
   <div class="img_container">
       <img class='wide_lg_img' src="../imgs/UnrealPic_11.png"/>
   </div>
-1. Once this is done, click and drag the sublevel over to the 'Levels' tab opened earlier
+1. Click and drag the sublevel over to the 'Levels' tab opened earlier
   <div class="img_container">
       <img class='lg_img' src="../imgs/UnrealPic_12.png"/>
   </div>

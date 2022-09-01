@@ -283,7 +283,7 @@ A good starting point is something like this (5.a):
       <img class='sm_img' src="../imgs/UnrealPic_28.png"/>
   </div>(9.a)
 
-### Painting Trees
+#### Painting Trees
 
 To paint the trees set up the brush settings. 
 

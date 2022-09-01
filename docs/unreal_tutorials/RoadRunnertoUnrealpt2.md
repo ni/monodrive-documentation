@@ -182,7 +182,7 @@ Use this tutorial to set up the collision.
 
 #### Placing Mesh Splines
 
-1. Now in the 'Details' panel on the right
+1. In the 'Details' panel on the right
     - Find the blueprint called 'Spline\_Actor'
 1. Drag said blueprint into the viewport
     - This will already have the 'concrete barrier' asset assigned to the Mesh slot (1.b)

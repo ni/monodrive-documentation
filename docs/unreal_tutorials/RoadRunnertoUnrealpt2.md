@@ -170,7 +170,7 @@ Use this tutorial to set up the collision.
     - Try any of the collision options, a good starter is the box collision
 1. In the 'Details' panel on the right
     - Search collision
-    - You will want to set the 'Collision Presets'
+    - Set the 'Collision Presets'
     - Select the preset that match's the object the best
     - For most static meshes the 'BlockAll' option is best
       - But try and match it as best as possible .i.e 'landscape', 'road', etc. 

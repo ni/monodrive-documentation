@@ -9,7 +9,7 @@ For more information, see [monodrive Documentation](https://monodrive.readthedoc
 
 Before beginning, this section outlines the creation and setup of a Unreal Engine map/scene and may apply to assets other than RoadRunner assets.
 
-1. Open Unreal Engine 4
+1. Open Unreal Engine
     - With Unreal Engine now open create a new map
   <div class="img_container">
       <img class='lg_img' src="../imgs/UnrealPic_01.png"/>

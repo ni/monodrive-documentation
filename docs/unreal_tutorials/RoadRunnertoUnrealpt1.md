@@ -69,7 +69,7 @@ With the road created, it is time to export to Unreal.
   <div class="img_container">
       <img class='lg_img' src="../imgs/RoadRunnerPic_08.png"/>
   </div>
-1. Next go to 'File' → 'Export' → ' Opendrive'
+1. For the vehicles to be drivable in Unreal Engine, export the OpenDrive file. Go to 'File' → 'Export' → ' Opendrive'
 1. Select the same location of the 'Unreal' export
 1. Hit Export
   <div class ='img_container'>  

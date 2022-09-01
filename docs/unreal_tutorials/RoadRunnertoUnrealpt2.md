@@ -148,7 +148,7 @@ Use this tutorial to set up Custom Depth Stencil Values.
 1. With the mesh selected, locate the 'Details' panel
     - Type 'custom' into the search bar 
     - Check the box next to the label 'Render CustomDepth Pass'
-1. Go to the link provided and fill in the Custom Depth Stencil Value that matches the static mesh the closest.
+1. Fill in the "Custom Depth Stencil Value" that matches the static mesh the closest. Below is a link that provides possible values for this static mesh. 
     - [Data Products — monoDrive Simulator](https://monodrive.readthedocs.io/en/latest/r2v/data_processing_output/)
   <div class="img_container">
       <img class='lg_img' src="../imgs/UnrealPic_16.png"/>

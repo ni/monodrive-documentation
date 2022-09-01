@@ -132,7 +132,7 @@ When placing road signs, note that all of the signs in the Content → Meshes �
 1. In the details panel → Materials there will be an empty 'Element' slot (1.a)
   <div class="img_container">
       <img class='md_img' src="../imgs/UnrealPic_15.png"/>
-  </div>1.a
+  </div>
 1. Navigate to the Content → Materials → Signs Folder, pick the appropriate sign shape folder, ex: Diamond\_Signs, and open the folder
 1. Find the material that sign is needed.
 1. Click and drag the material in to the empty 'Element slot'

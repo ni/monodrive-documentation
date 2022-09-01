@@ -287,7 +287,7 @@ A good starting point is something like this (5.a):
 
 To paint the trees first the user must set up the brush settings:
 
-1. So to not overload the scene with too many trees start with a low 'Paint Density' setting, For example: .1
+1. Start with a low 'Paint Density' setting, this keeps the scene from being overloaded. 
 1. Under the 'Filters' section have only the kinds of objects that want to be painting on selected. For example: Landscape or Static Meshes.
 1. Now with everything set move your mouse into the viewport, there should be a semi-transparent grey dome.
 1. 'Left' click in the viewport, the user should see trees start to pop up.

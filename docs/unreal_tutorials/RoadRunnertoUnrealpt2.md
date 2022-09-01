@@ -28,7 +28,7 @@ Before beginning, this section outlines the creation and setup of a Unreal Engin
 1. With all assets selected, go to the 'Details' Panel
     - In the 'Transform' Section, navigate to 'Location' which has the values for X,Y,Z.  Ensure that X,Y,Z values in the Location each have a value of "0"
   <div class="img_container">
-      <img class='lg_img' src="../imgs/UnrealPic_03.png"/>
+      <img class='wide_img' src="../imgs/UnrealPic_03.png"/>
   </div>
 
 ## Setting up Asset Collision

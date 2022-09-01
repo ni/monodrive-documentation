@@ -39,7 +39,7 @@ This is a guide for creating roads in RoadRunner and how to export them in prepa
 
 1. With the road drawn, create a landscape around the road.
 
-1. As the image shows, select the 'Surface Tool'
+1. Select the 'Surface Tool'
   <div class="img_container">
       <img class='sm_img' src="../imgs/RoadRunnerPic_04.png"/>
   </div>

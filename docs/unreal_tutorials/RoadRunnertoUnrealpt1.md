@@ -49,7 +49,7 @@ This is a guide for creating roads in RoadRunner and how to export them in prepa
       <img class='lg_img' src="../imgs/RoadRunnerPic_05.png"/>
   </div>
 1. Continue to make clicks around the road until the original dot you placed is reached
-1. This will automatically create a landscape around the road
+1. Continue adding dots to create a circle until you reach the original dot that was placed, this will create a landscape around the road.
   <div class="img_container">
       <img class='lg_img' src="../imgs/RoadRunnerPic_06.png"/>
   </div>

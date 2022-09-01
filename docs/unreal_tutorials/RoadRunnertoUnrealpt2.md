@@ -126,7 +126,7 @@ This section outlines how to add static assets to populate the environment.
 
 ## Placing Road Signs
 
-1. All of the signs in the Content → Meshes → Signs Folder are mesh templates
+When placing road signs, note that all of the signs in the Content → Meshes → Signs Folder are mesh templates. Also, all of the sign materials in the Content → Materials → Signs Folder will match with their corresponding names.
 1. All of the sign materials in the Content → Materials → Signs Folder will match with their corresponding names.
 1. Click and Drag a sign from the 'Content' browser into the viewport, ex: Diamond\_36\_Sign
 1. In the details panel → Materials there will be an empty 'Element' slot (1.a)

@@ -25,7 +25,7 @@ Before beginning, this section outlines the creation and setup of a Unreal Engin
     - Type in 100.0
 1. Click 'Import All'
 1. Click and Drag all assets into the scene
-1. With all assets selected go to the 'Details' Panel
+1. With all assets selected, go to the 'Details' Panel
     - In the 'Location' section in the X,Y,Z section type in a 0 for each slot
   <div class="img_container">
       <img class='lg_img' src="../imgs/UnrealPic_03.png"/>

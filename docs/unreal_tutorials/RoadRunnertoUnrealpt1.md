@@ -35,7 +35,7 @@ This is a guide for creating roads in RoadRunner and how to export them in prepa
 1. Now right click on the grid, this will create a red dot
     - When right clicking again in another location within the screen space, this will create the basic road.
 
-## Quickly Creating a Landscape
+## Create a Landscape
 
 1. With the road drawn, create a landscape around the road.
 

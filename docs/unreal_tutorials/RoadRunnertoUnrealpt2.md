@@ -63,7 +63,7 @@ To make any asset viewable to the Radar 'Physical Materials,' it must be attache
 With the road and landscape imported it is time to import the OpenDrive file.
 1. Go to the top level of the 'Content' structure 
 1. Right click on the icon that says 'RoadNetworkToolWidget'
-1. Now click on 'Run Editor Utility Widget'
+1. Click on 'Run Editor Utility Widget', and the 'Road Network Import/Export Tool' window should open.
   <div class="img_container">
       <img class='wide_lg_img' src="../imgs/UnrealPic_06.png"/>
   </div>

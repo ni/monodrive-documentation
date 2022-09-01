@@ -94,7 +94,7 @@ To apply weather to the new level follow these steps.
       <img class='lg_img' src="../imgs/UnrealPic_09.png"/>
   </div>
 1. Next, go to the 'Content' Browser to the 'Maps' → 'SubLevels' folder
-  - Make a folder with the maps name as the title
+  - Create a folder with the maps name as the title. For this example, Demo is the name of the new map. 
   <div class="img_container">
       <img class='wide_lg_img' src="../imgs/UnrealPic_10.png"/>
   </div>

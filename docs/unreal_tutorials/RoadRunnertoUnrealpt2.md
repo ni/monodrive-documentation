@@ -124,7 +124,7 @@ To apply weather to the new level follow these steps.
 
 This section outlines how to add static assets to populate the environment.
 
-## Placing Road Signs
+### Placing Road Signs
 
 When placing road signs, note that all of the signs in the Content → Meshes → Signs Folder are mesh templates. Also, all of the sign materials in the Content → Materials → Signs Folder will match with their corresponding names.
 1. All of the sign materials in the Content → Materials → Signs Folder will match with their corresponding names.

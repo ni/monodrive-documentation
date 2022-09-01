@@ -87,7 +87,7 @@ With the road and landscape imported it is time to import the OpenDrive file.
 
 ## Weather
 
-To quickly apply weather to the new level follow these steps.
+To apply weather to the new level follow these steps.
 
 1. Go to the top left of Unreal and find 'Window' → 'Levels'
   <div class="img_container">

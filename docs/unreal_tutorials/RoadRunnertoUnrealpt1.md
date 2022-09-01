@@ -43,7 +43,7 @@ This is a guide for creating roads in RoadRunner and how to export them in prepa
   <div class="img_container">
       <img class='sm_img' src="../imgs/RoadRunnerPic_04.png"/>
   </div>
-1. In the screen space right click on the outside of where the road is located.
+1. In the screen gridded space, right click on the outside of where the road is located.
   - Make some additional clicks around your road like so:
   <div class="img_container">
       <img class='lg_img' src="../imgs/RoadRunnerPic_05.png"/>

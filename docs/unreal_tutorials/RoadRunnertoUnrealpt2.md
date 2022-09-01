@@ -168,7 +168,7 @@ Use this tutorial to set up the collision.
 1. There should be a green box around the static mesh
     - If not, look in the top right of the screen and find 'Collision' drop down menu
     - Try any of the collision options, a good starter is the box collision
-1. Now in the 'Details' panel on the right
+1. In the 'Details' panel on the right
     - Search collision
     - You will want to set the 'Collision Presets'
     - Select the preset that match's the object the best

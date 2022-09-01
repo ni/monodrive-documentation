@@ -78,7 +78,7 @@ With the road and landscape imported it is time to import the OpenDrive file.
 1. Navigate to the 'Details' panel
 1. In the 'OpenDrive' section, navigate and click on the button labeled 'Generate OpenDRIVE Mesh'
 1. Click on it.
-    - NOTE: all this is doing is confirming that the OpenDrive and the road are matching up
+    - This confirms that the OpenDrive and the road match up
 1. If everything is done correctly, it should look something like this:
   <div class="img_container">
       <img class='lg_img' src="../imgs/UnrealPic_08.png"/>

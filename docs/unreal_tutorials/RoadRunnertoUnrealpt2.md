@@ -47,7 +47,7 @@ To make the road driveable, the user will need to adjust the collision of the im
 
 ## Adjusting Materials to be Sensor Ready
 
-To make any asset viewable to the radar 'Physical Materials' must be attached to the materials.
+To make any asset viewable to the Radar 'Physical Materials,' it must be attached to materials.
 
 1. Open any material that needs to be adjusted
 1. Find the 'Details' panel on the left side of the screen

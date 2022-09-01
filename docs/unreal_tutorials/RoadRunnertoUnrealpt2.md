@@ -122,7 +122,7 @@ To apply weather to the new level follow these steps.
 
 ## Static Assets
 
-Now it is time to populate the environment.
+This section outlines how to add static assets to populate the environment.
 
 ## Placing Road Signs
 

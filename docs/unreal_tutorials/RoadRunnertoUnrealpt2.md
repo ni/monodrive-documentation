@@ -274,7 +274,7 @@ A good starting point is something like this (5.a):
 
 ### Setting the Physical Materials for Foliage
 
-1. Navigate to the materials that the tree is using
+1. Navigate to the materials for the tree
     - Open the various materials
 1. In the materials 'Details' panel navigate to the 'Physics Materials' section
 1. Click the drop down menu

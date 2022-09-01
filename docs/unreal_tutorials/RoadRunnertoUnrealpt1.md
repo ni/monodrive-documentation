@@ -71,7 +71,7 @@ With the road created, it is time to export to Unreal.
   </div>
 1. For the vehicles to be drivable in Unreal Engine, export the OpenDrive file. Go to 'File' → 'Export' → ' Opendrive'
 1. Select the same location of the 'Unreal' export
-1. Hit Export
+1. Click "Export"
   <div class ='img_container'>  
 
   <div class="img_container">

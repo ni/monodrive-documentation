@@ -207,7 +207,7 @@ Use this tutorial to set up the collision.
 1. 'Repeatable' assets is: 2000-5000
 1. To find a short video on this subject [click here](https://monodrive.readthedocs.io/en/latest/unreal_tutorials/SingularMesh/) to go to the monoDrive read the docs section about it.
 
-### Spline Curving
+#### Spline Curving
 
 1. When needing to curve the spline asset do the following
     - For basic curves, double click on either of the 2 original spline points with the rotation tool selected

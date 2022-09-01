@@ -7,7 +7,7 @@ For more information, see [monodrive Documentation](https://monodrive.readthedoc
 
 ## Importing RoadRunner Exports
 
-NOTE: If the user is not dealing with RoadRunner assets, this tutorial will still be invaluable in the creation and setup of a Unreal Engine map/scene. If you are not dealing with imported assets, please feel free to skip ahead to the sections that are applicable to the users needs.
+Before beginning, this section outlines the creation and setup of a Unreal Engine map/scene and may apply to assets other than RoadRunner assets.
 
 1. Open Unreal Engine 4
     - With Unreal Engine now open create a new map

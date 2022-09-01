@@ -58,7 +58,7 @@ This is a guide for creating roads in RoadRunner and how to export them in prepa
 
 With the road created, it is time to export to Unreal.
 
-1. As the image shows, go to 'File' → 'Export' → 'Unreal'
+1. Start the export process by navigating to 'File' → 'Export' → 'Unreal'
   <div class="img_container">
       <img class='lg_img' src="../imgs/RoadRunnerPic_07.png"/>
   </div>

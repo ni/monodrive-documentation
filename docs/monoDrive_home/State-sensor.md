@@ -536,7 +536,7 @@ File and played back in Replay Mode.
             - **position:** The position of this actor in the scene in centimeters relative to the origin
       - **oriented_bounding_box:** The bounding box of the actor in the scene
          - **center:** The location of the center of the box in centimeters relative to the origin
-         - **extents:** The extents of the box from the center in centimeters
+         - **extents:** The extents of the box in centimeters
          - **name:** The name of the object this box is bounding
          - **orientation:** The rotation of the box as a quaternion
          - **scale:** The scale of this box as a coefficient

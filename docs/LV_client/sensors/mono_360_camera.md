@@ -8,7 +8,7 @@
 
 Configures and reads the data stream for a 360 degrees Camera sensor and outputs a picture with the specified format in the stream dimensions.
 
-For technical support contact us at **support@monodrive.io** 
+For technical support contact us at **monodrive.support@ni.com** 
 
 ### Inputs
 

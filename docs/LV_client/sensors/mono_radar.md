@@ -8,7 +8,7 @@
 
 Configure and reads the data stream for the Radar sensor.
 
-For technical support contact us at <b>support@monodrive.io</b>s 
+For technical support contact us at <b>monodrive.support@ni.com</b>s 
 
 ### Inputs
 

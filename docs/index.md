@@ -52,4 +52,4 @@ The monoDrive simulator is configured from a client. Everything about the simula
 [Unreal Engine Tutorials](unreal_tutorials/MayaWheels.md) <br />
 
 monoDrive is committed to helping support users. To request an instructional document and/or tutorial
-using our products, please contact us at support@monodrive.io. 
+using our products, please contact us at monodrive.support@ni.com. 

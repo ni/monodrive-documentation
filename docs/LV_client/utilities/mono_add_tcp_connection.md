@@ -8,7 +8,7 @@
 
 Add a TCP reference to the monoDrive global variable.
 
-For technical support contact us at  **support@monodrive.io** 
+For technical support contact us at  **monodrive.support@ni.com** 
 
 ### Inputs
 

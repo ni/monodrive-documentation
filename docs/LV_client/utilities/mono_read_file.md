@@ -8,7 +8,7 @@
 
 Read the trajectory specified from the name or absolute path.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

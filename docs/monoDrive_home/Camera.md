@@ -439,7 +439,6 @@ format of the image is an array the same size as `stream_dimensions` containing
 
 This model is defined by a polynomial (Scaramuzza’s model a0, a2, a3, a4) which describes the projection onto the image sensor. If you wish to use an idealized or Equidistant fisheye model set *use_calibrated_parameters* to false. The Poly2 model can generically describe any camera lens projection but is best used for difficult models such as fisheye and ultra wide angle lenses. The polynomial parameters can be calibrated automatically from a chessboard dataset using [mathwork’s toolbox](https://www.mathworks.com/help/vision/ug/fisheye-calibration-basics.html).
 
-<span style="color:red">todo: replace this realllllly old image</span>
 <p class="img_container">
   <img class='half_screen_img' src="../img/scaramuzza.bmp"  height="400" />
 </p>
@@ -450,7 +449,7 @@ This model is defined by a polynomial (Scaramuzza’s model a0, a2, a3, a4) whic
     "listen_port": 8018,
 
     "a0": -350.0,
-    "a2": --0.0001,
+    "a2": -0.0001,
     "a3": 1.2e-06,
     "a4": -1.5e-09,
 

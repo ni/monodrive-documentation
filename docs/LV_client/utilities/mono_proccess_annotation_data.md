@@ -8,7 +8,7 @@
 
 Process the data annotation for camera  and draw the bounding box for the objects in the image. 
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

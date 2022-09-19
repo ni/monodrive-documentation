@@ -8,7 +8,7 @@
 
 Tool to help save images directly from the the camera sensor into your system.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

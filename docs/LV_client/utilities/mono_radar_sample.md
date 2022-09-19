@@ -8,7 +8,7 @@
 
 Format the Radar sample into the final format for user display. Include the number of target detected.
 
-For technical support contact us at <b>monodrive.support@ni.com</b> 
+For technical support contact us at **monodrive.support@ni.com** 
 
 ### Inputs
 

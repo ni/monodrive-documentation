@@ -8,7 +8,7 @@
 
 Check if the simulator is open and running. If it is not running then it will stop running the client.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

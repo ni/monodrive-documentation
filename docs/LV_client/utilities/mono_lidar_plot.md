@@ -8,7 +8,7 @@
 
 Plot Lidar data into a 3D Plot Datatype.lvclass.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

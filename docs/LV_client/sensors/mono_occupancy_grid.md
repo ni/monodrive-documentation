@@ -8,7 +8,7 @@
 
 Configures and reads the data stream for an Occupancy Grid sensor and outputs a picture of the specified size on the configuration.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

@@ -20,7 +20,7 @@ configuring the monoDrive Simulator and Scenario Editor. To get started,
 user may clone the client from the monoDrive GitHub repository or 
 through LabVIEW's VI Package Manager. 
 
-    - To clone the client through GitHub, please contact us directly at support@monodrive.io
+    - To clone the client through GitHub, please contact us directly at monodrive.support@ni.com
 
     - To get access through the VI Package Manager, open the VI Package Manager as Administrator 
     and install the monoDrive Client.
@@ -104,5 +104,5 @@ Quick start instructions and details on how to generate project files in the Veh
 <p>&nbsp;</p>
 
 
-For technical support contact us at <b>support@monodrive.io</b>
+For technical support contact us at <b>monodrive.support@ni.com</b>
 <p>&nbsp;</p>

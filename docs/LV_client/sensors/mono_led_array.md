@@ -8,7 +8,7 @@
 
 Configures and updates an array of LEDs attached to the ego vehicle.
 
-For technical support contact us at **support@monodrive.io** 
+For technical support contact us at **monodrive.support@ni.com** 
 
 ### Inputs
 

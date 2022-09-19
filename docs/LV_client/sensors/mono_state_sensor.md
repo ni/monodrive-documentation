@@ -8,7 +8,7 @@
 
 Configure and read the State sensor information of the vehicle. The State sensor provides dynamic and spatial information of the elements in the scene during simulation.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

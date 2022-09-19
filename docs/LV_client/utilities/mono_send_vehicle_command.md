@@ -14,7 +14,7 @@ Sends a command to the monoDrive Simulator to control the movement of ego vehicl
 
 
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

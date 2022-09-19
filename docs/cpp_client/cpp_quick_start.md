@@ -1,9 +1,7 @@
 # C++ Quick Start
 
 The monoDrive C++ Client is Open Source Software for connecting to and 
-configuring the monoDrive Simulator and Scenario Editor. To get started, 
-contact support@monodrive.io to get access to the monoDrive Client repository,
-then clone the repository. 
+configuring the monoDrive Simulator and Scenario Editor. To get started [contact the NI monoDrive Team](https://www.monodrive.io/contact). 
 
 ## Setup
 

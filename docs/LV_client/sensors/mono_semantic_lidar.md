@@ -10,7 +10,7 @@ Configure and process the data stream for a semantic LiDAR sensor.
 
 This VI forwards the raw data to port 2368 by default through TCP and visualized by VeloView. Change the port to a unique number to visualize more than one LiDAR.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

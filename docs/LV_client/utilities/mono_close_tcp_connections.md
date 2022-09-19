@@ -8,7 +8,7 @@
 
 Close all the TCP references opened by the client.
 
-For technical support contact us at **support@monodrive.io** 
+For technical support contact us at **monodrive.support@ni.com** 
 
 ### Inputs
 

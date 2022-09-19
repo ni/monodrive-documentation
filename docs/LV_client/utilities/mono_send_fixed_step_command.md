@@ -13,7 +13,7 @@ Sends a set of commands to the monoDrive Simulator to control the movement of eg
     - EgoControl_ID
 
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

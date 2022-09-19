@@ -215,6 +215,19 @@ Update the state of the ego and other actors in the scene based on the message.
 - **Response**: (string)
 	- `complete` if the simulation was updated properly.
 
+## Torque Command
+Control vehicle applying torque and steering angle to each wheel on the vehicle.
+
+- **Command ID:**  **"EgoTorqueControl_ID"**
+
+- **Command Data**: String in JSON format containing:
+	- Torque applied to brake for each wheel (N*cm)
+	- Torque values for each wheel (N*cm)
+	- Steering angle (radians)   
+- **Response**: (string)
+	- `complete` if the simulation was updated properly.
+
+
 ## Weather Configuration
 Configures the weather used in the simulation run. The profiles parameter is optional, and if present, the profiles are added or modified based on the supplied parameters for each profile.
 

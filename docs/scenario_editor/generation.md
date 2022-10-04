@@ -10,12 +10,12 @@ process, or by adding uassets/blueprints to `VehicleAI_Editor/Content`.
 
 The monoDrive Simulator uses CUDA for certain features. Consequently, in order to 
 build the standalone Simulator from the Scenario Editor, the CUDA SDK must be installed
-on the system. This version of the Scenario Editor uses [Cuda Toolkit 10.2](https://developer.nvidia.com/cuda-10.2-download-archive).
+on the system. This version of the Scenario Editor uses [Cuda Toolkit 11.6](https://developer.nvidia.com/cuda-11-6-2-download-archive).
 
 Additionally, in order to generate the Linux standalone build from Windows, the Linux
 CUDA libraries must be added to the Windows CUDA installation. These libraries are included
 in `VehicleAI_Editor/ThirdParty/cuda_linux_libraries.zip`. This archive should be extracted to
-`C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.2`.
+`C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.6`.
 
 Finally, the Windows standalone build requires a few DLLs to be included with the build. 
 These DLLs are included in `VehicleAI_Editor/ThirdParty/windows_simulator_dlls.zip`. Extract

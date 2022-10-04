@@ -39,7 +39,7 @@ By default, the monoDrive Simulator uses PhysX for vehicle dynamics. Alternative
 
 **CarSim Prerequisites**
 
-- VehicleSim Dynamics plugin for Unreal Engine 4.25
+- VehicleSim Dynamics plugin for Unreal Engine 4.27
 - CarSim 2020.0
     - Minimum licenses:
         - CarSim Browser and Graphical User Interface

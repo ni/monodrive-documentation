@@ -2,7 +2,7 @@
 
 ## Prerequisites 
 
-1. Ensure that [Visual Studio 2019 or 2022](https://visualstudio.microsoft.com/downloads/) is installed to generate the project files. 
+1. Ensure that [Visual Studio 2019+](https://visualstudio.microsoft.com/downloads/) is installed to generate the project files. 
 
 1. Install [Cuda Toolkit 11.6](https://developer.nvidia.com/cuda-11-6-2-download-archive)
     - During installation under "Options", "Express" will update or download the NVIDIA driver for this version of Cuda Toolkit. 
@@ -24,14 +24,22 @@
 
 1. Extract the archive to a common location like `C:/monodrive`.
 1. If downloading for the first time, you will need to download the license.txt file through your account on [monoDrive.io](https://www.monodrive.io/register), unless one has been provided directly from monoDrive. Copy the attached license.txt file to the extracted location `C:/monodrive/VehicleAI_Editor/license.txt`.
-1. Install [Unreal Engine 4.25.4](https://www.unrealengine.com/en-US/).
-1. Extract the Plugins.zip archive into the 4.25.4 Engine's Plugins directory. e.g. if UE4.25.4 is installed at `C:\Program Files\Epic Games\UE_4.25`, then extract the archive into `C:\Program Files\Epic Games\UE_4.25\Engine\Plugins`. The resulting directory structure should look as follows:
+1. Install [Unreal Engine 4.27.2](https://www.unrealengine.com/en-US/).
+1. Extract the Plugins.zip archive into the 4.27.2 Engine's Plugins directory. e.g. if UE4.27.2 is installed at `C:\Program Files\Epic Games\UE_4.27`, then extract the archive into `C:\Program Files\Epic Games\UE_4.27\Engine\Plugins`. The resulting directory structure should look as follows:
     <pre>
-        C:\Program Files\Epic Games\UE_4.25\Engine\Plugins\monoDrive
+        C:\Program Files\Epic Games\UE_4.27\Engine\Plugins\monoDrive
             +-- monoDriveSensors
             +-- ... (other monoDrive plugins)
-    </pre>         
-5. Open VehicleAI.uproject. Note that the first time you open the project, UE4 will prompt you about missing modules that need to be rebuilt (VehicleAI and VehicleAIEditor). Select "Yes" to build the modules, then the project will begin compiling shaders. 
+    </pre>   
+1. You will also need to set an environment variable for `LIBMONODRIVE_PATH` pointing to the libmonodrive directory. 
+    1. Search for "environment variables" in the Windows search and open "Edit 
+    system environment variables". 
+    1. From the "System Properties" dialog under the "Advanced" tab, click the 
+    "Environment Variables" button at the bottom.
+    1. In the "User variables for <username>" section click "New"
+    1. For the "Variable name" put "LIBMONODRIVE_PATH".
+    1. For the "Variable value": put  PATH_TO_SIMULATOR_ROOT\libmonodrive      
+1. Open VehicleAI.uproject. Note that the first time you open the project, UE4 will prompt you about missing modules that need to be rebuilt (VehicleAI and VehicleAIEditor). Select "Yes" to build the modules, then the project will begin compiling shaders. 
 
     Note that the editor may take a long time to compiling shaders, and may appear to get stuck at 95% or 99%. This is expected and you will need to wait for the compiling to finish. If no error is reported then the system is still compiling shaders, this only happens the first time opening. 
 
@@ -75,13 +83,13 @@ Generation of project files is not a requirement to run the Simulator, but it en
     <img class='wide_img' src="../../../LV_client/quick_start/imgs/play.png"/>
     </div>
 
-## Update Versions
+## Update Scenario Editor Versions
 
 1. Extract the new archive to a common location like `C:/monodrive`.
 1. Copy your license.txt file to the new extracted location `C:/monodrive/VehicleAI_Editor/license.txt`.
-1. Delete previous monoDrive Plugins and extract the new version of Plugins.zip archive into the 4.25.4 Engine's Plugins directory. e.g. if UE4.25.4 is installed at `C:\Program Files\Epic Games\UE_4.25`, then extract the archive into `C:\Program Files\Epic Games\UE_4.25\Engine\Plugins`. The resulting directory structure should look as follows:
+1. Delete previous monoDrive Plugins and extract the new version of Plugins.zip archive into the 4.27.2 Engine's Plugins directory. e.g. if UE4.27.2 is installed at `C:\Program Files\Epic Games\UE_4.27`, then extract the archive into `C:\Program Files\Epic Games\UE_4.27\Engine\Plugins`. The resulting directory structure should look as follows:
     <pre>
-        C:\Program Files\Epic Games\UE_4.25\Engine\Plugins\monoDrive
+        C:\Program Files\Epic Games\UE_4.27\Engine\Plugins\monoDrive
             +-- monoDriveSensors
             +-- ... (other monoDrive plugins)
     </pre>         

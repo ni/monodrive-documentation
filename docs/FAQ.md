@@ -48,7 +48,7 @@ When I tried to build the scenario Editor, I get the following error on the logs
 
 When I tried to build the scenario Editor, I see the following error on the logs: ```'cuda_runtime.h' file not found```
 
--  This error is due to missing the Cuda SDK missing. Ensure you install from [here](https://developer.nvidia.com/cuda-10.2-download-archive). More information see [prerequisites](Getting_Started.md).   
+-  This error is due to missing the Cuda SDK missing. Ensure you install [Cuda Toolkit 11.6](https://developer.nvidia.com/cuda-11-6-2-download-archive). More information see [prerequisites](Getting_Started.md).   
 <p>&nbsp;</p>
 _ _ _ 
 
@@ -97,9 +97,9 @@ Set the file association of the “.uproject” file to “C:\Program Files (x86
 
 Usually this popup error indicates that you may need to re-extract or extract the monoDrive Plugins, below are instructions on how to do this. 
 
-Delete previous monoDrive Plugins (if there are any), and extract the Plugins.zip archive from the root of the Scenario Editor into the 4.25.4 Engine's Plugins directory. e.g. if UE4.25.4 is installed at `C:\Program Files\Epic Games\UE_4.25`, then extract the archive into `C:\Program Files\Epic Games\UE_4.25\Engine\Plugins`. The resulting directory structure should look as follows:
+Delete previous monoDrive Plugins (if there are any), and extract the Plugins.zip archive from the root of the Scenario Editor into the 4.27.2 Engine's Plugins directory. e.g. if UE4.27.2 is installed at `C:\Program Files\Epic Games\UE_4.27`, then extract the archive into `C:\Program Files\Epic Games\UE_4.27\Engine\Plugins`. The resulting directory structure should look as follows:
     <pre>
-        C:\Program Files\Epic Games\UE_4.25\Engine\Plugins\monoDrive
+        C:\Program Files\Epic Games\UE_4.27\Engine\Plugins\monoDrive
             +-- monoDriveSensors
             +-- ... (other monoDrive plugins)
     </pre>         

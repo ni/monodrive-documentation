@@ -8,7 +8,7 @@
 
 This example shows how to use the monoDrive client to create a lane follower controller using a compiled DLL. This example allows the user to configure and update the lights attached to the ego vehicle.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

@@ -8,7 +8,7 @@
 
 Configure and read the RPM information of the vehicle.
 
-For technical support contact us at <b>support@monodrive.io</b> 
+For technical support contact us at <b>monodrive.support@ni.com</b> 
 
 ### Inputs
 

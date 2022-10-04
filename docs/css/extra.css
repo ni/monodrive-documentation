@@ -82,12 +82,21 @@ main {
     height: auto
 }
 
+.xl_img {
+    width: 600px;
+    height: auto
+}
+
 .semiwide_img {
     width: 60%;
 }
 
 .wide_img {
     width: 90%;
+}
+
+.split_screen_code {
+    width: 48%
 }
 
 .center {

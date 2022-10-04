@@ -28,7 +28,7 @@ Ubuntu 18.04.
 </div>
 
 - [CMake](https://cmake.org/download/)
-    - When installing, make sure to choose the option to CMake to your Windows Path variable.
+    - When installing, make sure to choose the option to add CMake to your Windows Path variable.
  
 To build the examples the following are required:
 

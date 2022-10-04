@@ -18,7 +18,7 @@ configuration documentation.
     "pitch": float,
     "yaw": float,
     "roll": float
-  }
+  },
   "use_parent_component_attachment": bool,
   "parent_component_attachment": string,
   "use_attach_socket": bool,

@@ -47,3 +47,19 @@ configuration documentation.
   <p class="img_container">
     <img class="lg_img" src="../img/Wheel_Socket.png"/>
   </p>
+
+## Output
+
+```json
+{
+  "game_time": float,
+  "wall_time": int,
+  "sample_count": int
+}
+```
+
+- **game_time:**: The "physics time" in seconds since the simualtion has started. This is the game time from Unreal Engine.
+- **wall_time:** The wall clock, real-world time in UNIX epoch seconds.
+- **sample_count:**: The number of samples that have been collected for this sensor.
+
+<p>&nbsp;</p>

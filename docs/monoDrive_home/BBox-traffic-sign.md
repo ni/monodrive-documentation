@@ -12,7 +12,7 @@ visible actor.
 For example, the user may want to get a bounding box just for the face of a traffic sign for classification purposes and would otherwise like to ignore the other parts like the shaft of the sign.
 
 
-### Displaying only the sign’s bounding box of a Traffic Sign
+## Display Only the Sign's Bounding Box of a Traffic Sign
 
 The goal of this section is to use the existing bounding boxes on a traffic sign’s static mesh 
 and display only the desired region of interest 
@@ -29,9 +29,7 @@ and display only the desired region of interest
 
 4. In the World Outliner, look for ‘Rectangle_Vertical’. 
     
-5. Select one of them, and open the Static Mesh by double-clicking, from the 'Details' window as seen below:
-Note: All the 'Rectangular_Vertical signs' will be updated when 
-modifying the static mesh of ‘Rectangle_Vertical’ signs.
+5. Select one of them, and open the Static Mesh by double-clicking, from the 'Details' window as seen below. Please note that all the 'Rectangular_Vertical signs' will be updated when modifying the static mesh of ‘Rectangle_Vertical’ signs.
     <p class="img_container">
     <img class="wide_img" src="../img/stmesh_traffic_step5.png"/>
     </p>
@@ -46,7 +44,7 @@ modifying the static mesh of ‘Rectangle_Vertical’ signs.
     <img class="wide_img" src="../img/stmesh_traffic_step7.png"/>
     </p>
  
-8.	Under Details&rarr;Collision&rarr;Primitives&rarr;Boxes: the existing bounding boxes are visible along with their names:
+8.	Under Details&rarr;Collision&rarr;Primitives&rarr;Boxes, the existing bounding boxes are visible along with their names.
 The actual sign is the 'face', and the pole is the 'shaft'
 
 9.	Uncheck the ‘Contribute to Mass’ parameter so the box only   serves annotation purposes. 
@@ -54,7 +52,7 @@ This disables the overall mass of the added shape.
 
 10.	Click on ‘Save’ on the top left corner. 
 
-### Setting up the C++ client for a Traffic Sign
+## Setting up the C++ client for a Traffic Sign
 
 This section of the document explains how to modify code on the camera_sensor.cpp client example to specifically extract only the sign’s 2D bounding box with the label ‘face’ using annotations. 
 
@@ -83,7 +81,7 @@ This section of the document explains how to modify code on the camera_sensor.cp
 5. Debug & Run ‘camera_sensor.cpp’. The bounding boxes for the desired actors will be visible in the opencv window. </div>
 
 
-### Modifying bounding boxes on a Streetlight
+## Modifying Bounding Boxes on a Streetlight
 
 The goal of this section is to modify existing bounding boxes on a streetlight’s static mesh and display only the desired region of interest 
 
@@ -99,8 +97,10 @@ The goal of this section is to modify existing bounding boxes on a streetlight�
     <img class="wide_img" src="../img/stmesh_stlight_step3.png"/>
     </p>
 
-4. Click on Viewport. 
+4.  Click on Viewport. 
+
     A.	Click on the streetlight. 
+    
     B.	Double click on the Static Mesh component of the streetlight under 'Details' as shown in the image below. 
     <p class="img_container">
     <img class="wide_img" src="../img/stmesh_stlight_step4.png"/>
@@ -113,9 +113,9 @@ The goal of this section is to modify existing bounding boxes on a streetlight�
 
 6. Once selected, all the bounding boxes for the current asset will be visible (as seen in the above image).
 
-7. Select bounding box 3 under Details&rarr;Collision&rarr;Boxes and expand it.
+7.  Select bounding box 3 under Details&rarr;Collision&rarr;Boxes and expand it.
 
-8.	Modify the Name parameter of Box 3. The image shown below illustrates the ‘Name’ updated as ‘’lamp’. Box 3 is the lamp portion of the streetlight. 
+8.	Modify the Name parameter of Box 3. The image shown below illustrates the ‘Name’ updated as 'lamp'.    Box 3 is the lamp portion of the streetlight. 
     <p class="img_container">
     <img class="wide_img" src="../img/stmesh_stlight_step8.png"/>
     </p>
@@ -125,14 +125,13 @@ The goal of this section is to modify existing bounding boxes on a streetlight�
 
 10.	Click on Save (top left corner). 
 
-### Setting up the C++ client for a Streetlight
+## Setting up the C++ client for a Streetlight
 
- This section of the document explains how to modify code on the camera_sensor.cpp client example to specifically extract the above modified 2D bounding box with the label ‘lamp’ using annotations. 
+This section of the document explains how to modify code on the camera_sensor.cpp client example to specifically extract the above modified 2D bounding box with the label ‘lamp’ using annotations. 
 
-<div style="white-space: pre-wrap;">
+<div style="white-space: inline-block;">
 1. Navigate to monodrive-client&rarr;examples&rarr;cpp&rarr;dev&rarr;camera_sensor.cpp file. 
-Make the following change to include the actor tag and save the file:
-Note: Skipping to next step will display all the existing bounding boxes for the “prp_streetLight” actor.
+Make the following change to include the actor tag and save the file. Please note that skipping to next step will display all the existing bounding boxes for the “prp_streetLight” actor.
 </div>
 ```cpp
     fc_config.annotation.desired_tags = {"street_light"};

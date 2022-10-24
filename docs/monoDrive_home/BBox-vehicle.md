@@ -8,7 +8,7 @@ in the annotation data of various sensors like the Camera.
 In this example, the bounding box on a vehicle’s rear windshield will be added and displayed when using a camera sensor.
 This is useful when the user would like to get ground truth information about some area of a visible actor. 
 
-### Add a custom bounding box to a vehicle
+## Add a Custom Bounding Box to a Vehicle
 
 In this tutorial, a custom bounding box is added to `sedan_monoDrive_01` on the rear windshield. 
 
@@ -25,7 +25,7 @@ In this tutorial, a custom bounding box is added to `sedan_monoDrive_01` on the 
     <img class="wide_img" src="../img/sklmesh_step3.png"/>
     </p>
 
-4. Click on Physics and the result will look like the image below:
+4. Click on Physics and the result will look like the image below.
     <p class="img_container">
     <img class="wide_img" src="../img/sklmesh_step4.png"/>
     </p>
@@ -38,11 +38,13 @@ In this tutorial, a custom bounding box is added to `sedan_monoDrive_01` on the 
 
 6. Place cursor around the area the box was added and zoom in (using mouse wheel scroll up direction)
    to the vehicle till the newly added box is visible.
+
     A.	On the top of the window, change the tool to `Select and Translate Objects`
+
     B.  Click on the box shape added – the box should be movable in `x`, `y` and `z` directions. 
-   <p class="img_container">
-   <img class="wide_img" src="../img/sklmesh_step6.png"/>
-   </p>
+        <p class="img_container">
+        <img class="wide_img" src="../img/sklmesh_step6.png"/>
+        </p>
 
 7.	Use the moving tools to place it on center of rear windshield of the vehicle
 
@@ -89,13 +91,13 @@ Enter the name ‘rear_windshield’
 
 11.	Click on ‘Save’ on the top left corner. 
 
-### Setting up the C++ client
+## Setting up the C++ client
 
 This section of the document explains how to modify code on the camera_sensor.cpp client example to specifically extract the above modified 2D bounding box with the label ‘rear_windshield’ using annotations
 
 <div style="display: inline-block;">
 1. Navigate to monodrive-client&rarr;examples&rarr;cpp&rarr;dev&rarr;camera_sensor.cpp file. 
-Make the following change to include the vehicle’s actor tag and save the file:
+Make the following change to include the vehicle’s actor tag and save the file.
 </div>
 ```cpp
     fc_config.annotation.desired_tags = {"vehicle"};

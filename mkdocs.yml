@@ -62,7 +62,7 @@ nav:
   - Weather: monoDrive_home/Weather.md
   
 - Tutorials:
-  - Common Tutorials: [monoDrive_home/Multi-viewport.md]
+  - Common Tutorials: [monoDrive_home/Multi-viewport.md, monoDrive_home/BBox-vehicle.md, monoDrive_home/BBox-traffic-sign.md]
   - Co-simulation Tutorials: [monoDrive_home/CarSim.md]
   - LabVIEW Tutorials: [LV_client/tutorials/Setup.md,
     LV_client/tutorials/AddSensors.md,

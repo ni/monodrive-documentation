@@ -120,6 +120,7 @@ nav:
           - mono_gps.vi: LV_client/sensors/mono_gps.md
           - mono_imu.vi: LV_client/sensors/mono_imu.md
           - mono_led_array.vi: LV_client/sensors/mono_led_array.md
+          - mono_led_matrixBeam.vi: LV_client/sensors/mono_led_matrixBeam.md
           - mono_lidar_array.vi: LV_client/sensors/mono_lidar_array.md
           - mono_lidar.vi: LV_client/sensors/mono_lidar.md
           - mono_occupancy_grid.vi: LV_client/sensors/mono_occupancy_grid.md
@@ -130,7 +131,7 @@ nav:
           - mono_state_sensor.vi: LV_client/sensors/mono_state_sensor.md
           - mono_ultrasonic.vi: LV_client/sensors/mono_ultrasonic.md
           - mono_viewport.vi: LV_client/sensors/mono_viewport.md
-          - mono_waypoint_sensor.vi: LV_client/sensors/mono_waypoint_sensor.md
+          - mono_waypoint_sensor.vi: LV_client/sensors/mono_waypoint_sensor.md         
       - Weather:
           - mono_get_weather.vi: LV_client/weather/mono_get_weather.md
           - mono_weather_update.vi: LV_client/weather/mono_weather_update.md
@@ -154,6 +155,7 @@ nav:
           - mono_start_scenario.vi: LV_client/tools/mono_start_scenario.md
           - mono_test_FPS_by_sensor.vi: LV_client/tools/mono_test_FPS_by_sensor.md
           - radar_plot_tracks.vi: LV_client/tools/radar_plot_tracks.md
+          - pattern_load.vi: LV_client/tools/pattern_load.md
 
 
       - Simulator:
@@ -179,6 +181,7 @@ nav:
           - mono_check_simulator.vi: LV_client/utilities/mono_check_simulator.md
           - mono_convert_polar_to_rectangular.vi: LV_client/utilities/mono_convert_polar_to_rectangular.md
           - mono_close_tcp_connections.vi: LV_client/utilities/mono_close_tcp_connections.md
+          - mono_create_configuration.vi: LV_client/utilities/mono_create_configuration.md
           - mono_draw_map.vi: LV_client/utilities/mono_draw_map.md
           - mono_draw_lanes_coord.vi: LV_client/utilities/mono_draw_lanes_coord.md
           - mono_draw_spawn_positions.vi: LV_client/utilities/mono_draw_spawn_positions.md
@@ -193,9 +196,12 @@ nav:
           - mono_get_spawn_position.vi: LV_client/utilities/mono_get_spawn_position.md
           - mono_get_start_points.vi: LV_client/utilities/mono_get_start_points.md
           - mono_get_stream_dimensions.vi: LV_client/utilities/mono_get_stream_dimensions.md
+          - mono_guid.vi: LV_client/utilities/mono_guid.md
           - mono_intensity_to_color.vi: LV_client/utilities/mono_intensity_to_color.md
+          - mono_invert.vi: LV_client/utilities/mono_invert.md
           - mono_lidar_packages.vi: LV_client/utilities/mono_lidar_packages.md
           - mono_lidar_plot.vi: LV_client/utilities/mono_lidar_plot.md
+          - mono_mask.vi: LV_client/utilities/mono_mask.md
           - mono_obtain_timestamp.vi: LV_client/utilities/mono_obtain_timestamp.md
           - mono_parse_depth_data.vi: LV_client/utilities/mono_parse_depth_data.md
           - mono_parse_lidar_configuration.vi: LV_client/utilities/mono_parse_lidar_configuration.md

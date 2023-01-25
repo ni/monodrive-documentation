@@ -153,6 +153,7 @@ nav:
           - mono_start_replay.vi: LV_client/tools/mono_start_replay.md
           - mono_start_scenario.vi: LV_client/tools/mono_start_scenario.md
           - mono_test_FPS_by_sensor.vi: LV_client/tools/mono_test_FPS_by_sensor.md
+          - radar_plot_tracks.vi: LV_client/tools/radar_plot_tracks.md
 
 
       - Simulator:
@@ -166,6 +167,7 @@ nav:
           - mono_set_running_mode.vi: LV_client/simulator/mono_set_running_mode.md
           
       - Utilities:
+          - build_manual_control.vi: LV_client/utilities/build_manual_control.md
           - mono_add_tcp_connection.vi: LV_client/utilities/mono_add_tcp_connection.md
           - mono_build_json.vi: LV_client/utilities/mono_build_json.md
           - mono_build_name.vi: LV_client/utilities/mono_build_name.md

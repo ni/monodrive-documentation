@@ -1,4 +1,4 @@
-# mono_send_vehicle_command.vi
+# build_manual_control.vi
 
 <p class="img_container">
 <img class="lg_img" src="../build_manual_control.png"/>

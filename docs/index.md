@@ -1,16 +1,10 @@
 # monoDrive Documentation
 
-Welcome to monoDrive's documentation.
+Welcome to monoDrive's documentation. This home page contains an index with a brief description of the different sections in the documentation. 
 
 <img class='sm_img' src="./imgs/NILogo.png"/>
 
 We are excited to announce that monoDrive is now NI, [see Press Release](https://www.ni.com/en-us/about-ni/newsroom/news-releases/ni-acquires-monodrive-to-accelerate-autonomous-vehicle-developme.html).
-
-This home page contains an index with a brief description of the different sections in the documentation. 
-
-The documentation reflects the newest version of the monoDrive Simulation and Scenario Editor with Unreal Engine 4.25.4. We are excited to share our new features including a [Scenario Tool Widget](scenario_editor/scenarios.md) to easily load and save scenario files to run in Closed Loop mode, enhanced streaming, a new mode-Closed Loop Fixed Time Step, and new/updated sensors- a [waypoint sensor](monoDrive_home/Waypoint-Sensor.md) and [fisheye & wide angle lens camera models](monoDrive_home/Camera.md).
-
-monoDrive's Platform is available now: [Download monoDrive](https://www.monodrive.io/register)
 
 <div class="img_container">
     <img class='md_img' src="./imgs/monodrive_simulator.png"/>

@@ -106,6 +106,7 @@ nav:
           - mono4_hil_example.vi: LV_client/examples/mono4_hil_example.md
           - mono5_radar_example.vi: LV_client/examples/mono5_radar_example.md
           - mono6_pilot_example_fixed_time.vi: LV_client/examples/mono6_pilot_example_fixed_time.md
+          - mono7_vehicle_full_control.vi: LV_client/examples/mono7_vehicle_full_control.md
 
       - Controls:
           - monoDrive.ctl: LV_client/structures/monoDrive.md
@@ -145,6 +146,7 @@ nav:
           - mono_parse_binaries.vi: LV_client/tools/mono_parse_binaries.md
           - mono_plot_radar_target_by_name.vi: LV_client/tools/mono_plot_radar_target_by_name.md
           - mono_radar_data_cube_plotter.vi: LV_client/tools/mono_radar_data_cube_plotter.md
+          - mono_radar_plot_tracks.vi: LV_client/tools/mono_radar_plot_tracks.md
           - mono_save_camera_images.vi: LV_client/tools/mono_save_camera_images.md
           - mono_start_fixed_time.vi: LV_client/tools/mono_start_fixed_time.md
           - mono_start_hil.vi: LV_client/tools/mono_start_hil.md
@@ -161,6 +163,7 @@ nav:
           - mono_header.vi: LV_client/simulator/mono_header.md
           - mono_init.vi: LV_client/simulator/mono_init.md
           - mono_send_command.vi: LV_client/simulator/mono_send_command.md
+          - mono_send_command_no_response.vi: LV_client/simulator/mono_send_command_no_response.md
           - mono_send_pause_command.vi: LV_client/simulator/mono_send_pause_command.md
           - mono_send_step.vi: LV_client/simulator/mono_send_step.md
           - mono_set_running_mode.vi: LV_client/simulator/mono_set_running_mode.md
@@ -168,6 +171,7 @@ nav:
       - Utilities:
           - mono_add_tcp_connection.vi: LV_client/utilities/mono_add_tcp_connection.md
           - mono_build_json.vi: LV_client/utilities/mono_build_json.md
+          - mono_build_manual_control.vi: LV_client/utilities/mono_build_manual_control.md
           - mono_build_name.vi: LV_client/utilities/mono_build_name.md
           - mono_build_version_msg.vi: LV_client/utilities/mono_build_version_msg.md
           - mono_calculate_image_indexes.vi: LV_client/utilities/mono_calculate_image_indexes.md
@@ -217,10 +221,11 @@ nav:
           - mono_send_simulator_config.vi: LV_client/utilities/mono_send_simulator_config.md
           - mono_send_trajectory.vi: LV_client/utilities/mono_send_trajectory.md
           - mono_send_vehicle_command.vi: LV_client/utilities/mono_send_vehicle_command.md
+          - mono_send_vehicle_command_float.vi: LV_client/utilities/mono_send_vehicle_command_float.md
+          - mono_send_vehicle_control_command.vi: LV_client/utilities/mono_send_vehicle_control_command.md
           - mono_sensor_parser.vi: LV_client/utilities/mono_sensor_parser.md
           - mono_set_map.vi: LV_client/utilities/mono_set_map.md
           - mono_velodyne_parse.vi: LV_client/utilities/mono_velodyne_parse.md
-
 
       - Shared Libraries:
           - mono_control.vi: LV_client/shared_libraries/mono__control.md

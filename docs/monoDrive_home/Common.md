@@ -18,7 +18,7 @@ configuration documentation.
     "pitch": float,
     "yaw": float,
     "roll": float
-  }
+  },
   "use_parent_component_attachment": bool,
   "parent_component_attachment": string,
   "use_attach_socket": bool,
@@ -45,7 +45,7 @@ configuration documentation.
     - **attach_socket** String matching the name of the socket to which we would like to attach the sensor. 
 
   <p class="img_container">
-    <img class="lg_img" src="../img/Wheel_Socket.png"/>
+    <img class="wide_img" src="../img/Wheel_Socket1.png"/>
   </p>
 
 ## Output

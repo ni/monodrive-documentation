@@ -23,7 +23,7 @@
 ## Windows Scenario Editor
 
 1. Extract the archive to a common location like `C:/monodrive`.
-1. If downloading for the first time, you will need to download the license.txt file through your account on [monoDrive.io](https://www.monodrive.io/register), unless one has been provided directly from monoDrive. Copy the attached license.txt file to the extracted location `C:/monodrive/VehicleAI_Editor/license.txt`.
+1. If downloading for the first time, you will need to download the license.txt file provided from NI (National Instruments). Copy the attached license.txt file to the extracted location `C:/monodrive/VehicleAI_Editor/license.txt`.
 1. Install [Unreal Engine 4.27.2](https://www.unrealengine.com/en-US/).
 1. Extract the Plugins.zip archive into the 4.27.2 Engine's Plugins directory. e.g. if UE4.27.2 is installed at `C:\Program Files\Epic Games\UE_4.27`, then extract the archive into `C:\Program Files\Epic Games\UE_4.27\Engine\Plugins`. The resulting directory structure should look as follows:
     <pre>

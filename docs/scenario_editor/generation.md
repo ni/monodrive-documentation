@@ -36,4 +36,4 @@ where the final `VehicleAI.exe` and it's related content/files will be created.
 1. For the Windows release build, copy the DLLs referenced above into the directory. 
 The DLLs should be in the same directory as `VehicleAI.exe`.
 
-1. Copy the license.txt file to the generated build directory.
+1. Copy the license.txt file to the 'VehicleAI' directory, for example this path from the root of the project, `/WindowsNoEditor/VehicleAI/license.txt`. Note that this is not the same location as the monoDrive Simulator build.
